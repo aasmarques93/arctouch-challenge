@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ED08937D20585752004CC05F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED08937C20585752004CC05F /* AppDelegate.swift */; };
+		ED08937F20585752004CC05F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED08937E20585752004CC05F /* ViewController.swift */; };
+		ED08938220585752004CC05F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED08938020585752004CC05F /* Main.storyboard */; };
+		ED08938420585752004CC05F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED08938320585752004CC05F /* Assets.xcassets */; };
+		ED08938720585752004CC05F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED08938520585752004CC05F /* LaunchScreen.storyboard */; };
+		ED08939220585753004CC05F /* ArcTouchChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED08939120585753004CC05F /* ArcTouchChallengeTests.swift */; };
+		ED08939D20585753004CC05F /* ArcTouchChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED08939C20585753004CC05F /* ArcTouchChallengeUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ED08938E20585753004CC05F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED08937120585752004CC05F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED08937820585752004CC05F;
+			remoteInfo = ArcTouchChallenge;
+		};
+		ED08939920585753004CC05F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED08937120585752004CC05F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED08937820585752004CC05F;
+			remoteInfo = ArcTouchChallenge;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ED08937920585752004CC05F /* ArcTouchChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcTouchChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED08937C20585752004CC05F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ED08937E20585752004CC05F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ED08938120585752004CC05F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ED08938320585752004CC05F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ED08938620585752004CC05F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ED08938820585752004CC05F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED08938D20585753004CC05F /* ArcTouchChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArcTouchChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED08939120585753004CC05F /* ArcTouchChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcTouchChallengeTests.swift; sourceTree = "<group>"; };
+		ED08939320585753004CC05F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED08939820585753004CC05F /* ArcTouchChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArcTouchChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED08939C20585753004CC05F /* ArcTouchChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcTouchChallengeUITests.swift; sourceTree = "<group>"; };
+		ED08939E20585753004CC05F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ED08937620585752004CC05F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED08938A20585753004CC05F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED08939520585753004CC05F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ED08937020585752004CC05F = {
+			isa = PBXGroup;
+			children = (
+				ED08937B20585752004CC05F /* ArcTouchChallenge */,
+				ED08939020585753004CC05F /* ArcTouchChallengeTests */,
+				ED08939B20585753004CC05F /* ArcTouchChallengeUITests */,
+				ED08937A20585752004CC05F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ED08937A20585752004CC05F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED08937920585752004CC05F /* ArcTouchChallenge.app */,
+				ED08938D20585753004CC05F /* ArcTouchChallengeTests.xctest */,
+				ED08939820585753004CC05F /* ArcTouchChallengeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED08937B20585752004CC05F /* ArcTouchChallenge */ = {
+			isa = PBXGroup;
+			children = (
+				ED08937C20585752004CC05F /* AppDelegate.swift */,
+				ED08937E20585752004CC05F /* ViewController.swift */,
+				ED08938020585752004CC05F /* Main.storyboard */,
+				ED08938320585752004CC05F /* Assets.xcassets */,
+				ED08938520585752004CC05F /* LaunchScreen.storyboard */,
+				ED08938820585752004CC05F /* Info.plist */,
+			);
+			path = ArcTouchChallenge;
+			sourceTree = "<group>";
+		};
+		ED08939020585753004CC05F /* ArcTouchChallengeTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED08939120585753004CC05F /* ArcTouchChallengeTests.swift */,
+				ED08939320585753004CC05F /* Info.plist */,
+			);
+			path = ArcTouchChallengeTests;
+			sourceTree = "<group>";
+		};
+		ED08939B20585753004CC05F /* ArcTouchChallengeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ED08939C20585753004CC05F /* ArcTouchChallengeUITests.swift */,
+				ED08939E20585753004CC05F /* Info.plist */,
+			);
+			path = ArcTouchChallengeUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ED08937820585752004CC05F /* ArcTouchChallenge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED0893A120585753004CC05F /* Build configuration list for PBXNativeTarget "ArcTouchChallenge" */;
+			buildPhases = (
+				ED08937520585752004CC05F /* Sources */,
+				ED08937620585752004CC05F /* Frameworks */,
+				ED08937720585752004CC05F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArcTouchChallenge;
+			productName = ArcTouchChallenge;
+			productReference = ED08937920585752004CC05F /* ArcTouchChallenge.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ED08938C20585753004CC05F /* ArcTouchChallengeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED0893A420585753004CC05F /* Build configuration list for PBXNativeTarget "ArcTouchChallengeTests" */;
+			buildPhases = (
+				ED08938920585753004CC05F /* Sources */,
+				ED08938A20585753004CC05F /* Frameworks */,
+				ED08938B20585753004CC05F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED08938F20585753004CC05F /* PBXTargetDependency */,
+			);
+			name = ArcTouchChallengeTests;
+			productName = ArcTouchChallengeTests;
+			productReference = ED08938D20585753004CC05F /* ArcTouchChallengeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ED08939720585753004CC05F /* ArcTouchChallengeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED0893A720585753004CC05F /* Build configuration list for PBXNativeTarget "ArcTouchChallengeUITests" */;
+			buildPhases = (
+				ED08939420585753004CC05F /* Sources */,
+				ED08939520585753004CC05F /* Frameworks */,
+				ED08939620585753004CC05F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED08939A20585753004CC05F /* PBXTargetDependency */,
+			);
+			name = ArcTouchChallengeUITests;
+			productName = ArcTouchChallengeUITests;
+			productReference = ED08939820585753004CC05F /* ArcTouchChallengeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED08937120585752004CC05F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Arthur Augusto";
+				TargetAttributes = {
+					ED08937820585752004CC05F = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					ED08938C20585753004CC05F = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = ED08937820585752004CC05F;
+					};
+					ED08939720585753004CC05F = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = ED08937820585752004CC05F;
+					};
+				};
+			};
+			buildConfigurationList = ED08937420585752004CC05F /* Build configuration list for PBXProject "ArcTouchChallenge" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ED08937020585752004CC05F;
+			productRefGroup = ED08937A20585752004CC05F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ED08937820585752004CC05F /* ArcTouchChallenge */,
+				ED08938C20585753004CC05F /* ArcTouchChallengeTests */,
+				ED08939720585753004CC05F /* ArcTouchChallengeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ED08937720585752004CC05F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED08938720585752004CC05F /* LaunchScreen.storyboard in Resources */,
+				ED08938420585752004CC05F /* Assets.xcassets in Resources */,
+				ED08938220585752004CC05F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED08938B20585753004CC05F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED08939620585753004CC05F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ED08937520585752004CC05F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED08937F20585752004CC05F /* ViewController.swift in Sources */,
+				ED08937D20585752004CC05F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED08938920585753004CC05F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED08939220585753004CC05F /* ArcTouchChallengeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED08939420585753004CC05F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED08939D20585753004CC05F /* ArcTouchChallengeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ED08938F20585753004CC05F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED08937820585752004CC05F /* ArcTouchChallenge */;
+			targetProxy = ED08938E20585753004CC05F /* PBXContainerItemProxy */;
+		};
+		ED08939A20585753004CC05F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED08937820585752004CC05F /* ArcTouchChallenge */;
+			targetProxy = ED08939920585753004CC05F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ED08938020585752004CC05F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED08938120585752004CC05F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ED08938520585752004CC05F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED08938620585752004CC05F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ED08939F20585753004CC05F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ED0893A020585753004CC05F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ED0893A220585753004CC05F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XXT2XJVDAC;
+				INFOPLIST_FILE = ArcTouchChallenge/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.ArcTouchChallenge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ED0893A320585753004CC05F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XXT2XJVDAC;
+				INFOPLIST_FILE = ArcTouchChallenge/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.ArcTouchChallenge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ED0893A520585753004CC05F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XXT2XJVDAC;
+				INFOPLIST_FILE = ArcTouchChallengeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.ArcTouchChallengeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ArcTouchChallenge.app/ArcTouchChallenge";
+			};
+			name = Debug;
+		};
+		ED0893A620585753004CC05F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XXT2XJVDAC;
+				INFOPLIST_FILE = ArcTouchChallengeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.ArcTouchChallengeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ArcTouchChallenge.app/ArcTouchChallenge";
+			};
+			name = Release;
+		};
+		ED0893A820585753004CC05F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XXT2XJVDAC;
+				INFOPLIST_FILE = ArcTouchChallengeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.ArcTouchChallengeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ArcTouchChallenge;
+			};
+			name = Debug;
+		};
+		ED0893A920585753004CC05F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XXT2XJVDAC;
+				INFOPLIST_FILE = ArcTouchChallengeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.ArcTouchChallengeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ArcTouchChallenge;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ED08937420585752004CC05F /* Build configuration list for PBXProject "ArcTouchChallenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED08939F20585753004CC05F /* Debug */,
+				ED0893A020585753004CC05F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED0893A120585753004CC05F /* Build configuration list for PBXNativeTarget "ArcTouchChallenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED0893A220585753004CC05F /* Debug */,
+				ED0893A320585753004CC05F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED0893A420585753004CC05F /* Build configuration list for PBXNativeTarget "ArcTouchChallengeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED0893A520585753004CC05F /* Debug */,
+				ED0893A620585753004CC05F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED0893A720585753004CC05F /* Build configuration list for PBXNativeTarget "ArcTouchChallengeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED0893A820585753004CC05F /* Debug */,
+				ED0893A920585753004CC05F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ED08937120585752004CC05F /* Project object */;
+}
