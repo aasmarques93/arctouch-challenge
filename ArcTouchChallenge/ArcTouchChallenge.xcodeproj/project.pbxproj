@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA3601F73BCC1B88F2214B0F /* Pods_ArcTouchChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF9D1EDD2432F5AEBF8C1F4F /* Pods_ArcTouchChallenge.framework */; };
+		EBC35AEB51BA2728AD17F4F6 /* Pods_ArcTouchChallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDD1E325C31BF7DAA815EED /* Pods_ArcTouchChallengeTests.framework */; };
 		ED08937D20585752004CC05F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED08937C20585752004CC05F /* AppDelegate.swift */; };
 		ED08937F20585752004CC05F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED08937E20585752004CC05F /* ViewController.swift */; };
 		ED08938220585752004CC05F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED08938020585752004CC05F /* Main.storyboard */; };
@@ -14,6 +16,7 @@
 		ED08938720585752004CC05F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED08938520585752004CC05F /* LaunchScreen.storyboard */; };
 		ED08939220585753004CC05F /* ArcTouchChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED08939120585753004CC05F /* ArcTouchChallengeTests.swift */; };
 		ED08939D20585753004CC05F /* ArcTouchChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED08939C20585753004CC05F /* ArcTouchChallengeUITests.swift */; };
+		F5F07C5D47C75C95E3044CA0 /* Pods_ArcTouchChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333094F0C954F73ACD445BD3 /* Pods_ArcTouchChallengeUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		333094F0C954F73ACD445BD3 /* Pods_ArcTouchChallengeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArcTouchChallengeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		356DDD150DB7F20672F766B7 /* Pods-ArcTouchChallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcTouchChallengeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ArcTouchChallengeUITests/Pods-ArcTouchChallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6B1B4C664570BDD85AADA2B6 /* Pods-ArcTouchChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcTouchChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-ArcTouchChallenge/Pods-ArcTouchChallenge.release.xcconfig"; sourceTree = "<group>"; };
+		950B056FBD8066A56CD60AF2 /* Pods-ArcTouchChallengeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcTouchChallengeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ArcTouchChallengeUITests/Pods-ArcTouchChallengeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B8B7381E75DD557E97A1CE53 /* Pods-ArcTouchChallengeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcTouchChallengeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ArcTouchChallengeTests/Pods-ArcTouchChallengeTests.release.xcconfig"; sourceTree = "<group>"; };
+		D0E0F9DBC522678DC9CE4414 /* Pods-ArcTouchChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcTouchChallenge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ArcTouchChallenge/Pods-ArcTouchChallenge.debug.xcconfig"; sourceTree = "<group>"; };
+		E1CC0645DA763052561FA663 /* Pods-ArcTouchChallengeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcTouchChallengeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ArcTouchChallengeTests/Pods-ArcTouchChallengeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED08937920585752004CC05F /* ArcTouchChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcTouchChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED08937C20585752004CC05F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED08937E20585752004CC05F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +57,8 @@
 		ED08939820585753004CC05F /* ArcTouchChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArcTouchChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED08939C20585753004CC05F /* ArcTouchChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcTouchChallengeUITests.swift; sourceTree = "<group>"; };
 		ED08939E20585753004CC05F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF9D1EDD2432F5AEBF8C1F4F /* Pods_ArcTouchChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArcTouchChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFDD1E325C31BF7DAA815EED /* Pods_ArcTouchChallengeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArcTouchChallengeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA3601F73BCC1B88F2214B0F /* Pods_ArcTouchChallenge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBC35AEB51BA2728AD17F4F6 /* Pods_ArcTouchChallengeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +82,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5F07C5D47C75C95E3044CA0 /* Pods_ArcTouchChallengeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D21674F2381357536DCF73C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D1EDD2432F5AEBF8C1F4F /* Pods_ArcTouchChallenge.framework */,
+				FFDD1E325C31BF7DAA815EED /* Pods_ArcTouchChallengeTests.framework */,
+				333094F0C954F73ACD445BD3 /* Pods_ArcTouchChallengeUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB826078C257F722DC2B70C3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D0E0F9DBC522678DC9CE4414 /* Pods-ArcTouchChallenge.debug.xcconfig */,
+				6B1B4C664570BDD85AADA2B6 /* Pods-ArcTouchChallenge.release.xcconfig */,
+				E1CC0645DA763052561FA663 /* Pods-ArcTouchChallengeTests.debug.xcconfig */,
+				B8B7381E75DD557E97A1CE53 /* Pods-ArcTouchChallengeTests.release.xcconfig */,
+				950B056FBD8066A56CD60AF2 /* Pods-ArcTouchChallengeUITests.debug.xcconfig */,
+				356DDD150DB7F20672F766B7 /* Pods-ArcTouchChallengeUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		ED08937020585752004CC05F = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +119,8 @@
 				ED08939020585753004CC05F /* ArcTouchChallengeTests */,
 				ED08939B20585753004CC05F /* ArcTouchChallengeUITests */,
 				ED08937A20585752004CC05F /* Products */,
+				AB826078C257F722DC2B70C3 /* Pods */,
+				6D21674F2381357536DCF73C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,9 +172,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ED0893A120585753004CC05F /* Build configuration list for PBXNativeTarget "ArcTouchChallenge" */;
 			buildPhases = (
+				696D8C78DD3187F954E0BACA /* [CP] Check Pods Manifest.lock */,
 				ED08937520585752004CC05F /* Sources */,
 				ED08937620585752004CC05F /* Frameworks */,
 				ED08937720585752004CC05F /* Resources */,
+				F02CB27191A266448AFCBAB2 /* [CP] Embed Pods Frameworks */,
+				FA8F7034D2A7CAA4716B2C02 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +192,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ED0893A420585753004CC05F /* Build configuration list for PBXNativeTarget "ArcTouchChallengeTests" */;
 			buildPhases = (
+				373E83219766FA933E495E6E /* [CP] Check Pods Manifest.lock */,
 				ED08938920585753004CC05F /* Sources */,
 				ED08938A20585753004CC05F /* Frameworks */,
 				ED08938B20585753004CC05F /* Resources */,
+				C9814521AD3F832B6ED6C42D /* [CP] Embed Pods Frameworks */,
+				59B44A02C6005128EE224700 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +213,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ED0893A720585753004CC05F /* Build configuration list for PBXNativeTarget "ArcTouchChallengeUITests" */;
 			buildPhases = (
+				89010DDEAF14560BC5BE01A2 /* [CP] Check Pods Manifest.lock */,
 				ED08939420585753004CC05F /* Sources */,
 				ED08939520585753004CC05F /* Frameworks */,
 				ED08939620585753004CC05F /* Resources */,
+				B6FFB8336FB6F55EA3B3CD61 /* [CP] Embed Pods Frameworks */,
+				D41B8C66A41EC68B7C717FEB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,6 +302,166 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		373E83219766FA933E495E6E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ArcTouchChallengeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		59B44A02C6005128EE224700 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArcTouchChallengeTests/Pods-ArcTouchChallengeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		696D8C78DD3187F954E0BACA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ArcTouchChallenge-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89010DDEAF14560BC5BE01A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ArcTouchChallengeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B6FFB8336FB6F55EA3B3CD61 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArcTouchChallengeUITests/Pods-ArcTouchChallengeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9814521AD3F832B6ED6C42D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArcTouchChallengeTests/Pods-ArcTouchChallengeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D41B8C66A41EC68B7C717FEB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArcTouchChallengeUITests/Pods-ArcTouchChallengeUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F02CB27191A266448AFCBAB2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ArcTouchChallenge/Pods-ArcTouchChallenge-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bond/Bond.framework",
+				"${BUILT_PRODUCTS_DIR}/Differ/Differ.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveKit/ReactiveKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bond.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differ.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArcTouchChallenge/Pods-ArcTouchChallenge-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA8F7034D2A7CAA4716B2C02 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArcTouchChallenge/Pods-ArcTouchChallenge-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ED08937520585752004CC05F /* Sources */ = {
@@ -424,6 +633,7 @@
 		};
 		ED0893A220585753004CC05F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0E0F9DBC522678DC9CE4414 /* Pods-ArcTouchChallenge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -439,6 +649,7 @@
 		};
 		ED0893A320585753004CC05F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B1B4C664570BDD85AADA2B6 /* Pods-ArcTouchChallenge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -454,6 +665,7 @@
 		};
 		ED0893A520585753004CC05F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1CC0645DA763052561FA663 /* Pods-ArcTouchChallengeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -471,6 +683,7 @@
 		};
 		ED0893A620585753004CC05F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8B7381E75DD557E97A1CE53 /* Pods-ArcTouchChallengeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -488,6 +701,7 @@
 		};
 		ED0893A820585753004CC05F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 950B056FBD8066A56CD60AF2 /* Pods-ArcTouchChallengeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -504,6 +718,7 @@
 		};
 		ED0893A920585753004CC05F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 356DDD150DB7F20672F766B7 /* Pods-ArcTouchChallengeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

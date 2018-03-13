@@ -1,0 +1,6 @@
+framework module Pods_ArcTouchChallenge {
+  umbrella header "Pods-ArcTouchChallenge-umbrella.h"
+
+  export *
+  module * { export * }
+}

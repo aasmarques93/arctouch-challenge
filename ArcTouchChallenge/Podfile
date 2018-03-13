@@ -1,0 +1,24 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'ArcTouchChallenge' do
+  use_frameworks!
+
+  pod 'Alamofire', '~> 4.5.0'
+  pod 'SwiftyJSON', '~> 3.1.4'
+  pod 'Bond', '~> 6.0-beta'
+  pod 'NVActivityIndicatorView', '~> 3.7.0'
+
+  # Pods for ArcTouchChallenge
+
+  target 'ArcTouchChallengeTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'ArcTouchChallengeUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
