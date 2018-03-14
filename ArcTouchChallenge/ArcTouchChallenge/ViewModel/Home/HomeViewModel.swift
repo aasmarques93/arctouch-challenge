@@ -141,6 +141,7 @@ class HomeViewModel: ViewModel {
             }
             
             handlerData(nil)
+            
             HomeServiceModel.shared.loadImage(path: movie.posterPath, handlerData: { (data) in
                 results[row].imageData = data as? Data
                 handlerData(data)

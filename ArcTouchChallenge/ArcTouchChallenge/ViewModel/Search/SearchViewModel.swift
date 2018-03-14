@@ -10,6 +10,7 @@ import UIKit
 
 protocol SearchViewModelDelegate: class {
     func reloadData()
+    func reloadMoviesList()
 }
 
 class SearchViewModel: ViewModel {
@@ -20,7 +21,7 @@ class SearchViewModel: ViewModel {
     var arrayGenres = [Genres]() { didSet { delegate?.reloadData() } }
     var numberOfGenres: Int { return arrayGenres.count }
     
-    var arrayMovies = [Movie]() { didSet { delegate?.reloadData() } }
+    var arrayMovies = [Movie]() { didSet { delegate?.reloadMoviesList() } }
     var numberOfMovies: Int { return arrayMovies.count }
     
     var selectedGenre: Genres?
@@ -43,6 +44,20 @@ class SearchViewModel: ViewModel {
             SearchServiceModel.shared.getMoviesFromGenre(urlParameters: parameters) { (object) in
                 self.loadingView.stop()
                 if let object = object as? SearchMoviesGenre, let results = object.results {
+                    self.arrayMovies = results
+                }
+            }
+        }
+    }
+    
+    func doSearchMovies(with text: String?) {
+        if let value = text {
+            let parameters = ["query": value.replacingOccurrences(of: " ", with: "%20")]
+            
+            loadingView.startInWindow()
+            SearchServiceModel.shared.doSearchMovies(urlParameters: parameters) { (object) in
+                self.loadingView.stop()
+                if let object = object as? SearchMovie, let results = object.results {
                     self.arrayMovies = results
                 }
             }

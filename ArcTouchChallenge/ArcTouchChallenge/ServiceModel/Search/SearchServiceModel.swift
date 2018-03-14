@@ -22,4 +22,10 @@ class SearchServiceModel: ServiceModel {
             if let handler = handler { handler(data) }
         })
     }
+    
+    func doSearchMovies(urlParameters: [String:Any], handler: HandlerObject? = nil) {
+        request(SearchMovie.self, requestUrl: .searchMovie, urlParameters: urlParameters, handlerObject: { (data) in
+            if let handler = handler { handler(data) }
+        })
+    }
 }

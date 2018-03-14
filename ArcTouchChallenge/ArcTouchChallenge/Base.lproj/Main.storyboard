@@ -334,16 +334,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.031372549020000001" green="0.10980392160000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SMu-fP-2oR">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="xpx-UH-9tC">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                            <color key="textColor" red="0.0039215686269999999" green="0.82352941180000006" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                            <subviews>
+                                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search a movie" translatesAutoresizingMaskIntoConstraints="NO" id="eUk-Em-FU6">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+                                    <color key="barTintColor" red="0.031372549020000001" green="0.10980392160000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                            <color key="value" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <outlet property="delegate" destination="PAS-43-LNk" id="BXR-Ds-InO"/>
+                                    </connections>
+                                </searchBar>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMu-fP-2oR">
+                                    <rect key="frame" x="0.0" y="68" width="375" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="22" id="Lzl-Dn-Pnw"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <color key="textColor" red="0.0039215686269999999" green="0.82352941180000006" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="SMu-fP-2oR" firstAttribute="top" secondItem="eUk-Em-FU6" secondAttribute="bottom" id="1VB-Hl-yzU"/>
+                                <constraint firstAttribute="trailing" secondItem="SMu-fP-2oR" secondAttribute="trailing" id="2FU-Nf-K1h"/>
+                                <constraint firstItem="eUk-Em-FU6" firstAttribute="leading" secondItem="xpx-UH-9tC" secondAttribute="leading" id="Ixs-a9-P8l"/>
+                                <constraint firstAttribute="bottom" secondItem="SMu-fP-2oR" secondAttribute="bottom" id="QLR-tQ-mCo"/>
+                                <constraint firstItem="SMu-fP-2oR" firstAttribute="leading" secondItem="xpx-UH-9tC" secondAttribute="leading" id="W7c-M9-j93"/>
+                                <constraint firstItem="eUk-Em-FU6" firstAttribute="top" secondItem="xpx-UH-9tC" secondAttribute="top" id="gUs-Yd-lfh"/>
+                                <constraint firstAttribute="trailing" secondItem="eUk-Em-FU6" secondAttribute="trailing" id="iJL-ik-H3P"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GenreCell" rowHeight="50" id="92T-Vt-Ena">
-                                <rect key="frame" x="0.0" y="78" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="118" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="92T-Vt-Ena" id="fwL-ty-xBy">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -375,17 +406,11 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="mtU-1A-kAL"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="barButtonSearch" destination="A2C-DS-hfJ" id="3mN-VA-VAP"/>
+                        <outlet property="searchBar" destination="eUk-Em-FU6" id="44D-SJ-KJ7"/>
                         <segue destination="sHh-g7-W9I" kind="show" identifier="SearchResultView" id="fBh-WE-uCa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eVM-YT-J8I" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <barButtonItem systemItem="search" id="A2C-DS-hfJ">
-                    <color key="tintColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <connections>
-                        <action selector="barButtonSearchAction:" destination="PAS-43-LNk" id="44R-bH-D4z"/>
-                    </connections>
-                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="881" y="1057"/>
         </scene>

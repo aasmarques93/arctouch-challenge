@@ -56,4 +56,8 @@ extension SearchResultView: SearchViewModelDelegate {
     func reloadData() {
         tableView.reloadData()
     }
+    
+    func reloadMoviesList() {
+        tableView.reloadData()
+    }
 }

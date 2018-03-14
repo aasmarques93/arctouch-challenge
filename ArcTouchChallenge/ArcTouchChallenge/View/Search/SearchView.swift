@@ -11,27 +11,19 @@ import UIKit
 private let reuseIdentifier = "GenreCell"
 
 class SearchView: UITableViewController {
-    @IBOutlet var barButtonSearch: UIBarButtonItem!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     let viewModel = SearchViewModel.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationItem()
+        tableView.keyboardDismissMode = .onDrag
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.delegate = self
         viewModel.loadData()
-    }
-    
-    func setupNavigationItem() {
-        navigationItem.rightBarButtonItem = barButtonSearch
-    }
-
-    @IBAction func barButtonSearchAction(_ sender: UIBarButtonItem) {
-        
     }
     
     // MARK: - Table view data source
@@ -63,5 +55,16 @@ class SearchView: UITableViewController {
 extension SearchView: SearchViewModelDelegate {
     func reloadData() {
         tableView.reloadData()
+    }
+    
+    func reloadMoviesList() {
+        performSegue(withIdentifier: SearchResultView.identifier, sender: self)
+    }
+}
+
+extension SearchView: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        viewModel.doSearchMovies(with: searchBar.text)
     }
 }
