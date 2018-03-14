@@ -8,6 +8,9 @@
 
 import UIKit
 
+let sharedAppDelegate: AppDelegate = (UIApplication.shared.delegate as! AppDelegate)
+let window = sharedAppDelegate.window
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
