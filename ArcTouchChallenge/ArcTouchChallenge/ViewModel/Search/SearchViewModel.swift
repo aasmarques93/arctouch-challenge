@@ -33,6 +33,8 @@ class SearchViewModel: ViewModel {
     var arrayMovies = [Movie]() { didSet { delegate?.reloadMoviesList() } }
     var numberOfMovies: Int { return arrayMovies.count }
     
+    var searchText: String?
+    
     // MARK: - Service requests -
     
     func loadData() {
@@ -74,6 +76,8 @@ class SearchViewModel: ViewModel {
     
     func doSearchMovies(with text: String?) {
         if let value = text {
+            searchText = value
+            
             let parameters = ["query": value.replacingOccurrences(of: " ", with: "%20")]
             
             loadingView.startInWindow()
@@ -85,6 +89,7 @@ class SearchViewModel: ViewModel {
                         return
                     }
                     if let results = object.results {
+                        self.selectedGenre = nil
                         self.arrayMovies = results
                     }
                 }
@@ -94,12 +99,14 @@ class SearchViewModel: ViewModel {
     
     // MARK: - View Model -
     
-    // MARK: Genre
-    func genreDescription(at indexPath: IndexPath? = nil) -> String? {
+    func titleDescription(at indexPath: IndexPath? = nil) -> String? {
         if let indexPath = indexPath {
             return arrayGenres[indexPath.row].name
         }
-        return selectedGenre?.name
+        if let selectedGenre = selectedGenre {
+            return selectedGenre.name
+        }
+        return searchText
     }
     
     func selectGenre(at indexPath: IndexPath) {
@@ -121,7 +128,6 @@ class SearchViewModel: ViewModel {
         })
     }
     
-    // MARK: Movie
     func movieName(at indexPath: IndexPath) -> String? {
         return arrayMovies[indexPath.row].originalTitle
     }

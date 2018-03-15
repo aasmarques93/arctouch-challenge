@@ -30,7 +30,7 @@ class SearchResultView: UITableViewController {
     
     func setupAppearance() {
         navigationItem.titleView = nil
-        self.title = viewModel.genreDescription()
+        self.title = viewModel.titleDescription()
     }
 
     // MARK: - Table view data source -

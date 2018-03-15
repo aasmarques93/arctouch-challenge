@@ -42,7 +42,7 @@ class SearchView: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
         if let label = cell.viewWithTag(1) as? UILabel {
-            if let value = viewModel.genreDescription(at: indexPath) { label.text = value }
+            if let value = viewModel.titleDescription(at: indexPath) { label.text = value }
         }
         
         return cell
@@ -78,5 +78,6 @@ extension SearchView: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         viewModel.doSearchMovies(with: searchBar.text)
+        searchBar.text = nil
     }
 }
