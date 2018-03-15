@@ -222,11 +222,7 @@ class TextField: UITextField, UITextFieldDelegate {
         if isNumberText { font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.semibold) }
         
         separator = UIView(frame: CGRect(x: 0, y: bounds.maxY, width: bounds.width, height: 0.5))
-        
-        if Device.iPhone5 {
-            separator.frame = CGRect(x: 0, y: bounds.maxY, width: bounds.width - 44, height: 0.5)
-        }
-        
+                
         separator.backgroundColor = textColor
         if let separatorColor = separatorColor { separator.backgroundColor = separatorColor }
     }
