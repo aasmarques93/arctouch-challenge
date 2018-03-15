@@ -1,4 +1,4 @@
-##The movie DB
+## arctouch-challenge
 
 This is a challenge for ArcTouch to create an app with serveral instructions for specific work selective proccess.
 
