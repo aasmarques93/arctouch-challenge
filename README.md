@@ -10,8 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 
-First of all you have to run and install cocoapods. After that open the .workspace file at a version of xcode that can run Swift 4.
-Fix the third party error at NVActivityIndicatorViewable.swift by unlocking the class edit and go to the line 53 and remove the text 'final' from both methods, public final func startAnimating() and public final func stopAnimating(), at line 81.
+First of all you have to run and install cocoapods. After that open the .workspace file at a version of xcode that can run Swift 4. You also have to fix the third party error at NVActivityIndicatorViewable.swift by unlocking the class edit and going to the line 53 and remove the text 'final' from both methods, public final func startAnimating() and public final func stopAnimating(), at line 81.
 
 ## Third-party
 
