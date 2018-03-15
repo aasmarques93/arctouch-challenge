@@ -9,5 +9,5 @@
 import UIKit
 
 enum Messages: String {
-    case emptySearch = "Nenhum dado para exibir."
+    case emptySearch = "There are no movies available"
 }

@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewModel : NSObject {
+    // MARK: - Constructors -
+    
     override init() {
         
     }
@@ -17,20 +19,11 @@ class ViewModel : NSObject {
         
     }
     
+    //Create an unwrapped string from any object
     func valueDescription(_ object : Any?) -> String {
         if let object = object {
             return "\(object)"
         }
         return ""
-    }
-    
-    func add(action : Selector, view : UIView) {
-        if let button = view as? UIButton {
-            button.addTarget(self, action: action, for: .touchUpInside)
-        } else if let textField = view as? UITextField {
-            textField.addTarget(self, action: action, for: .valueChanged)
-        } else if let refreshControl = view as? UIRefreshControl {
-            refreshControl.addTarget(self, action: action, for: .valueChanged)
-        }
     }
 }

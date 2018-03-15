@@ -13,6 +13,8 @@ private let reuseIdentifier = "ResultCell"
 class SearchResultView: UITableViewController {
     let viewModel = SearchViewModel.shared
     
+    // MARK: - Life cycle -
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
@@ -24,12 +26,14 @@ class SearchResultView: UITableViewController {
         setupAppearance()
     }
     
+    // MARK: - Appearance -
+    
     func setupAppearance() {
         navigationItem.titleView = nil
         self.title = viewModel.genreDescription()
     }
 
-    // MARK: - Table view data source
+    // MARK: - Table view data source -
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -53,11 +57,18 @@ class SearchResultView: UITableViewController {
 }
 
 extension SearchResultView: SearchViewModelDelegate {
+    
+    // MARK: - Search view model delegate -
+    
     func reloadData() {
         tableView.reloadData()
     }
     
     func reloadMoviesList() {
         tableView.reloadData()
+    }
+    
+    func showError(message: String?) {
+        AlertView.shared.show(message: message)
     }
 }

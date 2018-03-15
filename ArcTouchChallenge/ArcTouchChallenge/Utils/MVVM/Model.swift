@@ -13,12 +13,10 @@ class Model: NSObject {
     
     // MARK: Declaration for string constants to be used to decode and also serialize.
     private struct SerializationKeys {
-        static let msg = "msg"
-        static let msgErro = "msgErro"
+        static let statusMessage = "status_message"
     }
     
-    public var msg: String?
-    public var msgErro: String?
+    public var statusMessage: String?
     
     // MARK: - Constructors -
     
@@ -31,8 +29,7 @@ class Model: NSObject {
     }
     
     required init(json: JSON){
-        msg = json[SerializationKeys.msg].string
-        msgErro = json[SerializationKeys.msgErro].string
+        statusMessage = json[SerializationKeys.statusMessage].string
         self.json = json
     }
     

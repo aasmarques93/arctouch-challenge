@@ -15,6 +15,8 @@ class SearchView: UITableViewController {
     
     let viewModel = SearchViewModel.shared
     
+    // MARK: - Life cycle -
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.keyboardDismissMode = .onDrag
@@ -53,6 +55,9 @@ class SearchView: UITableViewController {
 }
 
 extension SearchView: SearchViewModelDelegate {
+    
+    // MARK: - Search view model delegate -
+    
     func reloadData() {
         tableView.reloadData()
     }
@@ -60,9 +65,16 @@ extension SearchView: SearchViewModelDelegate {
     func reloadMoviesList() {
         performSegue(withIdentifier: SearchResultView.identifier, sender: self)
     }
+    
+    func showError(message: String?) {
+        AlertView.shared.show(message: message)
+    }
 }
 
 extension SearchView: UISearchBarDelegate {
+    
+    // MARK: - Search bar delegate -
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         viewModel.doSearchMovies(with: searchBar.text)

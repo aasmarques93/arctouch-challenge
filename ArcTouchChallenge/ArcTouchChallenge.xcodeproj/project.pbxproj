@@ -44,11 +44,8 @@
 		ED16D8882059A07F002A0B2C /* SearchServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D8872059A07F002A0B2C /* SearchServiceModel.swift */; };
 		ED16D88A2059A34F002A0B2C /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D8892059A34F002A0B2C /* SearchResultView.swift */; };
 		ED16D88C2059A3A0002A0B2C /* SearchResultViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D88B2059A3A0002A0B2C /* SearchResultViewCell.swift */; };
-		EDC6C00F20585A3B00D843EC /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C00D20585A3B00D843EC /* Device.swift */; };
-		EDC6C01320585A4400D843EC /* CollectionImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01120585A4300D843EC /* CollectionImageViewCell.swift */; };
 		EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01220585A4400D843EC /* CollectionView.swift */; };
 		EDC6C01820585A5500D843EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01720585A5500D843EC /* Date.swift */; };
-		EDC6C01A20585A5C00D843EC /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01920585A5C00D843EC /* Observer.swift */; };
 		EDC6C01C20585A6300D843EC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01B20585A6300D843EC /* LoadingView.swift */; };
 		EDC6C01E20585A6D00D843EC /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01D20585A6D00D843EC /* HexColor.swift */; };
 		EDC6C02020585A7500D843EC /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01F20585A7500D843EC /* AlertView.swift */; };
@@ -137,11 +134,8 @@
 		ED16D8872059A07F002A0B2C /* SearchServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceModel.swift; sourceTree = "<group>"; };
 		ED16D8892059A34F002A0B2C /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		ED16D88B2059A3A0002A0B2C /* SearchResultViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewCell.swift; sourceTree = "<group>"; };
-		EDC6C00D20585A3B00D843EC /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
-		EDC6C01120585A4300D843EC /* CollectionImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionImageViewCell.swift; sourceTree = "<group>"; };
 		EDC6C01220585A4400D843EC /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		EDC6C01720585A5500D843EC /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		EDC6C01920585A5C00D843EC /* Observer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		EDC6C01B20585A6300D843EC /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		EDC6C01D20585A6D00D843EC /* HexColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
 		EDC6C01F20585A7500D843EC /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -434,10 +428,8 @@
 			isa = PBXGroup;
 			children = (
 				EDC6C0392058662900D843EC /* MVVM */,
-				EDC6C00C20585A2C00D843EC /* Devices Abillities */,
 				EDC6C00B20585A1800D843EC /* CollectionView */,
 				EDC6C008205859ED00D843EC /* Date */,
-				EDC6C007205859DB00D843EC /* Observer */,
 				EDC6C006205859D700D843EC /* Loading */,
 				EDC6C005205859D300D843EC /* Color */,
 				EDC6C004205859CB00D843EC /* Alert */,
@@ -511,14 +503,6 @@
 			path = Loading;
 			sourceTree = "<group>";
 		};
-		EDC6C007205859DB00D843EC /* Observer */ = {
-			isa = PBXGroup;
-			children = (
-				EDC6C01920585A5C00D843EC /* Observer.swift */,
-			);
-			path = Observer;
-			sourceTree = "<group>";
-		};
 		EDC6C008205859ED00D843EC /* Date */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,18 +516,9 @@
 		EDC6C00B20585A1800D843EC /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				EDC6C01120585A4300D843EC /* CollectionImageViewCell.swift */,
 				EDC6C01220585A4400D843EC /* CollectionView.swift */,
 			);
 			path = CollectionView;
-			sourceTree = "<group>";
-		};
-		EDC6C00C20585A2C00D843EC /* Devices Abillities */ = {
-			isa = PBXGroup;
-			children = (
-				EDC6C00D20585A3B00D843EC /* Device.swift */,
-			);
-			path = "Devices Abillities";
 			sourceTree = "<group>";
 		};
 		EDC6C0392058662900D843EC /* MVVM */ = {
@@ -867,7 +842,6 @@
 				ED16D86B20597D99002A0B2C /* ProductionCountries.swift in Sources */,
 				ED16D87B20599DAC002A0B2C /* MoviesGenres.swift in Sources */,
 				EDC6C02D20585A8C00D843EC /* Session.swift in Sources */,
-				EDC6C01A20585A5C00D843EC /* Observer.swift in Sources */,
 				EDC6C02420585A7D00D843EC /* TextFieldMasks.swift in Sources */,
 				ED16D845205882D3002A0B2C /* HomeViewModel.swift in Sources */,
 				EDC6C01E20585A6D00D843EC /* HexColor.swift in Sources */,
@@ -898,12 +872,10 @@
 				ED16D85A2058B0CF002A0B2C /* PopularList.swift in Sources */,
 				EDC6C03D2058663000D843EC /* Model.swift in Sources */,
 				ED16D86A20597D99002A0B2C /* SpokenLanguages.swift in Sources */,
-				EDC6C00F20585A3B00D843EC /* Device.swift in Sources */,
 				ED16D8842059A008002A0B2C /* SearchViewModel.swift in Sources */,
 				ED16D87820599D11002A0B2C /* Person.swift in Sources */,
 				ED16D86F20597E5E002A0B2C /* MovieDetailServiceModel.swift in Sources */,
 				EDC6C02620585A7D00D843EC /* Appearance.swift in Sources */,
-				EDC6C01320585A4400D843EC /* CollectionImageViewCell.swift in Sources */,
 				EDC6C03420585A9200D843EC /* Messages.swift in Sources */,
 				EDC6C07C20586DB400D843EC /* DateHelper.swift in Sources */,
 				EDC6C02E20585A8C00D843EC /* FileManager.swift in Sources */,

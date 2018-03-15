@@ -14,8 +14,12 @@ protocol MovieDetailViewModelDelegate: class {
 }
 
 class MovieDetailViewModel: ViewModel {
+    // MARK: - Properties -
+    
+    // MARK: Delegate
     weak var delegate: MovieDetailViewModelDelegate?
     
+    // MARK: Observables
     var name = Observable<String?>(nil)
     var average = Observable<String?>(nil)
     var date = Observable<String?>(nil)
@@ -23,25 +27,30 @@ class MovieDetailViewModel: ViewModel {
     var genres = Observable<String?>(nil)
     var overview = Observable<String?>(nil)
     
+    // MARK: Objects
     var object: Movie!
     var movieDetail: MovieDetail? {
         didSet {
             delegate?.reloadData()
             
-            if let value = movieDetail?.originalTitle { name.value = value }
-            if let value = movieDetail?.releaseDate { date.value = value }
-            if let value = movieDetail?.voteAverage { average.value = "\(value)" }
-            if let value = movieDetail?.runtime { runtime.value = "\(value) minutes" }
-            if let value = movieDetail?.overview { overview.value = value }
+            name.value = valueDescription(movieDetail?.originalTitle)
+            date.value = valueDescription(movieDetail?.releaseDate)
+            average.value = valueDescription(movieDetail?.voteAverage)
+            runtime.value = "\(valueDescription(movieDetail?.runtime)) minutes"
+            overview.value = valueDescription(movieDetail?.overview)
             
             genres.value = setupGenres()
         }
     }
     
+    // MARK: - Life cycle -
+    
     init(_ object: Movie) {
         super.init()
         self.object = object
     }
+    
+    // MARK: - Service requests -
     
     func loadData() {
         if let value = object.id {
@@ -54,6 +63,8 @@ class MovieDetailViewModel: ViewModel {
             }
         }
     }
+    
+    //MARK: - View Model -
     
     func movieName() -> String? {
         return object.originalTitle
@@ -75,7 +86,7 @@ class MovieDetailViewModel: ViewModel {
         if let array = movieDetail?.genres {
             var count = 0
             for genre in array {
-                if let value = genre.name { string += "\(value)" }
+                string += valueDescription(genre.name)
                 if count < array.count-1 { string += ", " }
                 count += 1
             }

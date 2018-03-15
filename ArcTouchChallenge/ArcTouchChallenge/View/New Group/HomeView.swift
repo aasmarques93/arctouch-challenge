@@ -16,12 +16,16 @@ class HomeView: UITableViewController {
     
     let viewModel = HomeViewModel.shared
     
+    // MARK: - Life cycle -
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         viewModel.delegate = self
         viewModel.loadData()
     }
+    
+    // MARK: - Table view data source -
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfGenres
@@ -58,6 +62,9 @@ class HomeView: UITableViewController {
 }
 
 extension HomeView: HomeViewCellDelegate {
+    
+    // MARK: - Home view cell delegate -
+    
     func didSelectItem(at section: Int, row: Int) {
         let viewController = instantiateFrom(storyboard: .main, identifier: MovieDetailView.identifier) as! MovieDetailView
         viewController.viewModel = viewModel.movieDetailViewModel(at: section, row: row)
@@ -66,7 +73,14 @@ extension HomeView: HomeViewCellDelegate {
 }
 
 extension HomeView: HomeViewModelDelegate {
+    
+    // MARK: - Home view model delegate -
+    
     func reloadData() {
         tableView.reloadData()
+    }
+    
+    func showError(message: String?) {
+        AlertView.shared.show(message: message)
     }
 }

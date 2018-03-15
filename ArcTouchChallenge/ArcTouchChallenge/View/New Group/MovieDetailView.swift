@@ -28,6 +28,8 @@ class MovieDetailView: UITableViewController {
     
     var viewModel: MovieDetailViewModel!
     
+    // MARK: - Life cycle -
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAppearance()
@@ -36,10 +38,14 @@ class MovieDetailView: UITableViewController {
         viewModel.loadData()
     }
     
+    // MARK: - Appearance -
+    
     func setupAppearance() {
         navigationItem.titleView = nil
         self.title = viewModel.movieName()
     }
+    
+    // MARK: - View model bindings -
     
     func setupBindings() {
         viewModel.average.bind(to: labelAverage.reactive.text)
@@ -48,6 +54,8 @@ class MovieDetailView: UITableViewController {
         viewModel.genres.bind(to: textViewGenres.reactive.text)
         viewModel.overview.bind(to: textViewOverview.reactive.text)
     }
+    
+    // MARK: - Table view data source -
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height = super.tableView(tableView, heightForRowAt: indexPath)
@@ -63,6 +71,9 @@ class MovieDetailView: UITableViewController {
 }
 
 extension MovieDetailView: MovieDetailViewModelDelegate {
+    
+    // MARK: - Movie detail view model delegate -
+    
     func reloadData() {
         tableView.reloadData()
         

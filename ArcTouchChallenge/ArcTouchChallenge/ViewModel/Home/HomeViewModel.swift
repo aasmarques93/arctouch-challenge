@@ -11,6 +11,7 @@ import Bond
 
 protocol HomeViewModelDelegate: class {
     func reloadData()
+    func showError(message: String?)
 }
 
 enum Genre: String {
@@ -29,26 +30,36 @@ enum Genre: String {
 }
 
 class HomeViewModel: ViewModel {
+    // MARK: - Singleton -
     static let shared = HomeViewModel()
     
+    // MARK: - Properties -
+    
+    // MARK: Delegate
     weak var delegate: HomeViewModelDelegate?
     
+    // MARK: Genres
     var arrayGenres: [Genre] = [.upcoming, .topRated, .popular]
     var numberOfGenres: Int { return arrayGenres.count }
     
+    // MARK: Upcoming movies
     var upcomingMoviesList = [Movie]()
     var numberOfUpcomingMovies: Int { return upcomingMoviesList.count }
     var currentUpcomingMoviesPage: Int = 1
     
+    // MARK: Top rated
     var topRatedList = [Movie]()
     var numberOfTopRatedList: Int { return topRatedList.count }
     var currentTopRatedListPage: Int = 1
     
+    // MARK: Popular
     var popularList = [Movie]()
     var numberOfPopularList: Int { return popularList.count }
     var currentPopularListPage: Int = 1
     
     var isDataLoading = false
+    
+    // MARK: - Service requests -
     
     func loadData(genre: Genre? = nil) {
         guard let genre = genre else {
@@ -76,8 +87,14 @@ class HomeViewModel: ViewModel {
         
         let parameters = ["page": currentUpcomingMoviesPage]
         HomeServiceModel.shared.getUpcomingMovies(urlParameters: parameters) { (object) in            
-            if let object = object as? UpcomingMoviesList, let results = object.results {
-                self.upcomingMoviesList.append(contentsOf: results)
+            if let object = object as? UpcomingMoviesList {
+                if let statusMessage = object.statusMessage, statusMessage != "" {
+                    self.delegate?.showError(message: statusMessage)
+                    return
+                }
+                if let results = object.results {
+                    self.upcomingMoviesList.append(contentsOf: results)
+                }
             }
             
             self.delegate?.reloadData()
@@ -90,8 +107,15 @@ class HomeViewModel: ViewModel {
         
         let parameters = ["page": currentTopRatedListPage]
         HomeServiceModel.shared.getTopRated(urlParameters: parameters) { (object) in
-            if let object = object as? TopRatedList, let results = object.results {
-                self.topRatedList.append(contentsOf: results)
+            if let object = object as? TopRatedList {
+                if let statusMessage = object.statusMessage, statusMessage != "" {
+                    self.delegate?.showError(message: statusMessage)
+                    return
+                }
+            
+                if let results = object.results {
+                    self.topRatedList.append(contentsOf: results)
+                }
             }
             self.delegate?.reloadData()
             self.isDataLoading = false
@@ -103,18 +127,29 @@ class HomeViewModel: ViewModel {
         
         let parameters = ["page": currentPopularListPage]
         HomeServiceModel.shared.getPopularList(urlParameters: parameters) { (object) in
-            if let object = object as? PopularList, let results = object.results {
-                self.popularList.append(contentsOf: results)
+            if let object = object as? PopularList {
+                if let statusMessage = object.statusMessage, statusMessage != "" {
+                    self.delegate?.showError(message: statusMessage)
+                    return
+                }
+                
+                if let results = object.results {
+                    self.popularList.append(contentsOf: results)
+                }
             }
             self.delegate?.reloadData()
             self.isDataLoading = false
         }
     }
     
+    // MARK: - Genre methods -
+    
     func genreTitle(at section: Int) -> String {
         if let genre = Genre.genre(at: section) { return "  \(genre.rawValue)" }
         return ""
     }
+    
+    // MARK: - Movie methods -
     
     func numberOfMovies(at section: Int) -> Int {
         if let genre = Genre.genre(at: section) {
@@ -160,19 +195,21 @@ class HomeViewModel: ViewModel {
         return nil
     }
     
-    func movieDetailViewModel(at section: Int, row: Int) -> MovieDetailViewModel? {
-        if let results = getMoviesList(at: section) {
-            let movie = results[row]
-            return MovieDetailViewModel(movie)
-        }
-        return nil
-    }
-    
     func doServicePaginationIfNeeded(at section: Int, row: Int) {
         if let results = getMoviesList(at: section) {
             if row == results.count-2 && !isDataLoading {
                 loadData(genre: Genre.genre(at: section))
             }
         }
+    }
+    
+    //MARK: Detail view model
+    
+    func movieDetailViewModel(at section: Int, row: Int) -> MovieDetailViewModel? {
+        if let results = getMoviesList(at: section) {
+            let movie = results[row]
+            return MovieDetailViewModel(movie)
+        }
+        return nil
     }
 }

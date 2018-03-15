@@ -11,27 +11,43 @@ import UIKit
 protocol SearchViewModelDelegate: class {
     func reloadData()
     func reloadMoviesList()
+    func showError(message: String?)
 }
 
 class SearchViewModel: ViewModel {
+    // MARK: - Singleton -
     static let shared = SearchViewModel()
     
+    // MARK: - Properties -
+    
+    // MARK: Delegate
     weak var delegate: SearchViewModelDelegate?
     
+    //MARK: Genre
     var arrayGenres = [Genres]() { didSet { delegate?.reloadData() } }
     var numberOfGenres: Int { return arrayGenres.count }
     
+    var selectedGenre: Genres?
+    
+    //MARK: Movie
     var arrayMovies = [Movie]() { didSet { delegate?.reloadMoviesList() } }
     var numberOfMovies: Int { return arrayMovies.count }
     
-    var selectedGenre: Genres?
+    // MARK: - Service requests -
     
     func loadData() {
         loadingView.startInWindow()
         SearchServiceModel.shared.getGenres { (object) in
             self.loadingView.stop()
-            if let object = object as? MoviesGenres, let results = object.genres {
-                self.arrayGenres = results
+            if let object = object as? MoviesGenres {
+                if let statusMessage = object.statusMessage, statusMessage != "" {
+                    self.delegate?.showError(message: statusMessage)
+                    return
+                }
+                
+                if let results = object.genres {
+                    self.arrayGenres = results
+                }
             }
         }
     }
@@ -43,8 +59,14 @@ class SearchViewModel: ViewModel {
             loadingView.startInWindow()
             SearchServiceModel.shared.getMoviesFromGenre(urlParameters: parameters) { (object) in
                 self.loadingView.stop()
-                if let object = object as? SearchMoviesGenre, let results = object.results {
-                    self.arrayMovies = results
+                if let object = object as? SearchMoviesGenre {
+                    if let statusMessage = object.statusMessage, statusMessage != "" {
+                        self.delegate?.showError(message: statusMessage)
+                        return
+                    }
+                    if let results = object.results {
+                        self.arrayMovies = results
+                    }
                 }
             }
         }
@@ -57,13 +79,22 @@ class SearchViewModel: ViewModel {
             loadingView.startInWindow()
             SearchServiceModel.shared.doSearchMovies(urlParameters: parameters) { (object) in
                 self.loadingView.stop()
-                if let object = object as? SearchMovie, let results = object.results {
-                    self.arrayMovies = results
+                if let object = object as? SearchMovie {
+                    if let statusMessage = object.statusMessage, statusMessage != "" {
+                        self.delegate?.showError(message: statusMessage)
+                        return
+                    }
+                    if let results = object.results {
+                        self.arrayMovies = results
+                    }
                 }
             }
         }
     }
     
+    // MARK: - View Model -
+    
+    // MARK: Genre
     func genreDescription(at indexPath: IndexPath? = nil) -> String? {
         if let indexPath = indexPath {
             return arrayGenres[indexPath.row].name
@@ -90,6 +121,7 @@ class SearchViewModel: ViewModel {
         })
     }
     
+    // MARK: Movie
     func movieName(at indexPath: IndexPath) -> String? {
         return arrayMovies[indexPath.row].originalTitle
     }
