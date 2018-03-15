@@ -49,7 +49,6 @@
 		EDC6C01C20585A6300D843EC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01B20585A6300D843EC /* LoadingView.swift */; };
 		EDC6C01E20585A6D00D843EC /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01D20585A6D00D843EC /* HexColor.swift */; };
 		EDC6C02020585A7500D843EC /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01F20585A7500D843EC /* AlertView.swift */; };
-		EDC6C02420585A7D00D843EC /* TextFieldMasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C02120585A7C00D843EC /* TextFieldMasks.swift */; };
 		EDC6C02520585A7D00D843EC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C02220585A7D00D843EC /* Extensions.swift */; };
 		EDC6C02620585A7D00D843EC /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C02320585A7D00D843EC /* Appearance.swift */; };
 		EDC6C02820585A8300D843EC /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C02720585A8300D843EC /* General.swift */; };
@@ -139,7 +138,6 @@
 		EDC6C01B20585A6300D843EC /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		EDC6C01D20585A6D00D843EC /* HexColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
 		EDC6C01F20585A7500D843EC /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
-		EDC6C02120585A7C00D843EC /* TextFieldMasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldMasks.swift; sourceTree = "<group>"; };
 		EDC6C02220585A7D00D843EC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EDC6C02320585A7D00D843EC /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		EDC6C02720585A8300D843EC /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
@@ -474,7 +472,6 @@
 			children = (
 				EDC6C02320585A7D00D843EC /* Appearance.swift */,
 				EDC6C02220585A7D00D843EC /* Extensions.swift */,
-				EDC6C02120585A7C00D843EC /* TextFieldMasks.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -842,7 +839,6 @@
 				ED16D86B20597D99002A0B2C /* ProductionCountries.swift in Sources */,
 				ED16D87B20599DAC002A0B2C /* MoviesGenres.swift in Sources */,
 				EDC6C02D20585A8C00D843EC /* Session.swift in Sources */,
-				EDC6C02420585A7D00D843EC /* TextFieldMasks.swift in Sources */,
 				ED16D845205882D3002A0B2C /* HomeViewModel.swift in Sources */,
 				EDC6C01E20585A6D00D843EC /* HexColor.swift in Sources */,
 				EDC6C03F2058663000D843EC /* ViewModel.swift in Sources */,
