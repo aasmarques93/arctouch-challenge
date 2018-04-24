@@ -88,17 +88,13 @@ class HomeViewModel: ViewModel {
         let parameters = ["page": currentUpcomingMoviesPage]
         HomeServiceModel.shared.getUpcomingMovies(urlParameters: parameters) { (object) in            
             if let object = object as? UpcomingMoviesList {
-                if let statusMessage = object.statusMessage, statusMessage != "" {
-                    self.delegate?.showError(message: statusMessage)
-                    return
-                }
+                if self.showError(with: object) { return }
+                
                 if let results = object.results {
                     self.upcomingMoviesList.append(contentsOf: results)
                 }
             }
-            
-            self.delegate?.reloadData()
-            self.isDataLoading = false
+            self.reloadData()
         }
     }
     
@@ -108,17 +104,13 @@ class HomeViewModel: ViewModel {
         let parameters = ["page": currentTopRatedListPage]
         HomeServiceModel.shared.getTopRated(urlParameters: parameters) { (object) in
             if let object = object as? TopRatedList {
-                if let statusMessage = object.statusMessage, statusMessage != "" {
-                    self.delegate?.showError(message: statusMessage)
-                    return
-                }
+                if self.showError(with: object) { return }
             
                 if let results = object.results {
                     self.topRatedList.append(contentsOf: results)
                 }
             }
-            self.delegate?.reloadData()
-            self.isDataLoading = false
+            self.reloadData()
         }
     }
     
@@ -128,24 +120,35 @@ class HomeViewModel: ViewModel {
         let parameters = ["page": currentPopularListPage]
         HomeServiceModel.shared.getPopularList(urlParameters: parameters) { (object) in
             if let object = object as? PopularList {
-                if let statusMessage = object.statusMessage, statusMessage != "" {
-                    self.delegate?.showError(message: statusMessage)
-                    return
-                }
+                if self.showError(with: object) { return }
                 
                 if let results = object.results {
                     self.popularList.append(contentsOf: results)
                 }
             }
-            self.delegate?.reloadData()
-            self.isDataLoading = false
+            self.reloadData()
         }
+    }
+    
+    func showError(with object: Model) -> Bool {
+        if let statusMessage = object.statusMessage, statusMessage != "" {
+            self.delegate?.showError(message: statusMessage)
+            return true
+        }
+        return false
+    }
+    
+    func reloadData() {
+        delegate?.reloadData()
+        isDataLoading = false
     }
     
     // MARK: - Genre methods -
     
     func genreTitle(at section: Int) -> String {
-        if let genre = Genre.genre(at: section) { return "  \(genre.rawValue)" }
+        if let genre = Genre.genre(at: section) {
+            return "  \(genre.rawValue)"
+        }
         return ""
     }
     
@@ -174,8 +177,6 @@ class HomeViewModel: ViewModel {
                 handlerData(data)
                 return
             }
-            
-            handlerData(nil)
             
             HomeServiceModel.shared.loadImage(path: movie.posterPath, handlerData: { (data) in
                 results[row].imageData = data as? Data

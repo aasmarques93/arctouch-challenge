@@ -51,16 +51,21 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JKz-Wx-GTi">
                                                                 <rect key="frame" x="2" y="2" width="176" height="206"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GDT-on-Rfn">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searching-movie" translatesAutoresizingMaskIntoConstraints="NO" id="GDT-on-Rfn">
                                                                         <rect key="frame" x="0.0" y="0.0" width="176" height="206"/>
                                                                     </imageView>
+                                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2aB-bp-rRP">
+                                                                        <rect key="frame" x="70" y="85" width="37" height="37"/>
+                                                                    </activityIndicatorView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstItem="GDT-on-Rfn" firstAttribute="leading" secondItem="JKz-Wx-GTi" secondAttribute="leading" id="By0-PD-KHC"/>
                                                                     <constraint firstAttribute="bottom" secondItem="GDT-on-Rfn" secondAttribute="bottom" id="HhU-XL-0ep"/>
                                                                     <constraint firstItem="GDT-on-Rfn" firstAttribute="top" secondItem="JKz-Wx-GTi" secondAttribute="top" id="deY-2W-ZAb"/>
+                                                                    <constraint firstItem="2aB-bp-rRP" firstAttribute="centerX" secondItem="JKz-Wx-GTi" secondAttribute="centerX" id="fBr-xh-mMm"/>
                                                                     <constraint firstAttribute="trailing" secondItem="GDT-on-Rfn" secondAttribute="trailing" id="n7n-Yu-b1j"/>
+                                                                    <constraint firstItem="2aB-bp-rRP" firstAttribute="centerY" secondItem="JKz-Wx-GTi" secondAttribute="centerY" id="zci-Ma-iKA"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -74,6 +79,7 @@
                                                     </constraints>
                                                     <size key="customSize" width="180" height="210"/>
                                                     <connections>
+                                                        <outlet property="activityIndicator" destination="2aB-bp-rRP" id="aYj-9D-cEv"/>
                                                         <outlet property="imageView" destination="GDT-on-Rfn" id="4xO-dT-vL2"/>
                                                     </connections>
                                                 </collectionViewCell>
@@ -565,5 +571,6 @@
     <resources>
         <image name="home" width="25" height="25"/>
         <image name="search" width="25" height="25"/>
+        <image name="searching-movie" width="565" height="837"/>
     </resources>
 </document>
