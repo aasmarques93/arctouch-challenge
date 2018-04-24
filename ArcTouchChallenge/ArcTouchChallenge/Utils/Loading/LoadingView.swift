@@ -1,6 +1,6 @@
 //
 //  LoadingView.swift
-//  ArcTouchChallenge
+//  Challenge
 //
 //  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
@@ -22,7 +22,7 @@ extension ViewModel {
             
             var frame: CGRect = .zero
             
-            if let window = sharedAppDelegate.window {
+            if let window = AppDelegate.shared.window {
                 frame = window.frame
             }
             
@@ -95,7 +95,7 @@ class LoadingView : UIView {
     }
     
     func startInWindow(text: String? = nil) {
-        if let window = sharedAppDelegate.window {
+        if let window = AppDelegate.shared.window {
             start(in: window, text: text)
         }
     }
@@ -109,7 +109,7 @@ class LoadingView : UIView {
     func start(with frame : CGRect, text: String? = nil) {
         self.text = text
         
-        if let window = sharedAppDelegate.window {
+        if let window = AppDelegate.shared.window {
             window.addSubview(self)
         }
     }

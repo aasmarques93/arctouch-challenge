@@ -48,7 +48,7 @@
 		EDC6C01820585A5500D843EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01720585A5500D843EC /* Date.swift */; };
 		EDC6C01C20585A6300D843EC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01B20585A6300D843EC /* LoadingView.swift */; };
 		EDC6C01E20585A6D00D843EC /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01D20585A6D00D843EC /* HexColor.swift */; };
-		EDC6C02020585A7500D843EC /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01F20585A7500D843EC /* AlertView.swift */; };
+		EDC6C02020585A7500D843EC /* AlertComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01F20585A7500D843EC /* AlertComponent.swift */; };
 		EDC6C02520585A7D00D843EC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C02220585A7D00D843EC /* Extensions.swift */; };
 		EDC6C02620585A7D00D843EC /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C02320585A7D00D843EC /* Appearance.swift */; };
 		EDC6C02820585A8300D843EC /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C02720585A8300D843EC /* General.swift */; };
@@ -137,7 +137,7 @@
 		EDC6C01720585A5500D843EC /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		EDC6C01B20585A6300D843EC /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		EDC6C01D20585A6D00D843EC /* HexColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
-		EDC6C01F20585A7500D843EC /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		EDC6C01F20585A7500D843EC /* AlertComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertComponent.swift; sourceTree = "<group>"; };
 		EDC6C02220585A7D00D843EC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EDC6C02320585A7D00D843EC /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		EDC6C02720585A8300D843EC /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
@@ -479,7 +479,7 @@
 		EDC6C004205859CB00D843EC /* Alert */ = {
 			isa = PBXGroup;
 			children = (
-				EDC6C01F20585A7500D843EC /* AlertView.swift */,
+				EDC6C01F20585A7500D843EC /* AlertComponent.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -855,7 +855,7 @@
 				EDC6C01C20585A6300D843EC /* LoadingView.swift in Sources */,
 				ED16D85E20597A6C002A0B2C /* MovieDetailView.swift in Sources */,
 				EDC6C02820585A8300D843EC /* General.swift in Sources */,
-				EDC6C02020585A7500D843EC /* AlertView.swift in Sources */,
+				EDC6C02020585A7500D843EC /* AlertComponent.swift in Sources */,
 				ED16D86820597D99002A0B2C /* BelongsToCollection.swift in Sources */,
 				EDC6C03320585A9200D843EC /* Constants.swift in Sources */,
 				ED16D86020597AF6002A0B2C /* MovieDetailViewModel.swift in Sources */,

@@ -1,6 +1,6 @@
 //
 //  Extensions.swift
-//  ArcTouchChallenge
+//  Challenge
 //
 //  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
@@ -8,45 +8,14 @@
 
 import UIKit
 
-let appDelegate: AppDelegate = (UIApplication.shared.delegate as! AppDelegate)
-
 //Screen Related Values
 var SCREEN_WIDTH: CGFloat {
-    if let window = appDelegate.window { return window.frame.width }
+    if let window = AppDelegate.shared.window { return window.frame.width }
     return 375
         
 }
 var SCREEN_HEIGHT: CGFloat {
-    return appDelegate.window!.frame.height
-}
-
-enum SegmentedControlIdentifier: Int {
-    case segmentedNormal = 1
-    case segmentedDayTrade = 2
-    case segmentedTransferencia = 3
-    case segmentedZeramento = 4
-}
-
-extension UITabBarController {
-    func sideMenuWillOpen() {
-        
-    }
-    
-    func sideMenuWillClose() {
-        
-    }
-    
-    func didSelectMenuInvestimentoOption(_ notification: Notification) {
-        
-    }
-    
-    func didSelectMenuOtherOptions(_ notification: Notification) {
-        
-    }
-    
-    func didSelectTutorial() {
-        
-    }
+    return AppDelegate.shared.window!.frame.height
 }
 
 extension UIViewController {

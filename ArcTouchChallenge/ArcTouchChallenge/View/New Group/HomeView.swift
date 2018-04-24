@@ -1,6 +1,6 @@
 //
 //  HomeView.swift
-//  ArcTouchChallenge
+//  Challenge
 //
 //  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
@@ -62,7 +62,6 @@ class HomeView: UITableViewController {
 }
 
 extension HomeView: HomeViewCellDelegate {
-    
     // MARK: - Home view cell delegate -
     
     func didSelectItem(at section: Int, row: Int) {
@@ -81,6 +80,6 @@ extension HomeView: HomeViewModelDelegate {
     }
     
     func showError(message: String?) {
-        AlertView.shared.show(message: message)
+        AlertComponent.show(message: message)
     }
 }

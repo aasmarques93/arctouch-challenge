@@ -1,6 +1,6 @@
 //
 //  SearchViewModel.swift
-//  ArcTouchChallenge
+//  Challenge
 //
 //  Created by Arthur Augusto Sousa Marques on 3/14/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.

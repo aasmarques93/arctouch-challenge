@@ -1,6 +1,6 @@
 //
 //  Alert.swift
-//  ArcTouchChallenge
+//  Challenge
 //
 //  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
@@ -10,35 +10,8 @@ import UIKit
 
 typealias AlertHandler = () -> Swift.Void
 
-class AlertView {
-    enum AlertType {
-        case error
-        case success
-    }
-    
-    static var shared = AlertView()
-    
-    var title : String?
-    var message : String?
-    var image : UIImage?
-    
-    var type: AlertType? {
-        didSet {
-            if type == .success {
-                title = "Sucesso"
-                colorPrimary = HexColor.secondary.color
-            } else {
-                title = "Erro"
-                colorPrimary = HexColor.accent.color
-            }
-            
-            self.image = UIImage(named: "")
-        }
-    }
-    
-    var colorPrimary = HexColor.accent.color
-    
-    func show(title: String? = nil, message: String?, type: AlertType? = nil, mainButton : String? = nil, mainAction: AlertHandler? = nil, secondaryButton: String? = nil, secondaryAction: AlertHandler? = nil) {
+class AlertComponent {
+    static func show(title: String? = nil, message: String?, mainButton : String? = nil, mainAction: AlertHandler? = nil, secondaryButton: String? = nil, secondaryAction: AlertHandler? = nil) {
         
         let aTitle = title ?? ""
         let alertController = UIAlertController(title: aTitle, message: message, preferredStyle: .alert)

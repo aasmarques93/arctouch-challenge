@@ -1,6 +1,6 @@
 //
 //  Appearance.swift
-//  ArcTouchChallenge
+//  Challenge
 //
 //  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
@@ -124,59 +124,6 @@ extension UIView {
         gradient.startPoint = orientation.startPoint
         gradient.endPoint = orientation.endPoint
         self.layer.insertSublayer(gradient, at: 0)
-    }
-}
-
-class Button: UIButton {
-    @IBInspectable var isPrimary: Bool = true
-    @IBInspectable var isSecondary: Bool = false
-    @IBInspectable var isLink: Bool = false
-    
-    override func awakeFromNib() {
-        layer.masksToBounds = true
-        layer.cornerRadius = bounds.height / 2
-        
-        setTitleColor(HexColor.text.color, for: .normal)
-        
-        if isPrimary {
-            titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.semibold)
-            applyGradient(colors: [HexColor.secondary.color, HexColor.darkSecondary.color])
-        } else if isSecondary {
-            titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.semibold)
-            backgroundColor = HexColor.secondary.color
-        } else if isLink {
-            titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.light)
-            titleLabel?.textColor = HexColor.secondary.color
-            backgroundColor = UIColor.clear
-            
-            if let text = titleLabel?.text {
-                let titleString = NSMutableAttributedString(string: text)
-                titleString.addAttribute(NSAttributedStringKey.underlineStyle,
-                                         value: NSUnderlineStyle.styleSingle.rawValue,
-                                         range: NSMakeRange(0, text.count))
-                self.setAttributedTitle(titleString, for: .normal)
-            }
-        } else {
-            titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.light)
-            backgroundColor = HexColor.secondary.color
-        }
-    }
-}
-
-class Label: UILabel {
-    @IBInspectable var isTitle: Bool = false
-    @IBInspectable var isNumber: Bool = false
-    @IBInspectable var fontSize: CGFloat = 17
-    @IBInspectable var fontWeight: String = "Light"
-    
-    override func awakeFromNib() {
-        if isTitle {
-            textColor = HexColor.text.color
-            return
-        }
-        
-        adjustsFontSizeToFitWidth = true
-        minimumScaleFactor = 0.1
     }
 }
 
