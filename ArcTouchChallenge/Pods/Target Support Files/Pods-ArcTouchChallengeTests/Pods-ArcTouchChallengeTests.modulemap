@@ -1,6 +1,0 @@
-framework module Pods_ArcTouchChallengeTests {
-  umbrella header "Pods-ArcTouchChallengeTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
