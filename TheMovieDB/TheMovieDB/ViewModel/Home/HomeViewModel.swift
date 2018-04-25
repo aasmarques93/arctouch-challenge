@@ -41,30 +41,30 @@ class HomeViewModel: ViewModel {
     weak var delegate: HomeViewModelDelegate?
     
     // MARK: Genres
-    var arrayGenres: [Genre] = [.nowPlaying, .upcoming, .topRated, .popular]
+    private var arrayGenres: [Genre] = [.nowPlaying, .upcoming, .topRated, .popular]
     var numberOfGenres: Int { return arrayGenres.count }
     
     // MARK: Now Playing
-    var nowPlayingMoviesList = [Movie]()
+    private var nowPlayingMoviesList = [Movie]()
     var numberOfNowPlayingMovies: Int { return nowPlayingMoviesList.count }
-    var currentNowPlayingMoviesPage: Int = 1
+    private var currentNowPlayingMoviesPage: Int = 1
     
     // MARK: Upcoming movies
-    var upcomingMoviesList = [Movie]()
+    private var upcomingMoviesList = [Movie]()
     var numberOfUpcomingMovies: Int { return upcomingMoviesList.count }
-    var currentUpcomingMoviesPage: Int = 1
+    private var currentUpcomingMoviesPage: Int = 1
     
     // MARK: Top rated
-    var topRatedList = [Movie]()
+    private var topRatedList = [Movie]()
     var numberOfTopRatedList: Int { return topRatedList.count }
-    var currentTopRatedListPage: Int = 1
+    private var currentTopRatedListPage: Int = 1
     
     // MARK: Popular
-    var popularList = [Movie]()
+    private var popularList = [Movie]()
     var numberOfPopularList: Int { return popularList.count }
-    var currentPopularListPage: Int = 1
+    private var currentPopularListPage: Int = 1
     
-    var isDataLoading = false
+    private var isDataLoading = false
     
     // MARK: - Service requests -
     
@@ -94,7 +94,7 @@ class HomeViewModel: ViewModel {
         }
     }
     
-    func getMovies(genre: Genre) {
+    private func getMovies(genre: Genre) {
         var requestUrl: RequestUrl?
         var currentPage = 1
         
@@ -132,7 +132,7 @@ class HomeViewModel: ViewModel {
         }
     }
     
-    func addMoviesToList(_ results: [Movie], genre: Genre) {
+    private func addMoviesToList(_ results: [Movie], genre: Genre) {
         switch genre {
             case .nowPlaying: nowPlayingMoviesList.append(contentsOf: results)
             case .upcoming: upcomingMoviesList.append(contentsOf: results)
@@ -141,7 +141,7 @@ class HomeViewModel: ViewModel {
         }
     }
     
-    func showError(with object: Model) -> Bool {
+    private func showError(with object: Model) -> Bool {
         if let statusMessage = object.statusMessage, statusMessage != "" {
             self.delegate?.showError(message: statusMessage)
             return true
@@ -149,7 +149,7 @@ class HomeViewModel: ViewModel {
         return false
     }
     
-    func reloadData() {
+    private func reloadData() {
         delegate?.reloadData()
         isDataLoading = false
     }
@@ -197,7 +197,7 @@ class HomeViewModel: ViewModel {
         }
     }
     
-    func getMoviesList(at section: Int) -> [Movie]? {
+    private func getMoviesList(at section: Int) -> [Movie]? {
         if let genre = Genre.genre(at: section) {
             switch genre {
                 case .nowPlaying: return nowPlayingMoviesList
