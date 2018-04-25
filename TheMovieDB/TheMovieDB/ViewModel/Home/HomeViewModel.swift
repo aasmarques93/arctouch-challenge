@@ -10,7 +10,7 @@ import UIKit
 import Bond
 
 protocol HomeViewModelDelegate: class {
-    func reloadData()
+    func reloadData(at index: Int)
     func showError(message: String?)
 }
 
@@ -19,6 +19,15 @@ enum Genre: String {
     case upcoming = "Upcoming"
     case topRated = "Top Rated"
     case popular = "Popular"
+    
+    var index: Int {
+        switch self {
+            case .nowPlaying: return 0
+            case .upcoming: return 1
+            case .topRated: return 2
+            case .popular: return 3
+        }
+    }
     
     static func genre(at index: Int) -> Genre? {
         switch index {
@@ -39,6 +48,8 @@ class HomeViewModel: ViewModel {
     
     // MARK: Delegate
     weak var delegate: HomeViewModelDelegate?
+    
+    let serviceModel = HomeServiceModel.shared
     
     // MARK: Genres
     private var arrayGenres: [Genre] = [.nowPlaying, .upcoming, .topRated, .popular]
@@ -117,7 +128,7 @@ class HomeViewModel: ViewModel {
             isDataLoading = true
             
             let parameters = ["page": currentPage]
-            HomeServiceModel.shared.getMovies(urlParameters: parameters, requestUrl: requestUrl) { (object) in
+            serviceModel.getMovies(urlParameters: parameters, requestUrl: requestUrl) { (object) in
                 if let object = object as? MoviesList {
                     if self.showError(with: object) { return }
                     
@@ -127,7 +138,7 @@ class HomeViewModel: ViewModel {
                     }
                 }
                 
-                self.reloadData()
+                self.reloadData(at: genre.index)
             }
         }
     }
@@ -149,8 +160,8 @@ class HomeViewModel: ViewModel {
         return false
     }
     
-    private func reloadData() {
-        delegate?.reloadData()
+    private func reloadData(at index: Int) {
+        delegate?.reloadData(at: index)
         isDataLoading = false
     }
     
@@ -181,20 +192,12 @@ class HomeViewModel: ViewModel {
         return numberOfMovies(at: indexPath.section) == 0
     }
     
-    func imageData(at section: Int, row: Int, handlerData: @escaping HandlerObject) {
+    func imagePathUrl(at section: Int, row: Int) -> URL? {
         if let results = getMoviesList(at: section) {
             let movie = results[row]
-            
-            if let data = movie.imageData {
-                handlerData(data)
-                return
-            }
-            
-            HomeServiceModel.shared.loadImage(path: movie.posterPath, handlerData: { (data) in
-                results[row].imageData = data as? Data
-                handlerData(data)
-            })
+            return URL(string: serviceModel.imageUrl(with: movie.posterPath))
         }
+        return nil
     }
     
     private func getMoviesList(at section: Int) -> [Movie]? {

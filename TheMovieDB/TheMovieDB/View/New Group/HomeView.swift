@@ -75,8 +75,9 @@ extension HomeView: HomeViewModelDelegate {
     
     // MARK: - Home view model delegate -
     
-    func reloadData() {
-        tableView.reloadData()
+    func reloadData(at index: Int) {
+        let indexPath = IndexPath(row: 0, section: index)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
     func showError(message: String?) {

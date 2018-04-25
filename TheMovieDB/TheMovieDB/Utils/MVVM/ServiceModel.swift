@@ -100,6 +100,12 @@ class ServiceModel {
         }
     }
     
+    func imageUrl(with path: String?) -> String {
+        var url = keyManagerFile(key: EnvironmentBase.images)
+        if let path = path { url += path }
+        return url
+    }
+    
     // MARK: - Verifications -
     
     static func verifyResult(_ object : Any?) -> String? {

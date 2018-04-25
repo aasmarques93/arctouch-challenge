@@ -9,6 +9,7 @@ target 'TheMovieDB' do
   pod 'Bond', '~> 6.0-beta'
   pod 'RAMAnimatedTabBarController'
   pod 'YouTubePlayer'
+  pod 'SDWebImage'
 
   # Pods for TheMovieDB
 

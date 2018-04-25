@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MovieViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
@@ -16,14 +17,10 @@ class MovieViewCell: UICollectionViewCell {
     
     func setupView(at section: Int, row: Int) {
         activityIndicator.startAnimating()
-        activityIndicator.isHidden = false
-        viewModel.imageData(at: section, row: row) { (data) in
-            if let data = data as? Data, let image = UIImage(data: data) {
-                self.activityIndicator.isHidden = true
-                self.imageView.image = image
-            } else {
-                self.imageView.image = #imageLiteral(resourceName: "searching-movie")
-            }
+        activityIndicator.isHidden = true
+        
+        if let url = viewModel.imagePathUrl(at: section, row: row) {
+            imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "searching-movie"))
         }
     }
 }

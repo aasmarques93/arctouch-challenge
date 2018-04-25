@@ -6,6 +6,9 @@ PODS:
   - Differ (1.1.1)
   - RAMAnimatedTabBarController (3.1.0)
   - ReactiveKit (3.9.4)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
   - SwiftyJSON (3.1.4)
   - YouTubePlayer (0.4.0)
 
@@ -13,6 +16,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.5.0)
   - Bond (~> 6.0-beta)
   - RAMAnimatedTabBarController
+  - SDWebImage
   - SwiftyJSON (~> 3.1.4)
   - YouTubePlayer
 
@@ -23,6 +27,7 @@ SPEC REPOS:
     - Differ
     - RAMAnimatedTabBarController
     - ReactiveKit
+    - SDWebImage
     - SwiftyJSON
     - YouTubePlayer
 
@@ -32,9 +37,10 @@ SPEC CHECKSUMS:
   Differ: 462849df6097d4e0e5ebbc9af2475f7aebfd65dc
   RAMAnimatedTabBarController: 3c40472db54eda74d465583f8c7f571b206c54d6
   ReactiveKit: cafbc91f72751d09baa9a3c3cf6d82b646328a6c
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: 56f9af27253061268af4abd61774a18fa3a6befa
+PODFILE CHECKSUM: 5c3e0966af0314f2ad3d6c3520aa0a3e116634ce
 
 COCOAPODS: 1.5.0.beta.1

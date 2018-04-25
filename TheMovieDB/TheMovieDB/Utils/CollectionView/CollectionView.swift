@@ -46,7 +46,7 @@ class CollectionView: UICollectionView {
     func configureCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
         
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 1)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
