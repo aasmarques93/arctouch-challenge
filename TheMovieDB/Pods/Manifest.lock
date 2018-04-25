@@ -7,12 +7,14 @@ PODS:
   - RAMAnimatedTabBarController (3.1.0)
   - ReactiveKit (3.9.4)
   - SwiftyJSON (3.1.4)
+  - YouTubePlayer (0.4.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5.0)
   - Bond (~> 6.0-beta)
   - RAMAnimatedTabBarController
   - SwiftyJSON (~> 3.1.4)
+  - YouTubePlayer
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -22,6 +24,7 @@ SPEC REPOS:
     - RAMAnimatedTabBarController
     - ReactiveKit
     - SwiftyJSON
+    - YouTubePlayer
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -30,7 +33,8 @@ SPEC CHECKSUMS:
   RAMAnimatedTabBarController: 3c40472db54eda74d465583f8c7f571b206c54d6
   ReactiveKit: cafbc91f72751d09baa9a3c3cf6d82b646328a6c
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: a2bdb379f6b95ed6130a6cd86aac293cce106e50
+PODFILE CHECKSUM: 56f9af27253061268af4abd61774a18fa3a6befa
 
 COCOAPODS: 1.5.0.beta.1

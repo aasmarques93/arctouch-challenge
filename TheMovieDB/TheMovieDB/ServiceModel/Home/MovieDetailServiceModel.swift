@@ -22,4 +22,10 @@ class MovieDetailServiceModel: ServiceModel {
             if let handler = handler { handler(data) }
         })
     }
+    
+    func getMovieVideos(urlParameters: [String:Any], handler: HandlerObject? = nil) {
+        request(VideosList.self, requestUrl: .videos, urlParameters: urlParameters, handlerObject: { (data) in
+            if let handler = handler { handler(data) }
+        })
+    }
 }

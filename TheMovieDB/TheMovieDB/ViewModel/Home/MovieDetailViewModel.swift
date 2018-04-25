@@ -11,7 +11,8 @@ import Bond
 
 protocol MovieDetailViewModelDelegate: class {
     func reloadData()
-    func reloadCarouselData()
+    func reloadVideos()
+    func reloadRecommendedMovies()
 }
 
 class MovieDetailViewModel: ViewModel {
@@ -44,7 +45,10 @@ class MovieDetailViewModel: ViewModel {
         }
     }
     
-    private var moviesRecommendationsList = [Movie]() { didSet { delegate?.reloadCarouselData() } }
+    private var videosList = [Video]() { didSet { delegate?.reloadVideos() } }
+    var numberOfVideos: Int { return videosList.count }
+    
+    private var moviesRecommendationsList = [Movie]() { didSet { delegate?.reloadRecommendedMovies() } }
     var numberOfMoviesRecommendations: Int { return moviesRecommendationsList.count }
     
     // MARK: - Life cycle -
@@ -58,6 +62,7 @@ class MovieDetailViewModel: ViewModel {
     
     func loadData() {
         getMovieDetail()
+        getVideos()
         getMovieRecommendations()
     }
     
@@ -69,6 +74,20 @@ class MovieDetailViewModel: ViewModel {
             MovieDetailServiceModel.shared.getMovieDetail(urlParameters: parameters) { (object) in
                 self.loadingView.stop()
                 self.movieDetail = object as? MovieDetail
+            }
+        }
+    }
+    
+    func getVideos() {
+        if let value = object.id {
+            let parameters = ["idMovie": value]
+            
+            MovieDetailServiceModel.shared.getMovieVideos(urlParameters: parameters) { (object) in
+                if let object = object as? VideosList {
+                    if let results = object.results {
+                        self.videosList.append(contentsOf: results)
+                    }
+                }
             }
         }
     }
@@ -115,6 +134,14 @@ class MovieDetailViewModel: ViewModel {
             }
         }
         return string
+    }
+    
+    func videoTitle(at index: Int) -> String? {
+        return videosList[index].name
+    }
+    
+    func videoYouTubeId(at index: Int) -> String? {
+        return videosList[index].key
     }
     
     func movieRecommendationImageData(at index: Int, handlerData: @escaping HandlerObject) {

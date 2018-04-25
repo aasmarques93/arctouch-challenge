@@ -8,6 +8,7 @@
 
 import UIKit
 import Bond
+import YouTubePlayer
 
 class MovieDetailView: UITableViewController {
     @IBOutlet weak var imageViewBackground: UIImageView!
@@ -20,6 +21,7 @@ class MovieDetailView: UITableViewController {
     @IBOutlet weak var textViewGenres: UITextView!
     @IBOutlet weak var textViewOverview: UITextView!
     
+    @IBOutlet weak var carouselVideos: iCarousel!
     @IBOutlet weak var carouselRecommendedMovies: iCarousel!
     
     enum DetailSection: Int {
@@ -45,6 +47,8 @@ class MovieDetailView: UITableViewController {
     func setupAppearance() {
         navigationItem.titleView = nil
         self.title = viewModel.movieName()
+        carouselVideos.type = .linear
+        carouselVideos.bounces = false
         carouselRecommendedMovies.type = .rotary
     }
     
@@ -87,7 +91,11 @@ extension MovieDetailView: MovieDetailViewModelDelegate {
         }
     }
     
-    func reloadCarouselData() {
+    func reloadVideos() {
+        carouselVideos.reloadData()
+    }
+    
+    func reloadRecommendedMovies() {
         carouselRecommendedMovies.reloadData()
     }
 }
@@ -97,12 +105,45 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
     // MARK: - iCarousel delegate and data source -
     
     func numberOfItems(in carousel: iCarousel) -> Int {
-        if viewModel != nil { return viewModel.numberOfMoviesRecommendations }
+        if viewModel != nil {
+            if carousel == carouselVideos { return viewModel.numberOfVideos }
+            return viewModel.numberOfMoviesRecommendations
+        }
         return 0
     }
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
-        let height: CGFloat = carousel.frame.height
+        if carousel == carouselVideos { return carouselMovieView(at: index) }
+        return carouselRecommendationView(at: index)
+    }
+    
+    func carouselMovieView(at index: Int) -> UIView {
+        let view = UIView(frame: carouselVideos.frame)
+        
+        let margin: CGFloat = 8
+        
+        let labelTitle = UILabel(frame: CGRect(x: margin, y: 0, width: view.frame.width - (margin * 2), height: 20))
+        labelTitle.text = viewModel.videoTitle(at: index)
+        labelTitle.font = UIFont.boldSystemFont(ofSize: 14)
+        labelTitle.textColor = UIColor.white
+        labelTitle.textAlignment = .center
+        
+        view.addSubview(labelTitle)
+        
+        let videoPlayer = YouTubePlayerView(frame: CGRect(x: margin,
+                                                          y: view.frame.minY,
+                                                          width: view.frame.width - (margin * 2),
+                                                          height: view.frame.height))
+        
+        if let videoId = viewModel.videoYouTubeId(at: index) { videoPlayer.loadVideoID(videoId) }
+        
+        view.addSubview(videoPlayer)
+        
+        return view
+    }
+    
+    func carouselRecommendationView(at index: Int) -> UIView {
+        let height: CGFloat = carouselRecommendedMovies.frame.height
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: height, height: height))
         imageView.backgroundColor = HexColor.primary.color
         imageView.contentMode = .scaleAspectFit

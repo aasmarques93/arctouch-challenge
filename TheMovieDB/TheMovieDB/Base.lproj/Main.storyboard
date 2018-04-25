@@ -304,8 +304,41 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="300" id="vrt-OX-ZIo">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="300" id="bYY-QD-fff">
                                         <rect key="frame" x="0.0" y="384" width="375" height="300"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bYY-QD-fff" id="hnR-jJ-OQy">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Videos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OB9-4t-rUI">
+                                                    <rect key="frame" x="8" y="8" width="57" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ye8-oU-w2C" customClass="iCarousel">
+                                                    <rect key="frame" x="0.0" y="37" width="375" height="231"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="bga-LL-qg8" id="83I-g0-L3s"/>
+                                                        <outlet property="delegate" destination="bga-LL-qg8" id="Gg5-cb-Dl5"/>
+                                                    </connections>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ye8-oU-w2C" firstAttribute="leading" secondItem="hnR-jJ-OQy" secondAttribute="leading" id="1mw-21-uO2"/>
+                                                <constraint firstAttribute="trailing" secondItem="ye8-oU-w2C" secondAttribute="trailing" id="30V-NI-uZD"/>
+                                                <constraint firstAttribute="bottom" secondItem="ye8-oU-w2C" secondAttribute="bottom" constant="32" id="Er0-cS-cnu"/>
+                                                <constraint firstItem="OB9-4t-rUI" firstAttribute="leading" secondItem="hnR-jJ-OQy" secondAttribute="leading" constant="8" id="VHF-Yn-ZEj"/>
+                                                <constraint firstItem="OB9-4t-rUI" firstAttribute="top" secondItem="hnR-jJ-OQy" secondAttribute="top" constant="8" id="Wso-Vl-l3e"/>
+                                                <constraint firstItem="ye8-oU-w2C" firstAttribute="top" secondItem="OB9-4t-rUI" secondAttribute="bottom" constant="8" id="Z5A-Ag-fib"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="300" id="vrt-OX-ZIo">
+                                        <rect key="frame" x="0.0" y="684" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vrt-OX-ZIo" id="anw-wu-nf0">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
@@ -347,6 +380,7 @@
                     </tableView>
                     <connections>
                         <outlet property="carouselRecommendedMovies" destination="0hh-qa-HO4" id="gD5-VQ-by8"/>
+                        <outlet property="carouselVideos" destination="ye8-oU-w2C" id="u06-MI-is7"/>
                         <outlet property="imageViewBackground" destination="cgz-gX-k0Q" id="TvR-CQ-7Pf"/>
                         <outlet property="imageViewPoster" destination="rR7-ft-rw5" id="RDW-4m-abL"/>
                         <outlet property="labelAverage" destination="Qlm-oY-Kqh" id="NNW-KW-iEe"/>
