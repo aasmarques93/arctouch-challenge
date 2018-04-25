@@ -23,6 +23,7 @@ class MovieDetailView: UITableViewController {
     
     @IBOutlet weak var carouselVideos: iCarousel!
     @IBOutlet weak var carouselRecommendedMovies: iCarousel!
+    @IBOutlet weak var carouselSimilarMovies: iCarousel!
     
     enum DetailSection: Int {
         case general = 0
@@ -50,6 +51,7 @@ class MovieDetailView: UITableViewController {
         carouselVideos.type = .linear
         carouselVideos.bounces = false
         carouselRecommendedMovies.type = .rotary
+        carouselSimilarMovies.type = .rotary
     }
     
     // MARK: - View model bindings -
@@ -98,6 +100,10 @@ extension MovieDetailView: MovieDetailViewModelDelegate {
     func reloadRecommendedMovies() {
         carouselRecommendedMovies.reloadData()
     }
+    
+    func reloadSimilarMovies() {
+        carouselSimilarMovies.reloadData()
+    }
 }
 
 extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
@@ -107,14 +113,16 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
     func numberOfItems(in carousel: iCarousel) -> Int {
         if viewModel != nil {
             if carousel == carouselVideos { return viewModel.numberOfVideos }
-            return viewModel.numberOfMoviesRecommendations
+            if carousel == carouselRecommendedMovies { return viewModel.numberOfMoviesRecommendations }
+            return viewModel.numberOfSimilarMovies
         }
         return 0
     }
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         if carousel == carouselVideos { return carouselMovieView(at: index) }
-        return carouselRecommendationView(at: index)
+        if carousel == carouselRecommendedMovies { return carouselRecommendationView(at: index) }
+        return carouselSimilarMovieView(at: index)
     }
     
     func carouselMovieView(at index: Int) -> UIView {
@@ -144,11 +152,20 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
     
     func carouselRecommendationView(at index: Int) -> UIView {
         let height: CGFloat = carouselRecommendedMovies.frame.height
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: height, height: height))
-        imageView.backgroundColor = HexColor.primary.color
-        imageView.contentMode = .scaleAspectFit
+        
+        let view = UIView(frame: CGRect(x: carouselRecommendedMovies.frame.minX,
+                                        y: carouselRecommendedMovies.frame.minY,
+                                        width: height,
+                                        height: height))
+        
+        let activityIndicator = createActivityIndicator()
+        activityIndicator.center = view.center
+        
+        let imageView = createMovieImageView(frame: view.frame)
         
         viewModel.movieRecommendationImageData(at: index) { (data) in
+            activityIndicator.isHidden = true
+            
             if let data = data as? Data, let image = UIImage(data: data) {
                 imageView.image = image
             } else {
@@ -156,12 +173,62 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
             }
         }
         
+        view.addSubview(imageView)
+        view.addSubview(activityIndicator)
+        
+        return view
+    }
+    
+    func carouselSimilarMovieView(at index: Int) -> UIView {
+        let height: CGFloat = carouselSimilarMovies.frame.height
+        
+        let view = UIView(frame: CGRect(x: carouselSimilarMovies.frame.minX,
+                                        y: carouselSimilarMovies.frame.minY,
+                                        width: height,
+                                        height: height))
+        
+        let activityIndicator = createActivityIndicator()
+        activityIndicator.center = view.center
+        
+        let imageView = createMovieImageView(frame: view.frame)
+        
+        viewModel.similarMovieImageData(at: index) { (data) in
+            activityIndicator.isHidden = true
+            
+            if let data = data as? Data, let image = UIImage(data: data) {
+                imageView.image = image
+            } else {
+                imageView.image = #imageLiteral(resourceName: "searching-movie")
+            }
+        }
+        
+        view.addSubview(imageView)
+        view.addSubview(activityIndicator)
+        
+        return view
+    }
+    
+    func createMovieImageView(frame: CGRect) -> UIImageView {
+        let imageView = UIImageView(frame: frame)
+        imageView.backgroundColor = HexColor.primary.color
+        imageView.contentMode = .scaleAspectFit
         return imageView
+    }
+    
+    func createActivityIndicator() -> UIActivityIndicatorView {
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicator.startAnimating()
+        activityIndicator.center = view.center
+        return activityIndicator
     }
     
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
         let viewController = instantiateFrom(storyboard: .main, identifier: MovieDetailView.identifier) as! MovieDetailView
-        viewController.viewModel = viewModel.movieDetailViewModel(at: index)
+        if carousel == carouselRecommendedMovies {
+            viewController.viewModel = viewModel.recommendedMovieDetailViewModel(at: index)
+        } else if carousel == carouselSimilarMovies {
+            viewController.viewModel = viewModel.similarMovieDetailViewModel(at: index)
+        }
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

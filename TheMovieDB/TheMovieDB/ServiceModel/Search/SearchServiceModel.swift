@@ -11,21 +11,21 @@ import UIKit
 class SearchServiceModel: ServiceModel {
     static let shared = SearchServiceModel()
     
-    func getGenres(handler: HandlerObject? = nil) {
-        request(MoviesGenres.self, requestUrl: .genres, handlerObject: { (data) in
-            if let handler = handler { handler(data) }
+    func getGenres(handler: @escaping HandlerObject) {
+        request(MoviesGenres.self, requestUrl: .genres, handlerObject: { (object) in
+            handler(object)
         })
     }
     
-    func getMoviesFromGenre(urlParameters: [String:Any], handler: HandlerObject? = nil) {
-        request(SearchMoviesGenre.self, requestUrl: .searchByGenre, urlParameters: urlParameters, handlerObject: { (data) in
-            if let handler = handler { handler(data) }
+    func getMoviesFromGenre(urlParameters: [String:Any], handler: @escaping HandlerObject) {
+        request(SearchMoviesGenre.self, requestUrl: .searchByGenre, urlParameters: urlParameters, handlerObject: { (object) in
+            handler(object)
         })
     }
     
-    func doSearchMovies(urlParameters: [String:Any], handler: HandlerObject? = nil) {
-        request(SearchMovie.self, requestUrl: .searchMovie, urlParameters: urlParameters, handlerObject: { (data) in
-            if let handler = handler { handler(data) }
+    func doSearchMovies(urlParameters: [String:Any], handler: @escaping HandlerObject) {
+        request(SearchMovie.self, requestUrl: .searchMovie, urlParameters: urlParameters, handlerObject: { (object) in
+            handler(object)
         })
     }
 }

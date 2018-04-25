@@ -20,6 +20,8 @@ class SearchViewModel: ViewModel {
     
     // MARK: - Properties -
     
+    let serviceModel = SearchServiceModel.shared
+    
     // MARK: Delegate
     weak var delegate: SearchViewModelDelegate?
     
@@ -39,7 +41,7 @@ class SearchViewModel: ViewModel {
     
     func loadData() {
         loadingView.startInWindow()
-        SearchServiceModel.shared.getGenres { (object) in
+        serviceModel.getGenres { (object) in
             self.loadingView.stop()
             if let object = object as? MoviesGenres {
                 if let statusMessage = object.statusMessage, statusMessage != "" {
@@ -59,7 +61,7 @@ class SearchViewModel: ViewModel {
             let parameters = ["id": value]
         
             loadingView.startInWindow()
-            SearchServiceModel.shared.getMoviesFromGenre(urlParameters: parameters) { (object) in
+            serviceModel.getMoviesFromGenre(urlParameters: parameters) { (object) in
                 self.loadingView.stop()
                 if let object = object as? SearchMoviesGenre {
                     if let statusMessage = object.statusMessage, statusMessage != "" {
@@ -81,7 +83,7 @@ class SearchViewModel: ViewModel {
             let parameters = ["query": value.replacingOccurrences(of: " ", with: "%20")]
             
             loadingView.startInWindow()
-            SearchServiceModel.shared.doSearchMovies(urlParameters: parameters) { (object) in
+            serviceModel.doSearchMovies(urlParameters: parameters) { (object) in
                 self.loadingView.stop()
                 if let object = object as? SearchMovie {
                     if let statusMessage = object.statusMessage, statusMessage != "" {
@@ -122,7 +124,7 @@ class SearchViewModel: ViewModel {
         }
         
         handlerData(nil)
-        HomeServiceModel.shared.loadImage(path: movie.posterPath, handlerData: { (data) in
+        serviceModel.loadImage(path: movie.posterPath, handlerData: { (data) in
             self.arrayMovies[indexPath.row].imageData = data as? Data
             handlerData(data)
         })

@@ -20,6 +20,8 @@
 	<string>/movie/{idMovie}/videos?</string>
 	<key>recommendations</key>
 	<string>/movie/{idMovie}/recommendations?page={page}&amp;</string>
+	<key>similar</key>
+	<string>/movie/{idMovie}/similar?page={page}&amp;</string>
 	<key>searchMovie</key>
 	<string>/search/movie?query={query}&amp;</string>
 	<key>searchPerson</key>

@@ -11,21 +11,50 @@ import UIKit
 class MovieDetailServiceModel: ServiceModel {
     static let shared = MovieDetailServiceModel()
     
-    func getMovieDetail(urlParameters: [String:Any], handler: HandlerObject? = nil) {
-        request(MovieDetail.self, requestUrl: .movie, urlParameters: urlParameters, handlerObject: { (data) in
-            if let handler = handler { handler(data) }
+    func getDetail(from movie: Movie, handler: @escaping HandlerObject) {
+        request(MovieDetail.self,
+                requestUrl: .movie,
+                urlParameters: createParameters(from: movie),
+                handlerObject: { (object) in
+            
+                    handler(object)
         })
     }
     
-    func getMovieRecommendations(urlParameters: [String:Any], handler: HandlerObject? = nil) {
-        request(MoviesList.self, requestUrl: .recommendations, urlParameters: urlParameters, handlerObject: { (data) in
-            if let handler = handler { handler(data) }
+    func getVideos(from movie: Movie, handler: @escaping HandlerObject) {
+        request(VideosList.self,
+                requestUrl: .videos,
+                urlParameters: createParameters(from: movie),
+                handlerObject: { (object) in
+
+                    handler(object)
         })
     }
     
-    func getMovieVideos(urlParameters: [String:Any], handler: HandlerObject? = nil) {
-        request(VideosList.self, requestUrl: .videos, urlParameters: urlParameters, handlerObject: { (data) in
-            if let handler = handler { handler(data) }
+    func getRecommendations(from movie: Movie, handler: @escaping HandlerObject) {
+        request(MoviesList.self,
+                requestUrl: .recommendations,
+                urlParameters: createParameters(from: movie, isSimple: false),
+                handlerObject: { (object) in
+                    
+                    handler(object)
         })
+    }
+    
+    func getSimilar(from movie: Movie, handler: @escaping HandlerObject) {
+        request(MoviesList.self,
+                requestUrl: .similar,
+                urlParameters: createParameters(from: movie, isSimple: false),
+                handlerObject: { (object) in
+                    
+                    handler(object)
+        })
+    }
+    
+    func createParameters(from movie: Movie, isSimple: Bool = true) -> [String:Any] {
+        var parameters = [String:Any]()
+        parameters["idMovie"] = movie.id ?? 0
+        if !isSimple { parameters["page"] = 1 }
+        return parameters
     }
 }

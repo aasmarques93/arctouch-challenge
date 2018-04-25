@@ -370,6 +370,39 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="300" id="JT6-jB-cJM">
+                                        <rect key="frame" x="0.0" y="984" width="375" height="300"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JT6-jB-cJM" id="wmm-co-5IL">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Similar Movies" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JD9-Zh-Rce">
+                                                    <rect key="frame" x="8" y="8" width="119" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0E9-ei-4VR" customClass="iCarousel">
+                                                    <rect key="frame" x="8" y="37" width="359" height="254"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="bga-LL-qg8" id="Cjc-iw-UXp"/>
+                                                        <outlet property="delegate" destination="bga-LL-qg8" id="Ply-SO-Kwv"/>
+                                                    </connections>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="0E9-ei-4VR" secondAttribute="bottom" constant="8" id="0dd-ib-FVV"/>
+                                                <constraint firstItem="0E9-ei-4VR" firstAttribute="top" secondItem="JD9-Zh-Rce" secondAttribute="bottom" constant="8" id="99o-Df-Cf4"/>
+                                                <constraint firstAttribute="trailing" secondItem="0E9-ei-4VR" secondAttribute="trailing" constant="8" id="Anz-JI-EbQ"/>
+                                                <constraint firstItem="JD9-Zh-Rce" firstAttribute="top" secondItem="wmm-co-5IL" secondAttribute="top" constant="8" id="WdR-Pg-8r7"/>
+                                                <constraint firstItem="0E9-ei-4VR" firstAttribute="leading" secondItem="wmm-co-5IL" secondAttribute="leading" constant="8" id="awT-Qn-Kgz"/>
+                                                <constraint firstItem="JD9-Zh-Rce" firstAttribute="leading" secondItem="wmm-co-5IL" secondAttribute="leading" constant="8" id="xbH-j4-TEm"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -380,6 +413,7 @@
                     </tableView>
                     <connections>
                         <outlet property="carouselRecommendedMovies" destination="0hh-qa-HO4" id="gD5-VQ-by8"/>
+                        <outlet property="carouselSimilarMovies" destination="0E9-ei-4VR" id="fIz-ab-leU"/>
                         <outlet property="carouselVideos" destination="ye8-oU-w2C" id="u06-MI-is7"/>
                         <outlet property="imageViewBackground" destination="cgz-gX-k0Q" id="TvR-CQ-7Pf"/>
                         <outlet property="imageViewPoster" destination="rR7-ft-rw5" id="RDW-4m-abL"/>
