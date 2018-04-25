@@ -18,8 +18,10 @@ class SearchResultViewCell: UITableViewCell {
         if let value = viewModel.movieName(at: indexPath) { labelName.text = value }
         
         viewModel.imageData(at: indexPath) { (data) in
-            if let data = data as? Data {
-                self.imageViewMovie.image = UIImage(data: data)
+            if let data = data as? Data, let image = UIImage(data: data) {
+                self.imageViewMovie.image = image
+            } else {
+                self.imageViewMovie.image = #imageLiteral(resourceName: "searching-movie")
             }
         }
     }
