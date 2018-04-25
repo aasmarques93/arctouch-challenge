@@ -165,36 +165,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </imageView>
-                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MGe-u4-iHe">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
-                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="92D-TY-sRb">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </view>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <blurEffect style="light"/>
-                                </visualEffectView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rR7-ft-rw5">
-                                    <rect key="frame" x="112.5" y="8" width="150" height="184"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="150" id="chu-BY-Uvv"/>
-                                    </constraints>
-                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="MGe-u4-iHe" firstAttribute="leading" secondItem="zWW-mL-MpA" secondAttribute="leading" id="2hf-Yy-oeF"/>
-                                <constraint firstAttribute="bottom" secondItem="rR7-ft-rw5" secondAttribute="bottom" constant="8" id="7uO-PJ-RD7"/>
                                 <constraint firstAttribute="trailing" secondItem="cgz-gX-k0Q" secondAttribute="trailing" id="AAT-QE-YXd"/>
-                                <constraint firstItem="rR7-ft-rw5" firstAttribute="top" secondItem="zWW-mL-MpA" secondAttribute="top" constant="8" id="C9x-4r-SjE"/>
                                 <constraint firstItem="cgz-gX-k0Q" firstAttribute="leading" secondItem="zWW-mL-MpA" secondAttribute="leading" id="VkU-ep-a8e"/>
                                 <constraint firstItem="cgz-gX-k0Q" firstAttribute="top" secondItem="zWW-mL-MpA" secondAttribute="top" id="aI0-5e-1vx"/>
-                                <constraint firstAttribute="trailing" secondItem="MGe-u4-iHe" secondAttribute="trailing" id="dqJ-sY-Zp3"/>
-                                <constraint firstItem="rR7-ft-rw5" firstAttribute="centerX" secondItem="zWW-mL-MpA" secondAttribute="centerX" id="ruv-Qa-1jx"/>
                                 <constraint firstAttribute="bottom" secondItem="cgz-gX-k0Q" secondAttribute="bottom" id="tEk-Vd-ihf"/>
-                                <constraint firstAttribute="bottom" secondItem="MGe-u4-iHe" secondAttribute="bottom" id="xuC-k3-5uv"/>
-                                <constraint firstItem="MGe-u4-iHe" firstAttribute="top" secondItem="zWW-mL-MpA" secondAttribute="top" id="ybo-ha-BKp"/>
                             </constraints>
                         </view>
                         <sections>
@@ -341,7 +318,7 @@
                                         <rect key="frame" x="0.0" y="684" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vrt-OX-ZIo" id="anw-wu-nf0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recomended" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pur-vx-rX5">
@@ -374,7 +351,7 @@
                                         <rect key="frame" x="0.0" y="984" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JT6-jB-cJM" id="wmm-co-5IL">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Similar Movies" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JD9-Zh-Rce">
@@ -416,12 +393,12 @@
                         <outlet property="carouselSimilarMovies" destination="0E9-ei-4VR" id="fIz-ab-leU"/>
                         <outlet property="carouselVideos" destination="ye8-oU-w2C" id="u06-MI-is7"/>
                         <outlet property="imageViewBackground" destination="cgz-gX-k0Q" id="TvR-CQ-7Pf"/>
-                        <outlet property="imageViewPoster" destination="rR7-ft-rw5" id="RDW-4m-abL"/>
                         <outlet property="labelAverage" destination="Qlm-oY-Kqh" id="NNW-KW-iEe"/>
                         <outlet property="labelDate" destination="35Z-pR-wcr" id="ZBv-i1-yZT"/>
                         <outlet property="labelRuntime" destination="59g-6p-PdB" id="vFU-Co-Ps1"/>
                         <outlet property="textViewGenres" destination="44J-bM-T6n" id="Zbl-xU-ChU"/>
                         <outlet property="textViewOverview" destination="s2b-WP-B60" id="qMK-IZ-O6h"/>
+                        <outlet property="viewHeader" destination="zWW-mL-MpA" id="gRS-Ho-YFO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jUc-gg-m1a" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -124,13 +124,10 @@ class MovieDetailViewModel: ViewModel {
         return movie.originalTitle
     }
     
-    func imagesData(handlerBackgroundData: @escaping HandlerObject, handlerPosterData: @escaping HandlerObject) {
+    func movieDetailImageData(handlerData: @escaping HandlerObject) {
         if let movieDetail = movieDetail {
             serviceModel.loadImage(path: movieDetail.backdropPath, handlerData: { (data) in
-                handlerBackgroundData(data)
-            })
-            serviceModel.loadImage(path: movieDetail.posterPath, handlerData: { (data) in
-                handlerPosterData(data)
+                handlerData(data)
             })
         }
     }

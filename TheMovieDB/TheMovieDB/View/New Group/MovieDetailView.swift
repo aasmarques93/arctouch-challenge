@@ -11,8 +11,9 @@ import Bond
 import YouTubePlayer
 
 class MovieDetailView: UITableViewController {
+    @IBOutlet weak var viewHeader: UIView!
+    
     @IBOutlet weak var imageViewBackground: UIImageView!
-    @IBOutlet weak var imageViewPoster: UIImageView!
     
     @IBOutlet weak var labelAverage: UILabel!
     @IBOutlet weak var labelDate: UILabel!
@@ -77,6 +78,12 @@ class MovieDetailView: UITableViewController {
         }
         return height
     }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == tableView, scrollView.contentOffset.y < 0 {
+            scrollView.contentOffset.y = 0
+        }
+    }
 }
 
 extension MovieDetailView: MovieDetailViewModelDelegate {
@@ -86,11 +93,9 @@ extension MovieDetailView: MovieDetailViewModelDelegate {
     func reloadData() {
         tableView.reloadData()
         
-        viewModel.imagesData(handlerBackgroundData: { (backgroundData) in
-            if let data = backgroundData as? Data { self.imageViewBackground.image = UIImage(data: data) }
-        }) { (posterData) in
-            if let data = posterData as? Data { self.imageViewPoster.image = UIImage(data: data) }
-        }
+        viewModel.movieDetailImageData(handlerData: { (data) in
+            if let data = data as? Data { self.imageViewBackground.image = UIImage(data: data) }
+        })
     }
     
     func reloadVideos() {
@@ -143,6 +148,7 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
                                                           width: view.frame.width - (margin * 2),
                                                           height: view.frame.height))
         
+        videoPlayer.backgroundColor = UIColor.clear
         if let videoId = viewModel.videoYouTubeId(at: index) { videoPlayer.loadVideoID(videoId) }
         
         view.addSubview(videoPlayer)
@@ -151,21 +157,12 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
     }
     
     func carouselRecommendationView(at index: Int) -> UIView {
-        let height: CGFloat = carouselRecommendedMovies.frame.height
-        
-        let view = UIView(frame: CGRect(x: carouselRecommendedMovies.frame.minX,
-                                        y: carouselRecommendedMovies.frame.minY,
-                                        width: height,
-                                        height: height))
-        
-        let activityIndicator = createActivityIndicator()
-        activityIndicator.center = view.center
-        
-        let imageView = createMovieImageView(frame: view.frame)
+        let imageView = createMovieImageView(frame: CGRect(x: carouselRecommendedMovies.frame.minX,
+                                                           y: carouselRecommendedMovies.frame.minY,
+                                                           width: carouselRecommendedMovies.frame.height,
+                                                           height: carouselRecommendedMovies.frame.height))
         
         viewModel.movieRecommendationImageData(at: index) { (data) in
-            activityIndicator.isHidden = true
-            
             if let data = data as? Data, let image = UIImage(data: data) {
                 imageView.image = image
             } else {
@@ -173,28 +170,16 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
             }
         }
         
-        view.addSubview(imageView)
-        view.addSubview(activityIndicator)
-        
-        return view
+        return imageView
     }
     
     func carouselSimilarMovieView(at index: Int) -> UIView {
-        let height: CGFloat = carouselSimilarMovies.frame.height
-        
-        let view = UIView(frame: CGRect(x: carouselSimilarMovies.frame.minX,
-                                        y: carouselSimilarMovies.frame.minY,
-                                        width: height,
-                                        height: height))
-        
-        let activityIndicator = createActivityIndicator()
-        activityIndicator.center = view.center
-        
-        let imageView = createMovieImageView(frame: view.frame)
+        let imageView = createMovieImageView(frame: CGRect(x: carouselSimilarMovies.frame.minX,
+                                                           y: carouselSimilarMovies.frame.minY,
+                                                           width: carouselSimilarMovies.frame.height,
+                                                           height: carouselSimilarMovies.frame.height))
         
         viewModel.similarMovieImageData(at: index) { (data) in
-            activityIndicator.isHidden = true
-            
             if let data = data as? Data, let image = UIImage(data: data) {
                 imageView.image = image
             } else {
@@ -202,10 +187,7 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
             }
         }
         
-        view.addSubview(imageView)
-        view.addSubview(activityIndicator)
-        
-        return view
+        return imageView
     }
     
     func createMovieImageView(frame: CGRect) -> UIImageView {
@@ -213,13 +195,6 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
         imageView.backgroundColor = HexColor.primary.color
         imageView.contentMode = .scaleAspectFit
         return imageView
-    }
-    
-    func createActivityIndicator() -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityIndicator.startAnimating()
-        activityIndicator.center = view.center
-        return activityIndicator
     }
     
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
