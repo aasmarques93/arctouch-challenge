@@ -6,14 +6,18 @@
 	<string>/searchName={searchName}&amp;number={number} =&gt; /searchName=test&amp;number=10</string>
 	<key>apiKey</key>
 	<string>1f54bd990f1cdfb230adb312546d765d</string>
+	<key>nowPlaying</key>
+	<string>/movie/now_playing?page={page}&amp;</string>
 	<key>upcoming</key>
 	<string>/movie/upcoming?page={page}&amp;</string>
-	<key>movie</key>
-	<string>/movie/{idMovie}?</string>
 	<key>topRated</key>
 	<string>/movie/top_rated?page={page}&amp;</string>
 	<key>popular</key>
 	<string>/movie/popular?page={page}&amp;</string>
+	<key>movie</key>
+	<string>/movie/{idMovie}?</string>
+	<key>recomendations</key>
+	<string>/movie/{idMovie}/recommendations?</string>
 	<key>searchMovie</key>
 	<string>/search/movie?query={query}&amp;</string>
 	<key>searchPerson</key>
