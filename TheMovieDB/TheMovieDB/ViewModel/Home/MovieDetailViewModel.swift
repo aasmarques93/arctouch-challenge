@@ -11,6 +11,7 @@ import Bond
 
 protocol MovieDetailViewModelDelegate: class {
     func reloadData()
+    func reloadCarouselData()
 }
 
 class MovieDetailViewModel: ViewModel {
@@ -29,7 +30,7 @@ class MovieDetailViewModel: ViewModel {
     
     // MARK: Objects
     var object: Movie!
-    var movieDetail: MovieDetail? {
+    private var movieDetail: MovieDetail? {
         didSet {
             delegate?.reloadData()
             
@@ -43,6 +44,9 @@ class MovieDetailViewModel: ViewModel {
         }
     }
     
+    private var moviesRecommendationsList = [Movie]() { didSet { delegate?.reloadCarouselData() } }
+    var numberOfMoviesRecommendations: Int { return moviesRecommendationsList.count }
+    
     // MARK: - Life cycle -
     
     init(_ object: Movie) {
@@ -53,6 +57,11 @@ class MovieDetailViewModel: ViewModel {
     // MARK: - Service requests -
     
     func loadData() {
+        getMovieDetail()
+        getMovieRecommendations()
+    }
+    
+    func getMovieDetail() {
         if let value = object.id {
             let parameters = ["idMovie": value]
             
@@ -60,6 +69,20 @@ class MovieDetailViewModel: ViewModel {
             MovieDetailServiceModel.shared.getMovieDetail(urlParameters: parameters) { (object) in
                 self.loadingView.stop()
                 self.movieDetail = object as? MovieDetail
+            }
+        }
+    }
+    
+    func getMovieRecommendations() {
+        if let value = object.id {
+            let parameters = ["idMovie": value, "page": 1]
+            
+            MovieDetailServiceModel.shared.getMovieRecommendations(urlParameters: parameters) { (object) in
+                if let object = object as? MoviesList {
+                    if let results = object.results {
+                        self.moviesRecommendationsList.append(contentsOf: results)
+                    }
+                }
             }
         }
     }
@@ -92,5 +115,24 @@ class MovieDetailViewModel: ViewModel {
             }
         }
         return string
+    }
+    
+    func movieRecommendationImageData(at index: Int, handlerData: @escaping HandlerObject) {
+        let movie = moviesRecommendationsList[index]
+        
+        if let data = movie.imageData {
+            handlerData(data)
+            return
+        }
+        
+        HomeServiceModel.shared.loadImage(path: movie.posterPath, handlerData: { (data) in
+            self.moviesRecommendationsList[index].imageData = data as? Data
+            handlerData(data)
+        })
+    }
+    
+    func movieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
+        let movie = moviesRecommendationsList[index]
+        return MovieDetailViewModel(movie)
     }
 }

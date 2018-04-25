@@ -16,4 +16,10 @@ class MovieDetailServiceModel: ServiceModel {
             if let handler = handler { handler(data) }
         })
     }
+    
+    func getMovieRecommendations(urlParameters: [String:Any], handler: HandlerObject? = nil) {
+        request(MoviesList.self, requestUrl: .recommendations, urlParameters: urlParameters, handlerObject: { (data) in
+            if let handler = handler { handler(data) }
+        })
+    }
 }

@@ -16,8 +16,8 @@
 	<string>/movie/popular?page={page}&amp;</string>
 	<key>movie</key>
 	<string>/movie/{idMovie}?</string>
-	<key>recomendations</key>
-	<string>/movie/{idMovie}/recommendations?</string>
+	<key>recommendations</key>
+	<string>/movie/{idMovie}/recommendations?page={page}&amp;</string>
 	<key>searchMovie</key>
 	<string>/search/movie?query={query}&amp;</string>
 	<key>searchPerson</key>

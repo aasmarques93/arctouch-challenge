@@ -20,6 +20,8 @@ class MovieDetailView: UITableViewController {
     @IBOutlet weak var textViewGenres: UITextView!
     @IBOutlet weak var textViewOverview: UITextView!
     
+    @IBOutlet weak var carouselRecommendedMovies: iCarousel!
+    
     enum DetailSection: Int {
         case general = 0
         case genres = 1
@@ -43,6 +45,7 @@ class MovieDetailView: UITableViewController {
     func setupAppearance() {
         navigationItem.titleView = nil
         self.title = viewModel.movieName()
+        carouselRecommendedMovies.type = .rotary
     }
     
     // MARK: - View model bindings -
@@ -82,5 +85,42 @@ extension MovieDetailView: MovieDetailViewModelDelegate {
         }) { (posterData) in
             if let data = posterData as? Data { self.imageViewPoster.image = UIImage(data: data) }
         }
+    }
+    
+    func reloadCarouselData() {
+        carouselRecommendedMovies.reloadData()
+    }
+}
+
+extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
+    
+    // MARK: - iCarousel delegate and data source -
+    
+    func numberOfItems(in carousel: iCarousel) -> Int {
+        if viewModel != nil { return viewModel.numberOfMoviesRecommendations }
+        return 0
+    }
+    
+    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
+        let height: CGFloat = carousel.frame.height
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: height, height: height))
+        imageView.backgroundColor = HexColor.primary.color
+        imageView.contentMode = .scaleAspectFit
+        
+        viewModel.movieRecommendationImageData(at: index) { (data) in
+            if let data = data as? Data, let image = UIImage(data: data) {
+                imageView.image = image
+            } else {
+                imageView.image = #imageLiteral(resourceName: "searching-movie")
+            }
+        }
+        
+        return imageView
+    }
+    
+    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
+        let viewController = instantiateFrom(storyboard: .main, identifier: MovieDetailView.identifier) as! MovieDetailView
+        viewController.viewModel = viewModel.movieDetailViewModel(at: index)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

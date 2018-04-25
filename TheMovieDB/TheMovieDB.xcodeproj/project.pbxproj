@@ -43,6 +43,7 @@
 		ED16D8882059A07F002A0B2C /* SearchServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D8872059A07F002A0B2C /* SearchServiceModel.swift */; };
 		ED16D88A2059A34F002A0B2C /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D8892059A34F002A0B2C /* SearchResultView.swift */; };
 		ED16D88C2059A3A0002A0B2C /* SearchResultViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D88B2059A3A0002A0B2C /* SearchResultViewCell.swift */; };
+		ED65BEB320909EFA0091D93B /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED65BEB120909EF90091D93B /* iCarousel.m */; };
 		EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01220585A4400D843EC /* CollectionView.swift */; };
 		EDC6C01820585A5500D843EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01720585A5500D843EC /* Date.swift */; };
 		EDC6C01C20585A6300D843EC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01B20585A6300D843EC /* LoadingView.swift */; };
@@ -131,6 +132,9 @@
 		ED16D8872059A07F002A0B2C /* SearchServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceModel.swift; sourceTree = "<group>"; };
 		ED16D8892059A34F002A0B2C /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		ED16D88B2059A3A0002A0B2C /* SearchResultViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewCell.swift; sourceTree = "<group>"; };
+		ED65BEAC20909E690091D93B /* TheMovieDB-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TheMovieDB-Bridging-Header.h"; sourceTree = "<group>"; };
+		ED65BEB120909EF90091D93B /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		ED65BEB220909EFA0091D93B /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		EDC6C01220585A4400D843EC /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		EDC6C01720585A5500D843EC /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		EDC6C01B20585A6300D843EC /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -355,6 +359,15 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		ED65BEB020909EE20091D93B /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				ED65BEB220909EFA0091D93B /* iCarousel.h */,
+				ED65BEB120909EF90091D93B /* iCarousel.m */,
+			);
+			path = iCarousel;
+			sourceTree = "<group>";
+		};
 		EDC6BFFB2058590D00D843EC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,6 +418,8 @@
 				EDC6C002205859AE00D843EC /* General */,
 				EDC6C001205859A700D843EC /* Connection */,
 				EDC6C000205859A000D843EC /* Constants */,
+				ED65BEB020909EE20091D93B /* iCarousel */,
+				ED65BEAC20909E690091D93B /* TheMovieDB-Bridging-Header.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -570,6 +585,7 @@
 				TargetAttributes = {
 					ED08937820585752004CC05F = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 					ED08938C20585753004CC05F = {
@@ -737,6 +753,7 @@
 				ED16D86C20597D99002A0B2C /* ProductionCompanies.swift in Sources */,
 				EDC6C03E2058663000D843EC /* ServiceModel.swift in Sources */,
 				EDC6C03020585A8C00D843EC /* Connection.swift in Sources */,
+				ED65BEB320909EFA0091D93B /* iCarousel.m in Sources */,
 				ED16D84C205884AB002A0B2C /* Movie.swift in Sources */,
 				ED16D86920597D99002A0B2C /* MovieDetail.swift in Sources */,
 				EDC6C01C20585A6300D843EC /* LoadingView.swift in Sources */,
@@ -939,12 +956,15 @@
 			baseConfigurationReference = 434897671A574FE8B45AAF96 /* Pods-TheMovieDB.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XXT2XJVDAC;
 				INFOPLIST_FILE = "$(SRCROOT)/TheMovieDB/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aasmarques.themoviedb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TheMovieDB/Utils/TheMovieDB-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -955,12 +975,14 @@
 			baseConfigurationReference = 1AB9923C76FBA93BBDA1BB5F /* Pods-TheMovieDB.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XXT2XJVDAC;
 				INFOPLIST_FILE = "$(SRCROOT)/TheMovieDB/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aasmarques.themoviedb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TheMovieDB/Utils/TheMovieDB-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

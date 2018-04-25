@@ -42,7 +42,7 @@ enum RequestUrl: String {
     case topRated
     case popular
     case movie
-    case recomendations
+    case recommendations
     case searchMovie
     case searchPerson
     case searchByGenre
