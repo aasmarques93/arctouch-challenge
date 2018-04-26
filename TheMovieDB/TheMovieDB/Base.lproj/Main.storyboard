@@ -168,34 +168,41 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Average}}" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qlm-oY-Kqh">
-                                                    <rect key="frame" x="8" y="9.5" width="114.5" height="24"/>
+                                                    <rect key="frame" x="41" y="9.5" width="110" height="24"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" red="0.0039215686274509803" green="0.82352941176470584" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Date}}" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35Z-pR-wcr">
-                                                    <rect key="frame" x="130.5" y="13.5" width="114" height="17"/>
+                                                    <rect key="frame" x="150.5" y="13.5" width="74" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Runtime}}" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59g-6p-PdB">
-                                                    <rect key="frame" x="252.5" y="13.5" width="114.5" height="17"/>
+                                                    <rect key="frame" x="293" y="13.5" width="74" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="r6n-xw-dTB">
+                                                    <rect key="frame" x="8" y="9.5" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="rgW-o6-Qlf"/>
+                                                        <constraint firstAttribute="width" secondItem="r6n-xw-dTB" secondAttribute="height" multiplier="1:1" id="tT8-HF-0CN"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="59g-6p-PdB" firstAttribute="leading" secondItem="35Z-pR-wcr" secondAttribute="trailing" constant="8" id="4Lm-uV-r5b"/>
                                                 <constraint firstItem="35Z-pR-wcr" firstAttribute="centerY" secondItem="Qlm-oY-Kqh" secondAttribute="centerY" id="4wb-j2-RiC"/>
-                                                <constraint firstItem="35Z-pR-wcr" firstAttribute="leading" secondItem="Qlm-oY-Kqh" secondAttribute="trailing" constant="8" id="82W-8l-2wC"/>
                                                 <constraint firstItem="59g-6p-PdB" firstAttribute="centerY" secondItem="35Z-pR-wcr" secondAttribute="centerY" id="Gc9-Fm-lnE"/>
                                                 <constraint firstItem="Qlm-oY-Kqh" firstAttribute="centerY" secondItem="meX-fA-uJJ" secondAttribute="centerY" id="PwU-I7-BAP"/>
-                                                <constraint firstItem="Qlm-oY-Kqh" firstAttribute="leading" secondItem="meX-fA-uJJ" secondAttribute="leading" constant="8" id="Rot-Qp-xPv"/>
-                                                <constraint firstItem="35Z-pR-wcr" firstAttribute="width" secondItem="Qlm-oY-Kqh" secondAttribute="width" id="hgs-Hq-TC5"/>
+                                                <constraint firstItem="r6n-xw-dTB" firstAttribute="leading" secondItem="meX-fA-uJJ" secondAttribute="leading" constant="8" id="TWV-I8-3iB"/>
+                                                <constraint firstItem="Qlm-oY-Kqh" firstAttribute="leading" secondItem="r6n-xw-dTB" secondAttribute="trailing" constant="8" id="fae-yy-iHK"/>
                                                 <constraint firstItem="59g-6p-PdB" firstAttribute="width" secondItem="35Z-pR-wcr" secondAttribute="width" id="jWT-qB-Srm"/>
+                                                <constraint firstItem="35Z-pR-wcr" firstAttribute="centerX" secondItem="meX-fA-uJJ" secondAttribute="centerX" id="qGF-ZV-FuA"/>
                                                 <constraint firstAttribute="trailing" secondItem="59g-6p-PdB" secondAttribute="trailing" constant="8" id="teI-X0-wsm"/>
+                                                <constraint firstItem="r6n-xw-dTB" firstAttribute="centerY" secondItem="Qlm-oY-Kqh" secondAttribute="centerY" id="wa9-J3-s5n"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -632,5 +639,6 @@
         <image name="home" width="25" height="25"/>
         <image name="search" width="25" height="25"/>
         <image name="searching-movie" width="565" height="837"/>
+        <image name="star" width="24" height="24"/>
     </resources>
 </document>
