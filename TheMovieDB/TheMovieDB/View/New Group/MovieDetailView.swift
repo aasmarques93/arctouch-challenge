@@ -25,6 +25,8 @@ class MovieDetailView: UITableViewController {
     var imageViewHeader = UIImageView()
     var imageViewHeaderHeight: CGFloat = 250
     
+    var activityIndicator = UIActivityIndicatorView()
+    
     enum DetailSection: Int {
         case general = 0
         case genres = 1
@@ -53,6 +55,11 @@ class MovieDetailView: UITableViewController {
         imageViewHeader.contentMode = .scaleAspectFill
         imageViewHeader.clipsToBounds = true
         view.addSubview(imageViewHeader)
+        
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.center = CGPoint(x: imageViewHeader.center.x, y: imageViewHeader.center.y - imageViewHeaderHeight)
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
         
         tableView.contentInset = UIEdgeInsetsMake(imageViewHeaderHeight, 0, 0, 0)
         
@@ -105,6 +112,7 @@ extension MovieDetailView: MovieDetailViewModelDelegate {
         viewModel.movieDetailImageData(handlerData: { (data) in
             if let data = data as? Data {
                 self.imageViewHeader.image = UIImage(data: data)
+                self.activityIndicator.isHidden = true
             }
         })
     }
@@ -176,8 +184,6 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
         viewModel.movieRecommendationImageData(at: index) { (data) in
             if let data = data as? Data, let image = UIImage(data: data) {
                 imageView.image = image
-            } else {
-                imageView.image = #imageLiteral(resourceName: "searching-movie")
             }
         }
         
@@ -193,8 +199,6 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
         viewModel.similarMovieImageData(at: index) { (data) in
             if let data = data as? Data, let image = UIImage(data: data) {
                 imageView.image = image
-            } else {
-                imageView.image = #imageLiteral(resourceName: "searching-movie")
             }
         }
         
@@ -205,6 +209,7 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
         let imageView = UIImageView(frame: frame)
         imageView.backgroundColor = HexColor.primary.color
         imageView.contentMode = .scaleAspectFit
+        imageView.image = #imageLiteral(resourceName: "searching-movie")
         return imageView
     }
     

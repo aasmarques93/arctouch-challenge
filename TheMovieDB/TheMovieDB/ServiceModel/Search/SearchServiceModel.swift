@@ -26,4 +26,10 @@ class SearchServiceModel: ServiceModel {
             handler(object)
         })
     }
+    
+    func doSearchPerson(urlParameters: [String:Any], handler: @escaping HandlerObject) {
+        request(SearchMovie.self, requestUrl: .searchPerson, urlParameters: urlParameters, handlerObject: { (object) in
+            handler(object)
+        })
+    }
 }
