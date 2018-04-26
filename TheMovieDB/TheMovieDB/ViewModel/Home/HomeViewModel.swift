@@ -49,7 +49,7 @@ class HomeViewModel: ViewModel {
     // MARK: Delegate
     weak var delegate: HomeViewModelDelegate?
     
-    let serviceModel = HomeServiceModel.shared
+    var serviceModel = HomeServiceModel()
     
     // MARK: Genres
     private var arrayGenres: [Genre] = [.nowPlaying, .upcoming, .topRated, .popular]
@@ -192,9 +192,13 @@ class HomeViewModel: ViewModel {
         return numberOfMovies(at: indexPath.section) == 0
     }
     
+    func movie(at section: Int, row: Int) -> Movie? {
+        if let results = getMoviesList(at: section), row < results.count { return results[row] }
+        return nil
+    }
+    
     func imagePathUrl(at section: Int, row: Int) -> URL? {
-        if let results = getMoviesList(at: section) {
-            let movie = results[row]
+        if let movie = movie(at: section, row: row) {
             return URL(string: serviceModel.imageUrl(with: movie.posterPath))
         }
         return nil
@@ -223,8 +227,7 @@ class HomeViewModel: ViewModel {
     //MARK: Detail view model
     
     func movieDetailViewModel(at section: Int, row: Int) -> MovieDetailViewModel? {
-        if let results = getMoviesList(at: section) {
-            let movie = results[row]
+        if let movie = movie(at: section, row: row) {
             return MovieDetailViewModel(movie)
         }
         return nil

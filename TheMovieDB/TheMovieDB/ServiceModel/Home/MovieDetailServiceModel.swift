@@ -9,8 +9,6 @@
 import UIKit
 
 class MovieDetailServiceModel: ServiceModel {
-    static let shared = MovieDetailServiceModel()
-    
     func getDetail(from movie: Movie, handler: @escaping HandlerObject) {
         request(MovieDetail.self,
                 requestUrl: .movie,

@@ -32,6 +32,7 @@ class EnvironmentHost {
 enum EnvironmentBase: String {
     case api
     case images
+    case mock
 }
 
 // MARK: - Request Link Enum -

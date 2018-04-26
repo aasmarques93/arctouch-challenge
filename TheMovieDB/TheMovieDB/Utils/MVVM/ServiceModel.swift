@@ -26,7 +26,7 @@ class ServiceModel {
     init() {
         
     }
-    
+
     init(url : String?) {
         self.url = url
     }
@@ -38,7 +38,21 @@ class ServiceModel {
     
     // MARK: - Service Delegate Methods -
     
-    func request<T:Model>(_:T.Type, method: HTTPMethod = .get, requestUrl: RequestUrl, stringUrl: String? = nil, parameters: [String:Any]? = nil, urlParameters: [String:Any]? = nil, handlerObject: @escaping HandlerObject, handlerJson: HandlerObject? = nil) {
+    func request<T:Model>(_:T.Type,
+                          method: HTTPMethod = .get,
+                          requestUrl: RequestUrl,
+                          stringUrl: String? = nil,
+                          parameters: [String:Any]? = nil,
+                          urlParameters: [String:Any]? = nil,
+                          handlerObject: @escaping HandlerObject,
+                          handlerJson: HandlerObject? = nil) {
+        
+        if EnvironmentHost.shared.current == .mock {
+            JSONWrapper.json(from: requestUrl) { (json) in
+                if let json = json { handlerObject(T(json: json)) }
+            }
+            return
+        }
         
         var url = ""
         

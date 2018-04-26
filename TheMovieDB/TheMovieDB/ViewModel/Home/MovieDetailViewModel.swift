@@ -33,7 +33,7 @@ class MovieDetailViewModel: ViewModel {
     // MARK: Objects
     var movie: Movie!
     
-    private var movieDetail: MovieDetail? {
+    var movieDetail: MovieDetail? {
         didSet {
             delegate?.reloadData()
             
@@ -47,7 +47,7 @@ class MovieDetailViewModel: ViewModel {
         }
     }
     
-    let serviceModel = MovieDetailServiceModel.shared
+    var serviceModel = MovieDetailServiceModel()
     
     // MARK: Videos
     

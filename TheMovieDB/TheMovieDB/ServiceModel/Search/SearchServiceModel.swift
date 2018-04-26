@@ -9,8 +9,6 @@
 import UIKit
 
 class SearchServiceModel: ServiceModel {
-    static let shared = SearchServiceModel()
-    
     func getGenres(handler: @escaping HandlerObject) {
         request(MoviesGenres.self, requestUrl: .genres, handlerObject: { (object) in
             handler(object)

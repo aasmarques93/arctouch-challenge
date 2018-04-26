@@ -20,7 +20,7 @@ class SearchViewModel: ViewModel {
     
     // MARK: - Properties -
     
-    let serviceModel = SearchServiceModel.shared
+    var serviceModel = SearchServiceModel()
     
     // MARK: Delegate
     weak var delegate: SearchViewModelDelegate?
@@ -112,7 +112,7 @@ class SearchViewModel: ViewModel {
     }
     
     func selectGenre(at indexPath: IndexPath) {
-        selectedGenre = arrayGenres[indexPath.row]
+        if indexPath.row < arrayGenres.count { selectedGenre = arrayGenres[indexPath.row] }
     }
     
     func imageData(at indexPath: IndexPath, handlerData: @escaping HandlerObject) {
