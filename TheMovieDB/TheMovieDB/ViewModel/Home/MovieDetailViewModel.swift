@@ -234,6 +234,14 @@ class MovieDetailViewModel: ViewModel {
     
     // MARK: Reviews
     
+    func reviewAuthor(at index: Int) -> String {
+        return reviewsList[index].author ?? ""
+    }
+    
+    func reviewContent(at index: Int) -> String {
+        return reviewsList[index].content ?? ""
+    }
+    
     // MARK: Class
     
     private func loadImageData(from movie: Movie, handlerData: @escaping HandlerObject) {

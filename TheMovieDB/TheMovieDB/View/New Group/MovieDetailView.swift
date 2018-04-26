@@ -32,8 +32,10 @@ class MovieDetailView: UITableViewController {
         case general = 0
         case genres = 1
         case overview = 2
+        case reviews = 7
     }
     
+    var reviewsView: ReviewsView?
     var viewModel: MovieDetailViewModel!
     
     // MARK: - Life cycle -
@@ -44,6 +46,7 @@ class MovieDetailView: UITableViewController {
         setupBindings()
         viewModel.delegate = self
         viewModel.loadData()
+        reviewsView?.viewModel = viewModel
     }
     
     // MARK: - Appearance -
@@ -90,6 +93,7 @@ class MovieDetailView: UITableViewController {
                 case .general: break
                 case .genres: height += textViewGenres.contentSize.height
                 case .overview: height += textViewOverview.contentSize.height
+                case .reviews: height = (CGFloat(viewModel.numberOfReviews) * (reviewsView?.rowHeight ?? 0)) + 40
             }
         }
         return height
@@ -98,8 +102,14 @@ class MovieDetailView: UITableViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == tableView {
             let y = imageViewHeaderHeight - (scrollView.contentOffset.y + imageViewHeaderHeight)
-            let newHeight = min(max(y, navigationController?.navigationBar.frame.height ?? 60), imageViewHeaderHeight * 1.3)
+            let newHeight = min(max(y, 0), imageViewHeaderHeight * 1.3)
             imageViewHeader.frame = CGRect(x: 0, y: scrollView.contentOffset.y, width: imageViewHeader.frame.width, height: newHeight)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? ReviewsView {
+            reviewsView = viewController
         }
     }
 }
@@ -132,7 +142,8 @@ extension MovieDetailView: MovieDetailViewModelDelegate {
     }
     
     func reloadReviews() {
-        
+        reviewsView?.tableView.reloadData()
+        tableView.reloadData()
     }
     
     func reloadSimilarMovies() {
