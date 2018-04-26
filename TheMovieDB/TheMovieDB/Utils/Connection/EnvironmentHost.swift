@@ -46,6 +46,8 @@ enum RequestUrl: String {
     case videos
     case recommendations
     case similar
+    case reviews
+    case credits
     case searchMovie
     case searchPerson
     case searchByGenre

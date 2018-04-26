@@ -14,6 +14,8 @@ protocol MovieDetailViewModelDelegate: class {
     func reloadVideos()
     func reloadRecommendedMovies()
     func reloadSimilarMovies()
+    func reloadCast()
+    func reloadReviews()
 }
 
 class MovieDetailViewModel: ViewModel {
@@ -64,6 +66,16 @@ class MovieDetailViewModel: ViewModel {
     private var similarMoviesList = [Movie]() { didSet { delegate?.reloadSimilarMovies() } }
     var numberOfSimilarMovies: Int { return similarMoviesList.count }
     
+    // MARK: Cast
+    
+    private var castList = [Cast]() { didSet { delegate?.reloadCast() } }
+    var numberOfCastCharacters: Int { return castList.count }
+    
+    // MARK: Reviews
+    
+    private var reviewsList = [Review]() { didSet { delegate?.reloadReviews() } }
+    var numberOfReviews: Int { return reviewsList.count }
+    
     // MARK: - Life cycle -
     
     init(_ object: Movie) {
@@ -78,6 +90,8 @@ class MovieDetailViewModel: ViewModel {
         getVideos()
         getMovieRecommendations()
         getSimilarMovies()
+        getCredits()
+        getReviews()
     }
     
     private func getMovieDetail() {
@@ -118,7 +132,29 @@ class MovieDetailViewModel: ViewModel {
         }
     }
     
-    //MARK: - View Model -
+    private func getCredits() {
+        serviceModel.getCredits(from: movie) { (object) in
+            if let object = object as? CreditsList {
+                if let results = object.cast {
+                    self.castList.append(contentsOf: results)
+                }
+            }
+        }
+    }
+    
+    private func getReviews() {
+        serviceModel.getReviews(from: movie) { (object) in
+            if let object = object as? ReviewsList {
+                if let results = object.results {
+                    self.reviewsList.append(contentsOf: results)
+                }
+            }
+        }
+    }
+    
+    // MARK: - View Model -
+    
+    // MARK: Movie
     
     var movieName: String? {
         return movie.originalTitle
@@ -145,6 +181,8 @@ class MovieDetailViewModel: ViewModel {
         return string
     }
     
+    // MARK: Videos
+    
     func videoTitle(at index: Int) -> String? {
         return videosList[index].name
     }
@@ -153,12 +191,20 @@ class MovieDetailViewModel: ViewModel {
         return videosList[index].key
     }
     
+    // MARK: Recommendations
+    
     func movieRecommendationImageData(at index: Int, handlerData: @escaping HandlerObject) {
         let movie = moviesRecommendationsList[index]
         loadImageData(from: movie) { (data) in
             handlerData(data)
         }
     }
+    
+    func recommendedMovieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
+        return movieDetailViewModel(moviesRecommendationsList[index])
+    }
+    
+    // MARK: Similar
     
     func similarMovieImageData(at index: Int, handlerData: @escaping HandlerObject) {
         let movie = similarMoviesList[index]
@@ -167,24 +213,45 @@ class MovieDetailViewModel: ViewModel {
         }
     }
     
+    func similarMovieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
+        return movieDetailViewModel(similarMoviesList[index])
+    }
+    
+    // MARK: Cast
+    
+    func castImageData(at index: Int, handlerData: @escaping HandlerObject) {
+        let cast = castList[index]
+        loadImageData(path: cast.profilePath, handlerData: handlerData)
+    }
+    
+    func castName(at index: Int) -> String {
+        return castList[index].name ?? ""
+    }
+    
+    func castCharacter(at index: Int) -> String {
+        return castList[index].character ?? ""
+    }
+    
+    // MARK: Reviews
+    
+    // MARK: Class
+    
     private func loadImageData(from movie: Movie, handlerData: @escaping HandlerObject) {
         if let data = movie.imageData {
             handlerData(data)
             return
         }
         
-        serviceModel.loadImage(path: movie.posterPath, handlerData: { (data) in
+        loadImageData(path: movie.posterPath) { (data) in
             movie.imageData = data as? Data
             handlerData(data)
+        }
+    }
+    
+    private func loadImageData(path: String?, handlerData: @escaping HandlerObject) {
+        serviceModel.loadImage(path: path ?? "", handlerData: { (data) in
+            handlerData(data)
         })
-    }
-    
-    func recommendedMovieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
-        return movieDetailViewModel(moviesRecommendationsList[index])
-    }
-    
-    func similarMovieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
-        return movieDetailViewModel(similarMoviesList[index])
     }
     
     private func movieDetailViewModel(_ movie: Movie) -> MovieDetailViewModel? {

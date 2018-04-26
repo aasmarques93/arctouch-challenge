@@ -49,6 +49,26 @@ class MovieDetailServiceModel: ServiceModel {
         })
     }
     
+    func getCredits(from movie: Movie, handler: @escaping HandlerObject) {
+        request(CreditsList.self,
+                requestUrl: .credits,
+                urlParameters: createParameters(from: movie),
+                handlerObject: { (object) in
+                    
+                    handler(object)
+        })
+    }
+    
+    func getReviews(from movie: Movie, handler: @escaping HandlerObject) {
+        request(ReviewsList.self,
+                requestUrl: .reviews,
+                urlParameters: createParameters(from: movie, isSimple: false),
+                handlerObject: { (object) in
+                    
+                    handler(object)
+        })
+    }
+    
     func createParameters(from movie: Movie, isSimple: Bool = true) -> [String:Any] {
         var parameters = [String:Any]()
         parameters["idMovie"] = movie.id ?? 0

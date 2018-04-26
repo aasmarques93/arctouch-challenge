@@ -22,6 +22,10 @@
 	<string>/movie/{idMovie}/recommendations?page={page}&amp;</string>
 	<key>similar</key>
 	<string>/movie/{idMovie}/similar?page={page}&amp;</string>
+	<key>reviews</key>
+	<string>/movie/{idMovie}/reviews?page={page}&amp;</string>
+	<key>credits</key>
+	<string>/movie/{idMovie}/credits?</string>
 	<key>searchMovie</key>
 	<string>/search/movie?query={query}&amp;</string>
 	<key>searchPerson</key>

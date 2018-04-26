@@ -935,6 +935,9 @@ extension ReusableIdentifier where Self:UIViewController {
 extension UIViewController: ReusableIdentifier {
 }
 
+extension UIView: ReusableIdentifier {
+}
+
 extension UITabBarController {
     func setTabBarVisible(visible: Bool, animated: Bool) {
         let frame = self.tabBar.frame
