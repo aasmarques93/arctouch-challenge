@@ -11,10 +11,6 @@ import Bond
 import YouTubePlayer
 
 class MovieDetailView: UITableViewController {
-    @IBOutlet weak var viewHeader: UIView!
-    
-    @IBOutlet weak var imageViewBackground: UIImageView!
-    
     @IBOutlet weak var labelAverage: UILabel!
     @IBOutlet weak var labelDate: UILabel!
     @IBOutlet weak var labelRuntime: UILabel!
@@ -25,6 +21,9 @@ class MovieDetailView: UITableViewController {
     @IBOutlet weak var carouselVideos: iCarousel!
     @IBOutlet weak var carouselRecommendedMovies: iCarousel!
     @IBOutlet weak var carouselSimilarMovies: iCarousel!
+    
+    var imageViewHeader = UIImageView()
+    var imageViewHeaderHeight: CGFloat = 250
     
     enum DetailSection: Int {
         case general = 0
@@ -48,7 +47,15 @@ class MovieDetailView: UITableViewController {
     
     func setupAppearance() {
         navigationItem.titleView = nil
-        self.title = viewModel.movieName()
+        title = viewModel.movieName
+        
+        imageViewHeader.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: imageViewHeaderHeight)
+        imageViewHeader.contentMode = .scaleAspectFill
+        imageViewHeader.clipsToBounds = true
+        view.addSubview(imageViewHeader)
+        
+        tableView.contentInset = UIEdgeInsetsMake(imageViewHeaderHeight, 0, 0, 0)
+        
         carouselVideos.type = .linear
         carouselVideos.bounces = false
         carouselRecommendedMovies.type = .rotary
@@ -80,8 +87,10 @@ class MovieDetailView: UITableViewController {
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == tableView, scrollView.contentOffset.y < 0 {
-            scrollView.contentOffset.y = 0
+        if scrollView == tableView {
+            let y = imageViewHeaderHeight - (scrollView.contentOffset.y + imageViewHeaderHeight)
+            let newHeight = min(max(y, navigationController?.navigationBar.frame.height ?? 60), imageViewHeaderHeight * 1.3)
+            imageViewHeader.frame = CGRect(x: 0, y: scrollView.contentOffset.y, width: imageViewHeader.frame.width, height: newHeight)
         }
     }
 }
@@ -94,7 +103,9 @@ extension MovieDetailView: MovieDetailViewModelDelegate {
         tableView.reloadData()
         
         viewModel.movieDetailImageData(handlerData: { (data) in
-            if let data = data as? Data { self.imageViewBackground.image = UIImage(data: data) }
+            if let data = data as? Data {
+                self.imageViewHeader.image = UIImage(data: data)
+            }
         })
     }
     

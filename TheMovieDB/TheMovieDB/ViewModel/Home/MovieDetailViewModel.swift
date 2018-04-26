@@ -120,7 +120,7 @@ class MovieDetailViewModel: ViewModel {
     
     //MARK: - View Model -
     
-    func movieName() -> String? {
+    var movieName: String? {
         return movie.originalTitle
     }
     
