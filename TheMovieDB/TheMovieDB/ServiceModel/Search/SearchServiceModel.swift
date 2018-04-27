@@ -6,8 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
-
 class SearchServiceModel: ServiceModel {
     func getGenres(handler: @escaping HandlerObject) {
         request(MoviesGenres.self, requestUrl: .genres, handlerObject: { (object) in
@@ -23,12 +21,6 @@ class SearchServiceModel: ServiceModel {
     
     func doSearchMovies(urlParameters: [String:Any], handler: @escaping HandlerObject) {
         request(SearchMovie.self, requestUrl: .searchMovie, urlParameters: urlParameters, handlerObject: { (object) in
-            handler(object)
-        })
-    }
-    
-    func doSearchPerson(urlParameters: [String:Any], handler: @escaping HandlerObject) {
-        request(SearchMovie.self, requestUrl: .searchPerson, urlParameters: urlParameters, handlerObject: { (object) in
             handler(object)
         })
     }

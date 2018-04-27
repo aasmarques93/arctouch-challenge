@@ -47,6 +47,13 @@
 		ED3833EA20933A3E0079D48F /* PersonServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833E920933A3E0079D48F /* PersonServiceModel.swift */; };
 		ED3833EC209375A00079D48F /* ExternalIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833EB2093759F0079D48F /* ExternalIds.swift */; };
 		ED3833F1209378C20079D48F /* SocialMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833F0209378C20079D48F /* SocialMedia.swift */; };
+		ED3833F520938BA50079D48F /* PopularPeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833F420938BA50079D48F /* PopularPeopleView.swift */; };
+		ED3833F720938BBA0079D48F /* PopularPersonViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833F620938BBA0079D48F /* PopularPersonViewCell.swift */; };
+		ED3833FB20938CB00079D48F /* PopularPeopleServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833FA20938CB00079D48F /* PopularPeopleServiceModel.swift */; };
+		ED3833FD20938CBF0079D48F /* PopularPeopleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833FC20938CBF0079D48F /* PopularPeopleViewModel.swift */; };
+		ED38340220938E980079D48F /* KnownFor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833FF20938E980079D48F /* KnownFor.swift */; };
+		ED38340320938E980079D48F /* PopularPeople.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED38340020938E980079D48F /* PopularPeople.swift */; };
+		ED3834062093914C0079D48F /* PopularPersonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3834052093914C0079D48F /* PopularPersonCellViewModel.swift */; };
 		ED65BEB320909EFA0091D93B /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED65BEB120909EF90091D93B /* iCarousel.m */; };
 		ED65BEBA2090A55D0091D93B /* VideosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED65BEB82090A55C0091D93B /* VideosList.swift */; };
 		ED65BEBB2090A55D0091D93B /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED65BEB92090A55C0091D93B /* Video.swift */; };
@@ -171,6 +178,13 @@
 		ED3833E920933A3E0079D48F /* PersonServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonServiceModel.swift; sourceTree = "<group>"; };
 		ED3833EB2093759F0079D48F /* ExternalIds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalIds.swift; sourceTree = "<group>"; };
 		ED3833F0209378C20079D48F /* SocialMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMedia.swift; sourceTree = "<group>"; };
+		ED3833F420938BA50079D48F /* PopularPeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPeopleView.swift; sourceTree = "<group>"; };
+		ED3833F620938BBA0079D48F /* PopularPersonViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPersonViewCell.swift; sourceTree = "<group>"; };
+		ED3833FA20938CB00079D48F /* PopularPeopleServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPeopleServiceModel.swift; sourceTree = "<group>"; };
+		ED3833FC20938CBF0079D48F /* PopularPeopleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPeopleViewModel.swift; sourceTree = "<group>"; };
+		ED3833FF20938E980079D48F /* KnownFor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnownFor.swift; sourceTree = "<group>"; };
+		ED38340020938E980079D48F /* PopularPeople.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularPeople.swift; sourceTree = "<group>"; };
+		ED3834052093914C0079D48F /* PopularPersonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPersonCellViewModel.swift; sourceTree = "<group>"; };
 		ED65BEAC20909E690091D93B /* TheMovieDB-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TheMovieDB-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED65BEB120909EF90091D93B /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		ED65BEB220909EFA0091D93B /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
@@ -340,6 +354,7 @@
 			children = (
 				ED16D88120599FEF002A0B2C /* Home */,
 				ED16D88220599FF6002A0B2C /* Search */,
+				ED3833F920938C9A0079D48F /* PopularPeople */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -467,6 +482,41 @@
 			path = SocialMedia;
 			sourceTree = "<group>";
 		};
+		ED3833F320938B920079D48F /* PopularPeople */ = {
+			isa = PBXGroup;
+			children = (
+				ED3833F420938BA50079D48F /* PopularPeopleView.swift */,
+				ED3833F620938BBA0079D48F /* PopularPersonViewCell.swift */,
+			);
+			path = PopularPeople;
+			sourceTree = "<group>";
+		};
+		ED3833F820938C8A0079D48F /* PopularPeople */ = {
+			isa = PBXGroup;
+			children = (
+				ED3833FA20938CB00079D48F /* PopularPeopleServiceModel.swift */,
+			);
+			path = PopularPeople;
+			sourceTree = "<group>";
+		};
+		ED3833F920938C9A0079D48F /* PopularPeople */ = {
+			isa = PBXGroup;
+			children = (
+				ED3833FC20938CBF0079D48F /* PopularPeopleViewModel.swift */,
+				ED3834052093914C0079D48F /* PopularPersonCellViewModel.swift */,
+			);
+			path = PopularPeople;
+			sourceTree = "<group>";
+		};
+		ED3833FE20938E7C0079D48F /* PopularPeople */ = {
+			isa = PBXGroup;
+			children = (
+				ED3833FF20938E980079D48F /* KnownFor.swift */,
+				ED38340020938E980079D48F /* PopularPeople.swift */,
+			);
+			path = PopularPeople;
+			sourceTree = "<group>";
+		};
 		ED65BEB020909EE20091D93B /* iCarousel */ = {
 			isa = PBXGroup;
 			children = (
@@ -573,6 +623,7 @@
 			children = (
 				ED16D8862059A071002A0B2C /* Home */,
 				ED16D8852059A06D002A0B2C /* Search */,
+				ED3833F820938C8A0079D48F /* PopularPeople */,
 			);
 			path = ServiceModel;
 			sourceTree = "<group>";
@@ -581,6 +632,7 @@
 			isa = PBXGroup;
 			children = (
 				ED16D85C20597A46002A0B2C /* Home */,
+				ED3833F320938B920079D48F /* PopularPeople */,
 				ED16D85B20597A43002A0B2C /* Search */,
 			);
 			path = View;
@@ -591,6 +643,7 @@
 			children = (
 				ED16D87020599C87002A0B2C /* Search */,
 				ED16D86120597D59002A0B2C /* Movie */,
+				ED3833FE20938E7C0079D48F /* PopularPeople */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -954,6 +1007,7 @@
 				ED16D86B20597D99002A0B2C /* ProductionCountries.swift in Sources */,
 				ED16D87B20599DAC002A0B2C /* MoviesGenres.swift in Sources */,
 				EDC6C02D20585A8C00D843EC /* Session.swift in Sources */,
+				ED3833FB20938CB00079D48F /* PopularPeopleServiceModel.swift in Sources */,
 				ED16D845205882D3002A0B2C /* HomeViewModel.swift in Sources */,
 				ED65BEF1209238BB0091D93B /* ReviewsList.swift in Sources */,
 				ED65BEF0209238BB0091D93B /* CreditsList.swift in Sources */,
@@ -962,8 +1016,10 @@
 				EDC6C02F20585A8C00D843EC /* EnvironmentHost.swift in Sources */,
 				ED65BEF3209238BB0091D93B /* Cast.swift in Sources */,
 				ED16D87E20599E29002A0B2C /* SearchMoviesGenre.swift in Sources */,
+				ED38340320938E980079D48F /* PopularPeople.swift in Sources */,
 				ED16D85220588BA7002A0B2C /* MovieViewCell.swift in Sources */,
 				EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */,
+				ED3834062093914C0079D48F /* PopularPersonCellViewModel.swift in Sources */,
 				ED65BEF4209238BB0091D93B /* Crew.swift in Sources */,
 				ED16D86C20597D99002A0B2C /* ProductionCompanies.swift in Sources */,
 				EDC6C03E2058663000D843EC /* ServiceModel.swift in Sources */,
@@ -974,6 +1030,7 @@
 				ED16D86920597D99002A0B2C /* MovieDetail.swift in Sources */,
 				EDC6C01C20585A6300D843EC /* LoadingView.swift in Sources */,
 				ED65BEFD20923EA20091D93B /* XibView.swift in Sources */,
+				ED3833F720938BBA0079D48F /* PopularPersonViewCell.swift in Sources */,
 				ED16D85E20597A6C002A0B2C /* MovieDetailView.swift in Sources */,
 				ED65BF09209261C00091D93B /* ReviewsView.swift in Sources */,
 				EDC6C02820585A8300D843EC /* General.swift in Sources */,
@@ -997,10 +1054,13 @@
 				ED65BEBA2090A55D0091D93B /* VideosList.swift in Sources */,
 				ED3833EA20933A3E0079D48F /* PersonServiceModel.swift in Sources */,
 				ED65BF01209245430091D93B /* MovieView.swift in Sources */,
+				ED38340220938E980079D48F /* KnownFor.swift in Sources */,
 				ED16D86F20597E5E002A0B2C /* MovieDetailServiceModel.swift in Sources */,
 				EDC6C02620585A7D00D843EC /* Appearance.swift in Sources */,
+				ED3833F520938BA50079D48F /* PopularPeopleView.swift in Sources */,
 				ED3833F1209378C20079D48F /* SocialMedia.swift in Sources */,
 				EDC6C03420585A9200D843EC /* Messages.swift in Sources */,
+				ED3833FD20938CBF0079D48F /* PopularPeopleViewModel.swift in Sources */,
 				EDC6C07C20586DB400D843EC /* DateHelper.swift in Sources */,
 				EDC6C02E20585A8C00D843EC /* FileManager.swift in Sources */,
 				ED16D843205882C8002A0B2C /* HomeView.swift in Sources */,

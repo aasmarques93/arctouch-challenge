@@ -29,7 +29,7 @@
 	<key>searchMovie</key>
 	<string>/search/movie?query={query}&amp;</string>
 	<key>searchPerson</key>
-	<string>/search/person?query={query}&amp;</string>
+	<string>/search/person?query={query}&amp;page={page}&amp;</string>
 	<key>searchByGenre</key>
 	<string>/genre/{id}/movies?</string>
 	<key>genres</key>
@@ -40,5 +40,7 @@
 	<string>/person/{idPerson}/movie_credits?</string>
 	<key>personExternalIds</key>
 	<string>/person/{idPerson}/external_ids?</string>
+	<key>popularPeople</key>
+	<string>/person/popular?page={page}&amp;</string>
 </dict>
 </plist>

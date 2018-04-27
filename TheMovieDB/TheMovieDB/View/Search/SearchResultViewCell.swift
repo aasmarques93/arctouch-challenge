@@ -21,7 +21,7 @@ class SearchResultViewCell: UITableViewCell {
             if let data = data as? Data, let image = UIImage(data: data) {
                 self.imageViewMovie.image = image
             } else {
-                self.imageViewMovie.image = #imageLiteral(resourceName: "searching-movie")
+                self.imageViewMovie.image = #imageLiteral(resourceName: "searching")
             }
         }
     }

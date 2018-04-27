@@ -40,6 +40,8 @@ class Person: Model {
   public var adult: Bool? = false
   public var movies: [Movie]?
     
+  public var imageData: Data?
+    
   // MARK: SwiftyJSON Initializers
   /// Initiates the instance based on the object.
   ///

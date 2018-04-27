@@ -6,8 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
-
 class PersonServiceModel: ServiceModel {
     func getPerson<T:Model>(type: T.Type, from idPerson: Int?, requestUrl: RequestUrl, handler: @escaping HandlerObject) {
         let parameters = ["idPerson": idPerson ?? 0]

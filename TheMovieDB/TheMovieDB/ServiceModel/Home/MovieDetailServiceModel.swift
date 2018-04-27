@@ -6,8 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
-
 class MovieDetailServiceModel: ServiceModel {
     func getDetail(from movie: Movie, handler: @escaping HandlerObject) {
         request(MovieDetail.self,

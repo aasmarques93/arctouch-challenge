@@ -20,7 +20,7 @@ class MovieViewCell: UICollectionViewCell {
         activityIndicator.isHidden = true
         
         if let url = viewModel.imagePathUrl(at: section, row: row) {
-            imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "searching-movie"))
+            imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "searching"))
         }
     }
 }

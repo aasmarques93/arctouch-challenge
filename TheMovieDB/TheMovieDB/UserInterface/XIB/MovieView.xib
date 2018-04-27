@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="240" height="280"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searching-movie" translatesAutoresizingMaskIntoConstraints="NO" id="Ixs-IL-K7t">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searching" translatesAutoresizingMaskIntoConstraints="NO" id="Ixs-IL-K7t">
                     <rect key="frame" x="16" y="16" width="208" height="248"/>
                 </imageView>
             </subviews>
@@ -36,6 +36,6 @@
         </view>
     </objects>
     <resources>
-        <image name="searching-movie" width="565" height="837"/>
+        <image name="searching" width="565" height="837"/>
     </resources>
 </document>

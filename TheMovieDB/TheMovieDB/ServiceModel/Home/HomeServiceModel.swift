@@ -6,8 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
-
 class HomeServiceModel: ServiceModel {
     func getMovies(urlParameters: [String:Any]? = nil, requestUrl: RequestUrl, handler: @escaping HandlerObject) {
         request(MoviesList.self, requestUrl: requestUrl, urlParameters: urlParameters, handlerObject: { (object) in

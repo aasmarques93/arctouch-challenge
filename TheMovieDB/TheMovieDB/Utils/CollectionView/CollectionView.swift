@@ -31,7 +31,6 @@ class CollectionView: UICollectionView {
         
         if !isHorizontal {
             configureCollectionViewLayout()
-            isScrollEnabled = false
             showsVerticalScrollIndicator = false
             showsHorizontalScrollIndicator = false
         }
@@ -46,10 +45,14 @@ class CollectionView: UICollectionView {
     func configureCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
         
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
+        
+        itemWidth = (SCREEN_WIDTH - (margin * numberOfColumns + 1)) / numberOfColumns
+        itemWidth -= margin / 2
+        
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = margin
+        layout.minimumLineSpacing = margin
         
         collectionViewLayout = layout
     }

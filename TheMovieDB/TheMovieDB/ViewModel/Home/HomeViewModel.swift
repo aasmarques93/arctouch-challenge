@@ -21,19 +21,19 @@ enum Genre: String {
     
     var index: Int {
         switch self {
-            case .nowPlaying: return 0
+            case .popular: return 0
             case .topRated: return 1
             case .upcoming: return 2
-            case .popular: return 3
+            case .nowPlaying: return 3
         }
     }
     
     static func genre(at index: Int) -> Genre? {
         switch index {
-            case 0: return Genre.nowPlaying
+            case 0: return Genre.popular
             case 1: return Genre.topRated
             case 2: return Genre.upcoming
-            case 3: return Genre.popular
+            case 3: return Genre.nowPlaying
             default: return nil
         }
     }
@@ -52,7 +52,7 @@ class HomeViewModel: ViewModel {
     let serviceModel = HomeServiceModel()
     
     // MARK: Genres
-    private var arrayGenres: [Genre] = [.nowPlaying, .topRated, .upcoming, .popular]
+    private var arrayGenres: [Genre] = [.popular, .topRated, .upcoming, .nowPlaying]
     var numberOfGenres: Int { return arrayGenres.count }
     
     // MARK: Now Playing
@@ -75,33 +75,34 @@ class HomeViewModel: ViewModel {
     var numberOfPopularList: Int { return popularList.count }
     private var currentPopularListPage: Int = 1
     
+    // MARK: Variables
     private var isDataLoading = false
     
     // MARK: - Service requests -
     
     func loadData(genre: Genre? = nil) {
         guard let genre = genre else {
-            getMovies(genre: .nowPlaying)
+            getMovies(genre: .popular)
             getMovies(genre: .topRated)
             getMovies(genre: .upcoming)
-            getMovies(genre: .popular)
+            getMovies(genre: .nowPlaying)
             return
         }
         
         
         switch genre {
-            case .nowPlaying:
-                currentNowPlayingMoviesPage += 1
-                getMovies(genre: .nowPlaying)
+            case .popular:
+                currentPopularListPage += 1
+                getMovies(genre: .popular)
             case .topRated:
                 currentTopRatedListPage += 1
                 getMovies(genre: .topRated)
             case .upcoming:
                 currentUpcomingMoviesPage += 1
                 getMovies(genre: .upcoming)
-            case .popular:
-                currentPopularListPage += 1
-                getMovies(genre: .popular)
+            case .nowPlaying:
+                currentNowPlayingMoviesPage += 1
+                getMovies(genre: .nowPlaying)
         }
     }
     
@@ -110,18 +111,18 @@ class HomeViewModel: ViewModel {
         var currentPage = 1
         
         switch genre {
-            case .nowPlaying:
-                requestUrl = .nowPlaying
-                currentPage = currentNowPlayingMoviesPage
+            case .popular:
+                requestUrl = .popular
+                currentPage = currentPopularListPage
             case .topRated:
                 requestUrl = .topRated
                 currentPage = currentTopRatedListPage
             case .upcoming:
                 requestUrl = .upcoming
                 currentPage = currentUpcomingMoviesPage
-            case .popular:
-                requestUrl = .popular
-                currentPage = currentPopularListPage
+            case .nowPlaying:
+                requestUrl = .nowPlaying
+                currentPage = currentNowPlayingMoviesPage
         }
         
         if let requestUrl = requestUrl {
@@ -145,10 +146,10 @@ class HomeViewModel: ViewModel {
     
     private func addMoviesToList(_ results: [Movie], genre: Genre) {
         switch genre {
-            case .nowPlaying: nowPlayingMoviesList.append(contentsOf: results)
+            case .popular: popularList.append(contentsOf: results)
             case .topRated: topRatedList.append(contentsOf: results)
             case .upcoming: upcomingMoviesList.append(contentsOf: results)
-            case .popular: popularList.append(contentsOf: results)
+            case .nowPlaying: nowPlayingMoviesList.append(contentsOf: results)
         }
     }
     
@@ -179,10 +180,10 @@ class HomeViewModel: ViewModel {
     func numberOfMovies(at section: Int) -> Int {
         if let genre = Genre.genre(at: section) {
             switch genre {
-                case .nowPlaying: return numberOfNowPlayingMovies
+                case .popular: return numberOfPopularList
                 case .topRated: return numberOfTopRatedList
                 case .upcoming: return numberOfUpcomingMovies
-                case .popular: return numberOfPopularList
+                case .nowPlaying: return numberOfNowPlayingMovies
             }
         }
         return 0
@@ -207,10 +208,10 @@ class HomeViewModel: ViewModel {
     private func getMoviesList(at section: Int) -> [Movie]? {
         if let genre = Genre.genre(at: section) {
             switch genre {
-                case .nowPlaying: return nowPlayingMoviesList
+                case .popular: return popularList
                 case .topRated: return topRatedList
                 case .upcoming: return upcomingMoviesList
-                case .popular: return popularList
+                case .nowPlaying: return nowPlayingMoviesList
             }
         }
         return nil
