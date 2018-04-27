@@ -492,7 +492,7 @@ extension String {
         }
     }
     
-    var height : CGFloat {
+    var height: CGFloat {
         get {
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIApplication.shared.keyWindow!.frame.size.width, height: 40))
             

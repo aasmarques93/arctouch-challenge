@@ -9,12 +9,16 @@
 import UIKit
 import Bond
 
-private let reuseIdentifier = "PersonCell"
-
-class PersonView: UIViewController {
+class PersonView: UITableViewController {
     @IBOutlet weak var textViewBiography: UITextView!
+    
     @IBOutlet weak var imageViewPhoto: UIImageView!
-    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var labelBiographyFixed: UILabel!
+    @IBOutlet weak var labelBirthday: UILabel!
+    @IBOutlet weak var labelPlaceOfBirth: UILabel!
+    @IBOutlet weak var labelAlsoKnownAs: UILabel!
+    
     @IBOutlet weak var carouselMovies: iCarousel!
 
     var viewModel: PersonViewModel?
@@ -35,34 +39,30 @@ class PersonView: UIViewController {
     
     func setupBindings() {
         viewModel?.biography.bind(to: textViewBiography.reactive.text)
+        viewModel?.birthday.bind(to: labelBirthday.reactive.text)
+        viewModel?.placeOfBirth.bind(to: labelPlaceOfBirth.reactive.text)
+        viewModel?.alsoKnownAs.bind(to: labelAlsoKnownAs.reactive.text)
         viewModel?.photo.bind(to: imageViewPhoto.reactive.image)
     }
-}
-
-extension PersonView: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel?.heightForPersonalInfo(at: indexPath) ?? 0
-    }
-}
-
-extension PersonView: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    
+    @IBAction func buttonFacebookAction(_ sender: UIButton) {
+        viewModel?.open(socialMediaType: .facebook)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.numberOfPersonalInfo ?? 0
+    @IBAction func buttonInstagramAction(_ sender: UIButton) {
+        viewModel?.open(socialMediaType: .instagram)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        
-        cell.alternateBackground(at: indexPath, secondaryColor: HexColor.secondary.color.withAlphaComponent(0.1))
-        
-        cell.textLabel?.text = viewModel?.personalInfoTitle(at: indexPath)
-        cell.detailTextLabel?.text = viewModel?.personalInfoDescription(at: indexPath)
-        
-        return cell
+    @IBAction func buttonTwitterAction(_ sender: UIButton) {
+        viewModel?.open(socialMediaType: .twitter)
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 1 {
+            let spaceMargin: CGFloat = 8
+            return labelBiographyFixed.frame.height + textViewBiography.contentSize.height + (spaceMargin * 2)
+        }
+        return super.tableView(tableView, heightForRowAt: indexPath)
     }
 }
 
@@ -77,7 +77,6 @@ extension PersonView: iCarouselDelegate, iCarouselDataSource {
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         let view = XibView.instanceFromNib(MovieView.self)
-        view.frame = CGRect(x: view.frame.minX, y: view.frame.minY, width: view.frame.width * 0.6, height: view.frame.height * 0.6)
         
         viewModel?.loadMovieImageData(at: index, handlerData: { (data) in
             if let data = data as? Data, let image = UIImage(data: data) {

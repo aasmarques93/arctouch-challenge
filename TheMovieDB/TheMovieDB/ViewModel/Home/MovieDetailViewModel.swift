@@ -98,46 +98,51 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getVideos() {
-        videosList = [Video]()
-        serviceModel.getVideos(from: movie) { (object) in
-            if let object = object as? VideosList, let results = object.results {
-                self.videosList.append(contentsOf: results)
+        if videosList.isEmpty {
+            serviceModel.getVideos(from: movie) { (object) in
+                if let object = object as? VideosList, let results = object.results {
+                    self.videosList.append(contentsOf: results)
+                }
             }
         }
     }
     
     private func getMovieRecommendations() {
-        moviesRecommendationsList = [Movie]()
-        serviceModel.getRecommendations(from: movie) { (object) in
-            if let object = object as? MoviesList, let results = object.results {
-                self.moviesRecommendationsList.append(contentsOf: results)
+        if moviesRecommendationsList.isEmpty {
+            serviceModel.getRecommendations(from: movie) { (object) in
+                if let object = object as? MoviesList, let results = object.results {
+                    self.moviesRecommendationsList.append(contentsOf: results)
+                }
             }
         }
     }
     
     private func getSimilarMovies() {
-        similarMoviesList = [Movie]()
-        serviceModel.getSimilar(from: movie) { (object) in
-            if let object = object as? MoviesList, let results = object.results {
-                self.similarMoviesList.append(contentsOf: results)
+        if similarMoviesList.isEmpty {
+            serviceModel.getSimilar(from: movie) { (object) in
+                if let object = object as? MoviesList, let results = object.results {
+                    self.similarMoviesList.append(contentsOf: results)
+                }
             }
         }
     }
     
     private func getCredits() {
-        castList = [Cast]()
-        serviceModel.getCredits(from: movie) { (object) in
-            if let object = object as? CreditsList, let results = object.cast {
-                self.castList.append(contentsOf: results)
+        if castList.isEmpty {
+            serviceModel.getCredits(from: movie) { (object) in
+                if let object = object as? CreditsList, let results = object.cast {
+                    self.castList.append(contentsOf: results)
+                }
             }
         }
     }
     
     private func getReviews() {
-        reviewsList = [Review]()
-        serviceModel.getReviews(from: movie) { (object) in
-            if let object = object as? ReviewsList, let results = object.results {
-                self.reviewsList.append(contentsOf: results)
+        if reviewsList.isEmpty {
+            serviceModel.getReviews(from: movie) { (object) in
+                if let object = object as? ReviewsList, let results = object.results {
+                    self.reviewsList.append(contentsOf: results)
+                }
             }
         }
     }
@@ -199,7 +204,16 @@ class MovieDetailViewModel: ViewModel {
     
     func castImageData(at index: Int, handlerData: @escaping HandlerObject) {
         let cast = castList[index]
-        loadImageData(path: cast.profilePath, handlerData: handlerData)
+        
+        if let data = cast.imageData {
+            handlerData(data)
+            return
+        }
+        
+        serviceModel.loadImage(path: cast.profilePath ?? "", handlerData: { (data) in
+            cast.imageData = data as? Data
+            handlerData(data)
+        })
     }
     
     func castName(at index: Int) -> String {
@@ -228,18 +242,11 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        loadImageData(path: movie.posterPath) { (data) in
+        serviceModel.loadImage(path: movie.posterPath ?? "", handlerData: { (data) in
             movie.imageData = data as? Data
-            handlerData(data)
-        }
-    }
-    
-    private func loadImageData(path: String?, handlerData: @escaping HandlerObject) {
-        serviceModel.loadImage(path: path ?? "", handlerData: { (data) in
             handlerData(data)
         })
     }
-    
 
     // MARK: - View Model Instantiation -
     

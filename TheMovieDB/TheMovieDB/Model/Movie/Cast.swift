@@ -35,6 +35,8 @@ class Cast: Model {
   public var profilePath: String?
   public var posterPath: String?
   public var backdropPath: String?
+    
+  public var imageData: Data?
 
   // MARK: SwiftyJSON Initializers
   /// Initiates the instance based on the object.
