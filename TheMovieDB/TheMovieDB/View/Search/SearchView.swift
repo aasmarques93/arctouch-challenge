@@ -11,6 +11,7 @@ import UIKit
 private let reuseIdentifier = "GenreCell"
 
 class SearchView: UITableViewController {
+    @IBOutlet var viewHeader: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     let viewModel = SearchViewModel.shared
@@ -19,6 +20,7 @@ class SearchView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewHeader.backgroundColor = HexColor.primary.color
         tableView.keyboardDismissMode = .onDrag
     }
     
@@ -36,6 +38,14 @@ class SearchView: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfGenres
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return viewHeader.frame.height
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return viewHeader
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
