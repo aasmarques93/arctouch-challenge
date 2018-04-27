@@ -1146,48 +1146,62 @@
         <scene sceneID="9Kq-W5-JgK">
             <objects>
                 <tableViewController id="sHh-g7-W9I" customClass="SearchResultView" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="180" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7ef-iD-3xT">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="240" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7ef-iD-3xT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.031372549020000001" green="0.10980392160000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="epc-6a-V8t">
-                            <rect key="frame" x="0.0" y="208" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="268" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchResultViewCell" rowHeight="180" id="gqR-Zb-8ns" customClass="SearchResultViewCell" customModule="TheMovieDB" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="180"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchResultViewCell" rowHeight="240" id="gqR-Zb-8ns" customClass="SearchResultViewCell" customModule="TheMovieDB" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="240"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gqR-Zb-8ns" id="8qF-fD-1Wn">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="179.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searching" translatesAutoresizingMaskIntoConstraints="NO" id="669-Ng-wtS">
-                                            <rect key="frame" x="8" y="8" width="163.5" height="163.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="669-Ng-wtS" secondAttribute="height" multiplier="1:1" id="wIS-FT-nJi"/>
-                                            </constraints>
+                                        <imageView userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sWq-Em-9ta">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="239.5"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Name}}" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crb-qa-O1y">
-                                            <rect key="frame" x="179.5" y="8" width="187.5" height="163.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Name}}" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crb-qa-O1y">
+                                            <rect key="frame" x="8" y="8" width="359" height="20.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20.5" id="QM1-26-FBC"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searching" translatesAutoresizingMaskIntoConstraints="NO" id="669-Ng-wtS">
+                                            <rect key="frame" x="8" y="36.5" width="359" height="195"/>
+                                        </imageView>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8Tb-yB-3mB">
+                                            <rect key="frame" x="169" y="102" width="37" height="37"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="crb-qa-O1y" firstAttribute="leading" secondItem="669-Ng-wtS" secondAttribute="trailing" constant="8" id="An4-Qq-EDt"/>
+                                        <constraint firstItem="sWq-Em-9ta" firstAttribute="leading" secondItem="8qF-fD-1Wn" secondAttribute="leading" id="5GP-dC-82Z"/>
+                                        <constraint firstItem="8Tb-yB-3mB" firstAttribute="centerX" secondItem="8qF-fD-1Wn" secondAttribute="centerX" id="Fh9-nK-j3k"/>
                                         <constraint firstAttribute="trailing" secondItem="crb-qa-O1y" secondAttribute="trailing" constant="8" id="I1b-gM-MTu"/>
+                                        <constraint firstAttribute="trailing" secondItem="669-Ng-wtS" secondAttribute="trailing" constant="8" id="N4N-Tx-QYT"/>
+                                        <constraint firstAttribute="trailing" secondItem="sWq-Em-9ta" secondAttribute="trailing" id="Zhq-0f-7Uq"/>
                                         <constraint firstAttribute="bottom" secondItem="669-Ng-wtS" secondAttribute="bottom" constant="8" id="aLg-N7-dk4"/>
-                                        <constraint firstItem="669-Ng-wtS" firstAttribute="top" secondItem="8qF-fD-1Wn" secondAttribute="top" constant="8" id="bDu-bp-KKm"/>
-                                        <constraint firstItem="crb-qa-O1y" firstAttribute="top" secondItem="669-Ng-wtS" secondAttribute="top" id="dnD-0i-yaI"/>
-                                        <constraint firstItem="crb-qa-O1y" firstAttribute="bottom" secondItem="669-Ng-wtS" secondAttribute="bottom" id="n0v-EV-gWb"/>
+                                        <constraint firstItem="8Tb-yB-3mB" firstAttribute="centerY" secondItem="8qF-fD-1Wn" secondAttribute="centerY" id="adY-Ka-fEH"/>
+                                        <constraint firstItem="crb-qa-O1y" firstAttribute="top" secondItem="8qF-fD-1Wn" secondAttribute="top" constant="8" id="azA-s3-Vbo"/>
+                                        <constraint firstItem="669-Ng-wtS" firstAttribute="top" secondItem="crb-qa-O1y" secondAttribute="bottom" constant="8" id="mKA-lN-vzY"/>
+                                        <constraint firstItem="crb-qa-O1y" firstAttribute="leading" secondItem="8qF-fD-1Wn" secondAttribute="leading" constant="8" id="pIy-M7-Ds0"/>
                                         <constraint firstItem="669-Ng-wtS" firstAttribute="leading" secondItem="8qF-fD-1Wn" secondAttribute="leading" constant="8" id="qQA-zJ-9RC"/>
+                                        <constraint firstAttribute="bottom" secondItem="sWq-Em-9ta" secondAttribute="bottom" id="ywM-Zd-VOm"/>
+                                        <constraint firstItem="sWq-Em-9ta" firstAttribute="top" secondItem="8qF-fD-1Wn" secondAttribute="top" id="zog-Qn-k9V"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
+                                    <outlet property="activityIndicator" destination="8Tb-yB-3mB" id="wj7-mO-73C"/>
+                                    <outlet property="imageViewBackground" destination="sWq-Em-9ta" id="mbl-ZC-r43"/>
                                     <outlet property="imageViewMovie" destination="669-Ng-wtS" id="eMk-mp-TBi"/>
                                     <outlet property="labelName" destination="crb-qa-O1y" id="p2u-h1-LbD"/>
                                 </connections>
@@ -1201,7 +1215,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eYI-Q9-Vjr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1646" y="1859"/>
+            <point key="canvasLocation" x="1645.5999999999999" y="1858.920539730135"/>
         </scene>
         <!--Search-->
         <scene sceneID="Wro-nx-4vh">

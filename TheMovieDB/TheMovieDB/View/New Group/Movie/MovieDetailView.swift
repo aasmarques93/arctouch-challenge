@@ -24,7 +24,7 @@ class MovieDetailView: UITableViewController {
     @IBOutlet weak var carouselSimilarMovies: iCarousel!
     
     var imageViewHeader = UIImageView()
-    var imageViewHeaderHeight: CGFloat = 250
+    var imageViewHeaderFrame: CGRect = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 250)
     
     var activityIndicator = UIActivityIndicatorView()
     
@@ -43,6 +43,7 @@ class MovieDetailView: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAppearance()
+        setupHeaderView()
         setupBindings()
         viewModel?.delegate = self
         viewModel?.loadData()
@@ -55,23 +56,25 @@ class MovieDetailView: UITableViewController {
         navigationItem.titleView = nil
         title = viewModel?.movieName
         
-        imageViewHeader.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: imageViewHeaderHeight)
-        imageViewHeader.contentMode = .scaleAspectFill
-        imageViewHeader.clipsToBounds = true
-        view.addSubview(imageViewHeader)
-        
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
-        activityIndicator.center = CGPoint(x: imageViewHeader.center.x, y: imageViewHeader.center.y - imageViewHeaderHeight)
-        activityIndicator.startAnimating()
-        view.addSubview(activityIndicator)
-        
-        tableView.contentInset = UIEdgeInsetsMake(imageViewHeaderHeight, 0, 0, 0)
-        
         carouselVideos.type = .linear
         carouselVideos.bounces = false
         carouselRecommendedMovies.type = .rotary
         carouselCast.type = .rotary
         carouselSimilarMovies.type = .rotary
+    }
+    
+    func setupHeaderView() {
+        imageViewHeader.frame = imageViewHeaderFrame
+        imageViewHeader.contentMode = .scaleAspectFill
+        imageViewHeader.clipsToBounds = true
+        view.addSubview(imageViewHeader)
+        
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.center = CGPoint(x: imageViewHeader.center.x, y: imageViewHeader.center.y - imageViewHeaderFrame.height)
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
+        
+        tableView.contentInset = UIEdgeInsetsMake(imageViewHeaderFrame.height, 0, 0, 0)
     }
     
     // MARK: - View model bindings -
@@ -101,8 +104,8 @@ class MovieDetailView: UITableViewController {
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == tableView {
-            let y = imageViewHeaderHeight - (scrollView.contentOffset.y + imageViewHeaderHeight)
-            let newHeight = min(max(y, 0), imageViewHeaderHeight * 1.3)
+            let y = imageViewHeaderFrame.height - (scrollView.contentOffset.y + imageViewHeaderFrame.height)
+            let newHeight = min(max(y, 0), imageViewHeaderFrame.height * 1.3)
             imageViewHeader.frame = CGRect(x: 0, y: scrollView.contentOffset.y, width: imageViewHeader.frame.width, height: newHeight)
         }
     }
@@ -111,6 +114,11 @@ class MovieDetailView: UITableViewController {
         if let viewController = segue.destination as? ReviewsView {
             reviewsView = viewController
         }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        imageViewHeaderFrame = CGRect(x: 0, y: imageViewHeaderFrame.height * -1, width: size.width, height: imageViewHeaderFrame.height)
+        setupHeaderView()
     }
 }
 

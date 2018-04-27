@@ -25,16 +25,16 @@ class SearchViewModel: ViewModel {
     weak var delegate: SearchViewModelDelegate?
     
     //MARK: Genre
-    var arrayGenres = [Genres]() { didSet { delegate?.reloadData() } }
+    private var arrayGenres = [Genres]() { didSet { delegate?.reloadData() } }
     var numberOfGenres: Int { return arrayGenres.count }
     
-    var selectedGenre: Genres?
+    private var selectedGenre: Genres?
     
     //MARK: Movie
-    var arrayMovies = [Movie]() { didSet { delegate?.reloadMoviesList() } }
+    private var arrayMovies = [Movie]() { didSet { delegate?.reloadMoviesList() } }
     var numberOfMovies: Int { return arrayMovies.count }
     
-    var searchText: String?
+    private var searchText: String?
     
     // MARK: - Service requests -
     
@@ -114,7 +114,7 @@ class SearchViewModel: ViewModel {
         if indexPath.row < arrayGenres.count { selectedGenre = arrayGenres[indexPath.row] }
     }
     
-    func imageData(at indexPath: IndexPath, handlerData: @escaping HandlerObject) {
+    func posterImageData(at indexPath: IndexPath, handlerData: @escaping HandlerObject) {
         let movie = arrayMovies[indexPath.row]
         
         if let data = movie.imageData {
@@ -122,11 +122,19 @@ class SearchViewModel: ViewModel {
             return
         }
         
-        handlerData(nil)
-        serviceModel.loadImage(path: movie.posterPath, handlerData: { (data) in
+        imageData(path: movie.posterPath) { (data) in
             self.arrayMovies[indexPath.row].imageData = data as? Data
             handlerData(data)
-        })
+        }
+    }
+    
+    func backgroundImageData(at indexPath: IndexPath, handlerData: @escaping HandlerObject) {
+        let movie = arrayMovies[indexPath.row]
+        imageData(path: movie.backdropPath, handlerData: handlerData)
+    }
+    
+    private func imageData(path: String?, handlerData: @escaping HandlerObject) {
+        serviceModel.loadImage(path: path ?? "", handlerData: handlerData)
     }
     
     func movieName(at indexPath: IndexPath) -> String? {

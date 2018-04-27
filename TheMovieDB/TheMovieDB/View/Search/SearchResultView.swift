@@ -43,6 +43,7 @@ class SearchResultView: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(SearchResultViewCell.self, for: indexPath)
+        cell.alternateBackground(at: indexPath, secondaryColor: HexColor.secondary.color.withAlphaComponent(0.1))
         cell.setSelectedView(backgroundColor: HexColor.secondary.color)
         cell.setupView(at: indexPath)
         return cell
