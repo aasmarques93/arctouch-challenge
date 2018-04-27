@@ -52,4 +52,7 @@ enum RequestUrl: String {
     case searchPerson
     case searchByGenre
     case genres
+    case person
+    case personMovieCredits
+    case personExternalIds
 }

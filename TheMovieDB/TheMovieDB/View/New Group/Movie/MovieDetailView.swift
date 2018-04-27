@@ -36,7 +36,7 @@ class MovieDetailView: UITableViewController {
     }
     
     var reviewsView: ReviewsView?
-    var viewModel: MovieDetailViewModel!
+    var viewModel: MovieDetailViewModel?
     
     // MARK: - Life cycle -
     
@@ -44,8 +44,8 @@ class MovieDetailView: UITableViewController {
         super.viewWillAppear(animated)
         setupAppearance()
         setupBindings()
-        viewModel.delegate = self
-        viewModel.loadData()
+        viewModel?.delegate = self
+        viewModel?.loadData()
         reviewsView?.viewModel = viewModel
     }
     
@@ -53,7 +53,7 @@ class MovieDetailView: UITableViewController {
     
     func setupAppearance() {
         navigationItem.titleView = nil
-        title = viewModel.movieName
+        title = viewModel?.movieName
         
         imageViewHeader.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: imageViewHeaderHeight)
         imageViewHeader.contentMode = .scaleAspectFill
@@ -77,11 +77,11 @@ class MovieDetailView: UITableViewController {
     // MARK: - View model bindings -
     
     func setupBindings() {
-        viewModel.average.bind(to: labelAverage.reactive.text)
-        viewModel.date.bind(to: labelDate.reactive.text)
-        viewModel.runtime.bind(to: labelRuntime.reactive.text)
-        viewModel.genres.bind(to: textViewGenres.reactive.text)
-        viewModel.overview.bind(to: textViewOverview.reactive.text)
+        viewModel?.average.bind(to: labelAverage.reactive.text)
+        viewModel?.date.bind(to: labelDate.reactive.text)
+        viewModel?.runtime.bind(to: labelRuntime.reactive.text)
+        viewModel?.genres.bind(to: textViewGenres.reactive.text)
+        viewModel?.overview.bind(to: textViewOverview.reactive.text)
     }
     
     // MARK: - Table view data source -
@@ -93,7 +93,7 @@ class MovieDetailView: UITableViewController {
                 case .general: break
                 case .genres: height += textViewGenres.contentSize.height
                 case .overview: height += textViewOverview.contentSize.height
-                case .reviews: height = (CGFloat(viewModel.numberOfReviews) * (reviewsView?.rowHeight ?? 0)) + 40
+                case .reviews: height = (CGFloat(viewModel?.numberOfReviews ?? 0) * (reviewsView?.rowHeight ?? 0)) + 40
             }
         }
         return height
@@ -121,7 +121,7 @@ extension MovieDetailView: MovieDetailViewModelDelegate {
     func reloadData() {
         tableView.reloadData()
         
-        viewModel.movieDetailImageData(handlerData: { (data) in
+        viewModel?.movieDetailImageData(handlerData: { (data) in
             if let data = data as? Data {
                 self.imageViewHeader.image = UIImage(data: data)
                 self.activityIndicator.isHidden = true
@@ -156,7 +156,7 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
     // MARK: - iCarousel delegate and data source -
     
     func numberOfItems(in carousel: iCarousel) -> Int {
-        if viewModel != nil {
+        if let viewModel = viewModel {
             if carousel == carouselVideos { return viewModel.numberOfVideos }
             if carousel == carouselRecommendedMovies { return viewModel.numberOfMoviesRecommendations }
             if carousel == carouselCast { return viewModel.numberOfCastCharacters }
@@ -175,8 +175,8 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
     func carouselMovieView(at index: Int) -> UIView {
         let view = XibView.instanceFromNib(PlayerView.self)
         
-        view.labelVideo.text = viewModel.videoTitle(at: index)
-        if let videoId = viewModel.videoYouTubeId(at: index) { view.playerView.loadVideoID(videoId) }
+        view.labelVideo.text = viewModel?.videoTitle(at: index)
+        if let videoId = viewModel?.videoYouTubeId(at: index) { view.playerView.loadVideoID(videoId) }
         
         return view
     }
@@ -184,7 +184,7 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
     func carouselRecommendationView(at index: Int) -> UIView {
         let view = XibView.instanceFromNib(MovieView.self)
         
-        viewModel.movieRecommendationImageData(at: index) { (data) in
+        viewModel?.movieRecommendationImageData(at: index) { (data) in
             if let data = data as? Data, let image = UIImage(data: data) {
                 view.imageViewMovie.image = image
             }
@@ -196,14 +196,14 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
     func carouselCastView(at index: Int) -> UIView {
         let view = XibView.instanceFromNib(CastView.self)
         
-        viewModel.castImageData(at: index) { (data) in
+        viewModel?.castImageData(at: index) { (data) in
             if let data = data as? Data, let image = UIImage(data: data) {
                 view.imageViewCharacter.image = image
             }
         }
         
-        view.labelCharacter.text = viewModel.castCharacter(at: index)
-        view.labelName.text = viewModel.castName(at: index)
+        view.labelCharacter.text = viewModel?.castCharacter(at: index)
+        view.labelName.text = viewModel?.castName(at: index)
         
         return view
     }
@@ -211,7 +211,7 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
     func carouselSimilarMovieView(at index: Int) -> UIView {
         let view = XibView.instanceFromNib(MovieView.self)
         
-        viewModel.similarMovieImageData(at: index) { (data) in
+        viewModel?.similarMovieImageData(at: index) { (data) in
             if let data = data as? Data, let image = UIImage(data: data) {
                 view.imageViewMovie.image = image
             }
@@ -221,14 +221,22 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
     }
     
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
-        let viewController = instantiateFrom(storyboard: .main, identifier: MovieDetailView.identifier) as! MovieDetailView
         if carousel == carouselRecommendedMovies {
-            viewController.viewModel = viewModel.recommendedMovieDetailViewModel(at: index)
-        } else if carousel == carouselSimilarMovies {
-            viewController.viewModel = viewModel.similarMovieDetailViewModel(at: index)
-        } else {
+            let viewController = instantiateFrom(storyboard: .main, identifier: MovieDetailView.identifier) as! MovieDetailView
+            viewController.viewModel = viewModel?.recommendedMovieDetailViewModel(at: index)
+            navigationController?.pushViewController(viewController, animated: true)
             return
         }
-        navigationController?.pushViewController(viewController, animated: true)
+        if carousel == carouselSimilarMovies {
+            let viewController = instantiateFrom(storyboard: .main, identifier: MovieDetailView.identifier) as! MovieDetailView
+            viewController.viewModel = viewModel?.similarMovieDetailViewModel(at: index)
+            navigationController?.pushViewController(viewController, animated: true)
+            return
+        }
+        if carousel == carouselCast {
+            let viewController = instantiateFrom(storyboard: .main, identifier: PersonView.identifier) as! PersonView
+            viewController.viewModel = viewModel?.personViewModel(at: index)
+            navigationController?.pushViewController(viewController, animated: true)
+        }
     }
 }

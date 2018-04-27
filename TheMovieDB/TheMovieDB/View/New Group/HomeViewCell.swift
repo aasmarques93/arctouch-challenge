@@ -8,8 +8,6 @@
 
 import UIKit
 
-private let cellIdentifier = "MovieCell"
-
 protocol HomeViewCellDelegate: class {
     func didSelectItem(at section: Int, row: Int)
 }
@@ -42,8 +40,7 @@ extension HomeViewCell: CollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier,
-                                                      for: indexPath) as! MovieViewCell
+        let cell = collectionView.dequeueReusableCell(MovieViewCell.self, for: indexPath)
         cell.setupView(at: selectedIndexPath?.section ?? 0, row: indexPath.row)
         return cell
     }

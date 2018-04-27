@@ -34,5 +34,11 @@
 	<string>/genre/{id}/movies?</string>
 	<key>genres</key>
 	<string>/genre/movie/list?</string>
+	<key>person</key>
+	<string>/person/{idPerson}?</string>
+	<key>personMovieCredits</key>
+	<string>/person/{idPerson}/movie_credits?</string>
+	<key>personExternalIds</key>
+	<string>/person/{idPerson}/external_ids?</string>
 </dict>
 </plist>

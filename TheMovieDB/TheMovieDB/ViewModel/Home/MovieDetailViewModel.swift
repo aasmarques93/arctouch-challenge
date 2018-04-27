@@ -6,7 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
 import Bond
 
 protocol MovieDetailViewModelDelegate: class {
@@ -49,30 +48,26 @@ class MovieDetailViewModel: ViewModel {
         }
     }
     
-    var serviceModel = MovieDetailServiceModel()
+    // MARK: Service Model
+    let serviceModel = MovieDetailServiceModel()
     
     // MARK: Videos
-    
     private var videosList = [Video]() { didSet { delegate?.reloadVideos() } }
     var numberOfVideos: Int { return videosList.count }
     
     // MARK: Recommended
-    
     private var moviesRecommendationsList = [Movie]() { didSet { delegate?.reloadRecommendedMovies() } }
     var numberOfMoviesRecommendations: Int { return moviesRecommendationsList.count }
     
     // MARK: Similar Movies
-    
     private var similarMoviesList = [Movie]() { didSet { delegate?.reloadSimilarMovies() } }
     var numberOfSimilarMovies: Int { return similarMoviesList.count }
     
     // MARK: Cast
-    
     private var castList = [Cast]() { didSet { delegate?.reloadCast() } }
     var numberOfCastCharacters: Int { return castList.count }
     
     // MARK: Reviews
-    
     private var reviewsList = [Review]() { didSet { delegate?.reloadReviews() } }
     var numberOfReviews: Int { return reviewsList.count }
     
@@ -103,51 +98,46 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getVideos() {
+        videosList = [Video]()
         serviceModel.getVideos(from: movie) { (object) in
-            if let object = object as? VideosList {
-                if let results = object.results {
-                    self.videosList.append(contentsOf: results)
-                }
+            if let object = object as? VideosList, let results = object.results {
+                self.videosList.append(contentsOf: results)
             }
         }
     }
     
     private func getMovieRecommendations() {
+        moviesRecommendationsList = [Movie]()
         serviceModel.getRecommendations(from: movie) { (object) in
-            if let object = object as? MoviesList {
-                if let results = object.results {
-                    self.moviesRecommendationsList.append(contentsOf: results)
-                }
+            if let object = object as? MoviesList, let results = object.results {
+                self.moviesRecommendationsList.append(contentsOf: results)
             }
         }
     }
     
     private func getSimilarMovies() {
+        similarMoviesList = [Movie]()
         serviceModel.getSimilar(from: movie) { (object) in
-            if let object = object as? MoviesList {
-                if let results = object.results {
-                    self.similarMoviesList.append(contentsOf: results)
-                }
+            if let object = object as? MoviesList, let results = object.results {
+                self.similarMoviesList.append(contentsOf: results)
             }
         }
     }
     
     private func getCredits() {
+        castList = [Cast]()
         serviceModel.getCredits(from: movie) { (object) in
-            if let object = object as? CreditsList {
-                if let results = object.cast {
-                    self.castList.append(contentsOf: results)
-                }
+            if let object = object as? CreditsList, let results = object.cast {
+                self.castList.append(contentsOf: results)
             }
         }
     }
     
     private func getReviews() {
+        reviewsList = [Review]()
         serviceModel.getReviews(from: movie) { (object) in
-            if let object = object as? ReviewsList {
-                if let results = object.results {
-                    self.reviewsList.append(contentsOf: results)
-                }
+            if let object = object as? ReviewsList, let results = object.results {
+                self.reviewsList.append(contentsOf: results)
             }
         }
     }
@@ -171,12 +161,8 @@ class MovieDetailViewModel: ViewModel {
     private func setupGenres() -> String {
         var string = ""
         if let array = movieDetail?.genres {
-            var count = 0
-            for genre in array {
-                string += valueDescription(genre.name)
-                if count < array.count-1 { string += ", " }
-                count += 1
-            }
+            let arrayNames = array.map { return valueDescription($0.name) }
+            string = arrayNames.joined(separator: ", ")
         }
         return string
     }
@@ -200,10 +186,6 @@ class MovieDetailViewModel: ViewModel {
         }
     }
     
-    func recommendedMovieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
-        return movieDetailViewModel(moviesRecommendationsList[index])
-    }
-    
     // MARK: Similar
     
     func similarMovieImageData(at index: Int, handlerData: @escaping HandlerObject) {
@@ -211,10 +193,6 @@ class MovieDetailViewModel: ViewModel {
         loadImageData(from: movie) { (data) in
             handlerData(data)
         }
-    }
-    
-    func similarMovieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
-        return movieDetailViewModel(similarMoviesList[index])
     }
     
     // MARK: Cast
@@ -262,7 +240,22 @@ class MovieDetailViewModel: ViewModel {
         })
     }
     
+
+    // MARK: - View Model Instantiation -
+    
+    func recommendedMovieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
+        return movieDetailViewModel(moviesRecommendationsList[index])
+    }
+
+    func similarMovieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
+        return movieDetailViewModel(similarMoviesList[index])
+    }
+
     private func movieDetailViewModel(_ movie: Movie) -> MovieDetailViewModel? {
         return MovieDetailViewModel(movie)
+    }
+    
+    func personViewModel(at index: Int) -> PersonViewModel? {
+        return PersonViewModel(castList[index].id)
     }
 }

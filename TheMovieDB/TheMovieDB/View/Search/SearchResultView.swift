@@ -8,8 +8,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "ResultCell"
-
 class SearchResultView: UITableViewController {
     let viewModel = SearchViewModel.shared
     
@@ -44,7 +42,7 @@ class SearchResultView: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SearchResultViewCell
+        let cell = tableView.dequeueReusableCell(SearchResultViewCell.self, for: indexPath)
         cell.setSelectedView(backgroundColor: HexColor.secondary.color)
         cell.setupView(at: indexPath)
         return cell

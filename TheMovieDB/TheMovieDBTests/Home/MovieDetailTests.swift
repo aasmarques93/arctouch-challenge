@@ -70,10 +70,8 @@ class MovieDetailTests: Tests {
     
     func getMovies() {
         HomeServiceModel().getMovies(requestUrl: .nowPlaying) { (object) in
-            if let object = object as? MoviesList {
-                if let results = object.results {
-                    self.movie = results.first
-                }
+            if let object = object as? MoviesList, let results = object.results {
+                self.movie = results.first
             }
         }
     }

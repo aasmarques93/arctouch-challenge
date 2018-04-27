@@ -9,8 +9,6 @@
 import UIKit
 import Bond
 
-private let reuseIdentifier = "HomeCell"
-
 class HomeView: UITableViewController {
     @IBOutlet weak var labelHeaderSection: UILabel!
     
@@ -54,7 +52,7 @@ class HomeView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! HomeViewCell
+        let cell = tableView.dequeueReusableCell(HomeViewCell.self, for: indexPath)
         cell.setupView(at: indexPath)
         cell.delegate = self
         return cell

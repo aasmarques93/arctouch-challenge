@@ -6,7 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
 import Bond
 
 protocol HomeViewModelDelegate: class {
@@ -49,7 +48,8 @@ class HomeViewModel: ViewModel {
     // MARK: Delegate
     weak var delegate: HomeViewModelDelegate?
     
-    var serviceModel = HomeServiceModel()
+    // MARK: Service Model
+    let serviceModel = HomeServiceModel()
     
     // MARK: Genres
     private var arrayGenres: [Genre] = [.nowPlaying, .topRated, .upcoming, .popular]

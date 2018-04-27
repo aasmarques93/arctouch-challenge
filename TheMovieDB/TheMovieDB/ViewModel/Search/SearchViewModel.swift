@@ -6,8 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
-
 protocol SearchViewModelDelegate: class {
     func reloadData()
     func reloadMoviesList()
@@ -20,7 +18,8 @@ class SearchViewModel: ViewModel {
     
     // MARK: - Properties -
     
-    var serviceModel = SearchServiceModel()
+    // MARK: Service Model
+    let serviceModel = SearchServiceModel()
     
     // MARK: Delegate
     weak var delegate: SearchViewModelDelegate?

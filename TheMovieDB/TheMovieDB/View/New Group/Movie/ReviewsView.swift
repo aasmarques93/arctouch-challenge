@@ -32,7 +32,7 @@ class ReviewsView: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
-        cell.backgroundColor = indexPath.row % 2 == 0 ? HexColor.primary.color : HexColor.secondary.color.withAlphaComponent(0.1)
+        cell.alternateBackground(at: indexPath, secondaryColor: HexColor.secondary.color.withAlphaComponent(0.1))
         
         if let labelAuthor = cell.viewWithTag(1) as? UILabel {
             labelAuthor.text = viewModel?.reviewAuthor(at: indexPath.row)

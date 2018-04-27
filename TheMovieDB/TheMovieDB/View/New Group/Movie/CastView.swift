@@ -12,11 +12,12 @@ class CastView: XibView {
     @IBOutlet weak var imageViewCharacter: UIImageView!
     @IBOutlet weak var labelCharacter: UILabel!
     @IBOutlet weak var labelName: UILabel!
+    @IBOutlet weak var viewText: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         backgroundColor = HexColor.primary.color
-        labelCharacter.textColor = UIColor.white
-        labelName.textColor = UIColor.white
-    }
+        viewText.backgroundColor = HexColor.secondary.color
+    }    
 }

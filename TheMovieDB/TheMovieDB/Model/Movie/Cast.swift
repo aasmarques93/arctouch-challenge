@@ -20,6 +20,8 @@ class Cast: Model {
     static let creditId = "credit_id"
     static let order = "order"
     static let profilePath = "profile_path"
+    static let posterPath = "poster_path"
+    static let backdropPath = "backdrop_path"
   }
 
   // MARK: Properties
@@ -31,6 +33,8 @@ class Cast: Model {
   public var creditId: String?
   public var order: Int?
   public var profilePath: String?
+  public var posterPath: String?
+  public var backdropPath: String?
 
   // MARK: SwiftyJSON Initializers
   /// Initiates the instance based on the object.
@@ -53,6 +57,8 @@ class Cast: Model {
     creditId = json[SerializationKeys.creditId].string
     order = json[SerializationKeys.order].int
     profilePath = json[SerializationKeys.profilePath].string
+    posterPath = json[SerializationKeys.posterPath].string
+    backdropPath = json[SerializationKeys.backdropPath].string
     super.init(json: json)
   }
 
@@ -69,6 +75,8 @@ class Cast: Model {
     if let value = creditId { dictionary[SerializationKeys.creditId] = value }
     if let value = order { dictionary[SerializationKeys.order] = value }
     if let value = profilePath { dictionary[SerializationKeys.profilePath] = value }
+    if let value = posterPath { dictionary[SerializationKeys.posterPath] = value }
+    if let value = backdropPath { dictionary[SerializationKeys.backdropPath] = value }
     return dictionary
   }
 

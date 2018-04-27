@@ -835,9 +835,7 @@ extension Array {
         array.append(element)
         return array
     }
-}
 
-extension Array {
     func contains(_ object : AnyObject) -> Bool {
         if self.isEmpty {
             return false
@@ -900,11 +898,28 @@ extension UIApplication {
 }
 
 extension UITableView {
-    func dequeueReusableCell<T:UITableViewCell>(indexPath: IndexPath) -> T where T:ReusableView {
-        guard let cell = self.dequeueReusableCell(withIdentifier: T.reuseIdentifier, for: indexPath) as? T else {
-            fatalError("Cant dequeue cell with identifier: \(T.reuseIdentifier)")
+    func dequeueReusableCell<T:UITableViewCell>(_: T.Type, for indexPath: IndexPath) -> T {
+        guard let cell = dequeueReusableCell(withIdentifier: String(describing:T.self), for: indexPath) as? T else {
+            fatalError("Cant dequeue cell with identifier: \(String(describing:T.self))")
         }
         return cell
+    }
+}
+
+extension UICollectionView {
+    func dequeueReusableCell<T:UICollectionViewCell>(_: T.Type, for indexPath: IndexPath) -> T {
+        guard let cell = dequeueReusableCell(withReuseIdentifier: String(describing:T.self), for: indexPath) as? T else {
+            fatalError("Cant dequeue cell with identifier: \(String(describing:T.self))")
+        }
+        return cell
+    }
+}
+
+protocol ReusableView : class { }
+
+extension ReusableView where Self:UIView {
+    static var reuseIdentifier: String {
+        return String(describing:self)
     }
 }
 
@@ -914,13 +929,12 @@ extension UITableViewCell {
         selectedView.backgroundColor = backgroundColor
         selectedBackgroundView = selectedView
     }
-}
-
-protocol ReusableView : class { }
-
-extension ReusableView where Self:UIView {
-    static var reuseIdentifier : String {
-        return String(describing:self)
+    
+    func alternateBackground(at indexPath: IndexPath,
+                             mainColor: UIColor = HexColor.primary.color,
+                             secondaryColor: UIColor = HexColor.secondary.color) {
+        
+        backgroundColor = indexPath.row % 2 == 0 ? mainColor : secondaryColor
     }
 }
 
@@ -932,11 +946,9 @@ extension ReusableIdentifier where Self:UIViewController {
     }
 }
 
-extension UIViewController: ReusableIdentifier {
-}
+extension UIViewController: ReusableIdentifier { }
 
-extension UIView: ReusableIdentifier {
-}
+extension UIView: ReusableIdentifier { }
 
 extension UITabBarController {
     func setTabBarVisible(visible: Bool, animated: Bool) {
