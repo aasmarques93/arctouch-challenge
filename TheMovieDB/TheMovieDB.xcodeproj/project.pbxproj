@@ -351,6 +351,10 @@
 				ED16D84F205889BE002A0B2C /* HomeViewCell.swift */,
 				ED16D85120588BA7002A0B2C /* MovieViewCell.swift */,
 				ED16D85D20597A6C002A0B2C /* MovieDetailView.swift */,
+				ED65BF00209245430091D93B /* MovieView.swift */,
+				ED65BEFE20923F040091D93B /* CastView.swift */,
+				ED65BF0620925C280091D93B /* PlayerView.swift */,
+				ED65BF08209261C00091D93B /* ReviewsView.swift */,
 			);
 			name = Home;
 			path = "New Group";
@@ -396,10 +400,6 @@
 			children = (
 				ED16D844205882D3002A0B2C /* HomeViewModel.swift */,
 				ED16D85F20597AF6002A0B2C /* MovieDetailViewModel.swift */,
-				ED65BF00209245430091D93B /* MovieView.swift */,
-				ED65BEFE20923F040091D93B /* CastView.swift */,
-				ED65BF0620925C280091D93B /* PlayerView.swift */,
-				ED65BF08209261C00091D93B /* ReviewsView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
