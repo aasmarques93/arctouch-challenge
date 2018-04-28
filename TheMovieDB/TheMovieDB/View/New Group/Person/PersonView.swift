@@ -21,6 +21,10 @@ class PersonView: UITableViewController {
     
     @IBOutlet weak var carouselMovies: iCarousel!
 
+    @IBOutlet weak var buttonTwitterValue: UIButton!
+    @IBOutlet weak var buttonInstagramValue: UIButton!
+    @IBOutlet weak var buttonFacebookValue: UIButton!
+    
     var viewModel: PersonViewModel?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +47,12 @@ class PersonView: UITableViewController {
         viewModel?.placeOfBirth.bind(to: labelPlaceOfBirth.reactive.text)
         viewModel?.alsoKnownAs.bind(to: labelAlsoKnownAs.reactive.text)
         viewModel?.photo.bind(to: imageViewPhoto.reactive.image)
+        viewModel?.isFacebookEnabled.bind(to: buttonFacebookValue.reactive.isEnabled)
+        viewModel?.facebookTintColor.bind(to: buttonFacebookValue.reactive.tintColor)
+        viewModel?.isInstagramEnabled.bind(to: buttonInstagramValue.reactive.isEnabled)
+        viewModel?.instagramTintColor.bind(to: buttonInstagramValue.reactive.tintColor)
+        viewModel?.isTwitterEnabled.bind(to: buttonTwitterValue.reactive.isEnabled)
+        viewModel?.twitterTintColor.bind(to: buttonTwitterValue.reactive.tintColor)
     }
     
     @IBAction func buttonFacebookAction(_ sender: UIButton) {

@@ -63,11 +63,9 @@ extension HomeView: HomeViewCellDelegate {
     // MARK: - Home view cell delegate -
     
     func didSelectItem(at section: Int, row: Int) {
-        let viewController = instantiateFrom(storyboard: .main, identifier: MovieDetailView.identifier) as! MovieDetailView
+        let viewController = instantiate(viewController: MovieDetailView.self)
         viewController.viewModel = viewModel.movieDetailViewModel(at: section, row: row)
-        if viewController.viewModel != nil {
-            navigationController?.pushViewController(viewController, animated: true)
-        }
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

@@ -18,6 +18,7 @@ class Movie: Model {
     static let voteCount = "vote_count"
     static let overview = "overview"
     static let originalTitle = "original_title"
+    static let originalName = "original_name"
     static let voteAverage = "vote_average"
     static let popularity = "popularity"
     static let id = "id"
@@ -26,6 +27,7 @@ class Movie: Model {
     static let video = "video"
     static let title = "title"
     static let adult = "adult"
+    static let firstAirDate = "first_air_date"
   }
 
   // MARK: Properties
@@ -35,6 +37,7 @@ class Movie: Model {
   public var voteCount: Int?
   public var overview: String?
   public var originalTitle: String?
+  public var originalName: String?
   public var voteAverage: Float?
   public var popularity: Float?
   public var id: Int?
@@ -43,6 +46,7 @@ class Movie: Model {
   public var video: Bool? = false
   public var title: String?
   public var adult: Bool? = false
+  public var firstAirDate: String?
 
   public var imageData: Data?
 
@@ -65,6 +69,7 @@ class Movie: Model {
     voteCount = json[SerializationKeys.voteCount].int
     overview = json[SerializationKeys.overview].string
     originalTitle = json[SerializationKeys.originalTitle].string
+    originalName = json[SerializationKeys.originalName].string
     voteAverage = json[SerializationKeys.voteAverage].float
     popularity = json[SerializationKeys.popularity].float
     id = json[SerializationKeys.id].int
@@ -73,6 +78,7 @@ class Movie: Model {
     video = json[SerializationKeys.video].boolValue
     title = json[SerializationKeys.title].string
     adult = json[SerializationKeys.adult].boolValue
+    firstAirDate = json[SerializationKeys.firstAirDate].string
     super.init(json: json)
   }
 
@@ -87,6 +93,7 @@ class Movie: Model {
     if let value = voteCount { dictionary[SerializationKeys.voteCount] = value }
     if let value = overview { dictionary[SerializationKeys.overview] = value }
     if let value = originalTitle { dictionary[SerializationKeys.originalTitle] = value }
+    if let value = originalName { dictionary[SerializationKeys.originalName] = value }
     if let value = voteAverage { dictionary[SerializationKeys.voteAverage] = value }
     if let value = popularity { dictionary[SerializationKeys.popularity] = value }
     if let value = id { dictionary[SerializationKeys.id] = value }
@@ -95,6 +102,7 @@ class Movie: Model {
     dictionary[SerializationKeys.video] = video
     if let value = title { dictionary[SerializationKeys.title] = value }
     dictionary[SerializationKeys.adult] = adult
+    if let value = firstAirDate { dictionary[SerializationKeys.firstAirDate] = value }
     return dictionary
   }
 

@@ -26,6 +26,14 @@ class PersonViewModel: ViewModel {
     var alsoKnownAs = Observable<String?>(nil)
     var photo = Observable<UIImage?>(nil)
     
+    var isFacebookEnabled = Observable<Bool>(false)
+    var isInstagramEnabled = Observable<Bool>(false)
+    var isTwitterEnabled = Observable<Bool>(false)
+    
+    var facebookTintColor = Observable<UIColor>(UIColor.darkGray)
+    var instagramTintColor = Observable<UIColor>(UIColor.darkGray)
+    var twitterTintColor = Observable<UIColor>(UIColor.darkGray)
+    
     // MARK: Variables
     private var idPerson: Int?
     
@@ -44,7 +52,17 @@ class PersonViewModel: ViewModel {
         }
     }
     
-    private var externalIds: ExternalIds?
+    private var externalIds: ExternalIds? {
+        didSet {
+            isFacebookEnabled.value = externalIds?.facebookId != nil
+            isInstagramEnabled.value = externalIds?.instagramId != nil
+            isTwitterEnabled.value = externalIds?.twitterId != nil
+            
+            facebookTintColor.value = externalIds?.facebookId != nil ? UIColor.white : UIColor.darkGray
+            instagramTintColor.value = externalIds?.instagramId != nil ? UIColor.white : UIColor.darkGray
+            twitterTintColor.value = externalIds?.twitterId != nil ? UIColor.white : UIColor.darkGray
+        }
+    }
     
     // MARK: Cast
     private var castList = [Cast]() { didSet { delegate?.reloadData() } }

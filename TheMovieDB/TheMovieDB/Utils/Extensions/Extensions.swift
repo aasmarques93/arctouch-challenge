@@ -941,7 +941,7 @@ extension UITableViewCell {
 protocol ReusableIdentifier : class { }
 
 extension ReusableIdentifier where Self:UIViewController {
-    static var identifier : String {
+    static var identifier: String {
         return String(describing:self)
     }
 }

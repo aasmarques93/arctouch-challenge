@@ -56,4 +56,8 @@ enum RequestUrl: String {
     case personMovieCredits
     case personExternalIds
     case popularPeople
+    case tvPopular
+    case tvDetail
+    case tvVideos
+    case tvCredits
 }

@@ -44,10 +44,8 @@ class PopularPeopleViewModel: ViewModel {
         
         let parameters = ["page": currentPage]
         serviceModel.getPopularPeople(urlParameters: parameters) { (object) in
-            if let object = object as? PopularPeople {
-                if let results = object.results {
-                    self.popularPeopleList.append(contentsOf: results)
-                }
+            if let object = object as? PopularPeople, let results = object.results {
+                self.popularPeopleList.append(contentsOf: results)
             }
             
             self.isDataLoading = false

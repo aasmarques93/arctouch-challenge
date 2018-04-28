@@ -42,5 +42,13 @@
 	<string>/person/{idPerson}/external_ids?</string>
 	<key>popularPeople</key>
 	<string>/person/popular?page={page}&amp;</string>
+	<key>tvPopular</key>
+	<string>/tv/popular?page={page}&amp;</string>
+	<key>tvDetail</key>
+	<string>/tv/{id}?</string>
+	<key>tvVideos</key>
+	<string>/tv/{id}/videos?</string>
+	<key>tvCredits</key>
+	<string>/tv/{id}/credits?</string>
 </dict>
 </plist>

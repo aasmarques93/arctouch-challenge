@@ -35,7 +35,6 @@ class SocialMedia {
     
         switch mediaType {
             case .facebook:
-                urls.append(Links.url(with: .facebook, userId: userId))
                 urls.append(Links.url(with: .webFacebook, userId: userId))
             case .instagram:
                 urls.append(Links.url(with: .instagram, userId: userId))
@@ -55,6 +54,7 @@ extension UIApplication {
         let application = UIApplication.shared
         
         for string in urls {
+            print("Trying to open: \(string)")
             if let url = URL(string: string), application.canOpenURL(url) {
                 application.open(url, options: [:], completionHandler: nil)
                 return

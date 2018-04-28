@@ -50,7 +50,7 @@ class SearchResultView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewController = instantiateFrom(storyboard: .main, identifier: MovieDetailView.identifier) as! MovieDetailView
+        let viewController = instantiate(viewController: MovieDetailView.self)
         viewController.viewModel = viewModel.movieDetailViewModel(at: indexPath)
         navigationController?.pushViewController(viewController, animated: true)
     }
