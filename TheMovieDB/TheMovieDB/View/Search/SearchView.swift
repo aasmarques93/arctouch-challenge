@@ -12,6 +12,7 @@ private let reuseIdentifier = "GenreCell"
 
 class SearchView: UITableViewController {
     @IBOutlet var viewHeader: UIView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     let viewModel = SearchViewModel.shared
     
@@ -25,7 +26,15 @@ class SearchView: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.delegate = self
-        viewModel.loadData()
+        loadData()
+    }
+    
+    func loadData() {
+        viewModel.loadData(genreIndex: segmentedControl.selectedSegmentIndex)
+    }
+    
+    @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
+        loadData()
     }
     
     // MARK: - Table view data source

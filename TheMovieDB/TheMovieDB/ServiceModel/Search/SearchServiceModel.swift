@@ -7,8 +7,8 @@
 //
 
 class SearchServiceModel: ServiceModel {
-    func getGenres(handler: @escaping HandlerObject) {
-        request(MoviesGenres.self, requestUrl: .genres, handlerObject: { (object) in
+    func getGenres(requestUrl: RequestUrl, handler: @escaping HandlerObject) {
+        request(MoviesGenres.self, requestUrl: requestUrl, handlerObject: { (object) in
             handler(object)
         })
     }

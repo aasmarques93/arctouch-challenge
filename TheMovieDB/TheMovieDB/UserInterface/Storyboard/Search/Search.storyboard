@@ -52,27 +52,32 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="qDb-4F-HHa"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="segmentedControl" destination="lUG-j8-133" id="0ts-OC-eek"/>
                         <outlet property="viewHeader" destination="16n-PI-IsI" id="hxD-Uh-uDz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HSQ-Nh-MQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="16n-PI-IsI">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bm2-Da-BnH">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                            <color key="textColor" red="0.0039215686269999999" green="0.82352941180000006" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lUG-j8-133">
+                            <rect key="frame" x="8" y="8" width="359" height="29"/>
+                            <segments>
+                                <segment title="Movies"/>
+                                <segment title="TV Show"/>
+                            </segments>
+                            <color key="tintColor" red="0.0039215686269999999" green="0.82352941180000006" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="segmentedControlAction:" destination="R8s-UZ-SGt" eventType="valueChanged" id="IUb-gG-VEG"/>
+                            </connections>
+                        </segmentedControl>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="Bm2-Da-BnH" firstAttribute="top" secondItem="dRR-nN-rgz" secondAttribute="top" id="PPr-qO-7rj"/>
-                        <constraint firstAttribute="bottom" secondItem="Bm2-Da-BnH" secondAttribute="bottom" id="U11-bo-F71"/>
-                        <constraint firstItem="Bm2-Da-BnH" firstAttribute="leading" secondItem="16n-PI-IsI" secondAttribute="leading" id="XnS-EZ-uXR"/>
-                        <constraint firstAttribute="trailing" secondItem="Bm2-Da-BnH" secondAttribute="trailing" id="mbl-gu-f98"/>
+                        <constraint firstItem="lUG-j8-133" firstAttribute="top" secondItem="dRR-nN-rgz" secondAttribute="top" constant="8" id="EYk-RD-eEz"/>
+                        <constraint firstItem="dRR-nN-rgz" firstAttribute="trailing" secondItem="lUG-j8-133" secondAttribute="trailing" constant="8" id="Pos-U7-vNS"/>
+                        <constraint firstItem="lUG-j8-133" firstAttribute="leading" secondItem="dRR-nN-rgz" secondAttribute="leading" constant="8" id="o3T-Bs-uIF"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="dRR-nN-rgz"/>
                 </view>

@@ -24,6 +24,12 @@ class SearchViewModel: ViewModel {
     weak var delegate: SearchViewModelDelegate?
     
     // MARK: Genre
+    
+    enum GenreType: Int {
+        case movies = 0
+        case tvShows = 1
+    }
+    
     private var arrayGenres = [Genres]() { didSet { delegate?.reloadData() } }
     var numberOfGenres: Int { return arrayGenres.count }
     
@@ -31,18 +37,22 @@ class SearchViewModel: ViewModel {
     
     // MARK: - Service requests -
     
-    func loadData() {
-        loadingView.startInWindow()
-        serviceModel.getGenres { (object) in
-            self.loadingView.stop()
-            if let object = object as? MoviesGenres {
-                if let statusMessage = object.statusMessage, statusMessage != "" {
-                    self.delegate?.showError(message: statusMessage)
-                    return
-                }
-                
-                if let results = object.genres {
-                    self.arrayGenres = results
+    func loadData(genreIndex: Int) {
+        if let genreType = GenreType(rawValue: genreIndex) {
+            let requestUrl: RequestUrl = genreType == .movies ? .genres : .genresTV
+            
+            loadingView.startInWindow()
+            serviceModel.getGenres(requestUrl: requestUrl) { (object) in
+                self.loadingView.stop()
+                if let object = object as? MoviesGenres {
+                    if let statusMessage = object.statusMessage, statusMessage != "" {
+                        self.delegate?.showError(message: statusMessage)
+                        return
+                    }
+                    
+                    if let results = object.genres {
+                        self.arrayGenres = results
+                    }
                 }
             }
         }
