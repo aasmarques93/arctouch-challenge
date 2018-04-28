@@ -9,7 +9,7 @@
 import UIKit
 
 class TVShowDetailView: UITableViewController {
-    @IBOutlet weak var labelAverage: UILabel!
+    @IBOutlet weak var circularProgressView: CircularProgressView!
     @IBOutlet weak var labelDate: UILabel!
     
     @IBOutlet weak var textViewGenres: UITextView!
@@ -56,7 +56,6 @@ class TVShowDetailView: UITableViewController {
     // MARK: - View model bindings -
     
     func setupBindings() {
-        viewModel?.average.bind(to: labelAverage.reactive.text)
         viewModel?.date.bind(to: labelDate.reactive.text)
         viewModel?.genres.bind(to: textViewGenres.reactive.text)
         viewModel?.overview.bind(to: textViewOverview.reactive.text)
@@ -95,6 +94,8 @@ extension TVShowDetailView: TVShowDetailViewModelDelegate {
         tableView.reloadData()
         
         title = viewModel?.tvShowName
+        
+        if let average = viewModel?.average { circularProgressView.progress = average }
         
         viewModel?.tvShowDetailImageData(handlerData: { (data) in
             if let data = data as? Data {

@@ -26,7 +26,6 @@ class TVShowDetailViewModel: ViewModel {
     
     // MARK: Observables
     var name = Observable<String?>(nil)
-    var average = Observable<String?>(nil)
     var date = Observable<String?>(nil)
     var genres = Observable<String?>(nil)
     var overview = Observable<String?>(nil)
@@ -41,11 +40,15 @@ class TVShowDetailViewModel: ViewModel {
             name.value = valueDescription(tvShowDetail?.originalName)
             date.value = "Last air date: \(valueDescription(tvShowDetail?.lastAirDate))"
             overview.value = valueDescription(tvShowDetail?.overview)
-            average.value = valueDescription(tvShowDetail?.voteAverage)
             genres.value = setupGenres()
             
             if let seasons = tvShowDetail?.seasons { seasonsList = seasons }
         }
+    }
+    
+    var average: CGFloat? {
+        if let voteAverage = tvShowDetail?.voteAverage { return CGFloat(voteAverage) / 10 }
+        return nil
     }
     
     // MARK: Videos

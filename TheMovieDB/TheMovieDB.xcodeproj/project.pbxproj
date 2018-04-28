@@ -79,6 +79,7 @@
 		ED38343E2094B6810079D48F /* SearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED38343D2094B6810079D48F /* SearchHeaderView.xib */; };
 		ED3834402094B6C60079D48F /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED38343F2094B6C60079D48F /* SearchHeaderView.swift */; };
 		ED3834422094F7600079D48F /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3834412094F7600079D48F /* SearchResultViewModel.swift */; };
+		ED383445209502770079D48F /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED383444209502770079D48F /* CircularProgressView.swift */; };
 		ED65BEB320909EFA0091D93B /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED65BEB120909EF90091D93B /* iCarousel.m */; };
 		ED65BEBA2090A55D0091D93B /* VideosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED65BEB82090A55C0091D93B /* VideosList.swift */; };
 		ED65BEBB2090A55D0091D93B /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED65BEB92090A55C0091D93B /* Video.swift */; };
@@ -235,6 +236,7 @@
 		ED38343D2094B6810079D48F /* SearchHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchHeaderView.xib; sourceTree = "<group>"; };
 		ED38343F2094B6C60079D48F /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		ED3834412094F7600079D48F /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
+		ED383444209502770079D48F /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		ED65BEAC20909E690091D93B /* TheMovieDB-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TheMovieDB-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED65BEB120909EF90091D93B /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		ED65BEB220909EFA0091D93B /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
@@ -661,6 +663,14 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		ED383443209502650079D48F /* CircularProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				ED383444209502770079D48F /* CircularProgressView.swift */,
+			);
+			path = CircularProgressView;
+			sourceTree = "<group>";
+		};
 		ED65BEB020909EE20091D93B /* iCarousel */ = {
 			isa = PBXGroup;
 			children = (
@@ -805,6 +815,7 @@
 		EDC6BFFF2058593B00D843EC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				ED383443209502650079D48F /* CircularProgressView */,
 				ED3834232094227D0079D48F /* StretchHeaderView */,
 				EDC6C0392058662900D843EC /* MVVM */,
 				EDC6C00B20585A1800D843EC /* CollectionView */,
@@ -1189,6 +1200,7 @@
 				ED38341920941C4E0079D48F /* TVShowDetail.swift in Sources */,
 				ED65BEF4209238BB0091D93B /* Crew.swift in Sources */,
 				ED38341A20941C4E0079D48F /* Networks.swift in Sources */,
+				ED383445209502770079D48F /* CircularProgressView.swift in Sources */,
 				ED16D86C20597D99002A0B2C /* ProductionCompanies.swift in Sources */,
 				ED38341C20941C4E0079D48F /* Seasons.swift in Sources */,
 				EDC6C03E2058663000D843EC /* ServiceModel.swift in Sources */,
