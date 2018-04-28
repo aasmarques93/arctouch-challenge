@@ -37,7 +37,7 @@ class TVShowView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewController = instantiate(viewController: TVShowDetailView.self)
+        let viewController = instantiate(viewController: TVShowDetailView.self, from: .tvShow)
         viewController.viewModel = viewModel.tvShowDetailViewModel(at: indexPath)
         navigationController?.pushViewController(viewController, animated: true)
     }

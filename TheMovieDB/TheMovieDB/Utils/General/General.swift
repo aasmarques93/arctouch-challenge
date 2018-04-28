@@ -12,6 +12,11 @@ typealias HandlerGeneric = (_ object: Any?) -> Swift.Void
 
 enum Storyboard: String {
     case main = "Main"
+    case movie = "Movie"
+    case tvShow = "TVShow"
+    case popularPeople = "PopularPeople"
+    case search = "Search"
+    case generic = "Generic"
 }
 
 var currentNavigationController: UINavigationController?

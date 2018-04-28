@@ -57,7 +57,7 @@ extension PopularPeopleView: CollectionViewDelegate {
     }
     
     func didSelect(_ collectionView: UICollectionView, itemAt indexPath: IndexPath) {
-        let viewController = instantiate(viewController: PersonView.self)
+        let viewController = instantiate(viewController: PersonView.self, from: .generic)
         viewController.viewModel = viewModel.personViewModel(at: indexPath)
         navigationController?.pushViewController(viewController, animated: true)
     }

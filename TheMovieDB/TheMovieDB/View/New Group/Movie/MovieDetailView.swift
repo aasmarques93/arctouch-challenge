@@ -210,19 +210,19 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
     
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
         if carousel == carouselRecommendedMovies {
-            let viewController = instantiate(viewController: MovieDetailView.self)
+            let viewController = instantiate(viewController: MovieDetailView.self, from: .movie)
             viewController.viewModel = viewModel?.recommendedMovieDetailViewModel(at: index)
             navigationController?.pushViewController(viewController, animated: true)
             return
         }
         if carousel == carouselSimilarMovies {
-            let viewController = instantiate(viewController: MovieDetailView.self)
+            let viewController = instantiate(viewController: MovieDetailView.self, from: .movie)
             viewController.viewModel = viewModel?.similarMovieDetailViewModel(at: index)
             navigationController?.pushViewController(viewController, animated: true)
             return
         }
         if carousel == carouselCast {
-            let viewController = instantiate(viewController: PersonView.self)
+            let viewController = instantiate(viewController: PersonView.self, from: .generic)
             viewController.viewModel = viewModel?.personViewModel(at: index)
             navigationController?.pushViewController(viewController, animated: true)
         }
