@@ -78,6 +78,7 @@
 		ED38343C2094B3F40079D48F /* SearchTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED38343A2094B3F30079D48F /* SearchTV.swift */; };
 		ED38343E2094B6810079D48F /* SearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED38343D2094B6810079D48F /* SearchHeaderView.xib */; };
 		ED3834402094B6C60079D48F /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED38343F2094B6C60079D48F /* SearchHeaderView.swift */; };
+		ED3834422094F7600079D48F /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3834412094F7600079D48F /* SearchResultViewModel.swift */; };
 		ED65BEB320909EFA0091D93B /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED65BEB120909EF90091D93B /* iCarousel.m */; };
 		ED65BEBA2090A55D0091D93B /* VideosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED65BEB82090A55C0091D93B /* VideosList.swift */; };
 		ED65BEBB2090A55D0091D93B /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED65BEB92090A55C0091D93B /* Video.swift */; };
@@ -233,6 +234,7 @@
 		ED38343A2094B3F30079D48F /* SearchTV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTV.swift; sourceTree = "<group>"; };
 		ED38343D2094B6810079D48F /* SearchHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchHeaderView.xib; sourceTree = "<group>"; };
 		ED38343F2094B6C60079D48F /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
+		ED3834412094F7600079D48F /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		ED65BEAC20909E690091D93B /* TheMovieDB-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TheMovieDB-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED65BEB120909EF90091D93B /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		ED65BEB220909EFA0091D93B /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 			isa = PBXGroup;
 			children = (
 				ED16D8832059A008002A0B2C /* SearchViewModel.swift */,
+				ED3834412094F7600079D48F /* SearchResultViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1205,6 +1208,7 @@
 				ED65BF09209261C00091D93B /* ReviewsView.swift in Sources */,
 				EDC6C02820585A8300D843EC /* General.swift in Sources */,
 				ED3833EC209375A00079D48F /* ExternalIds.swift in Sources */,
+				ED3834422094F7600079D48F /* SearchResultViewModel.swift in Sources */,
 				ED38341120940E340079D48F /* TVShowViewCell.swift in Sources */,
 				EDC6C02020585A7500D843EC /* AlertComponent.swift in Sources */,
 				ED16D86820597D99002A0B2C /* BelongsToCollection.swift in Sources */,

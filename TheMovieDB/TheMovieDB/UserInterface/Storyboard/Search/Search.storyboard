@@ -52,33 +52,16 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="qDb-4F-HHa"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchBar" destination="LNb-FN-cgq" id="a7i-E7-c6U"/>
                         <outlet property="viewHeader" destination="16n-PI-IsI" id="hxD-Uh-uDz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HSQ-Nh-MQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="16n-PI-IsI">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search a movie" translatesAutoresizingMaskIntoConstraints="NO" id="LNb-FN-cgq">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
-                            <color key="barTintColor" red="0.031372549020000001" green="0.10980392160000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                    <color key="value" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <outlet property="delegate" destination="R8s-UZ-SGt" id="nGU-j6-udJ"/>
-                            </connections>
-                        </searchBar>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bm2-Da-BnH">
-                            <rect key="frame" x="0.0" y="56" width="375" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="wGj-C7-dZ2"/>
-                            </constraints>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" red="0.0039215686269999999" green="0.82352941180000006" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -86,12 +69,9 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="Bm2-Da-BnH" firstAttribute="top" secondItem="LNb-FN-cgq" secondAttribute="bottom" id="GqM-DX-thJ"/>
-                        <constraint firstItem="LNb-FN-cgq" firstAttribute="top" secondItem="16n-PI-IsI" secondAttribute="top" id="HF3-gS-jXF"/>
+                        <constraint firstItem="Bm2-Da-BnH" firstAttribute="top" secondItem="dRR-nN-rgz" secondAttribute="top" id="PPr-qO-7rj"/>
                         <constraint firstAttribute="bottom" secondItem="Bm2-Da-BnH" secondAttribute="bottom" id="U11-bo-F71"/>
                         <constraint firstItem="Bm2-Da-BnH" firstAttribute="leading" secondItem="16n-PI-IsI" secondAttribute="leading" id="XnS-EZ-uXR"/>
-                        <constraint firstItem="LNb-FN-cgq" firstAttribute="leading" secondItem="16n-PI-IsI" secondAttribute="leading" id="gma-oy-Zh9"/>
-                        <constraint firstAttribute="trailing" secondItem="LNb-FN-cgq" secondAttribute="trailing" id="lct-jh-NGR"/>
                         <constraint firstAttribute="trailing" secondItem="Bm2-Da-BnH" secondAttribute="trailing" id="mbl-gu-f98"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="dRR-nN-rgz"/>

@@ -57,7 +57,7 @@ class TVShowViewModel: ViewModel {
     func doServicePaginationIfNeeded(at indexPath: IndexPath) {
         if indexPath.row == searchPopularList.count-2 && !isDataLoading {
             currentPage += 1
-            loadData()
+            getPopular()
         }
     }
     

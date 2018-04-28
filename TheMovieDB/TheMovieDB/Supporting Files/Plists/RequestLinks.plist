@@ -27,7 +27,7 @@
 	<key>credits</key>
 	<string>/movie/{idMovie}/credits?</string>
 	<key>searchMovie</key>
-	<string>/search/movie?query={query}&amp;</string>
+	<string>/search/movie?query={query}&amp;page={page}&amp;</string>
 	<key>searchPerson</key>
 	<string>/search/person?query={query}&amp;page={page}&amp;</string>
 	<key>searchByGenre</key>

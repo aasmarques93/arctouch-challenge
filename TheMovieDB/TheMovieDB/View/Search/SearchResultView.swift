@@ -9,28 +9,18 @@
 import UIKit
 
 class SearchResultView: UITableViewController {
-    let viewModel = SearchViewModel.shared
+    var viewModel: SearchResultViewModel?
     
     // MARK: - Life cycle -
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        viewModel.delegate = self
-        viewModel.loadMoviesForSelectedGenre()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupAppearance()
-    }
-    
-    // MARK: - Appearance -
-    
-    func setupAppearance() {
         navigationItem.titleView = nil
-        self.title = viewModel.titleDescription()
+        title = viewModel?.titleDescription
+        viewModel?.delegate = self
+        viewModel?.loadData()
     }
-
+    
     // MARK: - Table view data source -
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -38,11 +28,12 @@ class SearchResultView: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfMovies
+        return viewModel?.numberOfMovies ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(SearchResultViewCell.self, for: indexPath)
+        cell.viewModel = viewModel
         cell.alternateBackground(at: indexPath, secondaryColor: HexColor.secondary.color.withAlphaComponent(0.1))
         cell.setSelectedView(backgroundColor: HexColor.secondary.color)
         cell.setupView(at: indexPath)
@@ -51,8 +42,12 @@ class SearchResultView: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = instantiate(viewController: MovieDetailView.self, from: .movie)
-        viewController.viewModel = viewModel.movieDetailViewModel(at: indexPath)
+        viewController.viewModel = viewModel?.movieDetailViewModel(at: indexPath)
         navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        viewModel?.doServicePaginationIfNeeded(at: indexPath)
     }
 }
 

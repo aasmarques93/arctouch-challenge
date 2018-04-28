@@ -12,7 +12,6 @@ private let reuseIdentifier = "GenreCell"
 
 class SearchView: UITableViewController {
     @IBOutlet var viewHeader: UIView!
-    @IBOutlet weak var searchBar: UISearchBar!
     
     let viewModel = SearchViewModel.shared
     
@@ -21,7 +20,6 @@ class SearchView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewHeader.backgroundColor = HexColor.primary.color
-        tableView.keyboardDismissMode = .onDrag
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,8 +58,13 @@ class SearchView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectGenre(at: indexPath)
-        performSegue(withIdentifier: SearchResultView.identifier, sender: self)
+        pushSearchResultView(at: indexPath)
+    }
+    
+    func pushSearchResultView(at indexPath: IndexPath) {
+        let viewController = instantiate(viewController: SearchResultView.self, from: .search)
+        viewController.viewModel = viewModel.searchResultViewModel(at: indexPath)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
@@ -73,23 +76,7 @@ extension SearchView: SearchViewModelDelegate {
         tableView.reloadData()
     }
     
-    func reloadMoviesList() {
-        let viewController = instantiate(viewController: SearchResultView.self, from: .search)
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-    
     func showError(message: String?) {
         AlertComponent.show(message: message)
-    }
-}
-
-extension SearchView: UISearchBarDelegate {
-    
-    // MARK: - Search bar delegate -
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        viewModel.doSearchMovies(with: searchBar.text)
-        searchBar.text = nil
     }
 }

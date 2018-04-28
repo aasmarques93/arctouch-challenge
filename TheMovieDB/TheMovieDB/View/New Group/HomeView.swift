@@ -83,7 +83,11 @@ extension HomeView: SearchHeaderViewDelegate {
     // MARK: - Search bar delegate -
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        viewModel.doSearchMovies(with: searchBar.text)
+        if let text = searchBar.text, !text.isEmptyOrWhitespace {
+            let viewController = instantiate(viewController: SearchResultView.self, from: .search)
+            viewController.viewModel = viewModel.searchResultViewModel(with: searchBar.text)
+            navigationController?.pushViewController(viewController, animated: true)
+        }
         searchBar.text = nil
     }
 }

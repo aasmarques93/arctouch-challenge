@@ -226,12 +226,6 @@ class HomeViewModel: ViewModel {
         }
     }
     
-    func doSearchMovies(with text: String?) {
-        SearchViewModel.shared.doSearchMovies(with: text) { (object) in
-            self.delegate?.didFinishSearch()
-        }
-    }
-    
     //MARK: Detail view model
     
     func movieDetailViewModel(at section: Int, row: Int) -> MovieDetailViewModel? {
@@ -239,5 +233,9 @@ class HomeViewModel: ViewModel {
             return MovieDetailViewModel(movie)
         }
         return nil
+    }
+    
+    func searchResultViewModel(with text: String?) -> SearchResultViewModel? {
+        return SearchResultViewModel(searchText: text)
     }
 }
