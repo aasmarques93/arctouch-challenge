@@ -9,13 +9,18 @@
 import UIKit
 
 class PopularPeopleView: UIViewController {
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var collectionView: CollectionView!
+    
+    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.popularPeople.rawValue,
+                                                              placeholder: Messages.searchPerson.rawValue)
     
     let viewModel = PopularPeopleViewModel.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchHeaderView.delegate = self
+        headerView.addSubview(searchHeaderView)
         collectionView.keyboardDismissMode = .onDrag
     }
     
@@ -27,16 +32,19 @@ class PopularPeopleView: UIViewController {
     }
 }
 
-extension PopularPeopleView: UISearchBarDelegate {
+extension PopularPeopleView: SearchHeaderViewDelegate {
+    
     // MARK: - Search bar delegate -
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
         viewModel.doSearchPerson(with: searchBar.text)
     }
 }
 
 extension PopularPeopleView: CollectionViewDelegate {
+    
+    // MARK: - Collection view delegate -
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -64,6 +72,9 @@ extension PopularPeopleView: CollectionViewDelegate {
 }
 
 extension PopularPeopleView: PopularPeopleViewModelDelegate {
+    
+    // MARK: - Popular people view model delegate -
+    
     func reloadData() {
         collectionView.reloadData()
     }

@@ -16,7 +16,7 @@ struct Constants {
 }
 
 enum Titles: String {
-    /* COMMON TITLES */
+    // Common
     case home = "Home"
     case error = "Error"
     case delete = "Delete"
@@ -26,10 +26,16 @@ enum Titles: String {
     case attention = "Attention"
     case success = "Success"
     
-    /* Button Common Titles */
+    // Button Common Titles
     case done = "OK"
     case add = "Add"
     case clear = "Clear"
     case cancel = "Cancel"
     case select = "Select"
+    
+    // Titles
+    case movies = "Movies"
+    case tvShows = "TV Shows"
+    case popularPeople = "Popular people"
+    case search = "Search"
 }

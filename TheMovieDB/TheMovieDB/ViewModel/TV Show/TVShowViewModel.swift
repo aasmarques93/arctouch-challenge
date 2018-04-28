@@ -22,13 +22,15 @@ class TVShowViewModel: ViewModel {
     // MARK: Service Model
     let serviceModel = TVShowServiceModel()
     
-    // MARK: Popular
-    private var popularList = [Movie]()
-    var numberOfPopularList: Int { return popularList.count }
-    private var currentPage: Int = 1
-    
     // MARK: Variables
     private var isDataLoading = false
+    private var currentPage: Int = 1
+    private var searchText: String?
+    
+    // MARK: Objects
+    private var popularList = [TVShow]()
+    private var searchPopularList = [TVShow]() { didSet { delegate?.reloadData() } }
+    var numberOfPopularList: Int { return searchPopularList.count }
     
     // MARK: - Service requests -
     
@@ -37,37 +39,56 @@ class TVShowViewModel: ViewModel {
     }
     
     private func getPopular() {
-        isDataLoading = true
+        if let searchText = searchText, !searchText.isEmptyOrWhitespace { return }
         
-        loadingView.startInWindow()
+        isDataLoading = true
         
         let parameters = ["page": currentPage]
         serviceModel.getPopular(urlParameters: parameters) { (object) in
-            self.loadingView.stop()
-            
-            if let object = object as? MoviesList, let results = object.results {
+            if let object = object as? SearchTV, let results = object.results {
                 self.popularList.append(contentsOf: results)
             }
             
-            self.delegate?.reloadData()
             self.isDataLoading = false
+            self.searchPopularList = self.popularList
         }
     }
     
     func doServicePaginationIfNeeded(at indexPath: IndexPath) {
-        if indexPath.row == popularList.count-2 && !isDataLoading {
+        if indexPath.row == searchPopularList.count-2 && !isDataLoading {
             currentPage += 1
             loadData()
         }
     }
     
+    func doSearchTVShow(with text: String?) {
+        searchText = text
+        currentPage = 1
+        
+        if let value = searchText, !value.isEmptyOrWhitespace {
+            let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
+            
+            loadingView.startInWindow()
+            serviceModel.doSearchTVShow(urlParameters: parameters) { (object) in
+                self.loadingView.stop()
+                if let object = object as? SearchTV, let results = object.results {
+                    self.searchPopularList = results
+                }
+            }
+            
+            return
+        }
+        
+        getPopular()
+    }
+    
     //MARK: View model
     
     func tvShowCellViewModel(at indexPath: IndexPath) -> TVShowCellViewModel? {
-        return TVShowCellViewModel(popularList[indexPath.row])
+        return TVShowCellViewModel(searchPopularList[indexPath.row])
     }
     
     func tvShowDetailViewModel(at indexPath: IndexPath) -> TVShowDetailViewModel? {
-        return TVShowDetailViewModel(popularList[indexPath.row].id)
+        return TVShowDetailViewModel(searchPopularList[indexPath.row].id)
     }
 }

@@ -10,8 +10,7 @@ import UIKit
 
 //Screen Related Values
 var SCREEN_WIDTH: CGFloat {
-    if let window = AppDelegate.shared.window { return window.frame.width }
-    return 375
+    return UIScreen.main.bounds.width
         
 }
 var SCREEN_HEIGHT: CGFloat {

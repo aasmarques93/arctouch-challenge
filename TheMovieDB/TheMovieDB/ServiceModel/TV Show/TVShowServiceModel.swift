@@ -8,7 +8,13 @@
 
 class TVShowServiceModel: ServiceModel {
     func getPopular(urlParameters: [String:Any]? = nil, handler: @escaping HandlerObject) {
-        request(MoviesList.self, requestUrl: .tvPopular, urlParameters: urlParameters, handlerObject: { (object) in
+        request(SearchTV.self, requestUrl: .tvPopular, urlParameters: urlParameters, handlerObject: { (object) in
+            handler(object)
+        })
+    }
+    
+    func doSearchTVShow(urlParameters: [String:Any], handler: @escaping HandlerObject) {
+        request(SearchTV.self, requestUrl: .searchTV, urlParameters: urlParameters, handlerObject: { (object) in
             handler(object)
         })
     }

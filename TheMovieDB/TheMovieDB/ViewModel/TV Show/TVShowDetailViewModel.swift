@@ -39,7 +39,7 @@ class TVShowDetailViewModel: ViewModel {
             delegate?.reloadData()
             
             name.value = valueDescription(tvShowDetail?.originalName)
-            date.value = valueDescription(tvShowDetail?.lastAirDate)
+            date.value = "Last air date: \(valueDescription(tvShowDetail?.lastAirDate))"
             overview.value = valueDescription(tvShowDetail?.overview)
             average.value = valueDescription(tvShowDetail?.voteAverage)
             genres.value = setupGenres()

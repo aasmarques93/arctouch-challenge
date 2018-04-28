@@ -9,17 +9,28 @@
 import UIKit
 
 class TVShowView: UITableViewController {
+    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.tvShows.rawValue, placeholder: Messages.searchTVShow.rawValue)
+    
     let viewModel = TVShowViewModel.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        searchHeaderView.delegate = self
+        tableView.keyboardDismissMode = .onDrag
         viewModel.delegate = self
         viewModel.loadData()
     }
 
     // MARK: - Table view data source
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return searchHeaderView.frame.height
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return searchHeaderView
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -44,6 +55,15 @@ class TVShowView: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         viewModel.doServicePaginationIfNeeded(at: indexPath)
+    }
+}
+
+extension TVShowView: SearchHeaderViewDelegate {
+    
+    // MARK: - Search bar delegate -
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.doSearchTVShow(with: searchBar.text)
     }
 }
 

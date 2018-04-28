@@ -20,39 +20,9 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95b-De-u8F">
                                 <rect key="frame" x="0.0" y="20" width="375" height="96"/>
-                                <subviews>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" text="" placeholder="Search a person" translatesAutoresizingMaskIntoConstraints="NO" id="rnI-CR-a3E">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
-                                        <color key="barTintColor" red="0.031372549020000001" green="0.10980392160000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                                <color key="value" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="delegate" destination="ndb-aF-m84" id="qxu-Ea-gBs"/>
-                                        </connections>
-                                    </searchBar>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular People" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWn-jb-Dg0">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="iAa-2I-emL"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="MWn-jb-Dg0" secondAttribute="trailing" id="LNk-cp-FEc"/>
-                                    <constraint firstAttribute="trailing" secondItem="rnI-CR-a3E" secondAttribute="trailing" id="Qfu-p5-nIl"/>
-                                    <constraint firstItem="rnI-CR-a3E" firstAttribute="leading" secondItem="95b-De-u8F" secondAttribute="leading" id="Wc0-ne-OOg"/>
-                                    <constraint firstItem="MWn-jb-Dg0" firstAttribute="leading" secondItem="95b-De-u8F" secondAttribute="leading" id="gMw-x1-mgG"/>
-                                    <constraint firstItem="MWn-jb-Dg0" firstAttribute="top" secondItem="rnI-CR-a3E" secondAttribute="bottom" id="k79-Xf-x7L"/>
-                                    <constraint firstAttribute="bottom" secondItem="MWn-jb-Dg0" secondAttribute="bottom" id="mqT-FR-YM2"/>
-                                    <constraint firstItem="rnI-CR-a3E" firstAttribute="top" secondItem="95b-De-u8F" secondAttribute="top" id="xau-jx-wHd"/>
+                                    <constraint firstAttribute="height" constant="96" id="FRZ-ed-ri7"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XQM-Yl-2qJ" customClass="CollectionView" customModule="TheMovieDB" customModuleProvider="target">
@@ -186,7 +156,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="XQM-Yl-2qJ" id="Z8N-Yr-Ayb"/>
-                        <outlet property="searchBar" destination="rnI-CR-a3E" id="qM7-FF-cC6"/>
+                        <outlet property="headerView" destination="95b-De-u8F" id="8pa-Pz-qKS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jL7-MX-BNq" userLabel="First Responder" sceneMemberID="firstResponder"/>

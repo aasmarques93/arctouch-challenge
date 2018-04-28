@@ -24,9 +24,10 @@ class PopularPeopleViewModel: ViewModel {
     
     // MARK: Variables
     private var isDataLoading = false
-    private var currentPage = 1
+    private var currentPage: Int = 1
     private var searchText: String?
     
+    // MARK: Objects
     private var popularPeopleList = [Person]()
     private var searchPersonList = [Person]() { didSet { delegate?.reloadData() } }
     var numberOfPopularPeople: Int { return searchPersonList.count }

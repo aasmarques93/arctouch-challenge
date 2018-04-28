@@ -32,6 +32,8 @@
 	<string>/search/person?query={query}&amp;page={page}&amp;</string>
 	<key>searchByGenre</key>
 	<string>/genre/{id}/movies?</string>
+	<key>searchTV</key>
+	<string>/search/tv?query={query}&amp;page={page}&amp;</string>
 	<key>genres</key>
 	<string>/genre/movie/list?</string>
 	<key>person</key>

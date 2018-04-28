@@ -14,23 +14,23 @@ class TVShowCellViewModel: ViewModel {
     var date = Observable<String?>(nil)
     var overview = Observable<String?>(nil)
     
-    var movie: Movie?
+    var tvShow: TVShow?
     
-    init(_ object: Movie) {
+    init(_ object: TVShow) {
         super.init()
-        self.movie = object
+        self.tvShow = object
     }
     
     func setupData() {
-        title.value = valueDescription(movie?.title)
-        date.value = valueDescription(movie?.firstAirDate)
-        overview.value = valueDescription(movie?.overview)
+        title.value = valueDescription(tvShow?.name)
+        date.value = "Since: \(valueDescription(tvShow?.firstAirDate))"
+        overview.value = valueDescription(tvShow?.overview)
         
         loadImageData()
     }
     
     private func loadImageData() {
-        ServiceModel().loadImage(path: movie?.posterPath ?? "", handlerData: { (data) in
+        ServiceModel().loadImage(path: tvShow?.posterPath ?? "", handlerData: { (data) in
             if let data = data as? Data { self.photo.value = UIImage(data: data) }
         })
     }
