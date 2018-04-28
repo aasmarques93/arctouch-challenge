@@ -135,18 +135,8 @@
                     <navigationItem key="navigationItem" title="Root View Controller" id="bYj-0A-A8a">
                         <barButtonItem key="backBarButtonItem" title=" " id="WIv-Hp-eRf"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="labelHeaderSection" destination="k15-QT-iJO" id="8ho-Lv-oRK"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGE-9e-zBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Title}}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k15-QT-iJO">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </objects>
             <point key="canvasLocation" x="882" y="337"/>
         </scene>

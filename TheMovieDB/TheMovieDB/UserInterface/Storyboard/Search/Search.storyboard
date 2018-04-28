@@ -54,7 +54,6 @@
                     <connections>
                         <outlet property="searchBar" destination="LNb-FN-cgq" id="a7i-E7-c6U"/>
                         <outlet property="viewHeader" destination="16n-PI-IsI" id="hxD-Uh-uDz"/>
-                        <segue destination="NbH-Zc-ccL" kind="show" identifier="SearchResultView" id="3HC-pk-ulj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HSQ-Nh-MQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -103,7 +102,7 @@
         <!--Search Result View-->
         <scene sceneID="pAM-2l-Sic">
             <objects>
-                <tableViewController id="NbH-Zc-ccL" customClass="SearchResultView" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SearchResultView" id="NbH-Zc-ccL" customClass="SearchResultView" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="240" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="tdf-6Z-842">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

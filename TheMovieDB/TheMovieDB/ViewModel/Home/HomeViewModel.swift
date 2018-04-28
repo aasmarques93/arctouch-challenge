@@ -10,6 +10,7 @@ import Bond
 
 protocol HomeViewModelDelegate: class {
     func reloadData(at index: Int)
+    func didFinishSearch()
     func showError(message: String?)
 }
 
@@ -75,7 +76,7 @@ class HomeViewModel: ViewModel {
     var numberOfPopularList: Int { return popularList.count }
     private var currentPopularListPage: Int = 1
     
-    // MARK: Variables
+    //MARK: Variables
     private var isDataLoading = false
     
     // MARK: - Service requests -
@@ -222,6 +223,12 @@ class HomeViewModel: ViewModel {
             if row == results.count-2 && !isDataLoading {
                 loadData(genre: Genre.genre(at: section))
             }
+        }
+    }
+    
+    func doSearchMovies(with text: String?) {
+        SearchViewModel.shared.doSearchMovies(with: text) { (object) in
+            self.delegate?.didFinishSearch()
         }
     }
     

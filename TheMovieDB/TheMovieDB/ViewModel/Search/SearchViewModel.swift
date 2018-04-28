@@ -24,16 +24,17 @@ class SearchViewModel: ViewModel {
     // MARK: Delegate
     weak var delegate: SearchViewModelDelegate?
     
-    //MARK: Genre
+    // MARK: Genre
     private var arrayGenres = [Genres]() { didSet { delegate?.reloadData() } }
     var numberOfGenres: Int { return arrayGenres.count }
     
     private var selectedGenre: Genres?
     
-    //MARK: Movie
+    // MARK: Movie
     private var arrayMovies = [Movie]() { didSet { delegate?.reloadMoviesList() } }
     var numberOfMovies: Int { return arrayMovies.count }
     
+    // MARK: Variables
     private var searchText: String?
     
     // MARK: - Service requests -
@@ -75,7 +76,7 @@ class SearchViewModel: ViewModel {
         }
     }
     
-    func doSearchMovies(with text: String?) {
+    func doSearchMovies(with text: String?, handlerObject: HandlerObject? = nil) {
         if let value = text {
             searchText = value
             
@@ -92,6 +93,7 @@ class SearchViewModel: ViewModel {
                     if let results = object.results {
                         self.selectedGenre = nil
                         self.arrayMovies = results
+                        if let handlerObject = handlerObject { handlerObject(object) }
                     }
                 }
             }

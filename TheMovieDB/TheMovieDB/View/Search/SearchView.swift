@@ -74,7 +74,8 @@ extension SearchView: SearchViewModelDelegate {
     }
     
     func reloadMoviesList() {
-        performSegue(withIdentifier: SearchResultView.identifier, sender: self)
+        let viewController = instantiate(viewController: SearchResultView.self, from: .search)
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func showError(message: String?) {

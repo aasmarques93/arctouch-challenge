@@ -10,7 +10,8 @@ import UIKit
 import Bond
 
 class HomeView: UITableViewController {
-    @IBOutlet weak var labelHeaderSection: UILabel!
+    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.movies.rawValue, placeholder: Messages.searchMovie.rawValue)
+    let viewHeaderHeight: CGFloat = 32
     
     let viewModel = HomeViewModel.shared
     
@@ -18,7 +19,8 @@ class HomeView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        searchHeaderView.delegate = self
+        tableView.keyboardDismissMode = .onDrag
         viewModel.delegate = self
         viewModel.loadData()
     }
@@ -34,15 +36,32 @@ class HomeView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return labelHeaderSection.frame.height
+        if section == 0 {
+            return searchHeaderView.frame.height + viewHeaderHeight
+        }
+        return viewHeaderHeight
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel(frame: labelHeaderSection.frame)
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: viewHeaderHeight))
         label.backgroundColor = HexColor.primary.color
         label.textColor = HexColor.text.color
-        label.font = labelHeaderSection.font
+        label.font = UIFont.boldSystemFont(ofSize: 17)
         label.text = viewModel.genreTitle(at: section)
+        
+        if section == 0 {
+            let view = UIView(frame: CGRect(x: 0, y: 0,
+                                            width: SCREEN_WIDTH,
+                                            height: searchHeaderView.frame.height + viewHeaderHeight))
+            
+            label.frame = CGRect(x: 0, y: searchHeaderView.frame.maxY, width: SCREEN_WIDTH, height: viewHeaderHeight)
+            
+            view.addSubview(searchHeaderView)
+            view.addSubview(label)
+            
+            return view
+        }
+        
         return label
     }
     
@@ -56,6 +75,16 @@ class HomeView: UITableViewController {
         cell.setupView(at: indexPath)
         cell.delegate = self
         return cell
+    }
+}
+
+extension HomeView: SearchHeaderViewDelegate {
+    
+    // MARK: - Search bar delegate -
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.doSearchMovies(with: searchBar.text)
+        searchBar.text = nil
     }
 }
 
@@ -80,5 +109,10 @@ extension HomeView: HomeViewModelDelegate {
     
     func showError(message: String?) {
         AlertComponent.show(message: message)
+    }
+    
+    func didFinishSearch() {
+        let viewController = instantiate(viewController: SearchResultView.self, from: .search)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

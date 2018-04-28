@@ -15,7 +15,7 @@ class PlayerView: XibView {
     
     override func awakeFromNib() {
         backgroundColor = HexColor.primary.color
-        labelVideo.textColor = UIColor.white
-        playerView.backgroundColor = UIColor.clear
+        labelVideo.textColor = HexColor.text.color
+        playerView.backgroundColor = HexColor.text.color
     }
 }
