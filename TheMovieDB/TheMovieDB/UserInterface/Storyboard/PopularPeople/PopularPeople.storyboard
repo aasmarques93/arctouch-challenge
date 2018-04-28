@@ -29,31 +29,31 @@
                                 <rect key="frame" x="0.0" y="116" width="375" height="551"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8TZ-IU-Itc">
-                                    <size key="itemSize" width="180" height="250"/>
+                                    <size key="itemSize" width="180" height="280"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PopularPersonViewCell" id="GKB-lo-sB2" customClass="PopularPersonViewCell" customModule="TheMovieDB" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="180" height="250"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="280"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="180" height="250"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="280"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egR-5I-pS4">
-                                                    <rect key="frame" x="2" y="2" width="176" height="246"/>
+                                                    <rect key="frame" x="2" y="2" width="176" height="276"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cbs-JF-e8n">
-                                                            <rect key="frame" x="0.0" y="0.0" width="176" height="246"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="176" height="276"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searching" translatesAutoresizingMaskIntoConstraints="NO" id="MoM-Gy-KhL">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="176" height="206"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="176" height="236"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </imageView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zfu-fD-lwz">
-                                                                    <rect key="frame" x="0.0" y="206" width="176" height="40"/>
+                                                                    <rect key="frame" x="0.0" y="236" width="176" height="40"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Name}}" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eO-gw-nlx">
                                                                             <rect key="frame" x="8" y="0.0" width="160" height="40"/>
@@ -92,7 +92,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ukl-uT-Jlk">
-                                                            <rect key="frame" x="70" y="105" width="37" height="37"/>
+                                                            <rect key="frame" x="70" y="120" width="37" height="37"/>
                                                         </activityIndicatorView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -114,7 +114,7 @@
                                             <constraint firstItem="egR-5I-pS4" firstAttribute="leading" secondItem="GKB-lo-sB2" secondAttribute="leading" constant="2" id="Mng-2M-LPR"/>
                                             <constraint firstItem="egR-5I-pS4" firstAttribute="top" secondItem="GKB-lo-sB2" secondAttribute="top" constant="2" id="j9U-6j-veH"/>
                                         </constraints>
-                                        <size key="customSize" width="180" height="250"/>
+                                        <size key="customSize" width="180" height="280"/>
                                         <connections>
                                             <outlet property="activityIndicator" destination="Ukl-uT-Jlk" id="Mzg-V4-W3a"/>
                                             <outlet property="imageViewPhoto" destination="MoM-Gy-KhL" id="u8H-PJ-76A"/>
@@ -128,7 +128,7 @@
                                         <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="itemHeight">
-                                        <real key="value" value="250"/>
+                                        <real key="value" value="280"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="itemWidth">
                                         <real key="value" value="180"/>
@@ -161,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jL7-MX-BNq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="876" y="1825"/>
+            <point key="canvasLocation" x="876" y="1824.737631184408"/>
         </scene>
     </scenes>
     <resources>
