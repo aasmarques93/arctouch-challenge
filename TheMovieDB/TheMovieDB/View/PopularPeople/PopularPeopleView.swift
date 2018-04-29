@@ -30,6 +30,13 @@ class PopularPeopleView: UIViewController {
         viewModel.delegate = self
         viewModel.loadData()
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        searchHeaderView.frame = CGRect(x: searchHeaderView.frame.minX,
+                                        y: searchHeaderView.frame.minY,
+                                        width: size.width,
+                                        height: searchHeaderView.frame.height)
+    }
 }
 
 extension PopularPeopleView: SearchHeaderViewDelegate {

@@ -54,7 +54,7 @@ class HomeView: UITableViewController {
                                             width: SCREEN_WIDTH,
                                             height: searchHeaderView.frame.height + viewHeaderHeight))
             
-            label.frame = CGRect(x: 0, y: searchHeaderView.frame.maxY, width: SCREEN_WIDTH, height: viewHeaderHeight)
+            label.frame = CGRect(x: 0, y: searchHeaderView.frame.maxY, width: view.frame.width, height: viewHeaderHeight)
             
             view.addSubview(searchHeaderView)
             view.addSubview(label)
@@ -75,6 +75,14 @@ class HomeView: UITableViewController {
         cell.setupView(at: indexPath)
         cell.delegate = self
         return cell
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        searchHeaderView.frame = CGRect(x: searchHeaderView.frame.minX,
+                                        y: searchHeaderView.frame.minY,
+                                        width: size.width,
+                                        height: searchHeaderView.frame.height)
+        tableView.reloadData()
     }
 }
 
