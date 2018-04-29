@@ -8,7 +8,14 @@
 
 import UIKit
 
+@objc protocol ViewModelDelegate: class {
+    @objc optional func reloadData()
+    @objc optional func showError(message: String?)
+}
+
+
 class ViewModel : NSObject {
+
     // MARK: - Constructors -
     
     override init() {
@@ -19,11 +26,19 @@ class ViewModel : NSObject {
         
     }
     
-    //Create an unwrapped string from any object
+    // Create an unwrapped string from any object
     func valueDescription(_ object : Any?) -> String {
         if let object = object {
             return "\(object)"
         }
         return ""
+    }
+    
+    // Show error if object has returno status message
+    func showError(with object: Model) -> Bool {
+        if let statusMessage = object.statusMessage, statusMessage != "" {
+            return true
+        }
+        return false
     }
 }

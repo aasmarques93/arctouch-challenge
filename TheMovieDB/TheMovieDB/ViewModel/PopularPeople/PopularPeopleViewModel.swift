@@ -6,10 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-protocol PopularPeopleViewModelDelegate: class {
-    func reloadData()
-}
-
 class PopularPeopleViewModel: ViewModel {
     // MARK: - Singleton -
     static let shared = PopularPeopleViewModel()
@@ -17,7 +13,7 @@ class PopularPeopleViewModel: ViewModel {
     // MARK: - Properties -
     
     // MARK: Delegate
-    weak var delegate: PopularPeopleViewModelDelegate?
+    weak var delegate: ViewModelDelegate?
     
     // MARK: Service Model
     let serviceModel = PopularPeopleServiceModel()
@@ -29,7 +25,7 @@ class PopularPeopleViewModel: ViewModel {
     
     // MARK: Objects
     private var popularPeopleList = [Person]()
-    private var searchPersonList = [Person]() { didSet { delegate?.reloadData() } }
+    private var searchPersonList = [Person]() { didSet { if let method = delegate?.reloadData { method() } } }
     var numberOfPopularPeople: Int { return searchPersonList.count }
     
     // MARK: - Service requests -

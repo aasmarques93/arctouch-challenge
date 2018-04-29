@@ -6,11 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-protocol SearchViewModelDelegate: class {
-    func reloadData()
-    func showError(message: String?)
-}
-
 class SearchViewModel: ViewModel {
     // MARK: - Singleton -
     static let shared = SearchViewModel()
@@ -21,7 +16,7 @@ class SearchViewModel: ViewModel {
     let serviceModel = SearchServiceModel()
     
     // MARK: Delegate
-    weak var delegate: SearchViewModelDelegate?
+    weak var delegate: ViewModelDelegate?
     
     // MARK: Genre
     
@@ -30,7 +25,7 @@ class SearchViewModel: ViewModel {
         case tvShows = 1
     }
     
-    private var arrayGenres = [Genres]() { didSet { delegate?.reloadData() } }
+    private var arrayGenres = [Genres]() { didSet { if let method = delegate?.reloadData { method() } } }
     var numberOfGenres: Int { return arrayGenres.count }
     
     private var searchText: String?
@@ -45,8 +40,8 @@ class SearchViewModel: ViewModel {
             serviceModel.getGenres(requestUrl: requestUrl) { (object) in
                 self.loadingView.stop()
                 if let object = object as? MoviesGenres {
-                    if let statusMessage = object.statusMessage, statusMessage != "" {
-                        self.delegate?.showError(message: statusMessage)
+                    if self.showError(with: object) {
+                        if let method = self.delegate?.showError { method(object.statusMessage) }
                         return
                     }
                     

@@ -8,10 +8,9 @@
 
 import Bond
 
-protocol HomeViewModelDelegate: class {
+protocol HomeViewModelDelegate: ViewModelDelegate {
     func reloadData(at index: Int)
     func didFinishSearch()
-    func showError(message: String?)
 }
 
 enum Genre: String {
@@ -47,7 +46,7 @@ class HomeViewModel: ViewModel {
     // MARK: - Properties -
     
     // MARK: Delegate
-    weak var delegate: HomeViewModelDelegate?
+    var delegate: HomeViewModelDelegate?
     
     // MARK: Service Model
     let serviceModel = HomeServiceModel()
@@ -132,7 +131,10 @@ class HomeViewModel: ViewModel {
             let parameters = ["page": currentPage]
             serviceModel.getMovies(urlParameters: parameters, requestUrl: requestUrl) { (object) in
                 if let object = object as? MoviesList {
-                    if self.showError(with: object) { return }
+                    if self.showError(with: object) {
+                        if let method = self.delegate?.showError { method(object.statusMessage) }
+                        return
+                    }
                     
                     if let results = object.results {
                         self.addMoviesToList(results, genre: genre)
@@ -152,14 +154,6 @@ class HomeViewModel: ViewModel {
             case .upcoming: upcomingMoviesList.append(contentsOf: results)
             case .nowPlaying: nowPlayingMoviesList.append(contentsOf: results)
         }
-    }
-    
-    private func showError(with object: Model) -> Bool {
-        if let statusMessage = object.statusMessage, statusMessage != "" {
-            self.delegate?.showError(message: statusMessage)
-            return true
-        }
-        return false
     }
     
     private func reloadData(at index: Int) {

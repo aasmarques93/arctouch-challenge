@@ -8,15 +8,11 @@
 
 import Bond
 
-protocol PersonViewModelDelegate: class {
-    func reloadData()
-}
-
 class PersonViewModel: ViewModel {
     // MARK: - Properties -
     
     // MARK: Delegate
-    weak var delegate: PersonViewModelDelegate?
+    weak var delegate: ViewModelDelegate?
     
     // MARK: Data Bindings
     
@@ -48,7 +44,8 @@ class PersonViewModel: ViewModel {
             alsoKnownAs.value = person?.alsoKnownAs?.first ?? emptyString
             
             loadImageData()
-            delegate?.reloadData()
+            
+            if let method = delegate?.reloadData { method() }
         }
     }
     
@@ -65,7 +62,7 @@ class PersonViewModel: ViewModel {
     }
     
     // MARK: Cast
-    private var castList = [Cast]() { didSet { delegate?.reloadData() } }
+    private var castList = [Cast]() { didSet { if let method = delegate?.reloadData { method() } } }
     var numberOfCastMovies: Int { return castList.count }
     
     // MARK: Service Model

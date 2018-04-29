@@ -51,7 +51,7 @@ class SearchResultView: UITableViewController {
     }
 }
 
-extension SearchResultView: SearchViewModelDelegate {
+extension SearchResultView: ViewModelDelegate {
     
     // MARK: - Search view model delegate -
     
@@ -59,11 +59,9 @@ extension SearchResultView: SearchViewModelDelegate {
         tableView.reloadData()
     }
     
-    func reloadMoviesList() {
-        tableView.reloadData()
-    }
-    
     func showError(message: String?) {
-        AlertComponent.show(message: message)
+        AlertComponent.show(message: message, mainAction: {
+            self.navigationController?.popViewController(animated: true)
+        })
     }
 }

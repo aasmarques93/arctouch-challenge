@@ -8,8 +8,7 @@
 
 import Bond
 
-protocol MovieDetailViewModelDelegate: class {
-    func reloadData()
+protocol MovieDetailViewModelDelegate: ViewModelDelegate {
     func reloadVideos()
     func reloadRecommendedMovies()
     func reloadSimilarMovies()
@@ -36,7 +35,7 @@ class MovieDetailViewModel: ViewModel {
     
     var movieDetail: MovieDetail? {
         didSet {
-            delegate?.reloadData()
+            if let method = delegate?.reloadData { method() }
             
             name.value = valueDescription(movieDetail?.originalTitle)
             date.value = valueDescription(movieDetail?.releaseDate)

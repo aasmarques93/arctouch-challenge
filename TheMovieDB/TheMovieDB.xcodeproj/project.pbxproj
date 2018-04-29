@@ -579,7 +579,6 @@
 				ED38340C20940DFC0079D48F /* TVShowViewModel.swift */,
 				ED3834122094111D0079D48F /* TVShowCellViewModel.swift */,
 				ED38341F20941CB70079D48F /* TVShowDetailViewModel.swift */,
-				ED38342820949AC70079D48F /* SeasonView.swift */,
 			);
 			path = "TV Show";
 			sourceTree = "<group>";
@@ -590,6 +589,7 @@
 				ED38340E20940E130079D48F /* TVShowView.swift */,
 				ED38341020940E340079D48F /* TVShowViewCell.swift */,
 				ED38341D20941C9D0079D48F /* TVShowDetailView.swift */,
+				ED38342820949AC70079D48F /* SeasonView.swift */,
 			);
 			path = "TV Show";
 			sourceTree = "<group>";

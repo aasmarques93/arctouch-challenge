@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol SearchResultViewModelDelegate: class {
-    func reloadData()
-}
-
 class SearchResultViewModel: ViewModel {
     // MARK: - Properties -
     
@@ -19,13 +15,13 @@ class SearchResultViewModel: ViewModel {
     let serviceModel = SearchServiceModel()
     
     // MARK: Delegate
-    weak var delegate: SearchViewModelDelegate?
+    weak var delegate: ViewModelDelegate?
     
     // MARK: Genre
     private var selectedGenre: Genres?
     
     // MARK: Movie
-    private var arrayMovies = [Movie]() { didSet { delegate?.reloadData() } }
+    private var arrayMovies = [Movie]() { didSet { if let method = delegate?.reloadData { method() } } }
     var numberOfMovies: Int { return arrayMovies.count }
     
     // MARK: Variables
@@ -59,8 +55,14 @@ class SearchResultViewModel: ViewModel {
                 self.loadingView.stop()
                 self.isDataLoading = false
                 
-                if let object = object as? SearchMoviesGenre, let results = object.results {
-                    self.arrayMovies.append(contentsOf: results)
+                if let object = object as? SearchMoviesGenre {
+                    if self.showError(with: object) {
+                        if let method = self.delegate?.showError { method(object.statusMessage) }
+                        return
+                    }
+                    if let results = object.results {
+                        self.arrayMovies.append(contentsOf: results)
+                    }
                 }
             }
         }

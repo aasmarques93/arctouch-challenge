@@ -8,8 +8,7 @@
 
 import Bond
 
-protocol TVShowDetailViewModelDelegate: class {
-    func reloadData()
+protocol TVShowDetailViewModelDelegate: ViewModelDelegate {
     func reloadVideos()
     func reloadSeasons()
     func reloadCast()
@@ -35,7 +34,7 @@ class TVShowDetailViewModel: ViewModel {
     
     private var tvShowDetail: TVShowDetail? {
         didSet {
-            delegate?.reloadData()
+            if let method = delegate?.reloadData { method() }
             
             name.value = valueDescription(tvShowDetail?.originalName)
             date.value = "Last air date: \(valueDescription(tvShowDetail?.lastAirDate))"

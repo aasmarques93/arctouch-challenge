@@ -6,10 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-protocol TVShowViewModelDelegate: class {
-    func reloadData()
-}
-
 class TVShowViewModel: ViewModel {
     // MARK: - Singleton -
     static let shared = TVShowViewModel()
@@ -17,7 +13,7 @@ class TVShowViewModel: ViewModel {
     // MARK: - Properties -
     
     // MARK: Delegate
-    weak var delegate: TVShowViewModelDelegate?
+    weak var delegate: ViewModelDelegate?
     
     // MARK: Service Model
     let serviceModel = TVShowServiceModel()
@@ -29,7 +25,7 @@ class TVShowViewModel: ViewModel {
     
     // MARK: Objects
     private var popularList = [TVShow]()
-    private var searchPopularList = [TVShow]() { didSet { delegate?.reloadData() } }
+    private var searchPopularList = [TVShow]() { didSet { if let method = delegate?.reloadData { method() } } }
     var numberOfPopularList: Int { return searchPopularList.count }
     
     // MARK: - Service requests -

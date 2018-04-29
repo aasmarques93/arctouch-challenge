@@ -164,7 +164,10 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
         let view = XibView.instanceFromNib(PlayerView.self)
         
         view.labelVideo.text = viewModel?.videoTitle(at: index)
-        if let videoId = viewModel?.videoYouTubeId(at: index) { view.playerView.loadVideoID(videoId) }
+        
+        DispatchQueue.main.async {
+            if let videoId = self.viewModel?.videoYouTubeId(at: index) { view.playerView.loadVideoID(videoId) }
+        }
         
         return view
     }

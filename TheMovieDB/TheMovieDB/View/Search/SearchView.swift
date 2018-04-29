@@ -77,7 +77,7 @@ class SearchView: UITableViewController {
     }
 }
 
-extension SearchView: SearchViewModelDelegate {
+extension SearchView: ViewModelDelegate {
     
     // MARK: - Search view model delegate -
     

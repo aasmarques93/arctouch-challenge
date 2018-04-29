@@ -98,7 +98,7 @@ extension PersonView: iCarouselDelegate, iCarouselDataSource {
     }
 }
 
-extension PersonView: PersonViewModelDelegate {
+extension PersonView: ViewModelDelegate {
     func reloadData() {
         title = viewModel?.personName
         

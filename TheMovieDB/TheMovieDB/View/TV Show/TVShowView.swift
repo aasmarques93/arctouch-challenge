@@ -67,7 +67,7 @@ extension TVShowView: SearchHeaderViewDelegate {
     }
 }
 
-extension TVShowView: TVShowViewModelDelegate {
+extension TVShowView: ViewModelDelegate {
     func reloadData() {
         tableView.reloadData()
     }

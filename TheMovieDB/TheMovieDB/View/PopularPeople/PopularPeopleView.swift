@@ -71,7 +71,7 @@ extension PopularPeopleView: CollectionViewDelegate {
     }
 }
 
-extension PopularPeopleView: PopularPeopleViewModelDelegate {
+extension PopularPeopleView: ViewModelDelegate {
     
     // MARK: - Popular people view model delegate -
     
