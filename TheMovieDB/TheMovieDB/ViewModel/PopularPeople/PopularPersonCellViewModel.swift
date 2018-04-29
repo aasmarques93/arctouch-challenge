@@ -11,7 +11,7 @@ import Bond
 class PopularPersonCellViewModel: ViewModel {
     var person: Person?
     
-    var photo = Observable<UIImage>(#imageLiteral(resourceName: "searching"))
+    var photo = Observable<UIImage>(#imageLiteral(resourceName: "default-image"))
     var name = Observable<String?>(nil)
     var isActivityIndicatorHidden = Observable<Bool>(false)
     

@@ -9,6 +9,9 @@
 import UIKit
 
 class SearchResultView: UITableViewController {
+    @IBOutlet var viewHeader: UIView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     var viewModel: SearchResultViewModel?
     
     // MARK: - Life cycle -
@@ -21,14 +24,31 @@ class SearchResultView: UITableViewController {
         viewModel?.loadData()
     }
     
+    @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
+        viewModel?.doFilter(index: sender.selectedSegmentIndex)
+    }
+    
     // MARK: - Table view data source -
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if let isMultipleSearch = viewModel?.isMultipleSearch, isMultipleSearch { return viewHeader.frame.height }
+        return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let isMultipleSearch = viewModel?.isMultipleSearch, isMultipleSearch {
+            viewHeader.backgroundColor = HexColor.primary.color
+            return viewHeader
+        }
+        return nil
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.numberOfMovies ?? 0
+        return viewModel?.numberOfSearchResults ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

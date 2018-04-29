@@ -19,9 +19,13 @@ class SearchServiceModel: ServiceModel {
         })
     }
     
-    func doSearchMovies(urlParameters: [String:Any], handler: @escaping HandlerObject) {
-        request(SearchMovie.self, requestUrl: .searchMovie, urlParameters: urlParameters, handlerObject: { (object) in
-            handler(object)
+    func doSearch(urlParameters: [String:Any], isMultipleSearch: Bool, handler: @escaping HandlerObject) {
+        request(MultiSearch.self,
+                requestUrl: isMultipleSearch ? .multiSearch : .searchMovie,
+                urlParameters: urlParameters,
+                handlerObject: { (object) in
+            
+                    handler(object)
         })
     }
 }

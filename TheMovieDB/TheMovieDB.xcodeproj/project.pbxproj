@@ -80,6 +80,8 @@
 		ED3834402094B6C60079D48F /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED38343F2094B6C60079D48F /* SearchHeaderView.swift */; };
 		ED3834422094F7600079D48F /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3834412094F7600079D48F /* SearchResultViewModel.swift */; };
 		ED383445209502770079D48F /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED383444209502770079D48F /* CircularProgressView.swift */; };
+		ED3834482095E3970079D48F /* MultiSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3834462095E3960079D48F /* MultiSearch.swift */; };
+		ED3834492095E3970079D48F /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3834472095E3960079D48F /* SearchResult.swift */; };
 		ED65BEB320909EFA0091D93B /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = ED65BEB120909EF90091D93B /* iCarousel.m */; };
 		ED65BEBA2090A55D0091D93B /* VideosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED65BEB82090A55C0091D93B /* VideosList.swift */; };
 		ED65BEBB2090A55D0091D93B /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED65BEB92090A55C0091D93B /* Video.swift */; };
@@ -237,6 +239,8 @@
 		ED38343F2094B6C60079D48F /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		ED3834412094F7600079D48F /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		ED383444209502770079D48F /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		ED3834462095E3960079D48F /* MultiSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSearch.swift; sourceTree = "<group>"; };
+		ED3834472095E3960079D48F /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		ED65BEAC20909E690091D93B /* TheMovieDB-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TheMovieDB-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED65BEB120909EF90091D93B /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		ED65BEB220909EFA0091D93B /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
@@ -465,6 +469,8 @@
 				ED16D87120599CC7002A0B2C /* SearchMovie.swift */,
 				ED16D87420599D10002A0B2C /* SearchPerson.swift */,
 				ED38343A2094B3F30079D48F /* SearchTV.swift */,
+				ED3834462095E3960079D48F /* MultiSearch.swift */,
+				ED3834472095E3960079D48F /* SearchResult.swift */,
 				ED16D87920599DAB002A0B2C /* MoviesGenres.swift */,
 				ED16D87D20599E29002A0B2C /* SearchMoviesGenre.swift */,
 				ED3833E7209339870079D48F /* Person.swift */,
@@ -1179,6 +1185,7 @@
 				ED16D87220599CC7002A0B2C /* SearchMovie.swift in Sources */,
 				ED38342920949AC70079D48F /* SeasonView.swift in Sources */,
 				ED16D86B20597D99002A0B2C /* ProductionCountries.swift in Sources */,
+				ED3834492095E3970079D48F /* SearchResult.swift in Sources */,
 				ED16D87B20599DAC002A0B2C /* MoviesGenres.swift in Sources */,
 				EDC6C02D20585A8C00D843EC /* Session.swift in Sources */,
 				ED3833FB20938CB00079D48F /* PopularPeopleServiceModel.swift in Sources */,
@@ -1197,6 +1204,7 @@
 				EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */,
 				ED38341E20941C9D0079D48F /* TVShowDetailView.swift in Sources */,
 				ED3834062093914C0079D48F /* PopularPersonCellViewModel.swift in Sources */,
+				ED3834482095E3970079D48F /* MultiSearch.swift in Sources */,
 				ED38341920941C4E0079D48F /* TVShowDetail.swift in Sources */,
 				ED65BEF4209238BB0091D93B /* Crew.swift in Sources */,
 				ED38341A20941C4E0079D48F /* Networks.swift in Sources */,

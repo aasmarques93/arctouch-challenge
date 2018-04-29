@@ -52,7 +52,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4cT-3J-XRE">
                                                                 <rect key="frame" x="2" y="2" width="176" height="206"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searching" translatesAutoresizingMaskIntoConstraints="NO" id="evg-Qe-rqA">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-image" translatesAutoresizingMaskIntoConstraints="NO" id="evg-Qe-rqA">
                                                                         <rect key="frame" x="0.0" y="0.0" width="176" height="206"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
@@ -525,7 +525,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="searching" width="565" height="837"/>
+        <image name="default-image" width="565" height="837"/>
         <image name="star" width="24" height="24"/>
     </resources>
 </document>

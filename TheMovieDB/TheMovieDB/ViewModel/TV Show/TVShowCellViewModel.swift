@@ -9,7 +9,7 @@
 import Bond
 
 class TVShowCellViewModel: ViewModel {
-    var photo = Observable<UIImage?>(#imageLiteral(resourceName: "searching"))
+    var photo = Observable<UIImage?>(#imageLiteral(resourceName: "default-image"))
     var title = Observable<String?>(nil)
     var date = Observable<String?>(nil)
     var overview = Observable<String?>(nil)

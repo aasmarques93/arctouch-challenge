@@ -19,8 +19,10 @@ class SearchResultViewCell: UITableViewCell {
     func setupView(at indexPath: IndexPath) {
         if let value = viewModel?.movieName(at: indexPath) { labelName.text = value }
         
+        imageViewMovie.image = #imageLiteral(resourceName: "default-image")
+        activityIndicator.startAnimating()
         viewModel?.posterImageData(at: indexPath) { (data) in
-            self.activityIndicator.isHidden =  true
+            self.activityIndicator.isHidden = true
             if let data = data as? Data, let image = UIImage(data: data) {
                 self.imageViewMovie.image = image
             }

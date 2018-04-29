@@ -53,13 +53,28 @@ class SearchViewModel: ViewModel {
         }
     }
     
+    func doSearch(with text: String?) {
+        
+    }
+    
     // MARK: - View Model -
     
     func titleDescription(at indexPath: IndexPath) -> String? {
         return arrayGenres[indexPath.row].name
     }
     
-    func searchResultViewModel(at indexPath: IndexPath) -> SearchResultViewModel? {
+    private func searchResultViewModel(at indexPath: IndexPath) -> SearchResultViewModel? {
         return SearchResultViewModel(selectedGenre: arrayGenres[indexPath.row])
+    }
+    
+    private func searchResultViewModel(with text: String?) -> SearchResultViewModel? {
+        return SearchResultViewModel(searchText: text, isMultipleSearch: true)
+    }
+    
+    func searchResultViewModel(at indexPath: IndexPath?, text: String?) -> SearchResultViewModel? {
+        if let indexPath = indexPath {
+            return searchResultViewModel(at: indexPath)
+        }
+        return searchResultViewModel(with: text)
     }
 }

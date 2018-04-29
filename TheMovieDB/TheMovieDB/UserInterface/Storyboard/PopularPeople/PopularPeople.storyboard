@@ -48,7 +48,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cbs-JF-e8n">
                                                             <rect key="frame" x="0.0" y="0.0" width="176" height="276"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searching" translatesAutoresizingMaskIntoConstraints="NO" id="MoM-Gy-KhL">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-image" translatesAutoresizingMaskIntoConstraints="NO" id="MoM-Gy-KhL">
                                                                     <rect key="frame" x="0.0" y="0.0" width="176" height="236"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </imageView>
@@ -165,6 +165,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="searching" width="565" height="837"/>
+        <image name="default-image" width="565" height="837"/>
     </resources>
 </document>

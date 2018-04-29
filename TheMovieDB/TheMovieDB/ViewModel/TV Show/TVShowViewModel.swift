@@ -22,6 +22,7 @@ class TVShowViewModel: ViewModel {
     private var isDataLoading = false
     private var currentPage: Int = 1
     private var searchText: String?
+    private var totalPages: Int?
     
     // MARK: Objects
     private var popularList = [TVShow]()
@@ -42,6 +43,7 @@ class TVShowViewModel: ViewModel {
         let parameters = ["page": currentPage]
         serviceModel.getPopular(urlParameters: parameters) { (object) in
             if let object = object as? SearchTV, let results = object.results {
+                self.totalPages = object.totalPages
                 self.popularList.append(contentsOf: results)
             }
             
@@ -53,7 +55,10 @@ class TVShowViewModel: ViewModel {
     func doServicePaginationIfNeeded(at indexPath: IndexPath) {
         if indexPath.row == searchPopularList.count-2 && !isDataLoading {
             currentPage += 1
-            getPopular()
+            
+            if let totalPages = totalPages, currentPage < totalPages {
+                getPopular()
+            }
         }
     }
     

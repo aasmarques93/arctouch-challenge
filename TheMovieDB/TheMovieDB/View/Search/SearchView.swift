@@ -12,6 +12,7 @@ private let reuseIdentifier = "GenreCell"
 
 class SearchView: UITableViewController {
     @IBOutlet var viewHeader: UIView!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     let viewModel = SearchViewModel.shared
@@ -20,6 +21,7 @@ class SearchView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.keyboardDismissMode = .onDrag
         viewHeader.backgroundColor = HexColor.primary.color
     }
     
@@ -70,10 +72,20 @@ class SearchView: UITableViewController {
         pushSearchResultView(at: indexPath)
     }
     
-    func pushSearchResultView(at indexPath: IndexPath) {
+    func pushSearchResultView(at indexPath: IndexPath? = nil, text: String? = nil) {
         let viewController = instantiate(viewController: SearchResultView.self, from: .search)
-        viewController.viewModel = viewModel.searchResultViewModel(at: indexPath)
+        viewController.viewModel = viewModel.searchResultViewModel(at: indexPath, text: text)
         navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension SearchView: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchBar.text, !text.isEmptyOrWhitespace {
+            pushSearchResultView(text: text)
+        }
+        view.endEditing(true)
+        searchBar.text = nil
     }
 }
 

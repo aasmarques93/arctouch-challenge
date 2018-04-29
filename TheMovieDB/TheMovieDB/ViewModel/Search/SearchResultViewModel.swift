@@ -8,6 +8,20 @@
 
 import UIKit
 
+enum SearchResultFilterType: Int {
+    case movies
+    case tvShow
+    case person
+    
+    var description: String {
+        switch self {
+            case .movies: return "movie"
+            case .tvShow: return "tv"
+            case .person: return "person"
+        }
+    }
+}
+
 class SearchResultViewModel: ViewModel {
     // MARK: - Properties -
     
@@ -20,39 +34,42 @@ class SearchResultViewModel: ViewModel {
     // MARK: Genre
     private var selectedGenre: Genres?
     
-    // MARK: Movie
-    private var arrayMovies = [Movie]() { didSet { if let method = delegate?.reloadData { method() } } }
-    var numberOfMovies: Int { return arrayMovies.count }
+    // MARK: Search
+    private var arraySearch = [SearchResult]()
+    private var arraySearchFiltered = [SearchResult]() { didSet { if let method = delegate?.reloadData { method() } } }
+    var numberOfSearchResults: Int { return arraySearchFiltered.count }
     
     // MARK: Variables
     private var isDataLoading = false
     private var searchText: String?
     private var currentPage: Int = 1
+    private var totalPages: Int?
+    private var selectedType: SearchResultFilterType = .movies
+    var isMultipleSearch: Bool = false
     
     // MARK: - Life cycle -
     
-    init(selectedGenre: Genres? = nil, searchText: String? = nil) {
+    init(selectedGenre: Genres? = nil, searchText: String? = nil, isMultipleSearch: Bool = false) {
         super.init()
         self.selectedGenre = selectedGenre
         self.searchText = searchText
+        self.isMultipleSearch = isMultipleSearch
     }
     
     // MARK: - Service requests -
     
     func loadData() {
         if let searchText = searchText, !searchText.isEmptyOrWhitespace {
-            doSearchMovies()
+            doSearch()
             return
         }
         
         if let genre = selectedGenre, let value = genre.id {
             let parameters = ["id": value]
             
-            loadingView.startInWindow()
             isDataLoading = true
             
             serviceModel.getMoviesFromGenre(urlParameters: parameters) { (object) in
-                self.loadingView.stop()
                 self.isDataLoading = false
                 
                 if let object = object as? SearchMoviesGenre {
@@ -60,8 +77,13 @@ class SearchResultViewModel: ViewModel {
                         if let method = self.delegate?.showError { method(object.statusMessage) }
                         return
                     }
+                    
                     if let results = object.results {
-                        self.arrayMovies.append(contentsOf: results)
+                        self.arraySearch = [SearchResult]()
+                        for result in results {
+                            self.arraySearch.append(SearchResult(object: result.dictionaryRepresentation()))
+                            self.arraySearchFiltered = self.arraySearch
+                        }
                     }
                 }
             }
@@ -69,26 +91,38 @@ class SearchResultViewModel: ViewModel {
     }
     
     func doServicePaginationIfNeeded(at indexPath: IndexPath) {
-        if indexPath.row == arrayMovies.count-2 && !isDataLoading {
+        if indexPath.row == arraySearchFiltered.count-2 && !isDataLoading {
             currentPage += 1
-            loadData()
+            
+            if let totalPages = totalPages, currentPage < totalPages {
+                loadData()
+            }
         }
     }
     
-    func doSearchMovies() {
+    private func doSearch() {
         if let value = searchText {
-            currentPage = 1
-            arrayMovies = [Movie]()
-            
             let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
             
-            loadingView.startInWindow()
-            serviceModel.doSearchMovies(urlParameters: parameters) { (object) in
-                self.loadingView.stop()
-                if let object = object as? SearchMovie, let results = object.results {
-                    self.arrayMovies = results
+            serviceModel.doSearch(urlParameters: parameters, isMultipleSearch: isMultipleSearch) { (object) in
+                if let object = object as? MultiSearch, let results = object.results {
+                    self.totalPages = object.totalPages
+                    self.arraySearch.append(contentsOf: results)
+                    
+                    if self.isMultipleSearch {
+                        self.doFilter(index: self.selectedType.rawValue)
+                    } else {
+                        self.arraySearchFiltered = self.arraySearch
+                    }
                 }
             }
+        }
+    }
+    
+    func doFilter(index: Int) {
+        if let type = SearchResultFilterType(rawValue: index) {
+            selectedType = type
+            arraySearchFiltered = arraySearch.filter { return $0.mediaType == type.description }
         }
     }
     
@@ -99,22 +133,35 @@ class SearchResultViewModel: ViewModel {
     }
     
     func posterImageData(at indexPath: IndexPath, handlerData: @escaping HandlerObject) {
-        let movie = arrayMovies[indexPath.row]
+        let result = arraySearchFiltered[indexPath.row]
         
-        if let data = movie.imageData {
+        if let data = result.imageData {
             handlerData(data)
             return
         }
         
-        imageData(path: movie.posterPath) { (data) in
-            self.arrayMovies[indexPath.row].imageData = data as? Data
+        var path: String?
+        
+        if selectedType == .person {
+            path = result.profilePath
+        } else {
+            path = result.posterPath
+        }
+
+        if path == nil {
+            handlerData(nil)
+            return
+        }
+        
+        imageData(path: path) { (data) in
+            result.imageData = data as? Data
             handlerData(data)
         }
     }
     
     func backgroundImageData(at indexPath: IndexPath, handlerData: @escaping HandlerObject) {
-        let movie = arrayMovies[indexPath.row]
-        imageData(path: movie.backdropPath, handlerData: handlerData)
+        let result = arraySearchFiltered[indexPath.row]
+        imageData(path: result.backdropPath, handlerData: handlerData)
     }
     
     private func imageData(path: String?, handlerData: @escaping HandlerObject) {
@@ -122,11 +169,12 @@ class SearchResultViewModel: ViewModel {
     }
     
     func movieName(at indexPath: IndexPath) -> String? {
-        return arrayMovies[indexPath.row].originalTitle
+        let result = arraySearchFiltered[indexPath.row]
+        return result.name ?? result.originalTitle ?? result.originalName
     }
     
     func movieDetailViewModel(at indexPath: IndexPath) -> MovieDetailViewModel? {
-        let movie = arrayMovies[indexPath.row]
-        return MovieDetailViewModel(movie)
+        let result = arraySearchFiltered[indexPath.row]
+        return MovieDetailViewModel(Movie(object: result.dictionaryRepresentation()))
     }
 }
