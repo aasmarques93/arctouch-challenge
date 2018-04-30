@@ -74,7 +74,7 @@ class SeasonDetailViewModel: ViewModel {
     func heightForEpisodeOverview(at indexPath: IndexPath) -> CGFloat? {
         let episode = episodesList[indexPath.row]
         if let overview = episode.overview {
-            return overview.height
+            return overview.height + 32
         }
         return nil
     }
