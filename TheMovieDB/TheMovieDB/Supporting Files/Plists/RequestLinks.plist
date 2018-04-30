@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>exampleUsage</key>
+	<string>/searchName={searchName}&amp;number={number} =&gt; /searchName=test&amp;number=10</string>
+	<key>apiKey</key>
+	<string>1f54bd990f1cdfb230adb312546d765d</string>
+	<key>nowPlaying</key>
+	<string>/movie/now_playing?page={page}&amp;</string>
+	<key>upcoming</key>
+	<string>/movie/upcoming?page={page}&amp;</string>
+	<key>topRated</key>
+	<string>/movie/top_rated?page={page}&amp;</string>
+	<key>popular</key>
+	<string>/movie/popular?page={page}&amp;</string>
+	<key>movie</key>
+	<string>/movie/{idMovie}?</string>
+	<key>videos</key>
+	<string>/movie/{idMovie}/videos?</string>
+	<key>recommendations</key>
+	<string>/movie/{idMovie}/recommendations?page={page}&amp;</string>
+	<key>similar</key>
+	<string>/movie/{idMovie}/similar?page={page}&amp;</string>
+	<key>reviews</key>
+	<string>/movie/{idMovie}/reviews?page={page}&amp;</string>
+	<key>credits</key>
+	<string>/movie/{idMovie}/credits?</string>
+	<key>searchMovie</key>
+	<string>/search/movie?query={query}&amp;page={page}&amp;</string>
+	<key>searchPerson</key>
+	<string>/search/person?query={query}&amp;page={page}&amp;</string>
+	<key>searchByGenre</key>
+	<string>/genre/{id}/movies?</string>
+	<key>searchTV</key>
+	<string>/search/tv?query={query}&amp;page={page}&amp;</string>
+	<key>genres</key>
+	<string>/genre/movie/list?</string>
+	<key>genresTV</key>
+	<string>/genre/tv/list?</string>
+	<key>person</key>
+	<string>/person/{idPerson}?</string>
+	<key>personMovieCredits</key>
+	<string>/person/{idPerson}/movie_credits?</string>
+	<key>personExternalIds</key>
+	<string>/person/{idPerson}/external_ids?</string>
+	<key>popularPeople</key>
+	<string>/person/popular?page={page}&amp;</string>
+	<key>tvPopular</key>
+	<string>/tv/popular?page={page}&amp;</string>
+	<key>tvDetail</key>
+	<string>/tv/{id}?</string>
+	<key>tvVideos</key>
+	<string>/tv/{id}/videos?</string>
+	<key>tvCredits</key>
+	<string>/tv/{id}/credits?</string>
+	<key>multiSearch</key>
+	<string>/search/multi?query={query}&amp;page={page}&amp;</string>
+	<key>seasonDetail</key>
+	<string>/tv/{id}/season/{season}?</string>
+</dict>
+</plist>
