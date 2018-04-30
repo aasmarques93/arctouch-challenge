@@ -153,7 +153,7 @@ class SearchResultViewModel: ViewModel {
             return
         }
         
-        imageData(path: path) { (data) in
+        loadImageData(at: path) { (data) in
             result.imageData = data as? Data
             handlerData(data)
         }
@@ -161,11 +161,7 @@ class SearchResultViewModel: ViewModel {
     
     func backgroundImageData(at indexPath: IndexPath, handlerData: @escaping HandlerObject) {
         let result = arraySearchFiltered[indexPath.row]
-        imageData(path: result.backdropPath, handlerData: handlerData)
-    }
-    
-    private func imageData(path: String?, handlerData: @escaping HandlerObject) {
-        serviceModel.loadImage(path: path ?? "", handlerData: handlerData)
+        loadImageData(at: result.backdropPath, handlerData: handlerData)
     }
     
     func movieName(at indexPath: IndexPath) -> String? {

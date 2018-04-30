@@ -41,4 +41,11 @@ class ViewModel : NSObject {
         }
         return false
     }
+    
+    // Load image data at path
+    func loadImageData(at path: String?, handlerData: @escaping HandlerObject) {
+        ServiceModel().loadImage(path: path, handlerData: { (data) in
+            handlerData(data)
+        })
+    }
 }

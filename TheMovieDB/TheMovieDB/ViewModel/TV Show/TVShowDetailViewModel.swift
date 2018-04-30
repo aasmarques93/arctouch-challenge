@@ -124,12 +124,6 @@ class TVShowDetailViewModel: ViewModel {
         loadImageData(at: tvShowDetail?.backdropPath, handlerData: handlerData)
     }
     
-    private func loadImageData(at path: String?, handlerData: @escaping HandlerObject) {
-        serviceModel.loadImage(path: path, handlerData: { (data) in
-            handlerData(data)
-        })
-    }
-    
     // MARK: Videos
     
     func videoTitle(at index: Int) -> String? {
@@ -193,5 +187,9 @@ class TVShowDetailViewModel: ViewModel {
     
     func personViewModel(at index: Int) -> PersonViewModel? {
         return PersonViewModel(castList[index].id)
+    }
+    
+    func seasonDetailViewModel(at index: Int) -> SeasonDetailViewModel? {
+        return SeasonDetailViewModel(tvShowDetail, season: seasonsList[index])
     }
 }

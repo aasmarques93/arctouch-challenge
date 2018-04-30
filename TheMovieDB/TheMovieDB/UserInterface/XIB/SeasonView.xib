@@ -41,7 +41,7 @@
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="{{Overview}}" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="x3f-8x-nFI">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="{{Overview}}" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3f-8x-nFI">
                                     <rect key="frame" x="4" y="62" width="201.5" height="160"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

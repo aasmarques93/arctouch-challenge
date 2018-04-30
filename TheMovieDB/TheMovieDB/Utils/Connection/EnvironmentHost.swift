@@ -63,4 +63,5 @@ enum RequestUrl: String {
     case tvVideos
     case tvCredits
     case multiSearch
+    case seasonDetail
 }

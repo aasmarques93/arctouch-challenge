@@ -56,5 +56,7 @@
 	<string>/tv/{id}/credits?</string>
 	<key>multiSearch</key>
 	<string>/search/multi?query={query}&amp;page={page}&amp;</string>
+	<key>seasonDetail</key>
+	<string>/tv/{id}/season/{season}?</string>
 </dict>
 </plist>

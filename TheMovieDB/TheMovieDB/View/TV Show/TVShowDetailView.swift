@@ -48,6 +48,7 @@ class TVShowDetailView: UITableViewController {
         carouselVideos.type = .linear
         carouselVideos.bounces = false
         carouselSeasons.type = .linear
+        carouselSeasons.bounces = false
         carouselCast.type = .rotary
         
         stretchHeaderView.setupHeaderView(tableView: tableView)
@@ -141,7 +142,10 @@ extension TVShowDetailView: iCarouselDelegate, iCarouselDataSource {
         let view = XibView.instanceFromNib(PlayerView.self)
         
         view.labelVideo.text = viewModel?.videoTitle(at: index)
-        if let videoId = viewModel?.videoYouTubeId(at: index) { view.playerView.loadVideoID(videoId) }
+        
+        DispatchQueue.main.async {
+            if let videoId = self.viewModel?.videoYouTubeId(at: index) { view.playerView.loadVideoID(videoId) }
+        }
         
         return view
     }
@@ -184,6 +188,10 @@ extension TVShowDetailView: iCarouselDelegate, iCarouselDataSource {
         if carousel == carouselCast {
             let viewController = instantiate(viewController: PersonView.self, from: .generic)
             viewController.viewModel = viewModel?.personViewModel(at: index)
+            navigationController?.pushViewController(viewController, animated: true)
+        } else if carousel == carouselSeasons {
+            let viewController = instantiate(viewController: SeasonDetailView.self, from: .tvShow)
+            viewController.viewModel = viewModel?.seasonDetailViewModel(at: index)
             navigationController?.pushViewController(viewController, animated: true)
         }
     }

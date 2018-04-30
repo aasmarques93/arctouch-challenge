@@ -999,3 +999,9 @@ extension UISearchBar {
         }
     }
 }
+
+extension UITextView {
+    open override func draw(_ rect: CGRect) {
+        scrollRangeToVisible(NSMakeRange(0, 0))
+    }
+}
