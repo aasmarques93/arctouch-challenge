@@ -14,6 +14,7 @@ class Cast: Model {
   private struct SerializationKeys {
     static let name = "name"
     static let castId = "cast_id"
+    static let originalTitle = "original_title"
     static let character = "character"
     static let id = "id"
     static let gender = "gender"
@@ -27,6 +28,7 @@ class Cast: Model {
   // MARK: Properties
   public var name: String?
   public var castId: Int?
+  public var originalTitle: String?
   public var character: String?
   public var id: Int?
   public var gender: Int?
@@ -53,6 +55,7 @@ class Cast: Model {
   public required init(json: JSON) {
     name = json[SerializationKeys.name].string
     castId = json[SerializationKeys.castId].int
+    originalTitle = json[SerializationKeys.originalTitle].string
     character = json[SerializationKeys.character].string
     id = json[SerializationKeys.id].int
     gender = json[SerializationKeys.gender].int
@@ -71,6 +74,7 @@ class Cast: Model {
     var dictionary: [String: Any] = [:]
     if let value = name { dictionary[SerializationKeys.name] = value }
     if let value = castId { dictionary[SerializationKeys.castId] = value }
+    if let value = originalTitle { dictionary[SerializationKeys.originalTitle] = value }
     if let value = character { dictionary[SerializationKeys.character] = value }
     if let value = id { dictionary[SerializationKeys.id] = value }
     if let value = gender { dictionary[SerializationKeys.gender] = value }

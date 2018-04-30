@@ -96,6 +96,12 @@ extension PersonView: iCarouselDelegate, iCarouselDataSource {
         
         return view
     }
+    
+    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
+        let viewController = instantiate(viewController: MovieDetailView.self, from: .movie)
+        viewController.viewModel = viewModel?.movieDetailViewModel(at: index)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
 extension PersonView: ViewModelDelegate {

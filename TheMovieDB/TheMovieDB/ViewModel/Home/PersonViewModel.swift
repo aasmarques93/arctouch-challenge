@@ -135,4 +135,11 @@ class PersonViewModel: ViewModel {
                 return externalIds?.twitterId
         }
     }
+    
+    func movieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
+        let cast = castList[index]
+        let dictionary: [String:Any?] = ["id": cast.id, "original_title": cast.originalTitle]
+        let movie = Movie(object: dictionary)
+        return MovieDetailViewModel(movie)
+    }
 }
