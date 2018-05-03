@@ -77,7 +77,7 @@ class PersonViewModel: ViewModel {
     
     // MARK: - Service requests -
     
-    func loadData() {
+    func loadData() {        
         getPerson()
         getMovieCredits()
         getExternalIds()
