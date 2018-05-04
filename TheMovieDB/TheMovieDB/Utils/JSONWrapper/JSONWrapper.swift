@@ -8,14 +8,9 @@
 
 import SwiftyJSON
 
-class JSONWrapper {
+struct JSONWrapper {
     static func json(from resource: RequestUrl) -> URL? {
-        do {
-            if let url = Bundle.main.url(forResource: resource.rawValue, withExtension: "json") {
-                return url
-            }
-        } catch { }
-        return nil
+        return Bundle.main.url(forResource: resource.rawValue, withExtension: "json")
     }
     
     static func json(from resource: RequestUrl, handler: @escaping (JSON?) -> ()) {

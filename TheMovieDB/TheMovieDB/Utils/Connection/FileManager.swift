@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FileManager {
+struct FileManager {
     static func load(name: String) -> NSMutableDictionary? {
         if let bundle = Bundle.main.path(forResource: name, ofType: "plist") {
             let file = NSMutableDictionary(contentsOfFile: bundle)

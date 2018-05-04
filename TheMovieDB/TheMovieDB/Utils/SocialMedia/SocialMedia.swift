@@ -14,7 +14,7 @@ enum SocialMediaType {
     case twitter
 }
 
-class SocialMedia {
+struct SocialMedia {
     static let shared = SocialMedia()
  
     enum Links: String {

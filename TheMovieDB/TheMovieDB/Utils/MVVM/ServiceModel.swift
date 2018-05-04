@@ -70,28 +70,23 @@ class ServiceModel {
         
         Connection.request(url, method: method, parameters: parameters) { (dataResponse) in
             if let value = dataResponse.result.value {
-                if let handlerJson = handlerJson {
-                    handlerJson(value)
-                }
+                if let handlerJson = handlerJson { handlerJson(value) }
                 
                 if let array = value as? [Any] {
                     var arrayObject = [T]()
-                    
                     for object in array {
                         arrayObject.append(T(json: JSON(object)))
                     }
-                    
                     handlerObject(arrayObject)
-                } else {
-                    handlerObject(T(json: JSON(value)))
+                    return
                 }
-            } else {
-                handlerObject(ReachabilityError.requestTimeout)
                 
-                if let handlerJson = handlerJson {
-                    handlerJson(nil)
-                }
+                handlerObject(T(json: JSON(value)))
+                return
             }
+            
+            handlerObject(ReachabilityError.requestTimeout)
+            if let handlerJson = handlerJson { handlerJson(nil) }
         }
     }
     
@@ -124,7 +119,7 @@ class ServiceModel {
     
     static func verifyResult(_ object : Any?) -> String? {
         if let error = object as? ReachabilityError {
-            return error.descriptionError()
+            return error.descriptionError
         }
         if let error = object as? Error {
             return error.localizedDescription
@@ -134,10 +129,7 @@ class ServiceModel {
     
     func verifyConnection() -> Bool{
         if let reachabilityNetwork = Alamofire.NetworkReachabilityManager(host: "www.google.com") {
-            
-            if reachabilityNetwork.isReachable {
-                return true
-            }
+            return reachabilityNetwork.isReachable
         }
         return false
     }
@@ -208,12 +200,10 @@ enum ReachabilityError : Error {
     case notConnection
     case requestTimeout
     
-    func descriptionError() -> String {
+    var descriptionError: String {
         switch self {
-        case .notConnection:
-            return "CONNECTION_VERIFY"
-        case .requestTimeout:
-            return "REQUEST_TIMEOUT"
+            case .notConnection: return "CONNECTION_VERIFY"
+            case .requestTimeout: return "REQUEST_TIMEOUT"
         }
     }
 }

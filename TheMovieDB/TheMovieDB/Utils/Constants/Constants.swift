@@ -16,22 +16,8 @@ struct Constants {
 }
 
 enum Titles: String {
-    // Common
-    case home = "Home"
-    case error = "Error"
-    case delete = "Delete"
-    case no = "No"
-    case yes = "Yes"
-    case logout = "Exit"
-    case attention = "Attention"
-    case success = "Success"
-    
     // Button Common Titles
     case done = "OK"
-    case add = "Add"
-    case clear = "Clear"
-    case cancel = "Cancel"
-    case select = "Select"
     
     // Titles
     case movies = "Movies"

@@ -14,7 +14,7 @@ struct FileName {
     static let environmentLink = "EnvironmentLinks"
 }
 
-class EnvironmentHost {
+struct EnvironmentHost {
     static let shared = EnvironmentHost()
     
     var current: EnvironmentBase = .api

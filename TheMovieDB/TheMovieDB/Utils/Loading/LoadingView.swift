@@ -8,34 +8,7 @@
 
 import UIKit
 
-extension ViewModel {
-    fileprivate struct AssociatedKeys {
-        static var loadingView: LoadingView?
-    }
-    
-    var loadingView: LoadingView {
-        get {
-            if let result = objc_getAssociatedObject(self, &AssociatedKeys.loadingView) as? LoadingView {
-                return result
-            }
-            
-            var frame: CGRect = .zero
-            
-            if let window = AppDelegate.shared.window {
-                frame = window.frame
-            }
-            
-            self.loadingView = LoadingView(frame: frame)
-            
-            return self.loadingView
-        }
-        set {
-            objc_setAssociatedObject(self, &AssociatedKeys.loadingView, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-}
-
-class LoadingView : UIView {
+class LoadingView: UIView {
     var loadingTag = 900
     
     var activityIndicator: UIActivityIndicatorView {
@@ -75,9 +48,7 @@ class LoadingView : UIView {
         self.tag = loadingTag
         self.backgroundColor = UIColor.white.withAlphaComponent(0.4)
         
-        if !containsBackgroundColor {
-            self.backgroundColor = UIColor.clear
-        }
+        if !containsBackgroundColor { self.backgroundColor = UIColor.clear }
         
         self.addSubview(activityIndicator)
         
@@ -101,15 +72,38 @@ class LoadingView : UIView {
     
     func start(in view : UIView, text: String? = nil) {
         self.text = text
-        
         view.addSubview(self)
     }
     
     func start(with frame : CGRect, text: String? = nil) {
         self.text = text
-        
-        if let window = AppDelegate.shared.window {
-            window.addSubview(self)
+        if let window = AppDelegate.shared.window { window.addSubview(self) }
+    }
+}
+
+extension ViewModel {
+    fileprivate struct AssociatedKeys {
+        static var loadingView: LoadingView?
+    }
+    
+    var loadingView: LoadingView {
+        get {
+            if let result = objc_getAssociatedObject(self, &AssociatedKeys.loadingView) as? LoadingView {
+                return result
+            }
+            
+            var frame: CGRect = .zero
+            
+            if let window = AppDelegate.shared.window {
+                frame = window.frame
+            }
+            
+            self.loadingView = LoadingView(frame: frame)
+            
+            return self.loadingView
+        }
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.loadingView, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }

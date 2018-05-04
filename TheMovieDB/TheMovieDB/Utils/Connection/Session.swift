@@ -9,23 +9,18 @@
 import Foundation
 import Alamofire
 
-class Session {
-    
+struct Session {
     // MARK: - Properties -
+    static var shared = Session()
     
-    static let shared = Session()
+    var manager: SessionManager?
     
-    private var manager : SessionManager?
+    init() {
+        configureApiManager()
+    }
     
-    // MARK: - Management -
-    
-    /// This method configure session manager of Alamofire,
-    /// timeout request, and server trust policy.
-    ///
-    /// - Returns: Session Manager configured
-    func apiManager() -> SessionManager {
-        if let manager = manager { return manager }
-        
+    /// This method configure session manager of Alamofire
+    private mutating func configureApiManager() {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
         configuration.timeoutIntervalForRequest = 30
@@ -38,9 +33,6 @@ class Session {
         self.manager = SessionManager(configuration: configuration,
                                       delegate: SessionDelegate(),
                                       serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicy))
-        return self.manager!
     }
-    
-    
 }
 

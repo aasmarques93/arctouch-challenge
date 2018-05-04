@@ -10,7 +10,7 @@ import UIKit
 
 typealias AlertHandler = () -> Swift.Void
 
-class AlertComponent {
+struct AlertComponent {
     static func show(title: String? = nil, message: String?, mainButton : String? = nil, mainAction: AlertHandler? = nil, secondaryButton: String? = nil, secondaryAction: AlertHandler? = nil) {
         
         let aTitle = title ?? ""
