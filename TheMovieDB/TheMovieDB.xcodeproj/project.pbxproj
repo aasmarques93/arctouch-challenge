@@ -312,6 +312,7 @@
 		EDC6C03C2058663000D843EC /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		EDC6C07A20586DB300D843EC /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		EDC6C07B20586DB400D843EC /* DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelper.h; sourceTree = "<group>"; };
+		EDDAB1C0209BDCB800271265 /* RAMTabBarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMTabBarUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -845,6 +846,7 @@
 		EDC6BFFF2058593B00D843EC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EDDAB1BF209BDCB800271265 /* RAMTabBar */,
 				ED383443209502650079D48F /* CircularProgressView */,
 				ED3834232094227D0079D48F /* StretchHeaderView */,
 				EDC6C0392058662900D843EC /* MVVM */,
@@ -953,6 +955,14 @@
 				EDC6C03C2058663000D843EC /* ViewModel.swift */,
 			);
 			path = MVVM;
+			sourceTree = "<group>";
+		};
+		EDDAB1BF209BDCB800271265 /* RAMTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				EDDAB1C0209BDCB800271265 /* RAMTabBarUtils.swift */,
+			);
+			path = RAMTabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
