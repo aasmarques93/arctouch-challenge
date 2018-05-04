@@ -29,17 +29,22 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Name}}" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwH-9F-y6v">
                                     <rect key="frame" x="8" y="0.0" width="114" height="30"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                    <color key="textColor" red="0.031372549020000001" green="0.10980392160000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="primary"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Character}}" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ut6-2Q-rnN">
                                     <rect key="frame" x="7.5" y="30" width="114.5" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" red="0.031372549020000001" green="0.10980392160000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="primary"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.0039215686269999999" green="0.82352941180000006" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="ut6-2Q-rnN" secondAttribute="bottom" id="1cN-tb-CSy"/>
                                 <constraint firstItem="lwH-9F-y6v" firstAttribute="leading" secondItem="qbu-th-yJR" secondAttribute="leading" constant="8" id="FJD-hH-rTO"/>
@@ -51,6 +56,9 @@
                                 <constraint firstItem="ut6-2Q-rnN" firstAttribute="leading" secondItem="lwH-9F-y6v" secondAttribute="leading" id="x78-E3-aZy"/>
                                 <constraint firstAttribute="trailing" secondItem="lwH-9F-y6v" secondAttribute="trailing" constant="8" id="xLa-0G-xma"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="secondary"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -82,6 +90,9 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="LUr-Mc-dwC"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="primary"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="imageViewCharacter" destination="LTj-Cn-ZW8" id="Vdw-Rr-3Bs"/>
                 <outlet property="labelCharacter" destination="ut6-2Q-rnN" id="Iqx-DF-QDX"/>

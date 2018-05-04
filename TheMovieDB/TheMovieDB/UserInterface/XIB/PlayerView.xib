@@ -18,7 +18,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ra1-kq-T1S" customClass="YouTubePlayerView" customModule="YouTubePlayer">
                     <rect key="frame" x="8" y="37" width="359" height="225"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Video}}" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3W-dm-fxP">
                     <rect key="frame" x="8" y="8" width="359" height="21"/>
@@ -27,7 +27,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="52G-Gd-m3v" firstAttribute="trailing" secondItem="C3W-dm-fxP" secondAttribute="trailing" constant="8" id="2mV-Me-9rd"/>
                 <constraint firstItem="Ra1-kq-T1S" firstAttribute="leading" secondItem="C3W-dm-fxP" secondAttribute="leading" id="BJ8-Yr-cTl"/>
@@ -39,6 +39,9 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="52G-Gd-m3v"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="primary"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="labelVideo" destination="C3W-dm-fxP" id="0gW-aO-tfM"/>
                 <outlet property="playerView" destination="Ra1-kq-T1S" id="DJv-3a-HUm"/>

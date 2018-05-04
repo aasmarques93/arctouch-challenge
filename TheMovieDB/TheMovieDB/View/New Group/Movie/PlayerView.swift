@@ -11,11 +11,5 @@ import YouTubePlayer
 
 class PlayerView: XibView {
     @IBOutlet weak var labelVideo: UILabel!
-    @IBOutlet weak var playerView: YouTubePlayerView!
-    
-    override func awakeFromNib() {
-        backgroundColor = HexColor.primary.color
-        labelVideo.textColor = HexColor.text.color
-        playerView.backgroundColor = HexColor.text.color
-    }
+    @IBOutlet weak var playerView: YouTubePlayerView!    
 }

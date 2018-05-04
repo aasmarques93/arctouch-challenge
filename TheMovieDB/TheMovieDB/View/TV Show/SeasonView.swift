@@ -16,12 +16,4 @@ class SeasonView: XibView {
     @IBOutlet weak var labelEpisodeCount: UILabel!
     
     @IBOutlet weak var textViewOverview: UITextView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        labelName.textColor = HexColor.text.color
-        labelYear.textColor = HexColor.text.color
-        labelEpisodeCount.textColor = HexColor.text.color
-        textViewOverview.textColor = HexColor.text.color
-    }
 }

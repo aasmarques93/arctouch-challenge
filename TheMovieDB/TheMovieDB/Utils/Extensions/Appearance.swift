@@ -117,13 +117,72 @@ enum GradientOrientation {
 }
 
 extension UIView {
+    fileprivate struct AssociatedKeys {
+        static var colorStyle = ""
+    }
+    
+    @IBInspectable var colorStyle: String? {
+        get {
+            guard let object = objc_getAssociatedObject(self, &AssociatedKeys.colorStyle) as? String else {
+                return nil
+            }
+            return object
+        }
+        set(value) {
+            objc_setAssociatedObject(self, &AssociatedKeys.colorStyle, value, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        if let label = self as? UILabel {
+            label.textColor = HexColor.color(from: colorStyle) ?? HexColor.text.color
+            return
+        }
+        if let textView = self as? UITextView {
+            textView.textColor = HexColor.color(from: colorStyle) ?? HexColor.text.color
+            return
+        }
+        if let segmentedControl = self as? UISegmentedControl {
+            segmentedControl.tintColor = HexColor.color(from: colorStyle) ?? HexColor.secondary.color
+            return
+        }
+        if let stepper = self as? UIStepper {
+            stepper.tintColor = HexColor.color(from: colorStyle) ?? HexColor.secondary.color
+            return
+        }
+        if let activityIndicator = self as? UIActivityIndicatorView {
+            activityIndicator.color = HexColor.color(from: colorStyle) ?? HexColor.secondary.color
+            return
+        }
+        
+        if let _ = self as? UITextField { return }
+        
+        if let button = self as? UIButton {
+            button.setTitleColor(HexColor.text.color, for: .normal)
+            button.tintColor = HexColor.color(from: colorStyle) ?? HexColor.secondary.color
+            return
+        }
+        
+        self.backgroundColor = HexColor.color(from: colorStyle) ?? self.backgroundColor
+    }
+    
     func applyGradient(colors: [UIColor], orientation: GradientOrientation = .horizontal) -> Void {
         let gradient = CAGradientLayer()
-        gradient.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: self.bounds.height)
+        gradient.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
         gradient.colors = colors.map { $0.cgColor }
         gradient.startPoint = orientation.startPoint
         gradient.endPoint = orientation.endPoint
-        self.layer.insertSublayer(gradient, at: 0)
+        layer.insertSublayer(gradient, at: 0)
+    }
+    
+    func removeGradient() {
+        if let sublayers = layer.sublayers {
+            for sublayer in sublayers {
+                sublayer.removeFromSuperlayer()
+            }
+        }
     }
 }
 

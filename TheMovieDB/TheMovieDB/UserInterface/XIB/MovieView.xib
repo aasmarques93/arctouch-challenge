@@ -16,11 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="240" height="280"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-image" translatesAutoresizingMaskIntoConstraints="NO" id="Ixs-IL-K7t">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ixs-IL-K7t">
                     <rect key="frame" x="16" y="16" width="208" height="248"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="R1H-XY-fbV" firstAttribute="trailing" secondItem="Ixs-IL-K7t" secondAttribute="trailing" constant="16" id="7Av-P4-M3e"/>
                 <constraint firstItem="Ixs-IL-K7t" firstAttribute="top" secondItem="R1H-XY-fbV" secondAttribute="top" constant="16" id="DSm-Te-5dq"/>
@@ -29,13 +29,13 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="R1H-XY-fbV"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="primary"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="imageViewMovie" destination="Ixs-IL-K7t" id="vDa-c9-Dl8"/>
             </connections>
             <point key="canvasLocation" x="41" y="-169"/>
         </view>
     </objects>
-    <resources>
-        <image name="default-image" width="565" height="837"/>
-    </resources>
 </document>

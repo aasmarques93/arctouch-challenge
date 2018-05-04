@@ -17,7 +17,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="R42-nB-agb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.031372549020000001" green="0.10980392160000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GenreCell" rowHeight="50" id="cWT-NF-RdJ">
                                 <rect key="frame" x="0.0" y="28" width="375" height="50"/>
@@ -29,7 +29,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Genre}}" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueQ-zb-mIn">
                                             <rect key="frame" x="8" y="8" width="359" height="33.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -108,7 +108,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="240" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="tdf-6Z-842">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.031372549020000001" green="0.10980392160000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="B3j-4O-XC1">
                             <rect key="frame" x="0.0" y="268" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -131,14 +131,17 @@
                                                 <constraint firstAttribute="height" constant="20.5" id="sgn-tf-ffc"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-image" translatesAutoresizingMaskIntoConstraints="NO" id="wsb-60-0Zc">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wsb-60-0Zc">
                                             <rect key="frame" x="8" y="36.5" width="359" height="195"/>
                                         </imageView>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Db5-y1-a0k">
                                             <rect key="frame" x="169" y="102" width="37" height="37"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="text"/>
+                                            </userDefinedRuntimeAttributes>
                                         </activityIndicatorView>
                                     </subviews>
                                     <constraints>
@@ -191,7 +194,6 @@
                                 <segment title="TV Show"/>
                                 <segment title="People"/>
                             </segments>
-                            <color key="tintColor" red="0.0039215686269999999" green="0.82352941180000006" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="segmentedControlAction:" destination="NbH-Zc-ccL" eventType="valueChanged" id="BEZ-Q1-EtE"/>
                                 <action selector="segmentedControlAction:" destination="R8s-UZ-SGt" eventType="valueChanged" id="PA5-89-enL"/>
@@ -210,7 +212,4 @@
             <point key="canvasLocation" x="1641" y="2626"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="default-image" width="565" height="837"/>
-    </resources>
 </document>

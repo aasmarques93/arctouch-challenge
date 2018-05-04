@@ -48,7 +48,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cbs-JF-e8n">
                                                             <rect key="frame" x="0.0" y="0.0" width="176" height="276"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-image" translatesAutoresizingMaskIntoConstraints="NO" id="MoM-Gy-KhL">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MoM-Gy-KhL">
                                                                     <rect key="frame" x="0.0" y="0.0" width="176" height="236"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </imageView>
@@ -60,9 +60,11 @@
                                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                                             <color key="textColor" red="0.031372549020000001" green="0.10980392160000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="primary"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" red="0.0039215686269999999" green="0.82352941180000006" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstItem="2eO-gw-nlx" firstAttribute="leading" secondItem="Zfu-fD-lwz" secondAttribute="leading" constant="8" id="CGR-08-f25"/>
                                                                         <constraint firstItem="2eO-gw-nlx" firstAttribute="top" secondItem="Zfu-fD-lwz" secondAttribute="top" id="HMo-j8-acg"/>
@@ -70,6 +72,9 @@
                                                                         <constraint firstAttribute="height" constant="40" id="fog-bi-mxm"/>
                                                                         <constraint firstAttribute="bottom" secondItem="2eO-gw-nlx" secondAttribute="bottom" id="kqN-wa-1HL"/>
                                                                     </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="secondary"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </view>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -93,6 +98,9 @@
                                                         </view>
                                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ukl-uT-Jlk">
                                                             <rect key="frame" x="70" y="120" width="37" height="37"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="text"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </activityIndicatorView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -164,7 +172,4 @@
             <point key="canvasLocation" x="876" y="1824.737631184408"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="default-image" width="565" height="837"/>
-    </resources>
 </document>

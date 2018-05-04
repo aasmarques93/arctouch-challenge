@@ -14,10 +14,4 @@ class CastView: XibView {
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var viewText: UIView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        backgroundColor = HexColor.primary.color
-        viewText.backgroundColor = HexColor.secondary.color
-    }    
 }

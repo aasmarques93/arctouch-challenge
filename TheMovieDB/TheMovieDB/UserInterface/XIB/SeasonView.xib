@@ -20,7 +20,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAh-yh-YYj">
                     <rect key="frame" x="8" y="0.0" width="359" height="230"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-image" translatesAutoresizingMaskIntoConstraints="NO" id="5fH-zP-yFZ">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5fH-zP-yFZ">
                             <rect key="frame" x="0.0" y="0.0" width="149.5" height="230"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lKr-nT-kL5">
@@ -87,6 +87,9 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="jPn-Kq-TTQ"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="primary"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="imageViewPhoto" destination="5fH-zP-yFZ" id="sHp-c8-XqZ"/>
                 <outlet property="labelEpisodeCount" destination="D4x-tV-j0d" id="mtE-au-Vh9"/>
@@ -97,7 +100,4 @@
             <point key="canvasLocation" x="-122.5" y="-64"/>
         </view>
     </objects>
-    <resources>
-        <image name="default-image" width="565" height="837"/>
-    </resources>
 </document>
