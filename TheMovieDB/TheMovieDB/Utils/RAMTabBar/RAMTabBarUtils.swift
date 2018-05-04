@@ -1,10 +1,12 @@
 //
 //  RAMTabBarUtils.swift
-//  GFP
+//  TheMovieDB
 //
-//  Created by Arthur Augusto Sousa Marques on 5/3/18.
+//  Created by Arthur Augusto Sousa Marques on 5/4/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
+
+import UIKit
 
 import UIKit
 import RAMAnimatedTabBarController
@@ -20,7 +22,7 @@ extension RAMAnimatedTabBarItem {
 extension RAMItemAnimation {
     open override func awakeFromNib() {
         super.awakeFromNib()
-        textSelectedColor = HexColor.secondary.color
+        textSelectedColor = HexColor.text.color
         iconSelectedColor = textSelectedColor
     }
 }

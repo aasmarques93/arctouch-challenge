@@ -142,6 +142,7 @@
 		EDC6C03E2058663000D843EC /* ServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C03B2058663000D843EC /* ServiceModel.swift */; };
 		EDC6C03F2058663000D843EC /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C03C2058663000D843EC /* ViewModel.swift */; };
 		EDC6C07C20586DB400D843EC /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C07A20586DB300D843EC /* DateHelper.swift */; };
+		EDDAB1C8209C811800271265 /* RAMTabBarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDAB1C7209C811800271265 /* RAMTabBarUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -312,7 +313,7 @@
 		EDC6C03C2058663000D843EC /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		EDC6C07A20586DB300D843EC /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		EDC6C07B20586DB400D843EC /* DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelper.h; sourceTree = "<group>"; };
-		EDDAB1C0209BDCB800271265 /* RAMTabBarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMTabBarUtils.swift; sourceTree = "<group>"; };
+		EDDAB1C7209C811800271265 /* RAMTabBarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMTabBarUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -960,7 +961,7 @@
 		EDDAB1BF209BDCB800271265 /* RAMTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				EDDAB1C0209BDCB800271265 /* RAMTabBarUtils.swift */,
+				EDDAB1C7209C811800271265 /* RAMTabBarUtils.swift */,
 			);
 			path = RAMTabBar;
 			sourceTree = "<group>";
@@ -1240,6 +1241,7 @@
 				EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */,
 				ED38341E20941C9D0079D48F /* TVShowDetailView.swift in Sources */,
 				ED3834062093914C0079D48F /* PopularPersonCellViewModel.swift in Sources */,
+				EDDAB1C8209C811800271265 /* RAMTabBarUtils.swift in Sources */,
 				ED3834482095E3970079D48F /* MultiSearch.swift in Sources */,
 				ED38341920941C4E0079D48F /* TVShowDetail.swift in Sources */,
 				ED65BEF4209238BB0091D93B /* Crew.swift in Sources */,
