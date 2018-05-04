@@ -143,6 +143,8 @@
 		EDC6C03F2058663000D843EC /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C03C2058663000D843EC /* ViewModel.swift */; };
 		EDC6C07C20586DB400D843EC /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C07A20586DB300D843EC /* DateHelper.swift */; };
 		EDDAB1C8209C811800271265 /* RAMTabBarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDAB1C7209C811800271265 /* RAMTabBarUtils.swift */; };
+		EDDAB1CA209C822100271265 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDAB1C9209C822100271265 /* TextField.swift */; };
+		EDDAB1CC209C824E00271265 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDAB1CB209C824E00271265 /* StringExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -314,6 +316,8 @@
 		EDC6C07A20586DB300D843EC /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		EDC6C07B20586DB400D843EC /* DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelper.h; sourceTree = "<group>"; };
 		EDDAB1C7209C811800271265 /* RAMTabBarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMTabBarUtils.swift; sourceTree = "<group>"; };
+		EDDAB1C9209C822100271265 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		EDDAB1CB209C824E00271265 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -902,6 +906,8 @@
 			children = (
 				EDC6C02320585A7D00D843EC /* Appearance.swift */,
 				EDC6C02220585A7D00D843EC /* Extensions.swift */,
+				EDDAB1C9209C822100271265 /* TextField.swift */,
+				EDDAB1CB209C824E00271265 /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1231,6 +1237,7 @@
 				ED16D845205882D3002A0B2C /* HomeViewModel.swift in Sources */,
 				ED65BEF1209238BB0091D93B /* ReviewsList.swift in Sources */,
 				ED65BEF0209238BB0091D93B /* CreditsList.swift in Sources */,
+				EDDAB1CC209C824E00271265 /* StringExtension.swift in Sources */,
 				EDC6C01E20585A6D00D843EC /* HexColor.swift in Sources */,
 				EDC6C03F2058663000D843EC /* ViewModel.swift in Sources */,
 				EDC6C02F20585A8C00D843EC /* EnvironmentHost.swift in Sources */,
@@ -1264,6 +1271,7 @@
 				EDC6C01C20585A6300D843EC /* LoadingView.swift in Sources */,
 				ED65BEFD20923EA20091D93B /* XibView.swift in Sources */,
 				ED3833F720938BBA0079D48F /* PopularPersonViewCell.swift in Sources */,
+				EDDAB1CA209C822100271265 /* TextField.swift in Sources */,
 				ED16D85E20597A6C002A0B2C /* MovieDetailView.swift in Sources */,
 				ED3834132094111D0079D48F /* TVShowCellViewModel.swift in Sources */,
 				ED65BF09209261C00091D93B /* ReviewsView.swift in Sources */,
