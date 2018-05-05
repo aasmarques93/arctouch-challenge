@@ -14,9 +14,12 @@ struct PersonServiceModel {
         serviceModel.request(requestUrl: requestUrl, urlParameters: parameters, handlerObject: { (object) in
             if let object = object {
                 switch requestUrl {
-                    case .person: handler(Person(object: object))
-                    case .personMovieCredits: handler(CreditsList(object: object))
-                    case .personExternalIds: handler(ExternalIds(object: object))
+                case .person:
+                    handler(Person(object: object))
+                case .personMovieCredits:
+                    handler(CreditsList(object: object))
+                case .personExternalIds:
+                    handler(ExternalIds(object: object))
                 default: break
                 }
             }

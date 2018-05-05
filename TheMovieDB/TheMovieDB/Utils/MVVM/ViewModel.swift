@@ -25,9 +25,10 @@ extension ViewModel {
     }
     
     // Show error if object has returno status message
-    func showError(with object: Model) -> Bool {
-        if let statusMessage = object.statusMessage, statusMessage != "" { return true }
-        return false
+    func showError(with object: Model) throws {
+        if let statusMessage = object.statusMessage, statusMessage != "" {
+            throw Error(message: statusMessage)
+        }
     }
     
     // Load image data at path
@@ -35,5 +36,19 @@ extension ViewModel {
         ServiceModel().loadImage(path: path, handlerData: { (data) in
             handlerData(data)
         })
+    }
+}
+
+struct Error: Swift.Error {
+    let file: StaticString
+    let function: StaticString
+    let line: UInt
+    let message: String
+
+    init(message: String, file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
+        self.file = file
+        self.function = function
+        self.line = line
+        self.message = message
     }
 }

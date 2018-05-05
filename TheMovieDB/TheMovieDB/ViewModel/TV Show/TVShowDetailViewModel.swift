@@ -41,13 +41,18 @@ class TVShowDetailViewModel: ViewModel {
             overview.value = valueDescription(tvShowDetail?.overview)
             genres.value = setupGenres()
             
-            if let seasons = tvShowDetail?.seasons { seasonsList = seasons }
+            guard let seasons = tvShowDetail?.seasons else {
+                return
+            }
+            seasonsList = seasons
         }
     }
     
     var average: CGFloat? {
-        if let voteAverage = tvShowDetail?.voteAverage { return CGFloat(voteAverage) / 10 }
-        return nil
+        guard let voteAverage = tvShowDetail?.voteAverage else {
+            return nil
+        }
+        return CGFloat(voteAverage) / 10
     }
     
     // MARK: Videos
@@ -78,28 +83,42 @@ class TVShowDetailViewModel: ViewModel {
     
     private func getTvShowDetail() {
         Loading.shared.startLoading()
-        serviceModel.getDetail(from: id) { (object) in
+        serviceModel.getDetail(from: id) { [weak self] (object) in
             Loading.shared.stopLoading()
-            self.tvShowDetail = object as? TVShowDetail
+            
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.tvShowDetail = object as? TVShowDetail
         }
     }
     
     private func getVideos() {
         if videosList.isEmpty {
-            serviceModel.getVideos(from: id) { (object) in
-                if let object = object as? VideosList, let results = object.results {
-                    self.videosList.append(contentsOf: results)
+            serviceModel.getVideos(from: id) { [weak self] (object) in
+                guard let strongSelf = self else {
+                    return
                 }
+                guard let object = object as? VideosList, let results = object.results else {
+                    return
+                }
+                
+                strongSelf.videosList.append(contentsOf: results)
             }
         }
     }
     
     private func getCredits() {
         if castList.isEmpty {
-            serviceModel.getCredits(from: id) { (object) in
-                if let object = object as? CreditsList, let results = object.cast {
-                    self.castList.append(contentsOf: results)
+            serviceModel.getCredits(from: id) { [weak self] (object) in
+                guard let strongSelf = self else {
+                    return
                 }
+                guard let object = object as? CreditsList, let results = object.cast else {
+                    return
+                }
+                
+                strongSelf.castList.append(contentsOf: results)
             }
         }
     }
@@ -140,10 +159,10 @@ class TVShowDetailViewModel: ViewModel {
     }
     
     func seasonYear(at index: Int) -> String? {
-        if let date = Date(fromString: valueDescription(seasonsList[index].airDate), format: DateFormatType.isoDate) {
-            return "\(date.toString(format: .isoYear)) | "
+        guard let date = Date(fromString: valueDescription(seasonsList[index].airDate), format: DateFormatType.isoDate) else {
+            return nil
         }
-        return nil
+        return "\(date.toString(format: .isoYear)) | "
     }
     
     func seasonEpisodeCount(at index: Int) -> String? {

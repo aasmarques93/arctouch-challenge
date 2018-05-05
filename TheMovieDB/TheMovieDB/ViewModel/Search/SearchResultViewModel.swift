@@ -15,9 +15,12 @@ enum SearchResultFilterType: Int {
     
     var description: String {
         switch self {
-            case .movies: return "movie"
-            case .tvShow: return "tv"
-            case .person: return "person"
+        case .movies:
+            return "movie"
+        case .tvShow:
+            return "tv"
+        case .person:
+            return "person"
         }
     }
 }
@@ -63,28 +66,43 @@ class SearchResultViewModel: ViewModel {
             return
         }
         
-        if let genre = selectedGenre, let value = genre.id {
-            let parameters = ["id": value]
-            
-            isDataLoading = true
-            
-            serviceModel.getMoviesFromGenre(urlParameters: parameters) { (object) in
-                self.isDataLoading = false
-                
-                if let object = object as? SearchMoviesGenre {
-                    if self.showError(with: object) {
-                        self.delegate?.showError?(message: object.statusMessage)
-                        return
-                    }
-                    
-                    if let results = object.results {
-                        self.arraySearch = [SearchResult]()
-                        for result in results {
-                            self.arraySearch.append(SearchResult(object: result.dictionaryRepresentation()))
-                            self.arraySearchFiltered = self.arraySearch
-                        }
-                    }
+        guard let genre = selectedGenre, let value = genre.id else {
+            return
+        }
+
+        let parameters = ["id": value]
+
+        isDataLoading = true
+
+        serviceModel.getMoviesFromGenre(urlParameters: parameters) { [weak self] (object) in
+            guard let strongSelf = self else {
+                return
+            }
+
+            strongSelf.isDataLoading = false
+
+            guard let object = object as? SearchMoviesGenre else {
+                return
+            }
+
+            do {
+                try strongSelf.showError(with: object)
+            } catch {
+                guard let error = error as? Error else {
+                    return
                 }
+                strongSelf.delegate?.showError?(message: error.message)
+                return
+            }
+
+            guard let results = object.results else {
+                return
+            }
+
+            strongSelf.arraySearch = [SearchResult]()
+            for result in results {
+                strongSelf.arraySearch.append(SearchResult(object: result.dictionaryRepresentation()))
+                strongSelf.arraySearchFiltered = strongSelf.arraySearch
             }
         }
     }
@@ -93,36 +111,47 @@ class SearchResultViewModel: ViewModel {
         if indexPath.row == arraySearchFiltered.count-2 && !isDataLoading {
             currentPage += 1
             
-            if let totalPages = totalPages, currentPage < totalPages {
-                loadData()
+            guard let totalPages = totalPages, currentPage < totalPages else {
+                return
             }
+
+            loadData()
         }
     }
     
     private func doSearch() {
-        if let value = searchText {
-            let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
-            
-            serviceModel.doSearch(urlParameters: parameters, isMultipleSearch: isMultipleSearch) { (object) in
-                if let object = object as? MultiSearch, let results = object.results {
-                    self.totalPages = object.totalPages
-                    self.arraySearch.append(contentsOf: results)
-                    
-                    if self.isMultipleSearch {
-                        self.doFilter(index: self.selectedType.rawValue)
-                    } else {
-                        self.arraySearchFiltered = self.arraySearch
-                    }
-                }
+        guard let value = searchText else {
+            return
+        }
+
+        let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
+
+        serviceModel.doSearch(urlParameters: parameters, isMultipleSearch: isMultipleSearch) { [weak self] (object) in
+            guard let strongSelf = self else {
+                return
+            }
+            guard let object = object as? MultiSearch, let results = object.results else {
+                return
+            }
+
+            strongSelf.totalPages = object.totalPages
+            strongSelf.arraySearch.append(contentsOf: results)
+
+            if strongSelf.isMultipleSearch {
+                strongSelf.doFilter(index: strongSelf.selectedType.rawValue)
+            } else {
+                strongSelf.arraySearchFiltered = strongSelf.arraySearch
             }
         }
     }
     
     func doFilter(index: Int) {
-        if let type = SearchResultFilterType(rawValue: index) {
-            selectedType = type
-            arraySearchFiltered = arraySearch.filter { return $0.mediaType == type.description }
+        guard let type = SearchResultFilterType(rawValue: index) else {
+            return
         }
+
+        selectedType = type
+        arraySearchFiltered = arraySearch.filter { return $0.mediaType == type.description }
     }
     
     // MARK: - View Model -
@@ -146,7 +175,7 @@ class SearchResultViewModel: ViewModel {
         } else {
             path = result.posterPath
         }
-
+        
         if path == nil {
             handlerData(nil)
             return

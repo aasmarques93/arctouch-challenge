@@ -47,14 +47,18 @@ class PopularPeopleViewModel: ViewModel {
         isDataLoading = true
         
         let parameters = ["page": currentPage]
-        serviceModel.getPopularPeople(urlParameters: parameters) { (object) in
-            if let object = object as? PopularPeople, let results = object.results {
-                self.totalPages = object.totalPages
-                self.popularPeopleList.append(contentsOf: results)
+        serviceModel.getPopularPeople(urlParameters: parameters) { [weak self] (object) in
+            guard let strongSelf = self else {
+                return
             }
             
-            self.isDataLoading = false
-            self.searchPersonList = self.popularPeopleList
+            if let object = object as? PopularPeople, let results = object.results {
+                strongSelf.totalPages = object.totalPages
+                strongSelf.popularPeopleList.append(contentsOf: results)
+            }
+            
+            strongSelf.isDataLoading = false
+            strongSelf.searchPersonList = strongSelf.popularPeopleList
         }
     }
     
@@ -62,9 +66,11 @@ class PopularPeopleViewModel: ViewModel {
         if indexPath.row == searchPersonList.count-2 && !isDataLoading {
             currentPage += 1
             
-            if let totalPages = totalPages, currentPage < totalPages {
-                loadData()
+            guard let totalPages = totalPages, currentPage < totalPages else {
+                return
             }
+            
+            loadData()
         }
     }
     
@@ -75,10 +81,15 @@ class PopularPeopleViewModel: ViewModel {
         if let value = searchText, !value.isEmptyOrWhitespace {
             let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
             
-            serviceModel.doSearchPerson(urlParameters: parameters) { (object) in
-                if let object = object as? SearchPerson, let results = object.results {
-                    self.searchPersonList = results
+            serviceModel.doSearchPerson(urlParameters: parameters) { [weak self] (object) in
+                guard let strongSelf = self else {
+                    return
                 }
+                guard let object = object as? SearchPerson, let results = object.results else {
+                    return
+                }
+                
+                strongSelf.searchPersonList = results
             }
             
             return

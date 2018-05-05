@@ -39,14 +39,18 @@ class TVShowViewModel: ViewModel {
         isDataLoading = true
         
         let parameters = ["page": currentPage]
-        serviceModel.getPopular(urlParameters: parameters) { (object) in
-            if let object = object as? SearchTV, let results = object.results {
-                self.totalPages = object.totalPages
-                self.popularList.append(contentsOf: results)
+        serviceModel.getPopular(urlParameters: parameters) { [weak self] (object) in
+            guard let strongSelf = self else {
+                return
             }
             
-            self.isDataLoading = false
-            self.searchPopularList = self.popularList
+            if let object = object as? SearchTV, let results = object.results {
+                strongSelf.totalPages = object.totalPages
+                strongSelf.popularList.append(contentsOf: results)
+            }
+            
+            strongSelf.isDataLoading = false
+            strongSelf.searchPopularList = strongSelf.popularList
         }
     }
     
@@ -54,9 +58,10 @@ class TVShowViewModel: ViewModel {
         if indexPath.row == searchPopularList.count-2 && !isDataLoading {
             currentPage += 1
             
-            if let totalPages = totalPages, currentPage < totalPages {
-                loadData()
+            guard let totalPages = totalPages, currentPage < totalPages else {
+                return
             }
+            loadData()
         }
     }
     
@@ -68,11 +73,17 @@ class TVShowViewModel: ViewModel {
             let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
             
             Loading.shared.startLoading()
-            serviceModel.doSearchTVShow(urlParameters: parameters) { (object) in
+            serviceModel.doSearchTVShow(urlParameters: parameters) { [weak self] (object) in
                 Loading.shared.stopLoading()
-                if let object = object as? SearchTV, let results = object.results {
-                    self.searchPopularList = results
+                
+                guard let strongSelf = self else {
+                    return
                 }
+                guard let object = object as? SearchTV, let results = object.results else {
+                    return
+                }
+                
+                strongSelf.searchPopularList = results
             }
             
             return

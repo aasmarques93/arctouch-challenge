@@ -63,9 +63,11 @@ class TVShowDetailView: UITableViewController {
         var height = super.tableView(tableView, heightForRowAt: indexPath)
         if let section = DetailSection(rawValue: indexPath.row) {
             switch section {
-                case .general: break
-                case .genres: height += textViewGenres.contentSize.height
-                case .overview: height += textViewOverview.contentSize.height
+            case .general: break
+            case .genres:
+                height += textViewGenres.contentSize.height
+            case .overview:
+                height += textViewOverview.contentSize.height
             }
         }
         return height

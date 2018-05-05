@@ -27,9 +27,11 @@ class SeasonDetailViewModel: ViewModel {
         didSet {
             overview.value = valueDescription(seasonDetail?.overview)
             
-            if let episodes = seasonDetail?.episodes {
-                episodesList = episodes
+            guard let episodes = seasonDetail?.episodes else {
+                return
             }
+            
+            episodesList = episodes
         }
     }
     
@@ -56,9 +58,13 @@ class SeasonDetailViewModel: ViewModel {
     
     func loadData() {
         Loading.shared.startLoading()
-        serviceModel.getDetail(from: tvShowDetail, season: season) { (object) in
+        serviceModel.getDetail(from: tvShowDetail, season: season) { [weak self] (object) in
             Loading.shared.stopLoading()
-            self.seasonDetail = object as? SeasonDetail
+            
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.seasonDetail = object as? SeasonDetail
         }
     }
     
@@ -68,10 +74,10 @@ class SeasonDetailViewModel: ViewModel {
     
     func heightForEpisodeOverview(at indexPath: IndexPath) -> CGFloat? {
         let episode = episodesList[indexPath.row]
-        if let overview = episode.overview {
-            return overview.height + 32
+        guard let overview = episode.overview else {
+            return nil
         }
-        return nil
+        return overview.height + 32
     }
     
     // MARK: - View Model -

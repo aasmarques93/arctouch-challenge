@@ -16,7 +16,7 @@ enum SocialMediaType {
 
 struct SocialMedia {
     static let shared = SocialMedia()
- 
+    
     enum Links: String {
         case facebook = "fb://profile/"
         case webFacebook = "https://facebook.com/"
@@ -32,16 +32,16 @@ struct SocialMedia {
     
     func open(mediaType: SocialMediaType, userId: String?) {
         var urls = [String]()
-    
+        
         switch mediaType {
-            case .facebook:
-                urls.append(Links.url(with: .webFacebook, userId: userId))
-            case .instagram:
-                urls.append(Links.url(with: .instagram, userId: userId))
-                urls.append(Links.url(with: .webInstagram, userId: userId))
-            case .twitter:
-                urls.append(Links.url(with: .twitter, userId: userId))
-                urls.append(Links.url(with: .webTwitter, userId: userId))
+        case .facebook:
+            urls.append(Links.url(with: .webFacebook, userId: userId))
+        case .instagram:
+            urls.append(Links.url(with: .instagram, userId: userId))
+            urls.append(Links.url(with: .webInstagram, userId: userId))
+        case .twitter:
+            urls.append(Links.url(with: .twitter, userId: userId))
+            urls.append(Links.url(with: .webTwitter, userId: userId))
         }
         
         UIApplication.open(urls: urls)

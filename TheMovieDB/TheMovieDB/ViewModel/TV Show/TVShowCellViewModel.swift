@@ -30,7 +30,11 @@ class TVShowCellViewModel: ViewModel {
     
     private func loadImageData() {
         ServiceModel().loadImage(path: tvShow?.posterPath ?? "", handlerData: { (data) in
-            if let data = data as? Data { self.photo.value = UIImage(data: data) }
+            guard let data = data as? Data else {
+                return
+            }
+            
+            self.photo.value = UIImage(data: data)
         })
     }
 }

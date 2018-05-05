@@ -11,7 +11,7 @@ import UIKit
 //Screen Related Values
 var SCREEN_WIDTH: CGFloat {
     return UIScreen.main.bounds.width
-        
+    
 }
 var SCREEN_HEIGHT: CGFloat {
     return AppDelegate.shared.window!.frame.height
@@ -37,7 +37,7 @@ extension Array {
         array.append(element)
         return array
     }
-
+    
     func contains(_ object : AnyObject) -> Bool {
         if self.isEmpty {
             return false
@@ -80,7 +80,7 @@ extension UITableView {
         guard let cell = dequeueReusableCell(withIdentifier: String(describing:T.self), for: indexPath) as? T else {
             fatalError("Cant dequeue cell with identifier: \(String(describing:T.self))")
         }
-     
+        
         return cell
     }
 }

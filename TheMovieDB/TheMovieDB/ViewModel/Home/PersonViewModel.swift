@@ -84,29 +84,48 @@ class PersonViewModel: ViewModel {
     
     private func getPerson() {
         Loading.shared.startLoading()
-        serviceModel.getPerson(from: idPerson, requestUrl: .person) { (object) in
+        serviceModel.getPerson(from: idPerson, requestUrl: .person) { [weak self] (object) in
             Loading.shared.stopLoading()
-            self.person = object as? Person
+            
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.person = object as? Person
         }
     }
     
     private func getMovieCredits() {
-        serviceModel.getPerson(from: idPerson, requestUrl: .personMovieCredits) { (object) in
-            if let object = object as? CreditsList, let results = object.cast {
-                self.castList.append(contentsOf: results)
+        serviceModel.getPerson(from: idPerson, requestUrl: .personMovieCredits) { [weak self] (object) in
+            guard let strongSelf = self else {
+                return
             }
+            guard let object = object as? CreditsList, let results = object.cast else {
+                return
+            }
+            
+            strongSelf.castList.append(contentsOf: results)
         }
     }
     
     private func getExternalIds() {
-        serviceModel.getPerson(from: idPerson, requestUrl: .personExternalIds) { (object) in
-            self.externalIds = object as? ExternalIds
+        serviceModel.getPerson(from: idPerson, requestUrl: .personExternalIds) { [weak self] (object) in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.externalIds = object as? ExternalIds
         }
     }
     
     private func loadImageData() {
-        serviceModel.loadImage(path: person?.profilePath ?? "", handlerData: { (data) in
-            if let data = data as? Data { self.photo.value = UIImage(data: data) }
+        serviceModel.loadImage(path: person?.profilePath ?? "", handlerData: { [weak self] (data) in
+            guard let strongSelf = self else {
+                return
+            }
+            guard let data = data as? Data else {
+                return
+            }
+            
+            strongSelf.photo.value = UIImage(data: data)
         })
     }
     
@@ -126,9 +145,12 @@ class PersonViewModel: ViewModel {
     
     private func externalId(with socialMediaType: SocialMediaType) -> String? {
         switch socialMediaType {
-            case .facebook: return externalIds?.facebookId
-            case .instagram: return externalIds?.instagramId
-            case .twitter: return externalIds?.twitterId
+        case .facebook:
+            return externalIds?.facebookId
+        case .instagram:
+            return externalIds?.instagramId
+        case .twitter:
+            return externalIds?.twitterId
         }
     }
     

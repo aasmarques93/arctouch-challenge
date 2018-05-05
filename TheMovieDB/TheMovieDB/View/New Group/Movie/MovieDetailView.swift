@@ -77,10 +77,13 @@ class MovieDetailView: UITableViewController {
         var height = super.tableView(tableView, heightForRowAt: indexPath)
         if let section = DetailSection(rawValue: indexPath.row) {
             switch section {
-                case .general: break
-                case .genres: height += textViewGenres.contentSize.height
-                case .overview: height += textViewOverview.contentSize.height
-                case .reviews: height = (CGFloat(viewModel?.numberOfReviews ?? 0) * (reviewsView?.rowHeight ?? 0)) + 40
+            case .general: break
+            case .genres:
+                height += textViewGenres.contentSize.height
+            case .overview:
+                height += textViewOverview.contentSize.height
+            case .reviews:
+                height = (CGFloat(viewModel?.numberOfReviews ?? 0) * (reviewsView?.rowHeight ?? 0)) + 40
             }
         }
         return height

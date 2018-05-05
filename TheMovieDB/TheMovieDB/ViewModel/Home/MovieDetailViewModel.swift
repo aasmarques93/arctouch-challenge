@@ -89,59 +89,98 @@ class MovieDetailViewModel: ViewModel {
     
     private func getMovieDetail() {
         Loading.shared.startLoading()
-        serviceModel.getDetail(from: movie) { (object) in
+        serviceModel.getDetail(from: movie) { [weak self] (object) in
             Loading.shared.stopLoading()
-            self.movieDetail = object as? MovieDetail
+            
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.movieDetail = object as? MovieDetail
         }
     }
     
     private func getVideos() {
-        if videosList.isEmpty {
-            serviceModel.getVideos(from: movie) { (object) in
-                if let object = object as? VideosList, let results = object.results {
-                    self.videosList.append(contentsOf: results)
-                }
+        guard videosList.isEmpty else {
+            return
+        }
+        
+        serviceModel.getVideos(from: movie) { [weak self] (object) in
+            guard let strongSelf = self else {
+                return
             }
+            guard let object = object as? VideosList, let results = object.results else {
+                return
+            }
+            
+            strongSelf.videosList.append(contentsOf: results)
         }
     }
     
     private func getMovieRecommendations() {
-        if moviesRecommendationsList.isEmpty {
-            serviceModel.getRecommendations(from: movie) { (object) in
-                if let object = object as? MoviesList, let results = object.results {
-                    self.moviesRecommendationsList.append(contentsOf: results)
-                }
+        guard moviesRecommendationsList.isEmpty else {
+            return
+        }
+        
+        serviceModel.getRecommendations(from: movie) { [weak self] (object) in
+            guard let strongSelf = self else {
+                return
             }
+            guard let object = object as? MoviesList, let results = object.results else {
+                return
+            }
+            
+            strongSelf.moviesRecommendationsList.append(contentsOf: results)
         }
     }
     
     private func getSimilarMovies() {
-        if similarMoviesList.isEmpty {
-            serviceModel.getSimilar(from: movie) { (object) in
-                if let object = object as? MoviesList, let results = object.results {
-                    self.similarMoviesList.append(contentsOf: results)
-                }
+        guard similarMoviesList.isEmpty else {
+            return
+        }
+        
+        serviceModel.getSimilar(from: movie) { [weak self] (object) in
+            guard let strongSelf = self else {
+                return
             }
+            guard let object = object as? MoviesList, let results = object.results else {
+                return
+            }
+            
+            strongSelf.similarMoviesList.append(contentsOf: results)
         }
     }
     
     private func getCredits() {
-        if castList.isEmpty {
-            serviceModel.getCredits(from: movie) { (object) in
-                if let object = object as? CreditsList, let results = object.cast {
-                    self.castList.append(contentsOf: results)
-                }
+        guard castList.isEmpty else {
+            return
+        }
+        
+        serviceModel.getCredits(from: movie) { [weak self] (object) in
+            guard let strongSelf = self else {
+                return
             }
+            guard let object = object as? CreditsList, let results = object.cast else {
+                return
+            }
+            
+            strongSelf.castList.append(contentsOf: results)
         }
     }
     
     private func getReviews() {
-        if reviewsList.isEmpty {
-            serviceModel.getReviews(from: movie) { (object) in
-                if let object = object as? ReviewsList, let results = object.results {
-                    self.reviewsList.append(contentsOf: results)
-                }
+        guard reviewsList.isEmpty else {
+            return
+        }
+        
+        serviceModel.getReviews(from: movie) { [weak self] (object) in
+            guard let strongSelf = self else {
+                return
             }
+            guard let object = object as? ReviewsList, let results = object.results else {
+                return
+            }
+            
+            strongSelf.reviewsList.append(contentsOf: results)
         }
     }
     
@@ -154,11 +193,13 @@ class MovieDetailViewModel: ViewModel {
     }
     
     func movieDetailImageData(handlerData: @escaping HandlerObject) {
-        if let movieDetail = movieDetail {
-            serviceModel.loadImage(path: movieDetail.backdropPath, handlerData: { (data) in
-                handlerData(data)
-            })
+        guard let movieDetail = movieDetail else {
+            return
         }
+        
+        serviceModel.loadImage(path: movieDetail.backdropPath, handlerData: { (data) in
+            handlerData(data)
+        })
     }
     
     private func setupGenres() -> String {
@@ -245,17 +286,17 @@ class MovieDetailViewModel: ViewModel {
     func reviewContent(at index: Int) -> String {
         return reviewsList[index].content ?? ""
     }
-
+    
     // MARK: - View Model Instantiation -
     
     func recommendedMovieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
         return movieDetailViewModel(moviesRecommendationsList[index])
     }
-
+    
     func similarMovieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
         return movieDetailViewModel(similarMoviesList[index])
     }
-
+    
     private func movieDetailViewModel(_ movie: Movie) -> MovieDetailViewModel? {
         return MovieDetailViewModel(movie)
     }

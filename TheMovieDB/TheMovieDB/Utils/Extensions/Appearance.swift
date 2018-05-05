@@ -157,7 +157,7 @@ extension UIView {
             return
         }
         
-        if let _ = self as? UITextField { return }
+        if self is UITextField { return }
         
         if let button = self as? UIButton {
             button.setTitleColor(HexColor.text.color, for: .normal)
@@ -443,7 +443,9 @@ extension UIView {
     
     func changeSelfContainerHeightConstraint(_ newConstant: CGFloat, animated: Bool = false) {
         //Find height constraint
-        guard let container = superview else { return }
+        guard let container = superview else {
+            return
+        }
         
         var heightConstraint: NSLayoutConstraint?
         

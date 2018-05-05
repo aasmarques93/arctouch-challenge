@@ -78,7 +78,9 @@ extension String {
     var idDateValid: Bool {
         let count = Constants.shared.defaultDateFormat.count
         if self.count != count { return false }
-        guard let _ = Date(fromString: self, format: .custom(Constants.shared.defaultDateFormat)) else { return false }
+        guard let _ = Date(fromString: self, format: .custom(Constants.shared.defaultDateFormat)) else {
+            return false
+        }
         return true
     }
     

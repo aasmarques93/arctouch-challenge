@@ -37,23 +37,35 @@ class SearchViewModel: ViewModel {
     }
     
     func loadData(genreIndex: Int) {
-        if let genreType = GenreType(rawValue: genreIndex) {
-            let requestUrl: RequestUrl = genreType == .movies ? .genres : .genresTV
+        guard let genreType = GenreType(rawValue: genreIndex) else {
+            return
+        }
+        
+        let requestUrl: RequestUrl = genreType == .movies ? .genres : .genresTV
+        
+        Loading.shared.startLoading()
+        serviceModel.getGenres(requestUrl: requestUrl) { [weak self] (object) in
+            Loading.shared.stopLoading()
             
-            Loading.shared.startLoading()
-            serviceModel.getGenres(requestUrl: requestUrl) { (object) in
-                Loading.shared.stopLoading()
-                if let object = object as? MoviesGenres {
-                    if self.showError(with: object) {
-                        self.delegate?.showError?(message: object.statusMessage)
-                        return
-                    }
-                    
-                    if let results = object.genres {
-                        self.arrayGenres = results
-                    }
-                }
+            guard let strongSelf = self, let object = object as? MoviesGenres else {
+                return
             }
+            
+            do {
+                try strongSelf.showError(with: object)
+            } catch {
+                guard let error = error as? Error else {
+                    return
+                }
+                strongSelf.delegate?.showError?(message: error.message)
+                return
+            }
+            
+            guard let results = object.genres else {
+                return
+            }
+            
+            strongSelf.arrayGenres = results
         }
     }
     
@@ -72,9 +84,7 @@ class SearchViewModel: ViewModel {
     }
     
     func searchResultViewModel(at indexPath: IndexPath?, text: String?) -> SearchResultViewModel? {
-        if let indexPath = indexPath {
-            return searchResultViewModel(at: indexPath)
-        }
+        if let indexPath = indexPath { return searchResultViewModel(at: indexPath) }
         return searchResultViewModel(with: text)
     }
 }

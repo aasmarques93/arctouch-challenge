@@ -57,7 +57,7 @@ struct ServiceModel {
         }
         
         if !verifyConnection() {
-            let error = ReachabilityError.notConnection
+            let error = ReachabilityError.notConnected.rawValue
             handlerObject(error)
             return
         }
@@ -81,7 +81,7 @@ struct ServiceModel {
                 handlerObject(JSON(value))
                 return
             }
-            handlerObject(ReachabilityError.requestTimeout)
+            handlerObject(ReachabilityError.requestTimeout.rawValue)
             
             handlerJson?(nil)
         }
@@ -92,7 +92,7 @@ struct ServiceModel {
         if let path = path { url += path }
         
         if !verifyConnection() {
-            let error = ReachabilityError.notConnection
+            let error = ReachabilityError.notConnected.rawValue
             handlerData(error)
             return
         }
@@ -101,7 +101,7 @@ struct ServiceModel {
             if let data = data {
                 handlerData(data)
             } else {
-                handlerData(ReachabilityError.requestTimeout)
+                handlerData(ReachabilityError.requestTimeout.rawValue)
             }
         }
     }
@@ -116,7 +116,7 @@ struct ServiceModel {
     
     static func verifyResult(_ object : Any?) -> String? {
         if let error = object as? ReachabilityError {
-            return error.descriptionError()
+            return error.rawValue
         }
         if let error = object as? Error {
             return error.localizedDescription
@@ -196,16 +196,7 @@ struct ServiceModel {
 
 // MARK: - Reachability Custom Error -
 
-enum ReachabilityError : Error {
-    case notConnection
-    case requestTimeout
-    
-    func descriptionError() -> String {
-        switch self {
-        case .notConnection:
-            return "CONNECTION_VERIFY"
-        case .requestTimeout:
-            return "REQUEST_TIMEOUT"
-        }
-    }
+enum ReachabilityError: String {
+    case notConnected = "CONNECTION_VERIFY"
+    case requestTimeout = "REQUEST_TIMEOUT"
 }
