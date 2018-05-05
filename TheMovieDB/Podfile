@@ -10,6 +10,7 @@ target 'TheMovieDB' do
   pod 'RAMAnimatedTabBarController'
   pod 'YouTubePlayer'
   pod 'SDWebImage'
+  pod 'AXPhotoViewer'
 
   # Pods for TheMovieDB
 

@@ -8,6 +8,7 @@
 
 import UIKit
 import Bond
+import AXPhotoViewer
 
 class PersonView: UITableViewController {
     @IBOutlet weak var textViewBiography: UITextView!
@@ -55,6 +56,10 @@ class PersonView: UITableViewController {
         viewModel?.twitterTintColor.bind(to: buttonTwitterValue.reactive.tintColor)
     }
     
+    @IBAction func buttonPhotoAction(_ sender: UIButton) {
+        PhotosComponent.present(from: self, photos: viewModel?.photos)
+    }
+
     @IBAction func buttonFacebookAction(_ sender: UIButton) {
         viewModel?.open(socialMediaType: .facebook)
     }

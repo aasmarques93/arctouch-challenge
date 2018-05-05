@@ -122,6 +122,9 @@
 		ED65BF0520925B8E0091D93B /* PlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED65BF0420925B8E0091D93B /* PlayerView.xib */; };
 		ED65BF0720925C280091D93B /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED65BF0620925C280091D93B /* PlayerView.swift */; };
 		ED65BF09209261C00091D93B /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED65BF08209261C00091D93B /* ReviewsView.swift */; };
+		ED7B9CB0209E3290006B9586 /* PersonImagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7B9CAE209E328E006B9586 /* PersonImagesList.swift */; };
+		ED7B9CB1209E3290006B9586 /* PersonImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7B9CAF209E328E006B9586 /* PersonImage.swift */; };
+		ED7B9CB4209E378C006B9586 /* PhotosComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7B9CB3209E378C006B9586 /* PhotosComponent.swift */; };
 		EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01220585A4400D843EC /* CollectionView.swift */; };
 		EDC6C01820585A5500D843EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01720585A5500D843EC /* Date.swift */; };
 		EDC6C01C20585A6300D843EC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01B20585A6300D843EC /* LoadingView.swift */; };
@@ -294,6 +297,9 @@
 		ED65BF0420925B8E0091D93B /* PlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerView.xib; sourceTree = "<group>"; };
 		ED65BF0620925C280091D93B /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		ED65BF08209261C00091D93B /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
+		ED7B9CAE209E328E006B9586 /* PersonImagesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonImagesList.swift; sourceTree = "<group>"; };
+		ED7B9CAF209E328E006B9586 /* PersonImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonImage.swift; sourceTree = "<group>"; };
+		ED7B9CB3209E378C006B9586 /* PhotosComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosComponent.swift; sourceTree = "<group>"; };
 		EDC6C01220585A4400D843EC /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		EDC6C01720585A5500D843EC /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		EDC6C01B20585A6300D843EC /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -595,6 +601,8 @@
 			children = (
 				ED3833FF20938E980079D48F /* KnownFor.swift */,
 				ED38340020938E980079D48F /* PopularPeople.swift */,
+				ED7B9CAE209E328E006B9586 /* PersonImagesList.swift */,
+				ED7B9CAF209E328E006B9586 /* PersonImage.swift */,
 			);
 			path = PopularPeople;
 			sourceTree = "<group>";
@@ -822,6 +830,14 @@
 			path = XIB;
 			sourceTree = "<group>";
 		};
+		ED7B9CB2209E3769006B9586 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				ED7B9CB3209E378C006B9586 /* PhotosComponent.swift */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
 		EDC6BFFB2058590D00D843EC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -867,6 +883,7 @@
 		EDC6BFFF2058593B00D843EC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				ED7B9CB2209E3769006B9586 /* Photos */,
 				EDDAB1BF209BDCB800271265 /* RAMTabBar */,
 				ED383443209502650079D48F /* CircularProgressView */,
 				ED3834232094227D0079D48F /* StretchHeaderView */,
@@ -1189,9 +1206,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TheMovieDB/Pods-TheMovieDB-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AXPhotoViewer/AXPhotoViewer.framework",
+				"${BUILT_PRODUCTS_DIR}/AXStateButton/AXStateButton.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Bond/Bond.framework",
 				"${BUILT_PRODUCTS_DIR}/Differ/Differ.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveKit/ReactiveKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -1200,9 +1220,12 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AXPhotoViewer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AXStateButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bond.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differ.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMAnimatedTabBarController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -1244,6 +1267,7 @@
 				ED38342920949AC70079D48F /* SeasonView.swift in Sources */,
 				ED16D86B20597D99002A0B2C /* ProductionCountries.swift in Sources */,
 				ED3834492095E3970079D48F /* SearchResult.swift in Sources */,
+				ED7B9CB1209E3290006B9586 /* PersonImage.swift in Sources */,
 				ED16D87B20599DAC002A0B2C /* MoviesGenres.swift in Sources */,
 				EDC6C02D20585A8C00D843EC /* Session.swift in Sources */,
 				ED3833FB20938CB00079D48F /* PopularPeopleServiceModel.swift in Sources */,
@@ -1308,6 +1332,7 @@
 				ED38340D20940DFC0079D48F /* TVShowViewModel.swift in Sources */,
 				ED16D84B205884AB002A0B2C /* Dates.swift in Sources */,
 				ED65BECC2091EEFC0091D93B /* JSONWrapper.swift in Sources */,
+				ED7B9CB4209E378C006B9586 /* PhotosComponent.swift in Sources */,
 				ED16D88020599F90002A0B2C /* SearchView.swift in Sources */,
 				ED16D87720599D11002A0B2C /* SearchPerson.swift in Sources */,
 				ED16D850205889BE002A0B2C /* HomeViewCell.swift in Sources */,
@@ -1340,6 +1365,7 @@
 				ED3833E6209332590079D48F /* PersonViewModel.swift in Sources */,
 				ED3833E8209339880079D48F /* Person.swift in Sources */,
 				ED38344E20973F5E0079D48F /* GuestStars.swift in Sources */,
+				ED7B9CB0209E3290006B9586 /* PersonImagesList.swift in Sources */,
 				ED38341B20941C4E0079D48F /* CreatedBy.swift in Sources */,
 				ED16D84720588381002A0B2C /* HomeServiceModel.swift in Sources */,
 				EDC6C02520585A7D00D843EC /* Extensions.swift in Sources */,

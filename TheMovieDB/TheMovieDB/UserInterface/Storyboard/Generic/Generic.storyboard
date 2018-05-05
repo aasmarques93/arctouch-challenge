@@ -34,10 +34,17 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NI8-4a-aWH">
                                                             <rect key="frame" x="96" y="8" width="183.5" height="183.5"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="NI8-4a-aWH" secondAttribute="height" multiplier="1:1" id="5Kz-S9-nNk"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzt-N7-fTl">
+                                                            <rect key="frame" x="96" y="8" width="183.5" height="183.5"/>
+                                                            <connections>
+                                                                <action selector="buttonPhotoAction:" destination="Z2k-7z-TGx" eventType="touchUpInside" id="gyV-hJ-uhI"/>
+                                                            </connections>
+                                                        </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aF-Lc-ReH">
                                                             <rect key="frame" x="254.5" y="8" width="32" height="32"/>
                                                             <state key="normal" image="facebook"/>
@@ -72,13 +79,17 @@
                                                         <constraint firstItem="geV-ya-UWS" firstAttribute="leading" secondItem="pL9-BY-AeW" secondAttribute="trailing" constant="8" id="GA3-0c-Tel"/>
                                                         <constraint firstItem="geV-ya-UWS" firstAttribute="top" secondItem="pL9-BY-AeW" secondAttribute="top" id="PNW-vi-cmm"/>
                                                         <constraint firstItem="pL9-BY-AeW" firstAttribute="width" secondItem="8aF-Lc-ReH" secondAttribute="width" id="TB3-In-Dt3"/>
+                                                        <constraint firstItem="wzt-N7-fTl" firstAttribute="leading" secondItem="NI8-4a-aWH" secondAttribute="leading" id="TqY-if-yOw"/>
+                                                        <constraint firstItem="wzt-N7-fTl" firstAttribute="bottom" secondItem="NI8-4a-aWH" secondAttribute="bottom" id="Uin-mh-c6S"/>
                                                         <constraint firstItem="pL9-BY-AeW" firstAttribute="leading" secondItem="8aF-Lc-ReH" secondAttribute="trailing" constant="8" id="ccL-Ug-mxF"/>
                                                         <constraint firstItem="8aF-Lc-ReH" firstAttribute="top" secondItem="NI8-4a-aWH" secondAttribute="top" id="dMf-UG-AUi"/>
+                                                        <constraint firstItem="wzt-N7-fTl" firstAttribute="trailing" secondItem="NI8-4a-aWH" secondAttribute="trailing" id="dvF-hQ-fdl"/>
                                                         <constraint firstItem="geV-ya-UWS" firstAttribute="bottom" secondItem="pL9-BY-AeW" secondAttribute="bottom" id="hzP-Zg-jeN"/>
                                                         <constraint firstItem="NI8-4a-aWH" firstAttribute="top" secondItem="D6h-bB-Yvp" secondAttribute="top" constant="8" id="mkL-82-hMD"/>
                                                         <constraint firstAttribute="bottom" secondItem="NI8-4a-aWH" secondAttribute="bottom" constant="8" id="qB3-xI-xkg"/>
                                                         <constraint firstItem="NI8-4a-aWH" firstAttribute="centerX" secondItem="D6h-bB-Yvp" secondAttribute="centerX" id="rbg-By-UeU"/>
                                                         <constraint firstItem="geV-ya-UWS" firstAttribute="width" secondItem="pL9-BY-AeW" secondAttribute="width" id="t74-p6-YXD"/>
+                                                        <constraint firstItem="wzt-N7-fTl" firstAttribute="top" secondItem="NI8-4a-aWH" secondAttribute="top" id="xR4-Nq-m7c"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>

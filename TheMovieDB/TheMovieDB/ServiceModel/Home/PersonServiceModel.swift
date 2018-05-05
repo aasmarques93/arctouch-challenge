@@ -25,6 +25,15 @@ struct PersonServiceModel {
             }
         })
     }
+
+    func getImages(from idPerson: Int?, handler: @escaping HandlerObject) {
+        let parameters = ["idPerson": idPerson ?? 0]
+        serviceModel.request(requestUrl: .personImages, urlParameters: parameters, handlerObject: { (object) in
+            if let object = object {
+                handler(PersonImagesList(object: object))
+            }
+        })
+    }
     
     func loadImage(path: String?, handlerData: @escaping HandlerObject) {
         serviceModel.loadImage(path: path, handlerData: handlerData)

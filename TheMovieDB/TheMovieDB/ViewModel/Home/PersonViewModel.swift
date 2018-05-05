@@ -64,7 +64,11 @@ class PersonViewModel: ViewModel {
     // MARK: Cast
     private var castList = [Cast]() { didSet { delegate?.reloadData?() } }
     var numberOfCastMovies: Int { return castList.count }
-    
+
+    // MARK: Photos
+    private var imagesList = [PersonImage]() { didSet { setupPhotos() } }
+    var photos = [Photo]()
+
     // MARK: Service Model
     let serviceModel = PersonServiceModel()
     
@@ -80,6 +84,7 @@ class PersonViewModel: ViewModel {
         getPerson()
         getMovieCredits()
         getExternalIds()
+        getImages()
     }
     
     private func getPerson() {
@@ -115,16 +120,25 @@ class PersonViewModel: ViewModel {
             strongSelf.externalIds = object as? ExternalIds
         }
     }
-    
-    private func loadImageData() {
-        serviceModel.loadImage(path: person?.profilePath ?? "", handlerData: { [weak self] (data) in
+
+    private func getImages() {
+        serviceModel.getImages(from: idPerson) { [weak self] (object) in
             guard let strongSelf = self else {
                 return
             }
-            guard let data = data as? Data else {
+            guard let object = object as? PersonImagesList, let results = object.results else {
                 return
             }
-            
+            strongSelf.imagesList = results
+        }
+    }
+    
+    private func loadImageData() {
+        serviceModel.loadImage(path: person?.profilePath ?? "", handlerData: { [weak self] (data) in
+            guard let strongSelf = self, let data = data as? Data else {
+                return
+            }
+
             strongSelf.photo.value = UIImage(data: data)
         })
     }
@@ -159,5 +173,18 @@ class PersonViewModel: ViewModel {
         let dictionary: [String:Any?] = ["id": cast.id, "original_title": cast.originalTitle]
         let movie = Movie(object: dictionary)
         return MovieDetailViewModel(movie)
+    }
+
+    // MARK: - AX Photos -
+
+    func setupPhotos() {
+        photos = [Photo]()
+        for image in imagesList {
+            serviceModel.loadImage(path: image.filePath) { (data) in
+                if let data = data as? Data {
+                    self.photos.append(Photo(image: UIImage(data: data)))
+                }
+            }
+        }
     }
 }

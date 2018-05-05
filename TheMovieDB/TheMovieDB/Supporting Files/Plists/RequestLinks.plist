@@ -46,6 +46,8 @@
 	<string>/person/{idPerson}/external_ids?</string>
 	<key>popularPeople</key>
 	<string>/person/popular?page={page}&amp;</string>
+	<key>personImages</key>
+	<string>/person/{idPerson}/images?</string>
 	<key>tvPopular</key>
 	<string>/tv/popular?page={page}&amp;</string>
 	<key>tvDetail</key>
