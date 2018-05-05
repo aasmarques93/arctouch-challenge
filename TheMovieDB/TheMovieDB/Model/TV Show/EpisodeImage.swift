@@ -1,5 +1,5 @@
 //
-//  Profiles.swift
+//  Stills.swift
 //
 //  Created by Arthur Augusto Sousa Marques on 5/5/18
 //  Copyright (c) . All rights reserved.
@@ -8,9 +8,9 @@
 import Foundation
 import SwiftyJSON
 
-struct PersonImage: Model {
+struct EpisodeImage: Model {
     var json: JSON?
-
+    
     // MARK: Declaration for string constants to be used to decode and also serialize.
     private struct SerializationKeys {
         static let height = "height"
@@ -20,15 +20,15 @@ struct PersonImage: Model {
         static let voteCount = "vote_count"
         static let filePath = "file_path"
     }
-
+    
     // MARK: Properties
-    var height: Int?
-    var voteAverage: Float?
-    var aspectRatio: Float?
-    var width: Int?
-    var voteCount: Int?
-    var filePath: String?
-
+    public var height: Int?
+    public var voteAverage: Float?
+    public var aspectRatio: Float?
+    public var width: Int?
+    public var voteCount: Int?
+    public var filePath: String?
+    
     // MARK: SwiftyJSON Initializers
     /// Initiates the instance based on the object.
     ///
@@ -41,7 +41,7 @@ struct PersonImage: Model {
         }
         self.init(json: JSON(object))
     }
-
+    
     /// Initiates the instance based on the JSON that was passed.
     ///
     /// - parameter json: JSON object from SwiftyJSON.
@@ -54,7 +54,7 @@ struct PersonImage: Model {
         voteCount = json?[SerializationKeys.voteCount].int
         filePath = json?[SerializationKeys.filePath].string
     }
-
+    
     /// Generates description of the object in the form of a NSDictionary.
     ///
     /// - returns: A Key value pair containing all valid values in the object.
@@ -68,5 +68,5 @@ struct PersonImage: Model {
         if let value = filePath { dictionary[SerializationKeys.filePath] = value }
         return dictionary
     }
-
+    
 }

@@ -13,10 +13,17 @@ struct SeasonDetailServiceModel {
     
     func getDetail(from tvShowDetail: TVShowDetail?, season: Seasons?, handler: @escaping HandlerObject) {
         if let id = tvShowDetail?.id, let seasonNumber = season?.seasonNumber {
-            let parameters = ["id": id, "season": seasonNumber]
+            let parameters = [
+                "id": id,
+                "season": seasonNumber
+            ]
             serviceModel.request(requestUrl: .seasonDetail, urlParameters: parameters, handlerObject: { (object) in
                 if let object = object { handler(SeasonDetail(object: object)) }
             })
         }
+    }
+
+    func loadImage(path: String?, handlerData: @escaping HandlerObject) {
+        serviceModel.loadImage(path: path, handlerData: handlerData)
     }
 }

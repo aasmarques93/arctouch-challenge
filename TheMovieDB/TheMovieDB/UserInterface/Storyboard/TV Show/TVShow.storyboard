@@ -454,12 +454,22 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmE-Fb-BDi">
+                                                    <rect key="frame" x="0.0" y="61.5" width="375" height="200"/>
+                                                    <connections>
+                                                        <action selector="buttonPhotoAction:" destination="nBF-aH-q5D" eventType="touchUpInside" id="fTS-wz-LhL"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="5zI-nN-VLy" firstAttribute="top" secondItem="Le2-8Z-8Zr" secondAttribute="bottom" constant="8" id="0XJ-1x-4H3"/>
+                                                <constraint firstItem="wmE-Fb-BDi" firstAttribute="top" secondItem="5zI-nN-VLy" secondAttribute="top" id="7dG-rK-3lv"/>
+                                                <constraint firstItem="wmE-Fb-BDi" firstAttribute="trailing" secondItem="5zI-nN-VLy" secondAttribute="trailing" id="ALB-hE-ZuV"/>
                                                 <constraint firstItem="Le2-8Z-8Zr" firstAttribute="top" secondItem="uUB-Iy-6f3" secondAttribute="bottom" constant="8" id="Apv-Qs-l1q"/>
+                                                <constraint firstItem="wmE-Fb-BDi" firstAttribute="leading" secondItem="5zI-nN-VLy" secondAttribute="leading" id="D3r-3q-aa8"/>
                                                 <constraint firstAttribute="bottom" secondItem="J0u-iS-eAg" secondAttribute="bottom" id="Gfw-Da-jiK"/>
+                                                <constraint firstItem="wmE-Fb-BDi" firstAttribute="bottom" secondItem="5zI-nN-VLy" secondAttribute="bottom" id="KG5-2d-Kxl"/>
                                                 <constraint firstAttribute="trailing" secondItem="5zI-nN-VLy" secondAttribute="trailing" id="Q67-5u-eFq"/>
                                                 <constraint firstItem="J0u-iS-eAg" firstAttribute="top" secondItem="5zI-nN-VLy" secondAttribute="bottom" constant="9" id="Svx-K9-WOR"/>
                                                 <constraint firstItem="J0u-iS-eAg" firstAttribute="leading" secondItem="sfT-Pk-nAU" secondAttribute="leading" id="Uxo-iU-zve"/>
@@ -490,6 +500,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
+                                    <outlet property="buttonPhoto" destination="wmE-Fb-BDi" id="Fp5-YF-4Ok"/>
                                     <outlet property="imageViewPoster" destination="5zI-nN-VLy" id="CtJ-hM-mta"/>
                                     <outlet property="labelDate" destination="Le2-8Z-8Zr" id="C8U-4i-WUu"/>
                                     <outlet property="labelOriginalTitle" destination="uUB-Iy-6f3" id="Tm3-rN-VZb"/>

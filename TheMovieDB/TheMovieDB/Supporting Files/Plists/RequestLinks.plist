@@ -56,6 +56,8 @@
 	<string>/tv/{id}/videos?</string>
 	<key>tvCredits</key>
 	<string>/tv/{id}/credits?</string>
+	<key>tvImages</key>
+	<string>/tv/{id}/season/{season}/episode/{episode}/images?</string>
 	<key>multiSearch</key>
 	<string>/search/multi?query={query}&amp;page={page}&amp;</string>
 	<key>seasonDetail</key>

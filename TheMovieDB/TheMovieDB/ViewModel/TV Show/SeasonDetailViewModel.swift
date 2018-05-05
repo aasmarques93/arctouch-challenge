@@ -46,7 +46,7 @@ class SeasonDetailViewModel: ViewModel {
     var seasonName: String? {
         return season?.name
     }
-    
+
     // MARK: - Life cycle -
     
     init(_ object: TVShowDetail?, season: Seasons?) {
@@ -57,10 +57,12 @@ class SeasonDetailViewModel: ViewModel {
     // MARK: - Service requests -
     
     func loadData() {
+        if seasonDetail != nil { return }
+
         Loading.shared.startLoading()
         serviceModel.getDetail(from: tvShowDetail, season: season) { [weak self] (object) in
             Loading.shared.stopLoading()
-            
+
             guard let strongSelf = self else {
                 return
             }
@@ -83,6 +85,6 @@ class SeasonDetailViewModel: ViewModel {
     // MARK: - View Model -
     
     func episodeViewModel(at indexPath: IndexPath) -> EpisodeViewModel? {
-        return EpisodeViewModel(episodesList[indexPath.row])
+        return EpisodeViewModel(episodesList[indexPath.row], tvShowDetail: tvShowDetail)
     }
 }

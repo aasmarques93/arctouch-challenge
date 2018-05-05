@@ -35,7 +35,7 @@ struct Photo {
 }
 
 struct PhotosComponent {
-    static func present(from viewController: UIViewController, photos: [Photo]?) {
+    static func present(from viewController: UIViewController? = nil, photos: [Photo]?) {
         guard let photos = photos else {
             return
         }
@@ -53,6 +53,12 @@ struct PhotosComponent {
 
         let dataSource = AXPhotosDataSource(photos: arrayPhotos)
         let photosViewController = AXPhotosViewController(dataSource: dataSource)
+
+        guard let viewController = viewController else {
+            UIApplication.topViewController()?.present(photosViewController, animated: true)
+            return
+        }
+
         viewController.present(photosViewController, animated: true)
     }
 }

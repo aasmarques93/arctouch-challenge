@@ -67,7 +67,7 @@ class PersonViewModel: ViewModel {
 
     // MARK: Photos
     private var imagesList = [PersonImage]() { didSet { setupPhotos() } }
-    var photos = [Photo]()
+    private var photos = [Photo]()
 
     // MARK: Service Model
     let serviceModel = PersonServiceModel()
@@ -88,6 +88,8 @@ class PersonViewModel: ViewModel {
     }
     
     private func getPerson() {
+        if person != nil { return }
+
         Loading.shared.startLoading()
         serviceModel.getPerson(from: idPerson, requestUrl: .person) { [weak self] (object) in
             Loading.shared.stopLoading()
@@ -100,6 +102,10 @@ class PersonViewModel: ViewModel {
     }
     
     private func getMovieCredits() {
+        guard castList.isEmpty else {
+            return
+        }
+
         serviceModel.getPerson(from: idPerson, requestUrl: .personMovieCredits) { [weak self] (object) in
             guard let strongSelf = self else {
                 return
@@ -113,6 +119,8 @@ class PersonViewModel: ViewModel {
     }
     
     private func getExternalIds() {
+        if externalIds != nil { return }
+
         serviceModel.getPerson(from: idPerson, requestUrl: .personExternalIds) { [weak self] (object) in
             guard let strongSelf = self else {
                 return
@@ -122,6 +130,10 @@ class PersonViewModel: ViewModel {
     }
 
     private func getImages() {
+        guard imagesList.isEmpty else {
+            return
+        }
+
         serviceModel.getImages(from: idPerson) { [weak self] (object) in
             guard let strongSelf = self else {
                 return
@@ -134,6 +146,8 @@ class PersonViewModel: ViewModel {
     }
     
     private func loadImageData() {
+        if photo.value != nil { return }
+
         serviceModel.loadImage(path: person?.profilePath ?? "", handlerData: { [weak self] (data) in
             guard let strongSelf = self, let data = data as? Data else {
                 return
@@ -175,7 +189,12 @@ class PersonViewModel: ViewModel {
         return MovieDetailViewModel(movie)
     }
 
-    // MARK: - AX Photos -
+    // MARK: - Photos -
+
+    func presentPhotos() {
+        if photos.isEmpty  { return }
+        PhotosComponent.present(photos: photos)
+    }
 
     func setupPhotos() {
         photos = [Photo]()

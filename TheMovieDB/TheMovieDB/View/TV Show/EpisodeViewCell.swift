@@ -13,7 +13,8 @@ class EpisodeViewCell: UITableViewCell {
     @IBOutlet weak var labelOriginalTitle: UILabel!
     @IBOutlet weak var labelDate: UILabel!
     @IBOutlet weak var textViewOverview: UITextView!
-    
+    @IBOutlet weak var buttonPhoto: UIButton!
+
     var viewModel: EpisodeViewModel?
     
     func setupView(at indexPath: IndexPath) {
@@ -23,5 +24,9 @@ class EpisodeViewCell: UITableViewCell {
         viewModel?.overview.bind(to: textViewOverview.reactive.text)
         
         viewModel?.loadData()
+    }
+
+    @IBAction func buttonPhotoAction(_ sender: UIButton) {
+        viewModel?.presentPhotos()
     }
 }

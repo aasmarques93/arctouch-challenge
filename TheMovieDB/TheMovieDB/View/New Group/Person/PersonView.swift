@@ -13,6 +13,7 @@ import AXPhotoViewer
 class PersonView: UITableViewController {
     @IBOutlet weak var textViewBiography: UITextView!
     
+    @IBOutlet weak var imageViewBackground: UIImageView!
     @IBOutlet weak var imageViewPhoto: UIImageView!
     
     @IBOutlet weak var labelBiographyFixed: UILabel!
@@ -48,6 +49,7 @@ class PersonView: UITableViewController {
         viewModel?.placeOfBirth.bind(to: labelPlaceOfBirth.reactive.text)
         viewModel?.alsoKnownAs.bind(to: labelAlsoKnownAs.reactive.text)
         viewModel?.photo.bind(to: imageViewPhoto.reactive.image)
+        viewModel?.photo.bind(to: imageViewBackground.reactive.image)
         viewModel?.isFacebookEnabled.bind(to: buttonFacebookValue.reactive.isEnabled)
         viewModel?.facebookTintColor.bind(to: buttonFacebookValue.reactive.tintColor)
         viewModel?.isInstagramEnabled.bind(to: buttonInstagramValue.reactive.isEnabled)
@@ -57,7 +59,7 @@ class PersonView: UITableViewController {
     }
     
     @IBAction func buttonPhotoAction(_ sender: UIButton) {
-        PhotosComponent.present(from: self, photos: viewModel?.photos)
+        viewModel?.presentPhotos()
     }
 
     @IBAction func buttonFacebookAction(_ sender: UIButton) {
