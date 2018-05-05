@@ -75,20 +75,20 @@ class HomeViewModel: ViewModel {
     var numberOfPopularList: Int { return popularList.count }
     private var currentPopularListPage: Int = 1
     
-    //MARK: Variables
+    // MARK: Variables
     private var isDataLoading = false
     
     // MARK: - Service requests -
     
-    func loadData(genre: Genre? = nil) {
-        guard let genre = genre else {
-            getMovies(genre: .popular)
-            getMovies(genre: .topRated)
-            getMovies(genre: .upcoming)
-            getMovies(genre: .nowPlaying)
-            return
-        }
-        
+    func loadData() {
+        getMovies(genre: .popular)
+        getMovies(genre: .topRated)
+        getMovies(genre: .upcoming)
+        getMovies(genre: .nowPlaying)
+    }
+    
+    private func loadData(genre: Genre?) {
+        guard let genre = genre else { return }
         
         switch genre {
             case .popular:
@@ -132,7 +132,7 @@ class HomeViewModel: ViewModel {
             serviceModel.getMovies(urlParameters: parameters, requestUrl: requestUrl) { (object) in
                 if let object = object as? MoviesList {
                     if self.showError(with: object) {
-                        if let method = self.delegate?.showError { method(object.statusMessage) }
+                        self.delegate?.showError?(message: object.statusMessage)
                         return
                     }
                     

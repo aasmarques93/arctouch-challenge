@@ -6,64 +6,60 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-class MovieDetailServiceModel: ServiceModel {
+struct MovieDetailServiceModel {
+    let serviceModel = ServiceModel()
+    
     func getDetail(from movie: Movie, handler: @escaping HandlerObject) {
-        request(MovieDetail.self,
-                requestUrl: .movie,
-                urlParameters: createParameters(from: movie),
-                handlerObject: { (object) in
+        serviceModel.request(requestUrl: .movie,
+                             urlParameters: createParameters(from: movie),
+                             handlerObject: { (object) in
             
-                    handler(object)
+                                if let object = object { handler(MovieDetail(object: object)) }
         })
     }
     
     func getVideos(from movie: Movie, handler: @escaping HandlerObject) {
-        request(VideosList.self,
-                requestUrl: .videos,
-                urlParameters: createParameters(from: movie),
-                handlerObject: { (object) in
+        serviceModel.request(requestUrl: .videos,
+                             urlParameters: createParameters(from: movie),
+                             handlerObject: { (object) in
 
-                    handler(object)
+                                if let object = object { handler(VideosList(object: object)) }
         })
     }
     
     func getRecommendations(from movie: Movie, handler: @escaping HandlerObject) {
-        request(MoviesList.self,
-                requestUrl: .recommendations,
-                urlParameters: createParameters(from: movie, isSimple: false),
-                handlerObject: { (object) in
+        serviceModel.request(requestUrl: .recommendations,
+                             urlParameters: createParameters(from: movie, isSimple: false),
+                             handlerObject: { (object) in
                     
-                    handler(object)
+                                if let object = object { handler(MoviesList(object: object)) }
         })
     }
     
     func getSimilar(from movie: Movie, handler: @escaping HandlerObject) {
-        request(MoviesList.self,
-                requestUrl: .similar,
-                urlParameters: createParameters(from: movie, isSimple: false),
-                handlerObject: { (object) in
+        serviceModel.request(requestUrl: .similar,
+                             urlParameters: createParameters(from: movie, isSimple: false),
+                             handlerObject: { (object) in
                     
-                    handler(object)
+                                if let object = object { handler(MoviesList(object: object)) }
         })
     }
     
     func getCredits(from movie: Movie, handler: @escaping HandlerObject) {
-        request(CreditsList.self,
-                requestUrl: .credits,
-                urlParameters: createParameters(from: movie),
-                handlerObject: { (object) in
+        serviceModel.request(requestUrl: .credits,
+                             urlParameters: createParameters(from: movie),
+                             handlerObject: { (object) in
                     
-                    handler(object)
+                                if let object = object { handler(CreditsList(object: object)) }
         })
     }
     
     func getReviews(from movie: Movie, handler: @escaping HandlerObject) {
-        request(ReviewsList.self,
-                requestUrl: .reviews,
-                urlParameters: createParameters(from: movie, isSimple: false),
-                handlerObject: { (object) in
+        serviceModel.request(requestUrl: .reviews,
+                             urlParameters: createParameters(from: movie, isSimple: false),
+                             handlerObject: { (object) in
                     
-                    handler(object)
+                                if let object = object { handler(ReviewsList(object: object)) }
         })
     }
     
@@ -72,5 +68,9 @@ class MovieDetailServiceModel: ServiceModel {
         parameters["idMovie"] = movie.id ?? 0
         if !isSimple { parameters["page"] = 1 }
         return parameters
+    }
+    
+    func loadImage(path: String?, handlerData: @escaping HandlerObject) {
+        serviceModel.loadImage(path: path, handlerData: handlerData)
     }
 }

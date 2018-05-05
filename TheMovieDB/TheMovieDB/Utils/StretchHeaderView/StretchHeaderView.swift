@@ -30,11 +30,10 @@ class StretchHeaderView: UIView {
         tableView.addSubview(imageViewHeader)
         
         activityIndicator.activityIndicatorViewStyle = .whiteLarge
-        activityIndicator.center = CGPoint(x: imageViewHeader.center.x, y: imageViewHeader.center.y - frame.height)
+        activityIndicator.center = CGPoint(x: imageViewHeader.center.x, y: imageViewHeader.center.y)
         activityIndicator.startAnimating()
         activityIndicator.removeFromSuperview()
-        activityIndicator.isHidden = image != nil
-        tableView.addSubview(activityIndicator)
+        if image == nil { tableView.addSubview(activityIndicator) }
         
         tableView.contentInset = UIEdgeInsetsMake(frame.height, 0, 0, 0)
     }

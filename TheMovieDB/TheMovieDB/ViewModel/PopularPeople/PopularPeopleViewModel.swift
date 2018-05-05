@@ -6,6 +6,8 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
+import Bond
+
 class PopularPeopleViewModel: ViewModel {
     // MARK: - Singleton -
     static let shared = PopularPeopleViewModel()
@@ -14,6 +16,9 @@ class PopularPeopleViewModel: ViewModel {
     
     // MARK: Delegate
     weak var delegate: ViewModelDelegate?
+    
+    // MARK: Observables
+    var isEmptyMessageHidden = Observable<Bool>(false)
     
     // MARK: Service Model
     let serviceModel = PopularPeopleServiceModel()
@@ -26,16 +31,17 @@ class PopularPeopleViewModel: ViewModel {
     
     // MARK: Objects
     private var popularPeopleList = [Person]()
-    private var searchPersonList = [Person]() { didSet { if let method = delegate?.reloadData { method() } } }
+    private var searchPersonList = [Person]() {
+        didSet {
+            isEmptyMessageHidden.value = numberOfPopularPeople > 0
+            delegate?.reloadData?()
+        }
+    }
     var numberOfPopularPeople: Int { return searchPersonList.count }
     
     // MARK: - Service requests -
     
     func loadData() {
-        getPopularPeople()
-    }
-    
-    private func getPopularPeople() {
         if let searchText = searchText, !searchText.isEmptyOrWhitespace { return }
         
         isDataLoading = true
@@ -78,7 +84,7 @@ class PopularPeopleViewModel: ViewModel {
             return
         }
         
-        getPopularPeople()
+        loadData()
     }
     
     // MARK: - View Model -

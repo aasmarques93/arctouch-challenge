@@ -14,19 +14,14 @@ typealias HandlerObject = (Any?) -> Swift.Void
 
 // MARK: - Service Model -
 
-class ServiceModel {
-    
+struct ServiceModel {
     // MARK: - Properties -
-    
     var url : String?
     var parameters : [String:Any]?
     
     // MARK: - Constructors -
+    init() { }
     
-    init() {
-        
-    }
-
     init(url : String?) {
         self.url = url
     }
@@ -38,18 +33,17 @@ class ServiceModel {
     
     // MARK: - Service Delegate Methods -
     
-    func request<T:Model>(_:T.Type,
-                          method: HTTPMethod = .get,
-                          requestUrl: RequestUrl,
-                          stringUrl: String? = nil,
-                          parameters: [String:Any]? = nil,
-                          urlParameters: [String:Any]? = nil,
-                          handlerObject: @escaping HandlerObject,
-                          handlerJson: HandlerObject? = nil) {
+    func request(method: HTTPMethod = .get,
+                 requestUrl: RequestUrl,
+                 stringUrl: String? = nil,
+                 parameters: [String:Any]? = nil,
+                 urlParameters: [String:Any]? = nil,
+                 handlerObject: @escaping HandlerObject,
+                 handlerJson: HandlerObject? = nil) {
         
         if EnvironmentHost.shared.current == .mock {
             JSONWrapper.json(from: requestUrl) { (json) in
-                if let json = json { handlerObject(T(json: json)) }
+                if let json = json { handlerObject(json) }
             }
             return
         }
@@ -70,23 +64,26 @@ class ServiceModel {
         
         Connection.request(url, method: method, parameters: parameters) { (dataResponse) in
             if let value = dataResponse.result.value {
-                if let handlerJson = handlerJson { handlerJson(value) }
+                handlerJson?(value)
                 
                 if let array = value as? [Any] {
-                    var arrayObject = [T]()
+                    var arrayObject = [JSON]()
+                    
                     for object in array {
-                        arrayObject.append(T(json: JSON(object)))
+                        arrayObject.append(JSON(object))
                     }
+                    
                     handlerObject(arrayObject)
+                    
                     return
                 }
                 
-                handlerObject(T(json: JSON(value)))
+                handlerObject(JSON(value))
                 return
             }
-            
             handlerObject(ReachabilityError.requestTimeout)
-            if let handlerJson = handlerJson { handlerJson(nil) }
+            
+            handlerJson?(nil)
         }
     }
     
@@ -119,7 +116,7 @@ class ServiceModel {
     
     static func verifyResult(_ object : Any?) -> String? {
         if let error = object as? ReachabilityError {
-            return error.descriptionError
+            return error.descriptionError()
         }
         if let error = object as? Error {
             return error.localizedDescription
@@ -127,9 +124,12 @@ class ServiceModel {
         return nil
     }
     
-    func verifyConnection() -> Bool{
+    func verifyConnection() -> Bool {
         if let reachabilityNetwork = Alamofire.NetworkReachabilityManager(host: "www.google.com") {
-            return reachabilityNetwork.isReachable
+            
+            if reachabilityNetwork.isReachable {
+                return true
+            }
         }
         return false
     }
@@ -200,10 +200,12 @@ enum ReachabilityError : Error {
     case notConnection
     case requestTimeout
     
-    var descriptionError: String {
+    func descriptionError() -> String {
         switch self {
-            case .notConnection: return "CONNECTION_VERIFY"
-            case .requestTimeout: return "REQUEST_TIMEOUT"
+        case .notConnection:
+            return "CONNECTION_VERIFY"
+        case .requestTimeout:
+            return "REQUEST_TIMEOUT"
         }
     }
 }

@@ -45,7 +45,7 @@ class PersonViewModel: ViewModel {
             
             loadImageData()
             
-            if let method = delegate?.reloadData { method() }
+            delegate?.reloadData?()
         }
     }
     
@@ -62,7 +62,7 @@ class PersonViewModel: ViewModel {
     }
     
     // MARK: Cast
-    private var castList = [Cast]() { didSet { if let method = delegate?.reloadData { method() } } }
+    private var castList = [Cast]() { didSet { delegate?.reloadData?() } }
     var numberOfCastMovies: Int { return castList.count }
     
     // MARK: Service Model
@@ -71,7 +71,6 @@ class PersonViewModel: ViewModel {
     // MARK: Life Cycle
     
     init(_ object: Int?) {
-        super.init()
         self.idPerson = object
     }
     
@@ -84,15 +83,15 @@ class PersonViewModel: ViewModel {
     }
     
     private func getPerson() {
-        loadingView.startInWindow()
-        serviceModel.getPerson(type: Person.self, from: idPerson, requestUrl: .person) { (object) in
-            self.loadingView.stop()
+        Loading.shared.startLoading()
+        serviceModel.getPerson(from: idPerson, requestUrl: .person) { (object) in
+            Loading.shared.stopLoading()
             self.person = object as? Person
         }
     }
     
     private func getMovieCredits() {
-        serviceModel.getPerson(type: CreditsList.self, from: idPerson, requestUrl: .personMovieCredits) { (object) in
+        serviceModel.getPerson(from: idPerson, requestUrl: .personMovieCredits) { (object) in
             if let object = object as? CreditsList, let results = object.cast {
                 self.castList.append(contentsOf: results)
             }
@@ -100,7 +99,7 @@ class PersonViewModel: ViewModel {
     }
     
     private func getExternalIds() {
-        serviceModel.getPerson(type: ExternalIds.self, from: idPerson, requestUrl: .personExternalIds) { (object) in
+        serviceModel.getPerson(from: idPerson, requestUrl: .personExternalIds) { (object) in
             self.externalIds = object as? ExternalIds
         }
     }

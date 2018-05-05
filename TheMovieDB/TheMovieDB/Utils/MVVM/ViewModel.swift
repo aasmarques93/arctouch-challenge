@@ -13,32 +13,20 @@ import UIKit
     @objc optional func showError(message: String?)
 }
 
+protocol ViewModel {
+    func loadData()
+}
 
-class ViewModel : NSObject {
-
-    // MARK: - Constructors -
-    
-    override init() {
-        
-    }
-    
-    init(object : Any) {
-        
-    }
-    
+extension ViewModel {
     // Create an unwrapped string from any object
     func valueDescription(_ object : Any?) -> String {
-        if let object = object {
-            return "\(object)"
-        }
+        if let object = object { return "\(object)" }
         return ""
     }
     
     // Show error if object has returno status message
     func showError(with object: Model) -> Bool {
-        if let statusMessage = object.statusMessage, statusMessage != "" {
-            return true
-        }
+        if let statusMessage = object.statusMessage, statusMessage != "" { return true }
         return false
     }
     

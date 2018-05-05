@@ -6,25 +6,27 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-class TVShowDetailServiceModel: ServiceModel {
+struct TVShowDetailServiceModel {
+    let serviceModel = ServiceModel()
+    
     func getDetail(from id: Int?, handler: @escaping HandlerObject) {
         let parameters = ["id": id ?? 0]
-        request(TVShowDetail.self, requestUrl: .tvDetail, urlParameters: parameters, handlerObject: { (object) in
-                handler(object)
+        serviceModel.request(requestUrl: .tvDetail, urlParameters: parameters, handlerObject: { (object) in
+            if let object = object { handler(TVShowDetail(object: object)) }
         })
     }
     
     func getVideos(from id: Int?, handler: @escaping HandlerObject) {
         let parameters = ["id": id ?? 0]
-        request(VideosList.self, requestUrl: .tvVideos, urlParameters: parameters, handlerObject: { (object) in
-            handler(object)
+        serviceModel.request(requestUrl: .tvVideos, urlParameters: parameters, handlerObject: { (object) in
+            if let object = object { handler(VideosList(object: object)) }
         })
     }
     
     func getCredits(from id: Int?, handler: @escaping HandlerObject) {
         let parameters = ["id": id ?? 0]
-        request(CreditsList.self, requestUrl: .tvCredits, urlParameters: parameters, handlerObject: { (object) in
-            handler(object)
+        serviceModel.request(requestUrl: .tvCredits, urlParameters: parameters, handlerObject: { (object) in
+            if let object = object { handler(CreditsList(object: object)) }
         })
     }
 }

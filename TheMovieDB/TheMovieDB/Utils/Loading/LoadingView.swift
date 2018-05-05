@@ -81,29 +81,19 @@ class LoadingView: UIView {
     }
 }
 
-extension ViewModel {
-    fileprivate struct AssociatedKeys {
-        static var loadingView: LoadingView?
+struct Loading {
+    static var shared = Loading()
+    
+    var loadingView: LoadingView?
+    
+    mutating func startLoading() {
+        var frame: CGRect = .zero
+        if let window = AppDelegate.shared.window { frame = window.frame }
+        loadingView = LoadingView(frame: frame)
+        loadingView?.startInWindow()
     }
     
-    var loadingView: LoadingView {
-        get {
-            if let result = objc_getAssociatedObject(self, &AssociatedKeys.loadingView) as? LoadingView {
-                return result
-            }
-            
-            var frame: CGRect = .zero
-            
-            if let window = AppDelegate.shared.window {
-                frame = window.frame
-            }
-            
-            self.loadingView = LoadingView(frame: frame)
-            
-            return self.loadingView
-        }
-        set {
-            objc_setAssociatedObject(self, &AssociatedKeys.loadingView, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
+    func stopLoading() {
+        loadingView?.stop()
     }
 }

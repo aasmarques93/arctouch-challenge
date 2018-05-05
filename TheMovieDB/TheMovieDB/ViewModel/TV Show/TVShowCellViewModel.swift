@@ -17,11 +17,10 @@ class TVShowCellViewModel: ViewModel {
     var tvShow: TVShow?
     
     init(_ object: TVShow) {
-        super.init()
         self.tvShow = object
     }
     
-    func setupData() {
+    func loadData() {
         title.value = valueDescription(tvShow?.name)
         date.value = "Since: \(valueDescription(tvShow?.firstAirDate))"
         overview.value = valueDescription(tvShow?.overview)

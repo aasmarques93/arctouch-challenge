@@ -17,11 +17,10 @@ class EpisodeViewModel: ViewModel {
     var episode: Episodes?
     
     init(_ object: Episodes) {
-        super.init()
         self.episode = object
     }
     
-    func setupData() {
+    func loadData() {
         title.value = "Episode \(valueDescription(episode?.episodeNumber)) - \(valueDescription(episode?.name))"
         date.value = "Air Date: \(valueDescription(episode?.airDate))"
         overview.value = valueDescription(episode?.overview)

@@ -22,6 +22,6 @@ class EpisodeViewCell: UITableViewCell {
         viewModel?.date.bind(to: labelDate.reactive.text)
         viewModel?.overview.bind(to: textViewOverview.reactive.text)
         
-        viewModel?.setupData()
+        viewModel?.loadData()
     }
 }

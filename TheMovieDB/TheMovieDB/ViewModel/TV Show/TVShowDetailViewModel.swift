@@ -34,7 +34,7 @@ class TVShowDetailViewModel: ViewModel {
     
     private var tvShowDetail: TVShowDetail? {
         didSet {
-            if let method = delegate?.reloadData { method() }
+            delegate?.reloadData?()
             
             name.value = valueDescription(tvShowDetail?.originalName)
             date.value = "Last air date: \(valueDescription(tvShowDetail?.lastAirDate))"
@@ -65,7 +65,6 @@ class TVShowDetailViewModel: ViewModel {
     // MARK: - Life cycle -
     
     init(_ id: Int?) {
-        super.init()
         self.id = id
     }
     
@@ -78,9 +77,9 @@ class TVShowDetailViewModel: ViewModel {
     }
     
     private func getTvShowDetail() {
-        loadingView.startInWindow()
+        Loading.shared.startLoading()
         serviceModel.getDetail(from: id) { (object) in
-            self.loadingView.stop()
+            Loading.shared.stopLoading()
             self.tvShowDetail = object as? TVShowDetail
         }
     }
@@ -170,7 +169,7 @@ class TVShowDetailViewModel: ViewModel {
         }
         
         loadImageData(at: cast.profilePath) { (data) in
-            cast.imageData = data as? Data
+            self.castList[index].imageData = data as? Data
             handlerData(data)
         }
     }

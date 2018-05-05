@@ -11,6 +11,7 @@ import UIKit
 class PopularPeopleView: UIViewController {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var collectionView: CollectionView!
+    @IBOutlet weak var labelEmptyMessage: UILabel!
     
     let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.popularPeople.rawValue,
                                                               placeholder: Messages.searchPerson.rawValue)
@@ -19,16 +20,21 @@ class PopularPeopleView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBindings()
+        setupAppearance()
+        viewModel.delegate = self
+        viewModel.loadData()
+    }
+    
+    func setupAppearance() {
         searchHeaderView.delegate = self
         headerView.addSubview(searchHeaderView)
+        collectionView.collectionDelegate = self
         collectionView.keyboardDismissMode = .onDrag
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        collectionView.collectionDelegate = self
-        viewModel.delegate = self
-        viewModel.loadData()
+    func setupBindings() {
+        viewModel.isEmptyMessageHidden.bind(to: labelEmptyMessage.reactive.isHidden)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

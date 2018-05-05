@@ -6,11 +6,24 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-class PersonServiceModel: ServiceModel {
-    func getPerson<T:Model>(type: T.Type, from idPerson: Int?, requestUrl: RequestUrl, handler: @escaping HandlerObject) {
+struct PersonServiceModel {
+    let serviceModel = ServiceModel()
+    
+    func getPerson(from idPerson: Int?, requestUrl: RequestUrl, handler: @escaping HandlerObject) {
         let parameters = ["idPerson": idPerson ?? 0]
-        request(type, requestUrl: requestUrl, urlParameters: parameters, handlerObject: { (object) in
-            handler(object)
+        serviceModel.request(requestUrl: requestUrl, urlParameters: parameters, handlerObject: { (object) in
+            if let object = object {
+                switch requestUrl {
+                    case .person: handler(Person(object: object))
+                    case .personMovieCredits: handler(CreditsList(object: object))
+                    case .personExternalIds: handler(ExternalIds(object: object))
+                default: break
+                }
+            }
         })
+    }
+    
+    func loadImage(path: String?, handlerData: @escaping HandlerObject) {
+        serviceModel.loadImage(path: path, handlerData: handlerData)
     }
 }

@@ -23,10 +23,6 @@ class SearchView: UITableViewController {
         super.viewDidLoad()
         tableView.keyboardDismissMode = .onDrag
         viewHeader.backgroundColor = HexColor.primary.color
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         viewModel.delegate = self
         loadData()
     }

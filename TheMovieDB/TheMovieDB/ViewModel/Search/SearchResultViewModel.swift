@@ -36,7 +36,7 @@ class SearchResultViewModel: ViewModel {
     
     // MARK: Search
     private var arraySearch = [SearchResult]()
-    private var arraySearchFiltered = [SearchResult]() { didSet { if let method = delegate?.reloadData { method() } } }
+    private var arraySearchFiltered = [SearchResult]() { didSet { delegate?.reloadData?() } }
     var numberOfSearchResults: Int { return arraySearchFiltered.count }
     
     // MARK: Variables
@@ -50,7 +50,6 @@ class SearchResultViewModel: ViewModel {
     // MARK: - Life cycle -
     
     init(selectedGenre: Genres? = nil, searchText: String? = nil, isMultipleSearch: Bool = false) {
-        super.init()
         self.selectedGenre = selectedGenre
         self.searchText = searchText
         self.isMultipleSearch = isMultipleSearch
@@ -74,7 +73,7 @@ class SearchResultViewModel: ViewModel {
                 
                 if let object = object as? SearchMoviesGenre {
                     if self.showError(with: object) {
-                        if let method = self.delegate?.showError { method(object.statusMessage) }
+                        self.delegate?.showError?(message: object.statusMessage)
                         return
                     }
                     
@@ -154,7 +153,9 @@ class SearchResultViewModel: ViewModel {
         }
         
         loadImageData(at: path) { (data) in
-            result.imageData = data as? Data
+            if indexPath.row < self.arraySearchFiltered.count {
+                self.arraySearchFiltered[indexPath.row].imageData = data as? Data
+            }
             handlerData(data)
         }
     }

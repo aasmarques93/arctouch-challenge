@@ -16,11 +16,10 @@ class PopularPersonCellViewModel: ViewModel {
     var isActivityIndicatorHidden = Observable<Bool>(false)
     
     init(_ object: Person) {
-        super.init()
         self.person = object
     }
     
-    func setupData() {
+    func loadData() {
         name.value = valueDescription(person?.name)
         
         if let data = person?.imageData, let image = UIImage(data: data) {

@@ -38,7 +38,7 @@ class SeasonDetailViewModel: ViewModel {
     var tvShowDetail: TVShowDetail?
     var season: Seasons?
     
-    private var episodesList = [Episodes]() { didSet { if let method = delegate?.reloadData { method() } } }
+    private var episodesList = [Episodes]() { didSet { delegate?.reloadData?() } }
     var numberOfEpisodes: Int { return episodesList.count }
     
     var seasonName: String? {
@@ -48,7 +48,6 @@ class SeasonDetailViewModel: ViewModel {
     // MARK: - Life cycle -
     
     init(_ object: TVShowDetail?, season: Seasons?) {
-        super.init()
         self.tvShowDetail = object
         self.season = season
     }
@@ -56,13 +55,9 @@ class SeasonDetailViewModel: ViewModel {
     // MARK: - Service requests -
     
     func loadData() {
-        getSeasonDetail()
-    }
-    
-    private func getSeasonDetail() {
-        loadingView.startInWindow()
+        Loading.shared.startLoading()
         serviceModel.getDetail(from: tvShowDetail, season: season) { (object) in
-            self.loadingView.stop()
+            Loading.shared.stopLoading()
             self.seasonDetail = object as? SeasonDetail
         }
     }

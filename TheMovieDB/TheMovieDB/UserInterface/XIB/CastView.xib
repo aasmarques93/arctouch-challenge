@@ -19,7 +19,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1IF-ot-BIp">
                     <rect key="frame" x="20" y="8" width="130" height="214"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LTj-Cn-ZW8">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-image" translatesAutoresizingMaskIntoConstraints="NO" id="LTj-Cn-ZW8">
                             <rect key="frame" x="0.0" y="0.0" width="130" height="154"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </imageView>
@@ -102,4 +102,7 @@
             <point key="canvasLocation" x="-169" y="-454"/>
         </view>
     </objects>
+    <resources>
+        <image name="default-image" width="565" height="837"/>
+    </resources>
 </document>

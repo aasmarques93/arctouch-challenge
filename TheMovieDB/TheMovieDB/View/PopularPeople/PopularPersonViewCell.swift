@@ -23,6 +23,6 @@ class PopularPersonViewCell: UICollectionViewCell {
         viewModel?.name.bind(to: labelName.reactive.text)
         viewModel?.isActivityIndicatorHidden.bind(to: activityIndicator.reactive.isHidden)
         
-        viewModel?.setupData()
+        viewModel?.loadData()
     }
 }

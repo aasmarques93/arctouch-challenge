@@ -69,6 +69,7 @@ extension TVShowView: SearchHeaderViewDelegate {
 
 extension TVShowView: ViewModelDelegate {
     func reloadData() {
+        if !viewModel.isTVShowsEmpty { return tableView.tableHeaderView = UIView() }
         tableView.reloadData()
     }
 }

@@ -146,6 +146,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </collectionView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no popular people available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfk-fu-vmL">
+                                <rect key="frame" x="0.0" y="124" width="375" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="text"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -154,7 +163,10 @@
                             <constraint firstItem="95b-De-u8F" firstAttribute="leading" secondItem="el9-RW-vbE" secondAttribute="leading" id="Ee7-aR-YYd"/>
                             <constraint firstItem="el9-RW-vbE" firstAttribute="bottom" secondItem="XQM-Yl-2qJ" secondAttribute="bottom" id="S81-zA-PeC"/>
                             <constraint firstItem="XQM-Yl-2qJ" firstAttribute="top" secondItem="95b-De-u8F" secondAttribute="bottom" id="ae1-5s-ZxP"/>
+                            <constraint firstItem="Xfk-fu-vmL" firstAttribute="leading" secondItem="el9-RW-vbE" secondAttribute="leading" id="bbG-A4-ndM"/>
+                            <constraint firstItem="Xfk-fu-vmL" firstAttribute="top" secondItem="95b-De-u8F" secondAttribute="bottom" constant="8" id="lm5-FH-6Xd"/>
                             <constraint firstItem="95b-De-u8F" firstAttribute="top" secondItem="el9-RW-vbE" secondAttribute="top" id="oUz-9l-jVE"/>
+                            <constraint firstItem="Xfk-fu-vmL" firstAttribute="trailing" secondItem="el9-RW-vbE" secondAttribute="trailing" id="qjL-zP-7qS"/>
                             <constraint firstItem="95b-De-u8F" firstAttribute="trailing" secondItem="el9-RW-vbE" secondAttribute="trailing" id="vXE-Wx-1Ju"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="el9-RW-vbE"/>
@@ -165,6 +177,7 @@
                     <connections>
                         <outlet property="collectionView" destination="XQM-Yl-2qJ" id="Z8N-Yr-Ayb"/>
                         <outlet property="headerView" destination="95b-De-u8F" id="8pa-Pz-qKS"/>
+                        <outlet property="labelEmptyMessage" destination="Xfk-fu-vmL" id="Tfw-Nj-XXD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jL7-MX-BNq" userLabel="First Responder" sceneMemberID="firstResponder"/>

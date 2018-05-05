@@ -25,23 +25,27 @@ class SearchViewModel: ViewModel {
         case tvShows = 1
     }
     
-    private var arrayGenres = [Genres]() { didSet { if let method = delegate?.reloadData { method() } } }
+    private var arrayGenres = [Genres]() { didSet { delegate?.reloadData?() } }
     var numberOfGenres: Int { return arrayGenres.count }
     
     private var searchText: String?
     
     // MARK: - Service requests -
     
+    func loadData() {
+        
+    }
+    
     func loadData(genreIndex: Int) {
         if let genreType = GenreType(rawValue: genreIndex) {
             let requestUrl: RequestUrl = genreType == .movies ? .genres : .genresTV
             
-            loadingView.startInWindow()
+            Loading.shared.startLoading()
             serviceModel.getGenres(requestUrl: requestUrl) { (object) in
-                self.loadingView.stop()
+                Loading.shared.stopLoading()
                 if let object = object as? MoviesGenres {
                     if self.showError(with: object) {
-                        if let method = self.delegate?.showError { method(object.statusMessage) }
+                        self.delegate?.showError?(message: object.statusMessage)
                         return
                     }
                     
@@ -51,10 +55,6 @@ class SearchViewModel: ViewModel {
                 }
             }
         }
-    }
-    
-    func doSearch(with text: String?) {
-        
     }
     
     // MARK: - View Model -

@@ -6,10 +6,16 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-class HomeServiceModel: ServiceModel {
+struct HomeServiceModel {
+    let serviceModel = ServiceModel()
+    
     func getMovies(urlParameters: [String:Any]? = nil, requestUrl: RequestUrl, handler: @escaping HandlerObject) {
-        request(MoviesList.self, requestUrl: requestUrl, urlParameters: urlParameters, handlerObject: { (object) in
-            handler(object)
+        serviceModel.request(requestUrl: requestUrl, urlParameters: urlParameters, handlerObject: { (object) in
+            if let object = object { handler(MoviesList(object: object)) }
         })
+    }
+    
+    func imageUrl(with path: String?) -> String {
+        return serviceModel.imageUrl(with: path)
     }
 }

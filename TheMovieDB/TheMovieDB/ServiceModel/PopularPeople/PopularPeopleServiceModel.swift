@@ -6,16 +6,18 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-class PopularPeopleServiceModel: ServiceModel {
+struct PopularPeopleServiceModel {
+    let serviceModel = ServiceModel()
+    
     func getPopularPeople(urlParameters: [String:Any]? = nil, handler: @escaping HandlerObject) {
-        request(PopularPeople.self, requestUrl: .popularPeople, urlParameters: urlParameters, handlerObject: { (object) in
-            handler(object)
+        serviceModel.request(requestUrl: .popularPeople, urlParameters: urlParameters, handlerObject: { (object) in
+            if let object = object { handler(PopularPeople(object: object)) }
         })
     }
     
     func doSearchPerson(urlParameters: [String:Any], handler: @escaping HandlerObject) {
-        request(SearchPerson.self, requestUrl: .searchPerson, urlParameters: urlParameters, handlerObject: { (object) in
-            handler(object)
+        serviceModel.request(requestUrl: .searchPerson, urlParameters: urlParameters, handlerObject: { (object) in
+            if let object = object { handler(SearchPerson(object: object)) }
         })
     }
 }

@@ -35,7 +35,7 @@ class MovieDetailViewModel: ViewModel {
     
     var movieDetail: MovieDetail? {
         didSet {
-            if let method = delegate?.reloadData { method() }
+            delegate?.reloadData?()
             
             name.value = valueDescription(movieDetail?.originalTitle)
             date.value = valueDescription(movieDetail?.releaseDate)
@@ -73,7 +73,6 @@ class MovieDetailViewModel: ViewModel {
     // MARK: - Life cycle -
     
     init(_ object: Movie) {
-        super.init()
         self.movie = object
     }
     
@@ -89,9 +88,9 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getMovieDetail() {
-        loadingView.startInWindow()
+        Loading.shared.startLoading()
         serviceModel.getDetail(from: movie) { (object) in
-            self.loadingView.stop()
+            Loading.shared.stopLoading()
             self.movieDetail = object as? MovieDetail
         }
     }
@@ -184,25 +183,39 @@ class MovieDetailViewModel: ViewModel {
     // MARK: Recommendations
     
     func movieRecommendationImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        let movie = moviesRecommendationsList[index]
-        loadImageData(from: movie) { (data) in
+        var movie = moviesRecommendationsList[index]
+        
+        if let data = movie.imageData {
             handlerData(data)
+            return
         }
+        
+        serviceModel.loadImage(path: movie.posterPath ?? "", handlerData: { (data) in
+            movie.imageData = data as? Data
+            handlerData(data)
+        })
     }
     
     // MARK: Similar
     
     func similarMovieImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        let movie = similarMoviesList[index]
-        loadImageData(from: movie) { (data) in
+        var movie = similarMoviesList[index]
+        
+        if let data = movie.imageData {
             handlerData(data)
+            return
         }
+        
+        serviceModel.loadImage(path: movie.posterPath ?? "", handlerData: { (data) in
+            movie.imageData = data as? Data
+            handlerData(data)
+        })
     }
     
     // MARK: Cast
     
     func castImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        let cast = castList[index]
+        var cast = castList[index]
         
         if let data = cast.imageData {
             handlerData(data)
@@ -231,20 +244,6 @@ class MovieDetailViewModel: ViewModel {
     
     func reviewContent(at index: Int) -> String {
         return reviewsList[index].content ?? ""
-    }
-    
-    // MARK: Class
-    
-    private func loadImageData(from movie: Movie, handlerData: @escaping HandlerObject) {
-        if let data = movie.imageData {
-            handlerData(data)
-            return
-        }
-        
-        serviceModel.loadImage(path: movie.posterPath ?? "", handlerData: { (data) in
-            movie.imageData = data as? Data
-            handlerData(data)
-        })
     }
 
     // MARK: - View Model Instantiation -

@@ -26,16 +26,14 @@ class TVShowViewModel: ViewModel {
     
     // MARK: Objects
     private var popularList = [TVShow]()
-    private var searchPopularList = [TVShow]() { didSet { if let method = delegate?.reloadData { method() } } }
+    private var searchPopularList = [TVShow]() { didSet { delegate?.reloadData?() } }
     var numberOfPopularList: Int { return searchPopularList.count }
+    
+    var isTVShowsEmpty: Bool { return numberOfPopularList == 0 }
     
     // MARK: - Service requests -
     
     func loadData() {
-        getPopular()
-    }
-    
-    private func getPopular() {
         if let searchText = searchText, !searchText.isEmptyOrWhitespace { return }
         
         isDataLoading = true
@@ -57,7 +55,7 @@ class TVShowViewModel: ViewModel {
             currentPage += 1
             
             if let totalPages = totalPages, currentPage < totalPages {
-                getPopular()
+                loadData()
             }
         }
     }
@@ -69,9 +67,9 @@ class TVShowViewModel: ViewModel {
         if let value = searchText, !value.isEmptyOrWhitespace {
             let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
             
-            loadingView.startInWindow()
+            Loading.shared.startLoading()
             serviceModel.doSearchTVShow(urlParameters: parameters) { (object) in
-                self.loadingView.stop()
+                Loading.shared.stopLoading()
                 if let object = object as? SearchTV, let results = object.results {
                     self.searchPopularList = results
                 }
@@ -80,7 +78,7 @@ class TVShowViewModel: ViewModel {
             return
         }
         
-        getPopular()
+        loadData()
     }
     
     //MARK: View model

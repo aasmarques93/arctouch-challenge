@@ -8,7 +8,8 @@
 import Foundation
 import SwiftyJSON
 
-class SearchResult: Model {
+struct SearchResult: Model {
+    var json: JSON?
     
     // MARK: Declaration for string constants to be used to decode and also serialize.
     private struct SerializationKeys {
@@ -36,70 +37,66 @@ class SearchResult: Model {
     }
     
     // MARK: Properties
-    public var posterPath: String?
-    public var profilePath: String?
-    public var originCountry: [String]?
-    public var backdropPath: String?
-    public var name: String?
-    public var mediaType: String?
-    public var genreIds: [Int]?
-    public var firstAirDate: String?
-    public var originalName: String?
-    public var voteCount: Int?
-    public var overview: String?
-    public var originalTitle: String?
-    public var popularity: Float?
-    public var voteAverage: Float?
-    public var id: Int?
-    public var originalLanguage: String?
-    public var releaseDate: String?
-    public var video: Bool? = false
-    public var title: String?
-    public var adult: Bool? = false
-    public var imageData: Data?
-    public var knownFor: [Movie]?
+    var posterPath: String?
+    var profilePath: String?
+    var originCountry: [String]?
+    var backdropPath: String?
+    var name: String?
+    var mediaType: String?
+    var genreIds: [Int]?
+    var firstAirDate: String?
+    var originalName: String?
+    var voteCount: Int?
+    var overview: String?
+    var originalTitle: String?
+    var popularity: Float?
+    var voteAverage: Float?
+    var id: Int?
+    var originalLanguage: String?
+    var releaseDate: String?
+    var video: Bool? = false
+    var title: String?
+    var adult: Bool? = false
+    var imageData: Data?
+    var knownFor: [Movie]?
     
     // MARK: SwiftyJSON Initializers
-    /// Initiates the instance based on the object.
-    ///
-    /// - parameter object: The object of either Dictionary or Array kind that was passed.
-    /// - returns: An initialized instance of the class.
-    public convenience init(object: Any) {
+    init(object: Any) {
+        if let json = object as? JSON {
+            self.init(json: json)
+            return
+        }
         self.init(json: JSON(object))
     }
     
     /// Initiates the instance based on the JSON that was passed.
-    ///
-    /// - parameter json: JSON object from SwiftyJSON.
-    public required init(json: JSON) {
-        posterPath = json[SerializationKeys.posterPath].string
-        profilePath = json[SerializationKeys.profilePath].string
-        if let items = json[SerializationKeys.originCountry].array { originCountry = items.map { $0.stringValue } }
-        backdropPath = json[SerializationKeys.backdropPath].string
-        name = json[SerializationKeys.name].string
-        mediaType = json[SerializationKeys.mediaType].string
-        if let items = json[SerializationKeys.genreIds].array { genreIds = items.map { $0.intValue } }
-        firstAirDate = json[SerializationKeys.firstAirDate].string
-        originalName = json[SerializationKeys.originalName].string
-        voteCount = json[SerializationKeys.voteCount].int
-        overview = json[SerializationKeys.overview].string
-        originalTitle = json[SerializationKeys.originalTitle].string
-        popularity = json[SerializationKeys.popularity].float
-        voteAverage = json[SerializationKeys.voteAverage].float
-        id = json[SerializationKeys.id].int
-        originalLanguage = json[SerializationKeys.originalLanguage].string
-        releaseDate = json[SerializationKeys.releaseDate].string
-        video = json[SerializationKeys.video].boolValue
-        title = json[SerializationKeys.title].string
-        adult = json[SerializationKeys.adult].boolValue
-        if let items = json[SerializationKeys.knownFor].array { knownFor = items.map { Movie(json: $0) } }
-        super.init(json: json)
+    init(json: JSON?) {
+        self.json = json
+        posterPath = json?[SerializationKeys.posterPath].string
+        profilePath = json?[SerializationKeys.profilePath].string
+        if let items = json?[SerializationKeys.originCountry].array { originCountry = items.map { $0.stringValue } }
+        backdropPath = json?[SerializationKeys.backdropPath].string
+        name = json?[SerializationKeys.name].string
+        mediaType = json?[SerializationKeys.mediaType].string
+        if let items = json?[SerializationKeys.genreIds].array { genreIds = items.map { $0.intValue } }
+        firstAirDate = json?[SerializationKeys.firstAirDate].string
+        originalName = json?[SerializationKeys.originalName].string
+        voteCount = json?[SerializationKeys.voteCount].int
+        overview = json?[SerializationKeys.overview].string
+        originalTitle = json?[SerializationKeys.originalTitle].string
+        popularity = json?[SerializationKeys.popularity].float
+        voteAverage = json?[SerializationKeys.voteAverage].float
+        id = json?[SerializationKeys.id].int
+        originalLanguage = json?[SerializationKeys.originalLanguage].string
+        releaseDate = json?[SerializationKeys.releaseDate].string
+        video = json?[SerializationKeys.video].boolValue
+        title = json?[SerializationKeys.title].string
+        adult = json?[SerializationKeys.adult].boolValue
+        if let items = json?[SerializationKeys.knownFor].array { knownFor = items.map { Movie(json: $0) } }
     }
     
     /// Generates description of the object in the form of a NSDictionary.
-    ///
-    /// - returns: A Key value pair containing all valid values in the object.
-    public func dictionaryRepresentation() -> [String: Any] {
+    func dictionaryRepresentation() -> [String: Any] {
         var dictionary: [String: Any] = [:]
         if let value = posterPath { dictionary[SerializationKeys.posterPath] = value }
         if let value = profilePath { dictionary[SerializationKeys.profilePath] = value }
@@ -124,6 +121,4 @@ class SearchResult: Model {
         if let value = knownFor { dictionary[SerializationKeys.knownFor] = value.map { $0.dictionaryRepresentation() } }
         return dictionary
     }
-    
 }
-
