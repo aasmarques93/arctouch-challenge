@@ -9,6 +9,8 @@
 import UIKit
 
 class TVShowView: UITableViewController {
+    @IBOutlet weak var labelEmptyMessage: UILabel!
+
     let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.tvShows.rawValue, placeholder: Messages.searchTVShow.rawValue)
     
     let viewModel = TVShowViewModel.shared
@@ -69,7 +71,7 @@ extension TVShowView: SearchHeaderViewDelegate {
 
 extension TVShowView: ViewModelDelegate {
     func reloadData() {
-        if !viewModel.isTVShowsEmpty { return tableView.tableHeaderView = UIView() }
+        tableView.tableHeaderView = viewModel.isTVShowsEmpty ? labelEmptyMessage : UIView()
         tableView.reloadData()
     }
 }

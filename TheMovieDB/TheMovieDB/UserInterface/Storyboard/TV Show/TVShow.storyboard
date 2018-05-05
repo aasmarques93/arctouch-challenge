@@ -126,6 +126,9 @@
                     <navigationItem key="navigationItem" id="6SD-sa-b49">
                         <barButtonItem key="backBarButtonItem" title=" " id="hwr-rp-431"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="labelEmptyMessage" destination="qpJ-OH-Wi2" id="TY5-bI-gaf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G85-bf-GZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
