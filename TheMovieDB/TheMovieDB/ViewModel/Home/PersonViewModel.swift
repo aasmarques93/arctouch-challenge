@@ -126,12 +126,9 @@ class PersonViewModel: ViewModel {
     
     private func externalId(with socialMediaType: SocialMediaType) -> String? {
         switch socialMediaType {
-            case .facebook:
-                return externalIds?.facebookId
-            case .instagram:
-                return externalIds?.instagramId
-            case .twitter:
-                return externalIds?.twitterId
+            case .facebook: return externalIds?.facebookId
+            case .instagram: return externalIds?.instagramId
+            case .twitter: return externalIds?.twitterId
         }
     }
     

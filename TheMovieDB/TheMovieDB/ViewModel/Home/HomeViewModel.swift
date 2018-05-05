@@ -13,7 +13,7 @@ protocol HomeViewModelDelegate: ViewModelDelegate {
     func didFinishSearch()
 }
 
-enum Genre: String {
+enum GenreType: String {
     case nowPlaying = "Now Playing"
     case topRated = "Top Rated"
     case upcoming = "Upcoming"
@@ -28,12 +28,12 @@ enum Genre: String {
         }
     }
     
-    static func genre(at index: Int) -> Genre? {
+    static func genre(at index: Int) -> GenreType? {
         switch index {
-            case 0: return Genre.popular
-            case 1: return Genre.topRated
-            case 2: return Genre.upcoming
-            case 3: return Genre.nowPlaying
+            case 0: return GenreType.popular
+            case 1: return GenreType.topRated
+            case 2: return GenreType.upcoming
+            case 3: return GenreType.nowPlaying
             default: return nil
         }
     }
@@ -52,7 +52,7 @@ class HomeViewModel: ViewModel {
     let serviceModel = HomeServiceModel()
     
     // MARK: Genres
-    private var arrayGenres: [Genre] = [.popular, .topRated, .upcoming, .nowPlaying]
+    private var arrayGenres: [GenreType] = [.popular, .topRated, .upcoming, .nowPlaying]
     var numberOfGenres: Int { return arrayGenres.count }
     
     // MARK: Now Playing
@@ -87,7 +87,7 @@ class HomeViewModel: ViewModel {
         getMovies(genre: .nowPlaying)
     }
     
-    private func loadData(genre: Genre?) {
+    private func loadData(genre: GenreType?) {
         guard let genre = genre else { return }
         
         switch genre {
@@ -106,48 +106,49 @@ class HomeViewModel: ViewModel {
         }
     }
     
-    private func getMovies(genre: Genre) {
-        var requestUrl: RequestUrl?
-        var currentPage = 1
+    private func getMovies(genre: GenreType) {
+        let requestUrl = getRequestUrl(with: genre)
+        var currentPage = getCurrentPage(at: genre)
+    
+        isDataLoading = true
         
-        switch genre {
-            case .popular:
-                requestUrl = .popular
-                currentPage = currentPopularListPage
-            case .topRated:
-                requestUrl = .topRated
-                currentPage = currentTopRatedListPage
-            case .upcoming:
-                requestUrl = .upcoming
-                currentPage = currentUpcomingMoviesPage
-            case .nowPlaying:
-                requestUrl = .nowPlaying
-                currentPage = currentNowPlayingMoviesPage
-        }
-        
-        if let requestUrl = requestUrl {
-            isDataLoading = true
-            
-            let parameters = ["page": currentPage]
-            serviceModel.getMovies(urlParameters: parameters, requestUrl: requestUrl) { (object) in
-                if let object = object as? MoviesList {
-                    if self.showError(with: object) {
-                        self.delegate?.showError?(message: object.statusMessage)
-                        return
-                    }
-                    
-                    if let results = object.results {
-                        self.addMoviesToList(results, genre: genre)
-                        currentPage += 1
-                    }
+        let parameters = ["page": currentPage]
+        serviceModel.getMovies(urlParameters: parameters, requestUrl: requestUrl) { (object) in
+            if let object = object as? MoviesList {
+                if self.showError(with: object) {
+                    self.delegate?.showError?(message: object.statusMessage)
+                    return
                 }
                 
-                self.reloadData(at: genre.index)
+                if let results = object.results {
+                    self.addMoviesToList(results, genre: genre)
+                    currentPage += 1
+                }
             }
+            
+            self.reloadData(at: genre.index)
         }
     }
     
-    private func addMoviesToList(_ results: [Movie], genre: Genre) {
+    private func getRequestUrl(with genre: GenreType) -> RequestUrl {
+        switch genre {
+            case .popular: return .popular
+            case .topRated: return .topRated
+            case .upcoming: return .upcoming
+            case .nowPlaying: return .nowPlaying
+        }
+    }
+    
+    private func getCurrentPage(at genre: GenreType) -> Int {
+        switch genre {
+            case .popular: return currentPopularListPage
+            case .topRated: return currentTopRatedListPage
+            case .upcoming: return currentUpcomingMoviesPage
+            case .nowPlaying: return currentNowPlayingMoviesPage
+        }
+    }
+    
+    private func addMoviesToList(_ results: [Movie], genre: GenreType) {
         switch genre {
             case .popular: popularList.append(contentsOf: results)
             case .topRated: topRatedList.append(contentsOf: results)
@@ -164,7 +165,7 @@ class HomeViewModel: ViewModel {
     // MARK: - Genre methods -
     
     func genreTitle(at section: Int) -> String {
-        if let genre = Genre.genre(at: section) {
+        if let genre = GenreType.genre(at: section) {
             return "  \(genre.rawValue)"
         }
         return ""
@@ -173,7 +174,7 @@ class HomeViewModel: ViewModel {
     // MARK: - Movie methods -
     
     func numberOfMovies(at section: Int) -> Int {
-        if let genre = Genre.genre(at: section) {
+        if let genre = GenreType.genre(at: section) {
             switch genre {
                 case .popular: return numberOfPopularList
                 case .topRated: return numberOfTopRatedList
@@ -201,7 +202,7 @@ class HomeViewModel: ViewModel {
     }
     
     private func getMoviesList(at section: Int) -> [Movie]? {
-        if let genre = Genre.genre(at: section) {
+        if let genre = GenreType.genre(at: section) {
             switch genre {
                 case .popular: return popularList
                 case .topRated: return topRatedList
@@ -215,7 +216,7 @@ class HomeViewModel: ViewModel {
     func doServicePaginationIfNeeded(at section: Int, row: Int) {
         if let results = getMoviesList(at: section) {
             if row == results.count-2 && !isDataLoading {
-                loadData(genre: Genre.genre(at: section))
+                loadData(genre: GenreType.genre(at: section))
             }
         }
     }

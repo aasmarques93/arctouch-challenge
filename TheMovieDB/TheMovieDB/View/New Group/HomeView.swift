@@ -15,6 +15,14 @@ class HomeView: UITableViewController {
     
     let viewModel = HomeViewModel.shared
     
+    var labelHeader: UILabel {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: viewHeaderHeight))
+        label.backgroundColor = HexColor.primary.color
+        label.textColor = HexColor.text.color
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        return label
+    }
+    
     // MARK: - Life cycle -
     
     override func viewDidLoad() {
@@ -43,10 +51,7 @@ class HomeView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: viewHeaderHeight))
-        label.backgroundColor = HexColor.primary.color
-        label.textColor = HexColor.text.color
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        let label = labelHeader
         label.text = viewModel.genreTitle(at: section)
         
         if section == 0 {

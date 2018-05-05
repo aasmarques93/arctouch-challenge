@@ -21,11 +21,6 @@ class TVShowDetailView: UITableViewController {
     
     @IBOutlet var stretchHeaderView: StretchHeaderView!
     
-    var imageViewHeader = UIImageView()
-    var imageViewHeaderFrame: CGRect = CGRect(x: 0, y: -250, width: SCREEN_WIDTH, height: 250)
-    
-    var activityIndicator = UIActivityIndicatorView()
-    
     enum DetailSection: Int {
         case general = 0
         case genres = 1

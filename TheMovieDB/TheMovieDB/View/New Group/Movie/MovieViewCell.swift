@@ -17,9 +17,8 @@ class MovieViewCell: UICollectionViewCell {
     
     func setupView(at section: Int, row: Int) {
         activityIndicator.startAnimating()
-        activityIndicator.isHidden = true
-        
         if let url = viewModel.imagePathUrl(at: section, row: row) {
+            self.activityIndicator.isHidden = true
             imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "default-image"))
         }
     }
