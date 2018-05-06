@@ -82,6 +82,7 @@ class TVShowViewModel: ViewModel {
             return
         }
         
+        arrayPopular = [TVShow]()
         loadData()
     }
     

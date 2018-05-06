@@ -88,6 +88,7 @@ class PopularPeopleViewModel: ViewModel {
             return
         }
         
+        arrayPopularPeople = [Person]()
         loadData()
     }
     
