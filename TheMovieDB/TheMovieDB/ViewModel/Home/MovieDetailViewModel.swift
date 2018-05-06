@@ -89,13 +89,9 @@ class MovieDetailViewModel: ViewModel {
     
     private func getMovieDetail() {
         Loading.shared.startLoading()
-        serviceModel.getDetail(from: movie) { [weak self] (object) in
+        serviceModel.getDetail(from: movie) { [unowned self] (object) in
             Loading.shared.stopLoading()
-            
-            guard let strongSelf = self else {
-                return
-            }
-            strongSelf.movieDetail = object as? MovieDetail
+            self.movieDetail = object as? MovieDetail
         }
     }
     
@@ -104,15 +100,12 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.getVideos(from: movie) { [weak self] (object) in
-            guard let strongSelf = self else {
-                return
-            }
+        serviceModel.getVideos(from: movie) { [unowned self] (object) in
             guard let object = object as? VideosList, let results = object.results else {
                 return
             }
             
-            strongSelf.videosList.append(contentsOf: results)
+            self.videosList.append(contentsOf: results)
         }
     }
     
@@ -121,15 +114,12 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.getRecommendations(from: movie) { [weak self] (object) in
-            guard let strongSelf = self else {
-                return
-            }
+        serviceModel.getRecommendations(from: movie) { [unowned self] (object) in
             guard let object = object as? MoviesList, let results = object.results else {
                 return
             }
             
-            strongSelf.moviesRecommendationsList.append(contentsOf: results)
+            self.moviesRecommendationsList.append(contentsOf: results)
         }
     }
     
@@ -138,15 +128,12 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.getSimilar(from: movie) { [weak self] (object) in
-            guard let strongSelf = self else {
-                return
-            }
+        serviceModel.getSimilar(from: movie) { [unowned self] (object) in
             guard let object = object as? MoviesList, let results = object.results else {
                 return
             }
             
-            strongSelf.similarMoviesList.append(contentsOf: results)
+            self.similarMoviesList.append(contentsOf: results)
         }
     }
     
@@ -155,15 +142,12 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.getCredits(from: movie) { [weak self] (object) in
-            guard let strongSelf = self else {
-                return
-            }
+        serviceModel.getCredits(from: movie) { [unowned self] (object) in
             guard let object = object as? CreditsList, let results = object.cast else {
                 return
             }
             
-            strongSelf.castList.append(contentsOf: results)
+            self.castList.append(contentsOf: results)
         }
     }
     
@@ -172,15 +156,12 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.getReviews(from: movie) { [weak self] (object) in
-            guard let strongSelf = self else {
-                return
-            }
+        serviceModel.getReviews(from: movie) { [unowned self] (object) in
             guard let object = object as? ReviewsList, let results = object.results else {
                 return
             }
             
-            strongSelf.reviewsList.append(contentsOf: results)
+            self.reviewsList.append(contentsOf: results)
         }
     }
     

@@ -47,18 +47,14 @@ class PopularPeopleViewModel: ViewModel {
         isDataLoading = true
         
         let parameters = ["page": currentPage]
-        serviceModel.getPopularPeople(urlParameters: parameters) { [weak self] (object) in
-            guard let strongSelf = self else {
-                return
-            }
-            
+        serviceModel.getPopularPeople(urlParameters: parameters) { [unowned self] (object) in
             if let object = object as? PopularPeople, let results = object.results {
-                strongSelf.totalPages = object.totalPages
-                strongSelf.popularPeopleList.append(contentsOf: results)
+                self.totalPages = object.totalPages
+                self.popularPeopleList.append(contentsOf: results)
             }
             
-            strongSelf.isDataLoading = false
-            strongSelf.searchPersonList = strongSelf.popularPeopleList
+            self.isDataLoading = false
+            self.searchPersonList = self.popularPeopleList
         }
     }
     
@@ -81,15 +77,12 @@ class PopularPeopleViewModel: ViewModel {
         if let value = searchText, !value.isEmptyOrWhitespace {
             let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
             
-            serviceModel.doSearchPerson(urlParameters: parameters) { [weak self] (object) in
-                guard let strongSelf = self else {
-                    return
-                }
+            serviceModel.doSearchPerson(urlParameters: parameters) { [unowned self] (object) in
                 guard let object = object as? SearchPerson, let results = object.results else {
                     return
                 }
                 
-                strongSelf.searchPersonList = results
+                self.searchPersonList = results
             }
             
             return

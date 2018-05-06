@@ -39,18 +39,14 @@ class TVShowViewModel: ViewModel {
         isDataLoading = true
         
         let parameters = ["page": currentPage]
-        serviceModel.getPopular(urlParameters: parameters) { [weak self] (object) in
-            guard let strongSelf = self else {
-                return
-            }
-            
+        serviceModel.getPopular(urlParameters: parameters) { [unowned self] (object) in
             if let object = object as? SearchTV, let results = object.results {
-                strongSelf.totalPages = object.totalPages
-                strongSelf.popularList.append(contentsOf: results)
+                self.totalPages = object.totalPages
+                self.popularList.append(contentsOf: results)
             }
             
-            strongSelf.isDataLoading = false
-            strongSelf.searchPopularList = strongSelf.popularList
+            self.isDataLoading = false
+            self.searchPopularList = self.popularList
         }
     }
     
@@ -73,17 +69,14 @@ class TVShowViewModel: ViewModel {
             let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
             
             Loading.shared.startLoading()
-            serviceModel.doSearchTVShow(urlParameters: parameters) { [weak self] (object) in
+            serviceModel.doSearchTVShow(urlParameters: parameters) { [unowned self] (object) in
                 Loading.shared.stopLoading()
                 
-                guard let strongSelf = self else {
-                    return
-                }
                 guard let object = object as? SearchTV, let results = object.results else {
                     return
                 }
                 
-                strongSelf.searchPopularList = results
+                self.searchPopularList = results
             }
             
             return

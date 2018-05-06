@@ -46,15 +46,12 @@ class EpisodeViewModel: ViewModel {
 
         serviceModel.getImages(from: tvShowDetail?.id,
                                season: episode?.seasonNumber,
-                               episode: episode?.episodeNumber) { [weak self] (object) in
+                               episode: episode?.episodeNumber) { [unowned self] (object) in
 
-            guard let strongSelf = self else {
-                return
-            }
             guard let object = object as? EpisodeImagesList, let results = object.results else {
                 return
             }
-            strongSelf.imagesList = results
+            self.imagesList = results
         }
     }
 
@@ -64,12 +61,10 @@ class EpisodeViewModel: ViewModel {
         }
 
         ServiceModel().loadImage(path: episode?.stillPath ?? "", handlerData: { [weak self] (data) in
-            guard let strongSelf = self else {
+            guard let strongSelf = self, let data = data as? Data else {
                 return
             }
-            guard let data = data as? Data else {
-                return
-            }
+            
             strongSelf.photo.value = UIImage(data: data)
         })
     }

@@ -124,28 +124,24 @@ class HomeViewModel: ViewModel {
         isDataLoading = true
         
         let parameters = ["page": currentPage]
-        serviceModel.getMovies(urlParameters: parameters, requestUrl: requestUrl) { [weak self] (object) in
-            guard let strongSelf = self else {
-                return
-            }
-            
+        serviceModel.getMovies(urlParameters: parameters, requestUrl: requestUrl) { [unowned self] (object) in
             if let object = object as? MoviesList {
                 do {
-                    try strongSelf.showError(with: object)
+                    try self.showError(with: object)
                 } catch {
                     if let error = error as? Error {
-                        strongSelf.delegate?.showError?(message: error.message)
+                        self.delegate?.showError?(message: error.message)
                     }
                     return
                 }
                 
                 if let results = object.results {
-                    strongSelf.addMoviesToList(results, genre: genre)
+                    self.addMoviesToList(results, genre: genre)
                     currentPage += 1
                 }
             }
             
-            strongSelf.reloadData(at: genre.index)
+            self.reloadData(at: genre.index)
         }
     }
     

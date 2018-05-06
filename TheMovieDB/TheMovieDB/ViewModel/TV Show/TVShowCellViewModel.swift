@@ -30,10 +30,7 @@ class TVShowCellViewModel: ViewModel {
     
     private func loadImageData() {
         ServiceModel().loadImage(path: tvShow?.posterPath ?? "", handlerData: { [weak self] (data) in
-            guard let strongSelf = self else {
-                return
-            }
-            guard let data = data as? Data else {
+            guard let strongSelf = self, let data = data as? Data else {
                 return
             }
             

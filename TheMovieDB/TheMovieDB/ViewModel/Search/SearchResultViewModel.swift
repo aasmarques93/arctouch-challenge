@@ -74,24 +74,20 @@ class SearchResultViewModel: ViewModel {
 
         isDataLoading = true
 
-        serviceModel.getMoviesFromGenre(urlParameters: parameters) { [weak self] (object) in
-            guard let strongSelf = self else {
-                return
-            }
-
-            strongSelf.isDataLoading = false
+        serviceModel.getMoviesFromGenre(urlParameters: parameters) { [unowned self] (object) in
+            self.isDataLoading = false
 
             guard let object = object as? SearchMoviesGenre else {
                 return
             }
 
             do {
-                try strongSelf.showError(with: object)
+                try self.showError(with: object)
             } catch {
                 guard let error = error as? Error else {
                     return
                 }
-                strongSelf.delegate?.showError?(message: error.message)
+                self.delegate?.showError?(message: error.message)
                 return
             }
 
@@ -99,10 +95,10 @@ class SearchResultViewModel: ViewModel {
                 return
             }
 
-            strongSelf.arraySearch = [SearchResult]()
+            self.arraySearch = [SearchResult]()
             for result in results {
-                strongSelf.arraySearch.append(SearchResult(object: result.dictionaryRepresentation()))
-                strongSelf.arraySearchFiltered = strongSelf.arraySearch
+                self.arraySearch.append(SearchResult(object: result.dictionaryRepresentation()))
+                self.arraySearchFiltered = self.arraySearch
             }
         }
     }
@@ -126,21 +122,18 @@ class SearchResultViewModel: ViewModel {
 
         let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
 
-        serviceModel.doSearch(urlParameters: parameters, isMultipleSearch: isMultipleSearch) { [weak self] (object) in
-            guard let strongSelf = self else {
-                return
-            }
+        serviceModel.doSearch(urlParameters: parameters, isMultipleSearch: isMultipleSearch) { [unowned self] (object) in
             guard let object = object as? MultiSearch, let results = object.results else {
                 return
             }
 
-            strongSelf.totalPages = object.totalPages
-            strongSelf.arraySearch.append(contentsOf: results)
+            self.totalPages = object.totalPages
+            self.arraySearch.append(contentsOf: results)
 
-            if strongSelf.isMultipleSearch {
-                strongSelf.doFilter(index: strongSelf.selectedType.rawValue)
+            if self.isMultipleSearch {
+                self.doFilter(index: self.selectedType.rawValue)
             } else {
-                strongSelf.arraySearchFiltered = strongSelf.arraySearch
+                self.arraySearchFiltered = self.arraySearch
             }
         }
     }
@@ -189,6 +182,7 @@ class SearchResultViewModel: ViewModel {
             if indexPath.row < strongSelf.arraySearchFiltered.count {
                 strongSelf.arraySearchFiltered[indexPath.row].imageData = data as? Data
             }
+            
             handlerData(data)
         }
     }

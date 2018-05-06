@@ -91,13 +91,9 @@ class PersonViewModel: ViewModel {
         if person != nil { return }
 
         Loading.shared.startLoading()
-        serviceModel.getPerson(from: idPerson, requestUrl: .person) { [weak self] (object) in
+        serviceModel.getPerson(from: idPerson, requestUrl: .person) { [unowned self] (object) in
             Loading.shared.stopLoading()
-            
-            guard let strongSelf = self else {
-                return
-            }
-            strongSelf.person = object as? Person
+            self.person = object as? Person
         }
     }
     
@@ -106,26 +102,20 @@ class PersonViewModel: ViewModel {
             return
         }
 
-        serviceModel.getPerson(from: idPerson, requestUrl: .personMovieCredits) { [weak self] (object) in
-            guard let strongSelf = self else {
-                return
-            }
+        serviceModel.getPerson(from: idPerson, requestUrl: .personMovieCredits) { [unowned self] (object) in
             guard let object = object as? CreditsList, let results = object.cast else {
                 return
             }
             
-            strongSelf.castList.append(contentsOf: results)
+            self.castList.append(contentsOf: results)
         }
     }
     
     private func getExternalIds() {
         if externalIds != nil { return }
 
-        serviceModel.getPerson(from: idPerson, requestUrl: .personExternalIds) { [weak self] (object) in
-            guard let strongSelf = self else {
-                return
-            }
-            strongSelf.externalIds = object as? ExternalIds
+        serviceModel.getPerson(from: idPerson, requestUrl: .personExternalIds) { [unowned self] (object) in
+            self.externalIds = object as? ExternalIds
         }
     }
 
@@ -134,14 +124,11 @@ class PersonViewModel: ViewModel {
             return
         }
 
-        serviceModel.getImages(from: idPerson) { [weak self] (object) in
-            guard let strongSelf = self else {
-                return
-            }
+        serviceModel.getImages(from: idPerson) { [unowned self] (object) in
             guard let object = object as? PersonImagesList, let results = object.results else {
                 return
             }
-            strongSelf.imagesList = results
+            self.imagesList = results
         }
     }
     
