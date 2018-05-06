@@ -62,7 +62,7 @@ struct ServiceModel {
             return
         }
         
-        Connection.request(url, method: method, parameters: parameters) { (dataResponse) in
+        Connection.shared.request(url: url, method: method, parameters: parameters) { (dataResponse) in
             if let value = dataResponse.result.value {
                 handlerJson?(value)
                 
@@ -81,8 +81,8 @@ struct ServiceModel {
                 handlerObject(JSON(value))
                 return
             }
-            handlerObject(ReachabilityError.requestTimeout.rawValue)
             
+            handlerObject(ReachabilityError.requestTimeout.rawValue)
             handlerJson?(nil)
         }
     }
@@ -97,7 +97,7 @@ struct ServiceModel {
             return
         }
         
-        Connection.requestData(url, method: .get, parameters: nil) { (data) in
+        Connection.shared.requestData(url: url, method: .get, parameters: nil) { (data) in
             if let data = data {
                 handlerData(data)
             } else {

@@ -24,24 +24,35 @@ struct Connection {
     
     // MARK: - Request Methods -
     
-    static func request(_ url : String,
-                        method: HTTPMethod = .get,
-                        parameters: [String : Any]? = nil,
-                        dataResponseJSON: @escaping handlerResponseJSON) {
+    func request(url : String,
+                 method: HTTPMethod = .get,
+                 parameters: [String : Any]? = nil,
+                 dataResponseJSON: @escaping handlerResponseJSON) {
         
-        Session.shared.manager?.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: Connection.shared.headers).responseJSON { (response) in
+        Session.shared.manager?.request(url,
+                                        method: method,
+                                        parameters: parameters,
+                                        encoding: JSONEncoding.default,
+                                        headers: Connection.shared.headers).responseJSON { (response) in
             
-            print("URL: \(url)\nJSON Response: \(response)\n")
-            dataResponseJSON(response)
+                                            print("URL: \(url)\nJSON Response: \(response)\n")
+                                            dataResponseJSON(response)
         }
         
     }
     
-    static func requestData(_ url : String, method : HTTPMethod, parameters : [String : Any]?, dataResponse: @escaping (Data?) -> ()) {
-        Session.shared.manager?.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: Connection.shared.headers).responseJSON { (response) in
-
-            dataResponse(response.data)
-        }
+    func requestData(url : String,
+                     method : HTTPMethod,
+                     parameters : [String : Any]?,
+                     dataResponse: @escaping (Data?) -> ()) {
         
+        Session.shared.manager?.request(url,
+                                        method: method,
+                                        parameters: parameters,
+                                        encoding: JSONEncoding.default,
+                                        headers: Connection.shared.headers).responseJSON { (response) in
+
+                                            dataResponse(response.data)
+        }
     }
 }

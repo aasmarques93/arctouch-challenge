@@ -63,11 +63,14 @@ class EpisodeViewModel: ViewModel {
             return
         }
 
-        ServiceModel().loadImage(path: episode?.stillPath ?? "", handlerData: { (data) in
+        ServiceModel().loadImage(path: episode?.stillPath ?? "", handlerData: { [weak self] (data) in
+            guard let strongSelf = self else {
+                return
+            }
             guard let data = data as? Data else {
                 return
             }
-            self.photo.value = UIImage(data: data)
+            strongSelf.photo.value = UIImage(data: data)
         })
     }
 
@@ -81,9 +84,13 @@ class EpisodeViewModel: ViewModel {
     func setupPhotos() {
         photos = [Photo]()
         for image in imagesList {
-            serviceModel.loadImage(path: image.filePath) { (data) in
+            serviceModel.loadImage(path: image.filePath) { [weak self] (data) in
+                guard let strongSelf = self else {
+                    return
+                }
+                
                 if let data = data as? Data {
-                    self.photos.append(Photo(image: UIImage(data: data)))
+                    strongSelf.photos.append(Photo(image: UIImage(data: data)))
                 }
             }
         }

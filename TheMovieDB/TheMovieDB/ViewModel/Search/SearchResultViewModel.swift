@@ -181,9 +181,13 @@ class SearchResultViewModel: ViewModel {
             return
         }
         
-        loadImageData(at: path) { (data) in
-            if indexPath.row < self.arraySearchFiltered.count {
-                self.arraySearchFiltered[indexPath.row].imageData = data as? Data
+        loadImageData(at: path) { [weak self] (data) in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            if indexPath.row < strongSelf.arraySearchFiltered.count {
+                strongSelf.arraySearchFiltered[indexPath.row].imageData = data as? Data
             }
             handlerData(data)
         }

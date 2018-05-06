@@ -95,9 +95,13 @@ extension TVShowDetailView: TVShowDetailViewModelDelegate {
         
         if let average = viewModel?.average { circularProgressView.progress = average }
         
-        viewModel?.tvShowDetailImageData(handlerData: { (data) in
+        viewModel?.tvShowDetailImageData(handlerData: { [weak self] (data) in
+            guard let strongSelf = self else {
+                return
+            }
+            
             if let data = data as? Data {
-                self.stretchHeaderView.setupHeaderView(tableView: self.tableView, image: UIImage(data: data))
+                strongSelf.stretchHeaderView.setupHeaderView(tableView: strongSelf.tableView, image: UIImage(data: data))
             }
         })
     }

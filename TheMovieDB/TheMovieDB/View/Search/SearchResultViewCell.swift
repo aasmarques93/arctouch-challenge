@@ -21,16 +21,24 @@ class SearchResultViewCell: UITableViewCell {
         
         imageViewMovie.image = #imageLiteral(resourceName: "default-image")
         activityIndicator.startAnimating()
-        viewModel?.posterImageData(at: indexPath) { (data) in
-            self.activityIndicator.isHidden = true
+        viewModel?.posterImageData(at: indexPath) { [weak self] (data) in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            strongSelf.activityIndicator.isHidden = true
             if let data = data as? Data, let image = UIImage(data: data) {
-                self.imageViewMovie.image = image
+                strongSelf.imageViewMovie.image = image
             }
         }
         
-        viewModel?.backgroundImageData(at: indexPath) { (data) in
+        viewModel?.backgroundImageData(at: indexPath) { [weak self] (data) in
+            guard let strongSelf = self else {
+                return
+            }
+            
             if let data = data as? Data, let image = UIImage(data: data) {
-                self.imageViewBackground.image = image
+                strongSelf.imageViewBackground.image = image
             }
         }
     }

@@ -29,14 +29,19 @@ class PopularPersonCellViewModel: ViewModel {
         }
         
         isActivityIndicatorHidden.value = false
-        ServiceModel().loadImage(path: person?.profilePath ?? "", handlerData: { (data) in
-            self.isActivityIndicatorHidden.value = true
+        ServiceModel().loadImage(path: person?.profilePath ?? "", handlerData: { [weak self] (data) in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            strongSelf.isActivityIndicatorHidden.value = true
+            
             guard let data = data as? Data, let image = UIImage(data: data) else {
                 return
             }
             
-            self.person?.imageData = data
-            self.photo.value = image
+            strongSelf.person?.imageData = data
+            strongSelf.photo.value = image
         })
     }
 }

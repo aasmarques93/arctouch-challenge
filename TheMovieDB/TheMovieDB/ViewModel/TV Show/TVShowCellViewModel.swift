@@ -29,12 +29,15 @@ class TVShowCellViewModel: ViewModel {
     }
     
     private func loadImageData() {
-        ServiceModel().loadImage(path: tvShow?.posterPath ?? "", handlerData: { (data) in
+        ServiceModel().loadImage(path: tvShow?.posterPath ?? "", handlerData: { [weak self] (data) in
+            guard let strongSelf = self else {
+                return
+            }
             guard let data = data as? Data else {
                 return
             }
             
-            self.photo.value = UIImage(data: data)
+            strongSelf.photo.value = UIImage(data: data)
         })
     }
 }

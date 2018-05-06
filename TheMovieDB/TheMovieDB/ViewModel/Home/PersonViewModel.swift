@@ -199,9 +199,13 @@ class PersonViewModel: ViewModel {
     func setupPhotos() {
         photos = [Photo]()
         for image in imagesList {
-            serviceModel.loadImage(path: image.filePath) { (data) in
+            serviceModel.loadImage(path: image.filePath) { [weak self] (data) in
+                guard let strongSelf = self else {
+                    return
+                }
+                
                 if let data = data as? Data {
-                    self.photos.append(Photo(image: UIImage(data: data)))
+                    strongSelf.photos.append(Photo(image: UIImage(data: data)))
                 }
             }
         }
