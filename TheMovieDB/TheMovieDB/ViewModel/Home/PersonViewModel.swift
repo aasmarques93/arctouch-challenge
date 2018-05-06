@@ -62,11 +62,11 @@ class PersonViewModel: ViewModel {
     }
     
     // MARK: Cast
-    private var castList = [Cast]() { didSet { delegate?.reloadData?() } }
-    var numberOfCastMovies: Int { return castList.count }
+    private var arrayCast = [Cast]() { didSet { delegate?.reloadData?() } }
+    var numberOfCastMovies: Int { return arrayCast.count }
 
     // MARK: Photos
-    private var imagesList = [PersonImage]() { didSet { setupPhotos() } }
+    private var arrayImages = [PersonImage]() { didSet { setupPhotos() } }
     private var photos = [Photo]()
 
     // MARK: Service Model
@@ -98,7 +98,7 @@ class PersonViewModel: ViewModel {
     }
     
     private func getMovieCredits() {
-        guard castList.isEmpty else {
+        guard arrayCast.isEmpty else {
             return
         }
 
@@ -107,7 +107,7 @@ class PersonViewModel: ViewModel {
                 return
             }
             
-            self.castList.append(contentsOf: results)
+            self.arrayCast.append(contentsOf: results)
         }
     }
     
@@ -120,7 +120,7 @@ class PersonViewModel: ViewModel {
     }
 
     private func getImages() {
-        guard imagesList.isEmpty else {
+        guard arrayImages.isEmpty else {
             return
         }
 
@@ -128,7 +128,7 @@ class PersonViewModel: ViewModel {
             guard let object = object as? PersonImagesList, let results = object.results else {
                 return
             }
-            self.imagesList = results
+            self.arrayImages = results
         }
     }
     
@@ -145,7 +145,7 @@ class PersonViewModel: ViewModel {
     }
     
     func loadMovieImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        serviceModel.loadImage(path: castList[index].posterPath, handlerData: handlerData)
+        serviceModel.loadImage(path: arrayCast[index].posterPath, handlerData: handlerData)
     }
     
     // MARK: - View Model -
@@ -170,7 +170,7 @@ class PersonViewModel: ViewModel {
     }
     
     func movieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
-        let cast = castList[index]
+        let cast = arrayCast[index]
         let dictionary: [String:Any?] = ["id": cast.id, "original_title": cast.originalTitle]
         let movie = Movie(object: dictionary)
         return MovieDetailViewModel(movie)
@@ -185,7 +185,7 @@ class PersonViewModel: ViewModel {
 
     func setupPhotos() {
         photos = [Photo]()
-        for image in imagesList {
+        for image in arrayImages {
             serviceModel.loadImage(path: image.filePath) { [weak self] (data) in
                 guard let strongSelf = self else {
                     return

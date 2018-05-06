@@ -25,11 +25,11 @@ class TVShowViewModel: ViewModel {
     private var totalPages: Int?
     
     // MARK: Objects
-    private var popularList = [TVShow]()
-    private var searchPopularList = [TVShow]() { didSet { delegate?.reloadData?() } }
-    var numberOfPopularList: Int { return searchPopularList.count }
+    private var arrayPopular = [TVShow]()
+    private var arraySearchPopular = [TVShow]() { didSet { delegate?.reloadData?() } }
+    var numberOfPopular: Int { return arraySearchPopular.count }
     
-    var isTVShowsEmpty: Bool { return numberOfPopularList == 0 }
+    var isTVShowsEmpty: Bool { return numberOfPopular == 0 }
     
     // MARK: - Service requests -
     
@@ -42,16 +42,16 @@ class TVShowViewModel: ViewModel {
         serviceModel.getPopular(urlParameters: parameters) { [unowned self] (object) in
             if let object = object as? SearchTV, let results = object.results {
                 self.totalPages = object.totalPages
-                self.popularList.append(contentsOf: results)
+                self.arrayPopular.append(contentsOf: results)
             }
             
             self.isDataLoading = false
-            self.searchPopularList = self.popularList
+            self.arraySearchPopular = self.arrayPopular
         }
     }
     
     func doServicePaginationIfNeeded(at indexPath: IndexPath) {
-        if indexPath.row == searchPopularList.count-2 && !isDataLoading {
+        if indexPath.row == arraySearchPopular.count-2 && !isDataLoading {
             currentPage += 1
             
             guard let totalPages = totalPages, currentPage < totalPages else {
@@ -76,7 +76,7 @@ class TVShowViewModel: ViewModel {
                     return
                 }
                 
-                self.searchPopularList = results
+                self.arraySearchPopular = results
             }
             
             return
@@ -88,10 +88,10 @@ class TVShowViewModel: ViewModel {
     //MARK: View model
     
     func tvShowCellViewModel(at indexPath: IndexPath) -> TVShowCellViewModel? {
-        return TVShowCellViewModel(searchPopularList[indexPath.row])
+        return TVShowCellViewModel(arraySearchPopular[indexPath.row])
     }
     
     func tvShowDetailViewModel(at indexPath: IndexPath) -> TVShowDetailViewModel? {
-        return TVShowDetailViewModel(searchPopularList[indexPath.row].id)
+        return TVShowDetailViewModel(arraySearchPopular[indexPath.row].id)
     }
 }

@@ -30,14 +30,14 @@ class PopularPeopleViewModel: ViewModel {
     private var totalPages: Int?
     
     // MARK: Objects
-    private var popularPeopleList = [Person]()
-    private var searchPersonList = [Person]() {
+    private var arrayPopularPeople = [Person]()
+    private var arraySearchPerson = [Person]() {
         didSet {
             isEmptyMessageHidden.value = numberOfPopularPeople > 0
             delegate?.reloadData?()
         }
     }
-    var numberOfPopularPeople: Int { return searchPersonList.count }
+    var numberOfPopularPeople: Int { return arraySearchPerson.count }
     
     // MARK: - Service requests -
     
@@ -50,16 +50,16 @@ class PopularPeopleViewModel: ViewModel {
         serviceModel.getPopularPeople(urlParameters: parameters) { [unowned self] (object) in
             if let object = object as? PopularPeople, let results = object.results {
                 self.totalPages = object.totalPages
-                self.popularPeopleList.append(contentsOf: results)
+                self.arrayPopularPeople.append(contentsOf: results)
             }
             
             self.isDataLoading = false
-            self.searchPersonList = self.popularPeopleList
+            self.arraySearchPerson = self.arrayPopularPeople
         }
     }
     
     func doServicePaginationIfNeeded(at indexPath: IndexPath) {
-        if indexPath.row == searchPersonList.count-2 && !isDataLoading {
+        if indexPath.row == arraySearchPerson.count-2 && !isDataLoading {
             currentPage += 1
             
             guard let totalPages = totalPages, currentPage < totalPages else {
@@ -82,7 +82,7 @@ class PopularPeopleViewModel: ViewModel {
                     return
                 }
                 
-                self.searchPersonList = results
+                self.arraySearchPerson = results
             }
             
             return
@@ -94,10 +94,10 @@ class PopularPeopleViewModel: ViewModel {
     // MARK: - View Model -
     
     func popularPersonCellViewModel(at indexPath: IndexPath) -> PopularPersonCellViewModel? {
-        return PopularPersonCellViewModel(searchPersonList[indexPath.row])
+        return PopularPersonCellViewModel(arraySearchPerson[indexPath.row])
     }
     
     func personViewModel(at indexPath: IndexPath) -> PersonViewModel? {
-        return PersonViewModel(searchPersonList[indexPath.row].id)
+        return PersonViewModel(arraySearchPerson[indexPath.row].id)
     }
 }

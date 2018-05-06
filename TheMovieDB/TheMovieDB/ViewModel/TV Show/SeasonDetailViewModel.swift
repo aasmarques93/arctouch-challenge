@@ -31,7 +31,7 @@ class SeasonDetailViewModel: ViewModel {
                 return
             }
             
-            episodesList = episodes
+            arrayEpisodes = episodes
         }
     }
     
@@ -40,8 +40,8 @@ class SeasonDetailViewModel: ViewModel {
     var tvShowDetail: TVShowDetail?
     var season: Seasons?
     
-    private var episodesList = [Episodes]() { didSet { delegate?.reloadData?() } }
-    var numberOfEpisodes: Int { return episodesList.count }
+    private var arrayEpisodes = [Episodes]() { didSet { delegate?.reloadData?() } }
+    var numberOfEpisodes: Int { return arrayEpisodes.count }
     
     var seasonName: String? {
         return season?.name
@@ -71,7 +71,7 @@ class SeasonDetailViewModel: ViewModel {
     }
     
     func heightForEpisodeOverview(at indexPath: IndexPath) -> CGFloat? {
-        let episode = episodesList[indexPath.row]
+        let episode = arrayEpisodes[indexPath.row]
         guard let overview = episode.overview else {
             return nil
         }
@@ -81,6 +81,6 @@ class SeasonDetailViewModel: ViewModel {
     // MARK: - View Model -
     
     func episodeViewModel(at indexPath: IndexPath) -> EpisodeViewModel? {
-        return EpisodeViewModel(episodesList[indexPath.row], tvShowDetail: tvShowDetail)
+        return EpisodeViewModel(arrayEpisodes[indexPath.row], tvShowDetail: tvShowDetail)
     }
 }

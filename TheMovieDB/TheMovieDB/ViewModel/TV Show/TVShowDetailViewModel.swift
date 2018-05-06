@@ -44,7 +44,7 @@ class TVShowDetailViewModel: ViewModel {
             guard let seasons = tvShowDetail?.seasons else {
                 return
             }
-            seasonsList = seasons
+            arraySeasons = seasons
         }
     }
     
@@ -56,16 +56,16 @@ class TVShowDetailViewModel: ViewModel {
     }
     
     // MARK: Videos
-    private var videosList = [Video]() { didSet { delegate?.reloadVideos() } }
-    var numberOfVideos: Int { return videosList.count }
+    private var arrayVideos = [Video]() { didSet { delegate?.reloadVideos() } }
+    var numberOfVideos: Int { return arrayVideos.count }
     
     // MARK: Seasons
-    private var seasonsList = [Seasons]() { didSet { delegate?.reloadSeasons() } }
-    var numberOfSeasons: Int { return seasonsList.count }
+    private var arraySeasons = [Seasons]() { didSet { delegate?.reloadSeasons() } }
+    var numberOfSeasons: Int { return arraySeasons.count }
     
     // MARK: Cast
-    private var castList = [Cast]() { didSet { delegate?.reloadCast() } }
-    var numberOfCastCharacters: Int { return castList.count }
+    private var arrayCast = [Cast]() { didSet { delegate?.reloadCast() } }
+    var numberOfCastCharacters: Int { return arrayCast.count }
     
     // MARK: - Life cycle -
     
@@ -90,25 +90,25 @@ class TVShowDetailViewModel: ViewModel {
     }
     
     private func getVideos() {
-        if videosList.isEmpty {
+        if arrayVideos.isEmpty {
             serviceModel.getVideos(from: id) { [unowned self] (object) in
                 guard let object = object as? VideosList, let results = object.results else {
                     return
                 }
                 
-                self.videosList.append(contentsOf: results)
+                self.arrayVideos.append(contentsOf: results)
             }
         }
     }
     
     private func getCredits() {
-        if castList.isEmpty {
+        if arrayCast.isEmpty {
             serviceModel.getCredits(from: id) { [unowned self] (object) in
                 guard let object = object as? CreditsList, let results = object.cast else {
                     return
                 }
                 
-                self.castList.append(contentsOf: results)
+                self.arrayCast.append(contentsOf: results)
             }
         }
     }
@@ -135,42 +135,42 @@ class TVShowDetailViewModel: ViewModel {
     // MARK: Videos
     
     func videoTitle(at index: Int) -> String? {
-        return videosList[index].name
+        return arrayVideos[index].name
     }
     
     func videoYouTubeId(at index: Int) -> String? {
-        return videosList[index].key
+        return arrayVideos[index].key
     }
     
     // MARK: Season
     
     func seasonName(at index: Int) -> String? {
-        return seasonsList[index].name
+        return arraySeasons[index].name
     }
     
     func seasonYear(at index: Int) -> String? {
-        guard let date = Date(fromString: valueDescription(seasonsList[index].airDate), format: DateFormatType.isoDate) else {
+        guard let date = Date(fromString: valueDescription(arraySeasons[index].airDate), format: DateFormatType.isoDate) else {
             return nil
         }
         return "\(date.toString(format: .isoYear)) | "
     }
     
     func seasonEpisodeCount(at index: Int) -> String? {
-        return "\(valueDescription(seasonsList[index].episodeCount)) Episodes"
+        return "\(valueDescription(arraySeasons[index].episodeCount)) Episodes"
     }
     
     func seasonOverview(at index: Int) -> String? {
-        return seasonsList[index].overview
+        return arraySeasons[index].overview
     }
     
     func seasonImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        loadImageData(at: seasonsList[index].posterPath, handlerData: handlerData)
+        loadImageData(at: arraySeasons[index].posterPath, handlerData: handlerData)
     }
     
     // MARK: Cast
     
     func castImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        let cast = castList[index]
+        let cast = arrayCast[index]
         
         if let data = cast.imageData {
             handlerData(data)
@@ -182,26 +182,26 @@ class TVShowDetailViewModel: ViewModel {
                 return
             }
             
-            strongSelf.castList[index].imageData = data as? Data
+            strongSelf.arrayCast[index].imageData = data as? Data
             handlerData(data)
         }
     }
     
     func castName(at index: Int) -> String {
-        return castList[index].name ?? ""
+        return arrayCast[index].name ?? ""
     }
     
     func castCharacter(at index: Int) -> String {
-        return castList[index].character ?? ""
+        return arrayCast[index].character ?? ""
     }
     
     // MARK: - Person View Model -
     
     func personViewModel(at index: Int) -> PersonViewModel? {
-        return PersonViewModel(castList[index].id)
+        return PersonViewModel(arrayCast[index].id)
     }
     
     func seasonDetailViewModel(at index: Int) -> SeasonDetailViewModel? {
-        return SeasonDetailViewModel(tvShowDetail, season: seasonsList[index])
+        return SeasonDetailViewModel(tvShowDetail, season: arraySeasons[index])
     }
 }

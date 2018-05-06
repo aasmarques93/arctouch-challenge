@@ -51,24 +51,24 @@ class MovieDetailViewModel: ViewModel {
     let serviceModel = MovieDetailServiceModel()
     
     // MARK: Videos
-    private var videosList = [Video]() { didSet { delegate?.reloadVideos() } }
-    var numberOfVideos: Int { return videosList.count }
+    private var arrayVideos = [Video]() { didSet { delegate?.reloadVideos() } }
+    var numberOfVideos: Int { return arrayVideos.count }
     
     // MARK: Recommended
-    private var moviesRecommendationsList = [Movie]() { didSet { delegate?.reloadRecommendedMovies() } }
-    var numberOfMoviesRecommendations: Int { return moviesRecommendationsList.count }
+    private var arrayMovieRecommendations = [Movie]() { didSet { delegate?.reloadRecommendedMovies() } }
+    var numberOfMoviesRecommendations: Int { return arrayMovieRecommendations.count }
     
     // MARK: Similar Movies
-    private var similarMoviesList = [Movie]() { didSet { delegate?.reloadSimilarMovies() } }
-    var numberOfSimilarMovies: Int { return similarMoviesList.count }
+    private var arraySimilarMovies = [Movie]() { didSet { delegate?.reloadSimilarMovies() } }
+    var numberOfSimilarMovies: Int { return arraySimilarMovies.count }
     
     // MARK: Cast
-    private var castList = [Cast]() { didSet { delegate?.reloadCast() } }
-    var numberOfCastCharacters: Int { return castList.count }
+    private var arrayCast = [Cast]() { didSet { delegate?.reloadCast() } }
+    var numberOfCastCharacters: Int { return arrayCast.count }
     
     // MARK: Reviews
-    private var reviewsList = [Review]() { didSet { delegate?.reloadReviews() } }
-    var numberOfReviews: Int { return reviewsList.count }
+    private var arrayReviews = [Review]() { didSet { delegate?.reloadReviews() } }
+    var numberOfReviews: Int { return arrayReviews.count }
     
     // MARK: - Life cycle -
     
@@ -96,7 +96,7 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getVideos() {
-        guard videosList.isEmpty else {
+        guard arrayVideos.isEmpty else {
             return
         }
         
@@ -105,12 +105,12 @@ class MovieDetailViewModel: ViewModel {
                 return
             }
             
-            self.videosList.append(contentsOf: results)
+            self.arrayVideos.append(contentsOf: results)
         }
     }
     
     private func getMovieRecommendations() {
-        guard moviesRecommendationsList.isEmpty else {
+        guard arrayMovieRecommendations.isEmpty else {
             return
         }
         
@@ -119,12 +119,12 @@ class MovieDetailViewModel: ViewModel {
                 return
             }
             
-            self.moviesRecommendationsList.append(contentsOf: results)
+            self.arrayMovieRecommendations.append(contentsOf: results)
         }
     }
     
     private func getSimilarMovies() {
-        guard similarMoviesList.isEmpty else {
+        guard arraySimilarMovies.isEmpty else {
             return
         }
         
@@ -133,12 +133,12 @@ class MovieDetailViewModel: ViewModel {
                 return
             }
             
-            self.similarMoviesList.append(contentsOf: results)
+            self.arraySimilarMovies.append(contentsOf: results)
         }
     }
     
     private func getCredits() {
-        guard castList.isEmpty else {
+        guard arrayCast.isEmpty else {
             return
         }
         
@@ -147,12 +147,12 @@ class MovieDetailViewModel: ViewModel {
                 return
             }
             
-            self.castList.append(contentsOf: results)
+            self.arrayCast.append(contentsOf: results)
         }
     }
     
     private func getReviews() {
-        guard reviewsList.isEmpty else {
+        guard arrayReviews.isEmpty else {
             return
         }
         
@@ -161,7 +161,7 @@ class MovieDetailViewModel: ViewModel {
                 return
             }
             
-            self.reviewsList.append(contentsOf: results)
+            self.arrayReviews.append(contentsOf: results)
         }
     }
     
@@ -195,17 +195,17 @@ class MovieDetailViewModel: ViewModel {
     // MARK: Videos
     
     func videoTitle(at index: Int) -> String? {
-        return videosList[index].name
+        return arrayVideos[index].name
     }
     
     func videoYouTubeId(at index: Int) -> String? {
-        return videosList[index].key
+        return arrayVideos[index].key
     }
     
     // MARK: Recommendations
     
     func movieRecommendationImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        var movie = moviesRecommendationsList[index]
+        var movie = arrayMovieRecommendations[index]
         
         if let data = movie.imageData {
             handlerData(data)
@@ -221,7 +221,7 @@ class MovieDetailViewModel: ViewModel {
     // MARK: Similar
     
     func similarMovieImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        var movie = similarMoviesList[index]
+        var movie = arraySimilarMovies[index]
         
         if let data = movie.imageData {
             handlerData(data)
@@ -237,7 +237,7 @@ class MovieDetailViewModel: ViewModel {
     // MARK: Cast
     
     func castImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        var cast = castList[index]
+        var cast = arrayCast[index]
         
         if let data = cast.imageData {
             handlerData(data)
@@ -251,31 +251,31 @@ class MovieDetailViewModel: ViewModel {
     }
     
     func castName(at index: Int) -> String {
-        return castList[index].name ?? ""
+        return arrayCast[index].name ?? ""
     }
     
     func castCharacter(at index: Int) -> String {
-        return castList[index].character ?? ""
+        return arrayCast[index].character ?? ""
     }
     
     // MARK: Reviews
     
     func reviewAuthor(at index: Int) -> String {
-        return reviewsList[index].author ?? ""
+        return arrayReviews[index].author ?? ""
     }
     
     func reviewContent(at index: Int) -> String {
-        return reviewsList[index].content ?? ""
+        return arrayReviews[index].content ?? ""
     }
     
     // MARK: - View Model Instantiation -
     
     func recommendedMovieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
-        return movieDetailViewModel(moviesRecommendationsList[index])
+        return movieDetailViewModel(arrayMovieRecommendations[index])
     }
     
     func similarMovieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
-        return movieDetailViewModel(similarMoviesList[index])
+        return movieDetailViewModel(arraySimilarMovies[index])
     }
     
     private func movieDetailViewModel(_ movie: Movie) -> MovieDetailViewModel? {
@@ -283,6 +283,6 @@ class MovieDetailViewModel: ViewModel {
     }
     
     func personViewModel(at index: Int) -> PersonViewModel? {
-        return PersonViewModel(castList[index].id)
+        return PersonViewModel(arrayCast[index].id)
     }
 }

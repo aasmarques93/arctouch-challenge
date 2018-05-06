@@ -22,7 +22,7 @@ class EpisodeViewModel: ViewModel {
     var episode: Episodes?
     var tvShowDetail: TVShowDetail?
 
-    private var imagesList = [EpisodeImage]() { didSet { setupPhotos() } }
+    private var arrayImages = [EpisodeImage]() { didSet { setupPhotos() } }
     private var photos = [Photo]()
     
     init(_ object: Episodes, tvShowDetail: TVShowDetail?) {
@@ -40,7 +40,7 @@ class EpisodeViewModel: ViewModel {
     }
 
     private func getImages() {
-        guard imagesList.isEmpty else {
+        guard arrayImages.isEmpty else {
             return
         }
 
@@ -51,7 +51,7 @@ class EpisodeViewModel: ViewModel {
             guard let object = object as? EpisodeImagesList, let results = object.results else {
                 return
             }
-            self.imagesList = results
+            self.arrayImages = results
         }
     }
 
@@ -78,7 +78,7 @@ class EpisodeViewModel: ViewModel {
 
     func setupPhotos() {
         photos = [Photo]()
-        for image in imagesList {
+        for image in arrayImages {
             serviceModel.loadImage(path: image.filePath) { [weak self] (data) in
                 guard let strongSelf = self else {
                     return
