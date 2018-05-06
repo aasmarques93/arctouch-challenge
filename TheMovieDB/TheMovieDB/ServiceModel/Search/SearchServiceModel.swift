@@ -1,6 +1,6 @@
 //
 //  SearchViewModel.swift
-//  Challenge
+//  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 3/14/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
@@ -22,7 +22,7 @@ struct SearchServiceModel {
     }
     
     func doSearch(urlParameters: [String:Any], isMultipleSearch: Bool, handler: @escaping HandlerObject) {
-        serviceModel.request(requestUrl: isMultipleSearch ? .multiSearch : .searchMovie,
+        serviceModel.request(requestUrl: isMultipleSearch ? .multiSearch: .searchMovie,
                              urlParameters: urlParameters,
                              handlerObject: { (object) in
             

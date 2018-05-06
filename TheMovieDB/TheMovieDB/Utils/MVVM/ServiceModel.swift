@@ -1,6 +1,6 @@
 //
 //  Connection.swift
-//  Water
+//  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 30/01/17.
 //  Copyright © 2017 Arthur Augusto Sousa Marques. All rights reserved.
@@ -16,17 +16,17 @@ typealias HandlerObject = (Any?) -> Swift.Void
 
 struct ServiceModel {
     // MARK: - Properties -
-    var url : String?
-    var parameters : [String:Any]?
+    var url: String?
+    var parameters: [String:Any]?
     
     // MARK: - Constructors -
     init() { }
     
-    init(url : String?) {
+    init(url: String?) {
         self.url = url
     }
     
-    init(url : String?, parameters : [String:Any]?) {
+    init(url: String?, parameters: [String:Any]?) {
         self.url = url
         self.parameters = parameters
     }
@@ -114,7 +114,7 @@ struct ServiceModel {
     
     // MARK: - Verifications -
     
-    static func verifyResult(_ object : Any?) -> String? {
+    static func verifyResult(_ object: Any?) -> String? {
         if let error = object as? ReachabilityError {
             return error.rawValue
         }

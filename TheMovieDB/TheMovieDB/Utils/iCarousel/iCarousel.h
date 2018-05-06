@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol iCarouselDataSource, iCarouselDelegate;
 
-@interface iCarousel : UIView
+@interface iCarousel: UIView
 
 @property (nonatomic, weak_delegate) IBOutlet __nullable id<iCarouselDataSource> dataSource;
 @property (nonatomic, weak_delegate) IBOutlet __nullable id<iCarouselDelegate> delegate;

@@ -1,6 +1,6 @@
 //
 //  Appearance.swift
-//  Challenge
+//  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
@@ -12,7 +12,7 @@ extension UINavigationController {
     open override func awakeFromNib() {
         navigationBar.barTintColor = HexColor.primary.color
         navigationBar.tintColor = HexColor.secondary.color
-        navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : navigationBar.tintColor]
+        navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: navigationBar.tintColor]
         navigationBar.isTranslucent = false
         navigationBar.isOpaque = true
         navigationBar.shadowImage = UIImage()
@@ -92,15 +92,15 @@ enum GradientOrientation {
     case horizontal
     case vertical
     
-    var startPoint : CGPoint {
+    var startPoint: CGPoint {
         return points.startPoint
     }
     
-    var endPoint : CGPoint {
+    var endPoint: CGPoint {
         return points.endPoint
     }
     
-    var points : GradientPoints {
+    var points: GradientPoints {
         get {
             switch(self) {
             case .topRightBottomLeft:
@@ -200,11 +200,11 @@ class GradientView: UIView {
     
     func updatePoints() {
         if horizontalMode {
-            gradientLayer.startPoint = diagonalMode ? CGPoint(x: 1, y: 0) : CGPoint(x: 0, y: 0.5)
-            gradientLayer.endPoint = diagonalMode ? CGPoint(x: 0, y: 1) : CGPoint(x: 1, y: 0.5)
+            gradientLayer.startPoint = diagonalMode ? CGPoint(x: 1, y: 0): CGPoint(x: 0, y: 0.5)
+            gradientLayer.endPoint = diagonalMode ? CGPoint(x: 0, y: 1): CGPoint(x: 1, y: 0.5)
         } else {
-            gradientLayer.startPoint = diagonalMode ? CGPoint(x: 0, y: 0) : CGPoint(x: 0.5, y: 0)
-            gradientLayer.endPoint = diagonalMode ? CGPoint(x: 1, y: 1) : CGPoint(x: 0.5, y: 1)
+            gradientLayer.startPoint = diagonalMode ? CGPoint(x: 0, y: 0): CGPoint(x: 0.5, y: 0)
+            gradientLayer.endPoint = diagonalMode ? CGPoint(x: 1, y: 1): CGPoint(x: 0.5, y: 1)
         }
     }
     func updateLocations() {
@@ -223,7 +223,7 @@ class GradientView: UIView {
 }
 
 extension UILabel {
-    var stringHeight : CGFloat {
+    var stringHeight: CGFloat {
         get {
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 44))
             
@@ -238,7 +238,7 @@ extension UILabel {
             
         }
     }
-    func addShadow(with offset : CGSize, opacity : Float, radius : CGFloat) {
+    func addShadow(with offset: CGSize, opacity: Float, radius: CGFloat) {
         self.layer.shadowOffset = offset
         self.layer.shadowOpacity = opacity
         self.layer.shadowRadius = radius

@@ -1,6 +1,6 @@
 //
 //  Connection.swift
-//  Challenge
+//  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
@@ -18,15 +18,15 @@ struct Connection {
     // MARK: - Properties -
     static let shared = Connection()
     
-    var headers : HTTPHeaders?
+    var headers: HTTPHeaders?
     var cookies = [HTTPCookie]()
     var stringCookies = ""
     
     // MARK: - Request Methods -
     
-    func request(url : String,
+    func request(url: String,
                  method: HTTPMethod = .get,
-                 parameters: [String : Any]? = nil,
+                 parameters: [String: Any]? = nil,
                  dataResponseJSON: @escaping handlerResponseJSON) {
         
         Session.shared.manager?.request(url,
@@ -41,9 +41,9 @@ struct Connection {
         
     }
     
-    func requestData(url : String,
-                     method : HTTPMethod,
-                     parameters : [String : Any]?,
+    func requestData(url: String,
+                     method: HTTPMethod,
+                     parameters: [String: Any]?,
                      dataResponse: @escaping (Data?) -> ()) {
         
         Session.shared.manager?.request(url,

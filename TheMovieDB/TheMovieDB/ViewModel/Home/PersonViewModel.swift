@@ -55,9 +55,9 @@ class PersonViewModel: ViewModel {
             isInstagramEnabled.value = externalIds?.instagramId != nil
             isTwitterEnabled.value = externalIds?.twitterId != nil
             
-            facebookTintColor.value = externalIds?.facebookId != nil ? HexColor.text.color : UIColor.darkGray
-            instagramTintColor.value = externalIds?.instagramId != nil ? HexColor.text.color : UIColor.darkGray
-            twitterTintColor.value = externalIds?.twitterId != nil ? HexColor.text.color : UIColor.darkGray
+            facebookTintColor.value = externalIds?.facebookId != nil ? HexColor.text.color: UIColor.darkGray
+            instagramTintColor.value = externalIds?.instagramId != nil ? HexColor.text.color: UIColor.darkGray
+            twitterTintColor.value = externalIds?.twitterId != nil ? HexColor.text.color: UIColor.darkGray
         }
     }
     

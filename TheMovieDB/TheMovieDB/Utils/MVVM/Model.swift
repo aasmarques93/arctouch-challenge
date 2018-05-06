@@ -1,6 +1,6 @@
 //
 //  Model.swift
-//  Water
+//  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 01/02/17.
 //  Copyright © 2017 Arthur Augusto Sousa Marques. All rights reserved.

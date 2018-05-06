@@ -94,7 +94,7 @@ extension String {
     //validate PhoneNumber
     var isPhoneNumber: Bool {
         let character  = CharacterSet(charactersIn: "+0123456789").inverted
-        var filtered : String!
+        var filtered: String!
         let inputString = self.components(separatedBy: character)
         filtered = inputString.joined(separator: "")
         return self == filtered
@@ -103,7 +103,7 @@ extension String {
     //validate CardNumber
     var isCardNumber: Bool {
         let character  = CharacterSet(charactersIn: "0123456789").inverted
-        var filtered : String!
+        var filtered: String!
         let inputString = self.components(separatedBy: character)
         filtered = inputString.joined(separator: "")
         return filtered.count == 16
@@ -123,7 +123,7 @@ extension String {
             return (false, "CPF VAZIO.")
         }
         
-        var firstSum, secondSum, firstDigit, secondDigit, firstDigitCheck, secondDigitCheck : Int
+        var firstSum, secondSum, firstDigit, secondDigit, firstDigitCheck, secondDigitCheck: Int
         
         if NSString(string: cpf).length != 11 {
             return (false, "CPF INVÁLIDO.")
@@ -227,7 +227,7 @@ extension String {
         var string = self
         if string.count > 0 && string.count-1 < max {
             string = string.replacingOccurrences(of: "-", with: "", options: .backwards, range: nil)
-            let str : NSMutableString = NSMutableString(string: string)
+            let str: NSMutableString = NSMutableString(string: string)
             str.insert("-", at: string.count-1)
             return str as String
         }
@@ -263,7 +263,7 @@ extension String {
     
     func substring(to position: Int, isLiteral: Bool = true) -> String {
         if !isEmptyOrWhitespace && count >= position {
-            return "\(substring(to: index(startIndex, offsetBy: position)))\(isLiteral ? "" : "...")"
+            return "\(substring(to: index(startIndex, offsetBy: position)))\(isLiteral ? "": "...")"
         }
         
         return self
@@ -271,7 +271,7 @@ extension String {
     
     func substring(from position: Int, isLiteral: Bool = true) -> String {
         if !isEmptyOrWhitespace && count >= position {
-            return "\(substring(from: index(endIndex, offsetBy: position - count)))\(isLiteral ? "" : "...")"
+            return "\(substring(from: index(endIndex, offsetBy: position - count)))\(isLiteral ? "": "...")"
         }
         
         return self
@@ -323,21 +323,21 @@ extension BinaryInteger {
 }
 
 extension NSAttributedString {
-    static func strikedText(_ text: String, color : UIColor) -> NSAttributedString {
+    static func strikedText(_ text: String, color: UIColor) -> NSAttributedString {
         let textAttributes = [
             NSAttributedStringKey.foregroundColor: color,
             NSAttributedStringKey.strikethroughStyle: 1
-            ] as [NSAttributedStringKey : Any]
+            ] as [NSAttributedStringKey: Any]
         
         return NSAttributedString(string: text, attributes: textAttributes)
     }
     
-    static func strokeText(_ text: String, color : UIColor, strokeColor : UIColor) -> NSAttributedString {
+    static func strokeText(_ text: String, color: UIColor, strokeColor: UIColor) -> NSAttributedString {
         let textAttributes = [
             NSAttributedStringKey.foregroundColor: color,
             NSAttributedStringKey.strokeColor: strokeColor,
             NSAttributedStringKey.strokeWidth: 1.0
-            ] as [NSAttributedStringKey : Any]
+            ] as [NSAttributedStringKey: Any]
         
         return NSAttributedString(string: text, attributes: textAttributes)
     }

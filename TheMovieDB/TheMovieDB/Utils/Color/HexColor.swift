@@ -1,6 +1,6 @@
 //
 //  Color.swift
-//  Challenge
+//  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
@@ -15,11 +15,11 @@ enum HexColor: String {
     case accent = "F15F50"
     case text = "F4F4F4"
     
-    var color : UIColor { 
+    var color: UIColor {
         return UIColor(hexString: self.rawValue)
     }
     
-    var cgColor : CGColor {
+    var cgColor: CGColor {
         return color.cgColor
     }
     

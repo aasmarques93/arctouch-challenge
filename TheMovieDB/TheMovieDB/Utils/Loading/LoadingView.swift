@@ -1,6 +1,6 @@
 //
 //  LoadingView.swift
-//  Challenge
+//  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
@@ -70,12 +70,12 @@ class LoadingView: UIView {
         }
     }
     
-    func start(in view : UIView, text: String? = nil) {
+    func start(in view: UIView, text: String? = nil) {
         self.text = text
         view.addSubview(self)
     }
     
-    func start(with frame : CGRect, text: String? = nil) {
+    func start(with frame: CGRect, text: String? = nil) {
         self.text = text
         if let window = AppDelegate.shared.window { window.addSubview(self) }
     }

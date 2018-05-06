@@ -1,6 +1,6 @@
 //
 //  Extensions.swift
-//  Challenge
+//  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
@@ -38,7 +38,7 @@ extension Array {
         return array
     }
     
-    func contains(_ object : AnyObject) -> Bool {
+    func contains(_ object: AnyObject) -> Bool {
         if self.isEmpty {
             return false
         }
@@ -48,7 +48,7 @@ extension Array {
         return array.contains(object)
     }
     
-    func index(of object : AnyObject) -> Int? {
+    func index(of object: AnyObject) -> Int? {
         if self.contains(object) {
             let array = NSArray(array: self)
             
@@ -94,7 +94,7 @@ extension UICollectionView {
     }
 }
 
-protocol ReusableView : class { }
+protocol ReusableView: class { }
 
 extension ReusableView where Self:UIView {
     static var reuseIdentifier: String {
@@ -113,11 +113,11 @@ extension UITableViewCell {
                              mainColor: UIColor = HexColor.primary.color,
                              secondaryColor: UIColor = HexColor.secondary.color) {
         
-        backgroundColor = indexPath.row % 2 == 0 ? mainColor : secondaryColor
+        backgroundColor = indexPath.row % 2 == 0 ? mainColor: secondaryColor
     }
 }
 
-protocol ReusableIdentifier : class { }
+protocol ReusableIdentifier: class { }
 
 extension ReusableIdentifier where Self:UIViewController {
     static var identifier: String {
@@ -133,8 +133,8 @@ extension UITabBarController {
     func setTabBarVisible(visible: Bool, animated: Bool) {
         let frame = self.tabBar.frame
         let height = frame.size.height
-        let offsetY = (visible ? -height : height)
-        UIView.animate(withDuration: animated ? 0.3 : 0.0) {
+        let offsetY = (visible ? -height: height)
+        UIView.animate(withDuration: animated ? 0.3: 0.0) {
             self.tabBar.frame = frame.offsetBy(dx: 0, dy: offsetY)
             self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height + offsetY)
             self.view.setNeedsDisplay()

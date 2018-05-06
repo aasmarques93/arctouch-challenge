@@ -1,6 +1,6 @@
 //
 //  Alert.swift
-//  Challenge
+//  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
@@ -11,7 +11,7 @@ import UIKit
 typealias AlertHandler = () -> Swift.Void
 
 struct AlertComponent {
-    static func show(title: String? = nil, message: String?, mainButton : String? = nil, mainAction: AlertHandler? = nil, secondaryButton: String? = nil, secondaryAction: AlertHandler? = nil) {
+    static func show(title: String? = nil, message: String?, mainButton: String? = nil, mainAction: AlertHandler? = nil, secondaryButton: String? = nil, secondaryAction: AlertHandler? = nil) {
         
         let aTitle = title ?? ""
         let alertController = UIAlertController(title: aTitle, message: message, preferredStyle: .alert)

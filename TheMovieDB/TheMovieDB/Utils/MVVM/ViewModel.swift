@@ -1,6 +1,6 @@
 //
 //  ViewModel.swift
-//  Water
+//  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 27/01/17.
 //  Copyright © 2017 Arthur Augusto Sousa Marques. All rights reserved.
@@ -19,7 +19,7 @@ protocol ViewModel {
 
 extension ViewModel {
     // Create an unwrapped string from any object
-    func valueDescription(_ object : Any?) -> String {
+    func valueDescription(_ object: Any?) -> String {
         if let object = object { return "\(object)" }
         return ""
     }
