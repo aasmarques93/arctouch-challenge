@@ -46,12 +46,12 @@ class EpisodeViewModel: ViewModel {
 
         serviceModel.getImages(from: tvShowDetail?.id,
                                season: episode?.seasonNumber,
-                               episode: episode?.episodeNumber) { [unowned self] (object) in
+                               episode: episode?.episodeNumber) { [weak self] (object) in
 
             guard let object = object as? EpisodeImagesList, let results = object.results else {
                 return
             }
-            self.arrayImages = results
+            self?.arrayImages = results
         }
     }
 

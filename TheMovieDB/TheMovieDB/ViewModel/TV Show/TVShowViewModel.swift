@@ -36,14 +36,14 @@ class TVShowViewModel: ViewModel {
         isDataLoading = true
         
         let parameters = ["page": currentPage]
-        serviceModel.getPopular(urlParameters: parameters) { [unowned self] (object) in
+        serviceModel.getPopular(urlParameters: parameters) { [weak self] (object) in
             if let object = object as? SearchTV, let results = object.results {
-                self.totalPages = object.totalPages
-                self.arrayPopular.append(contentsOf: results)
+                self?.totalPages = object.totalPages
+                self?.arrayPopular.append(contentsOf: results)
             }
             
-            self.isDataLoading = false
-            self.arraySearchPopular = self.arrayPopular
+            self?.isDataLoading = false
+            if let results = self?.arrayPopular { self?.arraySearchPopular = results }
         }
     }
     
@@ -68,16 +68,16 @@ class TVShowViewModel: ViewModel {
             isDataLoading = true
             
             Loading.shared.startLoading()
-            serviceModel.doSearchTVShow(urlParameters: parameters) { [unowned self] (object) in
+            serviceModel.doSearchTVShow(urlParameters: parameters) { [weak self] (object) in
                 Loading.shared.stopLoading()
                 
-                self.isDataLoading = false
+                self?.isDataLoading = false
                 
                 guard let object = object as? SearchTV, let results = object.results else {
                     return
                 }
                 
-                self.arraySearchPopular = results
+                self?.arraySearchPopular = results
             }
             
             return

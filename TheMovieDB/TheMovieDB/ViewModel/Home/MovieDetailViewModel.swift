@@ -89,9 +89,9 @@ class MovieDetailViewModel: ViewModel {
     
     private func getMovieDetail() {
         Loading.shared.startLoading()
-        serviceModel.getDetail(from: movie) { [unowned self] (object) in
+        serviceModel.getDetail(from: movie) { [weak self] (object) in
             Loading.shared.stopLoading()
-            self.movieDetail = object as? MovieDetail
+            self?.movieDetail = object as? MovieDetail
         }
     }
     
@@ -100,12 +100,12 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.getVideos(from: movie) { [unowned self] (object) in
+        serviceModel.getVideos(from: movie) { [weak self] (object) in
             guard let object = object as? VideosList, let results = object.results else {
                 return
             }
             
-            self.arrayVideos.append(contentsOf: results)
+            self?.arrayVideos.append(contentsOf: results)
         }
     }
     
@@ -114,12 +114,12 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.getRecommendations(from: movie) { [unowned self] (object) in
+        serviceModel.getRecommendations(from: movie) { [weak self] (object) in
             guard let object = object as? MoviesList, let results = object.results else {
                 return
             }
             
-            self.arrayMovieRecommendations.append(contentsOf: results)
+            self?.arrayMovieRecommendations.append(contentsOf: results)
         }
     }
     
@@ -128,12 +128,12 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.getSimilar(from: movie) { [unowned self] (object) in
+        serviceModel.getSimilar(from: movie) { [weak self] (object) in
             guard let object = object as? MoviesList, let results = object.results else {
                 return
             }
             
-            self.arraySimilarMovies.append(contentsOf: results)
+            self?.arraySimilarMovies.append(contentsOf: results)
         }
     }
     
@@ -142,12 +142,12 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.getCredits(from: movie) { [unowned self] (object) in
+        serviceModel.getCredits(from: movie) { [weak self] (object) in
             guard let object = object as? CreditsList, let results = object.cast else {
                 return
             }
             
-            self.arrayCast.append(contentsOf: results)
+            self?.arrayCast.append(contentsOf: results)
         }
     }
     
@@ -156,12 +156,12 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.getReviews(from: movie) { [unowned self] (object) in
+        serviceModel.getReviews(from: movie) { [weak self] (object) in
             guard let object = object as? ReviewsList, let results = object.results else {
                 return
             }
             
-            self.arrayReviews.append(contentsOf: results)
+            self?.arrayReviews.append(contentsOf: results)
         }
     }
     

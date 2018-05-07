@@ -91,9 +91,9 @@ class PersonViewModel: ViewModel {
         if person != nil { return }
 
         Loading.shared.startLoading()
-        serviceModel.getPerson(from: idPerson, requestUrl: .person) { [unowned self] (object) in
+        serviceModel.getPerson(from: idPerson, requestUrl: .person) { [weak self] (object) in
             Loading.shared.stopLoading()
-            self.person = object as? Person
+            self?.person = object as? Person
         }
     }
     
@@ -102,20 +102,20 @@ class PersonViewModel: ViewModel {
             return
         }
 
-        serviceModel.getPerson(from: idPerson, requestUrl: .personMovieCredits) { [unowned self] (object) in
+        serviceModel.getPerson(from: idPerson, requestUrl: .personMovieCredits) { [weak self] (object) in
             guard let object = object as? CreditsList, let results = object.cast else {
                 return
             }
             
-            self.arrayCast.append(contentsOf: results)
+            self?.arrayCast.append(contentsOf: results)
         }
     }
     
     private func getExternalIds() {
         if externalIds != nil { return }
 
-        serviceModel.getPerson(from: idPerson, requestUrl: .personExternalIds) { [unowned self] (object) in
-            self.externalIds = object as? ExternalIds
+        serviceModel.getPerson(from: idPerson, requestUrl: .personExternalIds) { [weak self] (object) in
+            self?.externalIds = object as? ExternalIds
         }
     }
 
@@ -124,11 +124,11 @@ class PersonViewModel: ViewModel {
             return
         }
 
-        serviceModel.getImages(from: idPerson) { [unowned self] (object) in
+        serviceModel.getImages(from: idPerson) { [weak self] (object) in
             guard let object = object as? PersonImagesList, let results = object.results else {
                 return
             }
-            self.arrayImages = results
+            self?.arrayImages = results
         }
     }
     

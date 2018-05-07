@@ -15,7 +15,7 @@ class SearchResultViewCell: UITableViewCell {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var viewModel: SearchResultViewModel?
-    
+
     func setupView(at indexPath: IndexPath) {
         if let value = viewModel?.movieName(at: indexPath) { labelName.text = value }
         

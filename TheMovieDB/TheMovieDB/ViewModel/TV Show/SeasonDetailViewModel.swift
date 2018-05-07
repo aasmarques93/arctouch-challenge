@@ -60,9 +60,9 @@ class SeasonDetailViewModel: ViewModel {
         if seasonDetail != nil { return }
 
         Loading.shared.startLoading()
-        serviceModel.getDetail(from: tvShowDetail, season: season) { [unowned self] (object) in
+        serviceModel.getDetail(from: tvShowDetail, season: season) { [weak self] (object) in
             Loading.shared.stopLoading()
-            self.seasonDetail = object as? SeasonDetail
+            self?.seasonDetail = object as? SeasonDetail
         }
     }
     

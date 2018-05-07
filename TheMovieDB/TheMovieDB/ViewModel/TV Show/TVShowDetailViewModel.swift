@@ -83,32 +83,32 @@ class TVShowDetailViewModel: ViewModel {
     
     private func getTvShowDetail() {
         Loading.shared.startLoading()
-        serviceModel.getDetail(from: id) { [unowned self] (object) in
+        serviceModel.getDetail(from: id) { [weak self] (object) in
             Loading.shared.stopLoading()
-            self.tvShowDetail = object as? TVShowDetail
+            self?.tvShowDetail = object as? TVShowDetail
         }
     }
     
     private func getVideos() {
         if arrayVideos.isEmpty {
-            serviceModel.getVideos(from: id) { [unowned self] (object) in
+            serviceModel.getVideos(from: id) { [weak self] (object) in
                 guard let object = object as? VideosList, let results = object.results else {
                     return
                 }
                 
-                self.arrayVideos.append(contentsOf: results)
+                self?.arrayVideos.append(contentsOf: results)
             }
         }
     }
     
     private func getCredits() {
         if arrayCast.isEmpty {
-            serviceModel.getCredits(from: id) { [unowned self] (object) in
+            serviceModel.getCredits(from: id) { [weak self] (object) in
                 guard let object = object as? CreditsList, let results = object.cast else {
                     return
                 }
                 
-                self.arrayCast.append(contentsOf: results)
+                self?.arrayCast.append(contentsOf: results)
             }
         }
     }

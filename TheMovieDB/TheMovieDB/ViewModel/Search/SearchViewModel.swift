@@ -41,7 +41,7 @@ class SearchViewModel: ViewModel {
         let requestUrl: RequestUrl = genreType == .movies ? .genres: .genresTV
         
         Loading.shared.startLoading()
-        serviceModel.getGenres(requestUrl: requestUrl) { [unowned self] (object) in
+        serviceModel.getGenres(requestUrl: requestUrl) { [weak self] (object) in
             Loading.shared.stopLoading()
             
             guard let object = object as? MoviesGenres else {
@@ -49,12 +49,12 @@ class SearchViewModel: ViewModel {
             }
             
             do {
-                try self.showError(with: object)
+                try self?.showError(with: object)
             } catch {
                 guard let error = error as? Error else {
                     return
                 }
-                self.delegate?.showError?(message: error.message)
+                self?.delegate?.showError?(message: error.message)
                 return
             }
             
@@ -62,7 +62,7 @@ class SearchViewModel: ViewModel {
                 return
             }
             
-            self.arrayGenres = results
+            self?.arrayGenres = results
         }
     }
     

@@ -78,20 +78,20 @@ class SearchResultViewModel: ViewModel {
         
         isDataLoading = true
         
-        serviceModel.doSearch(urlParameters: parameters, isMultipleSearch: isMultipleSearch) { [unowned self] (object) in
-            self.isDataLoading = false
+        serviceModel.doSearch(urlParameters: parameters, isMultipleSearch: isMultipleSearch) { [weak self] (object) in
+            self?.isDataLoading = false
             
             guard let object = object as? MultiSearch, let results = object.results else {
                 return
             }
             
-            self.totalPages = object.totalPages
-            self.arraySearch.append(contentsOf: results)
+            self?.totalPages = object.totalPages
+            self?.arraySearch.append(contentsOf: results)
             
-            if self.isMultipleSearch {
-                self.doFilter(index: self.selectedType.rawValue)
+            if let isMultipleSearch = self?.isMultipleSearch, isMultipleSearch {
+                self?.doFilter(index: self?.selectedType.rawValue)
             } else {
-                self.arraySearchFiltered = self.arraySearch
+                if let results = self?.arraySearch { self?.arraySearchFiltered = results }
             }
         }
     }
@@ -105,20 +105,20 @@ class SearchResultViewModel: ViewModel {
         
         isDataLoading = true
         
-        serviceModel.getMoviesFromGenre(urlParameters: parameters) { [unowned self] (object) in
-            self.isDataLoading = false
+        serviceModel.getMoviesFromGenre(urlParameters: parameters) { [weak self] (object) in
+            self?.isDataLoading = false
             
             guard let object = object as? SearchMoviesGenre else {
                 return
             }
             
             do {
-                try self.showError(with: object)
+                try self?.showError(with: object)
             } catch {
                 guard let error = error as? Error else {
                     return
                 }
-                self.delegate?.showError?(message: error.message)
+                self?.delegate?.showError?(message: error.message)
                 return
             }
             
@@ -126,11 +126,13 @@ class SearchResultViewModel: ViewModel {
                 return
             }
             
-            self.arraySearch = [SearchResult]()
+            self?.arraySearch = [SearchResult]()
+            
             for result in results {
-                self.arraySearch.append(SearchResult(object: result.dictionaryRepresentation()))
-                self.arraySearchFiltered = self.arraySearch
+                self?.arraySearch.append(SearchResult(object: result.dictionaryRepresentation()))
             }
+            
+            if let results = self?.arraySearch { self?.arraySearchFiltered = results }
         }
     }
     
@@ -146,8 +148,8 @@ class SearchResultViewModel: ViewModel {
         }
     }
     
-    func doFilter(index: Int) {
-        guard let type = SearchResultFilterType(rawValue: index) else {
+    func doFilter(index: Int?) {
+        guard let index = index, let type = SearchResultFilterType(rawValue: index) else {
             return
         }
 

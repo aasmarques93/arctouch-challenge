@@ -44,14 +44,14 @@ class PopularPeopleViewModel: ViewModel {
         isDataLoading = true
         
         let parameters = ["page": currentPage]
-        serviceModel.getPopularPeople(urlParameters: parameters) { [unowned self] (object) in
+        serviceModel.getPopularPeople(urlParameters: parameters) { [weak self] (object) in
             if let object = object as? PopularPeople, let results = object.results {
-                self.totalPages = object.totalPages
-                self.arrayPopularPeople.append(contentsOf: results)
+                self?.totalPages = object.totalPages
+                self?.arrayPopularPeople.append(contentsOf: results)
             }
             
-            self.isDataLoading = false
-            self.arraySearchPerson = self.arrayPopularPeople
+            self?.isDataLoading = false
+            if let results = self?.arrayPopularPeople { self?.arraySearchPerson = results }
         }
     }
     
@@ -76,14 +76,14 @@ class PopularPeopleViewModel: ViewModel {
             
             isDataLoading = true
             
-            serviceModel.doSearchPerson(urlParameters: parameters) { [unowned self] (object) in
-                self.isDataLoading = false
+            serviceModel.doSearchPerson(urlParameters: parameters) { [weak self] (object) in
+                self?.isDataLoading = false
                 
                 guard let object = object as? SearchPerson, let results = object.results else {
                     return
                 }
                 
-                self.arraySearchPerson = results
+                self?.arraySearchPerson = results
             }
             
             return
