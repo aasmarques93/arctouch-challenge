@@ -12,7 +12,10 @@ PODS:
   - Bond (6.8.0):
     - Differ (~> 1.0)
     - ReactiveKit (~> 3.9)
+  - Crashlytics (3.10.1):
+    - Fabric (~> 1.7.5)
   - Differ (1.1.1)
+  - Fabric (1.7.6)
   - FLAnimatedImage (1.0.12)
   - RAMAnimatedTabBarController (3.1.0)
   - ReactiveKit (3.9.4)
@@ -26,6 +29,8 @@ DEPENDENCIES:
   - Alamofire (~> 4.5.0)
   - AXPhotoViewer
   - Bond (~> 6.0-beta)
+  - Crashlytics
+  - Fabric
   - RAMAnimatedTabBarController
   - SDWebImage
   - SwiftyJSON (~> 3.1.4)
@@ -37,7 +42,9 @@ SPEC REPOS:
     - AXPhotoViewer
     - AXStateButton
     - Bond
+    - Crashlytics
     - Differ
+    - Fabric
     - FLAnimatedImage
     - RAMAnimatedTabBarController
     - ReactiveKit
@@ -50,7 +57,9 @@ SPEC CHECKSUMS:
   AXPhotoViewer: 21772189db20242febfaf4545e204a3ff069add5
   AXStateButton: 6c515a433e37551505046429b5be04c12daa8c07
   Bond: f07e371c05e07c46589c4a518515ea39c6263055
+  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
   Differ: 462849df6097d4e0e5ebbc9af2475f7aebfd65dc
+  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   RAMAnimatedTabBarController: 3c40472db54eda74d465583f8c7f571b206c54d6
   ReactiveKit: cafbc91f72751d09baa9a3c3cf6d82b646328a6c
@@ -58,6 +67,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: 36e9154942bf741ac26ccb8a24898d04e462f3a4
+PODFILE CHECKSUM: 3a6e389f73570bef5e8b6bcda1fd532817978478
 
 COCOAPODS: 1.5.0.beta.1

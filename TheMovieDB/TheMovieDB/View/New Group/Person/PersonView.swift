@@ -115,6 +115,10 @@ extension PersonView: ViewModelDelegate {
     func reloadData() {
         title = viewModel?.personName
         
+        if let value = viewModel?.personName {
+            FabricUtils.logEvent(message: "\(Messages.didSelect) \(value)")
+        }
+        
         tableView.reloadData()
         carouselMovies.reloadData()
     }

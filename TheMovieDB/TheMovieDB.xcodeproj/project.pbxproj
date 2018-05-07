@@ -128,6 +128,7 @@
 		ED7B9CB7209E44D4006B9586 /* EpisodeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7B9CB5209E44D2006B9586 /* EpisodeImage.swift */; };
 		ED7B9CB8209E44D4006B9586 /* EpisodeImagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7B9CB6209E44D2006B9586 /* EpisodeImagesList.swift */; };
 		ED7B9CBA209E491B006B9586 /* EpisodesServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7B9CB9209E491B006B9586 /* EpisodesServiceModel.swift */; };
+		EDBAF882209FFE430089DE39 /* FabricUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAF881209FFE430089DE39 /* FabricUtils.swift */; };
 		EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01220585A4400D843EC /* CollectionView.swift */; };
 		EDC6C01820585A5500D843EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01720585A5500D843EC /* Date.swift */; };
 		EDC6C01C20585A6300D843EC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01B20585A6300D843EC /* LoadingView.swift */; };
@@ -306,6 +307,7 @@
 		ED7B9CB5209E44D2006B9586 /* EpisodeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeImage.swift; sourceTree = "<group>"; };
 		ED7B9CB6209E44D2006B9586 /* EpisodeImagesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeImagesList.swift; sourceTree = "<group>"; };
 		ED7B9CB9209E491B006B9586 /* EpisodesServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesServiceModel.swift; sourceTree = "<group>"; };
+		EDBAF881209FFE430089DE39 /* FabricUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricUtils.swift; sourceTree = "<group>"; };
 		EDC6C01220585A4400D843EC /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		EDC6C01720585A5500D843EC /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		EDC6C01B20585A6300D843EC /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -847,6 +849,14 @@
 			path = Photos;
 			sourceTree = "<group>";
 		};
+		EDBAF880209FFE340089DE39 /* Fabric */ = {
+			isa = PBXGroup;
+			children = (
+				EDBAF881209FFE430089DE39 /* FabricUtils.swift */,
+			);
+			path = Fabric;
+			sourceTree = "<group>";
+		};
 		EDC6BFFB2058590D00D843EC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -892,6 +902,7 @@
 		EDC6BFFF2058593B00D843EC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EDBAF880209FFE340089DE39 /* Fabric */,
 				ED7B9CB2209E3769006B9586 /* Photos */,
 				EDDAB1BF209BDCB800271265 /* RAMTabBar */,
 				ED383443209502650079D48F /* CircularProgressView */,
@@ -1026,6 +1037,7 @@
 				ED08937620585752004CC05F /* Frameworks */,
 				ED08937720585752004CC05F /* Resources */,
 				B5F09308A93A1D80973ACC48 /* [CP] Embed Pods Frameworks */,
+				EDBAF87F209FFAB60089DE39 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1264,6 +1276,19 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EDBAF87F209FFAB60089DE39 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 1f3d8e9a12fe449cd0053b6cc884c09b40080453 d885c38bd6375efdf88ecd6cad673525c571a54865625f5ab89d02659cfa9434";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1274,6 +1299,7 @@
 				ED16D87220599CC7002A0B2C /* SearchMovie.swift in Sources */,
 				ED38345520973FD40079D48F /* SeasonDetailServiceModel.swift in Sources */,
 				ED38342920949AC70079D48F /* SeasonView.swift in Sources */,
+				EDBAF882209FFE430089DE39 /* FabricUtils.swift in Sources */,
 				ED16D86B20597D99002A0B2C /* ProductionCountries.swift in Sources */,
 				ED3834492095E3970079D48F /* SearchResult.swift in Sources */,
 				ED7B9CB1209E3290006B9586 /* PersonImage.swift in Sources */,

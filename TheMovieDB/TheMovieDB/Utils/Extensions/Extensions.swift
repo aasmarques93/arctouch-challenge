@@ -102,6 +102,12 @@ extension ReusableView where Self:UIView {
     }
 }
 
+extension UIViewController {
+    var reusableIdentifier: String {
+        return String(describing:self)
+    }
+}
+
 extension UITableViewCell {
     func setSelectedView(backgroundColor: UIColor) {
         let selectedView = UIView()

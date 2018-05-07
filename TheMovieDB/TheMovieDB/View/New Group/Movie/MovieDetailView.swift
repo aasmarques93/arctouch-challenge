@@ -44,6 +44,10 @@ class MovieDetailView: UITableViewController {
         viewModel?.delegate = self
         viewModel?.loadData()
         reviewsView?.viewModel = viewModel
+        
+        if let value = viewModel?.movieName {
+            FabricUtils.logEvent(message: "\(Messages.didSelect) \(value)")
+        }
     }
     
     // MARK: - Appearance -

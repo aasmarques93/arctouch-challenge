@@ -217,7 +217,7 @@ class HomeViewModel: ViewModel {
         return numberOfMovies(at: indexPath.section) == 0
     }
     
-    func movie(at section: Int, row: Int) -> Movie? {
+    private func movie(at section: Int, row: Int) -> Movie? {
         guard let results = getMoviesArray(at: section), row < results.count else {
             return nil
         }

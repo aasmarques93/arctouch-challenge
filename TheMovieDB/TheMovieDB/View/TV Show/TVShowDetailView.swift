@@ -93,6 +93,10 @@ extension TVShowDetailView: TVShowDetailViewModelDelegate {
         
         title = viewModel?.tvShowName
         
+        if let value = viewModel?.tvShowName {
+            FabricUtils.logEvent(message: "\(Messages.didSelect) \(value)")
+        }
+        
         if let average = viewModel?.average { circularProgressView.progress = average }
         
         viewModel?.tvShowDetailImageData(handlerData: { [weak self] (data) in

@@ -13,4 +13,5 @@ enum Messages: String {
     case searchMovie = "Search a movie"
     case searchTVShow = "Search a TV Show"
     case searchPerson = "Search a person"
+    case didSelect = "Did select"
 }

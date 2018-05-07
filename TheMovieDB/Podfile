@@ -11,6 +11,8 @@ target 'TheMovieDB' do
   pod 'YouTubePlayer'
   pod 'SDWebImage'
   pod 'AXPhotoViewer'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
   # Pods for TheMovieDB
 

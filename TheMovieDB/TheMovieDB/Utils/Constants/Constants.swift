@@ -22,4 +22,9 @@ enum Titles: String {
     case tvShows = "TV Shows"
     case popularPeople = "Popular people"
     case search = "Search"
+    
+    // Fabric
+    case error = "Error"
+    case click = "Click"
+    case event = "Event"
 }
