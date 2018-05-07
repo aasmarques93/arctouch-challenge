@@ -29,4 +29,8 @@ struct SearchServiceModel {
                                 if let object = object { handler(MultiSearch(object: object)) }
         })
     }
+    
+    func imageUrl(with path: String?) -> String {
+        return serviceModel.imageUrl(with: path)
+    }
 }

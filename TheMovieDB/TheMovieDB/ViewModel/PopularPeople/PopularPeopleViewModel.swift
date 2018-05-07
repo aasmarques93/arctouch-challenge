@@ -74,7 +74,11 @@ class PopularPeopleViewModel: ViewModel {
         if let value = searchText, !value.isEmptyOrWhitespace {
             let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
             
+            isDataLoading = true
+            
             serviceModel.doSearchPerson(urlParameters: parameters) { [unowned self] (object) in
+                self.isDataLoading = false
+                
                 guard let object = object as? SearchPerson, let results = object.results else {
                     return
                 }

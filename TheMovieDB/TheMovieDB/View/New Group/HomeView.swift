@@ -128,9 +128,4 @@ extension HomeView: HomeViewModelDelegate {
     func showError(message: String?) {
         AlertComponent.show(message: message)
     }
-    
-    func didFinishSearch() {
-        let viewController = instantiate(viewController: SearchResultView.self, from: .search)
-        navigationController?.pushViewController(viewController, animated: true)
-    }
 }

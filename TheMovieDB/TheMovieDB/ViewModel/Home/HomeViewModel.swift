@@ -10,7 +10,6 @@ import Bond
 
 protocol HomeViewModelDelegate: ViewModelDelegate {
     func reloadData(at index: Int)
-    func didFinishSearch()
 }
 
 enum GenreType: String {

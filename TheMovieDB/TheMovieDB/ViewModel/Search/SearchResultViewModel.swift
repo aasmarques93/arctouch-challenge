@@ -66,21 +66,52 @@ class SearchResultViewModel: ViewModel {
             return
         }
         
+        getMoviesFromGenre()
+    }
+    
+    private func doSearch() {
+        guard let value = searchText else {
+            return
+        }
+        
+        let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
+        
+        isDataLoading = true
+        
+        serviceModel.doSearch(urlParameters: parameters, isMultipleSearch: isMultipleSearch) { [unowned self] (object) in
+            self.isDataLoading = false
+            
+            guard let object = object as? MultiSearch, let results = object.results else {
+                return
+            }
+            
+            self.totalPages = object.totalPages
+            self.arraySearch.append(contentsOf: results)
+            
+            if self.isMultipleSearch {
+                self.doFilter(index: self.selectedType.rawValue)
+            } else {
+                self.arraySearchFiltered = self.arraySearch
+            }
+        }
+    }
+    
+    private func getMoviesFromGenre() {
         guard let genre = selectedGenre, let value = genre.id else {
             return
         }
-
+        
         let parameters = ["id": value]
-
+        
         isDataLoading = true
-
+        
         serviceModel.getMoviesFromGenre(urlParameters: parameters) { [unowned self] (object) in
             self.isDataLoading = false
-
+            
             guard let object = object as? SearchMoviesGenre else {
                 return
             }
-
+            
             do {
                 try self.showError(with: object)
             } catch {
@@ -90,11 +121,11 @@ class SearchResultViewModel: ViewModel {
                 self.delegate?.showError?(message: error.message)
                 return
             }
-
+            
             guard let results = object.results else {
                 return
             }
-
+            
             self.arraySearch = [SearchResult]()
             for result in results {
                 self.arraySearch.append(SearchResult(object: result.dictionaryRepresentation()))
@@ -115,29 +146,6 @@ class SearchResultViewModel: ViewModel {
         }
     }
     
-    private func doSearch() {
-        guard let value = searchText else {
-            return
-        }
-
-        let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
-
-        serviceModel.doSearch(urlParameters: parameters, isMultipleSearch: isMultipleSearch) { [unowned self] (object) in
-            guard let object = object as? MultiSearch, let results = object.results else {
-                return
-            }
-
-            self.totalPages = object.totalPages
-            self.arraySearch.append(contentsOf: results)
-
-            if self.isMultipleSearch {
-                self.doFilter(index: self.selectedType.rawValue)
-            } else {
-                self.arraySearchFiltered = self.arraySearch
-            }
-        }
-    }
-    
     func doFilter(index: Int) {
         guard let type = SearchResultFilterType(rawValue: index) else {
             return
@@ -153,13 +161,8 @@ class SearchResultViewModel: ViewModel {
         return selectedGenre?.name ?? searchText
     }
     
-    func posterImageData(at indexPath: IndexPath, handlerData: @escaping HandlerObject) {
+    func posterImageUrl(at indexPath: IndexPath) -> URL? {
         let result = arraySearchFiltered[indexPath.row]
-        
-        if let data = result.imageData {
-            handlerData(data)
-            return
-        }
         
         var path: String?
         
@@ -169,27 +172,12 @@ class SearchResultViewModel: ViewModel {
             path = result.posterPath
         }
         
-        if path == nil {
-            handlerData(nil)
-            return
-        }
-        
-        loadImageData(at: path) { [weak self] (data) in
-            guard let strongSelf = self else {
-                return
-            }
-            
-            if indexPath.row < strongSelf.arraySearchFiltered.count {
-                strongSelf.arraySearchFiltered[indexPath.row].imageData = data as? Data
-            }
-            
-            handlerData(data)
-        }
+        return URL(string: serviceModel.imageUrl(with: path))
     }
     
-    func backgroundImageData(at indexPath: IndexPath, handlerData: @escaping HandlerObject) {
+    func backgroundImageUrl(at indexPath: IndexPath) -> URL? {
         let result = arraySearchFiltered[indexPath.row]
-        loadImageData(at: result.backdropPath, handlerData: handlerData)
+        return URL(string: serviceModel.imageUrl(with: result.backdropPath))
     }
     
     func movieName(at indexPath: IndexPath) -> String? {

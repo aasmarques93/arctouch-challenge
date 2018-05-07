@@ -65,9 +65,13 @@ class TVShowViewModel: ViewModel {
         if let value = searchText, !value.isEmptyOrWhitespace {
             let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
             
+            isDataLoading = true
+            
             Loading.shared.startLoading()
             serviceModel.doSearchTVShow(urlParameters: parameters) { [unowned self] (object) in
                 Loading.shared.stopLoading()
+                
+                self.isDataLoading = false
                 
                 guard let object = object as? SearchTV, let results = object.results else {
                     return

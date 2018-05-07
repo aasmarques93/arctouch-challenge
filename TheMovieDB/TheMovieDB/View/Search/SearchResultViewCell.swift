@@ -19,27 +19,15 @@ class SearchResultViewCell: UITableViewCell {
     func setupView(at indexPath: IndexPath) {
         if let value = viewModel?.movieName(at: indexPath) { labelName.text = value }
         
-        imageViewMovie.image = #imageLiteral(resourceName: "default-image")
         activityIndicator.startAnimating()
-        viewModel?.posterImageData(at: indexPath) { [weak self] (data) in
-            guard let strongSelf = self else {
-                return
-            }
-            
-            strongSelf.activityIndicator.isHidden = true
-            if let data = data as? Data, let image = UIImage(data: data) {
-                strongSelf.imageViewMovie.image = image
+        if let url = viewModel?.posterImageUrl(at: indexPath) {
+            imageViewMovie.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], progress: nil) { (image, error, type, url) in
+                self.activityIndicator.isHidden = true
             }
         }
         
-        viewModel?.backgroundImageData(at: indexPath) { [weak self] (data) in
-            guard let strongSelf = self else {
-                return
-            }
-            
-            if let data = data as? Data, let image = UIImage(data: data) {
-                strongSelf.imageViewBackground.image = image
-            }
+        if let url = viewModel?.backgroundImageUrl(at: indexPath) {
+            imageViewBackground.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "default-image"))
         }
     }
 }
