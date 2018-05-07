@@ -15,8 +15,6 @@ enum SocialMediaType {
 }
 
 struct SocialMedia {
-    static let shared = SocialMedia()
-    
     enum Links: String {
         case facebook = "fb://profile/"
         case webFacebook = "https://facebook.com/"
@@ -30,7 +28,7 @@ struct SocialMedia {
         }
     }
     
-    func open(mediaType: SocialMediaType, userId: String?) {
+    static func open(mediaType: SocialMediaType, userId: String?) {
         var urls = [String]()
         
         switch mediaType {

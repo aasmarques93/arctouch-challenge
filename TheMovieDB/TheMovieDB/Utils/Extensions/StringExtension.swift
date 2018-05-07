@@ -69,16 +69,16 @@ extension String {
         if formatted.contains("T") {
             let parts = formatted.components(separatedBy: "T")
             if let isoDateStr = parts.first, let date = Date(fromString: isoDateStr, format: .isoDate) {
-                formatted = date.toString(format: .custom(Constants.shared.defaultDateFormat))
+                formatted = date.toString(format: .custom(Constants.defaultDateFormat))
             }
         }
         return formatted
     }
     
     var idDateValid: Bool {
-        let count = Constants.shared.defaultDateFormat.count
+        let count = Constants.defaultDateFormat.count
         if self.count != count { return false }
-        guard let _ = Date(fromString: self, format: .custom(Constants.shared.defaultDateFormat)) else {
+        guard let _ = Date(fromString: self, format: .custom(Constants.defaultDateFormat)) else {
             return false
         }
         return true

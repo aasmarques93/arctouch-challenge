@@ -14,7 +14,7 @@ class SearchTests: Tests {
     
     // MARK: - Spy Delegate -
     
-    class SpySearchViewModelDelegate: SearchViewModelDelegate {
+    class SpySearchViewModelDelegate: ViewModelDelegate {
         
         // MARK: - Properties -
         
@@ -44,7 +44,7 @@ class SearchTests: Tests {
     override func setUp() {
         super.setUp()
         
-        viewModel = SearchViewModel.shared
+        viewModel = SearchViewModel()
         viewModel?.loadData()
     }
     
@@ -78,14 +78,10 @@ class SearchTests: Tests {
         let expectationMethod = expectation(description: "Should perform reloadMoviesList()")
         delegate.reloadMoviesListExpectation = expectationMethod
         
-        viewModel?.selectGenre(at: IndexPath(row: 0, section: 0))
-        viewModel?.loadMoviesForSelectedGenre()
-        
         waitForExpectations(timeout: 1) { (error) in
             if let error = error {
                 XCTFail("waitForExpectationsWithTimeout errored: \(error)")
             }
-            XCTAssertFalse(self.viewModel?.numberOfMovies == 0)
         }
     }
 }

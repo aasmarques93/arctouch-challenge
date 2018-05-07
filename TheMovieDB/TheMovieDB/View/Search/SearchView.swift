@@ -15,7 +15,7 @@ class SearchView: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    let viewModel = SearchViewModel.shared
+    let viewModel = SearchViewModel()
     
     // MARK: - Life cycle -
     

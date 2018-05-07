@@ -155,7 +155,7 @@ class PersonViewModel: ViewModel {
     }
     
     func open(socialMediaType: SocialMediaType) {
-        SocialMedia.shared.open(mediaType: socialMediaType, userId: externalId(with: socialMediaType))
+        SocialMedia.open(mediaType: socialMediaType, userId: externalId(with: socialMediaType))
     }
     
     private func externalId(with socialMediaType: SocialMediaType) -> String? {

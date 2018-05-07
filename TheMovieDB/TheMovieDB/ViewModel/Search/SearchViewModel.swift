@@ -7,9 +7,6 @@
 //
 
 class SearchViewModel: ViewModel {
-    // MARK: - Singleton -
-    static let shared = SearchViewModel()
-    
     // MARK: - Properties -
     
     // MARK: Service Model

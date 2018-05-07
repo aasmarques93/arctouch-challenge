@@ -18,12 +18,17 @@ class HomeViewCell: UITableViewCell {
     
     weak var delegate: HomeViewCellDelegate?
     
-    let viewModel = HomeViewModel.shared
+    var viewModel: HomeViewModel?
     var selectedIndexPath: IndexPath?
     
     func setupView(at indexPath: IndexPath) {
+        if let viewModel = viewModel {
+            labelMessageError.isHidden = !viewModel.isMoviesEmpty(at: indexPath)
+        } else {
+            labelMessageError.isHidden = true
+        }
+        
         selectedIndexPath = indexPath
-        labelMessageError.isHidden = !viewModel.isMoviesEmpty(at: indexPath)
         
         collectionView.collectionDelegate = self
         collectionView.reloadData()
@@ -36,17 +41,18 @@ extension HomeViewCell: CollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numberOfMovies(at: selectedIndexPath?.section ?? 0)
+        return viewModel?.numberOfMovies(at: selectedIndexPath?.section ?? 0) ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(MovieViewCell.self, for: indexPath)
+        cell.viewModel = viewModel
         cell.setupView(at: selectedIndexPath?.section ?? 0, row: indexPath.row)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        viewModel.doServicePaginationIfNeeded(at: selectedIndexPath?.section ?? 0, row: indexPath.row)
+        viewModel?.doServicePaginationIfNeeded(at: selectedIndexPath?.section ?? 0, row: indexPath.row)
     }
     
     func didSelect(_ collectionView: UICollectionView, itemAt indexPath: IndexPath) {

@@ -16,7 +16,7 @@ class PopularPeopleView: UIViewController {
     let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.popularPeople.rawValue,
                                                               placeholder: Messages.searchPerson.rawValue)
     
-    let viewModel = PopularPeopleViewModel.shared
+    let viewModel = PopularPeopleViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

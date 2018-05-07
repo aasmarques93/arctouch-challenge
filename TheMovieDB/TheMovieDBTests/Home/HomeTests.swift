@@ -40,7 +40,7 @@ class HomeTests: Tests {
     override func setUp() {
         super.setUp()
         
-        viewModel = HomeViewModel.shared
+        viewModel = HomeViewModel()
         viewModel?.loadData()
     }
     

@@ -13,7 +13,7 @@ class TVShowView: UITableViewController {
 
     let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.tvShows.rawValue, placeholder: Messages.searchTVShow.rawValue)
     
-    let viewModel = TVShowViewModel.shared
+    let viewModel = TVShowViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()

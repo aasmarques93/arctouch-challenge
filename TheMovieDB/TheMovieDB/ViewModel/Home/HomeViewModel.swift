@@ -49,9 +49,6 @@ enum GenreType: String {
 }
 
 class HomeViewModel: ViewModel {
-    // MARK: - Singleton -
-    static let shared = HomeViewModel()
-    
     // MARK: - Properties -
     
     // MARK: Delegate

@@ -9,9 +9,6 @@
 import Bond
 
 class PopularPeopleViewModel: ViewModel {
-    // MARK: - Singleton -
-    static let shared = PopularPeopleViewModel()
-    
     // MARK: - Properties -
     
     // MARK: Delegate

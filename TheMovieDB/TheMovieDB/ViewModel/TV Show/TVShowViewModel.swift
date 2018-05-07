@@ -7,9 +7,6 @@
 //
 
 class TVShowViewModel: ViewModel {
-    // MARK: - Singleton -
-    static let shared = TVShowViewModel()
-    
     // MARK: - Properties -
     
     // MARK: Delegate

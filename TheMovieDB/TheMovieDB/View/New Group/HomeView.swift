@@ -13,7 +13,7 @@ class HomeView: UITableViewController {
     let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.movies.rawValue, placeholder: Messages.searchMovie.rawValue)
     let viewHeaderHeight: CGFloat = 32
     
-    let viewModel = HomeViewModel.shared
+    let viewModel = HomeViewModel()
     
     var labelHeader: UILabel {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: viewHeaderHeight))
@@ -77,6 +77,7 @@ class HomeView: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(HomeViewCell.self, for: indexPath)
+        cell.viewModel = viewModel
         cell.setupView(at: indexPath)
         cell.delegate = self
         return cell

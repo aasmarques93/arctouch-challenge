@@ -114,19 +114,8 @@ struct ServiceModel {
     
     // MARK: - Verifications -
     
-    static func verifyResult(_ object: Any?) -> String? {
-        if let error = object as? ReachabilityError {
-            return error.rawValue
-        }
-        if let error = object as? Error {
-            return error.localizedDescription
-        }
-        return nil
-    }
-    
     func verifyConnection() -> Bool {
         if let reachabilityNetwork = Alamofire.NetworkReachabilityManager(host: "www.google.com") {
-            
             if reachabilityNetwork.isReachable {
                 return true
             }

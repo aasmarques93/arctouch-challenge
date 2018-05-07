@@ -9,10 +9,8 @@
 import UIKit
 
 struct Constants {
-    static let shared = Constants()
-    
-    let defaultDateFormat = "dd/MM/yyyy"
-    let dateFormatIsoTime = "yyyy-MM-dd'T'hh:ss:mm"
+    static let defaultDateFormat = "dd/MM/yyyy"
+    static let dateFormatIsoTime = "yyyy-MM-dd'T'hh:ss:mm"
 }
 
 enum Titles: String {
