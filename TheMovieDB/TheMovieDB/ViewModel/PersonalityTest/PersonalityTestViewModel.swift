@@ -65,6 +65,16 @@ class PersonalityTestViewModel: ViewModel {
         return userPersonalityType?.text ?? "Action"
     }
     
+    var dictionaryAnswersCounts: [Int: Int] {
+        var counts = [Int: Int]()
+        arraySelectedAnswers.forEach { (answer) in
+            if let id = answer.personalityTypeId  {
+                counts[id, default: 0] += 1
+            }
+        }
+        return counts
+    }
+    
     // MARK: - Life cycle -
     
     init() {
@@ -122,15 +132,8 @@ class PersonalityTestViewModel: ViewModel {
     }
     
     private func discoverUserPersonality() {
-        var counts = [Int: Int]()
-        arraySelectedAnswers.forEach { (answer) in
-            if let id = answer.personalityTypeId  {
-                counts[id, default: 0] += 1
-            }
-        }
-        
-        let maxValue = counts.values.max()
-        let item = counts.filter { return $0.value == maxValue }
+        let maxValue = dictionaryAnswersCounts.values.max()
+        let item = dictionaryAnswersCounts.filter { return $0.value == maxValue }
         
         if let personalityTypeId = item.keys.first {
             userPersonalityType = arrayPersonalityTypes.filter { return $0.id == personalityTypeId }.first
@@ -154,12 +157,14 @@ extension PersonalityTestViewModel: PersonalityTestCellViewModelDelegate {
     // MARK: - Personality test cell view model delegate -
     
     func didSelect(answer: Answer) {
+        arraySelectedAnswers.append(answer)
+        
         if let skip = answer.skip, skip {
+            discoverUserPersonality()
             delegate?.skipTest()
             return
         }
         
-        arraySelectedAnswers.append(answer)
         doDetectionStep()
     }
     
