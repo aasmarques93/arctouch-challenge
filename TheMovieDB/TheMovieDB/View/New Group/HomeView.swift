@@ -31,7 +31,7 @@ class HomeView: UITableViewController {
         if Singleton.shared.isPersonalityTestAnswered {
             navigationItem.rightBarButtonItem = nil
         }
-            
+        
         searchHeaderView.delegate = self
         tableView.keyboardDismissMode = .onDrag
         viewModel.delegate = self
