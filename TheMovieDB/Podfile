@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'TheMovieDB' do
   use_frameworks!
@@ -13,6 +13,7 @@ target 'TheMovieDB' do
   pod 'AXPhotoViewer'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'GhostTypewriter'
 
   # Pods for TheMovieDB
 

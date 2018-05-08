@@ -1,0 +1,348 @@
+{
+    "personalityType": [
+        {
+            "id": 0,
+            "title": "Comedy",
+            "text": "When you watch a movie, your main goal is to brighten your mood through humor.  More times than not, you like to watch movies with your friends, and can be satisfied with predictable, understandable endings to the films you watch.  In addition, you probably have a sense of humor yourself and like to draw inspiration from these types of movies."
+        },
+        {
+            "id": 1,
+            "title": "Action",
+            "text": "Your favorite films typically involve a main hero and main villian and are crammed with special effects and suspense.  As opposed to thrillers, your main goal is not to be frightened but rather to enjoy the ride, explosions and all.  Chances are you have an outgoing side but watch just as many movies alone as with friends."
+        },
+        {
+            "id": 2,
+            "title": "Drama",
+            "text": "Fans of this genre typically want well-developed characters and plots in order to absorb themselves into the movie experience.  Thus you are a more serious person that enjoys a good story, not necessarily state-of-the-art effects or revolutionary filming techniques.  You sometimes watch films with others, but have a tendency to view them by yourself because in your opinion movies don't have to be part of a social experience."
+        },
+        {
+            "id": 3,
+            "title": "Thriller",
+            "text": "The films you're mainly caught watching are any films which give you a good shiver up your spine.  Unlike horror films, which thrive on violence, your films are less about the monster leaping out of the shadows than they are about an underlying ambience of uneasiness and unreliabity with your characters.  You may be an extrovert and enjoy a good scare with friends, or you could just as easily be an introvert who is engrossed by the numerous layers and nuances of the movie.  Either way, you can't deny that creepy movies are here to stay in your collection."
+        },
+        {
+            "id": 4,
+            "title": "Documentary",
+            "text": "You've likely stopped wasting your time with characters and plot in your movies by now.  You're more concerned with realism and exploring the wonders of the world around you.  You are probably an exceptional student who loves to read and discover new information.  Even though some people might consider you to not be that lively, your curiosity and intelligent shows that you could be a successful filmmaker yourself someday."
+        }
+    ],
+    "questions": [
+        {
+            "title": "Hey buddy, how are you?\nI'm here to help you to choose the best option to watch and never waste your time.\nIt's very simple: I'm going to make a couple questions for you now, but, don't worry, all of them are very simple and fast.\nIt's just to detect your profile and your personality.\nAfter that, I can know what to show you which are the best options to watch at the moment!",
+            "answers": [
+                {
+                    "id": 50,
+                    "title": "OK, let's do it!",
+                    "personalityTypeId": 0,
+                    "skip": false
+                },
+                {
+                    "id": 51,
+                    "title": "I'll do it later",
+                    "personalityTypeId": 1,
+                    "skip": true
+                }
+            ]
+        },
+        {
+            "title": "So, let's get started. The typical hero in your film is",
+            "answers": [
+                {
+                    "id": 0,
+                    "title": "A clueless man or woman who succeeds in the end.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 1,
+                    "title": "A fearless character with a lot of common sense.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 2,
+                    "title": "A character that may encounter failures but that you can't help rooting for.",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 3,
+                    "title": "I don't do the heroes and villains thing. It's too black and white.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 4,
+                    "title": "If anything, someone taken from history or current events",
+                    "personalityTypeId": 4
+                }
+            ]
+        },
+        {
+            "title": "What is your average movie night like?",
+            "answers": [
+                {
+                    "id": 5,
+                    "title": "Me and my friends getting together so we can have a good laugh.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 6,
+                    "title": "Me and a close friend watching something really high-energy.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 7,
+                    "title": "Me and a close friend enjoying a good story.",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 8,
+                    "title": "Me and some friends trying to scare ourselves senseless.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 9,
+                    "title": "Me watching something intellectually stimulating on my laptop.",
+                    "personalityTypeId": 4
+                }
+            ]
+        },
+        {
+            "title": "Visually, what's the best part of the movie?",
+            "answers": [
+                {
+                    "id": 10,
+                    "title": "The close-ups where you get to see all of the emotion in the character's face.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 11,
+                    "title": "The latest batch of special effects and CGI.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 12,
+                    "title": "The unique camera angles and editing techniques that heighten the mood of the film.",
+                    "personalityTypeId": 4
+                },
+                {
+                    "id": 13,
+                    "title": "Mindblowing panoramic views of nature or space.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 14,
+                    "title": "I don't really pay attention to any of that stuff. ",
+                    "personalityTypeId": 2
+                }
+            ]
+        },
+        {
+            "title": "When you hear a great line in a movie, you:",
+            "answers": [
+                {
+                    "id": 15,
+                    "title": "Use it when describing the film to those who have never seen it.",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 16,
+                    "title": "One good quote does not a movie make.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 17,
+                    "title": "I don't obsess over cool movie quotes.",
+                    "personalityTypeId": 4
+                },
+                {
+                    "id": 18,
+                    "title": "Quote it wherever I go to everyone I come in contact with.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 19,
+                    "title": "Repeat it to the people who saw the film with me or think about how awesome that line was. ",
+                    "personalityTypeId": 1
+                }
+            ]
+        },
+        {
+            "title": "How deep do you prefer your movies to be?",
+            "answers": [
+                {
+                    "id": 20,
+                    "title": "Dude, it's just entertainment.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 21,
+                    "title": "I definitely want some central conflict but that's about it.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 22,
+                    "title": "I want the events to be ficticious but to play out just like real life.",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 23,
+                    "title": "I want to rack my brains for months trying to figure out how that movie really ended.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 24,
+                    "title": "I want to become smarter by having watched a film. ",
+                    "personalityTypeId": 4
+                }
+            ]
+        },
+        {
+            "title": "How often do you want to be alone?",
+            "answers": [
+                {
+                    "id": 25,
+                    "title": "Pretty much all day, every day.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 26,
+                    "title": "There are times when I want to be alone but there are other times that I need some company.",
+                    "personalityTypeId": 4
+                },
+                {
+                    "id": 27,
+                    "title": "I like to spend most of my time with a close friend or two.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 28,
+                    "title": "I thrive on socializing, but I can hold back if I know that no one wants to be around me at the moment.",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 29,
+                    "title": "ARE YOU KIDDING ME!!! I'D DIE WITHOUT OTHER PEOPLE!!!",
+                    "personalityTypeId": 0
+                }
+            ]
+        },
+        {
+            "title": "Do you like new things?",
+            "answers": [
+                {
+                    "id": 30,
+                    "title": "New things are the only things worth enjoying.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 31,
+                    "title": "I like new technology, but I'm also partial to timeless entities like nature.",
+                    "personalityTypeId": 4
+                },
+                {
+                    "id": 32,
+                    "title": "There are just as many good new things as old things.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 33,
+                    "title": "It depends on what would be most effective.",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 34,
+                    "title": "I could care less about trends; they won't last.",
+                    "personalityTypeId": 3
+                }
+            ]
+        },
+        {
+            "title": "What gets your heart rate up the fastest?",
+            "answers": [
+                {
+                    "id": 35,
+                    "title": "Anything, so please just leave me alone!",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 36,
+                    "title": "Not being able to sleep and loving it.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 37,
+                    "title": "Exercise.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 38,
+                    "title": "Anything that puts my safety at risk.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 39,
+                    "title": "Going to the library. ",
+                    "personalityTypeId": 4
+                }
+            ]
+        },
+        {
+            "title": "How reliable are you?",
+            "answers": [
+                {
+                    "id": 40,
+                    "title": "I try to help out whenever there's an opportunity.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 41,
+                    "title": "I love to help people if it's with something that I know more about.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 42,
+                    "title": "I mainly help out those I know best.",
+                    "personalityTypeId": 4
+                },
+                {
+                    "id": 43,
+                    "title": "I help only when I'm in the mood.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 44,
+                    "title": "Anyone who needs my help is too helpless. ",
+                    "personalityTypeId": 2
+                }
+            ]
+        },
+        {
+            "title": "Who means the most to you?",
+            "answers": [
+                {
+                    "id": 45,
+                    "title": "My teachers and other authority figures.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 46,
+                    "title": "My best friend.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 47,
+                    "title": "Anyone who is like me.",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 48,
+                    "title": "My family and friends.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 49,
+                    "title": "All the thousands of friends I have. ",
+                    "personalityTypeId": 4
+                }
+            ]
+        }
+    ]
+}

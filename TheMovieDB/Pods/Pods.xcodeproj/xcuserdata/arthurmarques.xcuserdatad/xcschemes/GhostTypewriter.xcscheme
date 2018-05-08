@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DD50C761C22C548C65660169CB23D5C7"
-               BlueprintName = "RAMAnimatedTabBarController"
+               BlueprintIdentifier = "F176A9487AFB6E2F02CBC3D901159024"
+               BlueprintName = "GhostTypewriter"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "RAMAnimatedTabBarController.framework">
+               BuildableName = "GhostTypewriter.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

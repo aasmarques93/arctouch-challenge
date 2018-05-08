@@ -17,6 +17,7 @@ PODS:
   - Differ (1.1.1)
   - Fabric (1.7.6)
   - FLAnimatedImage (1.0.12)
+  - GhostTypewriter (1.0.0)
   - RAMAnimatedTabBarController (3.1.0)
   - ReactiveKit (3.9.4)
   - SDWebImage (4.3.3):
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - Bond (~> 6.0-beta)
   - Crashlytics
   - Fabric
+  - GhostTypewriter
   - RAMAnimatedTabBarController
   - SDWebImage
   - SwiftyJSON (~> 3.1.4)
@@ -46,6 +48,7 @@ SPEC REPOS:
     - Differ
     - Fabric
     - FLAnimatedImage
+    - GhostTypewriter
     - RAMAnimatedTabBarController
     - ReactiveKit
     - SDWebImage
@@ -61,12 +64,13 @@ SPEC CHECKSUMS:
   Differ: 462849df6097d4e0e5ebbc9af2475f7aebfd65dc
   Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  GhostTypewriter: 70c6f827ada4716bda0550046b01bf783331ee00
   RAMAnimatedTabBarController: 3c40472db54eda74d465583f8c7f571b206c54d6
   ReactiveKit: cafbc91f72751d09baa9a3c3cf6d82b646328a6c
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: 3a6e389f73570bef5e8b6bcda1fd532817978478
+PODFILE CHECKSUM: 1c8b7370ac50ab9baf30d442c8daaf547da66eeb
 
 COCOAPODS: 1.5.0.beta.1

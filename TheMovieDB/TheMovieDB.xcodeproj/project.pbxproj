@@ -41,6 +41,16 @@
 		ED16D8882059A07F002A0B2C /* SearchServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D8872059A07F002A0B2C /* SearchServiceModel.swift */; };
 		ED16D88A2059A34F002A0B2C /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D8892059A34F002A0B2C /* SearchResultView.swift */; };
 		ED16D88C2059A3A0002A0B2C /* SearchResultViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D88B2059A3A0002A0B2C /* SearchResultViewCell.swift */; };
+		ED2AA5F020A0D2B200AA0DF5 /* PersonalityTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED2AA5EF20A0D2B200AA0DF5 /* PersonalityTest.storyboard */; };
+		ED2AA5F320A0D95C00AA0DF5 /* PersonalityTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA5F220A0D95C00AA0DF5 /* PersonalityTestView.swift */; };
+		ED2AA5F820A0DA4700AA0DF5 /* PersonalityTestViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA5F720A0DA4700AA0DF5 /* PersonalityTestViewCell.swift */; };
+		ED2AA5FA20A0DAF600AA0DF5 /* PersonalityTestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA5F920A0DAF600AA0DF5 /* PersonalityTestCellViewModel.swift */; };
+		ED2AA60020A0DD8000AA0DF5 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA5FC20A0DD7E00AA0DF5 /* Answer.swift */; };
+		ED2AA60120A0DD8000AA0DF5 /* Personality.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA5FD20A0DD7F00AA0DF5 /* Personality.swift */; };
+		ED2AA60220A0DD8000AA0DF5 /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA5FE20A0DD7F00AA0DF5 /* Questions.swift */; };
+		ED2AA60320A0DD8000AA0DF5 /* PersonalityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA5FF20A0DD8000AA0DF5 /* PersonalityType.swift */; };
+		ED2AA61B20A1A6C300AA0DF5 /* PersonalityTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA61A20A1A6C300AA0DF5 /* PersonalityTestViewModel.swift */; };
+		ED2AA61D20A1A92200AA0DF5 /* personalityTest.json in Resources */ = {isa = PBXBuildFile; fileRef = ED2AA61C20A1A92100AA0DF5 /* personalityTest.json */; };
 		ED3833E42093324C0079D48F /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833E32093324C0079D48F /* PersonView.swift */; };
 		ED3833E6209332590079D48F /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833E5209332590079D48F /* PersonViewModel.swift */; };
 		ED3833E8209339880079D48F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833E7209339870079D48F /* Person.swift */; };
@@ -218,6 +228,16 @@
 		ED16D8872059A07F002A0B2C /* SearchServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceModel.swift; sourceTree = "<group>"; };
 		ED16D8892059A34F002A0B2C /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		ED16D88B2059A3A0002A0B2C /* SearchResultViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewCell.swift; sourceTree = "<group>"; };
+		ED2AA5EF20A0D2B200AA0DF5 /* PersonalityTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PersonalityTest.storyboard; sourceTree = "<group>"; };
+		ED2AA5F220A0D95C00AA0DF5 /* PersonalityTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestView.swift; sourceTree = "<group>"; };
+		ED2AA5F720A0DA4700AA0DF5 /* PersonalityTestViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestViewCell.swift; sourceTree = "<group>"; };
+		ED2AA5F920A0DAF600AA0DF5 /* PersonalityTestCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestCellViewModel.swift; sourceTree = "<group>"; };
+		ED2AA5FC20A0DD7E00AA0DF5 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		ED2AA5FD20A0DD7F00AA0DF5 /* Personality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Personality.swift; sourceTree = "<group>"; };
+		ED2AA5FE20A0DD7F00AA0DF5 /* Questions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
+		ED2AA5FF20A0DD8000AA0DF5 /* PersonalityType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalityType.swift; sourceTree = "<group>"; };
+		ED2AA61A20A1A6C300AA0DF5 /* PersonalityTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestViewModel.swift; sourceTree = "<group>"; };
+		ED2AA61C20A1A92100AA0DF5 /* personalityTest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = personalityTest.json; sourceTree = "<group>"; };
 		ED3833E32093324C0079D48F /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
 		ED3833E5209332590079D48F /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
 		ED3833E7209339870079D48F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -444,6 +464,7 @@
 		ED16D841205882AB002A0B2C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				ED2AA5F420A0D96500AA0DF5 /* PersonalityTest */,
 				ED16D88120599FEF002A0B2C /* Home */,
 				ED38340720940DB40079D48F /* TV Show */,
 				ED3833F920938C9A0079D48F /* PopularPeople */,
@@ -549,6 +570,43 @@
 				ED3833E920933A3E0079D48F /* PersonServiceModel.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		ED2AA5EE20A0D26B00AA0DF5 /* PersonalityTest */ = {
+			isa = PBXGroup;
+			children = (
+				ED2AA5EF20A0D2B200AA0DF5 /* PersonalityTest.storyboard */,
+			);
+			path = PersonalityTest;
+			sourceTree = "<group>";
+		};
+		ED2AA5F120A0D94200AA0DF5 /* PersonalityTest */ = {
+			isa = PBXGroup;
+			children = (
+				ED2AA5F220A0D95C00AA0DF5 /* PersonalityTestView.swift */,
+				ED2AA5F720A0DA4700AA0DF5 /* PersonalityTestViewCell.swift */,
+			);
+			path = PersonalityTest;
+			sourceTree = "<group>";
+		};
+		ED2AA5F420A0D96500AA0DF5 /* PersonalityTest */ = {
+			isa = PBXGroup;
+			children = (
+				ED2AA61A20A1A6C300AA0DF5 /* PersonalityTestViewModel.swift */,
+				ED2AA5F920A0DAF600AA0DF5 /* PersonalityTestCellViewModel.swift */,
+			);
+			path = PersonalityTest;
+			sourceTree = "<group>";
+		};
+		ED2AA5FB20A0DD4000AA0DF5 /* PersonalityTest */ = {
+			isa = PBXGroup;
+			children = (
+				ED2AA5FC20A0DD7E00AA0DF5 /* Answer.swift */,
+				ED2AA5FD20A0DD7F00AA0DF5 /* Personality.swift */,
+				ED2AA5FF20A0DD8000AA0DF5 /* PersonalityType.swift */,
+				ED2AA5FE20A0DD7F00AA0DF5 /* Questions.swift */,
+			);
+			path = PersonalityTest;
 			sourceTree = "<group>";
 		};
 		ED3833E12093322B0079D48F /* Movie */ = {
@@ -776,6 +834,7 @@
 				ED65BED72091F1320091D93B /* topRated.json */,
 				ED65BED52091F1310091D93B /* upcoming.json */,
 				ED65BED82091F1320091D93B /* videos.json */,
+				ED2AA61C20A1A92100AA0DF5 /* personalityTest.json */,
 			);
 			path = Json;
 			sourceTree = "<group>";
@@ -792,6 +851,7 @@
 		ED65BEF720923C760091D93B /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				ED2AA5EE20A0D26B00AA0DF5 /* PersonalityTest */,
 				ED38342A2094AB1C0079D48F /* Movie */,
 				ED38342C2094AB330079D48F /* TV Show */,
 				ED38342B2094AB290079D48F /* PopularPeople */,
@@ -880,6 +940,7 @@
 		EDC6BFFD2058593300D843EC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ED2AA5F120A0D94200AA0DF5 /* PersonalityTest */,
 				ED16D85C20597A46002A0B2C /* Home */,
 				ED38340820940DC70079D48F /* TV Show */,
 				ED3833F320938B920079D48F /* PopularPeople */,
@@ -891,6 +952,7 @@
 		EDC6BFFE2058593700D843EC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ED2AA5FB20A0DD4000AA0DF5 /* PersonalityTest */,
 				ED16D87020599C87002A0B2C /* Search */,
 				ED16D86120597D59002A0B2C /* Movie */,
 				ED38341420941C2B0079D48F /* TV Show */,
@@ -1143,6 +1205,7 @@
 				ED08938720585752004CC05F /* LaunchScreen.storyboard in Resources */,
 				ED65BEE32091F1330091D93B /* videos.json in Resources */,
 				ED383427209498FB0079D48F /* SeasonView.xib in Resources */,
+				ED2AA5F020A0D2B200AA0DF5 /* PersonalityTest.storyboard in Resources */,
 				ED3834322094AB6F0079D48F /* PopularPeople.storyboard in Resources */,
 				ED65BF03209245610091D93B /* MovieView.xib in Resources */,
 				ED65BEDD2091F1330091D93B /* genres.json in Resources */,
@@ -1154,6 +1217,7 @@
 				ED65BEE12091F1330091D93B /* movie.json in Resources */,
 				ED08938420585752004CC05F /* Assets.xcassets in Resources */,
 				ED3834382094ACB20079D48F /* Search.storyboard in Resources */,
+				ED2AA61D20A1A92200AA0DF5 /* personalityTest.json in Resources */,
 				ED65BEE02091F1330091D93B /* upcoming.json in Resources */,
 				ED65BEDC2091F1330091D93B /* searchByGenre.json in Resources */,
 				EDC6C03720585B9D00D843EC /* RequestLinks.plist in Resources */,
@@ -1233,6 +1297,7 @@
 				"${BUILT_PRODUCTS_DIR}/Bond/Bond.framework",
 				"${BUILT_PRODUCTS_DIR}/Differ/Differ.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
+				"${BUILT_PRODUCTS_DIR}/GhostTypewriter/GhostTypewriter.framework",
 				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveKit/ReactiveKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -1247,6 +1312,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bond.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differ.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GhostTypewriter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMAnimatedTabBarController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -1315,6 +1381,7 @@
 				EDDAB1CC209C824E00271265 /* StringExtension.swift in Sources */,
 				EDC6C01E20585A6D00D843EC /* HexColor.swift in Sources */,
 				EDC6C03F2058663000D843EC /* ViewModel.swift in Sources */,
+				ED2AA5FA20A0DAF600AA0DF5 /* PersonalityTestCellViewModel.swift in Sources */,
 				EDC6C02F20585A8C00D843EC /* EnvironmentHost.swift in Sources */,
 				ED65BEF3209238BB0091D93B /* Cast.swift in Sources */,
 				ED16D87E20599E29002A0B2C /* SearchMoviesGenre.swift in Sources */,
@@ -1325,6 +1392,7 @@
 				ED3834062093914C0079D48F /* PopularPersonCellViewModel.swift in Sources */,
 				EDDAB1C8209C811800271265 /* RAMTabBarUtils.swift in Sources */,
 				ED3834482095E3970079D48F /* MultiSearch.swift in Sources */,
+				ED2AA60120A0DD8000AA0DF5 /* Personality.swift in Sources */,
 				ED38341920941C4E0079D48F /* TVShowDetail.swift in Sources */,
 				ED65BEF4209238BB0091D93B /* Crew.swift in Sources */,
 				ED38341A20941C4E0079D48F /* Networks.swift in Sources */,
@@ -1333,6 +1401,7 @@
 				ED16D86C20597D99002A0B2C /* ProductionCompanies.swift in Sources */,
 				ED38341C20941C4E0079D48F /* Seasons.swift in Sources */,
 				EDC6C03E2058663000D843EC /* ServiceModel.swift in Sources */,
+				ED2AA60320A0DD8000AA0DF5 /* PersonalityType.swift in Sources */,
 				EDC6C03020585A8C00D843EC /* Connection.swift in Sources */,
 				ED65BEB320909EFA0091D93B /* iCarousel.m in Sources */,
 				ED16D84C205884AB002A0B2C /* Movie.swift in Sources */,
@@ -1352,6 +1421,8 @@
 				ED65BF09209261C00091D93B /* ReviewsView.swift in Sources */,
 				EDC6C02820585A8300D843EC /* General.swift in Sources */,
 				ED3833EC209375A00079D48F /* ExternalIds.swift in Sources */,
+				ED2AA5F820A0DA4700AA0DF5 /* PersonalityTestViewCell.swift in Sources */,
+				ED2AA60220A0DD8000AA0DF5 /* Questions.swift in Sources */,
 				ED3834422094F7600079D48F /* SearchResultViewModel.swift in Sources */,
 				ED38341120940E340079D48F /* TVShowViewCell.swift in Sources */,
 				EDC6C02020585A7500D843EC /* AlertComponent.swift in Sources */,
@@ -1368,6 +1439,7 @@
 				ED16D84B205884AB002A0B2C /* Dates.swift in Sources */,
 				ED65BECC2091EEFC0091D93B /* JSONWrapper.swift in Sources */,
 				ED7B9CB4209E378C006B9586 /* PhotosComponent.swift in Sources */,
+				ED2AA5F320A0D95C00AA0DF5 /* PersonalityTestView.swift in Sources */,
 				ED16D88020599F90002A0B2C /* SearchView.swift in Sources */,
 				ED16D87720599D11002A0B2C /* SearchPerson.swift in Sources */,
 				ED16D850205889BE002A0B2C /* HomeViewCell.swift in Sources */,
@@ -1375,11 +1447,13 @@
 				EDC6C03D2058663000D843EC /* Model.swift in Sources */,
 				ED16D86A20597D99002A0B2C /* SpokenLanguages.swift in Sources */,
 				ED16D8842059A008002A0B2C /* SearchViewModel.swift in Sources */,
+				ED2AA60020A0DD8000AA0DF5 /* Answer.swift in Sources */,
 				ED7B9CB8209E44D4006B9586 /* EpisodeImagesList.swift in Sources */,
 				ED65BEBA2090A55D0091D93B /* VideosList.swift in Sources */,
 				ED3833EA20933A3E0079D48F /* PersonServiceModel.swift in Sources */,
 				ED65BF01209245430091D93B /* MovieView.swift in Sources */,
 				ED38340220938E980079D48F /* KnownFor.swift in Sources */,
+				ED2AA61B20A1A6C300AA0DF5 /* PersonalityTestViewModel.swift in Sources */,
 				ED16D86F20597E5E002A0B2C /* MovieDetailServiceModel.swift in Sources */,
 				EDC6C02620585A7D00D843EC /* Appearance.swift in Sources */,
 				ED3833F520938BA50079D48F /* PopularPeopleView.swift in Sources */,
