@@ -7,17 +7,18 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Personality Test View-->
         <scene sceneID="q8e-w5-Crk">
             <objects>
                 <tableViewController storyboardIdentifier="PersonalityTestView" id="Qoc-9P-QOX" customClass="PersonalityTestView" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NiV-KV-ifn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PersonalityTestViewCell" rowHeight="250" id="Wwn-KX-8en" customClass="PersonalityTestViewCell" customModule="TheMovieDB" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="250"/>
@@ -115,12 +116,46 @@
                             <outlet property="delegate" destination="Qoc-9P-QOX" id="jdE-5Q-U1c"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="RH7-v4-P0y"/>
+                    <navigationItem key="navigationItem" id="7f4-hK-dsv">
+                        <barButtonItem key="backBarButtonItem" title=" " id="pHr-Mf-yFB"/>
+                    </navigationItem>
                     <connections>
-                        <segue destination="mhW-QG-FON" kind="presentation" identifier="HomeView" id="Ypr-CD-dSS"/>
+                        <outlet property="labelPage" destination="RDH-pe-k0U" id="49r-9u-HmL"/>
+                        <outlet property="progressView" destination="Opv-tw-2p6" id="gz2-vM-75i"/>
+                        <outlet property="viewFooter" destination="13U-fg-7Oy" id="cVK-WB-DwQ"/>
+                        <segue destination="mhW-QG-FON" kind="presentation" identifier="HomeView" animates="NO" id="Stu-pR-6ey"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y0K-s6-Lc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="13U-fg-7Oy">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Opv-tw-2p6">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
+                            <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="secondary"/>
+                            </userDefinedRuntimeAttributes>
+                        </progressView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Page}}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDH-pe-k0U">
+                            <rect key="frame" x="156" y="2" width="63" height="48"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Opv-tw-2p6" firstAttribute="leading" secondItem="13U-fg-7Oy" secondAttribute="leading" id="GR1-7A-lpk"/>
+                        <constraint firstItem="Opv-tw-2p6" firstAttribute="top" secondItem="okX-pp-APY" secondAttribute="top" id="YGz-YR-Be5"/>
+                        <constraint firstItem="RDH-pe-k0U" firstAttribute="centerX" secondItem="okX-pp-APY" secondAttribute="centerX" id="YkR-kP-rz5"/>
+                        <constraint firstItem="RDH-pe-k0U" firstAttribute="bottom" secondItem="okX-pp-APY" secondAttribute="bottom" id="dEt-vh-bnZ"/>
+                        <constraint firstItem="RDH-pe-k0U" firstAttribute="top" secondItem="Opv-tw-2p6" secondAttribute="bottom" id="iGJ-OY-T75"/>
+                        <constraint firstAttribute="trailing" secondItem="Opv-tw-2p6" secondAttribute="trailing" id="pO3-h0-pkl"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="okX-pp-APY"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="-900" y="6.746626686656672"/>
         </scene>
@@ -130,7 +165,74 @@
                 <viewControllerPlaceholder storyboardName="Main" id="mhW-QG-FON" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ar-BO-UrT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-387" y="6"/>
+            <point key="canvasLocation" x="-515" y="465"/>
+        </scene>
+        <!--Personality Test Result View-->
+        <scene sceneID="qIf-63-EX2">
+            <objects>
+                <viewController storyboardIdentifier="PersonalityTestResultView" id="MyA-oC-pCO" customClass="PersonalityTestResultView" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ROx-6U-FzM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KPQ-eN-GKZ" customClass="ProcessLoadingView" customModule="ProcessLoadingView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="355"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAP-RZ-2d6">
+                                <rect key="frame" x="32" y="591" width="311" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Ncf-1W-N18"/>
+                                </constraints>
+                                <state key="normal" title="SEE MOVIES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="22"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="text"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="mhW-QG-FON" kind="presentation" id="Fvi-9E-ELc"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="{{Result Description}}" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0U3-LN-4iJ">
+                                <rect key="frame" x="8" y="383" width="359" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="h6W-1l-5ug"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="text"/>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0U3-LN-4iJ" firstAttribute="leading" secondItem="zWB-6F-k5j" secondAttribute="leading" constant="8" id="0X8-I2-TYb"/>
+                            <constraint firstItem="KPQ-eN-GKZ" firstAttribute="leading" secondItem="zWB-6F-k5j" secondAttribute="leading" id="1qj-MY-yTb"/>
+                            <constraint firstItem="0U3-LN-4iJ" firstAttribute="top" secondItem="KPQ-eN-GKZ" secondAttribute="bottom" constant="8" id="6kT-Q3-aIJ"/>
+                            <constraint firstItem="hAP-RZ-2d6" firstAttribute="leading" secondItem="zWB-6F-k5j" secondAttribute="leading" constant="32" id="9XY-CN-Yw4"/>
+                            <constraint firstItem="zWB-6F-k5j" firstAttribute="trailing" secondItem="0U3-LN-4iJ" secondAttribute="trailing" constant="8" id="AwU-Cp-yZ9"/>
+                            <constraint firstItem="zWB-6F-k5j" firstAttribute="trailing" secondItem="hAP-RZ-2d6" secondAttribute="trailing" constant="32" id="K7o-af-NX1"/>
+                            <constraint firstItem="KPQ-eN-GKZ" firstAttribute="top" secondItem="zWB-6F-k5j" secondAttribute="top" id="Qo4-kj-2IY"/>
+                            <constraint firstItem="hAP-RZ-2d6" firstAttribute="top" secondItem="0U3-LN-4iJ" secondAttribute="bottom" constant="8" id="Zbr-bo-obT"/>
+                            <constraint firstItem="KPQ-eN-GKZ" firstAttribute="trailing" secondItem="zWB-6F-k5j" secondAttribute="trailing" id="s23-qM-Hlh"/>
+                            <constraint firstItem="zWB-6F-k5j" firstAttribute="bottom" secondItem="hAP-RZ-2d6" secondAttribute="bottom" constant="32" id="wtP-WR-kyz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zWB-6F-k5j"/>
+                    </view>
+                    <connections>
+                        <outlet property="buttonSeeMovies" destination="hAP-RZ-2d6" id="Drs-AY-aSZ"/>
+                        <outlet property="processLoadingView" destination="KPQ-eN-GKZ" id="6I5-zi-n0R"/>
+                        <outlet property="textViewResult" destination="0U3-LN-4iJ" id="7wg-yH-W76"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c00-vx-w9j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-106.40000000000001" y="6.746626686656672"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YVN-Z7-Lxh">
@@ -152,4 +254,7 @@
     <resources>
         <image name="logo-movie-db" width="312" height="276"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Stu-pR-6ey"/>
+    </inferredMetricsTieBreakers>
 </document>

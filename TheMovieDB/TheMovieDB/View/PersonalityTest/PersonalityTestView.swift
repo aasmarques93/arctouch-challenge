@@ -10,21 +10,45 @@ import UIKit
 import GhostTypewriter
 
 class PersonalityTestView: UITableViewController {
+    @IBOutlet var viewFooter: UIView!
+    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var labelPage: UILabel!
+    
     let viewModel = PersonalityTestViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBindings()
         viewModel.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupAppearance()
         viewModel.loadData()
+    }
+    
+    func setupAppearance() {
+        navigationItem.titleView = nil
+        title = Titles.personalityTest.rawValue
+    }
+    
+    func setupBindings() {
+        viewModel.progress.bind(to: progressView.reactive.progress)
+        viewModel.pagingText.bind(to: labelPage.reactive.text)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return viewFooter.frame.height
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return viewFooter
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let spacing: CGFloat = 16
-        return SCREEN_HEIGHT - (navigationController?.navigationBar.frame.height ?? 0) - spacing
+        return SCREEN_HEIGHT - (navigationController?.navigationBar.frame.height ?? 0) - viewFooter.frame.height - spacing
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,6 +71,12 @@ extension PersonalityTestView: PersonalityTestViewModelDelegate {
     }
     
     func didFinishSteps() {
+        let viewController = instantiate(viewController: PersonalityTestResultView.self, from: .personalityTest)
+        viewController.viewModel = viewModel
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func skipTest() {
         performSegue(withIdentifier: HomeView.identifier, sender: self)
     }
 }

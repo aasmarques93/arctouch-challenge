@@ -11,6 +11,7 @@ import UIKit
 typealias HandlerGeneric = (_ object: Any?) -> Swift.Void
 
 enum Storyboard: String {
+    case personalityTest = "PersonalityTest"
     case main = "Main"
     case movie = "Movie"
     case tvShow = "TVShow"

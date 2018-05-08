@@ -11,6 +11,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--PersonalityTest-->
+        <scene sceneID="4YZ-eT-KEy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PersonalityTest" id="vc8-oO-17N" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IQJ-IW-o04" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1467" y="-56"/>
+        </scene>
         <!--Root View Controller-->
         <scene sceneID="Ixx-fN-4DW">
             <objects>
@@ -150,7 +158,20 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="bYj-0A-A8a">
                         <barButtonItem key="backBarButtonItem" title=" " id="WIv-Hp-eRf"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="GhD-SR-CQJ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4hr-4O-umL">
+                                <rect key="frame" x="334" y="9.5" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="test"/>
+                                <connections>
+                                    <segue destination="vc8-oO-17N" kind="popoverPresentation" popoverAnchorView="4hr-4O-umL" id="7vc-Ma-db7">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGE-9e-zBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -531,5 +552,6 @@
     </scenes>
     <resources>
         <image name="star" width="24" height="24"/>
+        <image name="test" width="25" height="25"/>
     </resources>
 </document>

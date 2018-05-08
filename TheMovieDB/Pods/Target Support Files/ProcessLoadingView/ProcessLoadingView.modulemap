@@ -1,0 +1,6 @@
+framework module ProcessLoadingView {
+  umbrella header "ProcessLoadingView-umbrella.h"
+
+  export *
+  module * { export * }
+}

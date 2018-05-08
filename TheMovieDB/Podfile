@@ -14,7 +14,8 @@ target 'TheMovieDB' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'GhostTypewriter'
-
+  pod 'ProcessLoadingView'
+  
   # Pods for TheMovieDB
 
   target 'TheMovieDBTests' do

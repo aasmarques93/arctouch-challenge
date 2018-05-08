@@ -19,16 +19,24 @@ protocol PersonalityTestCellViewModelDelegate: class {
 }
 
 class PersonalityTestCellViewModel: ViewModel {
+    // MARK: - Properties -
+    
+    // MARK: Delegate
     weak var cellDelegate: PersonalityTestCellDelegate?
     weak var delegate: PersonalityTestCellViewModelDelegate?
     
+    // MARK: Observables
     var text = Observable<String?>(nil)
     
+    // MARK: Objects
     private var question: Questions?
     private var arrayAnswers = [Answer]() { didSet { cellDelegate?.reloadData(at: currentAnswerStep) } }
     var numberOfAnswers: Int { return arrayAnswers.count }
     
+    // MARK: Variables
     private var currentAnswerStep = -1
+    
+    // MARK: - Life cycle -
     
     init(_ object: Questions?) {
         self.question = object
@@ -37,6 +45,8 @@ class PersonalityTestCellViewModel: ViewModel {
     func loadData() {
         text.value = question?.title
     }
+    
+    // MARK: - View Model -
     
     func answerTitle(at index: Int) -> String? {
         return arrayAnswers[index].title

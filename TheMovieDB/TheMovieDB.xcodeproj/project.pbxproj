@@ -51,6 +51,8 @@
 		ED2AA60320A0DD8000AA0DF5 /* PersonalityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA5FF20A0DD8000AA0DF5 /* PersonalityType.swift */; };
 		ED2AA61B20A1A6C300AA0DF5 /* PersonalityTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA61A20A1A6C300AA0DF5 /* PersonalityTestViewModel.swift */; };
 		ED2AA61D20A1A92200AA0DF5 /* personalityTest.json in Resources */ = {isa = PBXBuildFile; fileRef = ED2AA61C20A1A92100AA0DF5 /* personalityTest.json */; };
+		ED2AA61F20A1C07F00AA0DF5 /* PersonalityTestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA61E20A1C07F00AA0DF5 /* PersonalityTestResultView.swift */; };
+		ED2AA62520A24FB000AA0DF5 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA62420A24FB000AA0DF5 /* Singleton.swift */; };
 		ED3833E42093324C0079D48F /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833E32093324C0079D48F /* PersonView.swift */; };
 		ED3833E6209332590079D48F /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833E5209332590079D48F /* PersonViewModel.swift */; };
 		ED3833E8209339880079D48F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833E7209339870079D48F /* Person.swift */; };
@@ -238,6 +240,8 @@
 		ED2AA5FF20A0DD8000AA0DF5 /* PersonalityType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalityType.swift; sourceTree = "<group>"; };
 		ED2AA61A20A1A6C300AA0DF5 /* PersonalityTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestViewModel.swift; sourceTree = "<group>"; };
 		ED2AA61C20A1A92100AA0DF5 /* personalityTest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = personalityTest.json; sourceTree = "<group>"; };
+		ED2AA61E20A1C07F00AA0DF5 /* PersonalityTestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestResultView.swift; sourceTree = "<group>"; };
+		ED2AA62420A24FB000AA0DF5 /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		ED3833E32093324C0079D48F /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
 		ED3833E5209332590079D48F /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
 		ED3833E7209339870079D48F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -585,6 +589,7 @@
 			children = (
 				ED2AA5F220A0D95C00AA0DF5 /* PersonalityTestView.swift */,
 				ED2AA5F720A0DA4700AA0DF5 /* PersonalityTestViewCell.swift */,
+				ED2AA61E20A1C07F00AA0DF5 /* PersonalityTestResultView.swift */,
 			);
 			path = PersonalityTest;
 			sourceTree = "<group>";
@@ -607,6 +612,14 @@
 				ED2AA5FE20A0DD7F00AA0DF5 /* Questions.swift */,
 			);
 			path = PersonalityTest;
+			sourceTree = "<group>";
+		};
+		ED2AA62320A24FA600AA0DF5 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				ED2AA62420A24FB000AA0DF5 /* Singleton.swift */,
+			);
+			path = Singleton;
 			sourceTree = "<group>";
 		};
 		ED3833E12093322B0079D48F /* Movie */ = {
@@ -964,6 +977,7 @@
 		EDC6BFFF2058593B00D843EC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				ED2AA62320A24FA600AA0DF5 /* Singleton */,
 				EDBAF880209FFE340089DE39 /* Fabric */,
 				ED7B9CB2209E3769006B9586 /* Photos */,
 				EDDAB1BF209BDCB800271265 /* RAMTabBar */,
@@ -1298,6 +1312,7 @@
 				"${BUILT_PRODUCTS_DIR}/Differ/Differ.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GhostTypewriter/GhostTypewriter.framework",
+				"${BUILT_PRODUCTS_DIR}/ProcessLoadingView/ProcessLoadingView.framework",
 				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveKit/ReactiveKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -1313,6 +1328,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differ.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GhostTypewriter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProcessLoadingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMAnimatedTabBarController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -1376,6 +1392,7 @@
 				ED3834402094B6C60079D48F /* SearchHeaderView.swift in Sources */,
 				ED38344F20973F5E0079D48F /* SeasonDetail.swift in Sources */,
 				ED16D845205882D3002A0B2C /* HomeViewModel.swift in Sources */,
+				ED2AA61F20A1C07F00AA0DF5 /* PersonalityTestResultView.swift in Sources */,
 				ED65BEF1209238BB0091D93B /* ReviewsList.swift in Sources */,
 				ED65BEF0209238BB0091D93B /* CreditsList.swift in Sources */,
 				EDDAB1CC209C824E00271265 /* StringExtension.swift in Sources */,
@@ -1444,6 +1461,7 @@
 				ED16D87720599D11002A0B2C /* SearchPerson.swift in Sources */,
 				ED16D850205889BE002A0B2C /* HomeViewCell.swift in Sources */,
 				ED16D84D205884AB002A0B2C /* MoviesList.swift in Sources */,
+				ED2AA62520A24FB000AA0DF5 /* Singleton.swift in Sources */,
 				EDC6C03D2058663000D843EC /* Model.swift in Sources */,
 				ED16D86A20597D99002A0B2C /* SpokenLanguages.swift in Sources */,
 				ED16D8842059A008002A0B2C /* SearchViewModel.swift in Sources */,

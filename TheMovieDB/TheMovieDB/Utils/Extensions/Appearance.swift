@@ -25,11 +25,14 @@ extension UIViewController {
     open override func awakeFromNib() {
         view.backgroundColor = HexColor.primary.color
         
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        
+        let imageView = UIImageView(frame: titleView.frame)
         imageView.image = #imageLiteral(resourceName: "logo-movie-db")
         imageView.contentMode = .scaleAspectFit
         
-        navigationItem.titleView = imageView
+        titleView.addSubview(imageView)
+        navigationItem.titleView = titleView
     }
 }
 
@@ -152,18 +155,20 @@ extension UIView {
             stepper.tintColor = HexColor.color(from: colorStyle) ?? HexColor.secondary.color
             return
         }
+        if let progressView = self as? UIProgressView {
+            progressView.progressTintColor = HexColor.color(from: colorStyle) ?? HexColor.secondary.color
+            return
+        }
         if let activityIndicator = self as? UIActivityIndicatorView {
             activityIndicator.color = HexColor.color(from: colorStyle) ?? HexColor.secondary.color
             return
         }
-        
-        if self is UITextField { return }
-        
         if let button = self as? UIButton {
-            button.setTitleColor(HexColor.text.color, for: .normal)
+            button.setTitleColor(HexColor.color(from: colorStyle) ?? HexColor.text.color, for: .normal)
             button.tintColor = HexColor.color(from: colorStyle) ?? HexColor.secondary.color
             return
         }
+        if self is UITextField { return }
         
         self.backgroundColor = HexColor.color(from: colorStyle) ?? self.backgroundColor
     }

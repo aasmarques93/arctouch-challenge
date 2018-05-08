@@ -29,6 +29,14 @@ class PersonView: UITableViewController {
     
     var viewModel: PersonViewModel?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if Singleton.shared.isPersonalityTestAnswered {
+            navigationItem.rightBarButtonItem = nil
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAppearance()
