@@ -14,4 +14,5 @@ enum Messages: String {
     case searchTVShow = "Search a TV Show"
     case searchPerson = "Search a person"
     case didSelect = "Did select"
+    case didAnsweredPersonalityTest = "Did answered personality test - Type: "
 }

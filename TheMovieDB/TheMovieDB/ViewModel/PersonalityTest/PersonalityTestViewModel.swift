@@ -137,6 +137,9 @@ class PersonalityTestViewModel: ViewModel {
         }
         
         userPersonalityType?.saveUserDefaults(key: Constants.UserDefaults.userPersonality)
+        
+        let message = Messages.didAnsweredPersonalityTest.rawValue
+        FabricUtils.logEvent(message: "\(message)\(userPersonalityType?.title ?? "")")
     }
     
     func personalityTestCellViewModel(at indexPath: IndexPath) -> PersonalityTestCellViewModel? {
