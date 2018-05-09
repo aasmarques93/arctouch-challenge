@@ -63,6 +63,7 @@ class SearchViewModel: ViewModel {
             }
             
             self?.arrayGenres = results
+            Singleton.shared.arrayGenres = results
         }
     }
     

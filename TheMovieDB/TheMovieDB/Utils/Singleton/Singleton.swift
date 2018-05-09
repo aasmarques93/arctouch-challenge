@@ -24,4 +24,6 @@ struct Singleton {
     var isPersonalityTestAnswered: Bool {
         return userPersonalityType != nil
     }
+    
+    var arrayGenres = [Genres]()
 }

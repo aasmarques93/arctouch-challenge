@@ -15,12 +15,14 @@ struct PersonalityType: Model {
     private struct SerializationKeys {
         static let id = "id"
         static let title = "title"
+        static let genres = "genres"
         static let text = "text"
     }
     
     // MARK: Properties
     var id: Int?
     var title: String?
+    var genres: [Int]?
     var text: String?
     
     // MARK: SwiftyJSON Initializers
@@ -43,6 +45,7 @@ struct PersonalityType: Model {
         self.json = json
         id = json?[SerializationKeys.id].int
         title = json?[SerializationKeys.title].string
+        if let items = json?[SerializationKeys.genres].array { genres = items.map { $0.intValue } }
         text = json?[SerializationKeys.text].string
     }
     
@@ -53,6 +56,7 @@ struct PersonalityType: Model {
         var dictionary: [String: Any] = [:]
         if let value = id { dictionary[SerializationKeys.id] = value }
         if let value = title { dictionary[SerializationKeys.title] = value }
+        if let value = genres { dictionary[SerializationKeys.genres] = value }
         if let value = text { dictionary[SerializationKeys.text] = value }
         return dictionary
     }

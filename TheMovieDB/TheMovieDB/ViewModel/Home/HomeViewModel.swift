@@ -13,6 +13,7 @@ protocol HomeViewModelDelegate: ViewModelDelegate {
 }
 
 enum GenreType: String {
+    case sugested = "Sugested"
     case nowPlaying = "Now Playing"
     case topRated = "Top Rated"
     case upcoming = "Upcoming"
@@ -20,26 +21,30 @@ enum GenreType: String {
     
     var index: Int {
         switch self {
-        case .popular:
+        case .sugested:
             return 0
-        case .topRated:
+        case .popular:
             return 1
-        case .upcoming:
+        case .topRated:
             return 2
-        case .nowPlaying:
+        case .upcoming:
             return 3
+        case .nowPlaying:
+            return 4
         }
     }
     
     static func genre(at index: Int) -> GenreType? {
         switch index {
         case 0:
-            return GenreType.popular
+            return GenreType.sugested
         case 1:
-            return GenreType.topRated
+            return GenreType.popular
         case 2:
-            return GenreType.upcoming
+            return GenreType.topRated
         case 3:
+            return GenreType.upcoming
+        case 4:
             return GenreType.nowPlaying
         default:
             return nil
@@ -57,8 +62,12 @@ class HomeViewModel: ViewModel {
     let serviceModel = HomeServiceModel()
     
     // MARK: Genres
-    private var arrayGenres: [GenreType] = [.popular, .topRated, .upcoming, .nowPlaying]
+    private var arrayGenres: [GenreType] = [.sugested, .popular, .topRated, .upcoming, .nowPlaying]
     var numberOfGenres: Int { return arrayGenres.count }
+    
+    // MARK: Sugested
+    private var arraySugestedMovies = [Movie]()
+    var numberOfSugestedMovie: Int { return arraySugestedMovies.count }
     
     // MARK: Now Playing
     private var arrayNowPlayingMovies = [Movie]()
@@ -71,14 +80,14 @@ class HomeViewModel: ViewModel {
     private var currentUpcomingMoviesPage: Int = 1
     
     // MARK: Top rated
-    private var arrayTopRated = [Movie]()
-    var numberOfTopRated: Int { return arrayTopRated.count }
-    private var currentTopRatedPage: Int = 1
+    private var arrayTopRatedMovies = [Movie]()
+    var numberOfTopRatedMovies: Int { return arrayTopRatedMovies.count }
+    private var currentTopRatedMoviesPage: Int = 1
     
     // MARK: Popular
-    private var arrayPopular = [Movie]()
-    var numberOfPopular: Int { return arrayPopular.count }
-    private var currentPopularPage: Int = 1
+    private var arrayPopularMovies = [Movie]()
+    var numberOfPopularMovies: Int { return arrayPopularMovies.count }
+    private var currentPopularMoviesPage: Int = 1
     
     // MARK: Variables
     private var isDataLoading = false
@@ -86,6 +95,7 @@ class HomeViewModel: ViewModel {
     // MARK: - Service requests -
     
     func loadData() {
+        getSugestedMovies()
         getMovies(genre: .popular)
         getMovies(genre: .topRated)
         getMovies(genre: .upcoming)
@@ -98,11 +108,13 @@ class HomeViewModel: ViewModel {
         }
         
         switch genre {
+        case .sugested:
+            break
         case .popular:
-            currentPopularPage += 1
+            currentPopularMoviesPage += 1
             getMovies(genre: .popular)
         case .topRated:
-            currentTopRatedPage += 1
+            currentTopRatedMoviesPage += 1
             getMovies(genre: .topRated)
         case .upcoming:
             currentUpcomingMoviesPage += 1
@@ -113,36 +125,80 @@ class HomeViewModel: ViewModel {
         }
     }
     
+    private func getSugestedMovies() {
+        guard let userPersonalityType = Singleton.shared.userPersonalityType, let genres = userPersonalityType.genres else {
+            return
+        }
+        
+        genres.forEach { [weak self] (id) in
+            self?.getMoviesFromGenre(id: id)
+        }
+    }
+    
+    private func getMoviesFromGenre(id: Int?) {
+        guard let value = id else {
+            return
+        }
+        
+        let parameters = ["id": value]
+        SearchServiceModel().getMoviesFromGenre(urlParameters: parameters) { [weak self] (object) in
+            guard let object = object as? SearchMoviesGenre, let results = object.results else {
+                return
+            }
+            guard let array = self?.sortedByVoteAverage(array: results) else {
+                return
+            }
+            self?.addMoviesToArray(array, genre: .sugested)
+            self?.reloadData(at: GenreType.sugested.index)
+        }
+    }
+    
+    private func sortedByVoteAverage(array: [Movie]) -> [Movie] {
+        let sortedArray = array.sorted(by: { (movie1, movie2) -> Bool in
+            guard let voteAverage1 = movie1.voteAverage, let voteAverage2 = movie2.voteAverage else {
+                return true
+            }
+            return voteAverage1 > voteAverage2
+        })
+        
+        return sortedArray
+    }
+    
     private func getMovies(genre: GenreType) {
-        let requestUrl = getRequestUrl(with: genre)
+        guard let requestUrl = getRequestUrl(with: genre) else {
+            return
+        }
+        
         var currentPage = getCurrentPage(at: genre)
         
         isDataLoading = true
         
         let parameters = ["page": currentPage]
-        serviceModel.getMovies(urlParameters: parameters, requestUrl: requestUrl) { [unowned self] (object) in
+        serviceModel.getMovies(urlParameters: parameters, requestUrl: requestUrl) { [weak self] (object) in
             if let object = object as? MoviesList {
                 do {
-                    try self.showError(with: object)
+                    try self?.showError(with: object)
                 } catch {
                     if let error = error as? Error {
-                        self.delegate?.showError?(message: error.message)
+                        self?.delegate?.showError?(message: error.message)
                     }
                     return
                 }
                 
                 if let results = object.results {
-                    self.addMoviesToArray(results, genre: genre)
+                    self?.addMoviesToArray(results, genre: genre)
                     currentPage += 1
                 }
             }
             
-            self.reloadData(at: genre.index)
+            self?.reloadData(at: genre.index)
         }
     }
     
-    private func getRequestUrl(with genre: GenreType) -> RequestUrl {
+    private func getRequestUrl(with genre: GenreType) -> RequestUrl? {
         switch genre {
+        case .sugested:
+            return nil
         case .popular:
             return .popular
         case .topRated:
@@ -156,10 +212,12 @@ class HomeViewModel: ViewModel {
     
     private func getCurrentPage(at genre: GenreType) -> Int {
         switch genre {
+        case .sugested:
+            return 0
         case .popular:
-            return currentPopularPage
+            return currentPopularMoviesPage
         case .topRated:
-            return currentTopRatedPage
+            return currentTopRatedMoviesPage
         case .upcoming:
             return currentUpcomingMoviesPage
         case .nowPlaying:
@@ -169,10 +227,12 @@ class HomeViewModel: ViewModel {
     
     private func addMoviesToArray(_ results: [Movie], genre: GenreType) {
         switch genre {
+        case .sugested:
+            arraySugestedMovies.append(contentsOf: results)
         case .popular:
-            arrayPopular.append(contentsOf: results)
+            arrayPopularMovies.append(contentsOf: results)
         case .topRated:
-            arrayTopRated.append(contentsOf: results)
+            arrayTopRatedMovies.append(contentsOf: results)
         case .upcoming:
             arrayUpcomingMovies.append(contentsOf: results)
         case .nowPlaying:
@@ -191,7 +251,13 @@ class HomeViewModel: ViewModel {
         guard let genre = GenreType.genre(at: section) else {
             return ""
         }
-        return "  \(genre.rawValue)"
+        guard genre == .sugested,
+            let userPersonalityType = Singleton.shared.userPersonalityType,
+            let title = userPersonalityType.title else {
+                
+            return "  \(genre.rawValue)"
+        }
+        return "  \(genre.rawValue) for \(title)"
     }
     
     // MARK: - Movie methods -
@@ -201,10 +267,12 @@ class HomeViewModel: ViewModel {
             return 0
         }
         switch genre {
+        case .sugested:
+            return numberOfSugestedMovie
         case .popular:
-            return numberOfPopular
+            return numberOfPopularMovies
         case .topRated:
-            return numberOfTopRated
+            return numberOfTopRatedMovies
         case .upcoming:
             return numberOfUpcomingMovies
         case .nowPlaying:
@@ -235,10 +303,12 @@ class HomeViewModel: ViewModel {
             return nil
         }
         switch genre {
+        case .sugested:
+            return arraySugestedMovies
         case .popular:
-            return arrayPopular
+            return arrayPopularMovies
         case .topRated:
-            return arrayTopRated
+            return arrayTopRatedMovies
         case .upcoming:
             return arrayUpcomingMovies
         case .nowPlaying:
