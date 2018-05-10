@@ -56,7 +56,7 @@ class HomeViewModel: ViewModel {
     // MARK: - Properties -
     
     // MARK: Delegate
-    var delegate: HomeViewModelDelegate?
+    weak var delegate: HomeViewModelDelegate?
     
     // MARK: Service Model
     let serviceModel = HomeServiceModel()
