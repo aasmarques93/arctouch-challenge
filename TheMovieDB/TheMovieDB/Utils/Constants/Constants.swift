@@ -9,10 +9,6 @@
 import UIKit
 
 struct Constants {
-    struct UserDefaults {
-        static let userPersonality = "UserPersonality"
-    }
-    
     static let defaultDateFormat = "dd/MM/yyyy"
     static let dateFormatIsoTime = "yyyy-MM-dd'T'hh:ss:mm"
 }
@@ -23,6 +19,7 @@ enum Titles: String {
     
     // Titles
     case personalityTest = "Personality Test"
+    case personalityTestResult = "Personality Test Result"
     case youGot = "You got"
     case result = "Result"
     

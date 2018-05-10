@@ -27,15 +27,16 @@ class HomeView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if Singleton.shared.isPersonalityTestAnswered {
-            navigationItem.rightBarButtonItem = nil
-        }
-        
+        Singleton.shared.didSkipTestFromLauching = true
         searchHeaderView.delegate = self
         tableView.keyboardDismissMode = .onDrag
         viewModel.delegate = self
         viewModel.loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AppDelegate.shared.unlockOrientation()
     }
     
     // MARK: - Table view data source -

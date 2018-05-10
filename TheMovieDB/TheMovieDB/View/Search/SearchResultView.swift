@@ -18,8 +18,7 @@ class SearchResultView: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.titleView = nil
-        title = viewModel?.titleDescription
+        setTitle(text: viewModel?.titleDescription)
         viewModel?.delegate = self
         viewModel?.loadData()
     }

@@ -12,6 +12,9 @@ PODS:
   - Bond (6.8.0):
     - Differ (~> 1.0)
     - ReactiveKit (~> 3.9)
+  - Charts (3.1.1):
+    - Charts/Core (= 3.1.1)
+  - Charts/Core (3.1.1)
   - Crashlytics (3.10.1):
     - Fabric (~> 1.7.5)
   - Differ (1.1.1)
@@ -31,6 +34,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.5.0)
   - AXPhotoViewer
   - Bond (~> 6.0-beta)
+  - Charts
   - Crashlytics
   - Fabric
   - GhostTypewriter
@@ -46,6 +50,7 @@ SPEC REPOS:
     - AXPhotoViewer
     - AXStateButton
     - Bond
+    - Charts
     - Crashlytics
     - Differ
     - Fabric
@@ -63,6 +68,7 @@ SPEC CHECKSUMS:
   AXPhotoViewer: 21772189db20242febfaf4545e204a3ff069add5
   AXStateButton: 6c515a433e37551505046429b5be04c12daa8c07
   Bond: f07e371c05e07c46589c4a518515ea39c6263055
+  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
   Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
   Differ: 462849df6097d4e0e5ebbc9af2475f7aebfd65dc
   Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
@@ -75,6 +81,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: 95c0cbbd9a73ccbd6c14beac1cb6aaca89779f13
+PODFILE CHECKSUM: f044c8158918caaab687882a16ce086674787d9e
 
 COCOAPODS: 1.5.0.beta.1

@@ -250,15 +250,20 @@ extension String {
     var height: CGFloat {
         get {
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIApplication.shared.keyWindow!.frame.size.width, height: 40))
-            
             label.numberOfLines = 1000
             label.text = self
-            
             label.sizeToFit()
-            
             return label.frame.height
         }
         set { }
+    }
+    
+    func heightWith(width: CGFloat) -> CGFloat {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: 40))
+        label.numberOfLines = 1000
+        label.text = self
+        label.sizeToFit()
+        return label.frame.height
     }
     
     func substring(to position: Int, isLiteral: Bool = true) -> String {

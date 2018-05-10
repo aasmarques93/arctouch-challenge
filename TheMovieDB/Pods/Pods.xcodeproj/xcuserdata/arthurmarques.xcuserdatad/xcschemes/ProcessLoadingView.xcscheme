@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E9F0BBA8C6FE791BA2EFD59050640D4B"
+               BlueprintIdentifier = "B0822FC51CB3C723ACA0F9F18CD7F6DF"
                BlueprintName = "ProcessLoadingView"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "ProcessLoadingView.framework">

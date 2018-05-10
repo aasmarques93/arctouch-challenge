@@ -69,9 +69,9 @@ struct ServiceModel {
                 if let array = value as? [Any] {
                     var arrayObject = [JSON]()
                     
-                    for object in array {
+                    array.forEach({ (object) in
                         arrayObject.append(JSON(object))
-                    }
+                    })
                     
                     handlerObject(arrayObject)
                     
@@ -166,7 +166,7 @@ struct ServiceModel {
     func createUrl(from string: String, parameters: [String:Any]) -> String {
         var url = string
         
-        for parameter in parameters {
+        parameters.forEach { (parameter) in
             if url.contains("{\(parameter.key)}") {
                 let array = url.components(separatedBy: "{\(parameter.key)}")
                 if array.count == 2 { url = "\(array[0])\(parameter.value)\(array[1])" }

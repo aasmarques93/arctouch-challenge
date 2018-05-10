@@ -130,6 +130,7 @@ class HomeViewModel: ViewModel {
             return
         }
         
+        arraySugestedMovies = [Movie]()
         genres.forEach { [weak self] (id) in
             self?.getMoviesFromGenre(id: id)
         }

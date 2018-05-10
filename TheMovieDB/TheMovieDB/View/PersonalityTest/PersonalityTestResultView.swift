@@ -8,50 +8,43 @@
 
 import UIKit
 import ProcessLoadingView
+import GhostTypewriter
 
-private let total = 5
-private let mainFontSize: CGFloat = 22
-private let subFontSize: CGFloat = 26
+private let totalItems = 5
+private let mainFontSize: CGFloat = 20
+private let subFontSize: CGFloat = 22
 
 class PersonalityTestResultView: UIViewController {
     @IBOutlet weak var processLoadingView: ProcessLoadingView!
-    @IBOutlet weak var textViewResult: UITextView!
+    @IBOutlet weak var labelResult: TypewriterLabel!
     @IBOutlet weak var buttonSeeMovies: UIButton!
+    @IBOutlet weak var buttonDoTestAgain: UIButton!
     
     var viewModel: PersonalityTestViewModel?
     
     var arrayImages: [(UIImage, UIColor?)] {
         var images = [(UIImage, UIColor?)]()
         
-        for _ in 0..<total {
+        for _ in 0..<totalItems {
             images.append((#imageLiteral(resourceName: "checkMark"), HexColor.secondary.color))
         }
         
         return images
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupBindings()
-        setupAppearance()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        processLoadingView.start(completed: nil)
-    }
-    
-    func setupAppearance() {
-        navigationItem.titleView = nil
-        title = Titles.result.rawValue
-        
-        buttonSeeMovies.backgroundColor = HexColor.secondary.color
-        
+    var processLoadingOptions: ProcessOptions {
         let options = ProcessOptions()
-        options.setNumberOfItems(number: total)
+        
+        options.inSpeed = 0.7
+        options.setNumberOfItems(number: totalItems)
         options.ItemSize = 30
+        if let text = labelResult.text {
+            let minimalRadius: CGFloat = 90
+            let radius = text.height * 0.35
+            options.radius = radius < minimalRadius ? minimalRadius : radius
+        }
         options.images = arrayImages
-        options.stepComplete = total
+        options.stepComplete = totalItems
         options.bgColor = HexColor.primary.color
         options.mainTextColor = HexColor.text.color
         options.subTextColor = HexColor.secondary.color
@@ -60,10 +53,40 @@ class PersonalityTestResultView: UIViewController {
         options.mainText = Titles.youGot.rawValue
         options.subText = viewModel?.userPersonalityTitle ?? ""
         
-        processLoadingView.options = options
+        return options
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AppDelegate.shared.lockOrientation()
+        setupBindings()
+        setupAppearance()
+        labelResult.typingTimeInterval = Singleton.shared.typingTimeInterval
+        labelResult.startTypewritingAnimation(completion: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        processLoadingView.start(completed: nil)
+    }
+    
+    func setupAppearance() {
+        setTitle(text: Titles.result.rawValue)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem()
+        
+        buttonSeeMovies.backgroundColor = HexColor.secondary.color
+        buttonDoTestAgain.backgroundColor = HexColor.secondary.color
+        
+        processLoadingView.options = processLoadingOptions
     }
     
     func setupBindings() {
-        viewModel?.resultText.bind(to: textViewResult.reactive.text)
+        viewModel?.resultText.bind(to: labelResult.reactive.text)
+    }
+    
+    @IBAction func buttonDoTestAgainAction(_ sender: UIButton) {
+        viewModel?.doTestAgain()
+        navigationController?.popViewController(animated: true)
     }
 }

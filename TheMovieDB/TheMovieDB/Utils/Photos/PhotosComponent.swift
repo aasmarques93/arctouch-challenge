@@ -42,7 +42,7 @@ struct PhotosComponent {
 
         var arrayPhotos = [AXPhoto]()
 
-        for photo in photos {
+        photos.forEach { (photo) in
             arrayPhotos.append(AXPhoto(attributedTitle: NSAttributedString(string: photo.title ?? ""),
                                        attributedDescription: NSAttributedString(string: photo.description ?? ""),
                                        attributedCredit: NSAttributedString(string: photo.credit ?? ""),

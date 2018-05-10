@@ -8,9 +8,9 @@
 
 import Bond
 
-protocol PersonalityTestViewModelDelegate: class {
+protocol PersonalityTestViewModelDelegate: ViewModelDelegate {
     func reloadData(at row: Int)
-    func didFinishSteps()
+    func didFinishSteps(animated: Bool)
     func skipTest()
 }
 
@@ -29,26 +29,13 @@ class PersonalityTestViewModel: ViewModel {
     var resultText = Observable<String>("")
     
     // MARK: Objects
-    private var personalityObject: Personality? {
-        didSet {
-            doDetectionStep()
-            
-            guard let personalityTypes = personalityObject?.personalityTypes else {
-                return
-            }
-            
-            arrayPersonalityTypes = personalityTypes
-        }
+    private var personalityObject: Personality? { didSet { doDetectionStep() } }
+    private var arrayPersonalityTypes: [PersonalityType] {
+        return Singleton.shared.arrayPersonalityTypes
     }
+    private var userPersonalityType = Singleton.shared.userPersonalityType
     
-    private var arrayPersonalityTypes = [PersonalityType]()
-    private var userPersonalityType: PersonalityType? {
-        didSet {
-            resultText.value = userPersonalityType?.text ?? ""
-        }
-    }
-    
-    private var arrayQuestions = [Questions]() { didSet { delegate?.reloadData(at: currentStep) } }
+    private var arrayQuestions = [Questions]()
     var numberOfQuestions: Int { return arrayQuestions.count }
     var totalOfQuestions: Int? { return personalityObject?.questions?.count }
     
@@ -56,6 +43,7 @@ class PersonalityTestViewModel: ViewModel {
 
     // MARK: Variables
     private var currentStep: Int = -1
+    private var isTestingAgain = false
     
     var userPersonalityTitle: String {
         return userPersonalityType?.title ?? ""
@@ -66,30 +54,45 @@ class PersonalityTestViewModel: ViewModel {
     }
     
     var dictionaryAnswersCounts: [Int: Int] {
-        var counts = [Int: Int]()
-        arraySelectedAnswers.forEach { (answer) in
-            if let id = answer.personalityTypeId  {
-                counts[id, default: 0] += 1
-            }
+        var dictionary = Singleton.shared.dictionaryAnswersCounts()
+        
+        if dictionary.isEmpty {
+            dictionary = Singleton.shared.dictionaryAnswersCounts(at: arraySelectedAnswers)
         }
-        return counts
-    }
-    
-    // MARK: - Life cycle -
-    
-    init() {
-        userPersonalityType = Singleton.shared.userPersonalityType
+        
+        return dictionary
     }
     
     // MARK: - Service requests -
     
     func loadData() {
-        if Singleton.shared.isPersonalityTestAnswered && !Singleton.shared.didSkipTestFromLauching {
-            Singleton.shared.didSkipTestFromLauching = true
-            delegate?.skipTest()
+        loadPersonalityTypes()
+        
+        if Singleton.shared.isPersonalityTestAnswered && !Singleton.shared.didSkipTestFromLauching && !isTestingAgain {
+            skipTest()
             return
         }
         
+        if let didSkipTest = Singleton.shared.didSkipTest, !didSkipTest && !isTestingAgain {
+            didFinishSteps(animated: false)
+            return
+        }
+        
+        isTestingAgain = false
+        loadTest()
+    }
+    
+    private func loadPersonalityTypes() {
+        JSONWrapper.json(from: .personalityTypes) { (json) in
+            let object = Personality(json: json)
+            guard let results = object.personalityTypes else {
+                return
+            }
+            Singleton.shared.arrayPersonalityTypes = results
+        }
+    }
+    
+    private func loadTest() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             JSONWrapper.json(from: .personalityTest) { [weak self] (json) in
                 self?.personalityObject = Personality(json: json)
@@ -118,20 +121,47 @@ class PersonalityTestViewModel: ViewModel {
         setupProgress()
         
         guard let questions = personalityObject?.questions, currentStep < questions.count else {
-            didFinishSteps()
+            didFinishSteps(animated: true)
             return
         }
         
         arrayQuestions.append(questions[currentStep])
+        delegate?.reloadData(at: currentStep)
     }
     
-    private func didFinishSteps() {
+    private func didFinishSteps(animated: Bool) {
         print("Did finish steps")
         discoverUserPersonality()
-        delegate?.didFinishSteps()
+        resultText.value = userPersonalityType?.text ?? ""
+        delegate?.didFinishSteps(animated: animated)
     }
     
+    private func skipTest() {
+        if userPersonalityType == nil { saveSkipTest(status: true) }
+        delegate?.skipTest()
+    }
+    
+    func doTestAgain() {
+        isTestingAgain = true
+        currentStep = -1
+        progress.value = 0
+        pagingText.value = ""
+        arrayQuestions = [Questions]()
+        arraySelectedAnswers = [Answer]()
+        delegate?.reloadData?()
+    }
+    
+    // MARK: - Personality Type -
+    
     private func discoverUserPersonality() {
+        saveUserPersonalityType()
+        saveSkipTest(status: false)
+        saveAnsweredQuestions()
+    }
+    
+    // MARK: - User Defaults -
+    
+    private func saveUserPersonalityType() {
         let maxValue = dictionaryAnswersCounts.values.max()
         let item = dictionaryAnswersCounts.filter { return $0.value == maxValue }
         
@@ -139,10 +169,23 @@ class PersonalityTestViewModel: ViewModel {
             userPersonalityType = arrayPersonalityTypes.filter { return $0.id == personalityTypeId }.first
         }
         
-        userPersonalityType?.saveUserDefaults(key: Constants.UserDefaults.userPersonality)
-        
         let message = Messages.didAnsweredPersonalityTest.rawValue
         FabricUtils.logEvent(message: "\(message)\(userPersonalityType?.title ?? "")")
+        
+        UserDefaultsWrapper.saveUserDefaults(object: userPersonalityType?.dictionaryRepresentation(), key: .userPersonality)
+    }
+    
+    private func saveSkipTest(status: Bool) {
+        UserDefaultsWrapper.saveUserDefaults(object: status, key: .didSkipTest)
+    }
+    
+    private func saveAnsweredQuestions() {
+        guard arraySelectedAnswers.count > 0 else {
+            return
+        }
+        
+        let array = arraySelectedAnswers.map { return $0.dictionaryRepresentation() }
+        UserDefaultsWrapper.saveUserDefaults(object: array, key: .answeredQuestions)
     }
     
     func personalityTestCellViewModel(at indexPath: IndexPath) -> PersonalityTestCellViewModel? {
@@ -160,8 +203,7 @@ extension PersonalityTestViewModel: PersonalityTestCellViewModelDelegate {
         arraySelectedAnswers.append(answer)
         
         if let skip = answer.skip, skip {
-            discoverUserPersonality()
-            delegate?.skipTest()
+            skipTest()
             return
         }
         

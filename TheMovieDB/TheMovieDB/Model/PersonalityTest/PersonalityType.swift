@@ -17,6 +17,7 @@ struct PersonalityType: Model {
         static let title = "title"
         static let genres = "genres"
         static let text = "text"
+        static let color = "color"
     }
     
     // MARK: Properties
@@ -24,6 +25,7 @@ struct PersonalityType: Model {
     var title: String?
     var genres: [Int]?
     var text: String?
+    var color: String?
     
     // MARK: SwiftyJSON Initializers
     /// Initiates the instance based on the object.
@@ -47,6 +49,7 @@ struct PersonalityType: Model {
         title = json?[SerializationKeys.title].string
         if let items = json?[SerializationKeys.genres].array { genres = items.map { $0.intValue } }
         text = json?[SerializationKeys.text].string
+        color = json?[SerializationKeys.color].string
     }
     
     /// Generates description of the object in the form of a NSDictionary.
@@ -58,6 +61,7 @@ struct PersonalityType: Model {
         if let value = title { dictionary[SerializationKeys.title] = value }
         if let value = genres { dictionary[SerializationKeys.genres] = value }
         if let value = text { dictionary[SerializationKeys.text] = value }
+        if let value = color { dictionary[SerializationKeys.color] = value }
         return dictionary
     }
     

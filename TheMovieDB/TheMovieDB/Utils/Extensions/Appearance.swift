@@ -34,6 +34,11 @@ extension UIViewController {
         titleView.addSubview(imageView)
         navigationItem.titleView = titleView
     }
+    
+    func setTitle(text: String?) {
+        navigationItem.titleView = nil
+        title = text
+    }
 }
 
 extension UITabBar {
@@ -62,7 +67,7 @@ extension CAGradientLayer {
         self.init()
         self.frame = frame
         self.colors = []
-        for color in colors {
+        colors.forEach { (color) in
             self.colors?.append(color.cgColor)
         }
         startPoint = CGPoint(x: 0, y: 0)
@@ -183,10 +188,11 @@ extension UIView {
     }
     
     func removeGradient() {
-        if let sublayers = layer.sublayers {
-            for sublayer in sublayers {
-                sublayer.removeFromSuperlayer()
-            }
+        guard let sublayers = layer.sublayers else {
+            return
+        }
+        sublayers.forEach { (sublayer) in
+            sublayer.removeFromSuperlayer()
         }
     }
 }
@@ -354,18 +360,18 @@ extension UIView {
     func getSubviewsMaxHeight() -> CGFloat {
         var max:CGFloat = 0
         
-        for subview in self.subviews {
-            if subview.bounds.size.height > max {
-                max = subview.bounds.size.height
+        subviews.forEach { (subview) in
+            guard subview.bounds.size.height > max else {
+                return
             }
+            max = subview.bounds.size.height
         }
-        if max == 0 { max = self.bounds.size.height }
-        return max
+        return max == 0 ? max : bounds.size.height
     }
     
     func contentHeight() -> CGFloat {
         var r = CGRect.zero
-        for subview in self.subviews {
+        subviews.forEach { (subview) in
             r = r.union(subview.frame)
         }
         return r.height
@@ -396,7 +402,7 @@ extension UIView {
     }
     
     func removeAllSubviews() {
-        for subview in self.subviews {
+        subviews.forEach { (subview) in
             subview.removeFromSuperview()
         }
     }
@@ -423,15 +429,9 @@ extension UIView {
     
     static func findTableViewInSubviews(view: UIView) -> UITableView? {
         for subview in view.subviews {
-            if subview is UITableView {
-                return subview as? UITableView
-                
-            } else {
-                for subsubview in subview.subviews {
-                    if subsubview is UITableView {
-                        return subsubview as? UITableView
-                    }
-                }
+            if subview is UITableView { return subview as? UITableView }
+            for subsubview in subview.subviews {
+                if subsubview is UITableView { return subsubview as? UITableView }
             }
         }
         return nil
@@ -439,9 +439,7 @@ extension UIView {
     
     static func findScrollViewInSubViews(view: UIView) -> UIScrollView? {
         for subview in view.subviews {
-            if subview is UIScrollView {
-                return subview as? UIScrollView
-            }
+            if subview is UIScrollView { return subview as? UIScrollView }
         }
         return nil
     }

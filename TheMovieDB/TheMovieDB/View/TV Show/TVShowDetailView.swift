@@ -38,8 +38,6 @@ class TVShowDetailView: UITableViewController {
     }
     
     func setupAppearance() {
-        navigationItem.titleView = nil
-        
         carouselVideos.type = .linear
         carouselVideos.bounces = false
         carouselSeasons.type = .linear
@@ -91,7 +89,7 @@ extension TVShowDetailView: TVShowDetailViewModelDelegate {
     func reloadData() {
         tableView.reloadData()
         
-        title = viewModel?.tvShowName
+        setTitle(text: viewModel?.tvShowName)
         
         if let value = viewModel?.tvShowName {
             FabricUtils.logEvent(message: "\(Messages.didSelect) \(value)")

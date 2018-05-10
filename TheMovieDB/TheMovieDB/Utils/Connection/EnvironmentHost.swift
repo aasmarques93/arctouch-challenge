@@ -67,4 +67,5 @@ enum RequestUrl: String {
     case multiSearch
     case seasonDetail
     case personalityTest
+    case personalityTypes
 }

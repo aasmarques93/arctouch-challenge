@@ -17,15 +17,10 @@ class SeasonDetailView: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupAppearance()
+        setTitle(text: viewModel?.seasonName)
         setupBindings()
         viewModel?.delegate = self
         viewModel?.loadData()
-    }
-    
-    func setupAppearance() {
-        navigationItem.titleView = nil
-        title = viewModel?.seasonName
     }
     
     // MARK: - View model bindings -

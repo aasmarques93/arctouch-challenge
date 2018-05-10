@@ -17,11 +17,6 @@ class TVShowView: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if Singleton.shared.isPersonalityTestAnswered {
-            navigationItem.rightBarButtonItem = nil
-        }
-        
         searchHeaderView.delegate = self
         tableView.keyboardDismissMode = .onDrag
         viewModel.delegate = self

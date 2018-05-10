@@ -24,13 +24,13 @@ class PersonalityTestView: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupAppearance()
+        AppDelegate.shared.lockOrientation()
         viewModel.loadData()
     }
     
-    func setupAppearance() {
-        navigationItem.titleView = nil
-        title = Titles.personalityTest.rawValue
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setTitle(text: Titles.personalityTest.rawValue)
     }
     
     func setupBindings() {
@@ -64,16 +64,20 @@ class PersonalityTestView: UITableViewController {
 }
 
 extension PersonalityTestView: PersonalityTestViewModelDelegate {
+    func reloadData() {
+        tableView.reloadData()
+    }
+    
     func reloadData(at row: Int) {
         let indexPath = IndexPath(row: row, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
-    func didFinishSteps() {
+    func didFinishSteps(animated: Bool) {
         let viewController = instantiate(viewController: PersonalityTestResultView.self, from: .personalityTest)
         viewController.viewModel = viewModel
-        navigationController?.pushViewController(viewController, animated: true)
+        navigationController?.pushViewController(viewController, animated: animated)
     }
     
     func skipTest() {

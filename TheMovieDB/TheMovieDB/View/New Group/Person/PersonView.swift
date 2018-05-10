@@ -29,14 +29,6 @@ class PersonView: UITableViewController {
     
     var viewModel: PersonViewModel?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if Singleton.shared.isPersonalityTestAnswered {
-            navigationItem.rightBarButtonItem = nil
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAppearance()
@@ -46,7 +38,6 @@ class PersonView: UITableViewController {
     }
     
     func setupAppearance() {
-        navigationItem.titleView = nil
         carouselMovies.type = .coverFlow2
         tableView.tableFooterView = UIView()
     }
@@ -121,7 +112,7 @@ extension PersonView: iCarouselDelegate, iCarouselDataSource {
 
 extension PersonView: ViewModelDelegate {
     func reloadData() {
-        title = viewModel?.personName
+        setTitle(text: viewModel?.personName)
         
         if let value = viewModel?.personName {
             FabricUtils.logEvent(message: "\(Messages.didSelect) \(value)")

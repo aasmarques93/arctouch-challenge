@@ -10,7 +10,6 @@ import UIKit
 import GhostTypewriter
 
 private let cellIdentifier = "AnswerCell"
-private let typingTimeInterval = 0.01
 
 class PersonalityTestViewCell: UITableViewCell {
     @IBOutlet weak var labelText: TypewriterLabel!
@@ -27,7 +26,7 @@ class PersonalityTestViewCell: UITableViewCell {
         tableView.dataSource = self
         tableView.reloadData()
         
-        labelText.typingTimeInterval = typingTimeInterval
+        labelText.typingTimeInterval = Singleton.shared.typingTimeInterval
         labelText.startTypewritingAnimation {
             self.viewModel?.didFinishTypewriting()
         }
@@ -68,7 +67,7 @@ extension PersonalityTestViewCell: UITableViewDataSource {
                 
             }
             
-            label.typingTimeInterval = typingTimeInterval
+            label.typingTimeInterval = Singleton.shared.typingTimeInterval
             label.startTypewritingAnimation {
                 self.viewModel?.didFinishTypewriting()
             }

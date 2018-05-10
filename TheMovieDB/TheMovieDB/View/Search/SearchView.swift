@@ -21,11 +21,6 @@ class SearchView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if Singleton.shared.isPersonalityTestAnswered {
-            navigationItem.rightBarButtonItem = nil
-        }
-        
         tableView.keyboardDismissMode = .onDrag
         viewHeader.backgroundColor = HexColor.primary.color
         viewModel.delegate = self

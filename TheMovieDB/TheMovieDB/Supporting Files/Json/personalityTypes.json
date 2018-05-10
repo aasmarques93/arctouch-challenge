@@ -1,0 +1,39 @@
+{
+    "personalityType": [
+                        {
+                        "id": 0,
+                        "title": "Comedy",
+                        "genres": [35, 10751, 14, 12, 10402, 10770, 16],
+                        "color": "#FED16D",
+                        "text": "When you watch a movie, your main goal is to brighten your mood through humor.  More times than not, you like to watch movies with your friends, and can be satisfied with predictable, understandable endings to the films you watch.  In addition, you probably have a sense of humor yourself and like to draw inspiration from these types of movies."
+                        },
+                        {
+                        "id": 1,
+                        "title": "Action",
+                        "genres": [28, 80, 10752, 37],
+                        "color": "#01D277",
+                        "text": "Your favorite films typically involve a main hero and main villian and are crammed with special effects and suspense.  As opposed to thrillers, your main goal is not to be frightened but rather to enjoy the ride, explosions and all.  Chances are you have an outgoing side but watch just as many movies alone as with friends."
+                        },
+                        {
+                        "id": 2,
+                        "title": "Drama",
+                        "genres": [18, 14, 10751, 10749],
+                        "color": "#EF9C6A",
+                        "text": "Fans of this genre typically want well-developed characters and plots in order to absorb themselves into the movie experience.  Thus you are a more serious person that enjoys a good story, not necessarily state-of-the-art effects or revolutionary filming techniques.  You sometimes watch films with others, but have a tendency to view them by yourself because in your opinion movies don't have to be part of a social experience."
+                        },
+                        {
+                        "id": 3,
+                        "title": "Thriller",
+                        "genres": [9648, 878, 53],
+                        "color": "#E65652",
+                        "text": "The films you're mainly caught watching are any films which give you a good shiver up your spine.  Unlike horror films, which thrive on violence, your films are less about the monster leaping out of the shadows than they are about an underlying ambience of uneasiness and unreliabity with your characters.  You may be an extrovert and enjoy a good scare with friends, or you could just as easily be an introvert who is engrossed by the numerous layers and nuances of the movie.  Either way, you can't deny that creepy movies are here to stay in your collection."
+                        },
+                        {
+                        "id": 4,
+                        "title": "Documentary",
+                        "genres": [99, 36, 10770],
+                        "color": "#167B82",
+                        "text": "You've likely stopped wasting your time with characters and plot in your movies by now.  You're more concerned with realism and exploring the wonders of the world around you.  You are probably an exceptional student who loves to read and discover new information.  Even though some people might consider you to not be that lively, your curiosity and intelligent shows that you could be a successful filmmaker yourself someday."
+                        }
+                        ]
+}
