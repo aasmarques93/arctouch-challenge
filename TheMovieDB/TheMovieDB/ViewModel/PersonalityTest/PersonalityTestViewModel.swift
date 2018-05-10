@@ -54,10 +54,10 @@ class PersonalityTestViewModel: ViewModel {
     }
     
     var dictionaryAnswersCounts: [Int: Int] {
-        var dictionary = Singleton.shared.dictionaryAnswersCounts()
+        var dictionary = Singleton.shared.dictionaryAnswersCounts(at: arraySelectedAnswers)
         
         if dictionary.isEmpty {
-            dictionary = Singleton.shared.dictionaryAnswersCounts(at: arraySelectedAnswers)
+            dictionary = Singleton.shared.dictionaryAnswersCounts()
         }
         
         return dictionary
