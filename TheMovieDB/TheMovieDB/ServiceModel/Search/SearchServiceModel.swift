@@ -10,7 +10,10 @@ struct SearchServiceModel {
     let serviceModel = ServiceModel()
     
     func getGenres(requestUrl: RequestUrl, handler: @escaping HandlerObject) {
-        serviceModel.request(requestUrl: requestUrl, handlerObject: { (object) in
+        let parameters: [String: Any] = [
+            "language": Locale.preferredLanguages.first ?? ""
+        ]
+        serviceModel.request(requestUrl: requestUrl, urlParameters: parameters, handlerObject: { (object) in
             if let object = object { handler(MoviesGenres(object: object)) }
         })
     }

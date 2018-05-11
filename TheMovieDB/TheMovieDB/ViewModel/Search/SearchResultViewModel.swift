@@ -191,7 +191,7 @@ class SearchResultViewModel: ViewModel {
     
     func movieName(at indexPath: IndexPath) -> String? {
         let result = arraySearchFiltered[indexPath.row]
-        return result.name ?? result.originalTitle ?? result.originalName
+        return result.name ?? result.title ?? result.originalName
     }
     
     func movieDetailViewModel(at indexPath: IndexPath) -> MovieDetailViewModel? {

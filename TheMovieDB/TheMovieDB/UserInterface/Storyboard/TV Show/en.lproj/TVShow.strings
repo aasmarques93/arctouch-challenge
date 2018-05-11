@@ -1,0 +1,60 @@
+
+/* Class = "UITextView"; text = "{{Genres}}"; ObjectID = "3sC-ST-K4W"; */
+"3sC-ST-K4W.text" = "{{Genres}}";
+
+/* Class = "UILabel"; text = "Overview"; ObjectID = "91i-63-aLa"; */
+"91i-63-aLa.text" = "Overview";
+
+/* Class = "UITextView"; text = "{{Overview}}"; ObjectID = "DAZ-ra-GTP"; */
+"DAZ-ra-GTP.text" = "{{Overview}}";
+
+/* Class = "UITextView"; text = "{{Overview}}"; ObjectID = "J0u-iS-eAg"; */
+"J0u-iS-eAg.text" = "{{Overview}}";
+
+/* Class = "UILabel"; text = "{{Date}}"; ObjectID = "KnY-b2-QXZ"; */
+"KnY-b2-QXZ.text" = "{{Date}}";
+
+/* Class = "UILabel"; text = "{{Date}}"; ObjectID = "Le2-8Z-8Zr"; */
+"Le2-8Z-8Zr.text" = "{{Date}}";
+
+/* Class = "UILabel"; text = "Overview"; ObjectID = "NrE-hk-hus"; */
+"NrE-hk-hus.text" = "Overview";
+
+/* Class = "UILabel"; text = "{{Title}}"; ObjectID = "alO-LV-ToV"; */
+"alO-LV-ToV.text" = "{{Title}}";
+
+/* Class = "UITextView"; text = "{{Overview}}"; ObjectID = "bcD-59-ZAT"; */
+"bcD-59-ZAT.text" = "{{Overview}}";
+
+/* Class = "UILabel"; text = "Seasons"; ObjectID = "d7Y-7a-2B7"; */
+"d7Y-7a-2B7.text" = "Seasons";
+
+/* Class = "UITextView"; text = "{{Overview}}"; ObjectID = "dLR-RU-8TA"; */
+"dLR-RU-8TA.text" = "{{Overview}}";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "hwr-rp-431"; */
+"hwr-rp-431.title" = " ";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "pFM-LU-Oz0"; */
+"pFM-LU-Oz0.title" = " ";
+
+/* Class = "UILabel"; text = "Genres"; ObjectID = "qTR-ai-0Ow"; */
+"qTR-ai-0Ow.text" = "Genres";
+
+/* Class = "UILabel"; text = "Cast"; ObjectID = "qmI-Gi-aVd"; */
+"qmI-Gi-aVd.text" = "Cast";
+
+/* Class = "UILabel"; text = "There are no TV shows available"; ObjectID = "qpJ-OH-Wi2"; */
+"qpJ-OH-Wi2.text" = "There are no TV shows available";
+
+/* Class = "UILabel"; text = "{{Date}}"; ObjectID = "rGy-s6-Yc6"; */
+"rGy-s6-Yc6.text" = "{{Date}}";
+
+/* Class = "UILabel"; text = "User Score"; ObjectID = "sLF-mF-ntd"; */
+"sLF-mF-ntd.text" = "User Score";
+
+/* Class = "UILabel"; text = "{{Title}}"; ObjectID = "uUB-Iy-6f3"; */
+"uUB-Iy-6f3.text" = "{{Title}}";
+
+/* Class = "UILabel"; text = "Videos"; ObjectID = "wUf-wh-24c"; */
+"wUf-wh-24c.text" = "Videos";

@@ -1,0 +1,57 @@
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "CVf-lI-O3F"; */
+"CVf-lI-O3F.title" = " ";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "GhD-SR-CQJ"; */
+"GhD-SR-CQJ.title" = "Item";
+
+/* Class = "UILabel"; text = "Cast"; ObjectID = "H55-wM-iEx"; */
+"H55-wM-iEx.text" = "Cast";
+
+/* Class = "UILabel"; text = "{{Average}}"; ObjectID = "J8k-pV-Ii1"; */
+"J8k-pV-Ii1.text" = "{{Average}}";
+
+/* Class = "UILabel"; text = "Videos"; ObjectID = "KLe-4f-fUS"; */
+"KLe-4f-fUS.text" = "Videos";
+
+/* Class = "UILabel"; text = "There are no movies available"; ObjectID = "QlI-xw-RRj"; */
+"QlI-xw-RRj.text" = "There are no movies available";
+
+/* Class = "UITextView"; text = "{{Overview}}"; ObjectID = "SZQ-wJ-wpU"; */
+"SZQ-wJ-wpU.text" = "{{Overview}}";
+
+/* Class = "UILabel"; text = "Similar Movies"; ObjectID = "Sp6-w4-dix"; */
+"Sp6-w4-dix.text" = "Similar Movies";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "WIv-Hp-eRf"; */
+"WIv-Hp-eRf.title" = " ";
+
+/* Class = "UILabel"; text = "{{Author}}"; ObjectID = "Wg2-ix-YdY"; */
+"Wg2-ix-YdY.text" = "{{Author}}";
+
+/* Class = "UINavigationItem"; title = "Root View Controller"; ObjectID = "bYj-0A-A8a"; */
+"bYj-0A-A8a.title" = "Root View Controller";
+
+/* Class = "UILabel"; text = "{{Runtime}}"; ObjectID = "baR-db-9Ng"; */
+"baR-db-9Ng.text" = "{{Runtime}}";
+
+/* Class = "UILabel"; text = "Overview"; ObjectID = "d8M-xO-d3C"; */
+"d8M-xO-d3C.text" = "Overview";
+
+/* Class = "UILabel"; text = "Genres"; ObjectID = "dw5-vk-CDB"; */
+"dw5-vk-CDB.text" = "Genres";
+
+/* Class = "UILabel"; text = "{{Content}}"; ObjectID = "gHK-9F-HwF"; */
+"gHK-9F-HwF.text" = "{{Content}}";
+
+/* Class = "UITextView"; text = "{{Genres}}"; ObjectID = "jmv-qH-qtb"; */
+"jmv-qH-qtb.text" = "{{Genres}}";
+
+/* Class = "UILabel"; text = "{{Date}}"; ObjectID = "rFE-ed-Pzf"; */
+"rFE-ed-Pzf.text" = "{{Date}}";
+
+/* Class = "UILabel"; text = "Recomended"; ObjectID = "waF-Qx-X3M"; */
+"waF-Qx-X3M.text" = "Recomended";
+
+/* Class = "UILabel"; text = "Reviews"; ObjectID = "xfd-QY-E9l"; */
+"xfd-QY-E9l.text" = "Reviews";

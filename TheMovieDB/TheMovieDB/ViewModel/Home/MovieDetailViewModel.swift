@@ -37,7 +37,7 @@ class MovieDetailViewModel: ViewModel {
         didSet {
             delegate?.reloadData?()
             
-            name.value = valueDescription(movieDetail?.originalTitle)
+            name.value = valueDescription(movieDetail?.title)
             date.value = valueDescription(movieDetail?.releaseDate)
             average.value = valueDescription(movieDetail?.voteAverage)
             runtime.value = "\(valueDescription(movieDetail?.runtime)) minutes"
@@ -170,7 +170,7 @@ class MovieDetailViewModel: ViewModel {
     // MARK: Movie
     
     var movieName: String? {
-        return movie.originalTitle
+        return movie.title
     }
     
     func movieDetailImageData(handlerData: @escaping HandlerObject) {

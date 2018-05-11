@@ -1,0 +1,30 @@
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "BWC-Pm-Tqd"; */
+"BWC-Pm-Tqd.title" = " ";
+
+/* Class = "UILabel"; text = "{{Name}}"; ObjectID = "KSd-8W-cfm"; */
+"KSd-8W-cfm.text" = "{{Name}}";
+
+/* Class = "UISegmentedControl"; P1v-Jg-qGa.segmentTitles[0] = "Movies"; ObjectID = "P1v-Jg-qGa"; */
+"P1v-Jg-qGa.segmentTitles[0]" = "Movies";
+
+/* Class = "UISegmentedControl"; P1v-Jg-qGa.segmentTitles[1] = "TV Show"; ObjectID = "P1v-Jg-qGa"; */
+"P1v-Jg-qGa.segmentTitles[1]" = "TV Show";
+
+/* Class = "UISegmentedControl"; P1v-Jg-qGa.segmentTitles[2] = "People"; ObjectID = "P1v-Jg-qGa"; */
+"P1v-Jg-qGa.segmentTitles[2]" = "People";
+
+/* Class = "UISearchBar"; placeholder = "Search for a movie, tv show, person..."; ObjectID = "Z5u-zM-SWz"; */
+"Z5u-zM-SWz.placeholder" = "Search for a movie, tv show, person...";
+
+/* Class = "UISegmentedControl"; lUG-j8-133.segmentTitles[0] = "Movies"; ObjectID = "lUG-j8-133"; */
+"lUG-j8-133.segmentTitles[0]" = "Movies";
+
+/* Class = "UISegmentedControl"; lUG-j8-133.segmentTitles[1] = "TV Show"; ObjectID = "lUG-j8-133"; */
+"lUG-j8-133.segmentTitles[1]" = "TV Show";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "qDb-4F-HHa"; */
+"qDb-4F-HHa.title" = " ";
+
+/* Class = "UILabel"; text = "{{Genre}}"; ObjectID = "ueQ-zb-mIn"; */
+"ueQ-zb-mIn.text" = "{{Genre}}";
