@@ -15,4 +15,8 @@ enum Messages: String {
     case searchPerson = "Search a person"
     case didSelect = "Did select"
     case didAnsweredPersonalityTest = "Did answered personality test - Type: "
+    
+    var localized: String {
+        return NSLocalizedString(self.rawValue, comment: "")
+    }
 }

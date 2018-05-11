@@ -46,7 +46,7 @@ class MovieDetailView: UITableViewController {
         reviewsView?.viewModel = viewModel
         
         if let value = viewModel?.movieName {
-            FabricUtils.logEvent(message: "\(Messages.didSelect) \(value)")
+            FabricUtils.logEvent(message: "\(Messages.didSelect.localized) \(value)")
         }
     }
     

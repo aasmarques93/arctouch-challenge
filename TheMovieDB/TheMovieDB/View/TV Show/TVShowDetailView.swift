@@ -92,7 +92,7 @@ extension TVShowDetailView: TVShowDetailViewModelDelegate {
         setTitle(text: viewModel?.tvShowName)
         
         if let value = viewModel?.tvShowName {
-            FabricUtils.logEvent(message: "\(Messages.didSelect) \(value)")
+            FabricUtils.logEvent(message: "\(Messages.didSelect.localized) \(value)")
         }
         
         if let average = viewModel?.average { circularProgressView.progress = average }

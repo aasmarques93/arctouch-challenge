@@ -19,6 +19,10 @@ enum GenreType: String {
     case upcoming = "Upcoming"
     case popular = "Popular"
     
+    var localized: String {
+        return NSLocalizedString(self.rawValue, comment: "")
+    }
+    
     var index: Int {
         switch self {
         case .sugested:
@@ -262,9 +266,9 @@ class HomeViewModel: ViewModel {
             let userPersonalityType = Singleton.shared.userPersonalityType,
             let title = userPersonalityType.title else {
                 
-            return "  \(genre.rawValue)"
+            return "  \(genre.localized)"
         }
-        return "  \(genre.rawValue) for \(title)"
+        return "  \(genre.localized) for \(title)"
     }
     
     // MARK: - Movie methods -

@@ -171,7 +171,7 @@ class ChartGenericContainer: UIView, ChartViewDelegate, IAxisValueFormatter, IVa
         let chartView = BarChartView(frame: frame)
         
         chartView.backgroundColor = HexColor.primary.color
-        chartView.noDataText = Messages.emptySearch.rawValue
+        chartView.noDataText = Messages.emptySearch.localized
         chartView.delegate = self
         chartView.pinchZoomEnabled = false
         chartView.scaleYEnabled = false
@@ -273,7 +273,7 @@ class ChartGenericContainer: UIView, ChartViewDelegate, IAxisValueFormatter, IVa
         let chartView = BubbleChartView(frame: frame)
         
         chartView.backgroundColor = HexColor.primary.color
-        chartView.noDataText = Messages.emptySearch.rawValue
+        chartView.noDataText = Messages.emptySearch.localized
         chartView.delegate = self
         chartView.chartDescription = nil
         chartView.pinchZoomEnabled = true
@@ -367,7 +367,7 @@ class ChartGenericContainer: UIView, ChartViewDelegate, IAxisValueFormatter, IVa
         let chartView = LineChartView(frame: frame)
         
         chartView.backgroundColor = HexColor.primary.color
-        chartView.noDataText = Messages.emptySearch.rawValue
+        chartView.noDataText = Messages.emptySearch.localized
         chartView.delegate = self
         chartView.chartDescription = nil
         
@@ -502,7 +502,7 @@ class ChartGenericContainer: UIView, ChartViewDelegate, IAxisValueFormatter, IVa
         
         chartView.backgroundColor = HexColor.primary.color
         chartView.center = CGPoint(x: self.center.x, y: self.center.y + commonMargin*2)
-        chartView.noDataText = Messages.emptySearch.rawValue
+        chartView.noDataText = Messages.emptySearch.localized
         chartView.delegate = self
         chartView.holeRadiusPercent = 0.68
         chartView.holeColor = HexColor.primary.color
@@ -595,7 +595,7 @@ class ChartGenericContainer: UIView, ChartViewDelegate, IAxisValueFormatter, IVa
         let chartView = HorizontalBarChartView(frame: frame)
         
         chartView.backgroundColor = HexColor.primary.color
-        chartView.noDataText = Messages.emptySearch.rawValue
+        chartView.noDataText = Messages.emptySearch.localized
         chartView.delegate = self
         chartView.pinchZoomEnabled = false
         chartView.scaleYEnabled = false

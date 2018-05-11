@@ -1,316 +1,316 @@
 {
     "questions": [
         {
-            "title": "Hey buddy, how are you?\nI'm here to help you to choose the best option to watch and never waste your time.\nIt's very simple: I'm going to make a couple questions for you now, but, don't worry, all of them are very simple and fast.\nIt's just to detect your profile and your personality.\nAfter that, I can know what to show you which are the best options to watch at the moment!",
+            "title": "Ei amigo, como você está?\nEstou aqui para ajudá-lo a escolher a melhor opção para assistir e nunca perder seu tempo.\nÉ muito simples: vou fazer algumas perguntas para você agora, mas, não se preocupe, todos eles são muito simples e rápidos.\nÉ apenas para detectar o seu perfil e a sua personalidade.\nDepois disso, eu posso saber o que lhe mostrar quais são as melhores opções para assistir no momento!",
             "answers": [
                 {
                     "id": 50,
-                    "title": "OK, let's do it!",
+                    "title": "OK, vamos lá!",
                     "skip": false
                 },
                 {
                     "id": 51,
-                    "title": "I'll do it later",
+                    "title": "Quero responder depois",
                     "skip": true
                 }
             ]
         },
         {
-            "title": "So, let's get started. The typical hero in your film is",
+            "title": "Então vamos começar. O herói típico do seu filme é",
             "answers": [
                 {
                     "id": 0,
-                    "title": "A clueless man or woman who succeeds in the end.",
+                    "title": "Um homem sem noção ou mulher que consegue no final.",
                     "personalityTypeId": 0
                 },
                 {
                     "id": 1,
-                    "title": "A fearless character with a lot of common sense.",
+                    "title": "Um personagem destemido com muito bom senso.",
                     "personalityTypeId": 1
                 },
                 {
                     "id": 2,
-                    "title": "A character that may encounter failures but that you can't help rooting for.",
+                    "title": "Um personagem que pode encontrar falhas, mas que você não consegue evitar.",
                     "personalityTypeId": 2
                 },
                 {
                     "id": 3,
-                    "title": "I don't do the heroes and villains thing. It's too black and white.",
+                    "title": "Eu não faço heróis e vilões. É muito preto e branco.",
                     "personalityTypeId": 3
                 },
                 {
                     "id": 4,
-                    "title": "If anything, someone taken from history or current events",
+                    "title": "Se alguma coisa, alguém tirado da história ou eventos atuais",
                     "personalityTypeId": 4
                 }
             ]
         },
         {
-            "title": "What is your average movie night like?",
+            "title": "Como é a sua noite de cinema normal?",
             "answers": [
                 {
                     "id": 5,
-                    "title": "Me and my friends getting together so we can have a good laugh.",
+                    "title": "Eu e meus amigos nos reunimos para que possamos dar boas risadas.",
                     "personalityTypeId": 0
                 },
                 {
                     "id": 6,
-                    "title": "Me and a close friend watching something really high-energy.",
+                    "title": "Eu e um amigo próximo assistindo algo realmente de alta energia.",
                     "personalityTypeId": 1
                 },
                 {
                     "id": 7,
-                    "title": "Me and a close friend enjoying a good story.",
+                    "title": "Eu e um amigo próximo desfrutando de uma boa história.",
                     "personalityTypeId": 2
                 },
                 {
                     "id": 8,
-                    "title": "Me and some friends trying to scare ourselves senseless.",
+                    "title": "Eu e alguns amigos tentando nos assustar sem sentido.",
                     "personalityTypeId": 3
                 },
                 {
                     "id": 9,
-                    "title": "Me watching something intellectually stimulating on my laptop.",
+                    "title": "Me assistindo algo intelectualmente estimulante no meu laptop.",
                     "personalityTypeId": 4
                 }
             ]
         },
         {
-            "title": "Visually, what's the best part of the movie?",
+            "title": "Visualmente, qual é a melhor parte do filme?",
             "answers": [
                 {
                     "id": 10,
-                    "title": "The close-ups where you get to see all of the emotion in the character's face.",
+                    "title": "Os close-ups onde você consegue ver toda a emoção no rosto do personagem.",
                     "personalityTypeId": 0
                 },
                 {
                     "id": 11,
-                    "title": "The latest batch of special effects and CGI.",
+                    "title": "O último lote de efeitos especiais e CGI.",
                     "personalityTypeId": 1
                 },
                 {
                     "id": 12,
-                    "title": "The unique camera angles and editing techniques that heighten the mood of the film.",
+                    "title": "Os exclusivos ângulos de câmera e técnicas de edição que aumentam o clima do filme.",
                     "personalityTypeId": 4
                 },
                 {
                     "id": 13,
-                    "title": "Mindblowing panoramic views of nature or space.",
+                    "title": "Mindblowing vistas panorâmicas da natureza ou do espaço.",
                     "personalityTypeId": 3
                 },
                 {
                     "id": 14,
-                    "title": "I don't really pay attention to any of that stuff. ",
+                    "title": "Eu realmente não presto atenção a nada disso.",
                     "personalityTypeId": 2
                 }
             ]
         },
         {
-            "title": "When you hear a great line in a movie, you:",
+            "title": "Quando você ouve uma ótima fala em um filme, você:",
             "answers": [
                 {
                     "id": 15,
-                    "title": "Use it when describing the film to those who have never seen it.",
+                    "title": "Use-o ao descrever o filme para quem nunca o viu.",
                     "personalityTypeId": 2
                 },
                 {
                     "id": 16,
-                    "title": "One good quote does not a movie make.",
+                    "title": "Uma boa cotação não faz um filme.",
                     "personalityTypeId": 3
                 },
                 {
                     "id": 17,
-                    "title": "I don't obsess over cool movie quotes.",
+                    "title": "Eu não fico obcecado com citações de filmes legais.",
                     "personalityTypeId": 4
                 },
                 {
                     "id": 18,
-                    "title": "Quote it wherever I go to everyone I come in contact with.",
+                    "title": "Cite-o onde quer que eu vá com todos que entram em contato.",
                     "personalityTypeId": 0
                 },
                 {
                     "id": 19,
-                    "title": "Repeat it to the people who saw the film with me or think about how awesome that line was. ",
+                    "title": "Repita isso para as pessoas que viram o filme comigo ou pensem em como essa linha foi incrível.",
                     "personalityTypeId": 1
                 }
             ]
         },
         {
-            "title": "How deep do you prefer your movies to be?",
+            "title": "Quão profundo você prefere que seus filmes sejam?",
             "answers": [
                 {
                     "id": 20,
-                    "title": "Dude, it's just entertainment.",
+                    "title": "Cara, é apenas entretenimento.",
                     "personalityTypeId": 0
                 },
                 {
                     "id": 21,
-                    "title": "I definitely want some central conflict but that's about it.",
+                    "title": "Eu definitivamente quero algum conflito central, mas é sobre isso.",
                     "personalityTypeId": 1
                 },
                 {
                     "id": 22,
-                    "title": "I want the events to be ficticious but to play out just like real life.",
+                    "title": "Eu quero que os eventos sejam fictícios, mas que sejam como a vida real.",
                     "personalityTypeId": 2
                 },
                 {
                     "id": 23,
-                    "title": "I want to rack my brains for months trying to figure out how that movie really ended.",
+                    "title": "Eu quero quebrar meu cérebro por meses tentando descobrir como esse filme realmente acabou.",
                     "personalityTypeId": 3
                 },
                 {
                     "id": 24,
-                    "title": "I want to become smarter by having watched a film. ",
+                    "title": "Eu quero me tornar mais inteligente por ter assistido a um filme.",
                     "personalityTypeId": 4
                 }
             ]
         },
         {
-            "title": "How often do you want to be alone?",
+            "title": "Quantas vezes você quer ficar sozinho?",
             "answers": [
                 {
                     "id": 25,
-                    "title": "Pretty much all day, every day.",
+                    "title": "Quase todo o dia, todo dia.",
                     "personalityTypeId": 3
                 },
                 {
                     "id": 26,
-                    "title": "There are times when I want to be alone but there are other times that I need some company.",
+                    "title": "Há momentos em que quero ficar sozinho, mas há outras ocasiões em que preciso de companhia.",
                     "personalityTypeId": 4
                 },
                 {
                     "id": 27,
-                    "title": "I like to spend most of my time with a close friend or two.",
+                    "title": "Eu gosto de passar a maior parte do meu tempo com um amigo próximo ou dois.",
                     "personalityTypeId": 1
                 },
                 {
                     "id": 28,
-                    "title": "I thrive on socializing, but I can hold back if I know that no one wants to be around me at the moment.",
+                    "title": "Eu prospero em socializar, mas posso me segurar se souber que ninguém quer estar perto de mim no momento.",
                     "personalityTypeId": 2
                 },
                 {
                     "id": 29,
-                    "title": "ARE YOU KIDDING ME!!! I'D DIE WITHOUT OTHER PEOPLE!!!",
+                    "title": "VOCÊ ESTÁ BRINCANDO COMIGO!!! EU MORRERIA SEM OUTRAS PESSOAS!!!",
                     "personalityTypeId": 0
                 }
             ]
         },
         {
-            "title": "Do you like new things?",
+            "title": "Você gosta de coisas novas?",
             "answers": [
                 {
                     "id": 30,
-                    "title": "New things are the only things worth enjoying.",
+                    "title": "Coisas novas são as únicas coisas que valem a pena desfrutar.",
                     "personalityTypeId": 0
                 },
                 {
                     "id": 31,
-                    "title": "I like new technology, but I'm also partial to timeless entities like nature.",
+                    "title": "Eu gosto de novas tecnologias, mas também sou parcial para entidades atemporais como a natureza.",
                     "personalityTypeId": 4
                 },
                 {
                     "id": 32,
-                    "title": "There are just as many good new things as old things.",
+                    "title": "Há tantas coisas boas novas quanto coisas antigas.",
                     "personalityTypeId": 1
                 },
                 {
                     "id": 33,
-                    "title": "It depends on what would be most effective.",
+                    "title": "Depende do que seria mais eficaz.",
                     "personalityTypeId": 2
                 },
                 {
                     "id": 34,
-                    "title": "I could care less about trends; they won't last.",
+                    "title": "Eu poderia me importar menos com tendências; eles não vão durar.",
                     "personalityTypeId": 3
                 }
             ]
         },
         {
-            "title": "What gets your heart rate up the fastest?",
+            "title": "O que faz com que o seu ritmo cardíaco seja o mais rápido?",
             "answers": [
                 {
                     "id": 35,
-                    "title": "Anything, so please just leave me alone!",
+                    "title": "Qualquer coisa, então por favor me deixe em paz!",
                     "personalityTypeId": 2
                 },
                 {
                     "id": 36,
-                    "title": "Not being able to sleep and loving it.",
+                    "title": "Não ser capaz de dormir e amá-lo.",
                     "personalityTypeId": 0
                 },
                 {
                     "id": 37,
-                    "title": "Exercise.",
+                    "title": "Exercício.",
                     "personalityTypeId": 1
                 },
                 {
                     "id": 38,
-                    "title": "Anything that puts my safety at risk.",
+                    "title": "Qualquer coisa que coloque minha segurança em risco.",
                     "personalityTypeId": 3
                 },
                 {
                     "id": 39,
-                    "title": "Going to the library. ",
+                    "title": "Indo para a biblioteca.",
                     "personalityTypeId": 4
                 }
             ]
         },
         {
-            "title": "How reliable are you?",
+            "title": "Quão confiável você é?",
             "answers": [
                 {
                     "id": 40,
-                    "title": "I try to help out whenever there's an opportunity.",
+                    "title": "Eu tento ajudar sempre que há uma oportunidade.",
                     "personalityTypeId": 1
                 },
                 {
                     "id": 41,
-                    "title": "I love to help people if it's with something that I know more about.",
+                    "title": "Eu adoro ajudar as pessoas se é com algo que eu saiba mais.",
                     "personalityTypeId": 0
                 },
                 {
                     "id": 42,
-                    "title": "I mainly help out those I know best.",
+                    "title": "Eu principalmente ajudo aqueles que conheço melhor.",
                     "personalityTypeId": 4
                 },
                 {
                     "id": 43,
-                    "title": "I help only when I'm in the mood.",
+                    "title": "Eu só ajudo quando estou de bom humor.",
                     "personalityTypeId": 3
                 },
                 {
                     "id": 44,
-                    "title": "Anyone who needs my help is too helpless. ",
+                    "title": "Qualquer um que precise da minha ajuda é muito impotente.",
                     "personalityTypeId": 2
                 }
             ]
         },
         {
-            "title": "Who means the most to you?",
+            "title": "Quem significa mais para você?",
             "answers": [
                 {
                     "id": 45,
-                    "title": "My teachers and other authority figures.",
+                    "title": "Meus professores e outras figuras de autoridade.",
                     "personalityTypeId": 3
                 },
                 {
                     "id": 46,
-                    "title": "My best friend.",
+                    "title": "Minha melhor amiga.",
                     "personalityTypeId": 1
                 },
                 {
                     "id": 47,
-                    "title": "Anyone who is like me.",
+                    "title": "Qualquer um que seja como eu.",
                     "personalityTypeId": 2
                 },
                 {
                     "id": 48,
-                    "title": "My family and friends.",
+                    "title": "Minha familia e amigos.",
                     "personalityTypeId": 0
                 },
                 {
                     "id": 49,
-                    "title": "All the thousands of friends I have. ",
+                    "title": "Todos os milhares de amigos que tenho.",
                     "personalityTypeId": 4
                 }
             ]

@@ -16,7 +16,7 @@ struct AlertComponent {
         let aTitle = title ?? ""
         let alertController = UIAlertController(title: aTitle, message: message, preferredStyle: .alert)
         
-        let mButton = UIAlertAction(title: mainButton ?? Titles.done.rawValue, style: .default, handler: { (_) in
+        let mButton = UIAlertAction(title: mainButton ?? Titles.done.localized, style: .default, handler: { (_) in
             if let mainAction = mainAction { mainAction() }
         })
         alertController.addAction(mButton)

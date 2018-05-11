@@ -6,3 +6,29 @@
   Copyright © 2018 Arthur Augusto. All rights reserved.
 */
 
+// Enum Titles
+"Personality Test" = "Personality Test";
+"Personality Test Result" = "Personality Test Result";
+"You got" = "You got";
+"Result" = "Result";
+"Movies" = "Movies";
+"TV Shows" = "TV Shows";
+"Popular people" = "Popular people";
+"Search" = "Search";
+"Error" = "Error";
+"Click" = "Click";
+"Event" = "Event";
+
+"Sugested" = "Sugested";
+"Now Playing" = "Now Playing";
+"Top Rated" = "Top Rated";
+"Upcoming" = "Upcoming";
+"Popular" = "Popular";
+
+// Enum Messages
+"There are no movies available" = "There are no movies available";
+"Search a movie" = "Search a movie";
+"Search a TV Show" = "Search a TV Show";
+"Search a person" = "Search a person";
+"Did select" = "Did select";
+"Did answered personality test - Type: " = "Did answered personality test - Type: ";

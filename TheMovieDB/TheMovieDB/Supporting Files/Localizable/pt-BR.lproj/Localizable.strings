@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  TheMovieDB
+
+  Created by Arthur Augusto Sousa Marques on 5/10/18.
+  Copyright © 2018 Arthur Augusto. All rights reserved.
+*/
+
+// Enum Titles
+"Personality Test" = "Teste de Personalidade";
+"Personality Test Result" = "Resultado do Teste de Personalidade";
+"You got" = "Você é";
+"Result" = "Resultado";
+"Movies" = "Filtes";
+"TV Shows" = "Séries de TV";
+"Popular people" = "Famosos";
+"Search" = "Pesquisar";
+"Error" = "Error";
+"Click" = "Click";
+"Event" = "Event";
+
+"Sugested" = "Sugeridos";
+"Now Playing" = "Nos cinemas";
+"Top Rated" = "Mais aclamados pela crítica";
+"Upcoming" = "Em breve";
+"Popular" = "Populares";
+
+// Enum Messages
+"There are no movies available" = "Não há filmes disponíveis";
+"Search a movie" = "Pesquise um filme";
+"Search a TV Show" = "Pesquise uma série";
+"Search a person" = "Pesquise um famoso";
+"Did select" = "Voce selecionou";
+"Did answered personality test - Type: " = "Você respondeu o teste de personalidade - Tipo: ";

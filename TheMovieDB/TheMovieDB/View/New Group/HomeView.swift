@@ -10,7 +10,7 @@ import UIKit
 import Bond
 
 class HomeView: UITableViewController {
-    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.movies.rawValue, placeholder: Messages.searchMovie.rawValue)
+    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.movies.localized, placeholder: Messages.searchMovie.localized)
     let viewHeaderHeight: CGFloat = 32
     
     let viewModel = HomeViewModel()

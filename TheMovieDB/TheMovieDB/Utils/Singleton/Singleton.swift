@@ -61,4 +61,8 @@ struct Singleton {
     }
     
     var arrayGenres = [Genres]()
+    
+    var isLanguagePortuguese: Bool {
+        return Locale.preferredLanguages.first == "pt-BR"
+    }
 }

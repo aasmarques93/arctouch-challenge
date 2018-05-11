@@ -115,7 +115,7 @@ extension PersonView: ViewModelDelegate {
         setTitle(text: viewModel?.personName)
         
         if let value = viewModel?.personName {
-            FabricUtils.logEvent(message: "\(Messages.didSelect) \(value)")
+            FabricUtils.logEvent(message: "\(Messages.didSelect.localized) \(value)")
         }
         
         tableView.reloadData()

@@ -83,7 +83,7 @@ class PersonalityTestViewModel: ViewModel {
     }
     
     private func loadPersonalityTypes() {
-        JSONWrapper.json(from: .personalityTypes) { (json) in
+        JSONWrapper.json(from: Singleton.shared.isLanguagePortuguese ? .personalityTypesBR : .personalityTypes) { (json) in
             let object = Personality(json: json)
             guard let results = object.personalityTypes else {
                 return
@@ -94,7 +94,7 @@ class PersonalityTestViewModel: ViewModel {
     
     private func loadTest() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            JSONWrapper.json(from: .personalityTest) { [weak self] (json) in
+            JSONWrapper.json(from: Singleton.shared.isLanguagePortuguese ? .personalityTestBR : .personalityTest) { [weak self] (json) in
                 self?.personalityObject = Personality(json: json)
             }
         }
@@ -169,7 +169,7 @@ class PersonalityTestViewModel: ViewModel {
             userPersonalityType = arrayPersonalityTypes.filter { return $0.id == personalityTypeId }.first
         }
         
-        let message = Messages.didAnsweredPersonalityTest.rawValue
+        let message = Messages.didAnsweredPersonalityTest.localized
         FabricUtils.logEvent(message: "\(message)\(userPersonalityType?.title ?? "")")
         
         UserDefaultsWrapper.saveUserDefaults(object: userPersonalityType?.dictionaryRepresentation(), key: .userPersonality)

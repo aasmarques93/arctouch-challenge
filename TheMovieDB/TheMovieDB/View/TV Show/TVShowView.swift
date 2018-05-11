@@ -11,7 +11,7 @@ import UIKit
 class TVShowView: UITableViewController {
     @IBOutlet weak var labelEmptyMessage: UILabel!
 
-    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.tvShows.rawValue, placeholder: Messages.searchTVShow.rawValue)
+    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.tvShows.localized, placeholder: Messages.searchTVShow.localized)
     
     let viewModel = TVShowViewModel()
 

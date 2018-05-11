@@ -50,7 +50,7 @@ class PersonalityTestResultView: UIViewController {
         options.subTextColor = HexColor.secondary.color
         options.mainTextfont = UIFont.boldSystemFont(ofSize: mainFontSize)
         options.subTextfont = UIFont.boldSystemFont(ofSize: subFontSize)
-        options.mainText = Titles.youGot.rawValue
+        options.mainText = Titles.youGot.localized
         options.subText = viewModel?.userPersonalityTitle ?? ""
         
         return options
@@ -71,7 +71,7 @@ class PersonalityTestResultView: UIViewController {
     }
     
     func setupAppearance() {
-        setTitle(text: Titles.result.rawValue)
+        setTitle(text: Titles.result.localized)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem()
         

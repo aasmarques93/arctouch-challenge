@@ -32,4 +32,8 @@ enum Titles: String {
     case error = "Error"
     case click = "Click"
     case event = "Event"
+    
+    var localized: String {
+        return NSLocalizedString(self.rawValue, comment: "")
+    }
 }

@@ -13,8 +13,8 @@ class PopularPeopleView: UIViewController {
     @IBOutlet weak var collectionView: CollectionView!
     @IBOutlet weak var labelEmptyMessage: UILabel!
     
-    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.popularPeople.rawValue,
-                                                              placeholder: Messages.searchPerson.rawValue)
+    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.popularPeople.localized,
+                                                              placeholder: Messages.searchPerson.localized)
     
     let viewModel = PopularPeopleViewModel()
     
