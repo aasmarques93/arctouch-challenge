@@ -86,14 +86,14 @@ struct Loading {
     
     var loadingView: LoadingView?
     
-    mutating func startLoading() {
+    mutating func start() {
         var frame: CGRect = .zero
         if let window = AppDelegate.shared.window { frame = window.frame }
         loadingView = LoadingView(frame: frame)
         loadingView?.startInWindow()
     }
     
-    func stopLoading() {
+    func stop() {
         loadingView?.stop()
     }
 }

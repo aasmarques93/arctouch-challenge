@@ -14,6 +14,13 @@ struct Session {
     static var shared = Session()
     
     var manager: SessionManager?
+    var host: String {
+        let file = FileManager.load(name: FileName.environmentLink)
+        if let host = file?.object(forKey: EnvironmentBase.theMovieDB.rawValue) as? String {
+            return host
+        }
+        return ""
+    }
     
     init() {
         configureApiManager()
@@ -27,7 +34,7 @@ struct Session {
         configuration.timeoutIntervalForResource = 30
         
         let serverTrustPolicy: [String: ServerTrustPolicy] = [
-            "\(EnvironmentHost.shared.host)": .disableEvaluation
+            "\(host)": .disableEvaluation
         ]
         
         self.manager = SessionManager(configuration: configuration,

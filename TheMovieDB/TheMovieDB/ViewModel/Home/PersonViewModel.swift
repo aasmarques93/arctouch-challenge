@@ -90,9 +90,9 @@ class PersonViewModel: ViewModel {
     private func getPerson() {
         if person != nil { return }
 
-        Loading.shared.startLoading()
+        Loading.shared.start()
         serviceModel.getPerson(from: idPerson, requestUrl: .person) { [weak self] (object) in
-            Loading.shared.stopLoading()
+            Loading.shared.stop()
             self?.person = object as? Person
         }
     }

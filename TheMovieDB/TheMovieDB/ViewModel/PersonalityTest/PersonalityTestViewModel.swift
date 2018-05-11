@@ -19,6 +19,7 @@ class PersonalityTestViewModel: ViewModel {
     static let shared = PersonalityTestViewModel()
     
     // MARK: - Properties -
+    let serviceModel = PersonalityTestServiceModel()
     
     // MARK: Delegate
     weak var delegate: PersonalityTestViewModelDelegate?
@@ -29,7 +30,7 @@ class PersonalityTestViewModel: ViewModel {
     var resultText = Observable<String>("")
     
     // MARK: Objects
-    private var personalityObject: Personality? { didSet { doDetectionStep() } }
+    private var personalityObject: Personality?
     private var arrayPersonalityTypes: [PersonalityType] {
         return Singleton.shared.arrayPersonalityTypes
     }
@@ -67,6 +68,7 @@ class PersonalityTestViewModel: ViewModel {
     
     func loadData() {
         loadPersonalityTypes()
+        loadTest()
         
         if Singleton.shared.isPersonalityTestAnswered && !Singleton.shared.didSkipTestFromLauching && !isTestingAgain {
             skipTest()
@@ -79,13 +81,15 @@ class PersonalityTestViewModel: ViewModel {
         }
         
         isTestingAgain = false
-        loadTest()
+        doDetectionStep()
     }
     
     private func loadPersonalityTypes() {
-        JSONWrapper.json(from: Singleton.shared.isLanguagePortuguese ? .personalityTypesBR : .personalityTypes) { (json) in
-            let object = Personality(json: json)
-            guard let results = object.personalityTypes else {
+        guard Singleton.shared.arrayPersonalityTypes.isEmpty else {
+            return
+        }
+        serviceModel.getPersonality(requestUrl: Singleton.shared.isLanguagePortuguese ? .personalityTypesBR : .personalityTypes) { (object) in    
+            guard let object = object as? Personality, let results = object.personalityTypes else {
                 return
             }
             Singleton.shared.arrayPersonalityTypes = results
@@ -93,10 +97,11 @@ class PersonalityTestViewModel: ViewModel {
     }
     
     private func loadTest() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            JSONWrapper.json(from: Singleton.shared.isLanguagePortuguese ? .personalityTestBR : .personalityTest) { [weak self] (json) in
-                self?.personalityObject = Personality(json: json)
-            }
+        guard personalityObject == nil else {
+            return
+        }
+        serviceModel.getPersonality(requestUrl: Singleton.shared.isLanguagePortuguese ? .personalityTestBR : .personalityTest) { [weak self]  (object) in
+            self?.personalityObject = object as? Personality
         }
     }
     

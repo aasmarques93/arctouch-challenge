@@ -35,13 +35,14 @@ struct ServiceModel {
     
     func request(method: HTTPMethod = .get,
                  requestUrl: RequestUrl,
+                 environmentBase: EnvironmentBase = .theMovieDB,
                  stringUrl: String? = nil,
                  parameters: [String:Any]? = nil,
                  urlParameters: [String:Any]? = nil,
                  handlerObject: @escaping HandlerObject,
                  handlerJson: HandlerObject? = nil) {
         
-        if EnvironmentHost.shared.current == .mock {
+        if environmentBase == .mock {
             JSONWrapper.json(from: requestUrl) { (json) in
                 if let json = json { handlerObject(json) }
             }
@@ -53,7 +54,7 @@ struct ServiceModel {
         if let stringUrl = stringUrl {
             url = stringUrl
         } else {
-            url = self.requestUrl(type: requestUrl, parameters: urlParameters)
+            url = self.requestUrl(type: requestUrl, environmentBase: environmentBase, parameters: urlParameters)
         }
         
         if !verifyConnection() {
@@ -125,27 +126,29 @@ struct ServiceModel {
     
     // MARK: - File manager - Link requests -
     
-    private func requestUrl(type: RequestUrl, parameters: [String:Any]? = nil) -> String {
+    private func requestUrl(type: RequestUrl, environmentBase: EnvironmentBase, parameters: [String:Any]? = nil) -> String {
         if type.rawValue.contains("http") {
             return type.rawValue
         }
         
         var link = ""
         
-        link += keyManagerFile(key: EnvironmentHost.shared.current)
+        link += keyManagerFile(key: environmentBase)
         
         guard let parameters = parameters else {
             link += keyManagerFile(key: type)
-            link += appendApiKey(to: link)
-            return link
+            guard environmentBase == .theMovieDB else {
+                return link
+            }
+            return link + appendApiKey(to: link)
         }
         
-        link += createUrl(from: keyManagerFile(key: type), parameters: parameters)
+        link += createUrl(from: keyManagerFile(key: type), environmentBase: environmentBase, parameters: parameters)
         
         return link
     }
     
-    func keyManagerFile(key:Any) -> String{
+    func keyManagerFile(key: Any) -> String{
         if let key = key as? EnvironmentBase {
             let file = FileManager.load(name: FileName.environmentLink)
             if let host = file?.object(forKey: key.rawValue) as? String {
@@ -154,7 +157,7 @@ struct ServiceModel {
         }
         
         if let key = key as? RequestUrl {
-            let file = FileManager.load(name: FileName.requestUrl)
+            let file = FileManager.load(name: FileName.requestLinks)
             if let link = file?.object(forKey: key.rawValue) as? String {
                 return link
             }
@@ -163,7 +166,7 @@ struct ServiceModel {
         return ""
     }
     
-    func createUrl(from string: String, parameters: [String:Any]) -> String {
+    func createUrl(from string: String, environmentBase: EnvironmentBase, parameters: [String:Any]) -> String {
         var url = string
         
         parameters.forEach { (parameter) in
@@ -173,9 +176,11 @@ struct ServiceModel {
             }
         }
         
-        url += appendApiKey(to: url)
+        guard environmentBase == .theMovieDB else {
+            return url
+        }
         
-        return url
+        return url + appendApiKey(to: url)
     }
     
     func appendApiKey(to url: String) -> String {

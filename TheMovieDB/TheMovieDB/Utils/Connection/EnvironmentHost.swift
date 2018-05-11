@@ -10,27 +10,14 @@ import Foundation
 
 // MARK: - File Names -
 struct FileName {
-    static let requestUrl = "RequestLinks"
+    static let requestLinks = "RequestLinks"
     static let environmentLink = "EnvironmentLinks"
-}
-
-struct EnvironmentHost {
-    static let shared = EnvironmentHost()
-    
-    var current: EnvironmentBase = .api
-    
-    var host: String {
-        let file = FileManager.load(name: FileName.environmentLink)
-        if let host = file?.object(forKey: current.rawValue) as? String {
-            return host
-        }
-        return ""
-    }
 }
 
 // MARK: - Environment Base Enum -
 enum EnvironmentBase: String {
-    case api
+    case theMovieDB
+    case heroku
     case images
     case mock
 }

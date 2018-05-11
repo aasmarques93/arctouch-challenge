@@ -74,9 +74,9 @@ class TVShowViewModel: ViewModel {
             
             isDataLoading = true
             
-            Loading.shared.startLoading()
+            Loading.shared.start()
             serviceModel.doSearchTVShow(urlParameters: parameters) { [weak self] (object) in
-                Loading.shared.stopLoading()
+                Loading.shared.stop()
                 
                 self?.isDataLoading = false
                 

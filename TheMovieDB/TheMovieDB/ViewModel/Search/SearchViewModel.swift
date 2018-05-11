@@ -40,9 +40,9 @@ class SearchViewModel: ViewModel {
         
         let requestUrl: RequestUrl = genreType == .movies ? .genres: .genresTV
         
-        Loading.shared.startLoading()
+        Loading.shared.start()
         serviceModel.getGenres(requestUrl: requestUrl) { [weak self] (object) in
-            Loading.shared.stopLoading()
+            Loading.shared.stop()
             
             guard let object = object as? MoviesGenres else {
                 return

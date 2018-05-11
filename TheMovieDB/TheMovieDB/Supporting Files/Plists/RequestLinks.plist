@@ -62,5 +62,13 @@
 	<string>/search/multi?language={language}&amp;query={query}&amp;page={page}&amp;</string>
 	<key>seasonDetail</key>
 	<string>/tv/{id}/season/{season}?language={language}&amp;</string>
+	<key>personalityTest</key>
+	<string>/personalityTest</string>
+	<key>personalityTestBR</key>
+	<string>/personalityTestBR</string>
+	<key>personalityTypes</key>
+	<string>/personalityTypes</string>
+	<key>personalityTypesBR</key>
+	<string>/personalityTypesBR</string>
 </dict>
 </plist>

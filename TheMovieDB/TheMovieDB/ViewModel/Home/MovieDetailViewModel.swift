@@ -88,9 +88,9 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getMovieDetail() {
-        Loading.shared.startLoading()
+        Loading.shared.start()
         serviceModel.getDetail(from: movie) { [weak self] (object) in
-            Loading.shared.stopLoading()
+            Loading.shared.stop()
             self?.movieDetail = object as? MovieDetail
         }
     }

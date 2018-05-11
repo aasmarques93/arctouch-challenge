@@ -82,9 +82,9 @@ class TVShowDetailViewModel: ViewModel {
     }
     
     private func getTvShowDetail() {
-        Loading.shared.startLoading()
+        Loading.shared.start()
         serviceModel.getDetail(from: id) { [weak self] (object) in
-            Loading.shared.stopLoading()
+            Loading.shared.stop()
             self?.tvShowDetail = object as? TVShowDetail
         }
     }

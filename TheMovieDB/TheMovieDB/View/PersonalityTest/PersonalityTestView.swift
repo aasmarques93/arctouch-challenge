@@ -25,6 +25,7 @@ class PersonalityTestView: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppDelegate.shared.lockOrientation()
+        viewModel.delegate = self
         viewModel.loadData()
     }
     
