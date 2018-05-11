@@ -10,7 +10,10 @@ struct PersonServiceModel {
     let serviceModel = ServiceModel()
     
     func getPerson(from idPerson: Int?, requestUrl: RequestUrl, handler: @escaping HandlerObject) {
-        let parameters = ["idPerson": idPerson ?? 0]
+        let parameters: [String: Any] = [
+            "idPerson": idPerson ?? 0,
+            "language": Locale.preferredLanguages.first ?? ""
+        ]
         serviceModel.request(requestUrl: requestUrl, urlParameters: parameters, handlerObject: { (object) in
             if let object = object {
                 switch requestUrl {
@@ -27,7 +30,10 @@ struct PersonServiceModel {
     }
 
     func getImages(from idPerson: Int?, handler: @escaping HandlerObject) {
-        let parameters = ["idPerson": idPerson ?? 0]
+        let parameters: [String: Any] = [
+            "idPerson": idPerson ?? 0,
+            "language": Locale.preferredLanguages.first ?? ""
+        ]
         serviceModel.request(requestUrl: .personImages, urlParameters: parameters, handlerObject: { (object) in
             if let object = object {
                 handler(PersonImagesList(object: object))

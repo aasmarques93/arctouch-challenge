@@ -141,7 +141,10 @@ class HomeViewModel: ViewModel {
             return
         }
         
-        let parameters = ["id": value]
+        let parameters: [String: Any] = [
+            "id": value,
+            "language": Locale.preferredLanguages.first ?? ""
+        ]
         SearchServiceModel().getMoviesFromGenre(urlParameters: parameters) { [weak self] (object) in
             guard let object = object as? SearchMoviesGenre, let results = object.results else {
                 return
@@ -174,7 +177,10 @@ class HomeViewModel: ViewModel {
         
         isDataLoading = true
         
-        let parameters = ["page": currentPage]
+        let parameters: [String: Any] = [
+            "page": currentPage,
+            "language": Locale.preferredLanguages.first ?? ""
+        ]
         serviceModel.getMovies(urlParameters: parameters, requestUrl: requestUrl) { [weak self] (object) in
             if let object = object as? MoviesList {
                 do {

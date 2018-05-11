@@ -13,9 +13,10 @@ struct SeasonDetailServiceModel {
     
     func getDetail(from tvShowDetail: TVShowDetail?, season: Seasons?, handler: @escaping HandlerObject) {
         if let id = tvShowDetail?.id, let seasonNumber = season?.seasonNumber {
-            let parameters = [
+            let parameters: [String: Any] = [
                 "id": id,
-                "season": seasonNumber
+                "season": seasonNumber,
+                "language": Locale.preferredLanguages.first ?? ""
             ]
             serviceModel.request(requestUrl: .seasonDetail, urlParameters: parameters, handlerObject: { (object) in
                 if let object = object { handler(SeasonDetail(object: object)) }

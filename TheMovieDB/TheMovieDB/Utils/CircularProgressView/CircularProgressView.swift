@@ -17,7 +17,7 @@ import UIKit
     }
     
     // progress: Should be between 0 to 1
-    @IBInspectable var progress: CGFloat = 0 { didSet { self.setNeedsDisplay() } }
+    @IBInspectable var progress: CGFloat = 0 { didSet { setNeedsDisplay() } }
     
     private var circleStrokeWidth: CGFloat = 5
     private var circleStrokeColor = DefaultColor.circleStrokeColor

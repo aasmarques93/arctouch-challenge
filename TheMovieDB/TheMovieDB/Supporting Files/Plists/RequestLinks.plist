@@ -7,17 +7,17 @@
 	<key>apiKey</key>
 	<string>1f54bd990f1cdfb230adb312546d765d</string>
 	<key>nowPlaying</key>
-	<string>/movie/now_playing?page={page}&amp;</string>
+	<string>/movie/now_playing?language={language}&amp;page={page}&amp;</string>
 	<key>upcoming</key>
-	<string>/movie/upcoming?page={page}&amp;</string>
+	<string>/movie/upcoming?language={language}&amp;page={page}&amp;</string>
 	<key>topRated</key>
-	<string>/movie/top_rated?page={page}&amp;</string>
+	<string>/movie/top_rated?language={language}&amp;page={page}&amp;</string>
 	<key>popular</key>
-	<string>/movie/popular?page={page}&amp;</string>
+	<string>/movie/popular?language={language}&amp;page={page}&amp;</string>
 	<key>movie</key>
-	<string>/movie/{idMovie}?</string>
+	<string>/movie/{idMovie}?language={language}&amp;</string>
 	<key>videos</key>
-	<string>/movie/{idMovie}/videos?</string>
+	<string>/movie/{idMovie}/videos?language={language}&amp;</string>
 	<key>recommendations</key>
 	<string>/movie/{idMovie}/recommendations?page={page}&amp;</string>
 	<key>similar</key>
@@ -25,42 +25,42 @@
 	<key>reviews</key>
 	<string>/movie/{idMovie}/reviews?page={page}&amp;</string>
 	<key>credits</key>
-	<string>/movie/{idMovie}/credits?</string>
+	<string>/movie/{idMovie}/credits?language={language}&amp;</string>
 	<key>searchMovie</key>
 	<string>/search/movie?query={query}&amp;page={page}&amp;</string>
 	<key>searchPerson</key>
 	<string>/search/person?query={query}&amp;page={page}&amp;</string>
 	<key>searchByGenre</key>
-	<string>/genre/{id}/movies?</string>
+	<string>/genre/{id}/movies?language={language}&amp;</string>
 	<key>searchTV</key>
 	<string>/search/tv?query={query}&amp;page={page}&amp;</string>
 	<key>genres</key>
-	<string>/genre/movie/list?</string>
+	<string>/genre/movie/list?language={language}&amp;</string>
 	<key>genresTV</key>
-	<string>/genre/tv/list?</string>
+	<string>/genre/tv/list?language={language}&amp;</string>
 	<key>person</key>
-	<string>/person/{idPerson}?</string>
+	<string>/person/{idPerson}?language={language}&amp;</string>
 	<key>personMovieCredits</key>
-	<string>/person/{idPerson}/movie_credits?</string>
+	<string>/person/{idPerson}/movie_credits?language={language}&amp;</string>
 	<key>personExternalIds</key>
-	<string>/person/{idPerson}/external_ids?</string>
+	<string>/person/{idPerson}/external_ids?language={language}&amp;</string>
 	<key>popularPeople</key>
-	<string>/person/popular?page={page}&amp;</string>
+	<string>/person/popular?language={language}&amp;page={page}&amp;</string>
 	<key>personImages</key>
-	<string>/person/{idPerson}/images?</string>
+	<string>/person/{idPerson}/images?language={language}&amp;</string>
 	<key>tvPopular</key>
-	<string>/tv/popular?page={page}&amp;</string>
+	<string>/tv/popular?language={language}&amp;page={page}&amp;</string>
 	<key>tvDetail</key>
-	<string>/tv/{id}?</string>
+	<string>/tv/{id}?language={language}&amp;</string>
 	<key>tvVideos</key>
-	<string>/tv/{id}/videos?</string>
+	<string>/tv/{id}/videos?language={language}&amp;</string>
 	<key>tvCredits</key>
-	<string>/tv/{id}/credits?</string>
+	<string>/tv/{id}/credits?language={language}&amp;</string>
 	<key>tvImages</key>
-	<string>/tv/{id}/season/{season}/episode/{episode}/images?</string>
+	<string>/tv/{id}/season/{season}/episode/{episode}/images?language={language}&amp;</string>
 	<key>multiSearch</key>
-	<string>/search/multi?query={query}&amp;page={page}&amp;</string>
+	<string>/search/multi?language={language}&amp;query={query}&amp;page={page}&amp;</string>
 	<key>seasonDetail</key>
-	<string>/tv/{id}/season/{season}?</string>
+	<string>/tv/{id}/season/{season}?language={language}&amp;</string>
 </dict>
 </plist>

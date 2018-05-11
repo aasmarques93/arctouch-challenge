@@ -13,10 +13,11 @@ struct EpisodesServiceModel {
 
     func getImages(from id: Int?, season: Int?, episode: Int?, handler: @escaping HandlerObject) {
         if let id = id, let seasonNumber = season, let episodeNumber = episode {
-            let parameters = [
+            let parameters: [String: Any] = [
                 "id": id,
                 "season": seasonNumber,
-                "episode": episodeNumber
+                "episode": episodeNumber,
+                "language": Locale.preferredLanguages.first ?? ""
             ]
             serviceModel.request(requestUrl: .tvImages, urlParameters: parameters, handlerObject: { (object) in
                 if let object = object { handler(EpisodeImagesList(object: object)) }

@@ -147,6 +147,7 @@
 		ED841E6620A3AB6B00A425BF /* personalityTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = ED841E6520A3AB6B00A425BF /* personalityTypes.json */; };
 		ED841E6820A3AF1600A425BF /* personalityTest.json in Resources */ = {isa = PBXBuildFile; fileRef = ED841E6720A3AF1500A425BF /* personalityTest.json */; };
 		ED841E6A20A3C7A200A425BF /* PersonalityTestResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED841E6920A3C7A200A425BF /* PersonalityTestResultViewModel.swift */; };
+		ED841E7620A5290C00A425BF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED841E7820A5290C00A425BF /* Localizable.strings */; };
 		EDBAF882209FFE430089DE39 /* FabricUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAF881209FFE430089DE39 /* FabricUtils.swift */; };
 		EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01220585A4400D843EC /* CollectionView.swift */; };
 		EDC6C01820585A5500D843EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01720585A5500D843EC /* Date.swift */; };
@@ -345,6 +346,8 @@
 		ED841E6520A3AB6B00A425BF /* personalityTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = personalityTypes.json; sourceTree = "<group>"; };
 		ED841E6720A3AF1500A425BF /* personalityTest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = personalityTest.json; sourceTree = "<group>"; };
 		ED841E6920A3C7A200A425BF /* PersonalityTestResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestResultViewModel.swift; sourceTree = "<group>"; };
+		ED841E7720A5290C00A425BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ED841E7920A5292200A425BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EDBAF881209FFE430089DE39 /* FabricUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricUtils.swift; sourceTree = "<group>"; };
 		EDC6C01220585A4400D843EC /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		EDC6C01720585A5500D843EC /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -965,6 +968,14 @@
 			path = TestResult;
 			sourceTree = "<group>";
 		};
+		ED841E7320A528E000A425BF /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				ED841E7820A5290C00A425BF /* Localizable.strings */,
+			);
+			path = Localizable;
+			sourceTree = "<group>";
+		};
 		EDBAF880209FFE340089DE39 /* Fabric */ = {
 			isa = PBXGroup;
 			children = (
@@ -976,6 +987,7 @@
 		EDC6BFFB2058590D00D843EC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ED841E7320A528E000A425BF /* Localizable */,
 				ED65BECE2091EF400091D93B /* Json */,
 				ED65BECD2091EF3B0091D93B /* Plists */,
 			);
@@ -1284,6 +1296,7 @@
 				ED08938220585752004CC05F /* Main.storyboard in Resources */,
 				ED65BEDA2091F1330091D93B /* similar.json in Resources */,
 				ED65BF0520925B8E0091D93B /* PlayerView.xib in Resources */,
+				ED841E7620A5290C00A425BF /* Localizable.strings in Resources */,
 				ED65BEFA20923C990091D93B /* CastView.xib in Resources */,
 				ED65BEE42091F1330091D93B /* nowPlaying.json in Resources */,
 				ED3834302094AB660079D48F /* TVShow.storyboard in Resources */,
@@ -1605,6 +1618,15 @@
 				ED08938620585752004CC05F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		ED841E7820A5290C00A425BF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED841E7720A5290C00A425BF /* en */,
+				ED841E7920A5292200A425BF /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

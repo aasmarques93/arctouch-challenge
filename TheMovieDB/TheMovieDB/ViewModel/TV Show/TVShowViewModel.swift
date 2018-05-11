@@ -35,7 +35,10 @@ class TVShowViewModel: ViewModel {
         
         isDataLoading = true
         
-        let parameters = ["page": currentPage]
+        let parameters: [String: Any] = [
+            "page": currentPage,
+            "language": Locale.preferredLanguages.first ?? ""
+        ]
         serviceModel.getPopular(urlParameters: parameters) { [weak self] (object) in
             if let object = object as? SearchTV, let results = object.results {
                 self?.totalPages = object.totalPages
@@ -63,7 +66,11 @@ class TVShowViewModel: ViewModel {
         currentPage = 1
         
         if let value = searchText, !value.isEmptyOrWhitespace {
-            let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
+            let parameters: [String:Any] = [
+                "query": value.replacingOccurrences(of: " ", with: "%20"),
+                "page": currentPage,
+                "language": Locale.preferredLanguages.first ?? ""
+            ]
             
             isDataLoading = true
             

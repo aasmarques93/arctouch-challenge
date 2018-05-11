@@ -67,6 +67,7 @@ struct MovieDetailServiceModel {
         var parameters = [String:Any]()
         parameters["idMovie"] = movie.id ?? 0
         if !isSimple { parameters["page"] = 1 }
+        parameters["language"] = Locale.preferredLanguages.first ?? ""
         return parameters
     }
     

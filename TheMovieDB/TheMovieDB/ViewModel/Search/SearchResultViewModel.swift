@@ -74,7 +74,11 @@ class SearchResultViewModel: ViewModel {
             return
         }
         
-        let parameters: [String:Any] = ["query": value.replacingOccurrences(of: " ", with: "%20"), "page": currentPage]
+        let parameters: [String:Any] = [
+            "query": value.replacingOccurrences(of: " ", with: "%20"),
+            "page": currentPage,
+            "language": Locale.preferredLanguages.first ?? ""
+        ]
         
         isDataLoading = true
         
@@ -101,7 +105,10 @@ class SearchResultViewModel: ViewModel {
             return
         }
         
-        let parameters = ["id": value]
+        let parameters: [String: Any] = [
+            "id": value,
+            "language": Locale.preferredLanguages.first ?? ""
+        ]
         
         isDataLoading = true
         
