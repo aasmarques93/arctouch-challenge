@@ -16,6 +16,9 @@ target 'TheMovieDB' do
   pod 'GhostTypewriter'
   pod 'ProcessLoadingView'
   pod 'Charts'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
   
   # Pods for TheMovieDB
 

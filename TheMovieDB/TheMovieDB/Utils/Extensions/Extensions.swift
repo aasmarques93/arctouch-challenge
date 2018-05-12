@@ -106,6 +106,45 @@ extension UIViewController {
     var reusableIdentifier: String {
         return String(describing:self)
     }
+    
+    func takeScreenshot(shouldSave: Bool = true) -> UIImage? {
+        guard let layer = AppDelegate.shared.window?.layer else {
+            return nil
+        }
+        
+        var screenshotImage: UIImage?
+        let scale = UIScreen.main.scale
+        
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale);
+        
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        
+        layer.render(in:context)
+        screenshotImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        if let image = screenshotImage, shouldSave {
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        }
+        
+        return screenshotImage
+    }
+    
+    func presentShareActivityController(image: UIImage?,
+                                        excludedActivityTypes: [UIActivityType] = []) {
+        
+        guard let image = image else {
+            return
+        }
+
+        let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.excludedActivityTypes = excludedActivityTypes
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
 }
 
 extension UITableViewCell {

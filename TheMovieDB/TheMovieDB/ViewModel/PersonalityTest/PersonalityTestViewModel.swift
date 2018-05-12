@@ -15,9 +15,6 @@ protocol PersonalityTestViewModelDelegate: ViewModelDelegate {
 }
 
 class PersonalityTestViewModel: ViewModel {
-    // MARK: - Singleton -
-    static let shared = PersonalityTestViewModel()
-    
     // MARK: - Properties -
     let serviceModel = PersonalityTestServiceModel()
     
@@ -64,12 +61,16 @@ class PersonalityTestViewModel: ViewModel {
         return dictionary
     }
     
+    // MARK: - Life cycle -
+    
+    init() {
+        loadPersonalityTypes()
+        loadTest()
+    }
+    
     // MARK: - Service requests -
     
     func loadData() {
-        loadPersonalityTypes()
-        loadTest()
-        
         if Singleton.shared.isPersonalityTestAnswered && !Singleton.shared.didSkipTestFromLauching && !isTestingAgain {
             skipTest()
             return

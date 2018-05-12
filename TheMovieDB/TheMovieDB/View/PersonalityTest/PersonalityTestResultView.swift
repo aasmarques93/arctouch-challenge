@@ -85,6 +85,10 @@ class PersonalityTestResultView: UIViewController {
         viewModel?.resultText.bind(to: labelResult.reactive.text)
     }
     
+    @IBAction func buttonShareAction(_ sender: UIBarButtonItem) {
+        presentShareActivityController(image: takeScreenshot(shouldSave: false))
+    }
+    
     @IBAction func buttonDoTestAgainAction(_ sender: UIButton) {
         viewModel?.doTestAgain()
         navigationController?.popViewController(animated: true)

@@ -9,6 +9,12 @@ PODS:
   - AXPhotoViewer/Lite (1.4.2):
     - AXPhotoViewer/Core
   - AXStateButton (1.1.4)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
   - Bond (6.8.0):
     - Differ (~> 1.0)
     - ReactiveKit (~> 3.9)
@@ -19,6 +25,25 @@ PODS:
     - Fabric (~> 1.7.5)
   - Differ (1.1.1)
   - Fabric (1.7.6)
+  - FacebookCore (0.3.0):
+    - Bolts (~> 1.8)
+    - FBSDKCoreKit (~> 4.27)
+  - FacebookLogin (0.3.0):
+    - Bolts (~> 1.8)
+    - FacebookCore (~> 0.3)
+    - FBSDKCoreKit (~> 4.27)
+    - FBSDKLoginKit (~> 4.27)
+  - FacebookShare (0.3.0):
+    - Bolts (~> 1.8)
+    - FacebookCore (~> 0.3)
+    - FBSDKCoreKit (~> 4.27)
+    - FBSDKShareKit (~> 4.27)
+  - FBSDKCoreKit (4.32.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.32.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.32.0):
+    - FBSDKCoreKit (~> 4.32.0)
   - FLAnimatedImage (1.0.12)
   - GhostTypewriter (1.0.0)
   - ProcessLoadingView (0.1.1)
@@ -37,6 +62,9 @@ DEPENDENCIES:
   - Charts
   - Crashlytics
   - Fabric
+  - FacebookCore
+  - FacebookLogin
+  - FacebookShare
   - GhostTypewriter
   - ProcessLoadingView
   - RAMAnimatedTabBarController
@@ -49,11 +77,18 @@ SPEC REPOS:
     - Alamofire
     - AXPhotoViewer
     - AXStateButton
+    - Bolts
     - Bond
     - Charts
     - Crashlytics
     - Differ
     - Fabric
+    - FacebookCore
+    - FacebookLogin
+    - FacebookShare
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
     - FLAnimatedImage
     - GhostTypewriter
     - ProcessLoadingView
@@ -67,11 +102,18 @@ SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AXPhotoViewer: 21772189db20242febfaf4545e204a3ff069add5
   AXStateButton: 6c515a433e37551505046429b5be04c12daa8c07
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Bond: f07e371c05e07c46589c4a518515ea39c6263055
   Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
   Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
   Differ: 462849df6097d4e0e5ebbc9af2475f7aebfd65dc
   Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
+  FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
+  FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
+  FacebookShare: 0469964297ebd75f052be2c5083389a4208e82b7
+  FBSDKCoreKit: 55d7f2ac45d9c4b9b6119f4e43900fe84b9b7b1b
+  FBSDKLoginKit: 32ac05c2a59952c363c2e85aafa8f73ba93bcbad
+  FBSDKShareKit: 658780d0d108b8ad590a54afb5ac1427bdc8de28
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GhostTypewriter: 70c6f827ada4716bda0550046b01bf783331ee00
   ProcessLoadingView: 7f0c959fcef37ac0075d068b447099c1327c9d42
@@ -81,6 +123,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: f044c8158918caaab687882a16ce086674787d9e
+PODFILE CHECKSUM: c685c739b1f12d13dce2c04bc9f6b0585e71e2d2
 
 COCOAPODS: 1.5.0.beta.1

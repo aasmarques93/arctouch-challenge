@@ -56,6 +56,10 @@ class PersonalityTestResultDetailsView: UIViewController {
         }
     }
     
+    @IBAction func buttonShareAction(_ sender: UIBarButtonItem) {
+        presentShareActivityController(image: takeScreenshot(shouldSave: false))
+    }
+    
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
         viewModel.setChartType(with: sender.selectedSegmentIndex)
         setupData()
