@@ -55,8 +55,8 @@ class MovieDetailViewModel: ViewModel {
     var numberOfVideos: Int { return arrayVideos.count }
     
     // MARK: Recommended
-    private var arrayMovieRecommendations = [Movie]() { didSet { delegate?.reloadRecommendedMovies() } }
-    var numberOfMoviesRecommendations: Int { return arrayMovieRecommendations.count }
+    private var arrayRecommendedMovies = [Movie]() { didSet { delegate?.reloadRecommendedMovies() } }
+    var numberOfRecommendedMovies: Int { return arrayRecommendedMovies.count }
     
     // MARK: Similar Movies
     private var arraySimilarMovies = [Movie]() { didSet { delegate?.reloadSimilarMovies() } }
@@ -81,7 +81,7 @@ class MovieDetailViewModel: ViewModel {
     func loadData() {
         getMovieDetail()
         getVideos()
-        getMovieRecommendations()
+        getRecommendedMovies()
         getSimilarMovies()
         getCredits()
         getReviews()
@@ -109,8 +109,8 @@ class MovieDetailViewModel: ViewModel {
         }
     }
     
-    private func getMovieRecommendations() {
-        guard arrayMovieRecommendations.isEmpty else {
+    private func getRecommendedMovies() {
+        guard arrayRecommendedMovies.isEmpty else {
             return
         }
         
@@ -119,7 +119,7 @@ class MovieDetailViewModel: ViewModel {
                 return
             }
             
-            self?.arrayMovieRecommendations.append(contentsOf: results)
+            self?.arrayRecommendedMovies.append(contentsOf: results)
         }
     }
     
@@ -205,7 +205,7 @@ class MovieDetailViewModel: ViewModel {
     // MARK: Recommendations
     
     func movieRecommendationImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        var movie = arrayMovieRecommendations[index]
+        var movie = arrayRecommendedMovies[index]
         
         if let data = movie.imageData {
             handlerData(data)
@@ -271,7 +271,7 @@ class MovieDetailViewModel: ViewModel {
     // MARK: - View Model Instantiation -
     
     func recommendedMovieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
-        return movieDetailViewModel(arrayMovieRecommendations[index])
+        return movieDetailViewModel(arrayRecommendedMovies[index])
     }
     
     func similarMovieDetailViewModel(at index: Int) -> MovieDetailViewModel? {

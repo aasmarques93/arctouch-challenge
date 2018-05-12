@@ -29,6 +29,10 @@ class MovieDetailView: UITableViewController {
         case general = 0
         case genres = 1
         case overview = 2
+        case videos = 3
+        case recommended = 4
+        case cast = 5
+        case similiarMovies = 6
         case reviews = 7
     }
     
@@ -80,13 +84,23 @@ class MovieDetailView: UITableViewController {
         var height = super.tableView(tableView, heightForRowAt: indexPath)
         if let section = DetailSection(rawValue: indexPath.row) {
             switch section {
-            case .general: break
+            case .general:
+                break
             case .genres:
                 height += textViewGenres.contentSize.height
             case .overview:
                 height += textViewOverview.contentSize.height
+            case .videos:
+                if viewModel?.numberOfVideos == 0 { height = 0 }
+            case .recommended:
+                if viewModel?.numberOfRecommendedMovies == 0 { height = 0 }
+            case .cast:
+                if viewModel?.numberOfCastCharacters == 0 { height = 0 }
+            case .similiarMovies:
+                if viewModel?.numberOfSimilarMovies == 0 { height = 0 }
             case .reviews:
                 height = (CGFloat(viewModel?.numberOfReviews ?? 0) * (reviewsView?.rowHeight ?? 0)) + 40
+                if viewModel?.numberOfReviews == 0 { height = 0 }
             }
         }
         return height
@@ -156,7 +170,7 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
     func numberOfItems(in carousel: iCarousel) -> Int {
         if let viewModel = viewModel {
             if carousel == carouselVideos { return viewModel.numberOfVideos }
-            if carousel == carouselRecommendedMovies { return viewModel.numberOfMoviesRecommendations }
+            if carousel == carouselRecommendedMovies { return viewModel.numberOfRecommendedMovies }
             if carousel == carouselCast { return viewModel.numberOfCastCharacters }
             return viewModel.numberOfSimilarMovies
         }

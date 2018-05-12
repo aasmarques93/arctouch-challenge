@@ -25,6 +25,9 @@ class TVShowDetailView: UITableViewController {
         case general = 0
         case genres = 1
         case overview = 2
+        case videos = 3
+        case seasons = 4
+        case cast = 6
     }
     
     var viewModel: TVShowDetailViewModel?
@@ -61,7 +64,14 @@ class TVShowDetailView: UITableViewController {
         var height = super.tableView(tableView, heightForRowAt: indexPath)
         if let section = DetailSection(rawValue: indexPath.row) {
             switch section {
-            case .general: break
+            case .general:
+                break
+            case .videos:
+                if viewModel?.numberOfVideos == 0 { height = 0 }
+            case .seasons:
+                if viewModel?.numberOfSeasons == 0 { height = 0 }
+            case .cast:
+                if viewModel?.numberOfCastCharacters == 0 { height = 0 }
             case .genres:
                 height += textViewGenres.contentSize.height
             case .overview:

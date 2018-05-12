@@ -23,7 +23,8 @@ struct PersonServiceModel {
                     handler(CreditsList(object: object))
                 case .personExternalIds:
                     handler(ExternalIds(object: object))
-                default: break
+                default:
+                    break
                 }
             }
         })
