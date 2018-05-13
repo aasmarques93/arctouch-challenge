@@ -14,7 +14,7 @@ import RAMAnimatedTabBarController
 extension RAMAnimatedTabBarItem {
     open override func awakeFromNib() {
         super.awakeFromNib()
-        textColor = UIColor.lightGray
+        textColor = UIColor.lightGray.withAlphaComponent(0.6)
         iconColor = textColor
     }
 }
