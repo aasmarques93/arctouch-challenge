@@ -48,14 +48,18 @@ class SearchResultViewModel: ViewModel {
     private var currentPage: Int = 1
     private var totalPages: Int?
     private var selectedType: SearchResultFilterType = .movies
-    var isMultipleSearch: Bool = false
+    var isMultipleSearch: Bool {
+        return requestUrl == .multiSearch
+    }
+    
+    private var requestUrl: RequestUrl = .searchMovie
     
     // MARK: - Life cycle -
     
-    init(selectedGenre: Genres? = nil, searchText: String? = nil, isMultipleSearch: Bool = false) {
+    init(selectedGenre: Genres? = nil, searchText: String? = nil, requestUrl: RequestUrl = .searchMovie) {
         self.selectedGenre = selectedGenre
         self.searchText = searchText
-        self.isMultipleSearch = isMultipleSearch
+        self.requestUrl = requestUrl
     }
     
     // MARK: - Service requests -
@@ -82,7 +86,7 @@ class SearchResultViewModel: ViewModel {
         
         isDataLoading = true
         
-        serviceModel.doSearch(urlParameters: parameters, isMultipleSearch: isMultipleSearch) { [weak self] (object) in
+        serviceModel.doSearch(requestUrl: requestUrl, urlParameters: parameters) { [weak self] (object) in
             self?.isDataLoading = false
             
             guard let object = object as? MultiSearch, let results = object.results else {
@@ -92,7 +96,7 @@ class SearchResultViewModel: ViewModel {
             self?.totalPages = object.totalPages
             self?.arraySearch.append(contentsOf: results)
             
-            if let isMultipleSearch = self?.isMultipleSearch, isMultipleSearch {
+            if let requestUrl = self?.requestUrl, requestUrl == .multiSearch {
                 self?.doFilter(index: self?.selectedType.rawValue)
             } else {
                 if let results = self?.arraySearch { self?.arraySearchFiltered = results }

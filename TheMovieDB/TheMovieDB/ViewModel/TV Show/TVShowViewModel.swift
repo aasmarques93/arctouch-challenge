@@ -327,6 +327,6 @@ class TVShowViewModel: ViewModel {
     }
     
     func searchResultViewModel(with text: String?) -> SearchResultViewModel? {
-        return SearchResultViewModel(searchText: text)
+        return SearchResultViewModel(searchText: text, requestUrl: .searchTV)
     }
 }

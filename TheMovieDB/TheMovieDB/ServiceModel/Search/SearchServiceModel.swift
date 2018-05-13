@@ -24,8 +24,8 @@ struct SearchServiceModel {
         })
     }
     
-    func doSearch(urlParameters: [String: Any], isMultipleSearch: Bool, handler: @escaping HandlerObject) {
-        serviceModel.request(requestUrl: isMultipleSearch ? .multiSearch: .searchMovie,
+    func doSearch(requestUrl: RequestUrl, urlParameters: [String: Any], handler: @escaping HandlerObject) {
+        serviceModel.request(requestUrl: requestUrl,
                              urlParameters: urlParameters,
                              handlerObject: { (object) in
             

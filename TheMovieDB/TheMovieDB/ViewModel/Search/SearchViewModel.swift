@@ -78,7 +78,7 @@ class SearchViewModel: ViewModel {
     }
     
     private func searchResultViewModel(with text: String?) -> SearchResultViewModel? {
-        return SearchResultViewModel(searchText: text, isMultipleSearch: true)
+        return SearchResultViewModel(searchText: text, requestUrl: .multiSearch)
     }
     
     func searchResultViewModel(at indexPath: IndexPath?, text: String?) -> SearchResultViewModel? {
