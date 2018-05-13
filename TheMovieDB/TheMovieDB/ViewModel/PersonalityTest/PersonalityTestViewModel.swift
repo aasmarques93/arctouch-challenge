@@ -178,11 +178,11 @@ class PersonalityTestViewModel: ViewModel {
         let message = Messages.didAnsweredPersonalityTest.localized
         FabricUtils.logEvent(message: "\(message)\(userPersonalityType?.title ?? "")")
         
-        UserDefaultsWrapper.saveUserDefaults(object: userPersonalityType?.dictionaryRepresentation(), key: .userPersonality)
+        UserDefaultsHelper.saveUserDefaults(object: userPersonalityType?.dictionaryRepresentation(), key: .userPersonality)
     }
     
     private func saveSkipTest(status: Bool) {
-        UserDefaultsWrapper.saveUserDefaults(object: status, key: .didSkipTest)
+        UserDefaultsHelper.saveUserDefaults(object: status, key: .didSkipTest)
     }
     
     private func saveAnsweredQuestions() {
@@ -191,7 +191,7 @@ class PersonalityTestViewModel: ViewModel {
         }
         
         let array = arraySelectedAnswers.map { return $0.dictionaryRepresentation() }
-        UserDefaultsWrapper.saveUserDefaults(object: array, key: .answeredQuestions)
+        UserDefaultsHelper.saveUserDefaults(object: array, key: .answeredQuestions)
     }
     
     func personalityTestCellViewModel(at indexPath: IndexPath) -> PersonalityTestCellViewModel? {

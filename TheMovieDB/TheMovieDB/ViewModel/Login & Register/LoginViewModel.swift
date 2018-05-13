@@ -152,7 +152,7 @@ class LoginViewModel: ViewModel {
                     return
                 }
                 
-                Singleton.shared.user.photo = UserDefaultsWrapper.getImagePath(with: data)
+                Singleton.shared.user.photo = UserDefaultsHelper.getImagePath(with: data)
                 Singleton.shared.saveUser()
             })
         }
@@ -214,7 +214,7 @@ class LoginViewModel: ViewModel {
             }
             
             DispatchQueue.main.async() {
-                Singleton.shared.user.photo = UserDefaultsWrapper.getImagePath(with: data)
+                Singleton.shared.user.photo = UserDefaultsHelper.getImagePath(with: data)
             }
         }
     }

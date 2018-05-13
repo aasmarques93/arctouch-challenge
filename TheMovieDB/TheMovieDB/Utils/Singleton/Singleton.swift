@@ -21,11 +21,11 @@ class Singleton {
     }
     
     func saveUser() {
-        UserDefaultsWrapper.saveUserDefaults(object: user.dictionaryRepresentation(), key: .userLogged)
+        UserDefaultsHelper.saveUserDefaults(object: user.dictionaryRepresentation(), key: .userLogged)
     }
     
     var userLogged: User? {
-        guard let object = UserDefaultsWrapper.fetchUserDefaults(key: .userLogged) else {
+        guard let object = UserDefaultsHelper.fetchUserDefaults(key: .userLogged) else {
             return nil
         }
         return User(object: object)
@@ -36,7 +36,7 @@ class Singleton {
     }
     
     var userPhoto: UIImage? {
-        guard let photo = user.photo, let data = UserDefaultsWrapper.getImageData(from: photo) else {
+        guard let photo = user.photo, let data = UserDefaultsHelper.getImageData(from: photo) else {
             return nil
         }
         return UIImage(data: data)
@@ -48,7 +48,7 @@ class Singleton {
     }
     
     var userPersonalityType: PersonalityType? {
-        guard let object = UserDefaultsWrapper.fetchUserDefaults(key: .userPersonality) else {
+        guard let object = UserDefaultsHelper.fetchUserDefaults(key: .userPersonality) else {
             return nil
         }
         
@@ -56,7 +56,7 @@ class Singleton {
     }
     
     var userAnsweredQuestions: [Answer] {
-        guard let array = UserDefaultsWrapper.fetchUserDefaults(key: .answeredQuestions) as? [[String: Any]] else {
+        guard let array = UserDefaultsHelper.fetchUserDefaults(key: .answeredQuestions) as? [[String: Any]] else {
             return [Answer]()
         }
         
@@ -83,7 +83,7 @@ class Singleton {
     
     var didSkipTestFromLauching = false
     var didSkipTest: Bool? {
-        guard let value = UserDefaultsWrapper.fetchUserDefaults(key: .didSkipTest) as? Bool else {
+        guard let value = UserDefaultsHelper.fetchUserDefaults(key: .didSkipTest) as? Bool else {
             return nil
         }
         return value

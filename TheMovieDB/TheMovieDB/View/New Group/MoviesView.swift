@@ -27,6 +27,7 @@ class MoviesView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        StoreReviewHelper.checkAndAskForReview()
         Singleton.shared.didSkipTestFromLauching = true
         searchHeaderView.delegate = self
         tableView.keyboardDismissMode = .onDrag

@@ -1,5 +1,5 @@
 //
-//  UserDefaultsWrapper.swift
+//  UserDefaultsHelper.swift
 //  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 5/9/18.
@@ -9,6 +9,7 @@
 import UIKit
 
 enum UserDefaultsKeys {
+    case appOpenedCount
     case answeredQuestions
     case didSkipTest
     case userPersonality
@@ -20,7 +21,7 @@ enum UserDefaultsKeys {
     }
 }
 
-struct UserDefaultsWrapper {
+struct UserDefaultsHelper {
     static func saveUserDefaults(object: Any?, key: UserDefaultsKeys) {
         guard let object = object else {
             return
