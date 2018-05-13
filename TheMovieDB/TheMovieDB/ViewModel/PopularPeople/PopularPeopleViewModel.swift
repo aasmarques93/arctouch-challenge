@@ -75,7 +75,7 @@ class PopularPeopleViewModel: ViewModel {
         currentPage = 1
         
         if let value = searchText, !value.isEmptyOrWhitespace {
-            let parameters: [String:Any] = [
+            let parameters: [String: Any] = [
                 "query": value.replacingOccurrences(of: " ", with: "%20"),
                 "page": currentPage,
                 "language": Locale.preferredLanguages.first ?? ""

@@ -9,20 +9,19 @@
 import UIKit
 import Bond
 
-class TVShowViewCell: UITableViewCell {
-    @IBOutlet weak var imageViewPoster: UIImageView!
-    @IBOutlet weak var labelOriginalTitle: UILabel!
-    @IBOutlet weak var labelDate: UILabel!
-    @IBOutlet weak var textViewOverview: UITextView!
+class TVShowViewCell: UICollectionViewCell {
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var viewModel: TVShowCellViewModel?
+    var viewModel: TVShowViewModel?
     
-    func setupView(at indexPath: IndexPath) {
-        viewModel?.photo.bind(to: imageViewPoster.reactive.image)
-        viewModel?.title.bind(to: labelOriginalTitle.reactive.text)
-        viewModel?.date.bind(to: labelDate.reactive.text)
-        viewModel?.overview.bind(to: textViewOverview.reactive.text)
-        
-        viewModel?.loadData()
+    func setupView(at section: Int, row: Int) {
+        activityIndicator.startAnimating()
+        if let url = viewModel?.imagePathUrl(at: section, row: row) {
+            activityIndicator.isHidden = false
+            imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], progress: nil) { (image, error, type, url) in
+                self.activityIndicator.isHidden = true
+            }
+        }
     }
 }

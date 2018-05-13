@@ -55,15 +55,17 @@
 	<key>tvTopRated</key>
 	<string>/tv/top_rated?language={language}&amp;page={page}&amp;</string>
 	<key>tvLatest</key>
-	<string>/tv/latest?language={language}&amp;page={page}&amp;</string>
+	<string>/tv/latest?language={language}&amp;</string>
 	<key>tvAiringToday</key>
 	<string>/tv/airing_today?language={language}&amp;page={page}&amp;</string>
 	<key>tvDetail</key>
 	<string>/tv/{id}?language={language}&amp;</string>
-	<key>tvSimilar</key>
-	<string>/tv/{id}/similar</string>
 	<key>tvVideos</key>
 	<string>/tv/{id}/videos?language={language}&amp;</string>
+	<key>tvRecommendations</key>
+	<string>/tv/{id}/recommendations?language={language}&amp;</string>
+	<key>tvSimilar</key>
+	<string>/tv/{id}/similar?language={language}&amp;</string>
 	<key>tvCredits</key>
 	<string>/tv/{id}/credits?language={language}&amp;</string>
 	<key>tvImages</key>

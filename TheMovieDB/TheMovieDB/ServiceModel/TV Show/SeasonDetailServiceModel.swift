@@ -18,7 +18,7 @@ struct SeasonDetailServiceModel {
                 "season": seasonNumber,
                 "language": Locale.preferredLanguages.first ?? ""
             ]
-            serviceModel.request(requestUrl: .seasonDetail, urlParameters: parameters, handlerObject: { (object) in
+            serviceModel.request(requestUrl: RequestUrl.seasonDetail, urlParameters: parameters, handlerObject: { (object) in
                 if let object = object { handler(SeasonDetail(object: object)) }
             })
         }

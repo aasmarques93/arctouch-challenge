@@ -113,6 +113,7 @@ extension MoviesView: SearchHeaderViewDelegate {
 }
 
 extension MoviesView: MoviesViewCellDelegate {
+    
     // MARK: - Movies view cell delegate -
     
     func didSelectItem(at section: Int, row: Int) {

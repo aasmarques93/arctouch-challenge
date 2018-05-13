@@ -18,13 +18,13 @@ struct SearchServiceModel {
         })
     }
     
-    func getMoviesFromGenre(urlParameters: [String:Any], handler: @escaping HandlerObject) {
+    func getMoviesFromGenre(urlParameters: [String: Any], handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: .searchByGenre, urlParameters: urlParameters, handlerObject: { (object) in
             if let object = object { handler(SearchMoviesGenre(object: object)) }
         })
     }
     
-    func doSearch(urlParameters: [String:Any], isMultipleSearch: Bool, handler: @escaping HandlerObject) {
+    func doSearch(urlParameters: [String: Any], isMultipleSearch: Bool, handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: isMultipleSearch ? .multiSearch: .searchMovie,
                              urlParameters: urlParameters,
                              handlerObject: { (object) in

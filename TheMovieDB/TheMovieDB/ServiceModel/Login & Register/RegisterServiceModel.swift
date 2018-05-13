@@ -18,7 +18,7 @@ struct RegisterServiceModel {
                 handlerObject: @escaping HandlerObject,
                 handlerError: @escaping HandlerObject) {
         
-//        var parameters = [String:Any]()
+//        var parameters = [String: Any]()
 //        
 //        if let value = username { parameters["name"] = value }
 //        if let value = email { parameters["email"] = value }

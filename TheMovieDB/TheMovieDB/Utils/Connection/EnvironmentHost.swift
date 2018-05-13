@@ -52,8 +52,9 @@ enum RequestUrl: String {
     case tvLatest
     case tvAiringToday
     case tvDetail
-    case tvSimilar
     case tvVideos
+    case tvSimilar
+    case tvRecommendations
     case tvCredits
     case tvImages
     case multiSearch

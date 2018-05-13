@@ -31,7 +31,7 @@ class MovieDetailViewModel: ViewModel {
     var overview = Observable<String?>(nil)
     
     // MARK: Objects
-    var movie: Movie!
+    var movie: Movie?
     
     var movieDetail: MovieDetail? {
         didSet {
@@ -88,6 +88,10 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getMovieDetail() {
+        guard let movie = movie else {
+            return
+        }
+        
         Loading.shared.start()
         serviceModel.getDetail(from: movie) { [weak self] (object) in
             Loading.shared.stop()
@@ -96,7 +100,7 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getVideos() {
-        guard arrayVideos.isEmpty else {
+        guard let movie = movie, arrayVideos.isEmpty else {
             return
         }
         
@@ -110,7 +114,7 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getRecommendedMovies() {
-        guard arrayRecommendedMovies.isEmpty else {
+        guard let movie = movie, arrayRecommendedMovies.isEmpty else {
             return
         }
         
@@ -124,7 +128,7 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getSimilarMovies() {
-        guard arraySimilarMovies.isEmpty else {
+        guard let movie = movie, arraySimilarMovies.isEmpty else {
             return
         }
         
@@ -138,7 +142,7 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getCredits() {
-        guard arrayCast.isEmpty else {
+        guard let movie = movie, arrayCast.isEmpty else {
             return
         }
         
@@ -152,7 +156,7 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getReviews() {
-        guard arrayReviews.isEmpty else {
+        guard let movie = movie, arrayReviews.isEmpty else {
             return
         }
         
@@ -170,7 +174,7 @@ class MovieDetailViewModel: ViewModel {
     // MARK: Movie
     
     var movieName: String? {
-        return movie.title
+        return movie?.title
     }
     
     func movieDetailImageData(handlerData: @escaping HandlerObject) {

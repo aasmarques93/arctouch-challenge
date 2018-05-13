@@ -9,7 +9,7 @@
 struct MoviesServiceModel {
     let serviceModel = ServiceModel()
     
-    func getMovies(urlParameters: [String:Any]? = nil, requestUrl: RequestUrl, handler: @escaping HandlerObject) {
+    func getMovies(urlParameters: [String: Any]? = nil, requestUrl: RequestUrl, handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: requestUrl, urlParameters: urlParameters, handlerObject: { (object) in
             if let object = object { handler(MoviesList(object: object)) }
         })

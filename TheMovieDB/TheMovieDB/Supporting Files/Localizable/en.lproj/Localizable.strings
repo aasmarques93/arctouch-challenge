@@ -24,6 +24,9 @@
 "Top Rated" = "Top Rated";
 "Upcoming" = "Upcoming";
 "Popular" = "Popular";
+"Airing today" = "Airing today";
+"On the air" = "On the air";
+"Latest" = "Latest";
 
 // Enum Messages
 "There are no movies available" = "There are no movies available";

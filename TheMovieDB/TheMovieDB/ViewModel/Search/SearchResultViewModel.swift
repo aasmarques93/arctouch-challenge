@@ -74,7 +74,7 @@ class SearchResultViewModel: ViewModel {
             return
         }
         
-        let parameters: [String:Any] = [
+        let parameters: [String: Any] = [
             "query": value.replacingOccurrences(of: " ", with: "%20"),
             "page": currentPage,
             "language": Locale.preferredLanguages.first ?? ""

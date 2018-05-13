@@ -171,7 +171,7 @@ class PersonViewModel: ViewModel {
     
     func movieDetailViewModel(at index: Int) -> MovieDetailViewModel? {
         let cast = arrayCast[index]
-        let dictionary: [String:Any?] = [
+        let dictionary: [String: Any?] = [
             "id": cast.id,
             "original_title": cast.originalTitle,
             "language": Locale.preferredLanguages.first ?? ""

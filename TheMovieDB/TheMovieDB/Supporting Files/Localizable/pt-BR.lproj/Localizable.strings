@@ -24,6 +24,9 @@
 "Top Rated" = "Mais aclamados pela crítica";
 "Upcoming" = "Em breve";
 "Popular" = "Populares";
+"Airing today" = "Lançamentos de hoje";
+"On the air" = "No ar";
+"Latest" = "Mais recentes";
 
 // Enum Messages
 "There are no movies available" = "Não há filmes disponíveis";

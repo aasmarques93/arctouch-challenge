@@ -41,6 +41,8 @@ struct TVShow: Model {
     var originalLanguage: String?
     var posterPath: String?
     
+    var imageData: Data?
+    
     // MARK: SwiftyJSON Initializers
     init(object: Any) {
         if let json = object as? JSON {

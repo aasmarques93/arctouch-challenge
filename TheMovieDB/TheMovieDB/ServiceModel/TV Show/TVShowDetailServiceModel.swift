@@ -9,33 +9,45 @@
 struct TVShowDetailServiceModel {
     let serviceModel = ServiceModel()
     
-    func getDetail(from id: Int?, handler: @escaping HandlerObject) {
-        let parameters: [String: Any] = [
-            "id": id ?? 0,
-            "language": Locale.preferredLanguages.first ?? ""
-        ]
-        serviceModel.request(requestUrl: .tvDetail, urlParameters: parameters, handlerObject: { (object) in
+    func getDetail(from tvShow: TVShow, handler: @escaping HandlerObject) {
+        serviceModel.request(requestUrl: .tvDetail, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
             if let object = object { handler(TVShowDetail(object: object)) }
         })
     }
     
-    func getVideos(from id: Int?, handler: @escaping HandlerObject) {
-        let parameters: [String: Any] = [
-            "id": id ?? 0,
-            "language": Locale.preferredLanguages.first ?? ""
-        ]
-        serviceModel.request(requestUrl: .tvVideos, urlParameters: parameters, handlerObject: { (object) in
+    func getVideos(from tvShow: TVShow, handler: @escaping HandlerObject) {
+        serviceModel.request(requestUrl: .tvVideos, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
             if let object = object { handler(VideosList(object: object)) }
         })
     }
     
-    func getCredits(from id: Int?, handler: @escaping HandlerObject) {
-        let parameters: [String: Any] = [
-            "id": id ?? 0,
-            "language": Locale.preferredLanguages.first ?? ""
-        ]
-        serviceModel.request(requestUrl: .tvCredits, urlParameters: parameters, handlerObject: { (object) in
+    func getRecommendations(from tvShow: TVShow, handler: @escaping HandlerObject) {
+        serviceModel.request(requestUrl: .tvRecommendations, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
+            if let object = object { handler(SearchTV(object: object)) }
+        })
+    }
+    
+    func getSimilar(from tvShow: TVShow, handler: @escaping HandlerObject) {
+        serviceModel.request(requestUrl: .tvSimilar, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
+            if let object = object { handler(SearchTV(object: object)) }
+        })
+    }
+    
+    func getCredits(from tvShow: TVShow, handler: @escaping HandlerObject) {
+        serviceModel.request(requestUrl: .tvCredits, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
             if let object = object { handler(CreditsList(object: object)) }
         })
+    }
+    
+    func createParameters(from tvShow: TVShow) -> [String: Any] {
+        let parameters: [String: Any] = [
+            "id": tvShow.id ?? 0,
+            "language": Locale.preferredLanguages.first ?? ""
+        ]
+        return parameters
+    }
+    
+    func loadImage(path: String?, handlerData: @escaping HandlerObject) {
+        serviceModel.loadImage(path: path, handlerData: handlerData)
     }
 }

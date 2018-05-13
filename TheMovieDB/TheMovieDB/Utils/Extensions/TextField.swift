@@ -182,7 +182,7 @@ extension UITextField {
     }
     
     @objc func inputAccessoryViewAction(_ sender: UIBarButtonItem) {
-        var object = [String:Any]()
+        var object = [String: Any]()
         
         object["selectedRow"] = selectedRow
         object["isRightButton"] = sender.tag == 1

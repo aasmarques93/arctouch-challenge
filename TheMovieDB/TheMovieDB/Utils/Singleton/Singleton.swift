@@ -56,7 +56,7 @@ class Singleton {
     }
     
     var userAnsweredQuestions: [Answer] {
-        guard let array = UserDefaultsWrapper.fetchUserDefaults(key: .answeredQuestions) as? [[String:Any]] else {
+        guard let array = UserDefaultsWrapper.fetchUserDefaults(key: .answeredQuestions) as? [[String: Any]] else {
             return [Answer]()
         }
         

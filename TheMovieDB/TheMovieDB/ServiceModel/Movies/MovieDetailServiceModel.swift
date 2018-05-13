@@ -63,8 +63,8 @@ struct MovieDetailServiceModel {
         })
     }
     
-    func createParameters(from movie: Movie, isSimple: Bool = true) -> [String:Any] {
-        var parameters = [String:Any]()
+    func createParameters(from movie: Movie, isSimple: Bool = true) -> [String: Any] {
+        var parameters = [String: Any]()
         parameters["idMovie"] = movie.id ?? 0
         if !isSimple { parameters["page"] = 1 }
         parameters["language"] = Locale.preferredLanguages.first ?? ""

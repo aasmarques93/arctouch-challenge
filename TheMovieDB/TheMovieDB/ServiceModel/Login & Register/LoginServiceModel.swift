@@ -21,7 +21,7 @@ struct LoginServiceModel {
                       handlerObject: @escaping HandlerObject,
                       handlerError: @escaping HandlerObject) {
         
-//        var parameters = [String:Any]()
+//        var parameters = [String: Any]()
 //
 //        if let value = email { parameters["email"] = value }
 //        if let value = password { parameters["password"] = value }

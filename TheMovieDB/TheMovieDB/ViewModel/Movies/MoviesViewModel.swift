@@ -12,51 +12,53 @@ protocol MoviesViewModelDelegate: ViewModelDelegate {
     func reloadData(at index: Int)
 }
 
-enum GenreType: String {
-    case sugested = "Sugested"
-    case nowPlaying = "Now Playing"
-    case topRated = "Top Rated"
-    case upcoming = "Upcoming"
-    case popular = "Popular"
-    
-    var localized: String {
-        return NSLocalizedString(self.rawValue, comment: "")
-    }
-    
-    var index: Int {
-        switch self {
-        case .sugested:
-            return 0
-        case .popular:
-            return 1
-        case .topRated:
-            return 2
-        case .upcoming:
-            return 3
-        case .nowPlaying:
-            return 4
-        }
-    }
-    
-    static func genre(at index: Int) -> GenreType? {
-        switch index {
-        case 0:
-            return GenreType.sugested
-        case 1:
-            return GenreType.popular
-        case 2:
-            return GenreType.topRated
-        case 3:
-            return GenreType.upcoming
-        case 4:
-            return GenreType.nowPlaying
-        default:
-            return nil
-        }
-    }
-}
-
 class MoviesViewModel: ViewModel {
+    // MARK: - Enums -
+    
+    enum GenreType: String {
+        case sugested = "Sugested"
+        case nowPlaying = "Now Playing"
+        case topRated = "Top Rated"
+        case upcoming = "Upcoming"
+        case popular = "Popular"
+        
+        var localized: String {
+            return NSLocalizedString(self.rawValue, comment: "")
+        }
+        
+        var index: Int {
+            switch self {
+            case .sugested:
+                return 0
+            case .popular:
+                return 1
+            case .topRated:
+                return 2
+            case .upcoming:
+                return 3
+            case .nowPlaying:
+                return 4
+            }
+        }
+        
+        static func genre(at index: Int) -> GenreType? {
+            switch index {
+            case 0:
+                return GenreType.sugested
+            case 1:
+                return GenreType.popular
+            case 2:
+                return GenreType.topRated
+            case 3:
+                return GenreType.upcoming
+            case 4:
+                return GenreType.nowPlaying
+            default:
+                return nil
+            }
+        }
+    }
+    
     // MARK: - Properties -
     
     // MARK: Delegate
@@ -71,7 +73,7 @@ class MoviesViewModel: ViewModel {
     
     // MARK: Sugested
     private var arraySugestedMovies = [Movie]()
-    var numberOfSugestedMovie: Int { return arraySugestedMovies.count }
+    var numberOfSugestedMovies: Int { return arraySugestedMovies.count }
     
     // MARK: Now Playing
     private var arrayNowPlayingMovies = [Movie]()
@@ -113,20 +115,18 @@ class MoviesViewModel: ViewModel {
         
         switch genre {
         case .sugested:
-            break
+            return
         case .popular:
             currentPopularMoviesPage += 1
-            getMovies(genre: .popular)
         case .topRated:
             currentTopRatedMoviesPage += 1
-            getMovies(genre: .topRated)
         case .upcoming:
             currentUpcomingMoviesPage += 1
-            getMovies(genre: .upcoming)
         case .nowPlaying:
             currentNowPlayingMoviesPage += 1
-            getMovies(genre: .nowPlaying)
         }
+        
+        getMovies(genre: genre)
     }
     
     private func getSugestedMovies() {
@@ -151,6 +151,14 @@ class MoviesViewModel: ViewModel {
         ]
         SearchServiceModel().getMoviesFromGenre(urlParameters: parameters) { [weak self] (object) in
             guard let object = object as? SearchMoviesGenre, let results = object.results else {
+                return
+            }
+            let result = self?.arraySugestedMovies.contains {
+                let id = $0.id
+                let map = results.map { return $0.id }
+                return map.contains { return $0 == id }
+            }
+            guard let contains = result, !contains else {
                 return
             }
             guard let array = self?.sortedByVoteAverage(array: results) else {
@@ -279,7 +287,7 @@ class MoviesViewModel: ViewModel {
         }
         switch genre {
         case .sugested:
-            return numberOfSugestedMovie
+            return numberOfSugestedMovies
         case .popular:
             return numberOfPopularMovies
         case .topRated:

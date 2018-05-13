@@ -17,7 +17,7 @@ typealias HandlerObject = (Any?) -> Swift.Void
 struct ServiceModel {
     // MARK: - Properties -
     var url: String?
-    var parameters: [String:Any]?
+    var parameters: [String: Any]?
     
     // MARK: - Constructors -
     init() { }
@@ -26,7 +26,7 @@ struct ServiceModel {
         self.url = url
     }
     
-    init(url: String?, parameters: [String:Any]?) {
+    init(url: String?, parameters: [String: Any]?) {
         self.url = url
         self.parameters = parameters
     }
@@ -37,8 +37,8 @@ struct ServiceModel {
                  requestUrl: RequestUrl,
                  environmentBase: EnvironmentBase = .theMovieDB,
                  stringUrl: String? = nil,
-                 parameters: [String:Any]? = nil,
-                 urlParameters: [String:Any]? = nil,
+                 parameters: [String: Any]? = nil,
+                 urlParameters: [String: Any]? = nil,
                  handlerObject: @escaping HandlerObject,
                  handlerJson: HandlerObject? = nil) {
         
@@ -126,7 +126,7 @@ struct ServiceModel {
     
     // MARK: - File manager - Link requests -
     
-    private func requestUrl(type: RequestUrl, environmentBase: EnvironmentBase, parameters: [String:Any]? = nil) -> String {
+    private func requestUrl(type: RequestUrl, environmentBase: EnvironmentBase, parameters: [String: Any]? = nil) -> String {
         if type.rawValue.contains("http") {
             return type.rawValue
         }
@@ -166,7 +166,7 @@ struct ServiceModel {
         return ""
     }
     
-    func createUrl(from string: String, environmentBase: EnvironmentBase, parameters: [String:Any]) -> String {
+    func createUrl(from string: String, environmentBase: EnvironmentBase, parameters: [String: Any]) -> String {
         var url = string
         
         parameters.forEach { (parameter) in

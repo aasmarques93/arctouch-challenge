@@ -11,6 +11,8 @@ import Bond
 protocol TVShowDetailViewModelDelegate: ViewModelDelegate {
     func reloadVideos()
     func reloadSeasons()
+    func reloadRecommended()
+    func reloadSimilar()
     func reloadCast()
 }
 
@@ -30,7 +32,7 @@ class TVShowDetailViewModel: ViewModel {
     var overview = Observable<String?>(nil)
     
     // MARK: Objects
-    private var id: Int!
+    private var tvShow: TVShow?
     
     private var tvShowDetail: TVShowDetail? {
         didSet {
@@ -59,6 +61,14 @@ class TVShowDetailViewModel: ViewModel {
     private var arrayVideos = [Video]() { didSet { delegate?.reloadVideos() } }
     var numberOfVideos: Int { return arrayVideos.count }
     
+    // MARK: Recommended
+    private var arrayRecommended = [TVShow]() { didSet { delegate?.reloadRecommended() } }
+    var numberOfRecommended: Int { return arrayRecommended.count }
+    
+    // MARK: Similar
+    private var arraySimilar = [TVShow]() { didSet { delegate?.reloadSimilar() } }
+    var numberOfSimilar: Int { return arraySimilar.count }
+    
     // MARK: Seasons
     private var arraySeasons = [Seasons]() { didSet { delegate?.reloadSeasons() } }
     var numberOfSeasons: Int { return arraySeasons.count }
@@ -69,8 +79,8 @@ class TVShowDetailViewModel: ViewModel {
     
     // MARK: - Life cycle -
     
-    init(_ id: Int?) {
-        self.id = id
+    init(_ object: TVShow?) {
+        self.tvShow = object
     }
     
     // MARK: - Service requests -
@@ -78,38 +88,76 @@ class TVShowDetailViewModel: ViewModel {
     func loadData() {
         getTvShowDetail()
         getVideos()
+        getRecommended()
+        getSimilar()
         getCredits()
     }
     
     private func getTvShowDetail() {
+        guard let tvShow = tvShow else {
+            return
+        }
+        
         Loading.shared.start()
-        serviceModel.getDetail(from: id) { [weak self] (object) in
+        serviceModel.getDetail(from: tvShow) { [weak self] (object) in
             Loading.shared.stop()
             self?.tvShowDetail = object as? TVShowDetail
         }
     }
     
     private func getVideos() {
-        if arrayVideos.isEmpty {
-            serviceModel.getVideos(from: id) { [weak self] (object) in
-                guard let object = object as? VideosList, let results = object.results else {
-                    return
-                }
-                
-                self?.arrayVideos.append(contentsOf: results)
+        guard let tvShow = tvShow, arrayVideos.isEmpty else {
+            return
+        }
+        
+        serviceModel.getVideos(from: tvShow) { [weak self] (object) in
+            guard let object = object as? VideosList, let results = object.results else {
+                return
             }
+            
+            self?.arrayVideos.append(contentsOf: results)
+        }
+    }
+    
+    private func getRecommended() {
+        guard let tvShow = tvShow, arrayRecommended.isEmpty else {
+            return
+        }
+        
+        serviceModel.getRecommendations(from: tvShow) { [weak self] (object) in
+            guard let object = object as? SearchTV, let results = object.results else {
+                return
+            }
+            
+            self?.arrayRecommended.append(contentsOf: results)
+        }
+    }
+    
+    private func getSimilar() {
+        guard let tvShow = tvShow, arraySimilar.isEmpty else {
+            return
+        }
+        
+        serviceModel.getSimilar(from: tvShow) { [weak self] (object) in
+            guard let object = object as? SearchTV, let results = object.results else {
+                return
+            }
+            
+            self?.arraySimilar.append(contentsOf: results)
         }
     }
     
     private func getCredits() {
-        if arrayCast.isEmpty {
-            serviceModel.getCredits(from: id) { [weak self] (object) in
-                guard let object = object as? CreditsList, let results = object.cast else {
-                    return
-                }
-                
-                self?.arrayCast.append(contentsOf: results)
+        guard let tvShow = tvShow, arrayCast.isEmpty else {
+            return
+        }
+        
+        serviceModel.getCredits(from: tvShow) { [weak self] (object) in
+            guard let object = object as? CreditsList, let results = object.cast else {
+                return
             }
+            
+            self?.arrayCast.append(contentsOf: results)
         }
     }
     
@@ -167,6 +215,22 @@ class TVShowDetailViewModel: ViewModel {
         loadImageData(at: arraySeasons[index].posterPath, handlerData: handlerData)
     }
     
+    // MARK: Recommendations
+    
+    func recommendedImageData(at index: Int, handlerData: @escaping HandlerObject) {
+        var tvShow = arrayRecommended[index]
+        
+        if let data = tvShow.imageData {
+            handlerData(data)
+            return
+        }
+        
+        serviceModel.loadImage(path: tvShow.posterPath ?? "", handlerData: { (data) in
+            tvShow.imageData = data as? Data
+            handlerData(data)
+        })
+    }
+    
     // MARK: Cast
     
     func castImageData(at index: Int, handlerData: @escaping HandlerObject) {
@@ -195,13 +259,42 @@ class TVShowDetailViewModel: ViewModel {
         return arrayCast[index].character ?? ""
     }
     
-    // MARK: - Person View Model -
+    // MARK: Similar
+    
+    func similarImageData(at index: Int, handlerData: @escaping HandlerObject) {
+        var tvShow = arraySimilar[index]
+        
+        if let data = tvShow.imageData {
+            handlerData(data)
+            return
+        }
+        
+        serviceModel.loadImage(path: tvShow.posterPath ?? "", handlerData: { (data) in
+            tvShow.imageData = data as? Data
+            handlerData(data)
+        })
+    }
+    
+    // MARK: - View Model instantiation -
+    
+    func seasonDetailViewModel(at index: Int) -> SeasonDetailViewModel? {
+        return SeasonDetailViewModel(tvShowDetail, season: arraySeasons[index])
+    }
     
     func personViewModel(at index: Int) -> PersonViewModel? {
         return PersonViewModel(arrayCast[index].id)
     }
     
-    func seasonDetailViewModel(at index: Int) -> SeasonDetailViewModel? {
-        return SeasonDetailViewModel(tvShowDetail, season: arraySeasons[index])
+    func recommendedDetailViewModel(at index: Int) -> TVShowDetailViewModel? {
+        return tvShowDetailViewModel(arrayRecommended[index])
     }
+    
+    func similarDetailViewModel(at index: Int) -> TVShowDetailViewModel? {
+        return tvShowDetailViewModel(arraySimilar[index])
+    }
+    
+    private func tvShowDetailViewModel(_ tvShow: TVShow) -> TVShowDetailViewModel? {
+        return TVShowDetailViewModel(tvShow)
+    }
+    
 }

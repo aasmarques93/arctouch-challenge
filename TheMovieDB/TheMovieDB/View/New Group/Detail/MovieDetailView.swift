@@ -1,23 +1,27 @@
 //
-//  TVShowDetailView.swift
+//  MovieDetailView.swift
 //  TheMovieDB
 //
-//  Created by Arthur Augusto Sousa Marques on 4/28/18.
+//  Created by Arthur Augusto Sousa Marques on 3/14/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
 import UIKit
+import Bond
+import YouTubePlayer
 
-class TVShowDetailView: UITableViewController {
-    @IBOutlet weak var circularProgressView: CircularProgressView!
+class MovieDetailView: UITableViewController {
+    @IBOutlet weak var labelAverage: UILabel!
     @IBOutlet weak var labelDate: UILabel!
+    @IBOutlet weak var labelRuntime: UILabel!
     
     @IBOutlet weak var textViewGenres: UITextView!
     @IBOutlet weak var textViewOverview: UITextView!
     
     @IBOutlet weak var carouselVideos: iCarousel!
-    @IBOutlet weak var carouselSeasons: iCarousel!
+    @IBOutlet weak var carouselRecommendedMovies: iCarousel!
     @IBOutlet weak var carouselCast: iCarousel!
+    @IBOutlet weak var carouselSimilarMovies: iCarousel!
     
     @IBOutlet var stretchHeaderView: StretchHeaderView!
     
@@ -26,11 +30,16 @@ class TVShowDetailView: UITableViewController {
         case genres = 1
         case overview = 2
         case videos = 3
-        case seasons = 4
-        case cast = 6
+        case recommended = 4
+        case cast = 5
+        case similiarMovies = 6
+        case reviews = 7
     }
     
-    var viewModel: TVShowDetailViewModel?
+    var reviewsView: ReviewsView?
+    var viewModel: MovieDetailViewModel?
+    
+    // MARK: - Life cycle -
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,14 +47,23 @@ class TVShowDetailView: UITableViewController {
         setupBindings()
         viewModel?.delegate = self
         viewModel?.loadData()
+        reviewsView?.viewModel = viewModel
+        
+        if let value = viewModel?.movieName {
+            FabricUtils.logEvent(message: "\(Messages.didSelect.localized) \(value)")
+        }
     }
     
+    // MARK: - Appearance -
+    
     func setupAppearance() {
+        setTitle(text: viewModel?.movieName)
+        
         carouselVideos.type = .linear
         carouselVideos.bounces = false
-        carouselSeasons.type = .linear
-        carouselSeasons.bounces = false
+        carouselRecommendedMovies.type = .rotary
         carouselCast.type = .rotary
+        carouselSimilarMovies.type = .rotary
         
         stretchHeaderView.setupHeaderView(tableView: tableView)
     }
@@ -53,7 +71,9 @@ class TVShowDetailView: UITableViewController {
     // MARK: - View model bindings -
     
     func setupBindings() {
+        viewModel?.average.bind(to: labelAverage.reactive.text)
         viewModel?.date.bind(to: labelDate.reactive.text)
+        viewModel?.runtime.bind(to: labelRuntime.reactive.text)
         viewModel?.genres.bind(to: textViewGenres.reactive.text)
         viewModel?.overview.bind(to: textViewOverview.reactive.text)
     }
@@ -66,16 +86,21 @@ class TVShowDetailView: UITableViewController {
             switch section {
             case .general:
                 break
-            case .videos:
-                if viewModel?.numberOfVideos == 0 { height = 0 }
-            case .seasons:
-                if viewModel?.numberOfSeasons == 0 { height = 0 }
-            case .cast:
-                if viewModel?.numberOfCastCharacters == 0 { height = 0 }
             case .genres:
                 height += textViewGenres.contentSize.height
             case .overview:
                 height += textViewOverview.contentSize.height
+            case .videos:
+                if viewModel?.numberOfVideos == 0 { height = 0 }
+            case .recommended:
+                if viewModel?.numberOfRecommendedMovies == 0 { height = 0 }
+            case .cast:
+                if viewModel?.numberOfCastCharacters == 0 { height = 0 }
+            case .similiarMovies:
+                if viewModel?.numberOfSimilarMovies == 0 { height = 0 }
+            case .reviews:
+                height = (CGFloat(viewModel?.numberOfReviews ?? 0) * (reviewsView?.rowHeight ?? 0)) + 40
+                if viewModel?.numberOfReviews == 0 { height = 0 }
             }
         }
         return height
@@ -87,27 +112,25 @@ class TVShowDetailView: UITableViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? ReviewsView {
+            reviewsView = viewController
+        }
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         stretchHeaderView.deviceOrientationDidRotate(to: size)
     }
 }
 
-extension TVShowDetailView: TVShowDetailViewModelDelegate {
+extension MovieDetailView: MovieDetailViewModelDelegate {
     
-    // MARK: - TV show detail view model delegate -
+    // MARK: - Movie detail view model delegate -
     
     func reloadData() {
         tableView.reloadData()
         
-        setTitle(text: viewModel?.tvShowName)
-        
-        if let value = viewModel?.tvShowName {
-            FabricUtils.logEvent(message: "\(Messages.didSelect.localized) \(value)")
-        }
-        
-        if let average = viewModel?.average { circularProgressView.progress = average }
-        
-        viewModel?.tvShowDetailImageData(handlerData: { [weak self] (data) in
+        viewModel?.movieDetailImageData(handlerData: { [weak self] (data) in
             guard let strongSelf = self else {
                 return
             }
@@ -122,36 +145,46 @@ extension TVShowDetailView: TVShowDetailViewModelDelegate {
         carouselVideos.reloadData()
     }
     
-    func reloadSeasons() {
-        carouselSeasons.reloadData()
+    func reloadRecommendedMovies() {
+        carouselRecommendedMovies.reloadData()
     }
     
     func reloadCast() {
         carouselCast.reloadData()
     }
+    
+    func reloadSimilarMovies() {
+        carouselSimilarMovies.reloadData()
+    }
+    
+    func reloadReviews() {
+        reviewsView?.tableView.reloadData()
+        tableView.reloadData()
+    }
 }
 
-extension TVShowDetailView: iCarouselDelegate, iCarouselDataSource {
+extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
     
     // MARK: - iCarousel delegate and data source -
     
     func numberOfItems(in carousel: iCarousel) -> Int {
         if let viewModel = viewModel {
             if carousel == carouselVideos { return viewModel.numberOfVideos }
-            if carousel == carouselSeasons { return viewModel.numberOfSeasons }
+            if carousel == carouselRecommendedMovies { return viewModel.numberOfRecommendedMovies }
             if carousel == carouselCast { return viewModel.numberOfCastCharacters }
+            return viewModel.numberOfSimilarMovies
         }
         return 0
     }
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
-        if carousel == carouselVideos { return carouselVideoView(at: index) }
-        if carousel == carouselSeasons { return carouselSeasonView(at: index) }
+        if carousel == carouselVideos { return carouselMovieView(at: index) }
+        if carousel == carouselRecommendedMovies { return carouselRecommendationView(at: index) }
         if carousel == carouselCast { return carouselCastView(at: index) }
-        return UIView()
+        return carouselSimilarMovieView(at: index)
     }
     
-    func carouselVideoView(at index: Int) -> UIView {
+    func carouselMovieView(at index: Int) -> UIView {
         let view = XibView.instanceFromNib(PlayerView.self)
         
         view.labelVideo.text = viewModel?.videoTitle(at: index)
@@ -163,21 +196,14 @@ extension TVShowDetailView: iCarouselDelegate, iCarouselDataSource {
         return view
     }
     
-    func carouselSeasonView(at index: Int) -> UIView {
-        let view = XibView.instanceFromNib(SeasonView.self)
-        let margin: CGFloat = 4
-        view.frame = CGRect(x: view.frame.minX, y: view.frame.minY, width: SCREEN_WIDTH - (margin * 2), height: view.frame.height)
+    func carouselRecommendationView(at index: Int) -> UIView {
+        let view = XibView.instanceFromNib(MovieView.self)
         
-        view.labelName.text = viewModel?.seasonName(at: index)
-        view.labelYear.text = viewModel?.seasonYear(at: index)
-        view.labelEpisodeCount.text = viewModel?.seasonEpisodeCount(at: index)
-        view.textViewOverview.text = viewModel?.seasonOverview(at: index)
-        
-        viewModel?.seasonImageData(at: index, handlerData: { (data) in
+        viewModel?.movieRecommendationImageData(at: index) { (data) in
             if let data = data as? Data, let image = UIImage(data: data) {
-                view.imageViewPhoto.image = image
+                view.imageViewMovie.image = image
             }
-        })
+        }
         
         return view
     }
@@ -197,15 +223,35 @@ extension TVShowDetailView: iCarouselDelegate, iCarouselDataSource {
         return view
     }
     
+    func carouselSimilarMovieView(at index: Int) -> UIView {
+        let view = XibView.instanceFromNib(MovieView.self)
+        
+        viewModel?.similarMovieImageData(at: index) { (data) in
+            if let data = data as? Data, let image = UIImage(data: data) {
+                view.imageViewMovie.image = image
+            }
+        }
+        
+        return view
+    }
+    
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
+        if carousel == carouselRecommendedMovies {
+            let viewController = instantiate(viewController: MovieDetailView.self, from: .movie)
+            viewController.viewModel = viewModel?.recommendedMovieDetailViewModel(at: index)
+            navigationController?.pushViewController(viewController, animated: true)
+            return
+        }
         if carousel == carouselCast {
             let viewController = instantiate(viewController: PersonView.self, from: .generic)
             viewController.viewModel = viewModel?.personViewModel(at: index)
             navigationController?.pushViewController(viewController, animated: true)
-        } else if carousel == carouselSeasons {
-            let viewController = instantiate(viewController: SeasonDetailView.self, from: .tvShow)
-            viewController.viewModel = viewModel?.seasonDetailViewModel(at: index)
+        }
+        if carousel == carouselSimilarMovies {
+            let viewController = instantiate(viewController: MovieDetailView.self, from: .movie)
+            viewController.viewModel = viewModel?.similarMovieDetailViewModel(at: index)
             navigationController?.pushViewController(viewController, animated: true)
+            return
         }
     }
 }

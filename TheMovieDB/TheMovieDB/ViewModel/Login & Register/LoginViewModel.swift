@@ -140,7 +140,7 @@ class LoginViewModel: ViewModel {
             }
             
             print("Facebook Result: \(result ?? "")")
-            guard let result = result as? [String:Any] else {
+            guard let result = result as? [String: Any] else {
                 return
             }
             
