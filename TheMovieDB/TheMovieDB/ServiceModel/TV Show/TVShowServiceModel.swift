@@ -9,8 +9,8 @@
 struct TVShowServiceModel {
     let serviceModel = ServiceModel()
     
-    func getPopular(urlParameters: [String:Any]? = nil, handler: @escaping HandlerObject) {
-        serviceModel.request(requestUrl: .tvPopular, urlParameters: urlParameters, handlerObject: { (object) in
+    func getTVShow(requestUrl: RequestUrl, urlParameters: [String:Any]? = nil, handler: @escaping HandlerObject) {
+        serviceModel.request(requestUrl: requestUrl, urlParameters: urlParameters, handlerObject: { (object) in
             if let object = object { handler(SearchTV(object: object)) }
         })
     }

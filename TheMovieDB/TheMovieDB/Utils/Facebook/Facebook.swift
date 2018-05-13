@@ -23,7 +23,7 @@ enum FacebookGraphParameters: String {
 }
 
 struct Facebook {
-    static let shared = Facebook()
+    static var shared = Facebook()
     
     lazy var parametersEmail = ["fields": "email"]
     lazy var parametersDetails = ["fields": "id, first_name, last_name, name, email, picture.type(large)"]

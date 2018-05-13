@@ -47,7 +47,12 @@ enum RequestUrl: String {
     case personImages
     case popularPeople
     case tvPopular
+    case tvOnTheAir
+    case tvTopRated
+    case tvLatest
+    case tvAiringToday
     case tvDetail
+    case tvSimilar
     case tvVideos
     case tvCredits
     case tvImages

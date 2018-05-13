@@ -166,10 +166,12 @@ extension String {
         return (false, "CPF INVÁLIDO.")
     }
     
-    func isPasswordValid(minimumDigits: Int = 0, maximumDigits: Int = 30) -> Bool {
+    func isPasswordValid(minimumDigits: Int = 0, maximumDigits: Int = 30, isComplexPasswordRequired: Bool = true) -> Bool {
         if self == "" || self.count < minimumDigits || self.count > maximumDigits {
             return false
         }
+        
+        if !isComplexPasswordRequired { return true }
         
         let letters = CharacterSet.letters
         let digits = CharacterSet.decimalDigits

@@ -79,7 +79,7 @@ extension SearchResultView: ViewModelDelegate {
     }
     
     func showError(message: String?) {
-        AlertComponent.show(message: message, mainAction: {
+        AlertController.show(message: message, mainAction: {
             self.navigationController?.popViewController(animated: true)
         })
     }

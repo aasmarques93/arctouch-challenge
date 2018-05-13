@@ -148,6 +148,11 @@ extension UIView {
             label.textColor = HexColor.color(from: colorStyle) ?? HexColor.text.color
             return
         }
+        if let textField = self as? UITextField {
+            textField.textColor = HexColor.color(from: colorStyle) ?? HexColor.text.color
+            textField.placeHolderColor = HexColor.color(from: colorStyle) ?? HexColor.text.color
+            return
+        }
         if let textView = self as? UITextView {
             textView.textColor = HexColor.color(from: colorStyle) ?? HexColor.text.color
             return
@@ -173,7 +178,6 @@ extension UIView {
             button.tintColor = HexColor.color(from: colorStyle) ?? HexColor.secondary.color
             return
         }
-        if self is UITextField { return }
         
         self.backgroundColor = HexColor.color(from: colorStyle) ?? self.backgroundColor
     }

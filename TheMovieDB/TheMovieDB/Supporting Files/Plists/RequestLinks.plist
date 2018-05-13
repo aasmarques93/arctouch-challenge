@@ -50,8 +50,18 @@
 	<string>/person/{idPerson}/images?language={language}&amp;</string>
 	<key>tvPopular</key>
 	<string>/tv/popular?language={language}&amp;page={page}&amp;</string>
+	<key>tvOnTheAir</key>
+	<string>/tv/on_the_air?language={language}&amp;page={page}&amp;</string>
+	<key>tvTopRated</key>
+	<string>/tv/top_rated?language={language}&amp;page={page}&amp;</string>
+	<key>tvLatest</key>
+	<string>/tv/latest?language={language}&amp;page={page}&amp;</string>
+	<key>tvAiringToday</key>
+	<string>/tv/airing_today?language={language}&amp;page={page}&amp;</string>
 	<key>tvDetail</key>
 	<string>/tv/{id}?language={language}&amp;</string>
+	<key>tvSimilar</key>
+	<string>/tv/{id}/similar</string>
 	<key>tvVideos</key>
 	<string>/tv/{id}/videos?language={language}&amp;</string>
 	<key>tvCredits</key>

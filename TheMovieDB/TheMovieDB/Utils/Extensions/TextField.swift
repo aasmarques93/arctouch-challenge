@@ -160,7 +160,7 @@ extension UITextField {
                                                   target: self,
                                                   action: #selector(resignFirstResponder))
                 buttonRight.tag = 1
-                buttonRight.tintColor = HexColor.secondary.color
+                buttonRight.tintColor = HexColor.primary.color
                 
                 items.append(buttonRight)
             } else {
@@ -169,7 +169,7 @@ extension UITextField {
                                                   target: self,
                                                   action: #selector(inputAccessoryViewAction(_:)))
                 buttonRight.tag = 1
-                buttonRight.tintColor = HexColor.secondary.color
+                buttonRight.tintColor = HexColor.primary.color
                 
                 items.append(buttonRight)
             }

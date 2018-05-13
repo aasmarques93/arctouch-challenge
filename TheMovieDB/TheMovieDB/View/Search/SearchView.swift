@@ -94,6 +94,6 @@ extension SearchView: ViewModelDelegate {
     }
     
     func showError(message: String?) {
-        AlertComponent.show(message: message)
+        AlertController.show(message: message)
     }
 }

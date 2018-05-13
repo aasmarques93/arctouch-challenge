@@ -39,7 +39,7 @@ class TVShowViewModel: ViewModel {
             "page": currentPage,
             "language": Locale.preferredLanguages.first ?? ""
         ]
-        serviceModel.getPopular(urlParameters: parameters) { [weak self] (object) in
+        serviceModel.getTVShow(requestUrl: .tvPopular, urlParameters: parameters) { [weak self] (object) in
             if let object = object as? SearchTV, let results = object.results {
                 self?.totalPages = object.totalPages
                 self?.arrayPopular.append(contentsOf: results)

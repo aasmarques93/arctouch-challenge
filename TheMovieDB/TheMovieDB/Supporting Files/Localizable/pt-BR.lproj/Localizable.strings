@@ -32,3 +32,12 @@
 "Search a person" = "Pesquise um famoso";
 "Did select" = "Voce selecionou";
 "Did answered personality test - Type: " = "Você respondeu o teste de personalidade - Tipo: ";
+
+// Validation
+"Hey dude, You can start by creating an account" = "Eai cara\nVocê pode começar criando uma conta";
+"Invalid user" = "Usuário inválido";
+"Invalid email" = "Email inválido";
+"Invalid password\nYour password must have at least 6 characteres" = "Senha inválida\nSua senha deve possuir no mínimo 6 caracteres";
+"Passwords do not match" = "As senhas não conferem";
+"An error has occurred on our servers\nTry again later" = "Occorreu um erro no nosso servidor\nTente mais tarde";
+"An email was sent to reset your password" = "Um email foi enviado para a resetar sua senha";

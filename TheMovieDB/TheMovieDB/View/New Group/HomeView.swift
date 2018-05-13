@@ -132,6 +132,6 @@ extension HomeView: HomeViewModelDelegate {
     }
     
     func showError(message: String?) {
-        AlertComponent.show(message: message)
+        AlertController.show(message: message)
     }
 }

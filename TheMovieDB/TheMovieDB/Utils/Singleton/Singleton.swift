@@ -6,13 +6,46 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
+import FBSDKLoginKit
 
-struct Singleton {
-    static var shared = Singleton()
+class Singleton {
+    static let shared = Singleton()
     
     let typingTimeInterval = 0.01
     var arrayPersonalityTypes = [PersonalityType]()
+    
+    var user = User.createEmptyUser() {
+        didSet {
+            saveUser()
+        }
+    }
+    
+    func saveUser() {
+        UserDefaultsWrapper.saveUserDefaults(object: user.dictionaryRepresentation(), key: .userLogged)
+    }
+    
+    var userLogged: User? {
+        guard let object = UserDefaultsWrapper.fetchUserDefaults(key: .userLogged) else {
+            return nil
+        }
+        return User(object: object)
+    }
+    
+    var isUserLogged: Bool {
+        return user.id != nil || user.email != nil
+    }
+    
+    var userPhoto: UIImage? {
+        guard let photo = user.photo, let data = UserDefaultsWrapper.getImageData(from: photo) else {
+            return nil
+        }
+        return UIImage(data: data)
+    }
+    
+    func logout() {
+        if let _ = FBSDKAccessToken.current() { FBSDKLoginManager().logOut() }
+        user = User.createEmptyUser()
+    }
     
     var userPersonalityType: PersonalityType? {
         guard let object = UserDefaultsWrapper.fetchUserDefaults(key: .userPersonality) else {

@@ -12,6 +12,7 @@ enum UserDefaultsKeys {
     case answeredQuestions
     case didSkipTest
     case userPersonality
+    case userLogged
     case custom(String)
     
     var description: String {
@@ -32,5 +33,16 @@ struct UserDefaultsWrapper {
             return nil
         }
         return NSKeyedUnarchiver.unarchiveObject(with: data)
+    }
+    
+    static func getImagePath(with data: Data) -> String {
+        if let string = String(data: data.base64EncodedData(), encoding: .utf8) {
+            return string
+        }
+        return ""
+    }
+    
+    static func getImageData(from path: String) -> Data? {
+        return Data(base64Encoded: path)
     }
 }
