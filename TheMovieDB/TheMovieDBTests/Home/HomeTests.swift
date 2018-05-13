@@ -34,13 +34,13 @@ class HomeTests: Tests {
     
     // MARK: - Properties -
     
-    var viewModel: HomeViewModel?
+    var viewModel: MoviesViewModel?
     var section = Genre.nowPlaying.index
     
     override func setUp() {
         super.setUp()
         
-        viewModel = HomeViewModel()
+        viewModel = MoviesViewModel()
         viewModel?.loadData()
     }
     
@@ -55,7 +55,7 @@ class HomeTests: Tests {
         return (last: numberOfItems - 1, invalid: numberOfItems + 1)
     }
     
-    // MARK: - Home Tests -
+    // MARK: - Movies Tests -
     
     func testLoadData() {
         let delegate = SpyHomeViewModelDelegate()

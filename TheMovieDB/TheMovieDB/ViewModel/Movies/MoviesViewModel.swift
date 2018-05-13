@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  MoviesViewModel.swift
 //  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 3/13/18.
@@ -8,7 +8,7 @@
 
 import Bond
 
-protocol HomeViewModelDelegate: ViewModelDelegate {
+protocol MoviesViewModelDelegate: ViewModelDelegate {
     func reloadData(at index: Int)
 }
 
@@ -56,14 +56,14 @@ enum GenreType: String {
     }
 }
 
-class HomeViewModel: ViewModel {
+class MoviesViewModel: ViewModel {
     // MARK: - Properties -
     
     // MARK: Delegate
-    weak var delegate: HomeViewModelDelegate?
+    weak var delegate: MoviesViewModelDelegate?
     
     // MARK: Service Model
-    let serviceModel = HomeServiceModel()
+    let serviceModel = MoviesServiceModel()
     
     // MARK: Genres
     private var arrayGenres: [GenreType] = [.sugested, .popular, .topRated, .upcoming, .nowPlaying]

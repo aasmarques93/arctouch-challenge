@@ -22,7 +22,7 @@ class SearchTests: Tests {
         var reloadMoviesListExpectation: XCTestExpectation?
         var showErrorExpectation: XCTestExpectation?
         
-        // MARK: - Home View Model Delegate -
+        // MARK: - Movies View Model Delegate -
         
         func reloadData() {
             reloadDataExpectation?.fulfill()

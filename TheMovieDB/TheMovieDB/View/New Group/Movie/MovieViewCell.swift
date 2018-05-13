@@ -13,7 +13,7 @@ class MovieViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var viewModel: HomeViewModel?
+    var viewModel: MoviesViewModel?
     
     func setupView(at section: Int, row: Int) {
         activityIndicator.startAnimating()

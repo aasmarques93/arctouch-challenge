@@ -123,7 +123,7 @@
                         <outlet property="labelPage" destination="RDH-pe-k0U" id="49r-9u-HmL"/>
                         <outlet property="progressView" destination="Opv-tw-2p6" id="gz2-vM-75i"/>
                         <outlet property="viewFooter" destination="13U-fg-7Oy" id="cVK-WB-DwQ"/>
-                        <segue destination="mhW-QG-FON" kind="presentation" identifier="HomeView" animates="NO" id="Stu-pR-6ey"/>
+                        <segue destination="mhW-QG-FON" kind="presentation" identifier="MoviesView" animates="NO" id="Stu-pR-6ey"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y0K-s6-Lc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -424,6 +424,6 @@
         <image name="logo-movie-db" width="312" height="276"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Fvi-9E-ELc"/>
+        <segue reference="Stu-pR-6ey"/>
     </inferredMetricsTieBreakers>
 </document>

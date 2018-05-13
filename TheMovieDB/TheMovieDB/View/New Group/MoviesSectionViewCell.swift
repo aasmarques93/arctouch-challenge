@@ -1,5 +1,5 @@
 //
-//  HomeViewCell.swift
+//  MoviesViewCell.swift
 //  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 3/13/18.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-protocol HomeViewCellDelegate: class {
+protocol MoviesViewCellDelegate: class {
     func didSelectItem(at section: Int, row: Int)
 }
 
-class HomeViewCell: UITableViewCell {
+class MoviesSectionViewCell: UITableViewCell {
     @IBOutlet weak var collectionView: CollectionView!
     @IBOutlet weak var labelMessageError: UILabel!
     
-    weak var delegate: HomeViewCellDelegate?
+    weak var delegate: MoviesViewCellDelegate?
     
-    var viewModel: HomeViewModel?
+    var viewModel: MoviesViewModel?
     var selectedIndexPath: IndexPath?
     
     func setupView(at indexPath: IndexPath) {
@@ -35,7 +35,7 @@ class HomeViewCell: UITableViewCell {
     }
 }
 
-extension HomeViewCell: CollectionViewDelegate {
+extension MoviesSectionViewCell: CollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

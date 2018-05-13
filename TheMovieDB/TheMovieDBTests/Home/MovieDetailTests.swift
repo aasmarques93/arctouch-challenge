@@ -23,7 +23,7 @@ class MovieDetailTests: Tests {
         var reloadRecommendedMoviesExpectation: XCTestExpectation?
         var reloadSimilarMoviesExpectation: XCTestExpectation?
         
-        // MARK: - Home View Model Delegate -
+        // MARK: - Movies View Model Delegate -
         
         func reloadData() {
             reloadDataExpectation?.fulfill()
@@ -69,7 +69,7 @@ class MovieDetailTests: Tests {
     }
     
     func getMovies() {
-        HomeServiceModel().getMovies(requestUrl: .nowPlaying) { (object) in
+        MoviesServiceModel().getMovies(requestUrl: .nowPlaying) { (object) in
             if let object = object as? MoviesList, let results = object.results {
                 self.movie = results.first
             }

@@ -82,7 +82,7 @@ extension PersonalityTestView: PersonalityTestViewModelDelegate {
     }
     
     func skipTest() {
-        performSegue(withIdentifier: HomeView.identifier, sender: self)
+        performSegue(withIdentifier: MoviesView.identifier, sender: self)
     }
 }
 
