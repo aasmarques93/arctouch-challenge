@@ -29,7 +29,7 @@ class PopularPersonCellViewModel: ViewModel {
         }
         
         isActivityIndicatorHidden.value = false
-        ServiceModel().loadImage(path: person?.profilePath ?? "", handlerData: { [weak self] (data) in
+        Singleton.shared.serviceModel.loadImage(path: person?.profilePath ?? "", handlerData: { [weak self] (data) in
             guard let strongSelf = self else {
                 return
             }

@@ -9,7 +9,7 @@
 import UIKit
 
 struct RegisterServiceModel {
-    let serviceModel = ServiceModel()
+    let serviceModel = Singleton.shared.serviceModel
     
     func signup(username: String? = nil,
                 email: String? = nil,

@@ -16,9 +16,11 @@ struct FileName {
 
 // MARK: - Environment Base Enum -
 enum EnvironmentBase: String {
-    case theMovieDB
     case heroku
-    case images
+    case theMovieDB
+    case imagesTheMovieDB
+    case reelgood
+    case imagesReelgood
     case mock
 }
 
@@ -63,4 +65,9 @@ enum RequestUrl: String {
     case personalityTestBR
     case personalityTypes
     case personalityTypesBR
+    case netflixComing
+    case netflixLeaving
+    case netflixMoviesShow
+    case netflixMovieShowDetail
+    case netflixImage
 }

@@ -7,7 +7,7 @@
 //
 
 struct PersonServiceModel {
-    let serviceModel = ServiceModel()
+    let serviceModel = Singleton.shared.serviceModel
     
     func getPerson(from idPerson: Int?, requestUrl: RequestUrl, handler: @escaping HandlerObject) {
         let parameters: [String: Any] = [

@@ -9,7 +9,7 @@
 import UIKit
 
 struct LoginServiceModel {
-    let serviceModel = ServiceModel()
+    let serviceModel = Singleton.shared.serviceModel
     
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         

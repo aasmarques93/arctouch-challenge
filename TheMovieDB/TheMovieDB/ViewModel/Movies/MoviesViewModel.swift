@@ -10,7 +10,7 @@ import Bond
 
 protocol MoviesViewModelDelegate: ViewModelDelegate {
     func reloadData(at index: Int)
-    func openVideo(youtubeId: String)
+    func openPreview(storiesViewModel: StoriesViewModel)
 }
 
 class MoviesViewModel: ViewModel {
@@ -67,7 +67,7 @@ class MoviesViewModel: ViewModel {
     
     // MARK: Service Model
     let serviceModel = MoviesServiceModel()
-    lazy var movieDetailServiceModel = MovieDetailServiceModel()
+    let netflixServiceModel = NetflixServiceModel()
     
     // MARK: Genres
     private var arrayGenres: [GenreType] = [.sugested, .popular, .topRated, .upcoming, .nowPlaying]
@@ -97,12 +97,19 @@ class MoviesViewModel: ViewModel {
     var numberOfPopularMovies: Int { return arrayPopularMovies.count }
     private var currentPopularMoviesPage: Int = 1
     
+    // MARK: Netflix
+    private var arrayNetflixMovies = [Netflix]() { didSet { delegate?.reloadData?() } }
+    var numberOfNeflixMovies: Int { return arrayNetflixMovies.count }
+    
+    private var arrayStoriesPages = [StoriesPageItem]()
+    
     // MARK: Variables
     private var isDataLoading = false
     
     // MARK: - Service requests -
     
     func loadData() {
+        getNetflixMovies()
         getSugestedMovies()
         getMovies(genre: .popular)
         getMovies(genre: .topRated)
@@ -129,6 +136,16 @@ class MoviesViewModel: ViewModel {
         }
         
         getMovies(genre: genre)
+    }
+    
+    func getNetflixMovies() {
+        netflixServiceModel.getNetflixMovies { [weak self] (object) in
+            guard let result = object as? [Netflix] else {
+                return
+            }
+            
+            self?.arrayNetflixMovies = result
+        }
     }
     
     private func getSugestedMovies() {
@@ -320,8 +337,8 @@ class MoviesViewModel: ViewModel {
     }
     
     func moviePreviewImagePathUrl(at index: Int) -> URL? {
-        let movie = arraySugestedMovies[index]
-        return URL(string: serviceModel.imageUrl(with: movie.posterPath))
+        let movie = arrayNetflixMovies[index]
+        return URL(string: netflixServiceModel.imageUrl(with: movie.id))
     }
     
     private func getMoviesArray(at section: Int) -> [Movie]? {
@@ -353,17 +370,8 @@ class MoviesViewModel: ViewModel {
     }
     
     func loadVideos(at index: Int) {
-        let movie = arraySugestedMovies[index]
-        movieDetailServiceModel.getVideos(from: movie) { [weak self] (object) in
-            guard let object = object as? VideosList,
-                let results = object.results,
-                let video = results.first,
-                let youtubeId = video.key else {
-                return
-            }
-
-            self?.delegate?.openVideo(youtubeId: youtubeId)
-        }
+        let netflixMovie = arrayNetflixMovies[index]
+        delegate?.openPreview(storiesViewModel: StoriesViewModel(netflixMovie))
     }
     
     //MARK: Detail view model

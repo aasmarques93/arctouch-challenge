@@ -7,7 +7,7 @@
 //
 
 struct PopularPeopleServiceModel {
-    let serviceModel = ServiceModel()
+    let serviceModel = Singleton.shared.serviceModel
     
     func getPopularPeople(urlParameters: [String: Any]? = nil, handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: .popularPeople, urlParameters: urlParameters, handlerObject: { (object) in

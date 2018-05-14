@@ -2,12 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>theMovieDB</key>
-	<string>https://api.themoviedb.org/3</string>
 	<key>heroku</key>
 	<string>https://aasmarquesthemoviedb.herokuapp.com</string>
-	<key>images</key>
+	<key>theMovieDB</key>
+	<string>https://api.themoviedb.org/3</string>
+	<key>imagesTheMovieDB</key>
 	<string>https://image.tmdb.org/t/p/w500</string>
+	<key>reelgood</key>
+	<string>https://api.reelgood.com</string>
+	<key>imagesReelgood</key>
+	<string>https://img.reelgood.com</string>
 	<key>mock</key>
 	<string></string>
 </dict>

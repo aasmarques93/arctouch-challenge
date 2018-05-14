@@ -7,7 +7,7 @@
 //
 
 struct MoviesServiceModel {
-    let serviceModel = ServiceModel()
+    let serviceModel = Singleton.shared.serviceModel
     
     func getMovies(urlParameters: [String: Any]? = nil, requestUrl: RequestUrl, handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: requestUrl, urlParameters: urlParameters, handlerObject: { (object) in

@@ -60,7 +60,7 @@ class EpisodeViewModel: ViewModel {
             return
         }
 
-        ServiceModel().loadImage(path: episode?.stillPath ?? "", handlerData: { [weak self] (data) in
+        Singleton.shared.serviceModel.loadImage(path: episode?.stillPath ?? "", handlerData: { [weak self] (data) in
             guard let strongSelf = self, let data = data as? Data else {
                 return
             }

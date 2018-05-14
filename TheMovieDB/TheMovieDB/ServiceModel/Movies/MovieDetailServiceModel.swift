@@ -7,7 +7,7 @@
 //
 
 struct MovieDetailServiceModel {
-    let serviceModel = ServiceModel()
+    let serviceModel = Singleton.shared.serviceModel
     
     func getDetail(from movie: Movie, handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: .movie,

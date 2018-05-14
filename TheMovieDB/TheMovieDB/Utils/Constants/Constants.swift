@@ -28,7 +28,7 @@ enum Titles: String {
     case popularPeople = "Popular people"
     case search = "Search"
     
-    case moviesPreview = "Movies Preview"
+    case netflixMovies = "Netflix Movies"
     
     // Fabric
     case error = "Error"

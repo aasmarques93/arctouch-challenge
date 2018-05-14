@@ -23,11 +23,12 @@ class SearchHeaderView: XibView {
     var title: String?
     var placeholder: String?
     
-    class func instantateFromNib(title: String?, placeholder: String?) -> SearchHeaderView {
+    class func instantateFromNib(title: String?, placeholder: String?, textAlignment: NSTextAlignment = .center) -> SearchHeaderView {
         let view = XibView.instanceFromNib(SearchHeaderView.self)
         
         view.searchBar.delegate = view
         view.labelTitle.text = title
+        view.labelTitle.textAlignment = textAlignment
         view.searchBar.placeholder = placeholder
         
         return view

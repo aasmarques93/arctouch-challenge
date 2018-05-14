@@ -88,8 +88,8 @@ struct ServiceModel {
         }
     }
     
-    func loadImage(path: String?, handlerData: @escaping HandlerObject) {
-        var url = keyManagerFile(key: EnvironmentBase.images)
+    func loadImage(path: String?, environmentBase: EnvironmentBase = .imagesTheMovieDB, handlerData: @escaping HandlerObject) {
+        var url = keyManagerFile(key: environmentBase)
         if let path = path { url += path }
         
         if !verifyConnection() {
@@ -107,8 +107,8 @@ struct ServiceModel {
         }
     }
     
-    func imageUrl(with path: String?) -> String {
-        var url = keyManagerFile(key: EnvironmentBase.images)
+    func imageUrl(with path: String?, environmentBase: EnvironmentBase = .imagesTheMovieDB) -> String {
+        var url = keyManagerFile(key: environmentBase)
         if let path = path { url += path }
         return url
     }
@@ -126,7 +126,7 @@ struct ServiceModel {
     
     // MARK: - File manager - Link requests -
     
-    private func requestUrl(type: RequestUrl, environmentBase: EnvironmentBase, parameters: [String: Any]? = nil) -> String {
+    func requestUrl(type: RequestUrl, environmentBase: EnvironmentBase, parameters: [String: Any]? = nil) -> String {
         if type.rawValue.contains("http") {
             return type.rawValue
         }

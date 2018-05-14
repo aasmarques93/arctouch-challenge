@@ -33,7 +33,7 @@ extension ViewModel {
     
     // Load image data at path
     func loadImageData(at path: String?, handlerData: @escaping HandlerObject) {
-        ServiceModel().loadImage(path: path, handlerData: { (data) in
+        Singleton.shared.serviceModel.loadImage(path: path, handlerData: { (data) in
             handlerData(data)
         })
     }

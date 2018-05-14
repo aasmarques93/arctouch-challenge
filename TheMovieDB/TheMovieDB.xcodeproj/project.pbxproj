@@ -17,6 +17,21 @@
 		ED08939D20585753004CC05F /* TheMovieDBUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED08939C20585753004CC05F /* TheMovieDBUITests.swift */; };
 		ED0C3D3B20A8A74B00F28150 /* MoviePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D3A20A8A74B00F28150 /* MoviePreviewView.swift */; };
 		ED0C3D3E20A8A7B100F28150 /* MoviePreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0C3D3D20A8A7B100F28150 /* MoviePreviewView.xib */; };
+		ED0C3D4620A9AB7600F28150 /* StoriesPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D4420A9AB7500F28150 /* StoriesPageViewController.swift */; };
+		ED0C3D4720A9AB7600F28150 /* StoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D4520A9AB7500F28150 /* StoriesView.swift */; };
+		ED0C3D5620AA2CD200F28150 /* NetflixPeople.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D4B20AA2CCF00F28150 /* NetflixPeople.swift */; };
+		ED0C3D5720AA2CD200F28150 /* NetflixSourceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D4C20AA2CCF00F28150 /* NetflixSourceData.swift */; };
+		ED0C3D5820AA2CD200F28150 /* NetflixIos.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D4D20AA2CCF00F28150 /* NetflixIos.swift */; };
+		ED0C3D5920AA2CD200F28150 /* NetflixTrailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D4E20AA2CD000F28150 /* NetflixTrailer.swift */; };
+		ED0C3D5A20AA2CD200F28150 /* NetflixAndroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D4F20AA2CD000F28150 /* NetflixAndroid.swift */; };
+		ED0C3D5B20AA2CD200F28150 /* Netflix.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D5020AA2CD000F28150 /* Netflix.swift */; };
+		ED0C3D5C20AA2CD200F28150 /* NetflixReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D5120AA2CD000F28150 /* NetflixReferences.swift */; };
+		ED0C3D5D20AA2CD200F28150 /* NetflixWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D5220AA2CD000F28150 /* NetflixWeb.swift */; };
+		ED0C3D5E20AA2CD200F28150 /* NetflixMovieShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D5320AA2CD100F28150 /* NetflixMovieShow.swift */; };
+		ED0C3D5F20AA2CD200F28150 /* NetflixLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D5420AA2CD100F28150 /* NetflixLinks.swift */; };
+		ED0C3D6020AA2CD200F28150 /* NetflixAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D5520AA2CD200F28150 /* NetflixAvailability.swift */; };
+		ED0C3D6320AA382B00F28150 /* NetflixServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D6220AA382B00F28150 /* NetflixServiceModel.swift */; };
+		ED0C3D6620AA42C800F28150 /* StoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D6520AA42C800F28150 /* StoriesViewModel.swift */; };
 		ED16D843205882C8002A0B2C /* MoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D842205882C8002A0B2C /* MoviesView.swift */; };
 		ED16D845205882D3002A0B2C /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D844205882D3002A0B2C /* MoviesViewModel.swift */; };
 		ED16D84720588381002A0B2C /* MoviesServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D84620588381002A0B2C /* MoviesServiceModel.swift */; };
@@ -234,6 +249,21 @@
 		ED08939E20585753004CC05F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED0C3D3A20A8A74B00F28150 /* MoviePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePreviewView.swift; sourceTree = "<group>"; };
 		ED0C3D3D20A8A7B100F28150 /* MoviePreviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviePreviewView.xib; sourceTree = "<group>"; };
+		ED0C3D4420A9AB7500F28150 /* StoriesPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesPageViewController.swift; sourceTree = "<group>"; };
+		ED0C3D4520A9AB7500F28150 /* StoriesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesView.swift; sourceTree = "<group>"; };
+		ED0C3D4B20AA2CCF00F28150 /* NetflixPeople.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetflixPeople.swift; sourceTree = "<group>"; };
+		ED0C3D4C20AA2CCF00F28150 /* NetflixSourceData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetflixSourceData.swift; sourceTree = "<group>"; };
+		ED0C3D4D20AA2CCF00F28150 /* NetflixIos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetflixIos.swift; sourceTree = "<group>"; };
+		ED0C3D4E20AA2CD000F28150 /* NetflixTrailer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetflixTrailer.swift; sourceTree = "<group>"; };
+		ED0C3D4F20AA2CD000F28150 /* NetflixAndroid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetflixAndroid.swift; sourceTree = "<group>"; };
+		ED0C3D5020AA2CD000F28150 /* Netflix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Netflix.swift; sourceTree = "<group>"; };
+		ED0C3D5120AA2CD000F28150 /* NetflixReferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetflixReferences.swift; sourceTree = "<group>"; };
+		ED0C3D5220AA2CD000F28150 /* NetflixWeb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetflixWeb.swift; sourceTree = "<group>"; };
+		ED0C3D5320AA2CD100F28150 /* NetflixMovieShow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetflixMovieShow.swift; sourceTree = "<group>"; };
+		ED0C3D5420AA2CD100F28150 /* NetflixLinks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetflixLinks.swift; sourceTree = "<group>"; };
+		ED0C3D5520AA2CD200F28150 /* NetflixAvailability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetflixAvailability.swift; sourceTree = "<group>"; };
+		ED0C3D6220AA382B00F28150 /* NetflixServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetflixServiceModel.swift; sourceTree = "<group>"; };
+		ED0C3D6520AA42C800F28150 /* StoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesViewModel.swift; sourceTree = "<group>"; };
 		ED16D842205882C8002A0B2C /* MoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesView.swift; sourceTree = "<group>"; };
 		ED16D844205882D3002A0B2C /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		ED16D84620588381002A0B2C /* MoviesServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesServiceModel.swift; sourceTree = "<group>"; };
@@ -546,9 +576,53 @@
 			path = XIB;
 			sourceTree = "<group>";
 		};
+		ED0C3D4320A9AB5A00F28150 /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				ED0C3D4420A9AB7500F28150 /* StoriesPageViewController.swift */,
+				ED0C3D4520A9AB7500F28150 /* StoriesView.swift */,
+			);
+			path = Stories;
+			sourceTree = "<group>";
+		};
+		ED0C3D4A20AA2C8800F28150 /* Netflix */ = {
+			isa = PBXGroup;
+			children = (
+				ED0C3D5020AA2CD000F28150 /* Netflix.swift */,
+				ED0C3D5320AA2CD100F28150 /* NetflixMovieShow.swift */,
+				ED0C3D4F20AA2CD000F28150 /* NetflixAndroid.swift */,
+				ED0C3D5520AA2CD200F28150 /* NetflixAvailability.swift */,
+				ED0C3D4D20AA2CCF00F28150 /* NetflixIos.swift */,
+				ED0C3D5420AA2CD100F28150 /* NetflixLinks.swift */,
+				ED0C3D4B20AA2CCF00F28150 /* NetflixPeople.swift */,
+				ED0C3D5120AA2CD000F28150 /* NetflixReferences.swift */,
+				ED0C3D4C20AA2CCF00F28150 /* NetflixSourceData.swift */,
+				ED0C3D4E20AA2CD000F28150 /* NetflixTrailer.swift */,
+				ED0C3D5220AA2CD000F28150 /* NetflixWeb.swift */,
+			);
+			path = Netflix;
+			sourceTree = "<group>";
+		};
+		ED0C3D6120AA381900F28150 /* Netflix */ = {
+			isa = PBXGroup;
+			children = (
+				ED0C3D6220AA382B00F28150 /* NetflixServiceModel.swift */,
+			);
+			path = Netflix;
+			sourceTree = "<group>";
+		};
+		ED0C3D6420AA42AC00F28150 /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				ED0C3D6520AA42C800F28150 /* StoriesViewModel.swift */,
+			);
+			path = Stories;
+			sourceTree = "<group>";
+		};
 		ED16D841205882AB002A0B2C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				EDC6C03C2058663000D843EC /* ViewModel.swift */,
 				ED4201AE20A776C0005D5FF3 /* Profile */,
 				ED42019420A74D61005D5FF3 /* Login & Register */,
 				ED2AA5F420A0D96500AA0DF5 /* PersonalityTest */,
@@ -556,6 +630,7 @@
 				ED38340720940DB40079D48F /* TV Show */,
 				ED3833F920938C9A0079D48F /* PopularPeople */,
 				ED16D88220599FF6002A0B2C /* Search */,
+				ED0C3D6420AA42AC00F28150 /* Stories */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1155,6 +1230,8 @@
 		EDC6BFFC2058592700D843EC /* ServiceModel */ = {
 			isa = PBXGroup;
 			children = (
+				EDC6C03B2058663000D843EC /* ServiceModel.swift */,
+				ED0C3D6120AA381900F28150 /* Netflix */,
 				ED42019520A74D76005D5FF3 /* Login & Register */,
 				ED841EBD20A62D2400A425BF /* PersonalityTest */,
 				ED16D8862059A071002A0B2C /* Movies */,
@@ -1174,6 +1251,7 @@
 				ED38340820940DC70079D48F /* TV Show */,
 				ED3833F320938B920079D48F /* PopularPeople */,
 				ED16D85B20597A43002A0B2C /* Search */,
+				ED0C3D4320A9AB5A00F28150 /* Stories */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1181,6 +1259,8 @@
 		EDC6BFFE2058593700D843EC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EDC6C03A2058663000D843EC /* Model.swift */,
+				ED0C3D4A20AA2C8800F28150 /* Netflix */,
 				ED4201A320A75568005D5FF3 /* Login & Register */,
 				ED2AA5FB20A0DD4000AA0DF5 /* PersonalityTest */,
 				ED16D87020599C87002A0B2C /* Search */,
@@ -1204,7 +1284,6 @@
 				EDDAB1BF209BDCB800271265 /* RAMTabBar */,
 				ED383443209502650079D48F /* CircularProgressView */,
 				ED3834232094227D0079D48F /* StretchHeaderView */,
-				EDC6C0392058662900D843EC /* MVVM */,
 				EDC6C00B20585A1800D843EC /* CollectionView */,
 				EDC6C008205859ED00D843EC /* Date */,
 				EDC6C006205859D700D843EC /* Loading */,
@@ -1302,16 +1381,6 @@
 				EDC6C01220585A4400D843EC /* CollectionView.swift */,
 			);
 			path = CollectionView;
-			sourceTree = "<group>";
-		};
-		EDC6C0392058662900D843EC /* MVVM */ = {
-			isa = PBXGroup;
-			children = (
-				EDC6C03A2058663000D843EC /* Model.swift */,
-				EDC6C03B2058663000D843EC /* ServiceModel.swift */,
-				EDC6C03C2058663000D843EC /* ViewModel.swift */,
-			);
-			path = MVVM;
 			sourceTree = "<group>";
 		};
 		EDDAB1BF209BDCB800271265 /* RAMTabBar */ = {
@@ -1624,6 +1693,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED0C3D5720AA2CD200F28150 /* NetflixSourceData.swift in Sources */,
 				ED42019920A74F40005D5FF3 /* ProfileMainView.swift in Sources */,
 				ED42019A20A74F40005D5FF3 /* LoginView.swift in Sources */,
 				ED42019B20A74F40005D5FF3 /* RegisterView.swift in Sources */,
@@ -1639,6 +1709,7 @@
 				EDBAF882209FFE430089DE39 /* FabricUtils.swift in Sources */,
 				ED16D86B20597D99002A0B2C /* ProductionCountries.swift in Sources */,
 				ED3834492095E3970079D48F /* SearchResult.swift in Sources */,
+				ED0C3D4620A9AB7600F28150 /* StoriesPageViewController.swift in Sources */,
 				ED7B9CB1209E3290006B9586 /* PersonImage.swift in Sources */,
 				ED16D87B20599DAC002A0B2C /* MoviesGenres.swift in Sources */,
 				EDC6C02D20585A8C00D843EC /* Session.swift in Sources */,
@@ -1654,11 +1725,13 @@
 				EDC6C01E20585A6D00D843EC /* HexColor.swift in Sources */,
 				EDC6C03F2058663000D843EC /* ViewModel.swift in Sources */,
 				ED2AA5FA20A0DAF600AA0DF5 /* PersonalityTestCellViewModel.swift in Sources */,
+				ED0C3D6620AA42C800F28150 /* StoriesViewModel.swift in Sources */,
 				EDC6C02F20585A8C00D843EC /* EnvironmentHost.swift in Sources */,
 				ED65BEF3209238BB0091D93B /* Cast.swift in Sources */,
 				ED16D87E20599E29002A0B2C /* SearchMoviesGenre.swift in Sources */,
 				ED38340320938E980079D48F /* PopularPeople.swift in Sources */,
 				ED16D85220588BA7002A0B2C /* MovieViewCell.swift in Sources */,
+				ED0C3D5620AA2CD200F28150 /* NetflixPeople.swift in Sources */,
 				ED4201B020A776D1005D5FF3 /* ProfileViewModel.swift in Sources */,
 				ED4201A920A76145005D5FF3 /* Picture.swift in Sources */,
 				EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */,
@@ -1689,12 +1762,14 @@
 				ED16D86920597D99002A0B2C /* MovieDetail.swift in Sources */,
 				ED3834592097426D0079D48F /* SeasonDetailViewModel.swift in Sources */,
 				ED38343C2094B3F40079D48F /* SearchTV.swift in Sources */,
+				ED0C3D4720A9AB7600F28150 /* StoriesView.swift in Sources */,
 				EDC6C01C20585A6300D843EC /* LoadingView.swift in Sources */,
 				ED65BEFD20923EA20091D93B /* XibView.swift in Sources */,
 				ED3833F720938BBA0079D48F /* PopularPersonViewCell.swift in Sources */,
 				EDDAB1CA209C822100271265 /* TextField.swift in Sources */,
 				ED16D85E20597A6C002A0B2C /* MovieDetailView.swift in Sources */,
 				ED4201A820A76145005D5FF3 /* PictureData.swift in Sources */,
+				ED0C3D5920AA2CD200F28150 /* NetflixTrailer.swift in Sources */,
 				ED3834132094111D0079D48F /* TVShowCellViewModel.swift in Sources */,
 				ED65BF09209261C00091D93B /* ReviewsView.swift in Sources */,
 				EDC6C02820585A8300D843EC /* General.swift in Sources */,
@@ -1709,11 +1784,13 @@
 				ED16D86820597D99002A0B2C /* BelongsToCollection.swift in Sources */,
 				ED383425209422AC0079D48F /* StretchHeaderView.swift in Sources */,
 				EDC6C03320585A9200D843EC /* Constants.swift in Sources */,
+				ED0C3D5E20AA2CD200F28150 /* NetflixMovieShow.swift in Sources */,
 				ED16D86020597AF6002A0B2C /* MovieDetailViewModel.swift in Sources */,
 				ED38345120973FA00079D48F /* SeasonDetailView.swift in Sources */,
 				ED65BEBB2090A55D0091D93B /* Video.swift in Sources */,
 				ED65BEFF20923F040091D93B /* CastView.swift in Sources */,
 				EDC6C01820585A5500D843EC /* Date.swift in Sources */,
+				ED0C3D6320AA382B00F28150 /* NetflixServiceModel.swift in Sources */,
 				ED38340D20940DFC0079D48F /* TVShowViewModel.swift in Sources */,
 				ED16D84B205884AB002A0B2C /* Dates.swift in Sources */,
 				ED65BECC2091EEFC0091D93B /* JSONWrapper.swift in Sources */,
@@ -1728,6 +1805,7 @@
 				EDC6C03D2058663000D843EC /* Model.swift in Sources */,
 				ED16D86A20597D99002A0B2C /* SpokenLanguages.swift in Sources */,
 				ED16D8842059A008002A0B2C /* SearchViewModel.swift in Sources */,
+				ED0C3D5A20AA2CD200F28150 /* NetflixAndroid.swift in Sources */,
 				ED2AA60020A0DD8000AA0DF5 /* Answer.swift in Sources */,
 				ED4201A220A754F6005D5FF3 /* RegisterViewModel.swift in Sources */,
 				ED7B9CB8209E44D4006B9586 /* EpisodeImagesList.swift in Sources */,
@@ -1735,6 +1813,7 @@
 				ED3833EA20933A3E0079D48F /* PersonServiceModel.swift in Sources */,
 				ED65BF01209245430091D93B /* MovieView.swift in Sources */,
 				ED38340220938E980079D48F /* KnownFor.swift in Sources */,
+				ED0C3D5820AA2CD200F28150 /* NetflixIos.swift in Sources */,
 				ED2AA61B20A1A6C300AA0DF5 /* PersonalityTestViewModel.swift in Sources */,
 				ED16D86F20597E5E002A0B2C /* MovieDetailServiceModel.swift in Sources */,
 				EDC6C02620585A7D00D843EC /* Appearance.swift in Sources */,
@@ -1743,20 +1822,25 @@
 				ED841EBF20A62D4600A425BF /* PersonalityTestServiceModel.swift in Sources */,
 				EDC6C03420585A9200D843EC /* Messages.swift in Sources */,
 				ED3833FD20938CBF0079D48F /* PopularPeopleViewModel.swift in Sources */,
+				ED0C3D5D20AA2CD200F28150 /* NetflixWeb.swift in Sources */,
 				ED4201A520A7557D005D5FF3 /* User.swift in Sources */,
 				EDC6C07C20586DB400D843EC /* DateHelper.swift in Sources */,
 				EDC6C02E20585A8C00D843EC /* FileManager.swift in Sources */,
 				ED4201B620A86872005D5FF3 /* StoreReviewHelper.swift in Sources */,
+				ED0C3D6020AA2CD200F28150 /* NetflixAvailability.swift in Sources */,
 				ED16D843205882C8002A0B2C /* MoviesView.swift in Sources */,
 				ED38342020941CB70079D48F /* TVShowDetailViewModel.swift in Sources */,
 				ED7B9CBA209E491B006B9586 /* EpisodesServiceModel.swift in Sources */,
+				ED0C3D5F20AA2CD200F28150 /* NetflixLinks.swift in Sources */,
 				ED65BF0720925C280091D93B /* PlayerView.swift in Sources */,
 				ED38340B20940DEB0079D48F /* TVShowServiceModel.swift in Sources */,
+				ED0C3D5B20AA2CD200F28150 /* Netflix.swift in Sources */,
 				ED4201AC20A76245005D5FF3 /* LoginServiceModel.swift in Sources */,
 				ED16D88C2059A3A0002A0B2C /* SearchResultViewCell.swift in Sources */,
 				ED08937D20585752004CC05F /* AppDelegate.swift in Sources */,
 				ED16D88A2059A34F002A0B2C /* SearchResultView.swift in Sources */,
 				ED16D8882059A07F002A0B2C /* SearchServiceModel.swift in Sources */,
+				ED0C3D5C20AA2CD200F28150 /* NetflixReferences.swift in Sources */,
 				ED65BEF2209238BB0091D93B /* Review.swift in Sources */,
 				ED16D86D20597D99002A0B2C /* Genres.swift in Sources */,
 				ED3833E6209332590079D48F /* PersonViewModel.swift in Sources */,

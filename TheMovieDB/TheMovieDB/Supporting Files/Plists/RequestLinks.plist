@@ -82,5 +82,15 @@
 	<string>/personalityTypes</string>
 	<key>personalityTypesBR</key>
 	<string>/personalityTypesBR</string>
+	<key>netflixComing</key>
+	<string>/v2/browse/changing-availability?availability_kind=2&amp;sources=netflix&amp;availability=all&amp;content_kind={contentKind}</string>
+	<key>netflixLeaving</key>
+	<string>/v2/browse/changing-availability?availability_kind=1&amp;sources=netflix</string>
+	<key>netflixMoviesShow</key>
+	<string>/v2/browse/source/netflix?content_kind={contentKind}&amp;sources=netflix</string>
+	<key>netflixMovieShowDetail</key>
+	<string>/v1/{contentKind}/{id}</string>
+	<key>netflixImage</key>
+	<string>/content/{contentKind}/{id}/poster-92.jpg</string>
 </dict>
 </plist>

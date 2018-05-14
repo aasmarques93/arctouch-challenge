@@ -11,6 +11,8 @@ import FBSDKLoginKit
 class Singleton {
     static let shared = Singleton()
     
+    let serviceModel = ServiceModel()
+    
     let typingTimeInterval = 0.01
     var arrayPersonalityTypes = [PersonalityType]()
     

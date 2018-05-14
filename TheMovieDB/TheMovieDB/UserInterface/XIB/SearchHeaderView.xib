@@ -27,7 +27,7 @@
                     </userDefinedRuntimeAttributes>
                 </searchBar>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Title}}" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzm-be-yQn">
-                    <rect key="frame" x="0.0" y="56" width="375" height="40"/>
+                    <rect key="frame" x="8" y="56" width="359" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="nDX-k2-dQl"/>
                     </constraints>
@@ -38,11 +38,11 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Uzm-be-yQn" firstAttribute="leading" secondItem="E8A-XP-siv" secondAttribute="leading" id="5im-IT-OT7"/>
+                <constraint firstItem="Uzm-be-yQn" firstAttribute="leading" secondItem="E8A-XP-siv" secondAttribute="leading" constant="8" id="5im-IT-OT7"/>
                 <constraint firstItem="Uzm-be-yQn" firstAttribute="top" secondItem="LEK-jI-OSH" secondAttribute="bottom" id="L9t-4m-ow9"/>
                 <constraint firstAttribute="trailing" secondItem="LEK-jI-OSH" secondAttribute="trailing" id="XwX-dO-Hl8"/>
                 <constraint firstAttribute="bottom" secondItem="Uzm-be-yQn" secondAttribute="bottom" id="eOi-BR-4eA"/>
-                <constraint firstAttribute="trailing" secondItem="Uzm-be-yQn" secondAttribute="trailing" id="enf-ng-Rwp"/>
+                <constraint firstAttribute="trailing" secondItem="Uzm-be-yQn" secondAttribute="trailing" constant="8" id="enf-ng-Rwp"/>
                 <constraint firstItem="LEK-jI-OSH" firstAttribute="top" secondItem="E8A-XP-siv" secondAttribute="top" id="pzH-k0-3CE"/>
                 <constraint firstItem="LEK-jI-OSH" firstAttribute="leading" secondItem="E8A-XP-siv" secondAttribute="leading" id="xQE-1B-wtI"/>
             </constraints>

@@ -7,7 +7,7 @@
 //
 
 struct TVShowServiceModel {
-    let serviceModel = ServiceModel()
+    let serviceModel = Singleton.shared.serviceModel
     
     func getTVShow(requestUrl: RequestUrl, urlParameters: [String: Any]? = nil, handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: requestUrl, urlParameters: urlParameters, handlerObject: { (object) in

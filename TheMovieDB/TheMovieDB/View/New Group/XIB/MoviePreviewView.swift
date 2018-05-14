@@ -15,7 +15,7 @@ class MoviePreviewView: XibView {
     override func awakeFromNib() {
         super.awakeFromNib()
         viewBackground.borderWidth = 2.0
-        viewBackground.borderColor = HexColor.secondary.color.withAlphaComponent(0.5)
+        viewBackground.borderColor = HexColor.secondary.color
         backgroundColor = HexColor.primary.color
         imageView.backgroundColor = HexColor.primary.color
     }

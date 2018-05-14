@@ -7,7 +7,7 @@
 //
 
 struct SearchServiceModel {
-    let serviceModel = ServiceModel()
+    let serviceModel = Singleton.shared.serviceModel
     
     func getGenres(requestUrl: RequestUrl, handler: @escaping HandlerObject) {
         let parameters: [String: Any] = [

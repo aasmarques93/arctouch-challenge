@@ -122,9 +122,7 @@ class LoginViewModel: ViewModel {
     
     func setupFacebookDataIfNeeded() {
         if let _ = FBSDKAccessToken.current() {
-            Loading.shared.start()
             setFacebookId(handlerResult: { [weak self] _ in
-                Loading.shared.stop()
                 self?.delegate?.didLogin()
             })
         }
@@ -163,13 +161,11 @@ class LoginViewModel: ViewModel {
             return
         }
         
-        Loading.shared.start()
         RegisterServiceModel().signup(username: user.name,
                                       email: user.email,
                                       facebookId: user.facebookId,
                                       handlerObject: { [weak self] (object) in
         
-                                        Loading.shared.stop()
                                         guard let user = object as? User else {
                                             return
                                         }
@@ -182,8 +178,6 @@ class LoginViewModel: ViewModel {
             print("Error signing up facebook user: \(error ?? "")")
             
             self?.serviceModel.authenticate(facebookId: self?.user.facebookId, handlerObject: { [weak self] (object) in
-                Loading.shared.stop()
-                
                 guard let user = object as? User else {
                     return
                 }
@@ -193,7 +187,6 @@ class LoginViewModel: ViewModel {
                 Singleton.shared.saveUser()
                 self?.delegate?.didLogin()
             }) { (error) in
-                Loading.shared.stop()
                 print("Error authenticating facebook user: \(error ?? "")")
             }
         }
@@ -224,10 +217,7 @@ class LoginViewModel: ViewModel {
             return
         }
         
-        Loading.shared.start()
         serviceModel.authenticate(email: email.value, password: password.value, handlerObject: { [weak self] (object) in
-            Loading.shared.stop()
-            
             guard let user = object as? User else {
                 return
             }
@@ -235,8 +225,6 @@ class LoginViewModel: ViewModel {
             Singleton.shared.user = user
             self?.delegate?.didLogin()
         }) { [weak self] (error) in
-            Loading.shared.stop()
-            
             guard let error = error as? String else {
                 return
             }

@@ -8,15 +8,15 @@
 
 import UIKit
 import Bond
-import XCDYouTubeKit
 import AVFoundation
 import AVKit
 
 class MoviesView: UITableViewController {
     @IBOutlet weak var carouselPreviews: iCarousel!
     
-    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.moviesPreview.localized,
-                                                              placeholder: Messages.searchMovie.localized)
+    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.netflixMovies.localized,
+                                                              placeholder: Messages.searchMovie.localized,
+                                                              textAlignment: .left)
     let viewHeaderHeight: CGFloat = 32
     
     let viewModel = MoviesViewModel()
@@ -49,7 +49,7 @@ class MoviesView: UITableViewController {
     
     func setupAppearance() {
         carouselPreviews.type = .linear
-        
+
         let viewHeader = UIView(frame: CGRect(x: 0, y: 0,
                                               width: SCREEN_WIDTH,
                                               height: searchHeaderView.frame.height + carouselPreviews.frame.height))
@@ -149,26 +149,11 @@ extension MoviesView: MoviesViewModelDelegate {
         AlertController.show(message: message)
     }
     
-    func openVideo(youtubeId: String) {
-        let viewController = XCDYouTubeVideoPlayerViewController(videoIdentifier: youtubeId)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(playerPlaybackDidFinish),
-                                               name: NSNotification.Name.AVPlayerItemTimeJumped,
-                                               object: nil)
-        
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.type = kCATransitionFade
-        transition.subtype = kCATransitionFromTop
-        transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
-        view.window?.layer.add(transition, forKey: kCATransition)
-        
-        present(viewController, animated: false, completion: nil)
-    }
-    
-    @objc func playerPlaybackDidFinish() {
-        print("Did finish")
+    func openPreview(storiesViewModel: StoriesViewModel) {
+        let storiesPageViewController = instantiate(viewController: StoriesPageViewController.self, from: .generic)
+        storiesPageViewController.modalPresentationStyle = .overFullScreen
+        storiesPageViewController.viewModel = storiesViewModel
+        present(storiesPageViewController, animated: true, completion: nil)
     }
 }
 
@@ -177,7 +162,7 @@ extension MoviesView: iCarouselDelegate, iCarouselDataSource {
     // MARK: - iCarousel delegate and data source -
     
     func numberOfItems(in carousel: iCarousel) -> Int {
-        return viewModel.numberOfSugestedMovies
+        return viewModel.numberOfNeflixMovies
     }
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {

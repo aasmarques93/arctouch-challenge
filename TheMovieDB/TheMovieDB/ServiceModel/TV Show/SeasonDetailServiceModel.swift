@@ -9,7 +9,7 @@
 import UIKit
 
 struct SeasonDetailServiceModel {
-    let serviceModel = ServiceModel()
+    let serviceModel = Singleton.shared.serviceModel
     
     func getDetail(from tvShowDetail: TVShowDetail?, season: Seasons?, handler: @escaping HandlerObject) {
         if let id = tvShowDetail?.id, let seasonNumber = season?.seasonNumber {
