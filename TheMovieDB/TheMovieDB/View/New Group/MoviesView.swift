@@ -8,9 +8,15 @@
 
 import UIKit
 import Bond
+import XCDYouTubeKit
+import AVFoundation
+import AVKit
 
 class MoviesView: UITableViewController {
-    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.movies.localized, placeholder: Messages.searchMovie.localized)
+    @IBOutlet weak var carouselPreviews: iCarousel!
+    
+    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.moviesPreview.localized,
+                                                              placeholder: Messages.searchMovie.localized)
     let viewHeaderHeight: CGFloat = 32
     
     let viewModel = MoviesViewModel()
@@ -27,6 +33,7 @@ class MoviesView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAppearance()
         StoreReviewHelper.checkAndAskForReview()
         Singleton.shared.didSkipTestFromLauching = true
         searchHeaderView.delegate = self
@@ -40,6 +47,24 @@ class MoviesView: UITableViewController {
         AppDelegate.shared.unlockOrientation()
     }
     
+    func setupAppearance() {
+        carouselPreviews.type = .linear
+        
+        let viewHeader = UIView(frame: CGRect(x: 0, y: 0,
+                                              width: SCREEN_WIDTH,
+                                              height: searchHeaderView.frame.height + carouselPreviews.frame.height))
+        viewHeader.backgroundColor = HexColor.primary.color
+        carouselPreviews.frame = CGRect(x: viewHeader.frame.minX,
+                                        y: searchHeaderView.frame.maxY,
+                                        width: carouselPreviews.frame.width,
+                                        height: carouselPreviews.frame.height)
+        
+        viewHeader.addSubview(searchHeaderView)
+        viewHeader.addSubview(carouselPreviews)
+        
+        tableView.tableHeaderView = viewHeader
+    }
+    
     // MARK: - Table view data source -
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,29 +76,12 @@ class MoviesView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return searchHeaderView.frame.height + viewHeaderHeight
-        }
         return viewHeaderHeight
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = labelHeader
         label.text = viewModel.genreTitle(at: section)
-        
-        if section == 0 {
-            let view = UIView(frame: CGRect(x: 0, y: 0,
-                                            width: SCREEN_WIDTH,
-                                            height: searchHeaderView.frame.height + viewHeaderHeight))
-            
-            label.frame = CGRect(x: 0, y: searchHeaderView.frame.maxY, width: view.frame.width, height: viewHeaderHeight)
-            
-            view.addSubview(searchHeaderView)
-            view.addSubview(label)
-            
-            return view
-        }
-        
         return label
     }
     
@@ -128,6 +136,10 @@ extension MoviesView: MoviesViewModelDelegate {
     
     // MARK: - Movies view model delegate -
     
+    func reloadData() {
+        carouselPreviews.reloadData()
+    }
+    
     func reloadData(at index: Int) {
         let indexPath = IndexPath(row: 0, section: index)
         tableView.reloadRows(at: [indexPath], with: .automatic)
@@ -135,5 +147,56 @@ extension MoviesView: MoviesViewModelDelegate {
     
     func showError(message: String?) {
         AlertController.show(message: message)
+    }
+    
+    func openVideo(youtubeId: String) {
+        let viewController = XCDYouTubeVideoPlayerViewController(videoIdentifier: youtubeId)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(playerPlaybackDidFinish),
+                                               name: NSNotification.Name.AVPlayerItemTimeJumped,
+                                               object: nil)
+        
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = kCATransitionFade
+        transition.subtype = kCATransitionFromTop
+        transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
+        view.window?.layer.add(transition, forKey: kCATransition)
+        
+        present(viewController, animated: false, completion: nil)
+    }
+    
+    @objc func playerPlaybackDidFinish() {
+        print("Did finish")
+    }
+}
+
+extension MoviesView: iCarouselDelegate, iCarouselDataSource {
+    
+    // MARK: - iCarousel delegate and data source -
+    
+    func numberOfItems(in carousel: iCarousel) -> Int {
+        return viewModel.numberOfSugestedMovies
+    }
+    
+    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
+        return carouselPreviewView(at: index)
+    }
+    
+    func carouselPreviewView(at index: Int) -> UIView {
+        let view = XibView.instanceFromNib(MoviePreviewView.self)
+        
+        if let url = viewModel.moviePreviewImagePathUrl(at: index) {
+            view.imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], completed: nil)
+        }
+
+        return view
+    }
+    
+    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
+        if carousel == carouselPreviews {
+            viewModel.loadVideos(at: index)
+        }
     }
 }

@@ -10,6 +10,7 @@ import Bond
 
 protocol MoviesViewModelDelegate: ViewModelDelegate {
     func reloadData(at index: Int)
+    func openVideo(youtubeId: String)
 }
 
 class MoviesViewModel: ViewModel {
@@ -66,13 +67,14 @@ class MoviesViewModel: ViewModel {
     
     // MARK: Service Model
     let serviceModel = MoviesServiceModel()
+    lazy var movieDetailServiceModel = MovieDetailServiceModel()
     
     // MARK: Genres
     private var arrayGenres: [GenreType] = [.sugested, .popular, .topRated, .upcoming, .nowPlaying]
     var numberOfGenres: Int { return arrayGenres.count }
     
     // MARK: Sugested
-    private var arraySugestedMovies = [Movie]()
+    private var arraySugestedMovies = [Movie]() { didSet { delegate?.reloadData?() } }
     var numberOfSugestedMovies: Int { return arraySugestedMovies.count }
     
     // MARK: Now Playing
@@ -317,6 +319,11 @@ class MoviesViewModel: ViewModel {
         return URL(string: serviceModel.imageUrl(with: movie.posterPath))
     }
     
+    func moviePreviewImagePathUrl(at index: Int) -> URL? {
+        let movie = arraySugestedMovies[index]
+        return URL(string: serviceModel.imageUrl(with: movie.posterPath))
+    }
+    
     private func getMoviesArray(at section: Int) -> [Movie]? {
         guard let genre = GenreType.genre(at: section) else {
             return nil
@@ -342,6 +349,20 @@ class MoviesViewModel: ViewModel {
         
         if row == results.count-2 && !isDataLoading {
             loadData(genre: GenreType.genre(at: section))
+        }
+    }
+    
+    func loadVideos(at index: Int) {
+        let movie = arraySugestedMovies[index]
+        movieDetailServiceModel.getVideos(from: movie) { [weak self] (object) in
+            guard let object = object as? VideosList,
+                let results = object.results,
+                let video = results.first,
+                let youtubeId = video.key else {
+                return
+            }
+
+            self?.delegate?.openVideo(youtubeId: youtubeId)
         }
     }
     

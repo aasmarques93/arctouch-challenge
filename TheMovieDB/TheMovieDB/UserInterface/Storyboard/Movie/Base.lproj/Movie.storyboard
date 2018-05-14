@@ -19,7 +19,7 @@
             </objects>
             <point key="canvasLocation" x="1467" y="-56"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Data Source-->
         <scene sceneID="Ixx-fN-4DW">
             <objects>
                 <tableViewController storyboardIdentifier="MoviesView" id="ZPF-4b-shJ" customClass="MoviesView" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
@@ -172,8 +172,21 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="carouselPreviews" destination="sYF-pn-rnI" id="oQV-v6-HOq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGE-9e-zBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="sYF-pn-rnI" customClass="iCarousel">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="9Nc-MN-M8g"/>
+                    <connections>
+                        <outlet property="dataSource" destination="ZPF-4b-shJ" id="uI5-VN-Bts"/>
+                        <outlet property="delegate" destination="ZPF-4b-shJ" id="zo2-qr-v57"/>
+                    </connections>
+                </view>
             </objects>
             <point key="canvasLocation" x="882" y="337"/>
         </scene>

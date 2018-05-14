@@ -246,6 +246,7 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
             let viewController = instantiate(viewController: PersonView.self, from: .generic)
             viewController.viewModel = viewModel?.personViewModel(at: index)
             navigationController?.pushViewController(viewController, animated: true)
+            return
         }
         if carousel == carouselSimilarMovies {
             let viewController = instantiate(viewController: MovieDetailView.self, from: .movie)

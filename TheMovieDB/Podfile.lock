@@ -53,6 +53,7 @@ PODS:
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
   - SwiftyJSON (3.1.4)
+  - XCDYouTubeKit (2.5.6)
   - YouTubePlayer (0.4.0)
 
 DEPENDENCIES:
@@ -70,6 +71,7 @@ DEPENDENCIES:
   - RAMAnimatedTabBarController
   - SDWebImage
   - SwiftyJSON (~> 3.1.4)
+  - XCDYouTubeKit
   - YouTubePlayer
 
 SPEC REPOS:
@@ -96,6 +98,7 @@ SPEC REPOS:
     - ReactiveKit
     - SDWebImage
     - SwiftyJSON
+    - XCDYouTubeKit
     - YouTubePlayer
 
 SPEC CHECKSUMS:
@@ -121,8 +124,9 @@ SPEC CHECKSUMS:
   ReactiveKit: cafbc91f72751d09baa9a3c3cf6d82b646328a6c
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  XCDYouTubeKit: dccfe0c17dd5c5187969ec27e93069573badb08f
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: c685c739b1f12d13dce2c04bc9f6b0585e71e2d2
+PODFILE CHECKSUM: 9b7dc5a700b2b641b3ce86cb6530c390de954ee1
 
 COCOAPODS: 1.5.0.beta.1

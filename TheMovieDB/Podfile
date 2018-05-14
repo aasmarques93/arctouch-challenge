@@ -19,6 +19,7 @@ target 'TheMovieDB' do
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'
+  pod 'XCDYouTubeKit'
   
   # Pods for TheMovieDB
 

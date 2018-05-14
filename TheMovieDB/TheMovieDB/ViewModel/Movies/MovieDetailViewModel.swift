@@ -22,6 +22,9 @@ class MovieDetailViewModel: ViewModel {
     // MARK: Delegate
     weak var delegate: MovieDetailViewModelDelegate?
     
+    // MARK: Service Model
+    let serviceModel = MovieDetailServiceModel()
+    
     // MARK: Observables
     var name = Observable<String?>(nil)
     var average = Observable<String?>(nil)
@@ -46,9 +49,6 @@ class MovieDetailViewModel: ViewModel {
             genres.value = setupGenres()
         }
     }
-    
-    // MARK: Service Model
-    let serviceModel = MovieDetailServiceModel()
     
     // MARK: Videos
     private var arrayVideos = [Video]() { didSet { delegate?.reloadVideos() } }
