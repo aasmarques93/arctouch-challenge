@@ -33,7 +33,7 @@ class TVShowView: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.numberOfGenres
+        return viewModel.numberOfSections
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,7 +46,7 @@ class TVShowView: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = labelHeader
-        label.text = viewModel.genreTitle(at: section)
+        label.text = viewModel.sectionTitle(at: section)
         
         guard section == 0 else {
             return label

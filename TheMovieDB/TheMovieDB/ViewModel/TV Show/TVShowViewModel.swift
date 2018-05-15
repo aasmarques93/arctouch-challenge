@@ -7,62 +7,7 @@
 //
 
 class TVShowViewModel: MoviesShowsViewModel {
-    // MARK: - Enums -
-    
-    enum GenreType: String {
-        case netflix = "Watch on Netflix"
-        case sugested = "Sugested"
-        case airingToday = "Airing today"
-        case onTheAir = "On the air"
-        case popular = "Popular"
-        case topRated = "Top Rated"
-        
-        var localized: String {
-            return NSLocalizedString(self.rawValue, comment: "")
-        }
-        
-        var index: Int {
-            switch self {
-            case .netflix:
-                return 0
-            case .sugested:
-                return 1
-            case .airingToday:
-                return 2
-            case .onTheAir:
-                return 3
-            case .popular:
-                return 4
-            case .topRated:
-                return 5
-            }
-        }
-        
-        static func genre(at index: Int) -> GenreType? {
-            switch index {
-            case 0:
-                return GenreType.netflix
-            case 1:
-                return GenreType.sugested
-            case 2:
-                return GenreType.airingToday
-            case 3:
-                return GenreType.onTheAir
-            case 4:
-                return GenreType.popular
-            case 5:
-                return GenreType.topRated
-            default:
-                return nil
-            }
-        }
-    }
-    
     // MARK: - Properties -
-    
-    // MARK: Genres
-    private var arrayGenres: [GenreType] = [.netflix, .sugested, .airingToday, .onTheAir, .popular, .topRated]
-    var numberOfGenres: Int { return arrayGenres.count }
     
     // MARK: Sugested
     private var arraySugested = [TVShow]()
@@ -92,21 +37,18 @@ class TVShowViewModel: MoviesShowsViewModel {
     
     override func loadData() {
         super.loadData()
-        getTVShows(genre: .airingToday)
-        getTVShows(genre: .onTheAir)
-        getTVShows(genre: .popular)
-        getTVShows(genre: .topRated)
+        getTVShows(section: .airingToday)
+        getTVShows(section: .onTheAir)
+        getTVShows(section: .popular)
+        getTVShows(section: .topRated)
     }
     
-    private func loadData(genre: GenreType?) {
-        guard let genre = genre else {
+    private func loadData(section: SectionsType?) {
+        guard let section = section else {
             return
         }
         
-        switch genre {
-        case .netflix,
-             .sugested:
-            return
+        switch section {
         case .airingToday:
             currentAiringTodayPage += 1
         case .onTheAir:
@@ -115,17 +57,19 @@ class TVShowViewModel: MoviesShowsViewModel {
             currentPopularPage += 1
         case .topRated:
             currentTopRatedPage += 1
-        }
-        
-        getTVShows(genre: genre)
-    }
-    
-    private func getTVShows(genre: GenreType) {
-        guard let requestUrl = getRequestUrl(with: genre) else {
+        default:
             return
         }
         
-        var currentPage = getCurrentPage(at: genre)
+        getTVShows(section: section)
+    }
+    
+    private func getTVShows(section: SectionsType) {
+        guard let requestUrl = getRequestUrl(with: section) else {
+            return
+        }
+        
+        var currentPage = getCurrentPage(at: section)
         
         isDataLoading = true
         
@@ -145,36 +89,17 @@ class TVShowViewModel: MoviesShowsViewModel {
                 }
                 
                 if let results = object.results {
-                    self?.addTVShowsToArray(results, genre: genre)
+                    self?.addTVShowsToArray(results, section: section)
                     currentPage += 1
                 }
             }
             
-            self?.reloadData(at: genre.index)
+            self?.reloadData(at: section.index(isMovie: self?.isMovie ?? false))
         }
     }
     
-    private func getRequestUrl(with genre: GenreType) -> RequestUrl? {
-        switch genre {
-        case .netflix,
-             .sugested:
-            return nil
-        case .airingToday:
-            return .tvAiringToday
-        case .onTheAir:
-            return .tvOnTheAir
-        case .popular:
-            return .tvPopular
-        case .topRated:
-            return .tvTopRated
-        }
-    }
-    
-    private func getCurrentPage(at genre: GenreType) -> Int {
-        switch genre {
-        case .netflix,
-             .sugested:
-            return 0
+    private func getCurrentPage(at section: SectionsType) -> Int {
+        switch section {
         case .airingToday:
             return currentAiringTodayPage
         case .onTheAir:
@@ -183,6 +108,8 @@ class TVShowViewModel: MoviesShowsViewModel {
             return currentPopularPage
         case .topRated:
             return currentTopRatedPage
+        default:
+            return 0
         }
     }
     
@@ -210,10 +137,8 @@ class TVShowViewModel: MoviesShowsViewModel {
         }
     }
     
-    private func addTVShowsToArray(_ results: [TVShow], genre: GenreType) {
-        switch genre {
-        case .netflix:
-            return
+    private func addTVShowsToArray(_ results: [TVShow], section: SectionsType) {
+        switch section {
         case .sugested:
             break
         case .airingToday:
@@ -224,33 +149,20 @@ class TVShowViewModel: MoviesShowsViewModel {
             arrayPopular.append(contentsOf: results)
         case .topRated:
             arrayTopRated.append(contentsOf: results)
+        default:
+            return
         }
         
         addTVShowsToSugested(results)
     }
     
-    // MARK: - Genre methods -
-    
-    func genreTitle(at section: Int) -> String {
-        guard let genre = GenreType.genre(at: section) else {
-            return ""
-        }
-        guard genre == .sugested,
-            let userPersonalityType = Singleton.shared.userPersonalityType,
-            let title = userPersonalityType.title else {
-                
-                return "  \(genre.localized)"
-        }
-        return "  \(genre.localized) for \(title)"
-    }
-    
     // MARK: - TV Show methods -
     
     func numberOfTVShows(at section: Int) -> Int {
-        guard let genre = GenreType.genre(at: section) else {
+        guard let sectionType = SectionsType.section(at: section, isMovie: isMovie) else {
             return 0
         }
-        switch genre {
+        switch sectionType {
         case .netflix:
             return numberOfNeflix
         case .sugested:
@@ -263,6 +175,8 @@ class TVShowViewModel: MoviesShowsViewModel {
             return numberOfPopular
         case .topRated:
             return numberOfTopRated
+        default:
+            return 0
         }
     }
     
@@ -285,12 +199,10 @@ class TVShowViewModel: MoviesShowsViewModel {
     }
     
     private func getTVShowsArray(at section: Int) -> [TVShow]? {
-        guard let genre = GenreType.genre(at: section) else {
+        guard let sectionType = SectionsType.section(at: section, isMovie: isMovie) else {
             return nil
         }
-        switch genre {
-        case .netflix:
-            return nil
+        switch sectionType {
         case .sugested:
             return arraySugested
         case .airingToday:
@@ -301,6 +213,8 @@ class TVShowViewModel: MoviesShowsViewModel {
             return arrayPopular
         case .topRated:
             return arrayTopRated
+        default:
+            return nil
         }
     }
     
@@ -310,7 +224,7 @@ class TVShowViewModel: MoviesShowsViewModel {
         }
         
         if row == results.count-2 && !isDataLoading {
-            loadData(genre: GenreType.genre(at: section))
+            loadData(section: SectionsType.section(at: section, isMovie: isMovie))
         }
     }
     
