@@ -161,6 +161,10 @@ extension UIView {
             segmentedControl.tintColor = HexColor.color(from: colorStyle) ?? HexColor.secondary.color
             return
         }
+        if let switchValue = self as? UISwitch {
+            switchValue.tintColor = HexColor.color(from: colorStyle) ?? HexColor.secondary.color
+            return
+        }
         if let stepper = self as? UIStepper {
             stepper.tintColor = HexColor.color(from: colorStyle) ?? HexColor.secondary.color
             return

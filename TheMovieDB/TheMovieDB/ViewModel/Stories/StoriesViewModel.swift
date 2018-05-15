@@ -25,6 +25,7 @@ class StoriesViewModel: ViewModel {
     // MARK: Variables
     var numberOfPages: Int { return arrayStoriesPages.count }
     var currentIndex: Int = 0
+    var currentNetflixMovieShow: NetflixMovieShow?
     
     // MARK: - Life cycle -
     
@@ -38,7 +39,7 @@ class StoriesViewModel: ViewModel {
     
     func loadData() {
         arrayNetflixMovies.forEach { [weak self] (object) in
-            let url = URL(string: self?.netflixServiceModel.imageUrl(with: object.id) ?? "")
+            let url = URL(string: self?.netflixServiceModel.imageUrl(with: object.id, isMovie: isMovie) ?? "")
             let storyItems = [StoryItem(content: .video, data: nil)]
             self?.arrayStoriesPages.append(StoriesPageItem(title: object.title, mainImageUrl: url, storyItems: storyItems))
         }
@@ -48,11 +49,9 @@ class StoriesViewModel: ViewModel {
     
     func loadVideo(at index: Int, handler: @escaping HandlerObject) {
         let object = arrayNetflixMovies[index]
-        netflixServiceModel.getNetflixDetail(movieShow: object, isMovie: isMovie) { (object) in
-            guard let object = object as? NetflixMovieShow else {
-                return
-            }
-            handler(object.trailer?.key)
+        netflixServiceModel.getNetflixDetail(movieShow: object, isMovie: isMovie) { [weak self] (object) in
+            self?.currentNetflixMovieShow = object as? NetflixMovieShow
+            handler(self?.currentNetflixMovieShow?.trailer?.key)
         }
     }
     
@@ -98,5 +97,12 @@ class StoriesViewModel: ViewModel {
             return nil
         }
         return arrayStoriesPages[index].title
+    }
+    
+    func netflixId(at index: Int) -> String? {
+        guard let availability = currentNetflixMovieShow?.availability, let item = availability.first else {
+            return nil
+        }
+        return item.sourceData?.references?.ios?.movieId
     }
 }

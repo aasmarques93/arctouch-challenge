@@ -155,7 +155,7 @@ class PersonViewModel: ViewModel {
     }
     
     func open(socialMediaType: SocialMediaType) {
-        SocialMedia.open(mediaType: socialMediaType, userId: externalId(with: socialMediaType))
+        SocialMedia.open(mediaType: socialMediaType, id: externalId(with: socialMediaType))
     }
     
     private func externalId(with socialMediaType: SocialMediaType) -> String? {
@@ -166,6 +166,8 @@ class PersonViewModel: ViewModel {
             return externalIds?.instagramId
         case .twitter:
             return externalIds?.twitterId
+        default:
+            return nil
         }
     }
     

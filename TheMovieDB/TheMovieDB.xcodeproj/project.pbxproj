@@ -60,6 +60,8 @@
 		ED16D8882059A07F002A0B2C /* SearchServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D8872059A07F002A0B2C /* SearchServiceModel.swift */; };
 		ED16D88A2059A34F002A0B2C /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D8892059A34F002A0B2C /* SearchResultView.swift */; };
 		ED16D88C2059A3A0002A0B2C /* SearchResultViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D88B2059A3A0002A0B2C /* SearchResultViewCell.swift */; };
+		ED268CF420AB849B00C2B887 /* Roulette.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED268CF320AB849B00C2B887 /* Roulette.storyboard */; };
+		ED268CF720AB8ED800C2B887 /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED268CF620AB8ED800C2B887 /* RouletteView.swift */; };
 		ED2AA5F320A0D95C00AA0DF5 /* PersonalityTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA5F220A0D95C00AA0DF5 /* PersonalityTestView.swift */; };
 		ED2AA5F820A0DA4700AA0DF5 /* PersonalityTestViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA5F720A0DA4700AA0DF5 /* PersonalityTestViewCell.swift */; };
 		ED2AA5FA20A0DAF600AA0DF5 /* PersonalityTestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA5F920A0DAF600AA0DF5 /* PersonalityTestCellViewModel.swift */; };
@@ -294,6 +296,8 @@
 		ED16D8872059A07F002A0B2C /* SearchServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceModel.swift; sourceTree = "<group>"; };
 		ED16D8892059A34F002A0B2C /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		ED16D88B2059A3A0002A0B2C /* SearchResultViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewCell.swift; sourceTree = "<group>"; };
+		ED268CF320AB849B00C2B887 /* Roulette.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Roulette.storyboard; sourceTree = "<group>"; };
+		ED268CF620AB8ED800C2B887 /* RouletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
 		ED2AA5F220A0D95C00AA0DF5 /* PersonalityTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestView.swift; sourceTree = "<group>"; };
 		ED2AA5F720A0DA4700AA0DF5 /* PersonalityTestViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestViewCell.swift; sourceTree = "<group>"; };
 		ED2AA5F920A0DAF600AA0DF5 /* PersonalityTestCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestCellViewModel.swift; sourceTree = "<group>"; };
@@ -743,6 +747,22 @@
 			path = Movies;
 			sourceTree = "<group>";
 		};
+		ED268CF220AB848B00C2B887 /* Roulette */ = {
+			isa = PBXGroup;
+			children = (
+				ED268CF320AB849B00C2B887 /* Roulette.storyboard */,
+			);
+			path = Roulette;
+			sourceTree = "<group>";
+		};
+		ED268CF520AB8EBD00C2B887 /* Roulette */ = {
+			isa = PBXGroup;
+			children = (
+				ED268CF620AB8ED800C2B887 /* RouletteView.swift */,
+			);
+			path = Roulette;
+			sourceTree = "<group>";
+		};
 		ED2AA5EE20A0D26B00AA0DF5 /* PersonalityTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -1128,6 +1148,7 @@
 				ED2AA5EE20A0D26B00AA0DF5 /* PersonalityTest */,
 				ED38342A2094AB1C0079D48F /* Movie */,
 				ED38342C2094AB330079D48F /* TV Show */,
+				ED268CF220AB848B00C2B887 /* Roulette */,
 				ED38342B2094AB290079D48F /* PopularPeople */,
 				ED3834362094ACA70079D48F /* Search */,
 				ED3834332094ABD00079D48F /* Generic */,
@@ -1258,6 +1279,7 @@
 				ED3833F320938B920079D48F /* PopularPeople */,
 				ED16D85B20597A43002A0B2C /* Search */,
 				ED0C3D4320A9AB5A00F28150 /* Stories */,
+				ED268CF520AB8EBD00C2B887 /* Roulette */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1541,6 +1563,7 @@
 				ED65BEFA20923C990091D93B /* CastView.xib in Resources */,
 				ED65BEE42091F1330091D93B /* nowPlaying.json in Resources */,
 				ED841EA820A54FCC00A425BF /* TVShow.storyboard in Resources */,
+				ED268CF420AB849B00C2B887 /* Roulette.storyboard in Resources */,
 				ED841E9320A54ED100A425BF /* Generic.storyboard in Resources */,
 				ED841E9120A54D3400A425BF /* personalityTypes.json in Resources */,
 				ED42019220A747F2005D5FF3 /* Login.storyboard in Resources */,
@@ -1768,6 +1791,7 @@
 				ED3833E42093324C0079D48F /* PersonView.swift in Sources */,
 				ED16D86920597D99002A0B2C /* MovieDetail.swift in Sources */,
 				ED3834592097426D0079D48F /* SeasonDetailViewModel.swift in Sources */,
+				ED268CF720AB8ED800C2B887 /* RouletteView.swift in Sources */,
 				ED38343C2094B3F40079D48F /* SearchTV.swift in Sources */,
 				ED0C3D4720A9AB7600F28150 /* StoriesView.swift in Sources */,
 				EDC6C01C20585A6300D843EC /* LoadingView.swift in Sources */,

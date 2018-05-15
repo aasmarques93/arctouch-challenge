@@ -12,6 +12,7 @@ enum SocialMediaType {
     case facebook
     case instagram
     case twitter
+    case netflix
 }
 
 struct SocialMedia {
@@ -22,24 +23,29 @@ struct SocialMedia {
         case webInstagram = "https://instagram.com/"
         case twitter = "twitter://user?screen_name="
         case webTwitter = "https://twitter.com/"
+        case netflix = "nflx://www.netflix.com/watch/"
+        case webNetflix = "http://movies.netflix.com/Movie/"
         
-        static func url(with link: Links, userId: String? = nil) -> String {
-            return "\(link.rawValue)\(userId ?? "")"
+        static func url(with link: Links, id: String? = nil) -> String {
+            return "\(link.rawValue)\(id ?? "")"
         }
     }
     
-    static func open(mediaType: SocialMediaType, userId: String?) {
+    static func open(mediaType: SocialMediaType, id: String?) {
         var urls = [String]()
         
         switch mediaType {
         case .facebook:
-            urls.append(Links.url(with: .webFacebook, userId: userId))
+            urls.append(Links.url(with: .webFacebook, id: id))
         case .instagram:
-            urls.append(Links.url(with: .instagram, userId: userId))
-            urls.append(Links.url(with: .webInstagram, userId: userId))
+            urls.append(Links.url(with: .instagram, id: id))
+            urls.append(Links.url(with: .webInstagram, id: id))
         case .twitter:
-            urls.append(Links.url(with: .twitter, userId: userId))
-            urls.append(Links.url(with: .webTwitter, userId: userId))
+            urls.append(Links.url(with: .twitter, id: id))
+            urls.append(Links.url(with: .webTwitter, id: id))
+        case .netflix:
+            urls.append(Links.url(with: .netflix, id: id))
+            urls.append(Links.url(with: .webNetflix, id: id))
         }
         
         UIApplication.open(urls: urls)

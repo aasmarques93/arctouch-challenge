@@ -33,6 +33,7 @@ class StoriesView: UIViewController {
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var buttonClose: UIButton!
+    @IBOutlet weak var buttonNetflix: UIButton!
     
     var pageIndex: Int = 0
     var viewModel: StoriesViewModel?
@@ -44,6 +45,7 @@ class StoriesView: UIViewController {
         setupAppearance()
         imageViewHeader.sd_setImage(with: viewModel?.mainUrlImage(at: pageIndex), placeholderImage: #imageLiteral(resourceName: "logo-movie-db"), options: [], completed: nil)
         labelTitle.text = viewModel?.title(at: pageIndex)
+        buttonNetflix.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,6 +55,10 @@ class StoriesView: UIViewController {
     
     func setupAppearance() {
         imageViewHeader.layer.cornerRadius = imageViewHeader.frame.width / 2
+    }
+    
+    @IBAction func buttonOpenNetflixAction(_ sender: UIButton) {
+        SocialMedia.open(mediaType: .netflix, id: viewModel?.netflixId(at: pageIndex))
     }
     
     @IBAction func buttonCloseAction(_ sender: Any) {
@@ -77,6 +83,8 @@ class StoriesView: UIViewController {
                     return
                 }
                 
+                self?.buttonNetflix.isHidden = false
+                
                 self?.youTubePlayer = XCDYouTubeVideoPlayerViewController(videoIdentifier: path)
 
                 self?.youTubePlayer?.present(in: videoView)
@@ -89,6 +97,7 @@ class StoriesView: UIViewController {
         imageViewHeader.isHidden = UIDevice.current.orientation != .portrait
         labelTitle.isHidden = imageViewHeader.isHidden
         buttonClose.isHidden = imageViewHeader.isHidden
+        buttonNetflix.isHidden = imageViewHeader.isHidden
     }
     
     override var prefersStatusBarHidden: Bool {

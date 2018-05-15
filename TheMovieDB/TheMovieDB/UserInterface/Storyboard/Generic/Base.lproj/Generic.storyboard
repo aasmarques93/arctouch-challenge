@@ -386,19 +386,19 @@
                                 <rect key="frame" x="0.0" y="40" width="375" height="46"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OQH-jE-Bzk">
-                                        <rect key="frame" x="15" y="0.0" width="45" height="45"/>
+                                        <rect key="frame" x="16" y="0.0" width="45" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="45" id="ES5-N1-gA4"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Title}}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhH-rX-O2N">
-                                        <rect key="frame" x="68" y="12" width="259" height="21"/>
+                                        <rect key="frame" x="69" y="0.0" width="258" height="45"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nn2-ez-a49">
-                                        <rect key="frame" x="335" y="0.0" width="32" height="32"/>
+                                        <rect key="frame" x="335" y="6.5" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Nn2-ez-a49" secondAttribute="height" multiplier="1:1" id="QS2-nZ-y4p"/>
                                             <constraint firstAttribute="width" constant="32" id="Wda-w1-rsi"/>
@@ -420,15 +420,38 @@
                                     <constraint firstItem="MhH-rX-O2N" firstAttribute="leading" secondItem="OQH-jE-Bzk" secondAttribute="trailing" constant="8" symbolic="YES" id="JnA-7D-wKJ"/>
                                     <constraint firstItem="OQH-jE-Bzk" firstAttribute="centerY" secondItem="MhH-rX-O2N" secondAttribute="centerY" id="aGh-rJ-MP8"/>
                                     <constraint firstItem="Nn2-ez-a49" firstAttribute="leading" secondItem="MhH-rX-O2N" secondAttribute="trailing" constant="8" id="d5H-qR-wLR"/>
-                                    <constraint firstItem="MhH-rX-O2N" firstAttribute="top" secondItem="wF9-9D-HkE" secondAttribute="top" constant="12" id="g3y-ek-Uho"/>
-                                    <constraint firstItem="Nn2-ez-a49" firstAttribute="top" secondItem="wF9-9D-HkE" secondAttribute="top" id="hqc-7p-xkJ"/>
-                                    <constraint firstItem="OQH-jE-Bzk" firstAttribute="leading" secondItem="wF9-9D-HkE" secondAttribute="leading" constant="15" id="tvE-lc-9gq"/>
+                                    <constraint firstItem="MhH-rX-O2N" firstAttribute="top" secondItem="wF9-9D-HkE" secondAttribute="top" id="g3y-ek-Uho"/>
+                                    <constraint firstItem="Nn2-ez-a49" firstAttribute="centerY" secondItem="MhH-rX-O2N" secondAttribute="centerY" id="ggW-qz-3Oe"/>
+                                    <constraint firstItem="OQH-jE-Bzk" firstAttribute="leading" secondItem="wF9-9D-HkE" secondAttribute="leading" constant="16" id="tvE-lc-9gq"/>
                                     <constraint firstItem="OQH-jE-Bzk" firstAttribute="centerY" secondItem="wF9-9D-HkE" secondAttribute="centerY" id="uyR-qs-dkw"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maj-2u-rss">
+                                <rect key="frame" x="67.5" y="563" width="240" height="44"/>
+                                <color key="backgroundColor" red="0.89019607840000003" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="ERA-xA-S8F"/>
+                                    <constraint firstAttribute="height" constant="44" id="gdx-MA-KHB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="21"/>
+                                <state key="normal" title="Watch on Netflix">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="text"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="22"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buttonOpenNetflixAction:" destination="Rpd-Z1-Srl" eventType="touchUpInside" id="eTG-6V-ayU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="maj-2u-rss" firstAttribute="centerX" secondItem="SRD-m3-NYb" secondAttribute="centerX" id="2It-BC-By9"/>
                             <constraint firstItem="1mM-Lx-Zbb" firstAttribute="bottom" secondItem="SRD-m3-NYb" secondAttribute="bottom" id="6hB-aD-KSs"/>
                             <constraint firstItem="sze-0c-8RJ" firstAttribute="top" secondItem="1mM-Lx-Zbb" secondAttribute="top" id="9hx-vp-rdo"/>
                             <constraint firstItem="sze-0c-8RJ" firstAttribute="leading" secondItem="1mM-Lx-Zbb" secondAttribute="leading" id="Ee8-el-jjz"/>
@@ -437,6 +460,7 @@
                             <constraint firstItem="sze-0c-8RJ" firstAttribute="trailing" secondItem="1mM-Lx-Zbb" secondAttribute="trailing" id="YEm-b5-lpa"/>
                             <constraint firstItem="wF9-9D-HkE" firstAttribute="leading" secondItem="SRD-m3-NYb" secondAttribute="leading" id="ZIW-TU-lVK"/>
                             <constraint firstItem="wF9-9D-HkE" firstAttribute="top" secondItem="SRD-m3-NYb" secondAttribute="top" constant="20" id="a67-DD-fsb"/>
+                            <constraint firstItem="SRD-m3-NYb" firstAttribute="bottom" secondItem="maj-2u-rss" secondAttribute="bottom" constant="60" id="ejd-BJ-KMC"/>
                             <constraint firstItem="wF9-9D-HkE" firstAttribute="centerX" secondItem="eOb-aX-aVP" secondAttribute="centerX" id="pOa-I2-MUR"/>
                             <constraint firstItem="sze-0c-8RJ" firstAttribute="bottom" secondItem="SRD-m3-NYb" secondAttribute="bottom" id="sRC-7Q-j0T"/>
                             <constraint firstItem="1mM-Lx-Zbb" firstAttribute="top" secondItem="eOb-aX-aVP" secondAttribute="top" id="sSw-s0-hJr"/>
@@ -446,6 +470,7 @@
                     </view>
                     <connections>
                         <outlet property="buttonClose" destination="Nn2-ez-a49" id="lCL-Zm-ELL"/>
+                        <outlet property="buttonNetflix" destination="maj-2u-rss" id="Lwx-vC-9Ou"/>
                         <outlet property="imageView" destination="sze-0c-8RJ" id="LWh-fd-u4W"/>
                         <outlet property="imageViewHeader" destination="OQH-jE-Bzk" id="oyb-eA-XdR"/>
                         <outlet property="labelTitle" destination="MhH-rX-O2N" id="D7H-F3-6bW"/>
@@ -454,7 +479,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWG-aH-FK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4700" y="337"/>
+            <point key="canvasLocation" x="4700" y="336.88155922038982"/>
         </scene>
     </scenes>
     <resources>
