@@ -41,30 +41,38 @@ class TVShowView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return searchHeaderView.frame.height + viewHeaderHeight
-        }
-        return viewHeaderHeight
+        return section == 0 ? searchHeaderView.frame.height + viewHeaderHeight : viewHeaderHeight
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = labelHeader
         label.text = viewModel.genreTitle(at: section)
         
-        if section == 0 {
-            let view = UIView(frame: CGRect(x: 0, y: 0,
-                                            width: SCREEN_WIDTH,
-                                            height: searchHeaderView.frame.height + viewHeaderHeight))
-            
-            label.frame = CGRect(x: 0, y: searchHeaderView.frame.maxY, width: view.frame.width, height: viewHeaderHeight)
-            
-            view.addSubview(searchHeaderView)
-            view.addSubview(label)
-            
-            return view
+        guard section == 0 else {
+            return label
         }
         
-        return label
+        let viewHeader = UIView(frame: CGRect(x: 0, y: 0,
+                                              width: SCREEN_WIDTH,
+                                              height: searchHeaderView.frame.height + viewHeaderHeight))
+        
+        label.frame = CGRect(x: viewHeader.frame.minX,
+                             y: searchHeaderView.frame.height,
+                             width: viewHeader.frame.width,
+                             height: label.frame.height)
+        
+        viewHeader.addSubview(searchHeaderView)
+        viewHeader.addSubview(label)
+        
+        return viewHeader
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if viewModel.isTVShowEmpty(at: indexPath) { return 44 }
+        guard indexPath.section != 0 else {
+            return StoryPreviewCell.cellHeight
+        }
+        return super.tableView(tableView, heightForRowAt: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -103,6 +111,10 @@ extension TVShowView: TVShowViewCellDelegate {
     // MARK: - TV Show view cell delegate -
     
     func didSelectItem(at section: Int, row: Int) {
+        guard section != 0 else {
+            viewModel.loadVideos(at: row)
+            return
+        }
         let viewController = instantiate(viewController: TVShowDetailView.self, from: .tvShow)
         viewController.viewModel = viewModel.tvShowDetailViewModel(at: section, row: row)
         navigationController?.pushViewController(viewController, animated: true)
@@ -120,5 +132,12 @@ extension TVShowView: TVShowViewModelDelegate {
     
     func showError(message: String?) {
         AlertController.show(message: message)
+    }
+    
+    func openPreview(storiesViewModel: StoriesViewModel) {
+        let storiesPageViewController = instantiate(viewController: StoriesPageViewController.self, from: .generic)
+        storiesPageViewController.modalPresentationStyle = .overFullScreen
+        storiesPageViewController.viewModel = storiesViewModel
+        present(storiesPageViewController, animated: true, completion: nil)
     }
 }

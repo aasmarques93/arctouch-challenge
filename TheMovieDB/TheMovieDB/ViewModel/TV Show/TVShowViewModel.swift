@@ -8,12 +8,14 @@
 
 protocol TVShowViewModelDelegate: ViewModelDelegate {
     func reloadData(at index: Int)
+    func openPreview(storiesViewModel: StoriesViewModel)
 }
 
 class TVShowViewModel: ViewModel {
     // MARK: - Enums -
     
     enum GenreType: String {
+        case netflix = "Watch on Netflix"
         case sugested = "Sugested"
         case airingToday = "Airing today"
         case onTheAir = "On the air"
@@ -26,30 +28,34 @@ class TVShowViewModel: ViewModel {
         
         var index: Int {
             switch self {
-            case .sugested:
+            case .netflix:
                 return 0
-            case .airingToday:
+            case .sugested:
                 return 1
-            case .onTheAir:
+            case .airingToday:
                 return 2
-            case .popular:
+            case .onTheAir:
                 return 3
-            case .topRated:
+            case .popular:
                 return 4
+            case .topRated:
+                return 5
             }
         }
         
         static func genre(at index: Int) -> GenreType? {
             switch index {
             case 0:
-                return GenreType.sugested
+                return GenreType.netflix
             case 1:
-                return GenreType.airingToday
+                return GenreType.sugested
             case 2:
-                return GenreType.onTheAir
+                return GenreType.airingToday
             case 3:
-                return GenreType.popular
+                return GenreType.onTheAir
             case 4:
+                return GenreType.popular
+            case 5:
                 return GenreType.topRated
             default:
                 return nil
@@ -64,9 +70,10 @@ class TVShowViewModel: ViewModel {
     
     // MARK: Service Model
     let serviceModel = TVShowServiceModel()
+    let netflixServiceModel = NetflixServiceModel()
     
     // MARK: Genres
-    private var arrayGenres: [GenreType] = [.sugested, .airingToday, .onTheAir, .popular, .topRated]
+    private var arrayGenres: [GenreType] = [.netflix, .sugested, .airingToday, .onTheAir, .popular, .topRated]
     var numberOfGenres: Int { return arrayGenres.count }
     
     // MARK: Sugested
@@ -93,12 +100,19 @@ class TVShowViewModel: ViewModel {
     var numberOfTopRated: Int { return arrayTopRated.count }
     private var currentTopRatedPage: Int = 1
     
+    // MARK: Netflix
+    private var arrayNetflixShows = [Netflix]() { didSet { delegate?.reloadData?() } }
+    var numberOfNeflixShows: Int { return arrayNetflixShows.count }
+    
+    private var arrayStoriesPages = [StoriesPageItem]()
+    
     // MARK: Variables
     private var isDataLoading = false
     
     // MARK: - Service requests -
     
     func loadData() {
+        getNetflixShows()
         getTVShows(genre: .airingToday)
         getTVShows(genre: .onTheAir)
         getTVShows(genre: .popular)
@@ -111,7 +125,8 @@ class TVShowViewModel: ViewModel {
         }
         
         switch genre {
-        case .sugested:
+        case .netflix,
+             .sugested:
             return
         case .airingToday:
             currentAiringTodayPage += 1
@@ -124,6 +139,33 @@ class TVShowViewModel: ViewModel {
         }
         
         getTVShows(genre: genre)
+    }
+    
+    func getNetflixShows() {
+        guard let userPersonalityType = Singleton.shared.userPersonalityType, let genres = userPersonalityType.netflixGenres else {
+            return
+        }
+        
+        arrayNetflixShows = [Netflix]()
+        genres.forEach { [weak self] (genre) in
+            self?.getNetflixShowsGenres(id: genre)
+        }
+    }
+    
+    private func getNetflixShowsGenres(id: Int?) {
+        netflixServiceModel.getNetflixMoviesShow(genre: id, isMovie: false) { [weak self] (object) in
+            guard let result = object as? [Netflix] else {
+                return
+            }
+            let sortedArray = result.sorted(by: { (movie1, movie2) -> Bool in
+                guard let rating1 = movie1.imdbRating, let rating2 = movie2.imdbRating else {
+                    return true
+                }
+                return rating1 > rating2
+            })
+            self?.arrayNetflixShows.append(contentsOf: sortedArray)
+            self?.reloadData(at: GenreType.netflix.index)
+        }
     }
     
     private func getTVShows(genre: GenreType) {
@@ -162,7 +204,8 @@ class TVShowViewModel: ViewModel {
     
     private func getRequestUrl(with genre: GenreType) -> RequestUrl? {
         switch genre {
-        case .sugested:
+        case .netflix,
+             .sugested:
             return nil
         case .airingToday:
             return .tvAiringToday
@@ -177,7 +220,8 @@ class TVShowViewModel: ViewModel {
     
     private func getCurrentPage(at genre: GenreType) -> Int {
         switch genre {
-        case .sugested:
+        case .netflix,
+             .sugested:
             return 0
         case .airingToday:
             return currentAiringTodayPage
@@ -216,6 +260,8 @@ class TVShowViewModel: ViewModel {
     
     private func addTVShowsToArray(_ results: [TVShow], genre: GenreType) {
         switch genre {
+        case .netflix:
+            return
         case .sugested:
             break
         case .airingToday:
@@ -258,6 +304,8 @@ class TVShowViewModel: ViewModel {
             return 0
         }
         switch genre {
+        case .netflix:
+            return numberOfNeflixShows
         case .sugested:
             return numberOfSugested
         case .airingToday:
@@ -294,6 +342,8 @@ class TVShowViewModel: ViewModel {
             return nil
         }
         switch genre {
+        case .netflix:
+            return nil
         case .sugested:
             return arraySugested
         case .airingToday:
@@ -315,6 +365,15 @@ class TVShowViewModel: ViewModel {
         if row == results.count-2 && !isDataLoading {
             loadData(genre: GenreType.genre(at: section))
         }
+    }
+    
+    func storyPreviewImagePathUrl(at index: Int) -> URL? {
+        let movie = arrayNetflixShows[index]
+        return URL(string: netflixServiceModel.imageUrl(with: movie.id, isMovie: false))
+    }
+    
+    func loadVideos(at index: Int) {
+        delegate?.openPreview(storiesViewModel: StoriesViewModel(arrayNetflixShows, selectedIndex: index, isMovie: false))
     }
     
     //MARK: Detail view model

@@ -32,6 +32,9 @@ class TVShowSectionViewCell: UITableViewCell {
         
         collectionView.collectionDelegate = self
         collectionView.reloadData()
+        
+        collectionView.itemWidth = indexPath.section == 0 ? StoryPreviewCell.cellHeight : 180
+        collectionView.itemHeight = indexPath.section == 0 ? StoryPreviewCell.cellHeight : 230
     }
 }
 
@@ -45,6 +48,13 @@ extension TVShowSectionViewCell: CollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard selectedIndexPath?.section != 0 else {
+            let cell = collectionView.dequeueReusableCell(StoryPreviewCell.self, for: indexPath)
+            cell.tvShowViewModel = viewModel
+            cell.setupView(at: indexPath.row)
+            return cell
+        }
+        
         let cell = collectionView.dequeueReusableCell(TVShowViewCell.self, for: indexPath)
         cell.viewModel = viewModel
         cell.setupView(at: selectedIndexPath?.section ?? 0, row: indexPath.row)

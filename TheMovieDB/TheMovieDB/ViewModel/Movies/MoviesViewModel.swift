@@ -156,7 +156,7 @@ class MoviesViewModel: ViewModel {
     }
     
     private func getNetflixMoviesGenres(id: Int?) {
-        netflixServiceModel.getNetflixMovies(genre: id) { [weak self] (object) in
+        netflixServiceModel.getNetflixMoviesShow(genre: id) { [weak self] (object) in
             guard let result = object as? [Netflix] else {
                 return
             }
@@ -365,11 +365,6 @@ class MoviesViewModel: ViewModel {
         return URL(string: serviceModel.imageUrl(with: movie.posterPath))
     }
     
-    func storyPreviewImagePathUrl(at index: Int) -> URL? {
-        let movie = arrayNetflixMovies[index]
-        return URL(string: netflixServiceModel.imageUrl(with: movie.id))
-    }
-    
     private func getMoviesArray(at section: Int) -> [Movie]? {
         guard let genre = GenreType.genre(at: section) else {
             return nil
@@ -398,6 +393,11 @@ class MoviesViewModel: ViewModel {
         if row == results.count-2 && !isDataLoading {
             loadData(genre: GenreType.genre(at: section))
         }
+    }
+    
+    func storyPreviewImagePathUrl(at index: Int) -> URL? {
+        let movie = arrayNetflixMovies[index]
+        return URL(string: netflixServiceModel.imageUrl(with: movie.id))
     }
     
     func loadVideos(at index: Int) {

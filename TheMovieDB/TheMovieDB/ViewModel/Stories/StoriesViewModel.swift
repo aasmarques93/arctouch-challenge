@@ -17,17 +17,21 @@ class StoriesViewModel: ViewModel {
     
     // MARK: Objects
     private var arrayNetflixMovies: [Netflix]
+    var selectedIndex: Int
+    private var isMovie: Bool
     
     private var arrayStoriesPages = [StoriesPageItem]()
+    
+    // MARK: Variables
     var numberOfPages: Int { return arrayStoriesPages.count }
-    var selectedIndex: Int = 0
     var currentIndex: Int = 0
     
     // MARK: - Life cycle -
     
-    init(_ arrayNetflixMovies: [Netflix], selectedIndex: Int) {
+    init(_ arrayNetflixMovies: [Netflix], selectedIndex: Int, isMovie: Bool = true) {
         self.arrayNetflixMovies = arrayNetflixMovies
         self.selectedIndex = selectedIndex
+        self.isMovie = isMovie
     }
     
     // MARK: - Service requests -
@@ -44,7 +48,7 @@ class StoriesViewModel: ViewModel {
     
     func loadVideo(at index: Int, handler: @escaping HandlerObject) {
         let object = arrayNetflixMovies[index]
-        netflixServiceModel.getNetflixDetail(movieShow: object) { (object) in
+        netflixServiceModel.getNetflixDetail(movieShow: object, isMovie: isMovie) { (object) in
             guard let object = object as? NetflixMovieShow else {
                 return
             }

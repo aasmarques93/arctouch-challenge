@@ -61,23 +61,23 @@ class MoviesView: UITableViewController {
         let label = labelHeader
         label.text = viewModel.genreTitle(at: section)
         
-        guard section != 0 else {
-            let viewHeader = UIView(frame: CGRect(x: 0, y: 0,
-                                                  width: SCREEN_WIDTH,
-                                                  height: searchHeaderView.frame.height + viewHeaderHeight))
-            
-            label.frame = CGRect(x: viewHeader.frame.minX,
-                                 y: searchHeaderView.frame.height,
-                                 width: viewHeader.frame.width,
-                                 height: label.frame.height)
-            
-            viewHeader.addSubview(searchHeaderView)
-            viewHeader.addSubview(label)
-            
-            return viewHeader
+        guard section == 0 else {
+            return label
         }
         
-        return label
+        let viewHeader = UIView(frame: CGRect(x: 0, y: 0,
+                                              width: SCREEN_WIDTH,
+                                              height: searchHeaderView.frame.height + viewHeaderHeight))
+        
+        label.frame = CGRect(x: viewHeader.frame.minX,
+                             y: searchHeaderView.frame.height,
+                             width: viewHeader.frame.width,
+                             height: label.frame.height)
+        
+        viewHeader.addSubview(searchHeaderView)
+        viewHeader.addSubview(label)
+        
+        return viewHeader
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

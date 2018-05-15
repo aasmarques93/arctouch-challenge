@@ -26,8 +26,10 @@ struct NetflixServiceModel {
         })
     }
     
-    func getNetflixMovies(genre: Int? = nil, handler: @escaping HandlerObject) {
-        var urlParameters: [String: Any] = ["contentKind": "movie"]
+    func getNetflixMoviesShow(genre: Int? = nil, isMovie: Bool = true, handler: @escaping HandlerObject) {
+        var urlParameters: [String: Any] = [
+            "contentKind": isMovie ? "movie" : "show"
+        ]
         
         if let genre = genre {
             urlParameters["genre"] = genre
