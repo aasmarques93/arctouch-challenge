@@ -33,12 +33,8 @@ class MoviesSectionViewCell: UITableViewCell {
         collectionView.collectionDelegate = self
         collectionView.reloadData()
         
-        guard indexPath.section == 0 else {
-            return
-        }
-        
-        collectionView.itemWidth = 90
-        collectionView.itemHeight = 90
+        collectionView.itemWidth = indexPath.section == 0 ? 90 : 180
+        collectionView.itemHeight = indexPath.section == 0 ? 90 : 230
     }
 }
 

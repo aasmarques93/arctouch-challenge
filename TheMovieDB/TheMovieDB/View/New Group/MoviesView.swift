@@ -13,8 +13,7 @@ import AVKit
 
 class MoviesView: UITableViewController {
     let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.movies.localized,
-                                                              placeholder: Messages.searchMovie.localized,
-                                                              textAlignment: .left)
+                                                              placeholder: Messages.searchMovie.localized)
     let viewHeaderHeight: CGFloat = 32
     
     let viewModel = MoviesViewModel()
@@ -55,12 +54,29 @@ class MoviesView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return viewHeaderHeight
+        return section == 0 ? searchHeaderView.frame.height + viewHeaderHeight : viewHeaderHeight
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = labelHeader
         label.text = viewModel.genreTitle(at: section)
+        
+        guard section != 0 else {
+            let viewHeader = UIView(frame: CGRect(x: 0, y: 0,
+                                                  width: SCREEN_WIDTH,
+                                                  height: searchHeaderView.frame.height + viewHeaderHeight))
+            
+            label.frame = CGRect(x: viewHeader.frame.minX,
+                                 y: searchHeaderView.frame.height,
+                                 width: viewHeader.frame.width,
+                                 height: label.frame.height)
+            
+            viewHeader.addSubview(searchHeaderView)
+            viewHeader.addSubview(label)
+            
+            return viewHeader
+        }
+        
         return label
     }
     
