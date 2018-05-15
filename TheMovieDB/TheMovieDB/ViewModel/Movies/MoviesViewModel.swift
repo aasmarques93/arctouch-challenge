@@ -145,12 +145,25 @@ class MoviesViewModel: ViewModel {
     }
     
     func getNetflixMovies() {
-        netflixServiceModel.getNetflixMovies { [weak self] (object) in
+        guard let userPersonalityType = Singleton.shared.userPersonalityType, let genres = userPersonalityType.netflixGenres else {
+            return
+        }
+        
+        arrayNetflixMovies = [Netflix]()
+        genres.forEach { [weak self] (genre) in
+            self?.getNetflixMoviesGenres(id: genre)
+        }
+    }
+    
+    private func getNetflixMoviesGenres(id: Int?) {
+        netflixServiceModel.getNetflixMovies(genre: id) { [weak self] (object) in
             guard let result = object as? [Netflix] else {
                 return
             }
-            
-            self?.arrayNetflixMovies = result
+            self?.arrayNetflixMovies.append(contentsOf: result)
+            if let arrayShuffled = self?.arrayNetflixMovies.shuffled {
+                self?.arrayNetflixMovies = arrayShuffled
+            }
             self?.reloadData(at: GenreType.netflix.index)
         }
     }

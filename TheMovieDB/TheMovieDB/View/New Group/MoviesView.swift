@@ -83,7 +83,7 @@ class MoviesView: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if viewModel.isMoviesEmpty(at: indexPath) { return 44 }
         guard indexPath.section != 0 else {
-            return 90
+            return StoryPreviewCell.cellHeight
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
     }

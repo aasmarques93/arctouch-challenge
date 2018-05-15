@@ -11,8 +11,28 @@ import SwiftyJSON
 struct NetflixServiceModel {
     let serviceModel = Singleton.shared.serviceModel
     
-    func getNetflixMovies(handler: @escaping HandlerObject) {
-        let urlParameters = ["contentKind": "movie"]
+    func getNetflixGenres(handler: @escaping HandlerObject) {
+        let requestUrl: RequestUrl = Singleton.shared.isLanguagePortuguese ? .netflixGenresBR : .netflixGenres
+        serviceModel.request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
+            guard let array = object as? [JSON] else {
+                return
+            }
+            
+            var arrayGenres = [Genres]()
+            array.forEach({ (data) in
+                arrayGenres.append(Genres(object: data))
+            })
+            handler(arrayGenres)
+        })
+    }
+    
+    func getNetflixMovies(genre: Int? = nil, handler: @escaping HandlerObject) {
+        var urlParameters: [String: Any] = ["contentKind": "movie"]
+        
+        if let genre = genre {
+            urlParameters["genre"] = genre
+        }
+        
         serviceModel.request(requestUrl: .netflixMoviesShow,
                              environmentBase: .reelgood,
                              urlParameters: urlParameters,

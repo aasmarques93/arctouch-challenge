@@ -43,8 +43,6 @@ struct PictureData: Model {
     }
     
     /// Generates description of the object in the form of a NSDictionary.
-    ///
-    /// - returns: A Key value pair containing all valid values in the object.
     public func dictionaryRepresentation() -> [String: Any] {
         var dictionary: [String: Any] = [:]
         if let value = height { dictionary[SerializationKeys.height] = value }

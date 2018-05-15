@@ -42,6 +42,7 @@ class PersonalityTestViewModel: ViewModel {
     // MARK: Variables
     private var currentStep: Int = -1
     private var isTestingAgain = false
+    private var isGoingToPresentTest = false
     
     var userPersonalityTitle: String {
         return userPersonalityType?.title ?? ""
@@ -71,18 +72,20 @@ class PersonalityTestViewModel: ViewModel {
     // MARK: - Service requests -
     
     func loadData() {
+        isGoingToPresentTest = false
+        
         if Singleton.shared.isPersonalityTestAnswered && !Singleton.shared.didSkipTestFromLauching && !isTestingAgain {
             skipTest()
             return
         }
         
-        if let didSkipTest = Singleton.shared.didSkipTest, !didSkipTest && !isTestingAgain {
+        if let didSkipTest = Singleton.shared.didSkipTest, didSkipTest && !isTestingAgain {
             didFinishSteps(animated: false)
             return
         }
         
         isTestingAgain = false
-        doDetectionStep()
+        isGoingToPresentTest = true
     }
     
     private func loadPersonalityTypes() {
@@ -103,6 +106,12 @@ class PersonalityTestViewModel: ViewModel {
         }
         serviceModel.getPersonality(requestUrl: Singleton.shared.isLanguagePortuguese ? .personalityTestBR : .personalityTest) { [weak self]  (object) in
             self?.personalityObject = object as? Personality
+            
+            guard let isGoingToPresentTest = self?.isGoingToPresentTest, isGoingToPresentTest else {
+                return
+            }
+            
+            self?.doDetectionStep()
         }
     }
     

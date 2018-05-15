@@ -67,8 +67,6 @@ struct NetflixMovieShow: Model {
     }
     
     /// Initiates the instance based on the JSON that was passed.
-    ///
-    /// - parameter json: JSON object from SwiftyJSON.
     init(json: JSON?) {
         hasBackdrop = json?[SerializationKeys.hasBackdrop].boolValue
         watchlisted = json?[SerializationKeys.watchlisted].boolValue
@@ -93,8 +91,6 @@ struct NetflixMovieShow: Model {
     }
     
     /// Generates description of the object in the form of a NSDictionary.
-    ///
-    /// - returns: A Key value pair containing all valid values in the object.
     func dictionaryRepresentation() -> [String: Any] {
         var dictionary: [String: Any] = [:]
         dictionary[SerializationKeys.hasBackdrop] = hasBackdrop

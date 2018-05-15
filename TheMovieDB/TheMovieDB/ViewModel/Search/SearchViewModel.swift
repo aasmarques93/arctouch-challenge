@@ -11,6 +11,7 @@ class SearchViewModel: ViewModel {
     
     // MARK: Service Model
     let serviceModel = SearchServiceModel()
+    let netflixServiceModel = NetflixServiceModel()
     
     // MARK: Delegate
     weak var delegate: ViewModelDelegate?
@@ -25,12 +26,15 @@ class SearchViewModel: ViewModel {
     private var arrayGenres = [Genres]() { didSet { delegate?.reloadData?() } }
     var numberOfGenres: Int { return arrayGenres.count }
     
+    private var arrayNetflixGenres = [Genres]() { didSet { delegate?.reloadData?() } }
+    var numberOfNetflixGenres: Int { return arrayNetflixGenres.count }
+    
     private var searchText: String?
     
     // MARK: - Service requests -
     
     func loadData() {
-        
+        getNetflixGenres()
     }
     
     func loadData(genreIndex: Int) {
@@ -64,6 +68,17 @@ class SearchViewModel: ViewModel {
             
             self?.arrayGenres = results
             Singleton.shared.arrayGenres = results
+        }
+    }
+    
+    func getNetflixGenres() {
+        netflixServiceModel.getNetflixGenres { [weak self] (object) in
+            guard let results = object as? [Genres] else {
+                return
+            }
+            
+            self?.arrayNetflixGenres = results
+            Singleton.shared.arrayNetflixGenres = results
         }
     }
     

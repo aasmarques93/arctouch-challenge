@@ -29,15 +29,11 @@ struct NetflixWeb: Model {
     }
     
     /// Initiates the instance based on the JSON that was passed.
-    ///
-    /// - parameter json: JSON object from SwiftyJSON.
     init(json: JSON?) {
         movieId = json?[SerializationKeys.movieId].string
     }
     
     /// Generates description of the object in the form of a NSDictionary.
-    ///
-    /// - returns: A Key value pair containing all valid values in the object.
     func dictionaryRepresentation() -> [String: Any] {
         var dictionary: [String: Any] = [:]
         if let value = movieId { dictionary[SerializationKeys.movieId] = value }

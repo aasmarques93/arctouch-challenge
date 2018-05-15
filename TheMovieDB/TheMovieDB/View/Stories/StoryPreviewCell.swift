@@ -12,11 +12,18 @@ class StoryPreviewCell: UICollectionViewCell {
     @IBOutlet weak var viewBackground: UIView!
     @IBOutlet weak var imageView: UIImageView!
     
+    static var cellHeight: CGFloat = 140
     var viewModel: MoviesViewModel?
     
     func setupView(at index: Int) {
         viewBackground.borderWidth = 2.0
         viewBackground.borderColor = HexColor.secondary.color
+        viewBackground.layer.masksToBounds = true
+        viewBackground.layer.cornerRadius = viewBackground.frame.width / 2
+        
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = viewBackground.frame.width / 2
+        
         backgroundColor = HexColor.primary.color
         imageView.backgroundColor = HexColor.primary.color
         

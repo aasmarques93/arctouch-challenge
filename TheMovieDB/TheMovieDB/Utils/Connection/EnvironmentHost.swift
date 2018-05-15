@@ -65,6 +65,8 @@ enum RequestUrl: String {
     case personalityTestBR
     case personalityTypes
     case personalityTypesBR
+    case netflixGenres
+    case netflixGenresBR
     case netflixComing
     case netflixLeaving
     case netflixMoviesShow

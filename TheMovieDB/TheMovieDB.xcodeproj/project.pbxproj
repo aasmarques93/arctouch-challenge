@@ -32,6 +32,7 @@
 		ED0C3D6320AA382B00F28150 /* NetflixServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D6220AA382B00F28150 /* NetflixServiceModel.swift */; };
 		ED0C3D6620AA42C800F28150 /* StoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D6520AA42C800F28150 /* StoriesViewModel.swift */; };
 		ED0C3D6820AA853900F28150 /* StoryPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D6720AA853900F28150 /* StoryPreviewCell.swift */; };
+		ED0C3D6A20AB19C000F28150 /* NetflixGenres.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0C3D6920AB19C000F28150 /* NetflixGenres.swift */; };
 		ED16D843205882C8002A0B2C /* MoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D842205882C8002A0B2C /* MoviesView.swift */; };
 		ED16D845205882D3002A0B2C /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D844205882D3002A0B2C /* MoviesViewModel.swift */; };
 		ED16D84720588381002A0B2C /* MoviesServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16D84620588381002A0B2C /* MoviesServiceModel.swift */; };
@@ -264,6 +265,7 @@
 		ED0C3D6220AA382B00F28150 /* NetflixServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetflixServiceModel.swift; sourceTree = "<group>"; };
 		ED0C3D6520AA42C800F28150 /* StoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesViewModel.swift; sourceTree = "<group>"; };
 		ED0C3D6720AA853900F28150 /* StoryPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPreviewCell.swift; sourceTree = "<group>"; };
+		ED0C3D6920AB19C000F28150 /* NetflixGenres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetflixGenres.swift; sourceTree = "<group>"; };
 		ED16D842205882C8002A0B2C /* MoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesView.swift; sourceTree = "<group>"; };
 		ED16D844205882D3002A0B2C /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		ED16D84620588381002A0B2C /* MoviesServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesServiceModel.swift; sourceTree = "<group>"; };
@@ -600,6 +602,7 @@
 				ED0C3D4C20AA2CCF00F28150 /* NetflixSourceData.swift */,
 				ED0C3D4E20AA2CD000F28150 /* NetflixTrailer.swift */,
 				ED0C3D5220AA2CD000F28150 /* NetflixWeb.swift */,
+				ED0C3D6920AB19C000F28150 /* NetflixGenres.swift */,
 			);
 			path = Netflix;
 			sourceTree = "<group>";
@@ -1768,6 +1771,7 @@
 				ED3833F720938BBA0079D48F /* PopularPersonViewCell.swift in Sources */,
 				EDDAB1CA209C822100271265 /* TextField.swift in Sources */,
 				ED16D85E20597A6C002A0B2C /* MovieDetailView.swift in Sources */,
+				ED0C3D6A20AB19C000F28150 /* NetflixGenres.swift in Sources */,
 				ED4201A820A76145005D5FF3 /* PictureData.swift in Sources */,
 				ED0C3D5920AA2CD200F28150 /* NetflixTrailer.swift in Sources */,
 				ED3834132094111D0079D48F /* TVShowCellViewModel.swift in Sources */,

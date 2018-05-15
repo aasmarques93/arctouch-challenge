@@ -28,10 +28,6 @@ struct SearchMoviesGenre: Model {
     var totalResults: Int?
     
     // MARK: SwiftyJSON Initializers
-    /// Initiates the instance based on the object.
-    ///
-    /// - parameter object: The object of either Dictionary or Array kind that was passed.
-    /// - returns: An initialized instance of the class.
     init(object: Any) {
         if let json = object as? JSON {
             self.init(json: json)

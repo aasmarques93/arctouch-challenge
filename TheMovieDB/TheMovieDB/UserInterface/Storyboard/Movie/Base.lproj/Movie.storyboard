@@ -106,20 +106,20 @@
                                                     </connections>
                                                 </collectionViewCell>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StoryPreviewCell" id="Obo-a9-Ddc" customClass="StoryPreviewCell" customModule="TheMovieDB" customModuleProvider="target">
-                                                    <rect key="frame" x="190" y="70" width="90" height="90"/>
+                                                    <rect key="frame" x="190" y="45" width="140" height="140"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MwC-Vw-Xgj">
-                                                                <rect key="frame" x="2" y="2" width="86" height="86"/>
+                                                                <rect key="frame" x="2" y="2" width="136" height="136"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYE-2H-YmQ">
-                                                                        <rect key="frame" x="8" y="8" width="70" height="70"/>
+                                                                        <rect key="frame" x="8" y="8" width="120" height="120"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sM7-yK-Upc">
-                                                                                <rect key="frame" x="4" y="4" width="62" height="62"/>
+                                                                                <rect key="frame" x="4" y="4" width="112" height="112"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
@@ -127,10 +127,6 @@
                                                                                     </userDefinedRuntimeAttribute>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                                                                         <real key="value" value="0.69999999999999996"/>
-                                                                                    </userDefinedRuntimeAttribute>
-                                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                                        <integer key="value" value="31"/>
                                                                                     </userDefinedRuntimeAttribute>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </imageView>
@@ -142,12 +138,6 @@
                                                                             <constraint firstAttribute="bottom" secondItem="sM7-yK-Upc" secondAttribute="bottom" constant="4" id="i3n-od-wM7"/>
                                                                             <constraint firstItem="sM7-yK-Upc" firstAttribute="leading" secondItem="gYE-2H-YmQ" secondAttribute="leading" constant="4" id="mTi-MB-fGn"/>
                                                                         </constraints>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                                <integer key="value" value="35"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -167,7 +157,7 @@
                                                         <constraint firstItem="MwC-Vw-Xgj" firstAttribute="leading" secondItem="Obo-a9-Ddc" secondAttribute="leading" constant="2" id="XrM-SI-Mod"/>
                                                         <constraint firstItem="MwC-Vw-Xgj" firstAttribute="top" secondItem="Obo-a9-Ddc" secondAttribute="top" constant="2" id="fxT-gE-iUi"/>
                                                     </constraints>
-                                                    <size key="customSize" width="90" height="90"/>
+                                                    <size key="customSize" width="140" height="140"/>
                                                     <connections>
                                                         <outlet property="imageView" destination="sM7-yK-Upc" id="9hb-5b-taz"/>
                                                         <outlet property="viewBackground" destination="gYE-2H-YmQ" id="DcZ-cB-kFv"/>

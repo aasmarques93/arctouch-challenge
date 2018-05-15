@@ -70,8 +70,6 @@ struct Netflix: Model {
     }
     
     /// Generates description of the object in the form of a NSDictionary.
-    ///
-    /// - returns: A Key value pair containing all valid values in the object.
     func dictionaryRepresentation() -> [String: Any] {
         var dictionary: [String: Any] = [:]
         if let value = sources { dictionary[SerializationKeys.sources] = value }

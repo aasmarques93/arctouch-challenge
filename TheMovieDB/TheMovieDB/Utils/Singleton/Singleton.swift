@@ -53,7 +53,6 @@ class Singleton {
         guard let object = UserDefaultsHelper.fetchUserDefaults(key: .userPersonality) else {
             return nil
         }
-        
         return PersonalityType(object: object)
     }
     
@@ -96,6 +95,7 @@ class Singleton {
     }
     
     var arrayGenres = [Genres]()
+    var arrayNetflixGenres = [Genres]()
     
     var isLanguagePortuguese: Bool {
         return Locale.preferredLanguages.first == "pt-BR"

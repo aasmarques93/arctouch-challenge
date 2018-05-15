@@ -26,10 +26,6 @@ struct Answer: Model {
     var skip: Bool?
     
     // MARK: SwiftyJSON Initializers
-    /// Initiates the instance based on the object.
-    ///
-    /// - parameter object: The object of either Dictionary or Array kind that was passed.
-    /// - returns: An initialized instance of the class.
     init(object: Any) {
         if let json = object as? JSON {
             self.init(json: json)
@@ -39,8 +35,6 @@ struct Answer: Model {
     }
     
     /// Initiates the instance based on the JSON that was passed.
-    ///
-    /// - parameter json: JSON object from SwiftyJSON.
     init(json: JSON?) {
         self.json = json
         id = json?[SerializationKeys.id].int
@@ -50,8 +44,6 @@ struct Answer: Model {
     }
     
     /// Generates description of the object in the form of a NSDictionary.
-    ///
-    /// - returns: A Key value pair containing all valid values in the object.
     func dictionaryRepresentation() -> [String: Any] {
         var dictionary: [String: Any] = [:]
         if let value = id { dictionary[SerializationKeys.id] = value }
