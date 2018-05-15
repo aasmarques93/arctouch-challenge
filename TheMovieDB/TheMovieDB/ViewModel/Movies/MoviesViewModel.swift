@@ -17,6 +17,7 @@ class MoviesViewModel: ViewModel {
     // MARK: - Enums -
     
     enum GenreType: String {
+        case netflix = "Netflix"
         case sugested = "Sugested"
         case nowPlaying = "Now Playing"
         case topRated = "Top Rated"
@@ -29,30 +30,34 @@ class MoviesViewModel: ViewModel {
         
         var index: Int {
             switch self {
-            case .sugested:
+            case .netflix:
                 return 0
-            case .popular:
+            case .sugested:
                 return 1
-            case .topRated:
+            case .popular:
                 return 2
-            case .upcoming:
+            case .topRated:
                 return 3
-            case .nowPlaying:
+            case .upcoming:
                 return 4
+            case .nowPlaying:
+                return 5
             }
         }
         
         static func genre(at index: Int) -> GenreType? {
             switch index {
             case 0:
-                return GenreType.sugested
+                return GenreType.netflix
             case 1:
-                return GenreType.popular
+                return GenreType.sugested
             case 2:
-                return GenreType.topRated
+                return GenreType.popular
             case 3:
-                return GenreType.upcoming
+                return GenreType.topRated
             case 4:
+                return GenreType.upcoming
+            case 5:
                 return GenreType.nowPlaying
             default:
                 return nil
@@ -70,7 +75,7 @@ class MoviesViewModel: ViewModel {
     let netflixServiceModel = NetflixServiceModel()
     
     // MARK: Genres
-    private var arrayGenres: [GenreType] = [.sugested, .popular, .topRated, .upcoming, .nowPlaying]
+    private var arrayGenres: [GenreType] = [.netflix, .sugested, .popular, .topRated, .upcoming, .nowPlaying]
     var numberOfGenres: Int { return arrayGenres.count }
     
     // MARK: Sugested
@@ -123,7 +128,8 @@ class MoviesViewModel: ViewModel {
         }
         
         switch genre {
-        case .sugested:
+        case .netflix,
+             .sugested:
             return
         case .popular:
             currentPopularMoviesPage += 1
@@ -145,6 +151,7 @@ class MoviesViewModel: ViewModel {
             }
             
             self?.arrayNetflixMovies = result
+            self?.reloadData(at: GenreType.netflix.index)
         }
     }
     
@@ -235,7 +242,8 @@ class MoviesViewModel: ViewModel {
     
     private func getRequestUrl(with genre: GenreType) -> RequestUrl? {
         switch genre {
-        case .sugested:
+        case .netflix,
+             .sugested:
             return nil
         case .popular:
             return .popular
@@ -250,7 +258,8 @@ class MoviesViewModel: ViewModel {
     
     private func getCurrentPage(at genre: GenreType) -> Int {
         switch genre {
-        case .sugested:
+        case .netflix,
+             .sugested:
             return 0
         case .popular:
             return currentPopularMoviesPage
@@ -265,6 +274,8 @@ class MoviesViewModel: ViewModel {
     
     private func addMoviesToArray(_ results: [Movie], genre: GenreType) {
         switch genre {
+        case .netflix:
+            break
         case .sugested:
             arraySugestedMovies.append(contentsOf: results)
         case .popular:
@@ -305,6 +316,8 @@ class MoviesViewModel: ViewModel {
             return 0
         }
         switch genre {
+        case .netflix:
+            return numberOfNeflixMovies
         case .sugested:
             return numberOfSugestedMovies
         case .popular:
@@ -336,7 +349,7 @@ class MoviesViewModel: ViewModel {
         return URL(string: serviceModel.imageUrl(with: movie.posterPath))
     }
     
-    func moviePreviewImagePathUrl(at index: Int) -> URL? {
+    func storyPreviewImagePathUrl(at index: Int) -> URL? {
         let movie = arrayNetflixMovies[index]
         return URL(string: netflixServiceModel.imageUrl(with: movie.id))
     }
@@ -346,6 +359,8 @@ class MoviesViewModel: ViewModel {
             return nil
         }
         switch genre {
+        case .netflix:
+            return nil
         case .sugested:
             return arraySugestedMovies
         case .popular:
@@ -370,8 +385,7 @@ class MoviesViewModel: ViewModel {
     }
     
     func loadVideos(at index: Int) {
-        let netflixMovie = arrayNetflixMovies[index]
-        delegate?.openPreview(storiesViewModel: StoriesViewModel(netflixMovie))
+        delegate?.openPreview(storiesViewModel: StoriesViewModel(arrayNetflixMovies, selectedIndex: index))
     }
     
     //MARK: Detail view model

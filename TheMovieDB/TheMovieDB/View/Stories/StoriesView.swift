@@ -34,34 +34,24 @@ class StoriesView: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var buttonClose: UIButton!
     
+    var pageIndex: Int = 0
     var viewModel: StoriesViewModel?
-    
-    var storiesPageViewController: StoriesPageViewController?
     var youTubePlayer: XCDYouTubeVideoPlayerViewController?
-    
-    var pageIndex: Int?
+    var initialTouchPoint: CGPoint = .zero
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         setupAppearance()
-        
         imageViewHeader.sd_setImage(with: viewModel?.mainUrlImage(at: pageIndex), placeholderImage: #imageLiteral(resourceName: "logo-movie-db"), options: [], completed: nil)
         labelTitle.text = viewModel?.title(at: pageIndex)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        playVideoOrLoadImage(index: 0)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)        
-        UIApplication.shared.isStatusBarHidden = false
+        playVideoOrLoadImage(index: pageIndex)
     }
     
     func setupAppearance() {
-        UIApplication.shared.isStatusBarHidden = true
         imageViewHeader.layer.cornerRadius = imageViewHeader.frame.width / 2
     }
     
@@ -70,16 +60,11 @@ class StoriesView: UIViewController {
     }
     
     //MARK: - Play or show image
-    func playVideoOrLoadImage(index: NSInteger) {
-        guard let isStoryItemAvailable = viewModel?.isStoryItemAvailable(at: index), isStoryItemAvailable else {
+    func playVideoOrLoadImage(index: Int?) {
+        guard let index = index, let array = viewModel?.currentStoryItems(at: index), let item = array.first else {
             return
         }
         
-        guard let array = viewModel?.currentStoryItems(at: index) else {
-            return
-        }
-        
-        let item = array[index]
         imageView.isHidden = item.content != .image
         videoView.isHidden = item.content != .video
         
@@ -87,14 +72,16 @@ class StoriesView: UIViewController {
         case .image:
             imageView.image = item.data as? UIImage
         case .video:
-            guard let path = item.data as? String else {
-                return
-            }
-            
-            youTubePlayer = XCDYouTubeVideoPlayerViewController(videoIdentifier: path)
+            viewModel?.loadVideo(at: index) { [weak self] (data) in
+                guard let path = data as? String, let videoView = self?.videoView else {
+                    return
+                }
+                
+                self?.youTubePlayer = XCDYouTubeVideoPlayerViewController(videoIdentifier: path)
 
-            youTubePlayer?.present(in: videoView)
-            youTubePlayer?.moviePlayer.play()
+                self?.youTubePlayer?.present(in: videoView)
+                self?.youTubePlayer?.moviePlayer.play()
+            }
         }
     }
     

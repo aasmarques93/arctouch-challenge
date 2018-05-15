@@ -12,9 +12,7 @@ import AVFoundation
 import AVKit
 
 class MoviesView: UITableViewController {
-    @IBOutlet weak var carouselPreviews: iCarousel!
-    
-    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.netflixMovies.localized,
+    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.movies.localized,
                                                               placeholder: Messages.searchMovie.localized,
                                                               textAlignment: .left)
     let viewHeaderHeight: CGFloat = 32
@@ -33,7 +31,6 @@ class MoviesView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupAppearance()
         StoreReviewHelper.checkAndAskForReview()
         Singleton.shared.didSkipTestFromLauching = true
         searchHeaderView.delegate = self
@@ -45,24 +42,6 @@ class MoviesView: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppDelegate.shared.unlockOrientation()
-    }
-    
-    func setupAppearance() {
-        carouselPreviews.type = .linear
-
-        let viewHeader = UIView(frame: CGRect(x: 0, y: 0,
-                                              width: SCREEN_WIDTH,
-                                              height: searchHeaderView.frame.height + carouselPreviews.frame.height))
-        viewHeader.backgroundColor = HexColor.primary.color
-        carouselPreviews.frame = CGRect(x: viewHeader.frame.minX,
-                                        y: searchHeaderView.frame.maxY,
-                                        width: carouselPreviews.frame.width,
-                                        height: carouselPreviews.frame.height)
-        
-        viewHeader.addSubview(searchHeaderView)
-        viewHeader.addSubview(carouselPreviews)
-        
-        tableView.tableHeaderView = viewHeader
     }
     
     // MARK: - Table view data source -
@@ -87,6 +66,9 @@ class MoviesView: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if viewModel.isMoviesEmpty(at: indexPath) { return 44 }
+        guard indexPath.section != 0 else {
+            return 90
+        }
         return super.tableView(tableView, heightForRowAt: indexPath)
     }
     
@@ -126,6 +108,10 @@ extension MoviesView: MoviesViewCellDelegate {
     // MARK: - Movies view cell delegate -
     
     func didSelectItem(at section: Int, row: Int) {
+        guard section != 0 else {
+            viewModel.loadVideos(at: row)
+            return
+        }
         let viewController = instantiate(viewController: MovieDetailView.self, from: .movie)
         viewController.viewModel = viewModel.movieDetailViewModel(at: section, row: row)
         navigationController?.pushViewController(viewController, animated: true)
@@ -135,10 +121,6 @@ extension MoviesView: MoviesViewCellDelegate {
 extension MoviesView: MoviesViewModelDelegate {
     
     // MARK: - Movies view model delegate -
-    
-    func reloadData() {
-        carouselPreviews.reloadData()
-    }
     
     func reloadData(at index: Int) {
         let indexPath = IndexPath(row: 0, section: index)
@@ -154,34 +136,5 @@ extension MoviesView: MoviesViewModelDelegate {
         storiesPageViewController.modalPresentationStyle = .overFullScreen
         storiesPageViewController.viewModel = storiesViewModel
         present(storiesPageViewController, animated: true, completion: nil)
-    }
-}
-
-extension MoviesView: iCarouselDelegate, iCarouselDataSource {
-    
-    // MARK: - iCarousel delegate and data source -
-    
-    func numberOfItems(in carousel: iCarousel) -> Int {
-        return viewModel.numberOfNeflixMovies
-    }
-    
-    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
-        return carouselPreviewView(at: index)
-    }
-    
-    func carouselPreviewView(at index: Int) -> UIView {
-        let view = XibView.instanceFromNib(MoviePreviewView.self)
-        
-        if let url = viewModel.moviePreviewImagePathUrl(at: index) {
-            view.imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], completed: nil)
-        }
-
-        return view
-    }
-    
-    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
-        if carousel == carouselPreviews {
-            viewModel.loadVideos(at: index)
-        }
     }
 }

@@ -19,7 +19,7 @@
             </objects>
             <point key="canvasLocation" x="1467" y="-56"/>
         </scene>
-        <!--Data Source-->
+        <!--Root View Controller-->
         <scene sceneID="Ixx-fN-4DW">
             <objects>
                 <tableViewController storyboardIdentifier="MoviesView" id="ZPF-4b-shJ" customClass="MoviesView" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
@@ -105,6 +105,74 @@
                                                         <outlet property="imageView" destination="evg-Qe-rqA" id="6XT-BH-OJI"/>
                                                     </connections>
                                                 </collectionViewCell>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StoryPreviewCell" id="Obo-a9-Ddc" customClass="StoryPreviewCell" customModule="TheMovieDB" customModuleProvider="target">
+                                                    <rect key="frame" x="190" y="70" width="90" height="90"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MwC-Vw-Xgj">
+                                                                <rect key="frame" x="2" y="2" width="86" height="86"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYE-2H-YmQ">
+                                                                        <rect key="frame" x="8" y="8" width="70" height="70"/>
+                                                                        <subviews>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sM7-yK-Upc">
+                                                                                <rect key="frame" x="4" y="4" width="62" height="62"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                                        <color key="value" red="0.031372549020000001" green="0.10980392160000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                                        <real key="value" value="0.69999999999999996"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                        <integer key="value" value="31"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </imageView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="sM7-yK-Upc" firstAttribute="top" secondItem="gYE-2H-YmQ" secondAttribute="top" constant="4" id="53V-el-gUf"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="sM7-yK-Upc" secondAttribute="trailing" constant="4" id="P6H-QE-JsQ"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="sM7-yK-Upc" secondAttribute="bottom" constant="4" id="i3n-od-wM7"/>
+                                                                            <constraint firstItem="sM7-yK-Upc" firstAttribute="leading" secondItem="gYE-2H-YmQ" secondAttribute="leading" constant="4" id="mTi-MB-fGn"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="35"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="gYE-2H-YmQ" firstAttribute="top" secondItem="MwC-Vw-Xgj" secondAttribute="top" constant="8" id="AcT-Uq-MzH"/>
+                                                                    <constraint firstItem="gYE-2H-YmQ" firstAttribute="leading" secondItem="MwC-Vw-Xgj" secondAttribute="leading" constant="8" id="OB6-b8-2d8"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="gYE-2H-YmQ" secondAttribute="bottom" constant="8" id="hsW-ft-TFZ"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="gYE-2H-YmQ" secondAttribute="trailing" constant="8" id="xPT-GU-VJK"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </view>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="MwC-Vw-Xgj" secondAttribute="bottom" constant="2" id="9VG-jq-98m"/>
+                                                        <constraint firstAttribute="trailing" secondItem="MwC-Vw-Xgj" secondAttribute="trailing" constant="2" id="PUy-KW-jLw"/>
+                                                        <constraint firstItem="MwC-Vw-Xgj" firstAttribute="leading" secondItem="Obo-a9-Ddc" secondAttribute="leading" constant="2" id="XrM-SI-Mod"/>
+                                                        <constraint firstItem="MwC-Vw-Xgj" firstAttribute="top" secondItem="Obo-a9-Ddc" secondAttribute="top" constant="2" id="fxT-gE-iUi"/>
+                                                    </constraints>
+                                                    <size key="customSize" width="90" height="90"/>
+                                                    <connections>
+                                                        <outlet property="imageView" destination="sM7-yK-Upc" id="9hb-5b-taz"/>
+                                                        <outlet property="viewBackground" destination="gYE-2H-YmQ" id="DcZ-cB-kFv"/>
+                                                    </connections>
+                                                </collectionViewCell>
                                             </cells>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="itemHeight">
@@ -172,21 +240,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="carouselPreviews" destination="sYF-pn-rnI" id="oQV-v6-HOq"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGE-9e-zBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="sYF-pn-rnI" customClass="iCarousel">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <viewLayoutGuide key="safeArea" id="9Nc-MN-M8g"/>
-                    <connections>
-                        <outlet property="dataSource" destination="ZPF-4b-shJ" id="uI5-VN-Bts"/>
-                        <outlet property="delegate" destination="ZPF-4b-shJ" id="zo2-qr-v57"/>
-                    </connections>
-                </view>
             </objects>
             <point key="canvasLocation" x="882" y="337"/>
         </scene>

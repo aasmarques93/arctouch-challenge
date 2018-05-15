@@ -10,18 +10,26 @@ import UIKit
 
 class StoriesPageViewController: UIPageViewController {
     var viewModel: StoriesViewModel?
+    var pageAfter = 1
+    var pageBefore = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
+        view.backgroundColor = UIColor.clear
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        UIApplication.shared.isStatusBarHidden = true
         view.frame = view.bounds
         viewModel?.delegate = self
         viewModel?.loadData()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UIApplication.shared.isStatusBarHidden = false
     }
     
     func viewControllerAtIndex(index: Int?) -> StoriesView? {
@@ -31,10 +39,8 @@ class StoriesPageViewController: UIPageViewController {
         }
         
         let storiesView = instantiate(viewController: StoriesView.self, from: .generic)
+        storiesView.pageIndex = index ?? 0
         storiesView.viewModel = viewModel
-        storiesView.pageIndex = index
-        storiesView.storiesPageViewController = self
-        
         viewModel?.setCurrentIndex(index)
         
         return storiesView
@@ -73,11 +79,13 @@ extension StoriesPageViewController: UIPageViewControllerDataSource {
             return nil
         }
         
-        guard let index = viewController.pageIndex, index != 0 && index != NSNotFound else {
+        var index = viewController.pageIndex
+        guard index != 0 && index != NSNotFound else {
             return nil
         }
         
-        return viewControllerAtIndex(index: index - 1)
+        index -= 1
+        return viewControllerAtIndex(index: index)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -85,14 +93,16 @@ extension StoriesPageViewController: UIPageViewControllerDataSource {
             return nil
         }
         
-        guard let index = viewController.pageIndex, index != NSNotFound else {
+        var index = viewController.pageIndex
+        guard index != NSNotFound else {
             return nil
         }
         
-        guard let isItemAvailable = viewModel?.isItemAvailable(at: index + 1), isItemAvailable else {
+        index += 1
+        guard let numberOfPages = viewModel?.numberOfPages, index < numberOfPages else {
             return nil
         }
         
-        return viewControllerAtIndex(index: index + 1)
+        return viewControllerAtIndex(index: index)
     }
 }

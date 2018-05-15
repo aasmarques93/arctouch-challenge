@@ -16,34 +16,39 @@ class StoriesViewModel: ViewModel {
     let netflixServiceModel = NetflixServiceModel()
     
     // MARK: Objects
-    private var netflix: Netflix?
-    private var arrayStoriesPages = [StoriesPageItem]() { didSet { delegate?.reloadData?() } }
+    private var arrayNetflixMovies: [Netflix]
+    
+    private var arrayStoriesPages = [StoriesPageItem]()
+    var numberOfPages: Int { return arrayStoriesPages.count }
+    var selectedIndex: Int = 0
     var currentIndex: Int = 0
     
     // MARK: - Life cycle -
     
-    init(_ object: Netflix) {
-        netflix = object
+    init(_ arrayNetflixMovies: [Netflix], selectedIndex: Int) {
+        self.arrayNetflixMovies = arrayNetflixMovies
+        self.selectedIndex = selectedIndex
     }
     
     // MARK: - Service requests -
     
     func loadData() {
-        guard let netflix = netflix else {
-            return
+        arrayNetflixMovies.forEach { [weak self] (object) in
+            let url = URL(string: self?.netflixServiceModel.imageUrl(with: object.id) ?? "")
+            let storyItems = [StoryItem(content: .video, data: nil)]
+            self?.arrayStoriesPages.append(StoriesPageItem(title: object.title, mainImageUrl: url, storyItems: storyItems))
         }
-        
-        Loading.shared.start()
-        netflixServiceModel.getNetflixDetail(movieShow: netflix) { [weak self] (object) in
-            Loading.shared.stop()
-            
+        currentIndex = selectedIndex
+        delegate?.reloadData?()
+    }
+    
+    func loadVideo(at index: Int, handler: @escaping HandlerObject) {
+        let object = arrayNetflixMovies[index]
+        netflixServiceModel.getNetflixDetail(movieShow: object) { (object) in
             guard let object = object as? NetflixMovieShow else {
                 return
             }
-            
-            let url = URL(string: self?.netflixServiceModel.imageUrl(with: object.id) ?? "")
-            let storyItems = [StoryItem(content: .video, data: object.trailer?.key)]
-            self?.arrayStoriesPages.append(StoriesPageItem(title: object.title, mainImageUrl: url, storyItems: storyItems))
+            handler(object.trailer?.key)
         }
     }
     
@@ -77,15 +82,15 @@ class StoriesViewModel: ViewModel {
         return arrayStoriesPages[index].storyItems
     }
     
-    func mainUrlImage(at index: Int?) -> URL? {
-        guard let index = index, isItemAvailable(at: index) else {
+    func mainUrlImage(at index: Int) -> URL? {
+        guard isItemAvailable(at: index) else {
             return nil
         }
         return arrayStoriesPages[index].mainImageUrl
     }
     
-    func title(at index: Int?) -> String? {
-        guard let index = index, isItemAvailable(at: index) else {
+    func title(at index: Int) -> String? {
+        guard isItemAvailable(at: index) else {
             return nil
         }
         return arrayStoriesPages[index].title

@@ -32,6 +32,13 @@ class MoviesSectionViewCell: UITableViewCell {
         
         collectionView.collectionDelegate = self
         collectionView.reloadData()
+        
+        guard indexPath.section == 0 else {
+            return
+        }
+        
+        collectionView.itemWidth = 90
+        collectionView.itemHeight = 90
     }
 }
 
@@ -45,6 +52,13 @@ extension MoviesSectionViewCell: CollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard selectedIndexPath?.section != 0 else {
+            let cell = collectionView.dequeueReusableCell(StoryPreviewCell.self, for: indexPath)
+            cell.viewModel = viewModel
+            cell.setupView(at: indexPath.row)
+            return cell
+        }
+        
         let cell = collectionView.dequeueReusableCell(MovieViewCell.self, for: indexPath)
         cell.viewModel = viewModel
         cell.setupView(at: selectedIndexPath?.section ?? 0, row: indexPath.row)
