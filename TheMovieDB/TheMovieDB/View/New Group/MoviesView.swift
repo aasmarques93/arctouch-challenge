@@ -134,7 +134,7 @@ extension MoviesView: MoviesViewCellDelegate {
     }
 }
 
-extension MoviesView: MoviesViewModelDelegate {
+extension MoviesView: MoviesShowsViewModelDelegate {
     
     // MARK: - Movies view model delegate -
     

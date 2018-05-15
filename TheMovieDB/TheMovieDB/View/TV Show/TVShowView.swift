@@ -12,7 +12,7 @@ class TVShowView: UITableViewController {
     let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.tvShows.localized, placeholder: Messages.searchTVShow.localized)
     let viewHeaderHeight: CGFloat = 32
     
-    let viewModel = TVShowViewModel()
+    let viewModel = TVShowViewModel(isMovie: false)
 
     var labelHeader: UILabel {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: viewHeaderHeight))
@@ -121,7 +121,7 @@ extension TVShowView: TVShowViewCellDelegate {
     }
 }
 
-extension TVShowView: TVShowViewModelDelegate {
+extension TVShowView: MoviesShowsViewModelDelegate {
     
     // MARK: - TV Show view model delegate -
     

@@ -8,12 +8,7 @@
 
 import Bond
 
-protocol MoviesViewModelDelegate: ViewModelDelegate {
-    func reloadData(at index: Int)
-    func openPreview(storiesViewModel: StoriesViewModel)
-}
-
-class MoviesViewModel: ViewModel {
+class MoviesViewModel: MoviesShowsViewModel {
     // MARK: - Enums -
     
     enum GenreType: String {
@@ -67,13 +62,6 @@ class MoviesViewModel: ViewModel {
     
     // MARK: - Properties -
     
-    // MARK: Delegate
-    weak var delegate: MoviesViewModelDelegate?
-    
-    // MARK: Service Model
-    let serviceModel = MoviesServiceModel()
-    let netflixServiceModel = NetflixServiceModel()
-    
     // MARK: Genres
     private var arrayGenres: [GenreType] = [.netflix, .sugested, .popular, .topRated, .upcoming, .nowPlaying]
     var numberOfGenres: Int { return arrayGenres.count }
@@ -102,19 +90,10 @@ class MoviesViewModel: ViewModel {
     var numberOfPopularMovies: Int { return arrayPopularMovies.count }
     private var currentPopularMoviesPage: Int = 1
     
-    // MARK: Netflix
-    private var arrayNetflixMovies = [Netflix]() { didSet { delegate?.reloadData?() } }
-    var numberOfNeflixMovies: Int { return arrayNetflixMovies.count }
-    
-    private var arrayStoriesPages = [StoriesPageItem]()
-    
-    // MARK: Variables
-    private var isDataLoading = false
-    
     // MARK: - Service requests -
     
-    func loadData() {
-        getNetflixMovies()
+    override func loadData() {
+        super.loadData()
         getSugestedMovies()
         getMovies(genre: .popular)
         getMovies(genre: .topRated)
@@ -144,33 +123,6 @@ class MoviesViewModel: ViewModel {
         getMovies(genre: genre)
     }
     
-    func getNetflixMovies() {
-        guard let userPersonalityType = Singleton.shared.userPersonalityType, let genres = userPersonalityType.netflixGenres else {
-            return
-        }
-        
-        arrayNetflixMovies = [Netflix]()
-        genres.forEach { [weak self] (genre) in
-            self?.getNetflixMoviesGenres(id: genre)
-        }
-    }
-    
-    private func getNetflixMoviesGenres(id: Int?) {
-        netflixServiceModel.getNetflixMoviesShow(genre: id) { [weak self] (object) in
-            guard let result = object as? [Netflix] else {
-                return
-            }
-            let sortedArray = result.sorted(by: { (movie1, movie2) -> Bool in
-                guard let rating1 = movie1.imdbRating, let rating2 = movie2.imdbRating else {
-                    return true
-                }
-                return rating1 > rating2
-            })
-            self?.arrayNetflixMovies.append(contentsOf: sortedArray)
-            self?.reloadData(at: GenreType.netflix.index)
-        }
-    }
-    
     private func getSugestedMovies() {
         guard let userPersonalityType = Singleton.shared.userPersonalityType, let genres = userPersonalityType.genres else {
             return
@@ -182,16 +134,8 @@ class MoviesViewModel: ViewModel {
         }
     }
     
-    private func getMoviesFromGenre(id: Int?) {
-        guard let value = id else {
-            return
-        }
-        
-        let parameters: [String: Any] = [
-            "id": value,
-            "language": Locale.preferredLanguages.first ?? ""
-        ]
-        SearchServiceModel().getMoviesFromGenre(urlParameters: parameters) { [weak self] (object) in
+    func getMoviesFromGenre(id: Int?) {
+        super.getMoviesFromGenre(id: id) { [weak self] (object) in
             guard let object = object as? SearchMoviesGenre, let results = object.results else {
                 return
             }
@@ -211,17 +155,6 @@ class MoviesViewModel: ViewModel {
         }
     }
     
-    private func sortedByVoteAverage(array: [Movie]) -> [Movie] {
-        let sortedArray = array.sorted(by: { (movie1, movie2) -> Bool in
-            guard let voteAverage1 = movie1.voteAverage, let voteAverage2 = movie2.voteAverage else {
-                return true
-            }
-            return voteAverage1 > voteAverage2
-        })
-        
-        return sortedArray
-    }
-    
     private func getMovies(genre: GenreType) {
         guard let requestUrl = getRequestUrl(with: genre) else {
             return
@@ -235,7 +168,7 @@ class MoviesViewModel: ViewModel {
             "page": currentPage,
             "language": Locale.preferredLanguages.first ?? ""
         ]
-        serviceModel.getMovies(urlParameters: parameters, requestUrl: requestUrl) { [weak self] (object) in
+        moviesServiceModel.getMovies(urlParameters: parameters, requestUrl: requestUrl) { [weak self] (object) in
             if let object = object as? MoviesList {
                 do {
                     try self?.showError(with: object)
@@ -305,11 +238,6 @@ class MoviesViewModel: ViewModel {
         }
     }
     
-    private func reloadData(at index: Int) {
-        delegate?.reloadData(at: index)
-        isDataLoading = false
-    }
-    
     // MARK: - Genre methods -
     
     func genreTitle(at section: Int) -> String {
@@ -333,7 +261,7 @@ class MoviesViewModel: ViewModel {
         }
         switch genre {
         case .netflix:
-            return numberOfNeflixMovies
+            return numberOfNeflix
         case .sugested:
             return numberOfSugestedMovies
         case .popular:
@@ -362,7 +290,7 @@ class MoviesViewModel: ViewModel {
         guard let movie = movie(at: section, row: row) else {
             return nil
         }
-        return URL(string: serviceModel.imageUrl(with: movie.posterPath))
+        return URL(string: moviesServiceModel.imageUrl(with: movie.posterPath))
     }
     
     private func getMoviesArray(at section: Int) -> [Movie]? {
@@ -395,15 +323,6 @@ class MoviesViewModel: ViewModel {
         }
     }
     
-    func storyPreviewImagePathUrl(at index: Int) -> URL? {
-        let movie = arrayNetflixMovies[index]
-        return URL(string: netflixServiceModel.imageUrl(with: movie.id))
-    }
-    
-    func loadVideos(at index: Int) {
-        delegate?.openPreview(storiesViewModel: StoriesViewModel(arrayNetflixMovies, selectedIndex: index))
-    }
-    
     //MARK: Detail view model
     
     func movieDetailViewModel(at section: Int, row: Int) -> MovieDetailViewModel? {
@@ -411,9 +330,5 @@ class MoviesViewModel: ViewModel {
             return nil
         }
         return MovieDetailViewModel(movie)
-    }
-    
-    func searchResultViewModel(with text: String?) -> SearchResultViewModel? {
-        return SearchResultViewModel(searchText: text)
     }
 }
