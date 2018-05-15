@@ -160,10 +160,13 @@ class MoviesViewModel: ViewModel {
             guard let result = object as? [Netflix] else {
                 return
             }
-            self?.arrayNetflixMovies.append(contentsOf: result)
-            if let arrayShuffled = self?.arrayNetflixMovies.shuffled {
-                self?.arrayNetflixMovies = arrayShuffled
-            }
+            let sortedArray = result.sorted(by: { (movie1, movie2) -> Bool in
+                guard let rating1 = movie1.imdbRating, let rating2 = movie2.imdbRating else {
+                    return true
+                }
+                return rating1 > rating2
+            })
+            self?.arrayNetflixMovies.append(contentsOf: sortedArray)
             self?.reloadData(at: GenreType.netflix.index)
         }
     }

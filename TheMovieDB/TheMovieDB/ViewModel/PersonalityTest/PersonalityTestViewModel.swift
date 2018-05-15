@@ -72,14 +72,20 @@ class PersonalityTestViewModel: ViewModel {
     // MARK: - Service requests -
     
     func loadData() {
+        if isTestingAgain {
+            isTestingAgain = false
+            doDetectionStep()
+            return
+        }
+        
         isGoingToPresentTest = false
         
-        if Singleton.shared.isPersonalityTestAnswered && !Singleton.shared.didSkipTestFromLauching && !isTestingAgain {
+        if !Singleton.shared.didSkipTestFromLauching && (Singleton.shared.isPersonalityTestAnswered || Singleton.shared.didSkipTest) {
             skipTest()
             return
         }
         
-        if let didSkipTest = Singleton.shared.didSkipTest, didSkipTest && !isTestingAgain {
+        if Singleton.shared.isPersonalityTestAnswered {
             didFinishSteps(animated: false)
             return
         }

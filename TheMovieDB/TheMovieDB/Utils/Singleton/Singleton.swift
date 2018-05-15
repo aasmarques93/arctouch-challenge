@@ -83,9 +83,9 @@ class Singleton {
     }
     
     var didSkipTestFromLauching = false
-    var didSkipTest: Bool? {
+    var didSkipTest: Bool {
         guard let value = UserDefaultsHelper.fetchUserDefaults(key: .didSkipTest) as? Bool else {
-            return nil
+            return false
         }
         return value
     }
