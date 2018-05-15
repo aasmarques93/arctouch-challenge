@@ -13,8 +13,7 @@ class StoryPreviewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
     static var cellHeight: CGFloat = 140
-    var moviesViewModel: MoviesViewModel?
-    var tvShowViewModel: TVShowViewModel?
+    var viewModel: MoviesShowsViewModel?
     
     func setupView(at index: Int) {
         viewBackground.borderWidth = 2.0
@@ -28,11 +27,7 @@ class StoryPreviewCell: UICollectionViewCell {
         backgroundColor = HexColor.primary.color
         imageView.backgroundColor = HexColor.primary.color
         
-        if let url = moviesViewModel?.storyPreviewImagePathUrl(at: index) {
-            imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], completed: nil)
-        }
-        
-        if let url = tvShowViewModel?.storyPreviewImagePathUrl(at: index) {
+        if let url = viewModel?.storyPreviewImagePathUrl(at: index) {
             imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], completed: nil)
         }
     }

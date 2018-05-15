@@ -50,7 +50,7 @@ extension TVShowSectionViewCell: CollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard selectedIndexPath?.section != 0 else {
             let cell = collectionView.dequeueReusableCell(StoryPreviewCell.self, for: indexPath)
-            cell.tvShowViewModel = viewModel
+            cell.viewModel = viewModel
             cell.setupView(at: indexPath.row)
             return cell
         }

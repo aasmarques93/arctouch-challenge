@@ -100,12 +100,12 @@ class MoviesShowsViewModel: ViewModel {
     }
     
     func storyPreviewImagePathUrl(at index: Int) -> URL? {
-        let movie = arrayNetflix[index]
-        return URL(string: netflixServiceModel.imageUrl(with: movie.id))
+        let netflix = arrayNetflix[index]
+        return URL(string: netflixServiceModel.imageUrl(with: netflix.id, isMovie: isMovie))
     }
     
     func loadVideos(at index: Int) {
-        delegate?.openPreview(storiesViewModel: StoriesViewModel(arrayNetflix, selectedIndex: index))
+        delegate?.openPreview(storiesViewModel: StoriesViewModel(arrayNetflix, selectedIndex: index, isMovie: isMovie))
     }
     
     func searchResultViewModel(with text: String?) -> SearchResultViewModel? {
