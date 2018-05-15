@@ -17,7 +17,7 @@ class MoviesViewModel: ViewModel {
     // MARK: - Enums -
     
     enum GenreType: String {
-        case netflix = "Netflix"
+        case netflix = "Watch on Netflix"
         case sugested = "Sugested"
         case nowPlaying = "Now Playing"
         case topRated = "Top Rated"
