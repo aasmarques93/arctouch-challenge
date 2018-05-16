@@ -104,17 +104,27 @@
                                                     <constraint firstAttribute="bottom" secondItem="TnL-qx-toY" secondAttribute="bottom" constant="8" id="YpV-Ux-mW2"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFr-3n-n1x">
+                                                <rect key="frame" x="0.0" y="0.0" width="149" height="242"/>
+                                                <connections>
+                                                    <action selector="buttonOpenVideoAction:" destination="S7K-oC-q4L" eventType="touchUpInside" id="Bmh-wk-dbe"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="ghG-jx-28D" secondAttribute="bottom" id="Ddc-1k-kRt"/>
+                                            <constraint firstItem="PFr-3n-n1x" firstAttribute="trailing" secondItem="fBH-nZ-btx" secondAttribute="trailing" id="EfB-KR-UXR"/>
                                             <constraint firstAttribute="trailing" secondItem="ghG-jx-28D" secondAttribute="trailing" id="GQc-sy-3TH"/>
                                             <constraint firstItem="fBH-nZ-btx" firstAttribute="leading" secondItem="y25-x5-nye" secondAttribute="leading" id="KHL-tX-Zd9"/>
                                             <constraint firstItem="ghG-jx-28D" firstAttribute="width" secondItem="fBH-nZ-btx" secondAttribute="width" multiplier="1.3" id="OUp-rU-2Pw"/>
+                                            <constraint firstItem="PFr-3n-n1x" firstAttribute="top" secondItem="y25-x5-nye" secondAttribute="top" id="Qd1-JC-9VB"/>
                                             <constraint firstItem="ghG-jx-28D" firstAttribute="top" secondItem="y25-x5-nye" secondAttribute="top" id="ZQn-6t-1bA"/>
                                             <constraint firstAttribute="height" constant="242" id="eQ4-fI-kes"/>
                                             <constraint firstAttribute="bottom" secondItem="fBH-nZ-btx" secondAttribute="bottom" id="okU-kG-zqJ"/>
                                             <constraint firstItem="fBH-nZ-btx" firstAttribute="top" secondItem="y25-x5-nye" secondAttribute="top" id="sXg-dx-ImA"/>
+                                            <constraint firstItem="PFr-3n-n1x" firstAttribute="leading" secondItem="y25-x5-nye" secondAttribute="leading" id="wWS-T9-Fi2"/>
+                                            <constraint firstAttribute="bottom" secondItem="PFr-3n-n1x" secondAttribute="bottom" id="wc0-SF-xPf"/>
                                             <constraint firstItem="ghG-jx-28D" firstAttribute="leading" secondItem="fBH-nZ-btx" secondAttribute="trailing" id="yhk-8F-jjd"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>

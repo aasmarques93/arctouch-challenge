@@ -9,6 +9,7 @@
 import UIKit
 import Bond
 import GhostTypewriter
+import XCDYouTubeKit
 
 class RouletteView: UIViewController {
     @IBOutlet weak var labelMessage: TypewriterLabel!
@@ -52,6 +53,16 @@ class RouletteView: UIViewController {
         viewModel.imdbResult.bind(to: labelIMDBResult.reactive.text)
         viewModel.rottenTomatoesResult.bind(to: labelRottenTomatoesResult.reactive.text)
         viewModel.overviewResult.bind(to: textViewOverviewResult.reactive.text)
+    }
+    
+    @IBAction func buttonOpenVideoAction(_ sender: UIButton) {
+        guard let path = viewModel.videoKey else {
+            return
+        }
+        
+        let youTubePlayer = XCDYouTubeVideoPlayerViewController(videoIdentifier: path)
+        youTubePlayer.moviePlayer.play()
+        present(youTubePlayer, animated: true, completion: nil)
     }
     
     @IBAction func buttonSpinAction(_ sender: UIButton) {

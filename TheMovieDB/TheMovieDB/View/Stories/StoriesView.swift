@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
-import AVKit
 import XCDYouTubeKit
 
 struct StoriesPageItem {

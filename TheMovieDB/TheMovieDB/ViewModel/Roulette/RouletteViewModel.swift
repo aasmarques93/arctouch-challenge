@@ -90,8 +90,14 @@ class RouletteViewModel: ViewModel {
         }
     }
     
+    private var netflixMovieShow: NetflixMovieShow?
+    
     var imageResultUrl: URL? {
         return URL(string: serviceModel.imageUrl(with: netflixRandomRoulette?.id, isMovie: isMovie))
+    }
+    
+    var videoKey: String? {
+        return netflixMovieShow?.trailer?.key
     }
     
     private var isMovie: Bool {
@@ -117,11 +123,8 @@ class RouletteViewModel: ViewModel {
         }
         
         serviceModel.getNetflixDetail(movieShow: movieShow, isMovie: isMovie) { [weak self] (object) in
-            guard let result = object as? NetflixMovieShow else {
-                return
-            }
-            
-            self?.overviewResult.value = result.overview
+            self?.netflixMovieShow = object as? NetflixMovieShow
+            self?.overviewResult.value = self?.netflixMovieShow?.overview
         }
     }
     
