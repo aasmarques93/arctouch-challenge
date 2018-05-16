@@ -85,8 +85,8 @@ class MoviesViewModel: MoviesShowsViewModel {
             }
             let result = self?.arraySugestedMovies.contains {
                 let id = $0.id
-                let map = results.map { return $0.id }
-                return map.contains { return $0 == id }
+                let map = results.map { $0.id }
+                return map.contains { $0 == id }
             }
             guard let contains = result, !contains else {
                 return

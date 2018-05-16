@@ -72,4 +72,5 @@ enum RequestUrl: String {
     case netflixMoviesShow
     case netflixMovieShowDetail
     case netflixImage
+    case roulette
 }

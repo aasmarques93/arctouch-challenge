@@ -144,6 +144,10 @@ extension UIView {
     open override func awakeFromNib() {
         super.awakeFromNib()
         
+        guard colorStyle != "custom" else {
+            return
+        }
+        
         if let label = self as? UILabel {
             label.textColor = HexColor.color(from: colorStyle) ?? HexColor.text.color
             return
@@ -162,7 +166,7 @@ extension UIView {
             return
         }
         if let switchValue = self as? UISwitch {
-            switchValue.tintColor = HexColor.color(from: colorStyle) ?? HexColor.secondary.color
+            switchValue.onTintColor = HexColor.color(from: colorStyle) ?? HexColor.secondary.color
             return
         }
         if let stepper = self as? UIStepper {

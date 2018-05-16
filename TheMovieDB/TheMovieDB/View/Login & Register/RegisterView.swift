@@ -91,6 +91,6 @@ extension RegisterView: RegisterViewModelDelegate {
     }
     
     func showError(message: String) {
-        AlertController.show(title: Titles.error.localized, message: message)
+        alertController?.show(title: Titles.error.localized, message: message)
     }
 }

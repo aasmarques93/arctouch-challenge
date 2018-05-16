@@ -35,7 +35,7 @@ class MoviesView: UITableViewController {
         searchHeaderView.delegate = self
         tableView.keyboardDismissMode = .onDrag
         viewModel.delegate = self
-        viewModel.loadData()
+        viewModel.loadData()        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -144,7 +144,7 @@ extension MoviesView: MoviesShowsViewModelDelegate {
     }
     
     func showError(message: String?) {
-        AlertController.show(message: message)
+        alertController?.show(message: message)
     }
     
     func openPreview(storiesViewModel: StoriesViewModel) {

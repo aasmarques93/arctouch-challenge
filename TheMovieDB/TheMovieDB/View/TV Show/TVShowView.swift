@@ -131,7 +131,7 @@ extension TVShowView: MoviesShowsViewModelDelegate {
     }
     
     func showError(message: String?) {
-        AlertController.show(message: message)
+        alertController?.show(message: message)
     }
     
     func openPreview(storiesViewModel: StoriesViewModel) {

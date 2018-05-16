@@ -14,15 +14,12 @@ struct NetflixServiceModel {
     func getNetflixGenres(handler: @escaping HandlerObject) {
         let requestUrl: RequestUrl = Singleton.shared.isLanguagePortuguese ? .netflixGenresBR : .netflixGenres
         serviceModel.request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
-            guard let array = object as? [JSON] else {
+            guard let object = object else {
                 return
             }
             
-            var arrayGenres = [Genres]()
-            array.forEach({ (data) in
-                arrayGenres.append(Genres(object: data))
-            })
-            handler(arrayGenres)
+            let netflixGenres = NetflixGenres(object: object)
+            handler(netflixGenres.genres)
         })
     }
     
@@ -69,6 +66,43 @@ struct NetflixServiceModel {
     func getComingOrLeavingNetflixMovies(requestUrl: RequestUrl, handler: @escaping HandlerObject) {
         let urlParameters = ["contentKind": "movie"]
         serviceModel.request(requestUrl: requestUrl,
+                             environmentBase: .reelgood,
+                             urlParameters: urlParameters,
+                             handlerObject: { (object) in
+                                
+                                guard let array = object as? [JSON] else {
+                                    return
+                                }
+                                
+                                var arrayNetflix = [Netflix]()
+                                array.forEach({ (data) in
+                                    arrayNetflix.append(Netflix(object: data))
+                                })
+                                handler(arrayNetflix)
+        })
+    }
+    
+    func doSpin(genre: Genres?,
+                isMovieOn: Bool,
+                isTVShowOn: Bool,
+                imdb: Int? = nil,
+                rottenTomatoes: Int? = nil,
+                handler: @escaping HandlerObject) {
+        
+        var urlParameters = [String: Any]()
+        
+        var genreParameter = "", imdbParameter = "", rottenTomatoesParameter = ""
+        
+        if let value = genre?.id { genreParameter = "\(value)" }
+        if let value = imdb { imdbParameter = "\(value)" }
+        if let value = rottenTomatoes { rottenTomatoesParameter = "\(value)" }
+        
+        urlParameters["genre"] = genreParameter
+        urlParameters["imdb"] = imdbParameter
+        urlParameters["rottenTomatoes"] = rottenTomatoesParameter
+        urlParameters["contentKind"] = isMovieOn && isTVShowOn ? "both" : isMovieOn ? "movie" : "show"
+        
+        serviceModel.request(requestUrl: .roulette,
                              environmentBase: .reelgood,
                              urlParameters: urlParameters,
                              handlerObject: { (object) in

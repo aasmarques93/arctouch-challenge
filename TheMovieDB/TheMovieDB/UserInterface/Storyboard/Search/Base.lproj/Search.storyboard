@@ -51,7 +51,7 @@
                     <navigationItem key="navigationItem" id="dA9-7M-5uG">
                         <barButtonItem key="backBarButtonItem" title=" " id="qDb-4F-HHa"/>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="6ff-4S-KmF">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wfV-Ia-Csx">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wfV-Ia-Csx">
                                 <rect key="frame" x="334" y="9.5" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="test"/>

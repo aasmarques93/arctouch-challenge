@@ -217,7 +217,7 @@
                     <navigationItem key="navigationItem" title="Root View Controller" id="bYj-0A-A8a">
                         <barButtonItem key="backBarButtonItem" title=" " id="WIv-Hp-eRf"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="GhD-SR-CQJ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4hr-4O-umL">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4hr-4O-umL">
                                 <rect key="frame" x="334" y="9.5" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="test"/>

@@ -23,6 +23,12 @@
 "Coming to Netflix" = "Em breve no Netflix";
 "Netflix Movies" = "Filmes do Netflix";
 
+"Roulette" = "Roleta";
+"Filter" = "Filtro";
+"All Genres" = "Todos os gêneros";
+"Any Score" = "Qualquer nota";
+"No Movie or TV Show was found.\nTry using other filters" = "Nenhum Filme ou Série de TV foi encontrado.\nTente usar outros filtros";
+
 "Sugested" = "Sugeridos";
 "Now Playing" = "Nos cinemas";
 "Top Rated" = "Mais aclamados pela crítica";

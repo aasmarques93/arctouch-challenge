@@ -184,10 +184,10 @@ class PersonalityTestViewModel: ViewModel {
     
     private func saveUserPersonalityType() {
         let maxValue = dictionaryAnswersCounts.values.max()
-        let item = dictionaryAnswersCounts.filter { return $0.value == maxValue }
+        let item = dictionaryAnswersCounts.filter { $0.value == maxValue }
         
         if let personalityTypeId = item.keys.first {
-            userPersonalityType = arrayPersonalityTypes.filter { return $0.id == personalityTypeId }.first
+            userPersonalityType = arrayPersonalityTypes.filter { $0.id == personalityTypeId }.first
         }
         
         let message = Messages.didAnsweredPersonalityTest.localized
@@ -205,7 +205,7 @@ class PersonalityTestViewModel: ViewModel {
             return
         }
         
-        let array = arraySelectedAnswers.map { return $0.dictionaryRepresentation() }
+        let array = arraySelectedAnswers.map { $0.dictionaryRepresentation() }
         UserDefaultsHelper.saveUserDefaults(object: array, key: .answeredQuestions)
     }
     

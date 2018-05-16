@@ -81,12 +81,12 @@ extension LoginView: LoginViewModelDelegate {
     
     func showError(message: String) {
         view.endEditing(true)
-        AlertController.show(message: message)
+        alertController?.show(message: message)
     }
     
     func sendPasswordReset() {
         view.endEditing(true)
-        AlertController.show(message: Messages.resetPassword.localized)
+        alertController?.show(message: Messages.resetPassword.localized)
     }
 }
 

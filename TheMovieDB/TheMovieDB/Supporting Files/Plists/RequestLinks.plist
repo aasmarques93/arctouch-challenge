@@ -96,5 +96,7 @@
 	<string>/v1/{contentKind}/{id}</string>
 	<key>netflixImage</key>
 	<string>/content/{contentKind}/{id}/poster-342.jpg</string>
+	<key>roulette</key>
+	<string>/v2/browse/source/netflix?content_kind={contentKind}&amp;sources=netflix&amp;genre={genre}&amp;imdb_start={imdb}&amp;imdb_end=10&amp;rt_start={rottenTomatoes}&amp;rt_end=100</string>
 </dict>
 </plist>

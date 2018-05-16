@@ -29,6 +29,10 @@ enum Titles: String {
     case search = "Search"
     
     case netflixMovies = "Netflix Movies"
+    case roulette = "Roulette"
+    case filter = "Filter"
+    case allGenres = "All Genres"
+    case anyScore = "Any Score"
     
     // Fabric
     case error = "Error"

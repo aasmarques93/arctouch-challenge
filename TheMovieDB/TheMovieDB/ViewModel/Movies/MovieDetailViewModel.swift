@@ -190,7 +190,7 @@ class MovieDetailViewModel: ViewModel {
     private func setupGenres() -> String {
         var string = ""
         if let array = movieDetail?.genres {
-            let arrayNames = array.map { return valueDescription($0.name) }
+            let arrayNames = array.map { valueDescription($0.name) }
             string = arrayNames.joined(separator: ", ")
         }
         return string

@@ -66,7 +66,7 @@ class PersonalityTestResultViewModel: ViewModel {
         
         var itemValue: Double = 0
         
-        let dictionary = Singleton.shared.dictionaryAnswersCounts().filter { return $0.key == object.id }
+        let dictionary = Singleton.shared.dictionaryAnswersCounts().filter { $0.key == object.id }
         if let value = dictionary.values.first {
             itemValue = Double(value)
         }
@@ -80,7 +80,7 @@ class PersonalityTestResultViewModel: ViewModel {
     
     private func percentageFor(personalityType: PersonalityType?) -> String {
         var count: Double = 0
-        let dictionary = Singleton.shared.dictionaryAnswersCounts().filter { return $0.key == personalityType?.id }
+        let dictionary = Singleton.shared.dictionaryAnswersCounts().filter { $0.key == personalityType?.id }
         if let value = dictionary.values.first {
             count = Double(value)
         }

@@ -123,12 +123,12 @@ class TVShowViewModel: MoviesShowsViewModel {
                 guard let genreIds = $0.genreIds else {
                     return false
                 }
-                return genreIds.contains { return $0 == id }
+                return genreIds.contains { $0 == id }
             }
             let result = self?.arraySugested.contains {
                 let id = $0.id
-                let map = array.map { return $0.id }
-                return map.contains { return $0 == id }
+                let map = array.map { $0.id }
+                return map.contains { $0 == id }
             }
             guard let contains = result, !contains else {
                 return

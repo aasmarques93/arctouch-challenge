@@ -26,12 +26,18 @@ class SearchViewModel: ViewModel {
     private var arrayGenres = [Genres]() { didSet { delegate?.reloadData?() } }
     var numberOfGenres: Int { return arrayGenres.count }
     
-    private var arrayNetflixGenres = [Genres]() { didSet { delegate?.reloadData?() } }
+    private var arrayNetflixGenres: [Genres] {
+        return Singleton.shared.arrayNetflixGenres
+    }
     var numberOfNetflixGenres: Int { return arrayNetflixGenres.count }
     
     private var searchText: String?
     
     // MARK: - Service requests -
+    
+    init() {
+        loadData()
+    }
     
     func loadData() {
         getNetflixGenres()
@@ -77,8 +83,8 @@ class SearchViewModel: ViewModel {
                 return
             }
             
-            self?.arrayNetflixGenres = results
             Singleton.shared.arrayNetflixGenres = results
+            self?.delegate?.reloadData?()
         }
     }
     

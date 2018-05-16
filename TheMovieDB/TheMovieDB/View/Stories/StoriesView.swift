@@ -34,6 +34,7 @@ class StoriesView: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var buttonClose: UIButton!
     @IBOutlet weak var buttonNetflix: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var pageIndex: Int = 0
     var viewModel: StoriesViewModel?
@@ -45,7 +46,6 @@ class StoriesView: UIViewController {
         setupAppearance()
         imageViewHeader.sd_setImage(with: viewModel?.mainUrlImage(at: pageIndex), placeholderImage: #imageLiteral(resourceName: "logo-movie-db"), options: [], completed: nil)
         labelTitle.text = viewModel?.title(at: pageIndex)
-        buttonNetflix.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,6 +55,9 @@ class StoriesView: UIViewController {
     
     func setupAppearance() {
         imageViewHeader.layer.cornerRadius = imageViewHeader.frame.width / 2
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        buttonNetflix.isHidden = true
     }
     
     @IBAction func buttonOpenNetflixAction(_ sender: UIButton) {
@@ -83,6 +86,7 @@ class StoriesView: UIViewController {
                     return
                 }
                 
+                self?.activityIndicator.isHidden = true
                 self?.buttonNetflix.isHidden = false
                 
                 self?.youTubePlayer = XCDYouTubeVideoPlayerViewController(videoIdentifier: path)

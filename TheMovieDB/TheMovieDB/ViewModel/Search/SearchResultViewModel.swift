@@ -165,7 +165,7 @@ class SearchResultViewModel: ViewModel {
         }
 
         selectedType = type
-        arraySearchFiltered = arraySearch.filter { return $0.mediaType == type.description }
+        arraySearchFiltered = arraySearch.filter { $0.mediaType == type.description }
     }
     
     // MARK: - View Model -

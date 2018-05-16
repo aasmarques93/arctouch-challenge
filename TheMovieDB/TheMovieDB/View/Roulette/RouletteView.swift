@@ -7,38 +7,75 @@
 //
 
 import UIKit
+import Bond
+import GhostTypewriter
 
-class RouletteView: UITableViewController {
-    @IBOutlet var viewFooter: UIView!
-    
-    @IBOutlet weak var textFieldGenres: UITextField!
-    @IBOutlet weak var textFieldIMDB: UITextField!
-    @IBOutlet weak var textFieldRottenTomatoes: UITextField!
-    
-    @IBOutlet weak var switchMovies: UISwitch!
-    @IBOutlet weak var switchTVShows: UISwitch!
-    
+class RouletteView: UIViewController {
+    @IBOutlet weak var labelMessage: TypewriterLabel!
     @IBOutlet weak var buttonSpin: UIButton!
+    
+    @IBOutlet weak var viewResult: UIView!
+    
+    @IBOutlet weak var imageViewBackground: UIImageView!
+    @IBOutlet weak var imageViewResult: UIImageView!
+    @IBOutlet weak var labelTitleResult: UILabel!
+    @IBOutlet weak var labelIMDBResult: UILabel!
+    @IBOutlet weak var labelRottenTomatoesResult: UILabel!
+    @IBOutlet weak var labelDateResult: UILabel!
+    @IBOutlet weak var textViewOverviewResult: UITextView!
+    
+    let viewModel = RouletteViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupAppearance()
+        setupBindings()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.delegate = self
+        viewModel.loadData()
+        labelMessage.startTypewritingAnimation(completion: nil)
     }
     
     func setupAppearance() {
+        labelMessage.typingTimeInterval = 0.03
         buttonSpin.backgroundColor = HexColor.secondary.color
     }
     
+    func setupBindings() {
+        viewModel.isLabelMessageHidden.bind(to: labelMessage.reactive.isHidden)
+        viewModel.isViewResultHidden.bind(to: viewResult.reactive.isHidden)
+        viewModel.titleResult.bind(to: labelTitleResult.reactive.text)
+        viewModel.dateResult.bind(to: labelDateResult.reactive.text)
+        viewModel.imdbResult.bind(to: labelIMDBResult.reactive.text)
+        viewModel.rottenTomatoesResult.bind(to: labelRottenTomatoesResult.reactive.text)
+        viewModel.overviewResult.bind(to: textViewOverviewResult.reactive.text)
+    }
+    
     @IBAction func buttonSpinAction(_ sender: UIButton) {
+        viewModel.doSpin()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let viewController = segue.destination as? RouletteFilterView else {
+            return
+        }
         
+        viewController.viewModel = viewModel
+    }
+}
+
+extension RouletteView: ViewModelDelegate {
+    func reloadData() {
+        setTitle(text: Titles.roulette.localized)
+        
+        imageViewResult.sd_setImage(with: viewModel.imageResultUrl, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], completed: nil)
+        imageViewBackground.sd_setImage(with: viewModel.imageResultUrl, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], completed: nil)
     }
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return viewFooter.frame.height
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return viewFooter
+    func showError(message: String?) {
+        alertController?.show(message: message)
     }
 }

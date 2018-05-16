@@ -6,8 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
-
 class StoriesViewModel: ViewModel {
     // MARK: Delegate
     weak var delegate: ViewModelDelegate?

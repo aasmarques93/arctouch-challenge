@@ -25,6 +25,8 @@ enum Messages: String {
     
     case resetPassword = "An email was sent to reset your password"
     
+    case movieShowNotFound = "No Movie or TV Show was found.\nTry using other filters"
+    
     var localized: String {
         return NSLocalizedString(self.rawValue, comment: "")
     }
