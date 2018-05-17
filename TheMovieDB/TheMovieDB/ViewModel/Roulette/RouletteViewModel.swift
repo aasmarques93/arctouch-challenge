@@ -107,6 +107,8 @@ class RouletteViewModel: ViewModel {
     }
     
     init() {
+        getNetflixGenres()
+        
         for i in 5..<10 {
             arrayIMDB.append("> \(i)")
             arrayRottenTomatoes.append("> \(i * 10)%")
@@ -117,6 +119,16 @@ class RouletteViewModel: ViewModel {
         if genres.value == nil { genres.value = arrayGenres.first ?? "" }
         if imdb.value == nil { imdb.value = arrayIMDB.first }
         if rottenTomatoes.value == nil { rottenTomatoes.value = arrayRottenTomatoes.first }
+    }
+    
+    private func getNetflixGenres() {
+        serviceModel.getNetflixGenres { [weak self] (object) in
+            guard let results = object as? [Genres] else {
+                return
+            }
+            
+            Singleton.shared.arrayNetflixGenres = results
+        }
     }
     
     private func loadDetailNetflix() {

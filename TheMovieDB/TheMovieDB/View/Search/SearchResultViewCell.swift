@@ -12,12 +12,14 @@ class SearchResultViewCell: UITableViewCell {
     @IBOutlet weak var imageViewBackground: UIImageView!
     @IBOutlet weak var imageViewMovie: UIImageView!
     @IBOutlet weak var labelName: UILabel!
+    @IBOutlet weak var textViewOverview: UITextView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var viewModel: SearchResultViewModel?
 
     func setupView(at indexPath: IndexPath) {
         if let value = viewModel?.movieName(at: indexPath) { labelName.text = value }
+        if let value = viewModel?.movieOverview(at: indexPath) { textViewOverview.text = value }
         
         activityIndicator.startAnimating()
         if let url = viewModel?.posterImageUrl(at: indexPath) {

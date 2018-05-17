@@ -13,7 +13,6 @@ private let reuseIdentifier = "GenreCell"
 class SearchView: UITableViewController {
     @IBOutlet var viewHeader: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     let viewModel = SearchViewModel()
     
@@ -29,11 +28,7 @@ class SearchView: UITableViewController {
     }
     
     func loadData() {
-        viewModel.loadData(genreIndex: segmentedControl.selectedSegmentIndex)
-    }
-    
-    @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
-        loadData()
+        viewModel.loadData()
     }
     
     // MARK: - Table view data source

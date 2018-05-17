@@ -16,42 +16,16 @@ class SearchViewModel: ViewModel {
     // MARK: Delegate
     weak var delegate: ViewModelDelegate?
     
-    // MARK: Genre
-    
-    enum GenreType: Int {
-        case movies = 0
-        case tvShows = 1
-    }
-    
     private var arrayGenres = [Genres]() { didSet { delegate?.reloadData?() } }
     var numberOfGenres: Int { return arrayGenres.count }
-    
-    private var arrayNetflixGenres: [Genres] {
-        return Singleton.shared.arrayNetflixGenres
-    }
-    var numberOfNetflixGenres: Int { return arrayNetflixGenres.count }
     
     private var searchText: String?
     
     // MARK: - Service requests -
     
-    init() {
-        loadData()
-    }
-    
     func loadData() {
-        getNetflixGenres()
-    }
-    
-    func loadData(genreIndex: Int) {
-        guard let genreType = GenreType(rawValue: genreIndex) else {
-            return
-        }
-        
-        let requestUrl: RequestUrl = genreType == .movies ? .genres: .genresTV
-        
         Loading.shared.start()
-        serviceModel.getGenres(requestUrl: requestUrl) { [weak self] (object) in
+        serviceModel.getGenres(requestUrl: .genres) { [weak self] (object) in
             Loading.shared.stop()
             
             guard let object = object as? MoviesGenres else {
@@ -77,17 +51,6 @@ class SearchViewModel: ViewModel {
         }
     }
     
-    func getNetflixGenres() {
-        netflixServiceModel.getNetflixGenres { [weak self] (object) in
-            guard let results = object as? [Genres] else {
-                return
-            }
-            
-            Singleton.shared.arrayNetflixGenres = results
-            self?.delegate?.reloadData?()
-        }
-    }
-    
     // MARK: - View Model -
     
     func titleDescription(at indexPath: IndexPath) -> String? {
@@ -95,7 +58,7 @@ class SearchViewModel: ViewModel {
     }
     
     private func searchResultViewModel(at indexPath: IndexPath) -> SearchResultViewModel? {
-        return SearchResultViewModel(selectedGenre: arrayGenres[indexPath.row])
+        return SearchResultViewModel(selectedGenre: arrayGenres[indexPath.row], requestUrl: .searchMovie)
     }
     
     private func searchResultViewModel(with text: String?) -> SearchResultViewModel? {

@@ -198,6 +198,10 @@ class SearchResultViewModel: ViewModel {
         return result.name ?? result.title ?? result.originalName
     }
     
+    func movieOverview(at indexPath: IndexPath) -> String? {
+        return arraySearchFiltered[indexPath.row].overview
+    }
+    
     func movieDetailViewModel(at indexPath: IndexPath) -> MovieDetailViewModel? {
         let result = arraySearchFiltered[indexPath.row]
         return MovieDetailViewModel(Movie(object: result.dictionaryRepresentation()))
