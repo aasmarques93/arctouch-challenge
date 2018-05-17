@@ -48,7 +48,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Answer}}" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0HK-pE-0cM" customClass="TypewriterLabel" customModule="GhostTypewriter">
-                                                                        <rect key="frame" x="8" y="8.5" width="359" height="53"/>
+                                                                        <rect key="frame" x="8" y="8.5" width="359" height="52.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -76,7 +76,7 @@
                                                         </tableViewCell>
                                                     </prototypes>
                                                 </tableView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-movie-db" translatesAutoresizingMaskIntoConstraints="NO" id="Oh9-Lg-OpN">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Oh9-Lg-OpN">
                                                     <rect key="frame" x="8" y="8" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="BTj-H1-pBV"/>
@@ -421,7 +421,7 @@
     </scenes>
     <resources>
         <image name="disclosureIndicator" width="25" height="25"/>
-        <image name="logo-movie-db" width="312" height="276"/>
+        <image name="logo" width="293" height="341"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Stu-pR-6ey"/>

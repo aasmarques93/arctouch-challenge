@@ -27,6 +27,10 @@ enum Titles: String {
     case tvShows = "TV Shows"
     case popularPeople = "Popular people"
     case search = "Search"
+    case profile = "Profile"
+    
+    case movie = "Movie"
+    case tvShow = "TV Show"
     
     case netflixMovies = "Netflix Movies"
     case roulette = "Roulette"

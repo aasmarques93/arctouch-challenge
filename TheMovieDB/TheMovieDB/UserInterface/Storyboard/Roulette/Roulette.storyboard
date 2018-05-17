@@ -37,13 +37,16 @@
                                         <blurEffect style="light"/>
                                     </visualEffectView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Title}}" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aly-bJ-SRy">
-                                        <rect key="frame" x="16" y="16" width="343" height="148"/>
+                                        <rect key="frame" x="16" y="52.5" width="343" height="74.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Date}}" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMW-tU-B1c">
                                         <rect key="frame" x="154.5" y="143" width="66" height="20.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="4Lq-uX-pYG"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -140,28 +143,39 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Type}}" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSc-97-E5B">
+                                        <rect key="frame" x="153" y="16" width="68.5" height="20.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="fae-LY-ehY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="krQ-fk-NB1" secondAttribute="trailing" id="145-sy-vDe"/>
                                     <constraint firstItem="b2E-tK-ShW" firstAttribute="leading" secondItem="Jtw-s0-bTB" secondAttribute="centerX" constant="8" id="2Gd-7W-nT0"/>
+                                    <constraint firstItem="fSc-97-E5B" firstAttribute="top" secondItem="Jtw-s0-bTB" secondAttribute="top" constant="16" id="3b7-E5-HxB"/>
                                     <constraint firstItem="b2E-tK-ShW" firstAttribute="centerY" secondItem="YbL-Xo-NOc" secondAttribute="centerY" id="6c6-KH-kEc"/>
-                                    <constraint firstItem="y25-x5-nye" firstAttribute="top" secondItem="aly-bJ-SRy" secondAttribute="bottom" constant="16" id="8Ra-rU-fT6"/>
                                     <constraint firstAttribute="trailing" secondItem="aly-bJ-SRy" secondAttribute="trailing" constant="16" id="8TB-yW-IWf"/>
                                     <constraint firstItem="Gih-bf-KEV" firstAttribute="top" secondItem="krQ-fk-NB1" secondAttribute="top" id="Bdh-yq-1wz"/>
                                     <constraint firstItem="y25-x5-nye" firstAttribute="centerY" secondItem="Jtw-s0-bTB" secondAttribute="centerY" id="NNc-RJ-qug"/>
                                     <constraint firstItem="aly-bJ-SRy" firstAttribute="leading" secondItem="Jtw-s0-bTB" secondAttribute="leading" constant="16" id="OlG-Yn-f9f"/>
                                     <constraint firstItem="49B-tB-B4e" firstAttribute="trailing" secondItem="Jtw-s0-bTB" secondAttribute="centerX" constant="-8" id="R4W-aO-CPh"/>
+                                    <constraint firstItem="BMW-tU-B1c" firstAttribute="top" secondItem="aly-bJ-SRy" secondAttribute="bottom" constant="16" id="RVB-Nw-IXB"/>
                                     <constraint firstItem="YbL-Xo-NOc" firstAttribute="leading" secondItem="b2E-tK-ShW" secondAttribute="trailing" constant="8" id="RpS-Iz-xaU"/>
                                     <constraint firstItem="49B-tB-B4e" firstAttribute="centerY" secondItem="Hok-nI-Bym" secondAttribute="centerY" id="UNT-2i-xV1"/>
+                                    <constraint firstItem="aly-bJ-SRy" firstAttribute="top" secondItem="fSc-97-E5B" secondAttribute="bottom" constant="16" id="V3U-nu-yMI"/>
                                     <constraint firstItem="Gih-bf-KEV" firstAttribute="trailing" secondItem="krQ-fk-NB1" secondAttribute="trailing" id="X09-fv-rT7"/>
-                                    <constraint firstItem="aly-bJ-SRy" firstAttribute="top" secondItem="Jtw-s0-bTB" secondAttribute="top" constant="16" id="Y7p-sk-TsC"/>
                                     <constraint firstItem="YbL-Xo-NOc" firstAttribute="centerY" secondItem="49B-tB-B4e" secondAttribute="centerY" id="YCM-fN-GUw"/>
                                     <constraint firstItem="49B-tB-B4e" firstAttribute="leading" secondItem="Hok-nI-Bym" secondAttribute="trailing" constant="8" id="Yyp-hw-MMA"/>
                                     <constraint firstItem="BMW-tU-B1c" firstAttribute="centerX" secondItem="Jtw-s0-bTB" secondAttribute="centerX" id="ZJW-za-vJe"/>
                                     <constraint firstItem="Gih-bf-KEV" firstAttribute="bottom" secondItem="krQ-fk-NB1" secondAttribute="bottom" id="a18-Xu-szZ"/>
                                     <constraint firstItem="y25-x5-nye" firstAttribute="top" secondItem="BMW-tU-B1c" secondAttribute="bottom" constant="16" id="b7q-0j-KdP"/>
                                     <constraint firstItem="y25-x5-nye" firstAttribute="leading" secondItem="Jtw-s0-bTB" secondAttribute="leading" constant="16" id="cTU-7a-Ygt"/>
+                                    <constraint firstItem="fSc-97-E5B" firstAttribute="centerX" secondItem="Jtw-s0-bTB" secondAttribute="centerX" id="er7-Tc-j0z"/>
                                     <constraint firstAttribute="bottom" secondItem="krQ-fk-NB1" secondAttribute="bottom" id="g94-wz-cUy"/>
                                     <constraint firstItem="Gih-bf-KEV" firstAttribute="leading" secondItem="krQ-fk-NB1" secondAttribute="leading" id="he6-6z-UuT"/>
                                     <constraint firstItem="krQ-fk-NB1" firstAttribute="leading" secondItem="Jtw-s0-bTB" secondAttribute="leading" id="qxW-79-kdr"/>
@@ -237,6 +251,7 @@
                         <outlet property="labelMessage" destination="F3k-Lg-It4" id="Zp0-st-sVC"/>
                         <outlet property="labelRottenTomatoesResult" destination="b2E-tK-ShW" id="tXA-oe-WuA"/>
                         <outlet property="labelTitleResult" destination="aly-bJ-SRy" id="c1j-ku-f2P"/>
+                        <outlet property="labelTypeResult" destination="fSc-97-E5B" id="BG5-ex-M3K"/>
                         <outlet property="textViewOverviewResult" destination="TnL-qx-toY" id="jEh-lq-1dx"/>
                         <outlet property="viewResult" destination="Jtw-s0-bTB" id="3r6-nl-7TW"/>
                     </connections>

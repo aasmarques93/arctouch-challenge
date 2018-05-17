@@ -23,12 +23,14 @@ class RouletteView: UIViewController {
     @IBOutlet weak var labelIMDBResult: UILabel!
     @IBOutlet weak var labelRottenTomatoesResult: UILabel!
     @IBOutlet weak var labelDateResult: UILabel!
+    @IBOutlet weak var labelTypeResult: UILabel!
     @IBOutlet weak var textViewOverviewResult: UITextView!
     
     let viewModel = RouletteViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = Titles.roulette.localized
         setupAppearance()
         setupBindings()
     }
@@ -50,6 +52,7 @@ class RouletteView: UIViewController {
         viewModel.isViewResultHidden.bind(to: viewResult.reactive.isHidden)
         viewModel.titleResult.bind(to: labelTitleResult.reactive.text)
         viewModel.dateResult.bind(to: labelDateResult.reactive.text)
+        viewModel.movieShowType.bind(to: labelTypeResult.reactive.text)
         viewModel.imdbResult.bind(to: labelIMDBResult.reactive.text)
         viewModel.rottenTomatoesResult.bind(to: labelRottenTomatoesResult.reactive.text)
         viewModel.overviewResult.bind(to: textViewOverviewResult.reactive.text)
@@ -80,8 +83,6 @@ class RouletteView: UIViewController {
 
 extension RouletteView: ViewModelDelegate {
     func reloadData() {
-        setTitle(text: Titles.roulette.localized)
-        
         imageViewResult.sd_setImage(with: viewModel.imageResultUrl, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], completed: nil)
         imageViewBackground.sd_setImage(with: viewModel.imageResultUrl, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], completed: nil)
     }

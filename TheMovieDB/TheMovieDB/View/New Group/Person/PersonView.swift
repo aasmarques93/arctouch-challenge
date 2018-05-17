@@ -112,7 +112,7 @@ extension PersonView: iCarouselDelegate, iCarouselDataSource {
 
 extension PersonView: ViewModelDelegate {
     func reloadData() {
-        setTitle(text: viewModel?.personName)
+        title = viewModel?.personName
         
         if let value = viewModel?.personName {
             FabricUtils.logEvent(message: "\(Messages.didSelect.localized) \(value)")

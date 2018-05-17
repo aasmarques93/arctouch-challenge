@@ -9,7 +9,7 @@
 import UIKit
 
 class TVShowView: UITableViewController {
-    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.tvShows.localized, placeholder: Messages.searchTVShow.localized)
+    let searchHeaderView = SearchHeaderView.instantateFromNib(placeholder: Messages.searchTVShow.localized)
     let viewHeaderHeight: CGFloat = 32
     
     let viewModel = TVShowViewModel(isMovie: false)
@@ -24,6 +24,7 @@ class TVShowView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = Titles.tvShows.localized
         searchHeaderView.delegate = self
         tableView.keyboardDismissMode = .onDrag
         viewModel.delegate = self

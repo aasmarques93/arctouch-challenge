@@ -16,7 +16,7 @@ class StoryPreviewCell: UICollectionViewCell {
     var viewModel: MoviesShowsViewModel?
     
     func setupView(at index: Int) {
-        viewBackground.borderWidth = 2.0
+        viewBackground.borderWidth = 1.0
         viewBackground.borderColor = HexColor.secondary.color
         viewBackground.layer.masksToBounds = true
         viewBackground.layer.cornerRadius = viewBackground.frame.width / 2

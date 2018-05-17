@@ -58,6 +58,7 @@ class RouletteViewModel: ViewModel {
     
     var titleResult = Observable<String?>(nil)
     var dateResult = Observable<String?>(nil)
+    var movieShowType = Observable<String?>(nil)
     var imdbResult = Observable<String?>(nil)
     var rottenTomatoesResult = Observable<String?>(nil)
     var overviewResult = Observable<String?>(nil)
@@ -83,6 +84,7 @@ class RouletteViewModel: ViewModel {
             if let value = netflixRandomRoulette?.releasedOn {
                 dateResult.value = Date(fromString: value, format: .custom(Constants.dateFormatIsoTime))?.toString(format: .isoDate)
             }
+            movieShowType.value = isMovie ? Titles.movie.localized : Titles.tvShow.localized
             
             loadDetailNetflix()
             

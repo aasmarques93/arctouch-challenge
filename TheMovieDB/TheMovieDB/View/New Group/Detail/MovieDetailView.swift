@@ -57,7 +57,7 @@ class MovieDetailView: UITableViewController {
     // MARK: - Appearance -
     
     func setupAppearance() {
-        setTitle(text: viewModel?.movieName)
+        title = viewModel?.movieName
         
         carouselVideos.type = .linear
         carouselVideos.bounces = false

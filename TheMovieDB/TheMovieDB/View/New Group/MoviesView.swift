@@ -12,8 +12,7 @@ import AVFoundation
 import AVKit
 
 class MoviesView: UITableViewController {
-    let searchHeaderView = SearchHeaderView.instantateFromNib(title: Titles.movies.localized,
-                                                              placeholder: Messages.searchMovie.localized)
+    let searchHeaderView = SearchHeaderView.instantateFromNib(placeholder: Messages.searchMovie.localized)
     let viewHeaderHeight: CGFloat = 32
     
     let viewModel = MoviesViewModel()
@@ -30,6 +29,7 @@ class MoviesView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = Titles.movies.localized
         StoreReviewHelper.checkAndAskForReview()
         Singleton.shared.didSkipTestFromLauching = true
         searchHeaderView.delegate = self

@@ -20,7 +20,7 @@ class PersonalityTestResultDetailsView: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setTitle(text: Titles.personalityTestResult.localized)
+        title = Titles.personalityTestResult.localized
         setupBindings()
         setupData()
     }

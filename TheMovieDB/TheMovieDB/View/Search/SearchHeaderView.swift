@@ -16,19 +16,15 @@ import UIKit
 
 class SearchHeaderView: XibView {
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var labelTitle: UILabel!
     
     weak var delegate: SearchHeaderViewDelegate?
     
-    var title: String?
     var placeholder: String?
     
-    class func instantateFromNib(title: String?, placeholder: String?, textAlignment: NSTextAlignment = .center) -> SearchHeaderView {
+    class func instantateFromNib(placeholder: String?) -> SearchHeaderView {
         let view = XibView.instanceFromNib(SearchHeaderView.self)
         
         view.searchBar.delegate = view
-        view.labelTitle.text = title
-        view.labelTitle.textAlignment = textAlignment
         view.searchBar.placeholder = placeholder
         
         return view

@@ -50,16 +50,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="dA9-7M-5uG">
                         <barButtonItem key="backBarButtonItem" title=" " id="qDb-4F-HHa"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="6ff-4S-KmF">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wfV-Ia-Csx">
-                                <rect key="frame" x="334" y="9.5" width="25" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="test"/>
-                                <connections>
-                                    <segue destination="kFF-aZ-h87" kind="presentation" id="Qvl-fg-Mqh"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -111,14 +101,6 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="876" y="2626"/>
-        </scene>
-        <!--PersonalityTest-->
-        <scene sceneID="4vg-Sa-enb">
-            <objects>
-                <viewControllerPlaceholder storyboardName="PersonalityTest" id="kFF-aZ-h87" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ibe-lZ-9P4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1467" y="2166"/>
         </scene>
         <!--Search Result View-->
         <scene sceneID="pAM-2l-Sic">
@@ -231,7 +213,4 @@
             <point key="canvasLocation" x="1641" y="2626"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="test" width="25" height="25"/>
-    </resources>
 </document>

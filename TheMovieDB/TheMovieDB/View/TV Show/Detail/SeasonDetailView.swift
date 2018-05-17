@@ -17,7 +17,7 @@ class SeasonDetailView: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setTitle(text: viewModel?.seasonName)
+        title = viewModel?.seasonName
         setupBindings()
         viewModel?.delegate = self
         viewModel?.loadData()

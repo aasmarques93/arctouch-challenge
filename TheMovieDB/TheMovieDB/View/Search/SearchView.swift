@@ -21,6 +21,7 @@ class SearchView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = Titles.search.localized
         tableView.keyboardDismissMode = .onDrag
         viewHeader.backgroundColor = HexColor.primary.color
         viewModel.delegate = self

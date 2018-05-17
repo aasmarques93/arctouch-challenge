@@ -18,12 +18,8 @@ class ProfileMainView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = Titles.profile.localized
         setupBindings()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setTitle(text: "")
     }
     
     func setupBindings() {

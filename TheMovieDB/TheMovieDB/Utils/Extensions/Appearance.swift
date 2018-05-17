@@ -24,20 +24,6 @@ extension UINavigationController {
 extension UIViewController {
     open override func awakeFromNib() {
         view.backgroundColor = HexColor.primary.color
-        
-        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        
-        let imageView = UIImageView(frame: titleView.frame)
-        imageView.image = #imageLiteral(resourceName: "logo-movie-db")
-        imageView.contentMode = .scaleAspectFit
-        
-        titleView.addSubview(imageView)
-        navigationItem.titleView = titleView
-    }
-    
-    func setTitle(text: String?) {
-        navigationItem.titleView = nil
-        title = text
     }
 }
 

@@ -13,7 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="E8A-XP-siv" customClass="SearchHeaderView" customModule="TheMovieDB" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="LEK-jI-OSH">
@@ -26,33 +26,19 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </searchBar>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Title}}" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzm-be-yQn">
-                    <rect key="frame" x="8" y="56" width="359" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="nDX-k2-dQl"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Uzm-be-yQn" firstAttribute="leading" secondItem="E8A-XP-siv" secondAttribute="leading" constant="8" id="5im-IT-OT7"/>
-                <constraint firstItem="Uzm-be-yQn" firstAttribute="top" secondItem="LEK-jI-OSH" secondAttribute="bottom" id="L9t-4m-ow9"/>
                 <constraint firstAttribute="trailing" secondItem="LEK-jI-OSH" secondAttribute="trailing" id="XwX-dO-Hl8"/>
-                <constraint firstAttribute="bottom" secondItem="Uzm-be-yQn" secondAttribute="bottom" id="eOi-BR-4eA"/>
-                <constraint firstAttribute="trailing" secondItem="Uzm-be-yQn" secondAttribute="trailing" constant="8" id="enf-ng-Rwp"/>
                 <constraint firstItem="LEK-jI-OSH" firstAttribute="top" secondItem="E8A-XP-siv" secondAttribute="top" id="pzH-k0-3CE"/>
                 <constraint firstItem="LEK-jI-OSH" firstAttribute="leading" secondItem="E8A-XP-siv" secondAttribute="leading" id="xQE-1B-wtI"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="E0P-tC-B5Z"/>
             <connections>
-                <outlet property="labelTitle" destination="Uzm-be-yQn" id="jdN-qP-8or"/>
                 <outlet property="searchBar" destination="LEK-jI-OSH" id="u8y-ch-yw6"/>
             </connections>
-            <point key="canvasLocation" x="875.5" y="2218"/>
+            <point key="canvasLocation" x="875.5" y="2198"/>
         </view>
     </objects>
 </document>

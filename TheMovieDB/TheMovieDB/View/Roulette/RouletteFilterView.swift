@@ -21,7 +21,7 @@ class RouletteFilterView: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setTitle(text: Titles.filter.localized)
+        title = Titles.filter.localized
         setupBindings()
     }
     

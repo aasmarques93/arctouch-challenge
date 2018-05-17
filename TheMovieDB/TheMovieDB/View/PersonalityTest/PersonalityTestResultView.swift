@@ -71,7 +71,7 @@ class PersonalityTestResultView: UIViewController {
     }
     
     func setupAppearance() {
-        setTitle(text: Titles.result.localized)
+        title = Titles.result.localized
         
         navigationItem.leftBarButtonItem = UIBarButtonItem()
         

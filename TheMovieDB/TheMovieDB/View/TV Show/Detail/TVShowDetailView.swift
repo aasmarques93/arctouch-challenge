@@ -109,7 +109,7 @@ extension TVShowDetailView: TVShowDetailViewModelDelegate {
     func reloadData() {
         tableView.reloadData()
         
-        setTitle(text: viewModel?.tvShowName)
+        title = viewModel?.tvShowName
         
         if let value = viewModel?.tvShowName {
             FabricUtils.logEvent(message: "\(Messages.didSelect.localized) \(value)")

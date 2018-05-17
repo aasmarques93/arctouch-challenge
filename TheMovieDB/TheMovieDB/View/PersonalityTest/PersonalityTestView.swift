@@ -31,7 +31,7 @@ class PersonalityTestView: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setTitle(text: Titles.personalityTest.localized)
+        title = Titles.personalityTest.localized
     }
     
     func setupBindings() {

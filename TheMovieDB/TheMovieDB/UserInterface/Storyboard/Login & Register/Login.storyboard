@@ -80,7 +80,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="753"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-movie-db" translatesAutoresizingMaskIntoConstraints="NO" id="VD0-xl-lVt">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-text" translatesAutoresizingMaskIntoConstraints="NO" id="VD0-xl-lVt">
                                     <rect key="frame" x="115" y="0.0" width="144" height="144"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="VD0-xl-lVt" secondAttribute="height" multiplier="1:1" id="EDY-Qk-RX3"/>
@@ -666,7 +666,7 @@
     </scenes>
     <resources>
         <image name="email" width="50" height="50"/>
-        <image name="logo-movie-db" width="312" height="276"/>
+        <image name="logo-text" width="238" height="228"/>
         <image name="password" width="50" height="50"/>
         <image name="user" width="50" height="50"/>
     </resources>
