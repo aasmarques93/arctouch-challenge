@@ -212,3 +212,15 @@ extension Collection where Index == Int {
         return isEmpty ? nil : self[Int(arc4random_uniform(UInt32(endIndex)))]
     }
 }
+
+extension Array {
+    func shiftRight(_ amount: Int = 1) -> [Element] {
+        var value = amount
+        if value < 0 { value += count }
+        return Array(self[value ..< count] + self[0 ..< value])
+    }
+    
+    mutating func shiftRightInPlace(amount: Int = 1) {
+        self = shiftRight(amount)
+    }
+}

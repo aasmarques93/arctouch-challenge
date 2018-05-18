@@ -46,7 +46,8 @@ class TVShowDetailViewModel: ViewModel {
             guard let seasons = tvShowDetail?.seasons else {
                 return
             }
-            arraySeasons = seasons
+            
+            arraySeasons = seasons.shiftRight()
         }
     }
     

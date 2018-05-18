@@ -116,7 +116,9 @@ class SearchResultViewModel: ViewModel {
         
         isDataLoading = true
         
+        Loading.shared.start()
         serviceModel.getMoviesFromGenre(urlParameters: parameters) { [weak self] (object) in
+            Loading.shared.stop()
             self?.isDataLoading = false
             
             guard let object = object as? SearchMoviesGenre else {
