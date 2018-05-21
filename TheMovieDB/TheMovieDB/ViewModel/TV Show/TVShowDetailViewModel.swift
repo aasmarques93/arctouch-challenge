@@ -243,11 +243,7 @@ class TVShowDetailViewModel: ViewModel {
         }
         
         loadImageData(at: cast.profilePath) { [weak self] (data) in
-            guard let strongSelf = self else {
-                return
-            }
-            
-            strongSelf.arrayCast[index].imageData = data as? Data
+            self?.arrayCast[index].imageData = data as? Data
             handlerData(data)
         }
     }

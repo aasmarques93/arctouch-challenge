@@ -136,11 +136,11 @@ class PersonViewModel: ViewModel {
         if photo.value != nil { return }
 
         serviceModel.loadImage(path: person?.profilePath ?? "", handlerData: { [weak self] (data) in
-            guard let strongSelf = self, let data = data as? Data else {
+            guard let data = data as? Data else {
                 return
             }
 
-            strongSelf.photo.value = UIImage(data: data)
+            self?.photo.value = UIImage(data: data)
         })
     }
     
@@ -193,13 +193,11 @@ class PersonViewModel: ViewModel {
         photos = [Photo]()
         for image in arrayImages {
             serviceModel.loadImage(path: image.filePath) { [weak self] (data) in
-                guard let strongSelf = self else {
+                guard let data = data as? Data else {
                     return
                 }
                 
-                if let data = data as? Data {
-                    strongSelf.photos.append(Photo(image: UIImage(data: data)))
-                }
+                self?.photos.append(Photo(image: UIImage(data: data)))
             }
         }
     }

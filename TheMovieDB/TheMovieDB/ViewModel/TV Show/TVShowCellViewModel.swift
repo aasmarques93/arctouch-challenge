@@ -30,11 +30,11 @@ class TVShowCellViewModel: ViewModel {
     
     private func loadImageData() {
         Singleton.shared.serviceModel.loadImage(path: tvShow?.posterPath ?? "", handlerData: { [weak self] (data) in
-            guard let strongSelf = self, let data = data as? Data else {
+            guard let data = data as? Data else {
                 return
             }
             
-            strongSelf.photo.value = UIImage(data: data)
+            self?.photo.value = UIImage(data: data)
         })
     }
 }

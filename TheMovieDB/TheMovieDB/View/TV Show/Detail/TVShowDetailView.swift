@@ -63,7 +63,7 @@ class TVShowDetailView: UITableViewController {
         viewModel?.genres.bind(to: textViewGenres.reactive.text)
         viewModel?.overview.bind(to: textViewOverview.reactive.text)
     }
-    
+        
     // MARK: - Table view data source -
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

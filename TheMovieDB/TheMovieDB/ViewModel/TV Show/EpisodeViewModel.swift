@@ -9,6 +9,9 @@
 import Bond
 
 class EpisodeViewModel: ViewModel {
+    // MARK: Delegate
+    weak var delegate: ViewModelDelegate?
+    
     // MARK: Service Model
     let serviceModel = EpisodesServiceModel()
 
@@ -61,11 +64,12 @@ class EpisodeViewModel: ViewModel {
         }
 
         Singleton.shared.serviceModel.loadImage(path: episode?.stillPath ?? "", handlerData: { [weak self] (data) in
-            guard let strongSelf = self, let data = data as? Data else {
+            guard let data = data as? Data else {
                 return
             }
             
-            strongSelf.photo.value = UIImage(data: data)
+            self?.photo.value = UIImage(data: data)
+            self?.delegate?.reloadData?()
         })
     }
 
@@ -80,13 +84,11 @@ class EpisodeViewModel: ViewModel {
         photos = [Photo]()
         for image in arrayImages {
             serviceModel.loadImage(path: image.filePath) { [weak self] (data) in
-                guard let strongSelf = self else {
+                guard let data = data as? Data else {
                     return
                 }
                 
-                if let data = data as? Data {
-                    strongSelf.photos.append(Photo(image: UIImage(data: data)))
-                }
+                self?.photos.append(Photo(image: UIImage(data: data)))
             }
         }
     }

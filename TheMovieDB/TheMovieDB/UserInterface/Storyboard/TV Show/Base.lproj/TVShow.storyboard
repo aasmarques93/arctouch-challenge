@@ -526,7 +526,15 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="aXx-TV-GyV">
                         <barButtonItem key="backBarButtonItem" title=" " id="pFM-LU-Oz0"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="uzE-Jw-fxZ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8eM-D6-tUo">
+                                <rect key="frame" x="334" y="9.5" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="checklist"/>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="carouselCast" destination="Ch6-FD-4yc" id="Ed6-rs-XA3"/>
                         <outlet property="carouselRecommended" destination="aQG-Lz-cd9" id="nM5-7C-i3o"/>
@@ -621,7 +629,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmE-Fb-BDi">
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmE-Fb-BDi">
                                                     <rect key="frame" x="0.0" y="61.5" width="375" height="200"/>
                                                     <connections>
                                                         <action selector="buttonPhotoAction:" destination="nBF-aH-q5D" eventType="touchUpInside" id="fTS-wz-LhL"/>
@@ -687,10 +695,11 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rjo-QX-lbY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2460" y="1076"/>
+            <point key="canvasLocation" x="2441" y="1075"/>
         </scene>
     </scenes>
     <resources>
+        <image name="checklist" width="25" height="25"/>
         <image name="test" width="25" height="25"/>
     </resources>
 </document>

@@ -18,6 +18,9 @@ class EpisodeViewCell: UITableViewCell {
     var viewModel: EpisodeViewModel?
     
     func setupView(at indexPath: IndexPath) {
+        imageViewPoster.contentMode = .scaleAspectFit
+        viewModel?.delegate = self
+        
         viewModel?.photo.bind(to: imageViewPoster.reactive.image)
         viewModel?.title.bind(to: labelOriginalTitle.reactive.text)
         viewModel?.date.bind(to: labelDate.reactive.text)
@@ -28,5 +31,11 @@ class EpisodeViewCell: UITableViewCell {
 
     @IBAction func buttonPhotoAction(_ sender: UIButton) {
         viewModel?.presentPhotos()
+    }
+}
+
+extension EpisodeViewCell: ViewModelDelegate {
+    func reloadData() {
+        imageViewPoster.contentMode = .scaleToFill
     }
 }
