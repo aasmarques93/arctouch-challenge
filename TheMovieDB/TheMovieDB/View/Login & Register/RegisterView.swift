@@ -1,8 +1,8 @@
 //
-//  RegisterTableViewController.swift
-//  Figurinhas
+//  RegisterView.swift
+//  TheMovieDB
 //
-//  Created by Arthur Augusto Sousa Marques on 4/3/18.
+//  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
@@ -85,12 +85,12 @@ class RegisterView: UITableViewController {
     }
 }
 
-extension RegisterView: RegisterViewModelDelegate {
-    func didSignUp() {
-        
+extension RegisterView: ViewModelDelegate {
+    func reloadData() {
+        navigationController?.popViewController(animated: true)
     }
     
-    func showError(message: String) {
+    func showAlert(message: String?) {
         alertController?.show(title: Titles.error.localized, message: message)
     }
 }

@@ -25,6 +25,12 @@ class MovieDetailView: UITableViewController {
     
     @IBOutlet var stretchHeaderView: StretchHeaderView!
     
+    @IBOutlet weak var barButtonItemAdd: UIBarButtonItem!
+    @IBOutlet weak var barButtonItemSeen: UIBarButtonItem!
+    
+    @IBOutlet weak var buttonAdd: UIButton!
+    @IBOutlet weak var buttonSeen: UIButton!
+    
     enum DetailSection: Int {
         case general = 0
         case genres = 1
@@ -76,6 +82,19 @@ class MovieDetailView: UITableViewController {
         viewModel?.runtime.bind(to: labelRuntime.reactive.text)
         viewModel?.genres.bind(to: textViewGenres.reactive.text)
         viewModel?.overview.bind(to: textViewOverview.reactive.text)
+        
+        if buttonAdd != nil { viewModel?.addImage.bind(to: buttonAdd.reactive.image) }
+        if buttonSeen != nil { viewModel?.seenImage.bind(to: buttonSeen.reactive.image) }
+    }
+    
+    // MARK: - IBAction -
+    
+    @IBAction func buttonAddAction(_ sender: UIButton) {
+        viewModel?.toggleAddYourListMovie()
+    }
+    
+    @IBAction func buttonSeenAction(_ sender: UIButton) {
+        viewModel?.toggleSeenYourListMovie()
     }
     
     // MARK: - Table view data source -
@@ -126,6 +145,10 @@ class MovieDetailView: UITableViewController {
 extension MovieDetailView: MovieDetailViewModelDelegate {
     
     // MARK: - Movie detail view model delegate -
+    
+    func showAlert(message: String?) {
+        alertController?.show(message: message)
+    }
     
     func reloadData() {
         tableView.reloadData()

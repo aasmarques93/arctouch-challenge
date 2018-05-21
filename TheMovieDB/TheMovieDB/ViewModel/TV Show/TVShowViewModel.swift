@@ -83,7 +83,7 @@ class TVShowViewModel: MoviesShowsViewModel {
                     try self?.showError(with: object)
                 } catch {
                     if let error = error as? Error {
-                        self?.delegate?.showError?(message: error.message)
+                        self?.delegate?.showAlert?(message: error.message)
                     }
                     return
                 }

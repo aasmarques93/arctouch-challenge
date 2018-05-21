@@ -87,7 +87,7 @@ extension RouletteView: ViewModelDelegate {
         imageViewBackground.sd_setImage(with: viewModel.imageResultUrl, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], completed: nil)
     }
     
-    func showError(message: String?) {
+    func showAlert(message: String?) {
         alertController?.show(message: message)
     }
 }

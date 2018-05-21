@@ -224,3 +224,14 @@ extension Array {
         self = shiftRight(amount)
     }
 }
+
+extension UIImage {
+    func getDataWithProportion (_ heightDesired: Double) -> Data?{
+        let proportion: Double = Double(self.size.width) / Double(self.size.height)
+        let selectedImage = self.imageResize(sizeChange: CGSize(width: heightDesired*proportion, height: heightDesired))
+        if let imageData:Data = UIImagePNGRepresentation(selectedImage) {
+            return imageData
+        }
+        return nil
+    }
+}

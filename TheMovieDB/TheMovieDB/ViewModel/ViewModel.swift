@@ -10,7 +10,7 @@ import UIKit
 
 @objc protocol ViewModelDelegate: class {
     @objc optional func reloadData()
-    @objc optional func showError(message: String?)
+    @objc optional func showAlert(message: String?)
 }
 
 protocol ViewModel {

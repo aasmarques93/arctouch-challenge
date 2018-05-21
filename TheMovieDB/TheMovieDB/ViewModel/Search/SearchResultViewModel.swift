@@ -131,7 +131,7 @@ class SearchResultViewModel: ViewModel {
                 guard let error = error as? Error else {
                     return
                 }
-                self?.delegate?.showError?(message: error.message)
+                self?.delegate?.showAlert?(message: error.message)
                 return
             }
             

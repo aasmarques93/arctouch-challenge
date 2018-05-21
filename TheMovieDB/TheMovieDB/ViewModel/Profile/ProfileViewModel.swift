@@ -1,13 +1,34 @@
 //
 //  ProfileViewModel.swift
-//  Figurinhas
+//  TheMovieDB
 //
-//  Created by Rene X on 22/03/18.
+//  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
 import FBSDKLoginKit
 import Bond
+
+enum YourListSection: Int {
+    case wantToSeeMovies = 0
+    case tvShowsTrack = 1
+    case seenMovies = 2
+    
+    var description: String {
+        switch self {
+        case .wantToSeeMovies:
+            return "Your Want-To-See Movies"
+        case .tvShowsTrack:
+            return "TV You Track"
+        case .seenMovies:
+            return "Your Seen Movies"
+        }
+    }
+    
+    var localized: String {
+        return NSLocalizedString(self.description, comment: "")
+    }
+}
 
 class ProfileViewModel: ViewModel {
     static let shared = ProfileViewModel()
@@ -20,50 +41,71 @@ class ProfileViewModel: ViewModel {
     
     var username = Observable<String?>(nil)
     var email = Observable<String?>(nil)
-    var phone = Observable<String?>(nil)
     var picture = Observable<UIImage?>(nil)
     var rating = Observable<String?>(nil)
     
-    var isButtonExitHidden = Observable<Bool>(true)
+    var isButtonLogoutHidden = Observable<Bool>(true)
     var isLoginHidden = Observable<Bool>(false)
     var isProfileHidden = Observable<Bool>(true)
+    
+    private var arrayYourListSections: [YourListSection] = [.wantToSeeMovies, .tvShowsTrack, .seenMovies]
+    var numberYourListSections: Int { return arrayYourListSections.count }
     
     func loadData() {
         let isUserLogged = Singleton.shared.isUserLogged
         
         isLoginHidden.value = isUserLogged
-        isProfileHidden.value = !isLoginHidden.value
+        isProfileHidden.value = !isUserLogged
+        isButtonLogoutHidden.value = !isUserLogged
         
-        isButtonExitHidden.value = !isUserLogged
-        
-        username.value = user.name
+        username.value = user.username
         email.value = user.email
-        phone.value = user.phone
         picture.value = Singleton.shared.userPhoto
         
         delegate?.reloadData?()
     }
     
-    func updateUser() {
+    private func updateUser() {
         let newUsername = username.value
         let newEmail = email.value
-        let newPhone = phone.value
-        if newUsername != user.name || newEmail != user.email || newPhone != user.phone {
+        if newUsername != user.username || newEmail != user.email {
             var newUser = Singleton.shared.user
-            newUser.name = newUsername
+            newUser.username = newUsername
             newUser.email = newEmail
-            newUser.phone = newPhone
             Singleton.shared.saveUser()
         }
     }
     
-    func changeProfilePicture(_ data:Data) {
+    func changeProfilePicture(_ data: Data) {
         Singleton.shared.user.photo = UserDefaultsHelper.getImagePath(with: data)
         Singleton.shared.saveUser()
     }
     
-    func logout() {
+    func doLogout() {
         Singleton.shared.logout()
         loadData()
+    }
+    
+    func sectionTitle(at section: Int) -> String? {
+        return arrayYourListSections[section].localized
+    }
+    
+    func isMovieShowEmpty(at indexPath: IndexPath) -> Bool {
+        let yourListSection = arrayYourListSections[indexPath.section]
+        
+        switch yourListSection {
+        case .wantToSeeMovies:
+            return Singleton.shared.arrayUserWantToSeeMovies.count == 0
+        case .tvShowsTrack:
+            return true
+        case .seenMovies:
+            return Singleton.shared.arrayUserSeenMovies.count == 0
+        }
+    }
+    
+    // MARK: - Your List -
+    
+    func yourListViewModel(at indexPath: IndexPath) -> YourListViewModel? {
+        return YourListViewModel(object: arrayYourListSections[indexPath.section])
     }
 }

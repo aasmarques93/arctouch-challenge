@@ -15,30 +15,26 @@ struct RegisterServiceModel {
                 email: String? = nil,
                 password: String? = nil,
                 facebookId: String? = nil,
-                handlerObject: @escaping HandlerObject,
-                handlerError: @escaping HandlerObject) {
+                handler: @escaping HandlerObject) {
         
-//        var parameters = [String: Any]()
-//        
-//        if let value = username { parameters["name"] = value }
-//        if let value = email { parameters["email"] = value }
-//        if let value = password { parameters["password"] = value }
-//        if let value = facebookId { parameters["facebook_id"] = value }
-//        
-//        request(User.self, method: .post, requestUrl: .signUp, parameters: parameters, handlerObject: { (object) in
-//            if let user = object as? User {
-//                if let error = user.error, !error.isEmptyOrWhitespace {
-//                    handlerError(error)
-//                } else {
-//                    handlerObject(object)
-//                    self.setConnectionHeader(token: user.token)
-//                }
-//                
-//                return
-//            }
-//            
-//            handlerError(Messages.serverError.rawValue)
-//        })
+        var parameters = [String: Any]()
+        
+        if let value = username { parameters["username"] = value }
+        if let value = email { parameters["email"] = value }
+        if let value = password { parameters["password"] = value }
+        if let value = facebookId { parameters["facebook_id"] = value }
+        
+        let urlParameters = ["language": Locale.preferredLanguages.first ?? ""]
+        
+        serviceModel.request(method: .post,
+                             requestUrl: .register,
+                             environmentBase: .heroku,
+                             parameters: parameters,
+                             urlParameters: urlParameters,
+                             handlerObject: { (object) in
+                                
+                                if let object = object { handler(User(object: object)) }
+        })
     }
 }
 

@@ -32,7 +32,7 @@ class SearchTests: Tests {
             reloadMoviesListExpectation?.fulfill()
         }
         
-        func showError(message: String?) {
+        func showAlert(message: String?) {
             showErrorExpectation?.fulfill()
         }
     }

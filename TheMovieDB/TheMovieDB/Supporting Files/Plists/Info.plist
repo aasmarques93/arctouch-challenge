@@ -67,6 +67,8 @@
 	</dict>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>The application needs permission to write photos</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Take user photo</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

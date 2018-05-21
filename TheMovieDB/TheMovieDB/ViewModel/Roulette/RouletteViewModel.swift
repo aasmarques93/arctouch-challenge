@@ -209,7 +209,7 @@ class RouletteViewModel: ViewModel {
                                 }
                                 
                                 guard results.count > 0 else {
-                                    self?.delegate?.showError?(message: Messages.movieShowNotFound.localized)
+                                    self?.delegate?.showAlert?(message: Messages.movieShowNotFound.localized)
                                     return
                                 }
                                 

@@ -78,7 +78,7 @@ extension SearchResultView: ViewModelDelegate {
         tableView.reloadData()
     }
     
-    func showError(message: String?) {
+    func showAlert(message: String?) {
         alertController?.show(message: message, mainAction: {
             self.navigationController?.popViewController(animated: true)
         })

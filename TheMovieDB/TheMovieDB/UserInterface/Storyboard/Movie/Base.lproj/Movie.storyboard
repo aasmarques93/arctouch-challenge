@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -528,8 +529,35 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="3gN-bz-9gJ">
                         <barButtonItem key="backBarButtonItem" title=" " id="CVf-lI-O3F"/>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" id="JDA-tV-BHY">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Psi-bA-QRD">
+                                    <rect key="frame" x="334" y="9.5" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="add"/>
+                                    <connections>
+                                        <action selector="buttonAddAction:" destination="jXi-wG-S1T" eventType="touchUpInside" id="z6d-PD-I0c"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="3PQ-E3-IWH">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Eei-QD-JrW">
+                                    <rect key="frame" x="301" y="9.5" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="seen"/>
+                                    <connections>
+                                        <action selector="buttonSeenAction:" destination="jXi-wG-S1T" eventType="touchUpInside" id="XnI-VL-Vvo"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="barButtonItemAdd" destination="JDA-tV-BHY" id="ig9-sh-eJH"/>
+                        <outlet property="barButtonItemSeen" destination="3PQ-E3-IWH" id="bfs-kz-ZXz"/>
+                        <outlet property="buttonAdd" destination="Psi-bA-QRD" id="voQ-NA-p7f"/>
+                        <outlet property="buttonSeen" destination="Eei-QD-JrW" id="Lxt-wu-3DQ"/>
                         <outlet property="carouselCast" destination="lSD-lN-i17" id="H8o-3g-bPu"/>
                         <outlet property="carouselRecommendedMovies" destination="0U2-g8-96O" id="Zn0-Ij-ktk"/>
                         <outlet property="carouselSimilarMovies" destination="lrM-vG-4dN" id="w47-Fv-387"/>
@@ -609,6 +637,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add" width="25" height="25"/>
+        <image name="seen" width="25" height="25"/>
         <image name="star" width="24" height="24"/>
         <image name="test" width="25" height="25"/>
     </resources>

@@ -1,8 +1,8 @@
 //
 //  LoginView.swift
-//  Figurinhas
+//  TheMovieDB
 //
-//  Created by Arthur Augusto Sousa Marques on 3/22/18.
+//  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
@@ -70,7 +70,7 @@ class LoginView: UITableViewController {
     
     @IBAction func buttonLoginAction(_ sender: Any) {
         viewModel.doLogin()
-    }    
+    }
 }
 
 extension LoginView: LoginViewModelDelegate {
@@ -79,7 +79,7 @@ extension LoginView: LoginViewModelDelegate {
 //        ProfileViewModel.shared.setupContent()
     }
     
-    func showError(message: String) {
+    func showAlert(message: String?) {
         view.endEditing(true)
         alertController?.show(message: message)
     }

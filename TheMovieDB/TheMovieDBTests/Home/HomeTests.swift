@@ -27,7 +27,7 @@ class HomeTests: Tests {
             if index == 0 { reloadDataExpectation?.fulfill() }
         }
         
-        func showError(message: String?) {
+        func showAlert(message: String?) {
             showErrorExpectation?.fulfill()
         }
     }

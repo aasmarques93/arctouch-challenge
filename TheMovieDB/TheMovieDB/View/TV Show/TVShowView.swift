@@ -131,7 +131,7 @@ extension TVShowView: MoviesShowsViewModelDelegate {
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
-    func showError(message: String?) {
+    func showAlert(message: String?) {
         alertController?.show(message: message)
     }
     

@@ -27,6 +27,22 @@ enum EnvironmentBase: String {
 // MARK: - Request Link Enum -
 enum RequestUrl: String {
     case apiKey
+    case authenticate
+    case register
+    case logout
+    case savePersonalityTest
+    case userPersonalityTest
+    case profile
+    case userWantToSeeMovies
+    case saveWantToSeeMovie
+    case deleteWantToSeeMovie
+    case userSeenMovies
+    case saveSeenMovie
+    case deleteSeenMovie
+    case personalityTest
+    case personalityTestBR
+    case personalityTypes
+    case personalityTypesBR
     case nowPlaying
     case upcoming
     case topRated
@@ -61,10 +77,6 @@ enum RequestUrl: String {
     case tvImages
     case multiSearch
     case seasonDetail
-    case personalityTest
-    case personalityTestBR
-    case personalityTypes
-    case personalityTypesBR
     case netflixGenres
     case netflixGenresBR
     case netflixComing

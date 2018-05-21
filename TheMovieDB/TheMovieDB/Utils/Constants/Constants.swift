@@ -38,6 +38,8 @@ enum Titles: String {
     case allGenres = "All Genres"
     case anyScore = "Any Score"
     
+    case photos = "All photos"
+    
     // Fabric
     case error = "Error"
     case click = "Click"

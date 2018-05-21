@@ -27,6 +27,8 @@
 "Coming to Netflix" = "Em breve no Netflix";
 "Netflix Movies" = "Filmes do Netflix";
 
+"All photos" = "Todas as fotos";
+
 "Roulette" = "Roleta";
 "Filter" = "Filtro";
 "All Genres" = "Todos os gêneros";
@@ -49,6 +51,11 @@
 "Search a person" = "Pesquise um famoso";
 "Did select" = "Voce selecionou";
 "Did answered personality test - Type: " = "Você respondeu o teste de personalidade - Tipo: ";
+
+"Movie added to your want to see list" = "Filme adicionado à sua lista que deseja ver";
+"Movie removed from your want to see list" = "Filme removido da sua lista que deseja ver";
+"Movie added to your seen list" = "Filme adicionado à sua lista de já assistidos";
+"Movie removed from your seen list" = "Filme removido da sua lista de já assistidos";
 
 // Validation
 "Hey dude, You can start by creating an account" = "Eai cara\nVocê pode começar criando uma conta";

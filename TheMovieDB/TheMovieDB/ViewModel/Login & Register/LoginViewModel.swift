@@ -1,8 +1,8 @@
 //
 //  LoginViewModel.swift
-//  Figurinhas
+//  TheMovieDB
 //
-//  Created by Arthur Augusto Sousa Marques on 3/22/18.
+//  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
@@ -12,9 +12,8 @@ import FacebookLogin
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-protocol LoginViewModelDelegate: class {
+protocol LoginViewModelDelegate: ViewModelDelegate {
     func didLogin()
-    func showError(message: String)
     func sendPasswordReset()
 }
 
@@ -27,6 +26,7 @@ class LoginViewModel: ViewModel {
     weak var delegate: LoginViewModelDelegate?
     
     private let serviceModel = LoginServiceModel()
+    private lazy var registerServiceModel = RegisterServiceModel()
     
     var email = Observable<String?>(nil)
     var password = Observable<String?>(nil)
@@ -99,11 +99,11 @@ class LoginViewModel: ViewModel {
     
     var isFormValid: Bool {
         if !isEmailValid {
-            delegate?.showError(message: Messages.invalidEmail.rawValue)
+            delegate?.showAlert?(message: Messages.invalidEmail.rawValue)
             return false
         }
         if !isPasswordValid {
-            delegate?.showError(message: Messages.invalidPassword.rawValue)
+            delegate?.showAlert?(message: Messages.invalidPassword.rawValue)
             return false
         }
         return true
@@ -115,8 +115,9 @@ class LoginViewModel: ViewModel {
     
     private func getUserLogged() {
         if let userLogged = Singleton.shared.userLogged {
-            Singleton.shared.user = userLogged
-//            ServiceModel().setConnectionHeader(token: user.token)
+            serviceModel.authenticate(userId: userLogged.id) { (object) in
+                Singleton.shared.user = userLogged
+            }
         }
     }
     
@@ -145,51 +146,50 @@ class LoginViewModel: ViewModel {
             Singleton.shared.user = User(object: result)
             
             self?.signUpFacebookUser()
-            self?.downloadUserPhoto(handlerData: { (data) in
-                guard let data = data as? Data else {
-                    return
-                }
-                
-                Singleton.shared.user.photo = UserDefaultsHelper.getImagePath(with: data)
-                Singleton.shared.saveUser()
-            })
         }
     }
     
     private func signUpFacebookUser() {
-        guard user.token == nil else {
-            return
-        }
-        
-        RegisterServiceModel().signup(username: user.name,
+        registerServiceModel.signup(username: user.username,
                                       email: user.email,
                                       facebookId: user.facebookId,
-                                      handlerObject: { [weak self] (object) in
+                                      handler: { [weak self] (object) in
         
                                         guard let user = object as? User else {
                                             return
                                         }
                                         
+                                        do {
+                                            try self?.showError(with: user)
+                                        } catch {
+                                            self?.authenticateFacebookUser()
+                                            return
+                                        }
+                                        
                                         print("Facebook user signed up")
-                                        Singleton.shared.user.token = user.token
                                         Singleton.shared.saveUser()
                                         self?.delegate?.didLogin()
-        }) { [weak self] (error) in
-            print("Error signing up facebook user: \(error ?? "")")
-            
-            self?.serviceModel.authenticate(facebookId: self?.user.facebookId, handlerObject: { [weak self] (object) in
-                guard let user = object as? User else {
-                    return
-                }
-
-                print("Facebook user authenticated")
-                Singleton.shared.user.token = user.token
-                Singleton.shared.saveUser()
-                self?.delegate?.didLogin()
-            }) { (error) in
-                print("Error authenticating facebook user: \(error ?? "")")
+        })
+    }
+    
+    private func authenticateFacebookUser() {
+        serviceModel.authenticate(facebookId: user.facebookId, handler: { [weak self] (object) in
+            guard let user = object as? User else {
+                return
             }
-        }
+            
+            do {
+                try self?.showError(with: user)
+            } catch {
+                if let error = error as? Error {
+                    self?.delegate?.showAlert?(message: error.message)
+                }
+                return
+            }
+            
+            Singleton.shared.saveUser()
+            self?.delegate?.didLogin()
+        })
     }
     
     private func downloadUserPhoto(handlerData: @escaping HandlerObject) {
@@ -198,39 +198,31 @@ class LoginViewModel: ViewModel {
         }
     }
     
-    func downloadImage(url: URL, handlerResult: @escaping HandlerObject) {
-        serviceModel.getDataFromUrl(url: url) { data, response, error in
-            handlerResult(nil)
-            
-            guard let data = data, error == nil else {
-                return
-            }
-            
-            DispatchQueue.main.async() {
-                Singleton.shared.user.photo = UserDefaultsHelper.getImagePath(with: data)
-            }
-        }
-    }
-    
     func doLogin() {
         guard isFormValid else {
             return
         }
         
-        serviceModel.authenticate(email: email.value, password: password.value, handlerObject: { [weak self] (object) in
+        Loading.shared.start()
+        serviceModel.authenticate(email: email.value, password: password.value, handler: { [weak self] (object) in
+            Loading.shared.stop()
+            
             guard let user = object as? User else {
+                return
+            }
+            
+            do {
+                try self?.showError(with: user)
+            } catch {
+                if let error = error as? Error {
+                    self?.delegate?.showAlert?(message: error.message)
+                }
                 return
             }
             
             Singleton.shared.user = user
             self?.delegate?.didLogin()
-        }) { [weak self] (error) in
-            guard let error = error as? String else {
-                return
-            }
-            
-            self?.delegate?.showError(message: error)
-        }
+        })
     }
     
     func logout() {
@@ -244,7 +236,7 @@ class LoginViewModel: ViewModel {
 //        serviceModel.recoverPassword(email: email, handlerObject: { (object) in
 //            self.delegate?.sendPasswordReset()
 //        }) { (error) in
-//            if let error = error as? Error { self.delegate?.showError(message: error.localizedDescription) }
+//            if let error = error as? Error { self.delegate?.showAlert(message: error.localizedDescription) }
 //        }
     }
 }

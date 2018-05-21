@@ -38,7 +38,7 @@ class MoviesViewModel: MoviesShowsViewModel {
     // MARK: - Service requests -
     
     override func loadData() {
-        super.loadData()
+        super.loadData()        
         getSugestedMovies()
         getMovies(section: .popular)
         getMovies(section: .topRated)
@@ -118,7 +118,7 @@ class MoviesViewModel: MoviesShowsViewModel {
                     try self?.showError(with: object)
                 } catch {
                     if let error = error as? Error {
-                        self?.delegate?.showError?(message: error.message)
+                        self?.delegate?.showAlert?(message: error.message)
                     }
                     return
                 }

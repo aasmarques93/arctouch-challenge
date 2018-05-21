@@ -27,6 +27,8 @@
 "Coming to Netflix" = "Coming to Netflix";
 "Netflix Movies" = "Netflix Movies";
 
+"All photos" = "All photos";
+
 "Roulette" = "Roulette";
 "Filter" = "Filter";
 "All Genres" = "All Genres";
@@ -49,6 +51,11 @@
 "Search a person" = "Search a person";
 "Did select" = "Did select";
 "Did answered personality test - Type: " = "Did answered personality test - Type: ";
+
+"Movie added to your want to see list" = "Movie added to your want to see list";
+"Movie removed from your want to see list" = "Movie removed from your want to see list";
+"Movie added to your seen list" = "Movie added to your seen list";
+"Movie removed from your seen list" = "Movie removed from your seen list";
 
 // Validation
 "Hey dude, You can start by creating an account" = "Hey dude, You can start by creating an account";

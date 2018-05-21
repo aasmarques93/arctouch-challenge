@@ -12,6 +12,10 @@ class Singleton {
     static let shared = Singleton()
     
     let serviceModel = ServiceModel()
+    let yourListServiceModel = YourListServiceModel()
+    
+    var arrayUserWantToSeeMovies = [UserMovie]()
+    var arrayUserSeenMovies = [UserMovie]()
     
     let typingTimeInterval = 0.01
     var arrayPersonalityTypes = [PersonalityType]()
@@ -19,6 +23,7 @@ class Singleton {
     var user = User.createEmptyUser() {
         didSet {
             saveUser()
+            loadUserData()
         }
     }
     
@@ -42,6 +47,31 @@ class Singleton {
             return nil
         }
         return UIImage(data: data)
+    }
+    
+    func loadUserData() {
+        getUserWantToSeeMovies()
+        getUserSeenMovies()
+    }
+    
+    func getUserWantToSeeMovies(handler: HandlerObject? = nil) {
+        yourListServiceModel.getUserMovies(requestUrl: .userWantToSeeMovies) { [weak self] (object) in
+            guard let array = object as? [UserMovie] else {
+                return
+            }
+            self?.arrayUserWantToSeeMovies = array
+            handler?(array)
+        }
+    }
+    
+    func getUserSeenMovies(handler: HandlerObject? = nil) {
+        yourListServiceModel.getUserMovies(requestUrl: .userSeenMovies) { [weak self] (object) in
+            guard let array = object as? [UserMovie] else {
+                return
+            }
+            self?.arrayUserSeenMovies = array
+            handler?(array)
+        }
     }
     
     func logout() {
@@ -99,5 +129,13 @@ class Singleton {
     
     var isLanguagePortuguese: Bool {
         return Locale.preferredLanguages.first == "pt-BR"
+    }
+    
+    func isMovieInYourWantToSeeList(movie: Movie) -> Bool {
+        return arrayUserWantToSeeMovies.filter { $0.movieId == movie.id }.count > 0
+    }
+    
+    func isMovieInYourSeenList(movie: Movie) -> Bool {
+        return arrayUserSeenMovies.filter { $0.movieId == movie.id }.count > 0
     }
 }

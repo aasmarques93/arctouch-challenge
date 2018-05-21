@@ -1,8 +1,8 @@
 //
-//  ProfileMainViewController.swift
-//  Figurinhas
+//  ProfileMainView.swift
+//  TheMovieDB
 //
-//  Created by Arthur Augusto Sousa Marques on 4/3/18.
+//  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
@@ -12,7 +12,6 @@ import Bond
 class ProfileMainView: UIViewController {
     @IBOutlet weak var containerLogin: UIView!
     @IBOutlet weak var containerProfile: UIView!
-    @IBOutlet weak var buttonExit: UIButton!
     
     let viewModel = ProfileViewModel()
     
@@ -22,13 +21,20 @@ class ProfileMainView: UIViewController {
         setupBindings()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.loadData()
+    }
+    
     func setupBindings() {
         viewModel.isLoginHidden.bind(to: containerLogin.reactive.isHidden)
         viewModel.isProfileHidden.bind(to: containerProfile.reactive.isHidden)
-        viewModel.isButtonExitHidden.bind(to: buttonExit.reactive.isHidden)
     }
     
-    @IBAction func buttonLogoutAction(_ sender: UIButton) {
-        viewModel.logout()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let viewController = segue.destination as? ProfileView else {
+            return
+        }
+        viewController.viewModel = viewModel
     }
 }

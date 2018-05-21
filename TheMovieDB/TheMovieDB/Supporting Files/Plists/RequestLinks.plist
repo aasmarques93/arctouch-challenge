@@ -6,6 +6,38 @@
 	<string>/searchName={searchName}&amp;number={number} =&gt; /searchName=test&amp;number=10</string>
 	<key>apiKey</key>
 	<string>1f54bd990f1cdfb230adb312546d765d</string>
+	<key>authenticate</key>
+	<string>/api/authenticate/language={language}</string>
+	<key>register</key>
+	<string>/api/register/language={language}</string>
+	<key>logout</key>
+	<string>/api/logout</string>
+	<key>savePersonalityTest</key>
+	<string>/api/savePersonalityTest</string>
+	<key>userPersonalityTest</key>
+	<string>/api/userPersonalityTest</string>
+	<key>profile</key>
+	<string>/api/profile</string>
+	<key>userWantToSeeMovies</key>
+	<string>/api/userWantToSeeMovies</string>
+	<key>saveWantToSeeMovie</key>
+	<string>/api/saveWantToSeeMovie</string>
+	<key>deleteWantToSeeMovie</key>
+	<string>/api/deleteWantToSeeMovie</string>
+	<key>userSeenMovies</key>
+	<string>/api/userSeenMovies</string>
+	<key>saveSeenMovie</key>
+	<string>/api/saveSeenMovie</string>
+	<key>deleteSeenMovie</key>
+	<string>/api/deleteSeenMovie</string>
+	<key>personalityTest</key>
+	<string>/personalityTest</string>
+	<key>personalityTestBR</key>
+	<string>/personalityTestBR</string>
+	<key>personalityTypes</key>
+	<string>/personalityTypes</string>
+	<key>personalityTypesBR</key>
+	<string>/personalityTypesBR</string>
 	<key>nowPlaying</key>
 	<string>/movie/now_playing?language={language}&amp;page={page}&amp;</string>
 	<key>upcoming</key>
@@ -74,14 +106,6 @@
 	<string>/search/multi?language={language}&amp;query={query}&amp;page={page}&amp;</string>
 	<key>seasonDetail</key>
 	<string>/tv/{id}/season/{season}?language={language}&amp;</string>
-	<key>personalityTest</key>
-	<string>/personalityTest</string>
-	<key>personalityTestBR</key>
-	<string>/personalityTestBR</string>
-	<key>personalityTypes</key>
-	<string>/personalityTypes</string>
-	<key>personalityTypesBR</key>
-	<string>/personalityTypesBR</string>
 	<key>netflixGenres</key>
 	<string>/netflixGenres</string>
 	<key>netflixGenresBR</key>

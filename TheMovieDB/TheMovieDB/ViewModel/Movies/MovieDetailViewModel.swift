@@ -24,6 +24,7 @@ class MovieDetailViewModel: ViewModel {
     
     // MARK: Service Model
     let serviceModel = MovieDetailServiceModel()
+    let yourListServiceModel = YourListServiceModel()
     
     // MARK: Observables
     var name = Observable<String?>(nil)
@@ -33,8 +34,11 @@ class MovieDetailViewModel: ViewModel {
     var genres = Observable<String?>(nil)
     var overview = Observable<String?>(nil)
     
+    var addImage = Observable<UIImage>(#imageLiteral(resourceName: "add"))
+    var seenImage = Observable<UIImage>(#imageLiteral(resourceName: "seen"))
+    
     // MARK: Objects
-    var movie: Movie?
+    var movie: Movie
     
     var movieDetail: MovieDetail? {
         didSet {
@@ -70,6 +74,14 @@ class MovieDetailViewModel: ViewModel {
     private var arrayReviews = [Review]() { didSet { delegate?.reloadReviews() } }
     var numberOfReviews: Int { return arrayReviews.count }
     
+    var isMovieInYourWantToSeeList: Bool {
+        return Singleton.shared.isMovieInYourWantToSeeList(movie: movie)
+    }
+    
+    var isMovieInYourSeenList: Bool {
+        return Singleton.shared.isMovieInYourSeenList(movie: movie)
+    }
+    
     // MARK: - Life cycle -
     
     init(_ object: Movie) {
@@ -79,6 +91,7 @@ class MovieDetailViewModel: ViewModel {
     // MARK: - Service requests -
     
     func loadData() {
+        setupImages()
         getMovieDetail()
         getVideos()
         getRecommendedMovies()
@@ -87,11 +100,12 @@ class MovieDetailViewModel: ViewModel {
         getReviews()
     }
     
+    private func setupImages() {
+        addImage.value = isMovieInYourWantToSeeList ? #imageLiteral(resourceName: "add-filled") : #imageLiteral(resourceName: "add")
+        seenImage.value = isMovieInYourSeenList ? #imageLiteral(resourceName: "seen-filled") : #imageLiteral(resourceName: "seen")
+    }
+    
     private func getMovieDetail() {
-        guard let movie = movie else {
-            return
-        }
-        
         Loading.shared.start()
         serviceModel.getDetail(from: movie) { [weak self] (object) in
             Loading.shared.stop()
@@ -100,7 +114,7 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getVideos() {
-        guard let movie = movie, arrayVideos.isEmpty else {
+        guard arrayVideos.isEmpty else {
             return
         }
         
@@ -114,7 +128,7 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getRecommendedMovies() {
-        guard let movie = movie, arrayRecommendedMovies.isEmpty else {
+        guard arrayRecommendedMovies.isEmpty else {
             return
         }
         
@@ -128,7 +142,7 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getSimilarMovies() {
-        guard let movie = movie, arraySimilarMovies.isEmpty else {
+        guard arraySimilarMovies.isEmpty else {
             return
         }
         
@@ -142,7 +156,7 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getCredits() {
-        guard let movie = movie, arrayCast.isEmpty else {
+        guard arrayCast.isEmpty else {
             return
         }
         
@@ -156,7 +170,7 @@ class MovieDetailViewModel: ViewModel {
     }
     
     private func getReviews() {
-        guard let movie = movie, arrayReviews.isEmpty else {
+        guard arrayReviews.isEmpty else {
             return
         }
         
@@ -174,7 +188,7 @@ class MovieDetailViewModel: ViewModel {
     // MARK: Movie
     
     var movieName: String? {
-        return movie?.title
+        return movie.title
     }
     
     func movieDetailImageData(handlerData: @escaping HandlerObject) {
@@ -270,6 +284,60 @@ class MovieDetailViewModel: ViewModel {
     
     func reviewContent(at index: Int) -> String {
         return arrayReviews[index].content ?? ""
+    }
+    
+    // MARK: - Your List -
+    
+    func toggleAddYourListMovie() {
+        guard isMovieInYourWantToSeeList else {
+            addImage.value = #imageLiteral(resourceName: "add-filled")
+            
+            if isMovieInYourSeenList {
+                seenImage.value = #imageLiteral(resourceName: "seen")
+                deleteFromYourSeenList()
+            }
+            
+            saveToYourWantToSeeList()
+            return
+        }
+        addImage.value = #imageLiteral(resourceName: "add")
+        deleteFromYourWantToSeeList()
+    }
+    
+    private func saveToYourWantToSeeList() {
+        yourListServiceModel.save(movie: movie, requestUrl: .saveWantToSeeMovie)
+        Singleton.shared.getUserWantToSeeMovies()
+    }
+    
+    private func deleteFromYourWantToSeeList() {
+        yourListServiceModel.delete(movie: movie, requestUrl: .deleteWantToSeeMovie)
+        Singleton.shared.getUserWantToSeeMovies()
+    }
+    
+    func toggleSeenYourListMovie() {
+        guard isMovieInYourSeenList else {
+            seenImage.value = #imageLiteral(resourceName: "seen-filled")
+            
+            if isMovieInYourWantToSeeList {
+                addImage.value = #imageLiteral(resourceName: "add")
+                deleteFromYourWantToSeeList()
+            }
+            
+            saveToYourSeenList()
+            return
+        }
+        seenImage.value = #imageLiteral(resourceName: "seen")
+        deleteFromYourSeenList()
+    }
+    
+    private func saveToYourSeenList() {
+        yourListServiceModel.save(movie: movie, requestUrl: .saveSeenMovie)
+        Singleton.shared.getUserWantToSeeMovies()
+    }
+    
+    private func deleteFromYourSeenList() {
+        yourListServiceModel.delete(movie: movie, requestUrl: .deleteSeenMovie)
+        Singleton.shared.getUserWantToSeeMovies()
     }
     
     // MARK: - View Model Instantiation -

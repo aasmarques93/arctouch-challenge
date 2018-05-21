@@ -159,7 +159,7 @@
         <!--Animated Tab Bar Controller-->
         <scene sceneID="80F-ab-Kdd">
             <objects>
-                <tabBarController id="6oV-Ng-spE" customClass="RAMAnimatedTabBarController" customModule="RAMAnimatedTabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="6oV-Ng-spE" customClass="RAMAnimatedTabBarController" customModule="RAMAnimatedTabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZIn-ch-hOq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

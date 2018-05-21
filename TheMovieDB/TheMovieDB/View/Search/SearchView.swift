@@ -89,7 +89,7 @@ extension SearchView: ViewModelDelegate {
         tableView.reloadData()
     }
     
-    func showError(message: String?) {
+    func showAlert(message: String?) {
         alertController?.show(message: message)
     }
 }

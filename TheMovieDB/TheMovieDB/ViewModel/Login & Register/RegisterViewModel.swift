@@ -1,17 +1,12 @@
 //
 //  RegisterViewModel.swift
-//  Figurinhas
+//  TheMovieDB
 //
-//  Created by Arthur Augusto Sousa Marques on 4/3/18.
+//  Created by Arthur Augusto Sousa Marques on 3/13/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
 import Bond
-
-protocol RegisterViewModelDelegate: class {
-    func didSignUp()
-    func showError(message: String)
-}
 
 fileprivate enum FormValidationItem {
     case username
@@ -21,7 +16,7 @@ fileprivate enum FormValidationItem {
 }
 
 class RegisterViewModel: ViewModel {
-    weak var delegate: RegisterViewModelDelegate?
+    weak var delegate: ViewModelDelegate?
     
     var message = Observable<String?>(nil)
     
@@ -120,19 +115,19 @@ class RegisterViewModel: ViewModel {
     
     var isFormValid: Bool {
         if valueDescription(username.value).isEmptyOrWhitespace {
-            delegate?.showError(message: Messages.invalidUser.rawValue)
+            delegate?.showAlert?(message: Messages.invalidUser.rawValue)
             return false
         }
         if !isEmailValid {
-            delegate?.showError(message: Messages.invalidEmail.rawValue)
+            delegate?.showAlert?(message: Messages.invalidEmail.rawValue)
             return false
         }
         if !isPasswordValid {
-            delegate?.showError(message: Messages.invalidPassword.rawValue)
+            delegate?.showAlert?(message: Messages.invalidPassword.rawValue)
             return false
         }
         if !isPasswordConfirmationValid {
-            delegate?.showError(message: Messages.invalidPasswordConfirmation.rawValue)
+            delegate?.showAlert?(message: Messages.invalidPasswordConfirmation.rawValue)
             return false
         }
         return true
@@ -148,23 +143,26 @@ class RegisterViewModel: ViewModel {
         }
         
         Loading.shared.start()
-        serviceModel.signup(username: username.value, email: email.value, password: password.value, handlerObject: { [weak self] (object) in
+        serviceModel.signup(username: username.value, email: email.value, password: password.value, handler: { [weak self] (object) in
             Loading.shared.stop()
             
             guard let user = object as? User else {
                 return
             }
-            Singleton.shared.user = user
-            Singleton.shared.user.token = user.token
-            Singleton.shared.saveUser()
-            self?.delegate?.didSignUp()
-        }) { [weak self] (error) in
-            Loading.shared.stop()
-            guard let error = error as? String else {
-                return
+            
+            do {
+                try self?.showError(with: user)
+            } catch {
+                if let error = error as? Error {
+                    self?.delegate?.showAlert?(message: error.message)
+                }
             }
-            self?.delegate?.showError(message: error)
-        }
+            
+            Singleton.shared.user = user
+            Singleton.shared.saveUser()
+            
+            self?.delegate?.reloadData?()
+        })
     }
 }
 
