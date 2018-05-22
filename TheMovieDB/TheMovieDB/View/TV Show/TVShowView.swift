@@ -10,18 +10,9 @@ import UIKit
 
 class TVShowView: UITableViewController {
     let searchHeaderView = SearchHeaderView.instantateFromNib(placeholder: Messages.searchTVShow.localized)
-    let viewHeaderHeight: CGFloat = 32
     
     let viewModel = TVShowViewModel(isMovie: false)
 
-    var labelHeader: UILabel {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: viewHeaderHeight))
-        label.backgroundColor = HexColor.primary.color
-        label.textColor = HexColor.text.color
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        return label
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = Titles.tvShows.localized
@@ -42,7 +33,7 @@ class TVShowView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? searchHeaderView.frame.height + viewHeaderHeight : viewHeaderHeight
+        return section == 0 ? searchHeaderView.frame.height + viewHeaderTitleHeight : viewHeaderTitleHeight
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -55,7 +46,7 @@ class TVShowView: UITableViewController {
         
         let viewHeader = UIView(frame: CGRect(x: 0, y: 0,
                                               width: SCREEN_WIDTH,
-                                              height: searchHeaderView.frame.height + viewHeaderHeight))
+                                              height: searchHeaderView.frame.height + viewHeaderTitleHeight))
         
         label.frame = CGRect(x: viewHeader.frame.minX,
                              y: searchHeaderView.frame.height,

@@ -44,6 +44,9 @@
 "On the air" = "On the air";
 "Latest" = "Latest";
 
+"Track TV Show" = "Track TV Show";
+"Episode" = "Episode";
+
 // Enum Messages
 "There are no movies available" = "There are no movies available";
 "Search a movie" = "Search a movie";

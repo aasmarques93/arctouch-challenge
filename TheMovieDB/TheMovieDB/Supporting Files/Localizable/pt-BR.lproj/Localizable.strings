@@ -44,6 +44,9 @@
 "On the air" = "No ar";
 "Latest" = "Mais recentes";
 
+"Track TV Show" = "Acompanhar a série";
+"Episode" = "Episódio";
+
 // Enum Messages
 "There are no movies available" = "Não há filmes disponíveis";
 "Search a movie" = "Pesquise um filme";

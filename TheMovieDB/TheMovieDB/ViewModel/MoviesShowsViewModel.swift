@@ -134,6 +134,8 @@ class MoviesShowsViewModel: ViewModel {
     var isDataLoading = false
     var isMovie: Bool
     
+    private var dictionaryLastIndexPathsDisplayed = [Int: IndexPath]()
+    
     init(isMovie: Bool = true) {
         self.isMovie = isMovie
         arraySectionsType = SectionsType.sections(isMovie: isMovie)
@@ -239,6 +241,14 @@ class MoviesShowsViewModel: ViewModel {
     
     func loadVideos(at index: Int) {
         delegate?.openPreview(storiesViewModel: StoriesViewModel(arrayNetflix, selectedIndex: index, isMovie: isMovie))
+    }
+    
+    func setLastIndexPathDisplayed(_ indexPath: IndexPath, at section: Int) {
+        dictionaryLastIndexPathsDisplayed[section] = indexPath
+    }
+    
+    func lastIndexPathDisplayed(at section: Int) -> IndexPath? {
+        return dictionaryLastIndexPathsDisplayed[section]
     }
     
     func searchResultViewModel(with text: String?) -> SearchResultViewModel? {

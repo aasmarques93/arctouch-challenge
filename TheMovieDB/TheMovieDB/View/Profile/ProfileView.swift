@@ -18,16 +18,6 @@ class ProfileView: UITableViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    let viewHeaderHeight: CGFloat = 32
-    
-    var labelHeader: UILabel {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: viewHeaderHeight))
-        label.backgroundColor = HexColor.primary.color
-        label.textColor = HexColor.text.color
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        return label
-    }
-    
     var viewModel: ProfileViewModel?
     
     override func viewDidLoad() {
@@ -69,7 +59,7 @@ class ProfileView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return viewHeaderHeight
+        return viewHeaderTitleHeight
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -80,9 +70,9 @@ class ProfileView: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         guard segmentedControl.selectedSegmentIndex != 0 else {
-            return viewModel?.numberYourListSections ?? 1
+            return viewModel?.numberYourListSections ?? 0
         }
-        return 1
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

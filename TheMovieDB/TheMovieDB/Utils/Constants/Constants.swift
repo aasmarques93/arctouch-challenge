@@ -40,6 +40,9 @@ enum Titles: String {
     
     case photos = "All photos"
     
+    case trackTvShow = "Track TV Show"
+    case episode = "Episode"
+    
     // Fabric
     case error = "Error"
     case click = "Click"

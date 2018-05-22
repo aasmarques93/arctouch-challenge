@@ -35,6 +35,13 @@ class TVShowSectionViewCell: UITableViewCell {
         
         collectionView.itemWidth = indexPath.section == 0 ? StoryPreviewCell.cellHeight : 180
         collectionView.itemHeight = indexPath.section == 0 ? StoryPreviewCell.cellHeight : 230
+        
+        guard let lastIndexPathDisplayed = viewModel?.lastIndexPathDisplayed(at: indexPath.section),
+            lastIndexPathDisplayed.item > 1 else {
+                return
+        }
+        
+        collectionView.scrollToItem(at: lastIndexPathDisplayed, at: .centeredHorizontally, animated: false)
     }
 }
 
@@ -62,6 +69,7 @@ extension TVShowSectionViewCell: CollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        viewModel?.setLastIndexPathDisplayed(indexPath, at: selectedIndexPath?.section ?? 0)
         viewModel?.doServicePaginationIfNeeded(at: selectedIndexPath?.section ?? 0, row: indexPath.row)
     }
     

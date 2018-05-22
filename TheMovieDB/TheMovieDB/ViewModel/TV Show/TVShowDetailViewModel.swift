@@ -294,4 +294,10 @@ class TVShowDetailViewModel: ViewModel {
         return TVShowDetailViewModel(tvShow)
     }
     
+    func trackViewModel() -> TrackViewModel? {
+        guard let tvShowDetail = tvShowDetail else {
+            return nil
+        }
+        return TrackViewModel(tvShowDetail: tvShowDetail, arraySeasons: arraySeasons)
+    }
 }

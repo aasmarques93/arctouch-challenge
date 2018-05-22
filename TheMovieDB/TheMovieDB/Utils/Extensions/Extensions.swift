@@ -235,3 +235,17 @@ extension UIImage {
         return nil
     }
 }
+
+extension UITableViewController {
+    var viewHeaderTitleHeight: CGFloat {
+        return 32
+    }
+    
+    var labelHeader: UILabel {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: viewHeaderTitleHeight))
+        label.backgroundColor = HexColor.primary.color
+        label.textColor = HexColor.text.color
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        return label
+    }
+}

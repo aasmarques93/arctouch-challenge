@@ -12,8 +12,10 @@ import UIKit
     func numberOfSections(in collectionView: UICollectionView) -> Int
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath)
+    @objc optional func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath)
     @objc optional func didSelect(_ collectionView: UICollectionView, itemAt indexPath: IndexPath)
+    @objc optional func scrollViewDidScroll(_ scrollView: UIScrollView)
+    @objc optional func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
 }
 
 class CollectionView: UICollectionView {
@@ -91,7 +93,15 @@ extension CollectionView: UICollectionViewDataSource, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        collectionDelegate.collectionView(collectionView, willDisplay: cell, forItemAt: indexPath)
+        collectionDelegate.collectionView?(collectionView, willDisplay: cell, forItemAt: indexPath)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        collectionDelegate.scrollViewDidScroll?(scrollView)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        collectionDelegate.scrollViewDidEndDecelerating?(scrollView)
     }
 }
 

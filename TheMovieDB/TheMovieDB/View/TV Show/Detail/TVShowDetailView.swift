@@ -63,7 +63,15 @@ class TVShowDetailView: UITableViewController {
         viewModel?.genres.bind(to: textViewGenres.reactive.text)
         viewModel?.overview.bind(to: textViewOverview.reactive.text)
     }
-        
+    
+    // MARK: - Actions -
+    
+    @IBAction func buttonTrackAction(_ sender: UIButton) {
+        let viewController = instantiate(viewController: TrackView.self, from: .tvShow)
+        viewController.viewModel = viewModel?.trackViewModel()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     // MARK: - Table view data source -
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -199,6 +199,11 @@
 		ED841EAF20A5501800A425BF /* Movie.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED841EB120A5501800A425BF /* Movie.storyboard */; };
 		ED841EB620A5506000A425BF /* PersonalityTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED841EB820A5506000A425BF /* PersonalityTest.storyboard */; };
 		ED841EBF20A62D4600A425BF /* PersonalityTestServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED841EBE20A62D4600A425BF /* PersonalityTestServiceModel.swift */; };
+		ED8D13F720B3753100E6F1EB /* TrackViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D13F620B3753100E6F1EB /* TrackViewCell.swift */; };
+		ED8D13F920B3756C00E6F1EB /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D13F820B3756C00E6F1EB /* TrackViewModel.swift */; };
+		ED8D13FB20B375DE00E6F1EB /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D13FA20B375DE00E6F1EB /* TrackView.swift */; };
+		ED8D13FD20B3A97300E6F1EB /* TrackEpisodeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D13FC20B3A97300E6F1EB /* TrackEpisodeCellViewModel.swift */; };
+		ED8D140320B42E5F00E6F1EB /* TrackEpisodeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D140220B42E5F00E6F1EB /* TrackEpisodeViewCell.swift */; };
 		EDBAF882209FFE430089DE39 /* FabricUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAF881209FFE430089DE39 /* FabricUtils.swift */; };
 		EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01220585A4400D843EC /* CollectionView.swift */; };
 		EDC6C01820585A5500D843EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01720585A5500D843EC /* Date.swift */; };
@@ -466,6 +471,11 @@
 		ED841EBA20A5507200A425BF /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/PersonalityTest.strings"; sourceTree = "<group>"; };
 		ED841EBC20A5507600A425BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PersonalityTest.strings; sourceTree = "<group>"; };
 		ED841EBE20A62D4600A425BF /* PersonalityTestServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestServiceModel.swift; sourceTree = "<group>"; };
+		ED8D13F620B3753100E6F1EB /* TrackViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewCell.swift; sourceTree = "<group>"; };
+		ED8D13F820B3756C00E6F1EB /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
+		ED8D13FA20B375DE00E6F1EB /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
+		ED8D13FC20B3A97300E6F1EB /* TrackEpisodeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackEpisodeCellViewModel.swift; sourceTree = "<group>"; };
+		ED8D140220B42E5F00E6F1EB /* TrackEpisodeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackEpisodeViewCell.swift; sourceTree = "<group>"; };
 		EDBAF881209FFE430089DE39 /* FabricUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricUtils.swift; sourceTree = "<group>"; };
 		EDC6C01220585A4400D843EC /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		EDC6C01720585A5500D843EC /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -932,8 +942,8 @@
 				ED38340C20940DFC0079D48F /* TVShowViewModel.swift */,
 				ED3834122094111D0079D48F /* TVShowCellViewModel.swift */,
 				ED38341F20941CB70079D48F /* TVShowDetailViewModel.swift */,
-				ED3834582097426D0079D48F /* SeasonDetailViewModel.swift */,
-				ED38345220973FBF0079D48F /* EpisodeViewModel.swift */,
+				ED8D13FE20B42CA100E6F1EB /* Seasons */,
+				ED8D13FF20B42CAB00E6F1EB /* Track */,
 			);
 			path = "TV Show";
 			sourceTree = "<group>";
@@ -1099,8 +1109,8 @@
 			isa = PBXGroup;
 			children = (
 				ED38341D20941C9D0079D48F /* TVShowDetailView.swift */,
-				ED38345020973FA00079D48F /* SeasonDetailView.swift */,
-				ED383456209741530079D48F /* EpisodeViewCell.swift */,
+				ED8D140020B42E3900E6F1EB /* Seasons */,
+				ED8D140120B42E3D00E6F1EB /* Track */,
 				ED7B9CAD209E16E7006B9586 /* XIB */,
 			);
 			path = Detail;
@@ -1328,6 +1338,43 @@
 				ED841EBE20A62D4600A425BF /* PersonalityTestServiceModel.swift */,
 			);
 			path = PersonalityTest;
+			sourceTree = "<group>";
+		};
+		ED8D13FE20B42CA100E6F1EB /* Seasons */ = {
+			isa = PBXGroup;
+			children = (
+				ED3834582097426D0079D48F /* SeasonDetailViewModel.swift */,
+				ED38345220973FBF0079D48F /* EpisodeViewModel.swift */,
+			);
+			path = Seasons;
+			sourceTree = "<group>";
+		};
+		ED8D13FF20B42CAB00E6F1EB /* Track */ = {
+			isa = PBXGroup;
+			children = (
+				ED8D13F820B3756C00E6F1EB /* TrackViewModel.swift */,
+				ED8D13FC20B3A97300E6F1EB /* TrackEpisodeCellViewModel.swift */,
+			);
+			path = Track;
+			sourceTree = "<group>";
+		};
+		ED8D140020B42E3900E6F1EB /* Seasons */ = {
+			isa = PBXGroup;
+			children = (
+				ED38345020973FA00079D48F /* SeasonDetailView.swift */,
+				ED383456209741530079D48F /* EpisodeViewCell.swift */,
+			);
+			path = Seasons;
+			sourceTree = "<group>";
+		};
+		ED8D140120B42E3D00E6F1EB /* Track */ = {
+			isa = PBXGroup;
+			children = (
+				ED8D13FA20B375DE00E6F1EB /* TrackView.swift */,
+				ED8D13F620B3753100E6F1EB /* TrackViewCell.swift */,
+				ED8D140220B42E5F00E6F1EB /* TrackEpisodeViewCell.swift */,
+			);
+			path = Track;
 			sourceTree = "<group>";
 		};
 		EDBAF880209FFE340089DE39 /* Fabric */ = {
@@ -1828,6 +1875,7 @@
 				ED0C3D3B20A8A74B00F28150 /* MoviePreviewView.swift in Sources */,
 				ED2AA62F20A30FAE00AA0DF5 /* ChartGenericContainer.swift in Sources */,
 				ED2AA63020A30FAE00AA0DF5 /* ChartGenericCell.swift in Sources */,
+				ED8D13FB20B375DE00E6F1EB /* TrackView.swift in Sources */,
 				ED2AA63120A30FAE00AA0DF5 /* ChartGenericChartCell.xib in Sources */,
 				ED16D87220599CC7002A0B2C /* SearchMovie.swift in Sources */,
 				ED841E6A20A3C7A200A425BF /* PersonalityTestResultViewModel.swift in Sources */,
@@ -1896,12 +1944,14 @@
 				ED16D86920597D99002A0B2C /* MovieDetail.swift in Sources */,
 				ED3834592097426D0079D48F /* SeasonDetailViewModel.swift in Sources */,
 				ED268CF720AB8ED800C2B887 /* RouletteView.swift in Sources */,
+				ED8D13FD20B3A97300E6F1EB /* TrackEpisodeCellViewModel.swift in Sources */,
 				ED81CB8020B05FF10056E2A8 /* FriendsViewCell.swift in Sources */,
 				ED38343C2094B3F40079D48F /* SearchTV.swift in Sources */,
 				ED0C3D4720A9AB7600F28150 /* StoriesView.swift in Sources */,
 				EDC6C01C20585A6300D843EC /* LoadingView.swift in Sources */,
 				ED65BEFD20923EA20091D93B /* XibView.swift in Sources */,
 				ED3833F720938BBA0079D48F /* PopularPersonViewCell.swift in Sources */,
+				ED8D140320B42E5F00E6F1EB /* TrackEpisodeViewCell.swift in Sources */,
 				EDDAB1CA209C822100271265 /* TextField.swift in Sources */,
 				ED268CFC20AC439700C2B887 /* PickerViewController.swift in Sources */,
 				ED16D85E20597A6C002A0B2C /* MovieDetailView.swift in Sources */,
@@ -1950,6 +2000,7 @@
 				ED4201A220A754F6005D5FF3 /* RegisterViewModel.swift in Sources */,
 				ED81CB8B20B0C89F0056E2A8 /* UserMovie.swift in Sources */,
 				ED7B9CB8209E44D4006B9586 /* EpisodeImagesList.swift in Sources */,
+				ED8D13F720B3753100E6F1EB /* TrackViewCell.swift in Sources */,
 				ED65BEBA2090A55D0091D93B /* VideosList.swift in Sources */,
 				ED3833EA20933A3E0079D48F /* PersonServiceModel.swift in Sources */,
 				ED65BF01209245430091D93B /* MovieView.swift in Sources */,
@@ -1980,6 +2031,7 @@
 				ED4201AC20A76245005D5FF3 /* LoginServiceModel.swift in Sources */,
 				ED16D88C2059A3A0002A0B2C /* SearchResultViewCell.swift in Sources */,
 				ED08937D20585752004CC05F /* AppDelegate.swift in Sources */,
+				ED8D13F920B3756C00E6F1EB /* TrackViewModel.swift in Sources */,
 				ED16D88A2059A34F002A0B2C /* SearchResultView.swift in Sources */,
 				ED16D8882059A07F002A0B2C /* SearchServiceModel.swift in Sources */,
 				ED0C3D5C20AA2CD200F28150 /* NetflixReferences.swift in Sources */,
