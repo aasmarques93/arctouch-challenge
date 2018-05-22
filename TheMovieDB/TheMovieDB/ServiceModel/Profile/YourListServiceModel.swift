@@ -16,10 +16,10 @@ struct YourListServiceModel {
             guard let array = object as? [JSON] else {
                 return
             }
-            var arrayMovies = [UserMovie]()
+            var arrayMovies = [UserMovieShow]()
             
             for movie in array {
-                arrayMovies.append(UserMovie(object: movie))
+                arrayMovies.append(UserMovieShow(object: movie))
             }
             
             handler?(arrayMovies)
@@ -41,7 +41,7 @@ struct YourListServiceModel {
                                 guard let object = object else {
                                     return
                                 }
-                                handler?(UserMovie(object: object))
+                                handler?(UserMovieShow(object: object))
         })
     }
     
@@ -59,7 +59,44 @@ struct YourListServiceModel {
                                 guard let object = object else {
                                     return
                                 }
-                                handler?(UserMovie(object: object))
+                                handler?(UserMovieShow(object: object))
+        })
+    }
+    
+    func getUserShows(handler: HandlerObject? = nil) {
+        serviceModel.request(requestUrl: .userShowsTrack, environmentBase: .heroku, handlerObject: { (object) in
+            guard let array = object as? [JSON] else {
+                return
+            }
+            var arrayShows = [UserMovieShow]()
+            
+            for show in array {
+                arrayShows.append(UserMovieShow(object: show))
+            }
+            
+            handler?(arrayShows)
+        })
+    }
+    
+    func track(show: TVShowDetail, season: Int, episode: Int, handler: HandlerObject? = nil) {
+        var parameters = [String: Any]()
+        
+        if let value = show.id { parameters["showId"] = value }
+        if let value = show.posterPath { parameters["showImageUrl"] = value }
+        
+        parameters["season"] = season
+        parameters["episode"] = episode
+        
+        serviceModel.request(method: .post,
+                             requestUrl: .trackShow,
+                             environmentBase: .heroku,
+                             parameters: parameters,
+                             handlerObject: { (object) in
+                                
+                                guard let object = object else {
+                                    return
+                                }
+                                handler?(UserMovieShow(object: object))
         })
     }
     

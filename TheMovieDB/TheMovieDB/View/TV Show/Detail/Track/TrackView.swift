@@ -22,6 +22,11 @@ class TrackView: UITableViewController {
         viewModel?.loadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel?.saveTrack()
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel?.numberOfSeasons ?? 0
     }

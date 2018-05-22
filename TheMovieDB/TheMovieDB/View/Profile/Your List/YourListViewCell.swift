@@ -39,7 +39,7 @@ extension YourListViewCell: CollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel?.numberOfMovies ?? 0
+        return viewModel?.numberOfMoviesShows ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -49,11 +49,14 @@ extension YourListViewCell: CollectionViewDelegate {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
-    }
-    
     func didSelect(_ collectionView: UICollectionView, itemAt indexPath: IndexPath) {
+        guard let isMovieType = viewModel?.isMovieType, isMovieType else {
+            let viewController = instantiate(viewController: TVShowDetailView.self, from: .tvShow)
+            viewController.viewModel = viewModel?.tvShowDetailViewModel(at: indexPath)
+            UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
+            return
+        }
+        
         let viewController = instantiate(viewController: MovieDetailView.self, from: .movie)
         viewController.viewModel = viewModel?.movieDetailViewModel(at: indexPath)
         UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)

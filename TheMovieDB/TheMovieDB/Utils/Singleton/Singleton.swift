@@ -14,8 +14,9 @@ class Singleton {
     let serviceModel = ServiceModel()
     let yourListServiceModel = YourListServiceModel()
     
-    var arrayUserWantToSeeMovies = [UserMovie]()
-    var arrayUserSeenMovies = [UserMovie]()
+    var arrayUserWantToSeeMovies = [UserMovieShow]()
+    var arrayUserShows = [UserMovieShow]()
+    var arrayUserSeenMovies = [UserMovieShow]()
     
     let typingTimeInterval = 0.01
     var arrayPersonalityTypes = [PersonalityType]()
@@ -51,12 +52,13 @@ class Singleton {
     
     func loadUserData() {
         getUserWantToSeeMovies()
+        getUserShows()
         getUserSeenMovies()
     }
     
     func getUserWantToSeeMovies(handler: HandlerObject? = nil) {
         yourListServiceModel.getUserMovies(requestUrl: .userWantToSeeMovies) { [weak self] (object) in
-            guard let array = object as? [UserMovie] else {
+            guard let array = object as? [UserMovieShow] else {
                 return
             }
             self?.arrayUserWantToSeeMovies = array
@@ -64,9 +66,19 @@ class Singleton {
         }
     }
     
+    func getUserShows(handler: HandlerObject? = nil) {
+        yourListServiceModel.getUserShows { [weak self] (object) in
+            guard let array = object as? [UserMovieShow] else {
+                return
+            }
+            self?.arrayUserShows = array
+            handler?(array)
+        }
+    }
+    
     func getUserSeenMovies(handler: HandlerObject? = nil) {
         yourListServiceModel.getUserMovies(requestUrl: .userSeenMovies) { [weak self] (object) in
-            guard let array = object as? [UserMovie] else {
+            guard let array = object as? [UserMovieShow] else {
                 return
             }
             self?.arrayUserSeenMovies = array

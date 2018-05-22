@@ -30,6 +30,10 @@
 	<string>/api/saveSeenMovie</string>
 	<key>deleteSeenMovie</key>
 	<string>/api/deleteSeenMovie</string>
+	<key>trackShow</key>
+	<string>/api/trackShow</string>
+	<key>userShowsTrack</key>
+	<string>/api/userShowsTrack</string>
 	<key>personalityTest</key>
 	<string>/personalityTest</string>
 	<key>personalityTestBR</key>

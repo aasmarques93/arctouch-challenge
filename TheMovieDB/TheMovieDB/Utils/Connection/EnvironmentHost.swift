@@ -39,6 +39,8 @@ enum RequestUrl: String {
     case userSeenMovies
     case saveSeenMovie
     case deleteSeenMovie
+    case trackShow
+    case userShowsTrack
     case personalityTest
     case personalityTestBR
     case personalityTypes

@@ -97,7 +97,7 @@ class ProfileViewModel: ViewModel {
         case .wantToSeeMovies:
             return Singleton.shared.arrayUserWantToSeeMovies.count == 0
         case .tvShowsTrack:
-            return true
+            return Singleton.shared.arrayUserShows.count == 0
         case .seenMovies:
             return Singleton.shared.arrayUserSeenMovies.count == 0
         }

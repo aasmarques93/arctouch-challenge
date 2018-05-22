@@ -15,15 +15,19 @@ class YourListViewModel: ViewModel {
     
     var isMessageErrorHidden = Observable<Bool>(false)
     
+    var isMovieType: Bool {
+        return yourListSection != .tvShowsTrack
+    }
+    
     private var yourListSection: YourListSection
-    private var arrayUserMovies: [UserMovie] {
-        var array = [UserMovie]()
+    private var arrayUserMoviesShows: [UserMovieShow] {
+        var array = [UserMovieShow]()
     
         switch yourListSection {
         case .wantToSeeMovies:
             array = Singleton.shared.arrayUserWantToSeeMovies
         case .tvShowsTrack:
-            break
+            array = Singleton.shared.arrayUserShows
         case .seenMovies:
             array = Singleton.shared.arrayUserSeenMovies
         }
@@ -32,7 +36,7 @@ class YourListViewModel: ViewModel {
         return array
     }
     
-    var numberOfMovies: Int { return arrayUserMovies.count }
+    var numberOfMoviesShows: Int { return arrayUserMoviesShows.count }
     
     init(object: YourListSection) {
         self.yourListSection = object
@@ -43,7 +47,7 @@ class YourListViewModel: ViewModel {
         case .wantToSeeMovies:
             getUserWantToSeeMovies()
         case .tvShowsTrack:
-            return
+            getUserShows()
         case .seenMovies:
             getUserSeenMovies()
         }
@@ -55,6 +59,12 @@ class YourListViewModel: ViewModel {
         }
     }
     
+    func getUserShows() {
+        Singleton.shared.getUserShows { [weak self] (object) in
+            self?.delegate?.reloadData?()
+        }
+    }
+    
     func getUserSeenMovies() {
         Singleton.shared.getUserSeenMovies { [weak self] (object) in
             self?.delegate?.reloadData?()
@@ -62,19 +72,29 @@ class YourListViewModel: ViewModel {
     }
     
     var isMoviesEmpty: Bool {
-        return numberOfMovies == 0
+        return numberOfMoviesShows == 0
     }
     
     func imagePathUrl(at indexPath: IndexPath) -> URL? {
-        return URL(string: serviceModel.imageUrl(with: arrayUserMovies[indexPath.row].movieImageUrl ?? ""))
+        guard isMovieType else {
+            return URL(string: serviceModel.imageUrl(with: arrayUserMoviesShows[indexPath.row].showImageUrl ?? ""))
+        }
+        return URL(string: serviceModel.imageUrl(with: arrayUserMoviesShows[indexPath.row].movieImageUrl ?? ""))
     }
     
     // MARK: - Movies Detail -
     
     func movieDetailViewModel(at indexPath: IndexPath) -> MovieDetailViewModel {
-        let userMovie = arrayUserMovies[indexPath.row]
+        let userMovie = arrayUserMoviesShows[indexPath.row]
         let dictionary = ["id": userMovie.movieId]
         let movie = Movie(object: dictionary)
         return MovieDetailViewModel(movie)
+    }
+    
+    func tvShowDetailViewModel(at indexPath: IndexPath) -> TVShowDetailViewModel {
+        let userShow = arrayUserMoviesShows[indexPath.row]
+        let dictionary = ["id": userShow.showId]
+        let tvShow = TVShow(object: dictionary)
+        return TVShowDetailViewModel(tvShow)
     }
 }

@@ -184,7 +184,6 @@
 		ED81CB8220B068AB0056E2A8 /* YourListMovieViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81CB8120B068AB0056E2A8 /* YourListMovieViewCell.swift */; };
 		ED81CB8420B06F310056E2A8 /* YourListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81CB8320B06F310056E2A8 /* YourListViewModel.swift */; };
 		ED81CB8820B0C6F30056E2A8 /* YourListServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81CB8720B0C6F30056E2A8 /* YourListServiceModel.swift */; };
-		ED81CB8B20B0C89F0056E2A8 /* UserMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81CB8A20B0C89F0056E2A8 /* UserMovie.swift */; };
 		ED841E5D20A37DE000A425BF /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED841E5C20A37DE000A425BF /* UserDefaultsHelper.swift */; };
 		ED841E6A20A3C7A200A425BF /* PersonalityTestResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED841E6920A3C7A200A425BF /* PersonalityTestResultViewModel.swift */; };
 		ED841E8720A52AE600A425BF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED841E8920A52AE600A425BF /* Localizable.strings */; };
@@ -204,6 +203,7 @@
 		ED8D13FB20B375DE00E6F1EB /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D13FA20B375DE00E6F1EB /* TrackView.swift */; };
 		ED8D13FD20B3A97300E6F1EB /* TrackEpisodeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D13FC20B3A97300E6F1EB /* TrackEpisodeCellViewModel.swift */; };
 		ED8D140320B42E5F00E6F1EB /* TrackEpisodeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8D140220B42E5F00E6F1EB /* TrackEpisodeViewCell.swift */; };
+		ED95295520B47C83007936B6 /* UserMovieShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED95295420B47C83007936B6 /* UserMovieShow.swift */; };
 		EDBAF882209FFE430089DE39 /* FabricUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAF881209FFE430089DE39 /* FabricUtils.swift */; };
 		EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01220585A4400D843EC /* CollectionView.swift */; };
 		EDC6C01820585A5500D843EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01720585A5500D843EC /* Date.swift */; };
@@ -439,7 +439,6 @@
 		ED81CB8120B068AB0056E2A8 /* YourListMovieViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourListMovieViewCell.swift; sourceTree = "<group>"; };
 		ED81CB8320B06F310056E2A8 /* YourListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourListViewModel.swift; sourceTree = "<group>"; };
 		ED81CB8720B0C6F30056E2A8 /* YourListServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourListServiceModel.swift; sourceTree = "<group>"; };
-		ED81CB8A20B0C89F0056E2A8 /* UserMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMovie.swift; sourceTree = "<group>"; };
 		ED841E5C20A37DE000A425BF /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		ED841E6920A3C7A200A425BF /* PersonalityTestResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestResultViewModel.swift; sourceTree = "<group>"; };
 		ED841E7F20A52A6400A425BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -476,6 +475,7 @@
 		ED8D13FA20B375DE00E6F1EB /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
 		ED8D13FC20B3A97300E6F1EB /* TrackEpisodeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackEpisodeCellViewModel.swift; sourceTree = "<group>"; };
 		ED8D140220B42E5F00E6F1EB /* TrackEpisodeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackEpisodeViewCell.swift; sourceTree = "<group>"; };
+		ED95295420B47C83007936B6 /* UserMovieShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMovieShow.swift; sourceTree = "<group>"; };
 		EDBAF881209FFE430089DE39 /* FabricUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricUtils.swift; sourceTree = "<group>"; };
 		EDC6C01220585A4400D843EC /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		EDC6C01720585A5500D843EC /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -1303,7 +1303,7 @@
 		ED81CB8920B0C8870056E2A8 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				ED81CB8A20B0C89F0056E2A8 /* UserMovie.swift */,
+				ED95295420B47C83007936B6 /* UserMovieShow.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1979,6 +1979,7 @@
 				ED65BEBB2090A55D0091D93B /* Video.swift in Sources */,
 				ED65BEFF20923F040091D93B /* CastView.swift in Sources */,
 				EDC6C01820585A5500D843EC /* Date.swift in Sources */,
+				ED95295520B47C83007936B6 /* UserMovieShow.swift in Sources */,
 				ED0C3D6320AA382B00F28150 /* NetflixServiceModel.swift in Sources */,
 				ED38340D20940DFC0079D48F /* TVShowViewModel.swift in Sources */,
 				ED16D84B205884AB002A0B2C /* Dates.swift in Sources */,
@@ -1998,7 +1999,6 @@
 				ED0C3D5A20AA2CD200F28150 /* NetflixAndroid.swift in Sources */,
 				ED2AA60020A0DD8000AA0DF5 /* Answer.swift in Sources */,
 				ED4201A220A754F6005D5FF3 /* RegisterViewModel.swift in Sources */,
-				ED81CB8B20B0C89F0056E2A8 /* UserMovie.swift in Sources */,
 				ED7B9CB8209E44D4006B9586 /* EpisodeImagesList.swift in Sources */,
 				ED8D13F720B3753100E6F1EB /* TrackViewCell.swift in Sources */,
 				ED65BEBA2090A55D0091D93B /* VideosList.swift in Sources */,
