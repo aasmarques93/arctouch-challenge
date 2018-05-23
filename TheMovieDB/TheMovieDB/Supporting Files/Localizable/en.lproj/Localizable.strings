@@ -47,6 +47,14 @@
 "Track TV Show" = "Track TV Show";
 "Episode" = "Episode";
 
+// Personality
+
+"Comedy" = "Comedy";
+"Action" = "Action";
+"Drama" = "Drama";
+"Thriller" = "Thriller";
+"Documentary" = "Documentary";
+
 // Enum Messages
 "There are no movies available" = "There are no movies available";
 "Search a movie" = "Search a movie";

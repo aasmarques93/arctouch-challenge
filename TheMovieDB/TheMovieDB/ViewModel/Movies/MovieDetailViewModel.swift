@@ -306,12 +306,12 @@ class MovieDetailViewModel: ViewModel {
     
     private func saveToYourWantToSeeList() {
         yourListServiceModel.save(movie: movie, requestUrl: .saveWantToSeeMovie)
-        Singleton.shared.getUserWantToSeeMovies()
+        Singleton.shared.loadUserData()
     }
     
     private func deleteFromYourWantToSeeList() {
         yourListServiceModel.delete(movie: movie, requestUrl: .deleteWantToSeeMovie)
-        Singleton.shared.getUserWantToSeeMovies()
+        Singleton.shared.loadUserData()
     }
     
     func toggleSeenYourListMovie() {
@@ -332,12 +332,12 @@ class MovieDetailViewModel: ViewModel {
     
     private func saveToYourSeenList() {
         yourListServiceModel.save(movie: movie, requestUrl: .saveSeenMovie)
-        Singleton.shared.getUserSeenMovies()
+        Singleton.shared.loadUserData()
     }
     
     private func deleteFromYourSeenList() {
         yourListServiceModel.delete(movie: movie, requestUrl: .deleteSeenMovie)
-        Singleton.shared.getUserSeenMovies()
+        Singleton.shared.loadUserData()
     }
     
     // MARK: - View Model Instantiation -

@@ -47,6 +47,14 @@
 "Track TV Show" = "Acompanhar a série";
 "Episode" = "Episódio";
 
+// Personality
+
+"Comedy" = "Comédia";
+"Action" = "Ação";
+"Drama" = "Drama";
+"Thriller" = "Suspense";
+"Documentary" = "Documentário";
+
 // Enum Messages
 "There are no movies available" = "Não há filmes disponíveis";
 "Search a movie" = "Pesquise um filme";

@@ -194,6 +194,42 @@ class PersonalityTestViewModel: ViewModel {
         FabricUtils.logEvent(message: "\(message)\(userPersonalityType?.title ?? "")")
         
         UserDefaultsHelper.saveUserDefaults(object: userPersonalityType?.dictionaryRepresentation(), key: .userPersonality)
+        
+        saveUserPersonalityTest()
+    }
+    
+    private func saveUserPersonalityTest() {
+        guard let userPersonalityType = userPersonalityType, arraySelectedAnswers.count > 0 else {
+            return
+        }
+        
+        var comedyPercentage: Float = 0
+        var actionPercentage: Float = 0
+        var dramaPercentage: Float = 0
+        var thrillerPercentage: Float = 0
+        var documentaryPercentage: Float = 0
+        
+        dictionaryAnswersCounts.forEach { (key, value) in
+            arrayPersonalityTypes.forEach({ (personalityType) in
+                guard key == personalityType.id else {
+                    return
+                }
+                
+                let percentage = Float(value) / Float(arraySelectedAnswers.count - 1) * 100
+                if personalityType.title == Titles.comedy.rawValue { comedyPercentage = percentage }
+                if personalityType.title == Titles.action.rawValue { actionPercentage = percentage }
+                if personalityType.title == Titles.drama.rawValue { dramaPercentage = percentage }
+                if personalityType.title == Titles.thriller.rawValue { thrillerPercentage = percentage }
+                if personalityType.title == Titles.documentary.rawValue { documentaryPercentage = percentage }
+            })
+        }
+        
+        serviceModel.save(personalityType: userPersonalityType,
+                          comedyPercentage: comedyPercentage,
+                          actionPercentage: actionPercentage,
+                          dramaPercentage: dramaPercentage,
+                          thrillerPercentage: thrillerPercentage,
+                          documentaryPercentage: documentaryPercentage)
     }
     
     private func saveSkipTest(status: Bool) {

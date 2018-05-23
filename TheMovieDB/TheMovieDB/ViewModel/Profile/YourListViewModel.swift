@@ -51,30 +51,7 @@ class YourListViewModel: ViewModel {
     // MARK: - Service requests -
     
     func loadData() {
-        switch yourListSection {
-        case .wantToSeeMovies:
-            getUserWantToSeeMovies()
-        case .tvShowsTrack:
-            getUserShows()
-        case .seenMovies:
-            getUserSeenMovies()
-        }
-    }
-    
-    func getUserWantToSeeMovies() {
-        Singleton.shared.getUserWantToSeeMovies { [weak self] (object) in
-            self?.delegate?.reloadData?()
-        }
-    }
-    
-    func getUserShows() {
-        Singleton.shared.getUserShows { [weak self] (object) in
-            self?.delegate?.reloadData?()
-        }
-    }
-    
-    func getUserSeenMovies() {
-        Singleton.shared.getUserSeenMovies { [weak self] (object) in
+        Singleton.shared.loadUserData { [weak self] (object) in
             self?.delegate?.reloadData?()
         }
     }

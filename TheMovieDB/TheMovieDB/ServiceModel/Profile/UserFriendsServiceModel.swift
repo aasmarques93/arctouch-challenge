@@ -21,7 +21,9 @@ struct UserFriendsServiceModel {
                              urlParameters: urlParameters,
                              handlerObject: { (object) in
                                 
-                                if let object = object { handler(User(object: object)) }
+                                if let object = object {
+                                    handler(User(object: object))
+                                }
         })
     }
     

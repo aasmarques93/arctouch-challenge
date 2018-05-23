@@ -12,8 +12,9 @@ class Singleton {
     static let shared = Singleton()
     
     let serviceModel = ServiceModel()
-    let yourListServiceModel = YourListServiceModel()
+    let profileServiceModel = ProfileServiceModel()
     
+    var userPersonality: UserPersonality?
     var arrayUserWantToSeeMovies = [UserMovieShow]()
     var arrayUserShows = [UserMovieShow]()
     var arrayUserSeenMovies = [UserMovieShow]()
@@ -21,12 +22,7 @@ class Singleton {
     let typingTimeInterval = 0.01
     var arrayPersonalityTypes = [PersonalityType]()
     
-    var user = User.createEmptyUser() {
-        didSet {
-            saveUser()
-            loadUserData()
-        }
-    }
+    var user = User.createEmptyUser() { didSet { saveUser() } }
     
     func updateUser(with object: User) {
         var newUser = user
@@ -37,6 +33,10 @@ class Singleton {
         if let value = object.token { newUser.token = value }
         if let value = object.photo { newUser.photo = value }
         if let value = object.picture { newUser.picture = value }
+        if let value = object.personality { newUser.personality = value }
+        if let value = object.moviesWantToSeeList { newUser.moviesWantToSeeList = value }
+        if let value = object.moviesSeenList { newUser.moviesSeenList = value }
+        if let value = object.showsTrackList { newUser.showsTrackList = value }
         user = newUser
     }
     
@@ -62,39 +62,19 @@ class Singleton {
         return UIImage(data: data)
     }
     
-    func loadUserData() {
-        getUserWantToSeeMovies()
-        getUserShows()
-        getUserSeenMovies()
-    }
-    
-    func getUserWantToSeeMovies(handler: HandlerObject? = nil) {
-        yourListServiceModel.getUserMovies(requestUrl: .userWantToSeeMovies) { [weak self] (object) in
-            guard let array = object as? [UserMovieShow] else {
+    func loadUserData(handler: HandlerObject? = nil) {
+        profileServiceModel.getProfile { [weak self] (object) in
+            guard let object = object as? User else {
                 return
             }
-            self?.arrayUserWantToSeeMovies = array
-            handler?(array)
-        }
-    }
-    
-    func getUserShows(handler: HandlerObject? = nil) {
-        yourListServiceModel.getUserShows { [weak self] (object) in
-            guard let array = object as? [UserMovieShow] else {
-                return
-            }
-            self?.arrayUserShows = array
-            handler?(array)
-        }
-    }
-    
-    func getUserSeenMovies(handler: HandlerObject? = nil) {
-        yourListServiceModel.getUserMovies(requestUrl: .userSeenMovies) { [weak self] (object) in
-            guard let array = object as? [UserMovieShow] else {
-                return
-            }
-            self?.arrayUserSeenMovies = array
-            handler?(array)
+            
+            self?.userPersonality = object.personality
+            self?.arrayUserWantToSeeMovies = object.moviesWantToSeeList ?? []
+            self?.arrayUserShows = object.showsTrackList ?? []
+            self?.arrayUserSeenMovies = object.moviesSeenList ?? []
+            
+            Singleton.shared.updateUser(with: object)
+            handler?(object)
         }
     }
     

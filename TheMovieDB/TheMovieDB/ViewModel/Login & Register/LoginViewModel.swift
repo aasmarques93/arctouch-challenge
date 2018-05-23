@@ -109,9 +109,7 @@ class LoginViewModel: ViewModel {
         return true
     }
     
-    func loadData() {
-        
-    }
+    func loadData() { }
     
     private func getUserLogged() {
         if let userLogged = Singleton.shared.userLogged {
@@ -121,22 +119,24 @@ class LoginViewModel: ViewModel {
         }
     }
     
+    private func didLogin(user: User) {
+        Singleton.shared.updateUser(with: user)
+        Singleton.shared.loadUserData()
+        delegate?.didLogin()
+    }
+    
     func setupFacebookDataIfNeeded() {
         if let _ = FBSDKAccessToken.current() {
-            setFacebookId(handlerResult: { [weak self] _ in
-                self?.delegate?.didLogin()
-            })
+            setFacebookId()
         }
     }
         
-    func setFacebookId(handlerResult: @escaping HandlerObject) {
+    func setFacebookId() {
         guard !Singleton.shared.isUserLogged else {
             return
         }
         
         Facebook.shared.graphRequest(paths: [.me]) { [weak self] (connection, result, error) in
-            handlerResult(nil)
-            
             if let error = error {
                 print("Facebook Error: \(error)")
                 return
@@ -150,7 +150,8 @@ class LoginViewModel: ViewModel {
             var dictionary = result
             dictionary["facebookId"] = result["id"]
             dictionary["id"] = ""
-            Singleton.shared.updateUser(with: User(object: dictionary))
+
+            Singleton.shared.updateUser(with: User(object: dictionary))            
             
             self?.downloadUserPhoto()
             self?.signUpFacebookUser()
@@ -176,8 +177,7 @@ class LoginViewModel: ViewModel {
                                         }
                                         
                                         print("Facebook user signed up")
-                                        Singleton.shared.updateUser(with: user)
-                                        self?.delegate?.didLogin()
+                                        self?.didLogin(user: user)
         })
     }
     
@@ -196,8 +196,7 @@ class LoginViewModel: ViewModel {
                 return
             }
             
-            Singleton.shared.updateUser(with: user)
-            self?.delegate?.didLogin()
+            self?.didLogin(user: user)
         })
     }
     
@@ -234,8 +233,7 @@ class LoginViewModel: ViewModel {
                 return
             }
             
-            Singleton.shared.updateUser(with: user)
-            self?.delegate?.didLogin()
+            self?.didLogin(user: user)
         })
     }
     

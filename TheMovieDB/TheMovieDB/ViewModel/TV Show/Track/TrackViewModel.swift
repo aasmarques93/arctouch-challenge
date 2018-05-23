@@ -35,7 +35,7 @@ class TrackViewModel: ViewModel {
         self.tvShowDetail = tvShowDetail
         self.arraySeasons = arraySeasons
         
-        Singleton.shared.getUserShows()
+        Singleton.shared.loadUserData()
     }
     
     func loadData() {

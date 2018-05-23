@@ -21,6 +21,10 @@ struct User: Model {
         static let token = "token"
         static let photo = "photo"
         static let picture = "picture"
+        static let personality = "personalityTest"
+        static let moviesWantToSeeList = "movie"
+        static let moviesSeenList = "seenMovies"
+        static let showsTrackList = "shows"
     }
     
     // MARK: Properties
@@ -32,6 +36,12 @@ struct User: Model {
     var token: String?
     var photo: String?
     var picture: Picture?
+    
+    var personality: UserPersonality?
+
+    var moviesWantToSeeList: [UserMovieShow]?
+    var moviesSeenList: [UserMovieShow]?
+    var showsTrackList: [UserMovieShow]?
     
     var imageData: Data?
     
@@ -61,6 +71,10 @@ struct User: Model {
         token = json?[SerializationKeys.token].string
         photo = json?[SerializationKeys.photo].string
         picture = Picture(json: json?[SerializationKeys.picture])
+        personality = UserPersonality(json: json?[SerializationKeys.personality])
+        if let items = json?[SerializationKeys.moviesWantToSeeList].array { moviesWantToSeeList = items.map { UserMovieShow(json: $0) } }
+        if let items = json?[SerializationKeys.moviesSeenList].array { moviesSeenList = items.map { UserMovieShow(json: $0) } }
+        if let items = json?[SerializationKeys.showsTrackList].array { showsTrackList = items.map { UserMovieShow(json: $0) } }
     }
     
     /// Generatingss description of the object in the form of a NSDictionary.
@@ -74,6 +88,10 @@ struct User: Model {
         if let value = token { dictionary[SerializationKeys.token] = value }
         if let value = photo { dictionary[SerializationKeys.photo] = value }
         if let value = picture { dictionary[SerializationKeys.picture] = value.dictionaryRepresentation() }
+        if let value = personality { dictionary[SerializationKeys.personality] = value.dictionaryRepresentation() }
+        if let value = moviesWantToSeeList { dictionary[SerializationKeys.moviesWantToSeeList] = value.map { $0.dictionaryRepresentation() } }
+        if let value = moviesSeenList { dictionary[SerializationKeys.moviesSeenList] = value.map { $0.dictionaryRepresentation() } }
+        if let value = showsTrackList { dictionary[SerializationKeys.showsTrackList] = value.map { $0.dictionaryRepresentation() } }
         return dictionary
     }
 }

@@ -14,6 +14,7 @@ class UserFriendViewModel: ViewModel {
     
     // MARK: - Service Model -
     let serviceModel = UserFriendsServiceModel()
+    let tvShowDetailServiceModel = TVShowDetailServiceModel()
     
     // MARK: - Observables -
     var isMessageErrorHidden = Observable<Bool>(false)
@@ -25,7 +26,21 @@ class UserFriendViewModel: ViewModel {
     var movieShow = Observable<String?>(nil)
     
     var userFriend: User
-    var userDetail: User?
+    var userDetail: User? {
+        didSet {
+            getShowTrackDetail()
+            personality.value = userDetail?.personality?.title
+            guard let color = userDetail?.personality?.color else {
+                return
+            }
+            backgroundColor.value = UIColor(hexString: color)
+        }
+    }
+    var tvShowDetail: TVShowDetail? {
+        didSet {
+            movieShow.value = tvShowDetail?.name
+        }
+    }
     
     init(object: User) {
         userFriend = object
@@ -36,9 +51,6 @@ class UserFriendViewModel: ViewModel {
         getProfile()
         
         name.value = userFriend.name
-        
-        personality.value = nil
-        movieShow.value = nil
     }
     
     private func loadImageData() {
@@ -52,8 +64,23 @@ class UserFriendViewModel: ViewModel {
     }
     
     private func getProfile() {
-        serviceModel.getProfile(facebookId: userFriend.facebookId) { (object) in
-            
+        serviceModel.getProfile(facebookId: userFriend.facebookId) { [weak self] (object) in
+            guard let user = object as? User else {
+                return
+            }
+            self?.userDetail = user
+        }
+    }
+    
+    private func getShowTrackDetail() {
+        guard let show = userDetail?.showsTrackList?.first, let showId = show.showId else {
+            return
+        }
+        
+        let dictionary = ["id": showId]
+        let tvShow = TVShow(object: dictionary)
+        tvShowDetailServiceModel.getDetail(from: tvShow) { [weak self] (object) in
+            self?.tvShowDetail = object as? TVShowDetail
         }
     }
 }

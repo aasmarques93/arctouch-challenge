@@ -61,6 +61,8 @@ class ProfileViewModel: ViewModel {
     // MARK: - Service requests -
     
     func loadData() {
+        Singleton.shared.loadUserData()
+        
         getUserFriends()
         
         let isUserLogged = Singleton.shared.isUserLogged
@@ -128,7 +130,13 @@ class ProfileViewModel: ViewModel {
             
             self?.arrayUserFriends = [User]()
             data.forEach({ (object) in
-                self?.arrayUserFriends.append(User(object: object))
+                guard let result = object as? [String: Any] else {
+                    return
+                }
+                var dictionary = result
+                dictionary["facebookId"] = result["id"]
+                dictionary["id"] = ""
+                self?.arrayUserFriends.append(User(object: dictionary))
             })
             self?.delegate?.reloadData?()
         }
