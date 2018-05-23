@@ -37,7 +37,7 @@ class TVShowSectionViewCell: UITableViewCell {
         collectionView.itemHeight = indexPath.section == 0 ? StoryPreviewCell.cellHeight : 230
         
         guard let lastIndexPathDisplayed = viewModel?.lastIndexPathDisplayed(at: indexPath.section),
-            lastIndexPathDisplayed.item > 1 else {
+            lastIndexPathDisplayed.item > 10 else {
                 return
         }
         

@@ -108,14 +108,9 @@ class ProfileView: UITableViewController {
             return
         }
         
-        
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let fadeTextAnimation = CATransition()
-        fadeTextAnimation.duration = 0.5
-        fadeTextAnimation.type = kCATransitionFade
-        navigationController?.navigationBar.layer.add(fadeTextAnimation, forKey: "fadeText")
         profileMainView?.title = scrollView.contentOffset.y > 44 ? textFieldUsername.text : Titles.profile.localized
     }
 }

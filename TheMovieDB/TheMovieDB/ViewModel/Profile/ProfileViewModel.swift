@@ -40,7 +40,7 @@ class ProfileViewModel: ViewModel {
     // MARK: - Observables -
     var username = Observable<String?>(nil)
     var email = Observable<String?>(nil)
-    var picture = Observable<UIImage?>(nil)
+    var picture = Observable<UIImage>(#imageLiteral(resourceName: "empty-user"))
     var rating = Observable<String?>(nil)
     
     var isButtonLogoutHidden = Observable<Bool>(true)
@@ -73,7 +73,7 @@ class ProfileViewModel: ViewModel {
         
         username.value = user.username
         email.value = user.email
-        picture.value = Singleton.shared.userPhoto
+        picture.value = Singleton.shared.userPhoto ?? #imageLiteral(resourceName: "empty-user")
         
         delegate?.reloadData?()
     }
