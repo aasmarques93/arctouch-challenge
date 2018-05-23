@@ -21,6 +21,7 @@ enum EnvironmentBase: String {
     case imagesTheMovieDB
     case reelgood
     case imagesReelgood
+    case custom
     case mock
 }
 
@@ -33,6 +34,7 @@ enum RequestUrl: String {
     case savePersonalityTest
     case userPersonalityTest
     case profile
+    case profileByFacebookId
     case userWantToSeeMovies
     case saveWantToSeeMovie
     case deleteWantToSeeMovie

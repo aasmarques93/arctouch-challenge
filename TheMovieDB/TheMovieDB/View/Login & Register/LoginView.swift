@@ -26,6 +26,7 @@ class LoginView: UITableViewController {
     
     @IBOutlet weak var buttonLogin: UIButton!
     
+    var profileMainView: ProfileMainView?
     let viewModel = LoginViewModel()
     
     override func viewDidLoad() {
@@ -76,7 +77,7 @@ class LoginView: UITableViewController {
 extension LoginView: LoginViewModelDelegate {
     func didLogin() {
         view.endEditing(true)
-//        ProfileViewModel.shared.setupContent()
+        profileMainView?.loadData()
     }
     
     func showAlert(message: String?) {

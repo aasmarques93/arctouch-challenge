@@ -28,6 +28,18 @@ class Singleton {
         }
     }
     
+    func updateUser(with object: User) {
+        var newUser = user
+        if let value = object.username { newUser.username = value }
+        if let value = object.email { newUser.email = value }
+        if let value = object.id { newUser.id = value }
+        if let value = object.facebookId { newUser.facebookId = value }
+        if let value = object.token { newUser.token = value }
+        if let value = object.photo { newUser.photo = value }
+        if let value = object.picture { newUser.picture = value }
+        user = newUser
+    }
+    
     func saveUser() {
         UserDefaultsHelper.saveUserDefaults(object: user.dictionaryRepresentation(), key: .userLogged)
     }

@@ -18,6 +18,8 @@
 	<string>/api/userPersonalityTest</string>
 	<key>profile</key>
 	<string>/api/profile</string>
+	<key>profileByFacebookId</key>
+	<string>/api/profile/{facebookId}</string>
 	<key>userWantToSeeMovies</key>
 	<string>/api/userWantToSeeMovies</string>
 	<key>saveWantToSeeMovie</key>

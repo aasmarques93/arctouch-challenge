@@ -23,7 +23,7 @@ class ProfileMainView: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.loadData()
+        loadData()
     }
     
     func setupBindings() {
@@ -31,10 +31,18 @@ class ProfileMainView: UIViewController {
         viewModel.isProfileHidden.bind(to: containerProfile.reactive.isHidden)
     }
     
+    func loadData() {
+        viewModel.loadData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let viewController = segue.destination as? ProfileView else {
+        if let viewController = segue.destination as? LoginView {
+            viewController.profileMainView = self
             return
         }
-        viewController.viewModel = viewModel
+        if let viewController = segue.destination as? ProfileView {
+            viewController.viewModel = viewModel
+            return
+        }
     }
 }

@@ -158,9 +158,7 @@ class RegisterViewModel: ViewModel {
                 }
             }
             
-            Singleton.shared.user = user
-            Singleton.shared.saveUser()
-            
+            Singleton.shared.updateUser(with: user)
             self?.delegate?.reloadData?()
         })
     }

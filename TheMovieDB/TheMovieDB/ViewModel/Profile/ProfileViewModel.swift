@@ -31,14 +31,13 @@ enum YourListSection: Int {
 }
 
 class ProfileViewModel: ViewModel {
-    static let shared = ProfileViewModel()
-    
-    private var user: User {
-        return Singleton.shared.user
-    }
-    
+    // MARK: - Delegate -
     weak var delegate: ViewModelDelegate?
     
+    // MARK: - Service Model -
+    var serviceModel = ProfileServiceModel()
+    
+    // MARK: - Observables -
     var username = Observable<String?>(nil)
     var email = Observable<String?>(nil)
     var picture = Observable<UIImage?>(nil)
@@ -48,10 +47,22 @@ class ProfileViewModel: ViewModel {
     var isLoginHidden = Observable<Bool>(false)
     var isProfileHidden = Observable<Bool>(true)
     
+    // MARK: - Objects -
+    private var user: User {
+        return Singleton.shared.user
+    }
+    
     private var arrayYourListSections: [YourListSection] = [.wantToSeeMovies, .tvShowsTrack, .seenMovies]
     var numberYourListSections: Int { return arrayYourListSections.count }
     
+    private var arrayUserFriends = [User]()
+    var numberOfUserFriends: Int { return arrayUserFriends.count }
+    
+    // MARK: - Service requests -
+    
     func loadData() {
+        getUserFriends()
+        
         let isUserLogged = Singleton.shared.isUserLogged
         
         isLoginHidden.value = isUserLogged
@@ -65,16 +76,7 @@ class ProfileViewModel: ViewModel {
         delegate?.reloadData?()
     }
     
-    private func updateUser() {
-        let newUsername = username.value
-        let newEmail = email.value
-        if newUsername != user.username || newEmail != user.email {
-            var newUser = Singleton.shared.user
-            newUser.username = newUsername
-            newUser.email = newEmail
-            Singleton.shared.saveUser()
-        }
-    }
+    // MARK: - User profile -
     
     func changeProfilePicture(_ data: Data) {
         Singleton.shared.user.photo = UserDefaultsHelper.getImagePath(with: data)
@@ -82,9 +84,12 @@ class ProfileViewModel: ViewModel {
     }
     
     func doLogout() {
+        serviceModel.doLogout()
         Singleton.shared.logout()
         loadData()
     }
+    
+    // MARK: - Your list -
     
     func sectionTitle(at section: Int) -> String? {
         return arrayYourListSections[section].localized
@@ -103,9 +108,33 @@ class ProfileViewModel: ViewModel {
         }
     }
     
-    // MARK: - Your List -
-    
     func yourListViewModel(at indexPath: IndexPath) -> YourListViewModel? {
         return YourListViewModel(object: arrayYourListSections[indexPath.section])
+    }
+    
+    // MARK: - User friends -
+    
+    func getUserFriends() {
+        Facebook.shared.graphRequest(paths: [.friends], parameters: [.id, .name, .picture]) { [weak self] (connection, result, error) in
+            if let error = error {
+                print("Facebook User Friends Error: \(error)")
+                return
+            }
+            
+            print("Facebook User Friends Result: \(result ?? "")")
+            guard let result = result as? [String: Any], let data = result["data"] as? [Any] else {
+                return
+            }
+            
+            self?.arrayUserFriends = [User]()
+            data.forEach({ (object) in
+                self?.arrayUserFriends.append(User(object: object))
+            })
+            self?.delegate?.reloadData?()
+        }
+    }
+    
+    func userFriendViewModel(at indexPath: IndexPath) -> UserFriendViewModel {
+        return UserFriendViewModel(object: arrayUserFriends[indexPath.row])
     }
 }

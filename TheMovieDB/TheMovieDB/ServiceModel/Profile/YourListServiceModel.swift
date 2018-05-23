@@ -9,7 +9,9 @@
 import SwiftyJSON
 
 struct YourListServiceModel {
-    let serviceModel = ServiceModel()
+    var serviceModel: ServiceModel {
+        return Singleton.shared.serviceModel
+    }
     
     func getUserMovies(requestUrl: RequestUrl, handler: HandlerObject? = nil) {
         serviceModel.request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in

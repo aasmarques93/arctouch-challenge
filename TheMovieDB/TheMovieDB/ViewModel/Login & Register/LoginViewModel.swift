@@ -116,7 +116,7 @@ class LoginViewModel: ViewModel {
     private func getUserLogged() {
         if let userLogged = Singleton.shared.userLogged {
             serviceModel.authenticate(userId: userLogged.id) { (object) in
-                Singleton.shared.user = userLogged
+                Singleton.shared.updateUser(with: userLogged)
             }
         }
     }
@@ -130,6 +130,10 @@ class LoginViewModel: ViewModel {
     }
         
     func setFacebookId(handlerResult: @escaping HandlerObject) {
+        guard !Singleton.shared.isUserLogged else {
+            return
+        }
+        
         Facebook.shared.graphRequest(paths: [.me]) { [weak self] (connection, result, error) in
             handlerResult(nil)
             
@@ -143,17 +147,22 @@ class LoginViewModel: ViewModel {
                 return
             }
             
-            Singleton.shared.user = User(object: result)
+            var dictionary = result
+            dictionary["facebookId"] = result["id"]
+            dictionary["id"] = ""
+            Singleton.shared.updateUser(with: User(object: dictionary))
             
+            self?.downloadUserPhoto()
             self?.signUpFacebookUser()
         }
     }
     
     private func signUpFacebookUser() {
         registerServiceModel.signup(username: user.username,
-                                      email: user.email,
-                                      facebookId: user.facebookId,
-                                      handler: { [weak self] (object) in
+                                    email: user.email,
+                                    name: user.name,
+                                    facebookId: user.facebookId,
+                                    handler: { [weak self] (object) in
         
                                         guard let user = object as? User else {
                                             return
@@ -167,13 +176,13 @@ class LoginViewModel: ViewModel {
                                         }
                                         
                                         print("Facebook user signed up")
-                                        Singleton.shared.saveUser()
+                                        Singleton.shared.updateUser(with: user)
                                         self?.delegate?.didLogin()
         })
     }
     
     private func authenticateFacebookUser() {
-        serviceModel.authenticate(facebookId: user.facebookId, handler: { [weak self] (object) in
+        serviceModel.authenticate(email: user.email, facebookId: user.facebookId, handler: { [weak self] (object) in
             guard let user = object as? User else {
                 return
             }
@@ -187,14 +196,19 @@ class LoginViewModel: ViewModel {
                 return
             }
             
-            Singleton.shared.saveUser()
+            Singleton.shared.updateUser(with: user)
             self?.delegate?.didLogin()
         })
     }
     
-    private func downloadUserPhoto(handlerData: @escaping HandlerObject) {
+    private func downloadUserPhoto() {
         serviceModel.loadImage(path: user.picture?.data?.url) { (data) in
-            handlerData(data)
+            guard let data = data as? Data else {
+                return
+            }
+            
+            Singleton.shared.user.photo = UserDefaultsHelper.getImagePath(with: data)
+            Singleton.shared.saveUser()
         }
     }
     
@@ -220,7 +234,7 @@ class LoginViewModel: ViewModel {
                 return
             }
             
-            Singleton.shared.user = user
+            Singleton.shared.updateUser(with: user)
             self?.delegate?.didLogin()
         })
     }

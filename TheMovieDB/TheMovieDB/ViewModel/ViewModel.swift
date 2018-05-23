@@ -29,6 +29,17 @@ extension ViewModel {
         if let statusMessage = object.statusMessage, statusMessage != "" {
             throw Error(message: statusMessage)
         }
+        
+        guard let json = object.json else {
+            return
+        }
+        
+        let statusMessage = json["status_message"]
+        guard let message = statusMessage["message"].string else {
+            return
+        }
+        
+        throw Error(message: message)
     }
     
     // Load image data at path

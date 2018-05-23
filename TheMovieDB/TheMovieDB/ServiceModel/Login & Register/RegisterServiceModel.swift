@@ -14,6 +14,7 @@ struct RegisterServiceModel {
     func signup(username: String? = nil,
                 email: String? = nil,
                 password: String? = nil,
+                name: String? = nil,
                 facebookId: String? = nil,
                 handler: @escaping HandlerObject) {
         
@@ -22,7 +23,8 @@ struct RegisterServiceModel {
         if let value = username { parameters["username"] = value }
         if let value = email { parameters["email"] = value }
         if let value = password { parameters["password"] = value }
-        if let value = facebookId { parameters["facebook_id"] = value }
+        if let value = name { parameters["username"] = value }
+        if let value = facebookId { parameters["facebookId"] = value }
         
         let urlParameters = ["language": Locale.preferredLanguages.first ?? ""]
         

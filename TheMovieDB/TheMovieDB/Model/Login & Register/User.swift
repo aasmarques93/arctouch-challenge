@@ -14,9 +14,10 @@ struct User: Model {
     // MARK: Declaration for string constants to be used to decode and also serialize.
     private struct SerializationKeys {
         static let username = "username"
+        static let name = "name"
         static let email = "email"
         static let id = "_id"
-        static let facebookId = "facebook_id"
+        static let facebookId = "facebookId"
         static let token = "token"
         static let photo = "photo"
         static let picture = "picture"
@@ -24,13 +25,14 @@ struct User: Model {
     
     // MARK: Properties
     var username: String?
+    var name: String?
     var email: String?
     var id: String?
     var facebookId: String?
     var token: String?
     var photo: String?
-    
     var picture: Picture?
+    
     var imageData: Data?
     
     static func createEmptyUser() -> User {
@@ -52,9 +54,10 @@ struct User: Model {
     init(json: JSON?) {
         self.json = json
         username = json?[SerializationKeys.username].string
+        name = json?[SerializationKeys.name].string
         email = json?[SerializationKeys.email].string
         id = json?[SerializationKeys.id].string
-        facebookId = json?[SerializationKeys.id].string
+        facebookId = json?[SerializationKeys.facebookId].string
         token = json?[SerializationKeys.token].string
         photo = json?[SerializationKeys.photo].string
         picture = Picture(json: json?[SerializationKeys.picture])
@@ -64,9 +67,10 @@ struct User: Model {
     func dictionaryRepresentation() -> [String: Any] {
         var dictionary: [String: Any] = [:]
         if let value = username { dictionary[SerializationKeys.username] = value }
+        if let value = name { dictionary[SerializationKeys.name] = value }
         if let value = email { dictionary[SerializationKeys.email] = value }
         if let value = id { dictionary[SerializationKeys.id] = value }
-        if let value = facebookId { dictionary[SerializationKeys.id] = value }
+        if let value = facebookId { dictionary[SerializationKeys.facebookId] = value }
         if let value = token { dictionary[SerializationKeys.token] = value }
         if let value = photo { dictionary[SerializationKeys.photo] = value }
         if let value = picture { dictionary[SerializationKeys.picture] = value.dictionaryRepresentation() }

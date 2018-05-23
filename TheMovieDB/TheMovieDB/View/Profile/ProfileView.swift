@@ -27,6 +27,7 @@ class ProfileView: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel?.delegate = self
         tableView.reloadData()
         PhotoPicker.shared.photoPickerDelegate = self
         setupBindings()
@@ -43,7 +44,6 @@ class ProfileView: UITableViewController {
         viewModel?.username.bidirectionalBind(to: textFieldUsername.reactive.text)
         viewModel?.email.bind(to: labelEmail.reactive.text)
         viewModel?.picture.bind(to: imageViewPhoto.reactive.image)
-        
     }
     
     @IBAction func buttonPhotoAction(_ sender: UIButton) {
@@ -72,11 +72,18 @@ class ProfileView: UITableViewController {
         guard segmentedControl.selectedSegmentIndex != 0 else {
             return viewModel?.numberYourListSections ?? 0
         }
-        return 0
+        return viewModel?.numberOfUserFriends ?? 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard segmentedControl.selectedSegmentIndex != 0 else {
+            return 230
+        }
+        return super.tableView(tableView, heightForRowAt: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -88,7 +95,15 @@ class ProfileView: UITableViewController {
         }
         
         let cell = tableView.dequeueReusableCell(FriendsViewCell.self, for: indexPath)
+        cell.viewModel = viewModel?.userFriendViewModel(at: indexPath)
+        cell.setupView()
         return cell
+    }
+}
+
+extension ProfileView: ViewModelDelegate {
+    func reloadData() {
+        tableView.reloadData()
     }
 }
 

@@ -22,7 +22,7 @@ struct LoginServiceModel {
         if let value = userId { parameters["userId"] = value }
         if let value = email { parameters["email"] = value }
         if let value = password { parameters["password"] = value }
-        if let value = facebookId { parameters["facebook_id"] = value }
+        if let value = facebookId { parameters["facebookId"] = value }
 
         let urlParameters = ["language": Locale.preferredLanguages.first ?? ""]
         
@@ -42,6 +42,6 @@ struct LoginServiceModel {
     }
     
     func loadImage(path: String?, handlerData: @escaping HandlerObject) {
-        serviceModel.loadImage(path: path, handlerData: handlerData)
+        serviceModel.loadImage(path: path, environmentBase: .custom, handlerData: handlerData)
     }
 }

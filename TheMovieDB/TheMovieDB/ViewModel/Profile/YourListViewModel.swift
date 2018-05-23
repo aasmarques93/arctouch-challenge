@@ -9,12 +9,16 @@
 import Bond
 
 class YourListViewModel: ViewModel {
+    // MARK: - Delegate -
     weak var delegate: ViewModelDelegate?
     
+    // MARK: - Service Model -
     let serviceModel = YourListServiceModel()
     
+    // MARK: - Observables -
     var isMessageErrorHidden = Observable<Bool>(false)
     
+    // MARK: - Objects -
     var isMovieType: Bool {
         return yourListSection != .tvShowsTrack
     }
@@ -38,9 +42,13 @@ class YourListViewModel: ViewModel {
     
     var numberOfMoviesShows: Int { return arrayUserMoviesShows.count }
     
+    // MARK: - Life cycle -
+    
     init(object: YourListSection) {
         self.yourListSection = object
     }
+    
+    // MARK: - Service requests -
     
     func loadData() {
         switch yourListSection {
@@ -71,7 +79,9 @@ class YourListViewModel: ViewModel {
         }
     }
     
-    var isMoviesEmpty: Bool {
+    // MARK: - Movies Shows -
+    
+    var isMoviesShowsEmpty: Bool {
         return numberOfMoviesShows == 0
     }
     
@@ -90,6 +100,8 @@ class YourListViewModel: ViewModel {
         let movie = Movie(object: dictionary)
         return MovieDetailViewModel(movie)
     }
+    
+    // MARK: - TV Show Detail -
     
     func tvShowDetailViewModel(at indexPath: IndexPath) -> TVShowDetailViewModel {
         let userShow = arrayUserMoviesShows[indexPath.row]
