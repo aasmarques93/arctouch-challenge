@@ -41,6 +41,7 @@ class ProfileMainView: UIViewController {
             return
         }
         if let viewController = segue.destination as? ProfileView {
+            viewController.profileMainView = self
             viewController.viewModel = viewModel
             return
         }

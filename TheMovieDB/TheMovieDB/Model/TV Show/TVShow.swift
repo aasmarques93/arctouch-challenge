@@ -25,6 +25,7 @@ struct TVShow: Model {
         static let id = "id"
         static let originalLanguage = "original_language"
         static let posterPath = "poster_path"
+        static let backdropPath = "backdrop_path"
     }
     
     // MARK: Properties
@@ -40,6 +41,7 @@ struct TVShow: Model {
     var id: Int?
     var originalLanguage: String?
     var posterPath: String?
+    var backdropPath: String?
     
     var imageData: Data?
     
@@ -67,7 +69,7 @@ struct TVShow: Model {
         id = json?[SerializationKeys.id].int
         originalLanguage = json?[SerializationKeys.originalLanguage].string
         posterPath = json?[SerializationKeys.posterPath].string
-        
+        backdropPath = json?[SerializationKeys.backdropPath].string
     }
     
     /// Generates description of the object in the form of a NSDictionary.
@@ -85,6 +87,7 @@ struct TVShow: Model {
         if let value = id { dictionary[SerializationKeys.id] = value }
         if let value = originalLanguage { dictionary[SerializationKeys.originalLanguage] = value }
         if let value = posterPath { dictionary[SerializationKeys.posterPath] = value }
+        if let value = backdropPath { dictionary[SerializationKeys.backdropPath] = value }
         return dictionary
     }
 }

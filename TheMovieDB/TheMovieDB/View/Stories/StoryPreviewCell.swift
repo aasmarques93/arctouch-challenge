@@ -22,7 +22,7 @@ class StoryPreviewCell: UICollectionViewCell {
         viewBackground.layer.cornerRadius = viewBackground.frame.width / 2
         
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = viewBackground.frame.width / 2
+        imageView.layer.cornerRadius = imageView.frame.width / 2
         
         backgroundColor = HexColor.primary.color
         imageView.backgroundColor = HexColor.primary.color

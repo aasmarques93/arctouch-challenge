@@ -15,7 +15,20 @@ struct MoviesServiceModel {
         })
     }
     
+    func getLatest(handler: @escaping HandlerObject) {
+        let urlParameters: [String: Any] = [
+            "language": Locale.preferredLanguages.first ?? ""
+        ]
+        serviceModel.request(requestUrl: .latest, urlParameters: urlParameters, handlerObject: { (object) in
+            if let object = object { handler(Movie(object: object)) }
+        })
+    }
+    
     func imageUrl(with path: String?) -> String {
         return serviceModel.imageUrl(with: path)
+    }
+    
+    func loadImage(path: String?, handlerData: @escaping HandlerObject) {
+        serviceModel.loadImage(path: path, handlerData: handlerData)
     }
 }

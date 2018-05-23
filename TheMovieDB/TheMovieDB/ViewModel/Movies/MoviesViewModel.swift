@@ -35,10 +35,18 @@ class MoviesViewModel: MoviesShowsViewModel {
     var numberOfPopularMovies: Int { return arrayPopularMovies.count }
     private var currentPopularMoviesPage: Int = 1
     
+    // MARK: Latest
+    private var latestMovie: Movie? {
+        didSet {
+            latestTitle.value = latestMovie?.title
+            getLatestImage(at: latestMovie?.backdropPath)
+        }
+    }
+    
     // MARK: - Service requests -
     
     override func loadData() {
-        super.loadData()        
+        super.loadData()
         getSugestedMovies()
         getMovies(section: .popular)
         getMovies(section: .topRated)
@@ -94,9 +102,18 @@ class MoviesViewModel: MoviesShowsViewModel {
             guard let array = self?.sortedByVoteAverage(array: results) else {
                 return
             }
+            self?.getLatest()
             self?.addMoviesToArray(array, section: .sugested)
             self?.reloadData(at: SectionsType.sugested.index(isMovie: self?.isMovie ?? true))
         }
+    }
+    
+    private func getLatest() {
+        if latestMovie != nil {
+            return
+        }
+        
+        latestMovie = arraySugestedMovies.randomElement()
     }
     
     private func getMovies(section: SectionsType) {
@@ -241,6 +258,13 @@ class MoviesViewModel: MoviesShowsViewModel {
     
     func movieDetailViewModel(at section: Int, row: Int) -> MovieDetailViewModel? {
         guard let movie = movie(at: section, row: row) else {
+            return nil
+        }
+        return MovieDetailViewModel(movie)
+    }
+    
+    func latestMovieDetailViewModel() -> MovieDetailViewModel? {
+        guard let movie = latestMovie else {
             return nil
         }
         return MovieDetailViewModel(movie)

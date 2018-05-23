@@ -18,6 +18,7 @@ class ProfileView: UITableViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    var profileMainView: ProfileMainView?
     var viewModel: ProfileViewModel?
     
     override func viewDidLoad() {
@@ -89,15 +90,33 @@ class ProfileView: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard segmentedControl.selectedSegmentIndex != 0 else {
             let cell = tableView.dequeueReusableCell(YourListViewCell.self, for: indexPath)
+            cell.setSelectedView(backgroundColor: .clear)
             cell.viewModel = viewModel?.yourListViewModel(at: indexPath)
             cell.setupView()
             return cell
         }
         
         let cell = tableView.dequeueReusableCell(FriendsViewCell.self, for: indexPath)
+        cell.setSelectedView(backgroundColor: .clear)
         cell.viewModel = viewModel?.userFriendViewModel(at: indexPath)
         cell.setupView()
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard segmentedControl.selectedSegmentIndex != 0 else {
+            return
+        }
+        
+        
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let fadeTextAnimation = CATransition()
+        fadeTextAnimation.duration = 0.5
+        fadeTextAnimation.type = kCATransitionFade
+        navigationController?.navigationBar.layer.add(fadeTextAnimation, forKey: "fadeText")
+        profileMainView?.title = scrollView.contentOffset.y > 44 ? textFieldUsername.text : Titles.profile.localized
     }
 }
 

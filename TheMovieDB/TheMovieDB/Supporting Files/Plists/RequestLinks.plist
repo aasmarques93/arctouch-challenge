@@ -64,6 +64,8 @@
 	<string>/movie/{idMovie}/reviews?page={page}&amp;</string>
 	<key>credits</key>
 	<string>/movie/{idMovie}/credits?language={language}&amp;</string>
+	<key>latest</key>
+	<string>/movie/latest?language={language}&amp;</string>
 	<key>searchMovie</key>
 	<string>/search/movie?query={query}&amp;page={page}&amp;</string>
 	<key>searchPerson</key>

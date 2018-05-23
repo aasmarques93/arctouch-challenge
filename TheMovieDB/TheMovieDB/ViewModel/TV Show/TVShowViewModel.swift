@@ -33,6 +33,14 @@ class TVShowViewModel: MoviesShowsViewModel {
     var numberOfTopRated: Int { return arrayTopRated.count }
     private var currentTopRatedPage: Int = 1
     
+    // MARK: Latest
+    private var latestShow: TVShow? {
+        didSet {
+            latestTitle.value = latestShow?.name
+            getLatestImage(at: latestShow?.backdropPath)
+        }
+    }
+    
     // MARK: - Service requests -
     
     override func loadData() {
@@ -135,6 +143,16 @@ class TVShowViewModel: MoviesShowsViewModel {
             }
             self?.arraySugested.append(contentsOf: array)
         }
+        
+        getLatest()
+    }
+    
+    private func getLatest() {
+        if latestShow != nil {
+            return
+        }
+        
+        latestShow = arraySugested.randomElement()
     }
     
     private func addTVShowsToArray(_ results: [TVShow], section: SectionsType) {
@@ -232,6 +250,13 @@ class TVShowViewModel: MoviesShowsViewModel {
     
     func tvShowDetailViewModel(at section: Int, row: Int) -> TVShowDetailViewModel? {
         guard let tvShow = tvShow(at: section, row: row) else {
+            return nil
+        }
+        return TVShowDetailViewModel(tvShow)
+    }
+    
+    func latestTVShowDetailViewModel() -> TVShowDetailViewModel? {
+        guard let tvShow = latestShow else {
             return nil
         }
         return TVShowDetailViewModel(tvShow)

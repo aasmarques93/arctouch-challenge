@@ -12,6 +12,10 @@ import AVFoundation
 import AVKit
 
 class MoviesView: UITableViewController {
+    @IBOutlet weak var viewHeaderLatestBanner: UIView!
+    @IBOutlet weak var imageViewLatestBanner: UIImageView!
+    @IBOutlet weak var labelLatestTitle: UILabel!
+    
     let searchHeaderView = SearchHeaderView.instantateFromNib(placeholder: Messages.searchMovie.localized)
     
     let viewModel = MoviesViewModel()
@@ -20,18 +24,34 @@ class MoviesView: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = Titles.movies.localized
         StoreReviewHelper.checkAndAskForReview()
-        Singleton.shared.didSkipTestFromLauching = true
-        searchHeaderView.delegate = self
-        tableView.keyboardDismissMode = .onDrag
+        initVariables()
+        setupBindings()
+        title = Titles.movies.localized
         viewModel.delegate = self
-        viewModel.loadData()        
+        viewModel.loadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppDelegate.shared.unlockOrientation()
+    }
+    
+    func initVariables() {
+        Singleton.shared.didSkipTestFromLauching = true
+        searchHeaderView.delegate = self
+        tableView.keyboardDismissMode = .onDrag
+    }
+    
+    func setupBindings() {
+        viewModel.latestImage.bind(to: imageViewLatestBanner.reactive.image)
+        viewModel.latestTitle.bind(to: labelLatestTitle.reactive.text)
+    }
+    
+    @IBAction func buttonLatestAction(_ sender: UIButton) {
+        let viewController = instantiate(viewController: MovieDetailView.self, from: .movie)
+        viewController.viewModel = viewModel.latestMovieDetailViewModel()
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     // MARK: - Table view data source -
@@ -128,6 +148,10 @@ extension MoviesView: MoviesViewCellDelegate {
 extension MoviesView: MoviesShowsViewModelDelegate {
     
     // MARK: - Movies view model delegate -
+    
+    func didReloadLatestBanner() {
+        tableView.tableHeaderView = viewHeaderLatestBanner
+    }
     
     func reloadData(at index: Int) {
         let indexPath = IndexPath(row: 0, section: index)

@@ -9,19 +9,35 @@
 import UIKit
 
 class TVShowView: UITableViewController {
+    @IBOutlet weak var viewHeaderLatestBanner: UIView!
+    @IBOutlet weak var imageViewLatestBanner: UIImageView!
+    @IBOutlet weak var labelLatestTitle: UILabel!
+    
     let searchHeaderView = SearchHeaderView.instantateFromNib(placeholder: Messages.searchTVShow.localized)
     
     let viewModel = TVShowViewModel(isMovie: false)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBindings()
         title = Titles.tvShows.localized
         searchHeaderView.delegate = self
         tableView.keyboardDismissMode = .onDrag
         viewModel.delegate = self
         viewModel.loadData()
     }
+    
+    func setupBindings() {
+        viewModel.latestImage.bind(to: imageViewLatestBanner.reactive.image)
+        viewModel.latestTitle.bind(to: labelLatestTitle.reactive.text)
+    }
 
+    @IBAction func buttonLatestAction(_ sender: UIButton) {
+        let viewController = instantiate(viewController: TVShowDetailView.self, from: .tvShow)
+        viewController.viewModel = viewModel.latestTVShowDetailViewModel()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -116,6 +132,10 @@ extension TVShowView: TVShowViewCellDelegate {
 extension TVShowView: MoviesShowsViewModelDelegate {
     
     // MARK: - TV Show view model delegate -
+    
+    func didReloadLatestBanner() {
+        tableView.tableHeaderView = viewHeaderLatestBanner
+    }
     
     func reloadData(at index: Int) {
         let indexPath = IndexPath(row: 0, section: index)

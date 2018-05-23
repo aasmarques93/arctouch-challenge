@@ -6,9 +6,10 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
+import Bond
 
 protocol MoviesShowsViewModelDelegate: ViewModelDelegate {
+    func didReloadLatestBanner()
     func reloadData(at index: Int)
     func openPreview(storiesViewModel: StoriesViewModel)
 }
@@ -112,6 +113,10 @@ enum SectionsType: Int, SectionsTypeProtocol {
 class MoviesShowsViewModel: ViewModel {
     // MARK: - Properties -
     
+    // MARK: Observables
+    var latestImage = Observable<UIImage>(#imageLiteral(resourceName: "default-image"))
+    var latestTitle = Observable<String?>(nil)
+    
     // MARK: Delegate
     weak var delegate: MoviesShowsViewModelDelegate?
     
@@ -144,6 +149,21 @@ class MoviesShowsViewModel: ViewModel {
     func loadData() {
         getNetflixMoviesShows()
     }
+    
+    func getLatestImage(at path: String?) {
+        loadImageData(at: path) { [weak self] (data) in
+            guard let data = data as? Data, let image = UIImage(data: data) else {
+                return
+            }
+            self?.latestImage.value = image
+            self?.delegate?.didReloadLatestBanner()
+        }
+    }
+    
+    func loadImageData(at path: String?, handlerData: @escaping HandlerObject) {
+        moviesServiceModel.loadImage(path: path, handlerData: handlerData)
+    }
+    
     
     func getNetflixMoviesShows() {
         guard let userPersonalityType = Singleton.shared.userPersonalityType, let genres = userPersonalityType.netflixGenres else {
