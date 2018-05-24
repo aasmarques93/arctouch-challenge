@@ -30,16 +30,24 @@ class TVShowDetailViewModel: ViewModel {
     var date = Observable<String?>(nil)
     var genres = Observable<String?>(nil)
     var overview = Observable<String?>(nil)
+    var rateResult = Observable<String>(Titles.rate.localized)
+    
+    var rateValue: Float? {
+        guard let value = Float(rateResult.value) else {
+            return nil
+        }
+        return value
+    }
     
     // MARK: Objects
-    private var tvShow: TVShow?
+    private var tvShow: TVShow
     
     private var tvShowDetail: TVShowDetail? {
         didSet {
             delegate?.reloadData?()
             
             name.value = valueDescription(tvShowDetail?.originalName)
-            date.value = "Last air date: \(valueDescription(tvShowDetail?.lastAirDate))"
+            date.value = valueDescription(tvShowDetail?.lastAirDate)
             overview.value = valueDescription(tvShowDetail?.overview)
             genres.value = setupGenres()
             
@@ -80,13 +88,14 @@ class TVShowDetailViewModel: ViewModel {
     
     // MARK: - Life cycle -
     
-    init(_ object: TVShow?) {
+    init(_ object: TVShow) {
         self.tvShow = object
     }
     
     // MARK: - Service requests -
     
     func loadData() {
+        setupRating()
         getTvShowDetail()
         getVideos()
         getRecommended()
@@ -95,10 +104,6 @@ class TVShowDetailViewModel: ViewModel {
     }
     
     private func getTvShowDetail() {
-        guard let tvShow = tvShow else {
-            return
-        }
-        
         Loading.shared.start()
         serviceModel.getDetail(from: tvShow) { [weak self] (object) in
             Loading.shared.stop()
@@ -107,7 +112,7 @@ class TVShowDetailViewModel: ViewModel {
     }
     
     private func getVideos() {
-        guard let tvShow = tvShow, arrayVideos.isEmpty else {
+        guard arrayVideos.isEmpty else {
             return
         }
         
@@ -121,7 +126,7 @@ class TVShowDetailViewModel: ViewModel {
     }
     
     private func getRecommended() {
-        guard let tvShow = tvShow, arrayRecommended.isEmpty else {
+        guard arrayRecommended.isEmpty else {
             return
         }
         
@@ -135,7 +140,7 @@ class TVShowDetailViewModel: ViewModel {
     }
     
     private func getSimilar() {
-        guard let tvShow = tvShow, arraySimilar.isEmpty else {
+        guard arraySimilar.isEmpty else {
             return
         }
         
@@ -149,7 +154,7 @@ class TVShowDetailViewModel: ViewModel {
     }
     
     private func getCredits() {
-        guard let tvShow = tvShow, arrayCast.isEmpty else {
+        guard arrayCast.isEmpty else {
             return
         }
         
@@ -162,7 +167,34 @@ class TVShowDetailViewModel: ViewModel {
         }
     }
     
+    func rateShow() {
+        guard let value = rateValue else {
+            return
+        }
+        serviceModel.rate(tvShow: tvShow, value: value) { (object) in
+            Singleton.shared.loadUserData()
+        }
+    }
+    
     // MARK: - View Model -
+    
+    // MARK: Appearance
+    
+    private func setupRating() {
+        let ratings = Singleton.shared.arrayUserRatings.filter { $0.showId == tvShow.id }
+        guard let userRating = ratings.first, let rate = userRating.rate else {
+            return
+        }
+        rateResult.value = "\(rate)"
+    }
+    
+    // MARK: Rating
+    
+    func setRateResultValue(_ value: Float) {
+        rateResult.value = "\(value)"
+    }
+    
+    // MARK: TV Show
     
     var tvShowName: String? {
         return tvShowDetail?.originalName

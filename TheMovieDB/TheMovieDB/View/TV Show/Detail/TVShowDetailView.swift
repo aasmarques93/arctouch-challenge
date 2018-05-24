@@ -21,28 +21,59 @@ class TVShowDetailView: UITableViewController {
     @IBOutlet weak var carouselCast: iCarousel!
     @IBOutlet weak var carouselSimilar: iCarousel!
     
+    @IBOutlet weak var buttonRate: UIButton!
+    @IBOutlet weak var labelRateResult: UILabel!
+    @IBOutlet weak var labelRate: UILabel!
+    @IBOutlet weak var emojiRateView: EmojiRateView!
+    
     @IBOutlet var stretchHeaderView: StretchHeaderView!
     
     enum DetailSection: Int {
         case general = 0
-        case genres = 1
-        case overview = 2
-        case videos = 3
-        case seasons = 4
-        case recommended = 5
-        case cast = 6
-        case similar = 7
+        case rating = 1
+        case genres = 2
+        case overview = 3
+        case videos = 4
+        case seasons = 5
+        case recommended = 6
+        case cast = 7
+        case similar = 8
     }
     
     var viewModel: TVShowDetailViewModel?
+    var isRatingVisible = false {
+        didSet {
+            tableView.beginUpdates()
+            tableView.reloadData()
+            tableView.endUpdates()
+        }
+    }
+    
+    // MARK: - Life cycle -
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupAppearance()
-        setupBindings()
         viewModel?.delegate = self
         viewModel?.loadData()
+        setupBindings()
+        setupAppearance()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel?.rateShow()
+    }
+    
+    // MARK: - View model bindings -
+    
+    func setupBindings() {
+        viewModel?.date.bind(to: labelDate.reactive.text)
+        viewModel?.genres.bind(to: textViewGenres.reactive.text)
+        viewModel?.overview.bind(to: textViewOverview.reactive.text)
+        viewModel?.rateResult.bind(to: labelRateResult.reactive.text)
+    }
+    
+    // MARK - Appearance -
     
     func setupAppearance() {
         carouselVideos.type = .linear
@@ -54,17 +85,46 @@ class TVShowDetailView: UITableViewController {
         carouselSimilar.type = .rotary
         
         stretchHeaderView.setupHeaderView(tableView: tableView)
+        
+        setupRating()
     }
     
-    // MARK: - View model bindings -
+    func setupRating() {
+        guard let value = viewModel?.rateValue else {
+            return
+        }
+        
+        emojiRateView.rateValue = value
+        labelRate.text = "\(value.rounded())"
+        labelRate.textColor = emojiRateView.rateColor
+        setRateImage(with: value)
+    }
     
-    func setupBindings() {
-        viewModel?.date.bind(to: labelDate.reactive.text)
-        viewModel?.genres.bind(to: textViewGenres.reactive.text)
-        viewModel?.overview.bind(to: textViewOverview.reactive.text)
+    func setRateImage(with value: Float) {
+        buttonRate.setImage(value >= 4 ? #imageLiteral(resourceName: "happy-emoji-filled") : value >= 2 ? #imageLiteral(resourceName: "neutral-emoji") : #imageLiteral(resourceName: "sad-emoji"), for: .normal)
+    }
+    
+    // MARK: - Emoji Rate View -
+    
+    func setupEmojiRateView() {
+        emojiRateView.rateColorRange = (HexColor.accent.color, HexColor.secondary.color)
+        emojiRateView.rateValueChangeCallback = { [weak self] (rateValue: Float) -> Void in
+            self?.viewModel?.setRateResultValue(rateValue.rounded())
+            self?.labelRate.text = "\(rateValue.rounded())"
+            self?.setRateImage(with: rateValue)
+            guard let color = self?.emojiRateView.rateColor else {
+                return
+            }
+            self?.labelRate.textColor = color
+        }
     }
     
     // MARK: - Actions -
+    
+    @IBAction func buttonRateAction(_ sender: UIButton) {
+        isRatingVisible = !isRatingVisible
+        setupEmojiRateView()
+    }
     
     @IBAction func buttonTrackAction(_ sender: UIButton) {
         let viewController = instantiate(viewController: TrackView.self, from: .tvShow)
@@ -80,6 +140,8 @@ class TVShowDetailView: UITableViewController {
             switch section {
             case .general:
                 break
+            case .rating:
+                if !isRatingVisible { height = 0 }
             case .genres:
                 height += textViewGenres.contentSize.height
             case .overview:

@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class CircularProgressView: UIView {
+class CircularProgressView: UIView {
     struct DefaultColor {
         static let circleStrokeColor = HexColor.secondary.color.withAlphaComponent(0.1)
         static let circleFillColor = HexColor.primary.color

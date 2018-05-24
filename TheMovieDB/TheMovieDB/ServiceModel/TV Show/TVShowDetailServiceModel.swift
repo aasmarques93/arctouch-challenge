@@ -47,6 +47,26 @@ struct TVShowDetailServiceModel {
         return parameters
     }
     
+    func rate(tvShow: TVShow, value: Float, handler: HandlerObject? = nil) {
+        var parameters = [String: Any]()
+        
+        if let value = tvShow.id { parameters["showId"] = value }
+        if let value = tvShow.posterPath { parameters["showImageUrl"] = value }
+        parameters["rate"] = value
+        
+        serviceModel.request(method: .post,
+                             requestUrl: .rate,
+                             environmentBase: .heroku,
+                             parameters: parameters,
+                             handlerObject: { (object) in
+                                
+                                guard let object = object else {
+                                    return
+                                }
+                                handler?(UserMovieShow(object: object))
+        })
+    }
+    
     func loadImage(path: String?, handlerData: @escaping HandlerObject) {
         serviceModel.loadImage(path: path, handlerData: handlerData)
     }
