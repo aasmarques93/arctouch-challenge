@@ -52,6 +52,7 @@ enum Titles: String {
     
     // Fabric
     case error = "Error"
+    case success = "Success"
     case click = "Click"
     case event = "Event"
     

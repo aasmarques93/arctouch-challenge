@@ -239,23 +239,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGE-9e-zBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="Iag-GG-X97">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tfl-qM-WTN">
-                            <rect key="frame" x="0.0" y="32" width="375" height="218"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You must watch this movie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgc-CW-Iyl">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="32" id="JNY-cK-OBL"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QUH-OI-xEG">
-                            <rect key="frame" x="0.0" y="206" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="176" width="375" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="v4t-JN-X4N"/>
                             </constraints>
@@ -264,13 +255,13 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{{Title}}" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E88-P3-7hM">
-                            <rect key="frame" x="0.0" y="206" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="176" width="375" height="44"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ieA-sY-vFB">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                             <connections>
                                 <action selector="buttonLatestAction:" destination="ZPF-4b-shJ" eventType="touchUpInside" id="Zkq-jk-0i6"/>
                             </connections>
@@ -284,18 +275,15 @@
                         <constraint firstAttribute="trailing" secondItem="Tfl-qM-WTN" secondAttribute="trailing" id="4eb-rC-6jQ"/>
                         <constraint firstItem="WSk-Be-aWL" firstAttribute="trailing" secondItem="ieA-sY-vFB" secondAttribute="trailing" id="9i8-wI-C1G"/>
                         <constraint firstItem="E88-P3-7hM" firstAttribute="trailing" secondItem="QUH-OI-xEG" secondAttribute="trailing" id="CqZ-Xb-h6e"/>
-                        <constraint firstItem="WSk-Be-aWL" firstAttribute="trailing" secondItem="zgc-CW-Iyl" secondAttribute="trailing" id="FE5-dQ-huj"/>
                         <constraint firstItem="E88-P3-7hM" firstAttribute="top" secondItem="QUH-OI-xEG" secondAttribute="top" id="L7D-d7-u8b"/>
+                        <constraint firstItem="Tfl-qM-WTN" firstAttribute="top" secondItem="WSk-Be-aWL" secondAttribute="top" id="N0P-Lz-QTO"/>
                         <constraint firstItem="ieA-sY-vFB" firstAttribute="bottom" secondItem="WSk-Be-aWL" secondAttribute="bottom" id="Zor-Ax-Hgk"/>
                         <constraint firstItem="E88-P3-7hM" firstAttribute="leading" secondItem="QUH-OI-xEG" secondAttribute="leading" id="a58-hT-tVx"/>
-                        <constraint firstItem="zgc-CW-Iyl" firstAttribute="top" secondItem="WSk-Be-aWL" secondAttribute="top" id="bma-Ct-djY"/>
                         <constraint firstItem="QUH-OI-xEG" firstAttribute="leading" secondItem="WSk-Be-aWL" secondAttribute="leading" id="dZ8-gy-tcU"/>
-                        <constraint firstItem="zgc-CW-Iyl" firstAttribute="leading" secondItem="WSk-Be-aWL" secondAttribute="leading" id="h2f-p1-RPm"/>
                         <constraint firstAttribute="bottom" secondItem="Tfl-qM-WTN" secondAttribute="bottom" id="hX1-P5-hSh"/>
                         <constraint firstItem="E88-P3-7hM" firstAttribute="bottom" secondItem="QUH-OI-xEG" secondAttribute="bottom" id="hgL-fc-V2L"/>
                         <constraint firstItem="ieA-sY-vFB" firstAttribute="leading" secondItem="WSk-Be-aWL" secondAttribute="leading" id="mux-7R-Qfw"/>
                         <constraint firstItem="QUH-OI-xEG" firstAttribute="trailing" secondItem="WSk-Be-aWL" secondAttribute="trailing" id="yBe-n0-Vve"/>
-                        <constraint firstItem="Tfl-qM-WTN" firstAttribute="top" secondItem="zgc-CW-Iyl" secondAttribute="bottom" id="zXT-ul-tx3"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="WSk-Be-aWL"/>
                 </view>

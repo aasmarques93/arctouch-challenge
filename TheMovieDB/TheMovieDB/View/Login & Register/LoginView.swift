@@ -87,7 +87,7 @@ extension LoginView: LoginViewModelDelegate {
     
     func sendPasswordReset() {
         view.endEditing(true)
-        alertController?.show(message: Messages.resetPassword.localized)
+        alertController?.show(message: Messages.resetPassword.localized, type: .success)
     }
 }
 

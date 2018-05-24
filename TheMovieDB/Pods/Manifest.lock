@@ -44,6 +44,7 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.32.0):
     - FBSDKCoreKit (~> 4.32.0)
+  - FCAlertView (1.4.0)
   - FLAnimatedImage (1.0.12)
   - GhostTypewriter (1.0.0)
   - ProcessLoadingView (0.1.1)
@@ -66,6 +67,7 @@ DEPENDENCIES:
   - FacebookCore
   - FacebookLogin
   - FacebookShare
+  - FCAlertView
   - GhostTypewriter
   - ProcessLoadingView
   - RAMAnimatedTabBarController
@@ -91,6 +93,7 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
+    - FCAlertView
     - FLAnimatedImage
     - GhostTypewriter
     - ProcessLoadingView
@@ -117,6 +120,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 55d7f2ac45d9c4b9b6119f4e43900fe84b9b7b1b
   FBSDKLoginKit: 32ac05c2a59952c363c2e85aafa8f73ba93bcbad
   FBSDKShareKit: 658780d0d108b8ad590a54afb5ac1427bdc8de28
+  FCAlertView: fdddd63381898c1d1a5a20c9f084fbd2c6d12f8b
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GhostTypewriter: 70c6f827ada4716bda0550046b01bf783331ee00
   ProcessLoadingView: 7f0c959fcef37ac0075d068b447099c1327c9d42
@@ -127,6 +131,6 @@ SPEC CHECKSUMS:
   XCDYouTubeKit: dccfe0c17dd5c5187969ec27e93069573badb08f
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: 9b7dc5a700b2b641b3ce86cb6530c390de954ee1
+PODFILE CHECKSUM: c15ae2804e51aad98d0c76f7cdd4dfaac677ecf0
 
 COCOAPODS: 1.5.0.beta.1

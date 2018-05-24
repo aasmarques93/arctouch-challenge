@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import FCAlertView
 
 typealias AlertHandler = () -> Swift.Void
+
+enum AlertType {
+    case error
+    case success
+}
 
 extension UIViewController {
     var alertController: UIAlertController? {
@@ -47,24 +53,38 @@ extension UIAlertController {
         view.tintColor = color
     }
     
-    func show(title: String? = nil, message: String?, mainButton: String? = nil, mainAction: AlertHandler? = nil, secondaryButton: String? = nil, secondaryAction: AlertHandler? = nil) {
+    func show(title: String? = nil,
+              message: String?,
+              type: AlertType = .error,
+              mainButton: String? = nil,
+              mainAction: AlertHandler? = nil,
+              secondaryButton: String? = nil,
+              secondaryAction: AlertHandler? = nil) {
         
-        let aTitle = title ?? ""
-        let alert = UIAlertController(title: aTitle, message: message, preferredStyle: .alert)
+        let alertView = FCAlertView()
+        alertView.colorScheme = type == .error ? HexColor.accent.color : HexColor.secondary.color
+        alertView.titleColor = HexColor.primary.color
         
-        let mButton = UIAlertAction(title: mainButton ?? Titles.done.localized, style: .default, handler: { (_) in
-            if let mainAction = mainAction { mainAction() }
-        })
-        alert.addAction(mButton)
-        
-        if let secondaryButton = secondaryButton {
-            let sButton = UIAlertAction(title: secondaryButton, style: .default, handler: { (_) in
-                if let secondaryAction = secondaryAction { secondaryAction() }
-            })
-            alert.addAction(sButton)
+        alertView.doneActionBlock {
+            mainAction?()
         }
         
-        alert.presentAnywhere()
+        if let secondaryButton = secondaryButton {
+            alertView.addButton(secondaryButton, withActionBlock: {
+                secondaryAction?()
+            })
+        }
+        
+        var alertTitle = title
+        if alertTitle == nil {
+            alertTitle = type == .error ? Titles.error.localized : Titles.success.localized
+        }
+        
+        alertView.showAlert(withTitle: alertTitle ?? "",
+                            withSubtitle: message,
+                            withCustomImage: #imageLiteral(resourceName: "logo"),
+                            withDoneButtonTitle: mainButton ?? Titles.done.localized,
+                            andButtons: nil)
     }
     
     func showPickerView(title: String?,
