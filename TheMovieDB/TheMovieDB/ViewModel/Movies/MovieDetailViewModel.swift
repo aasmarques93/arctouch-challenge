@@ -33,6 +33,7 @@ class MovieDetailViewModel: ViewModel {
     var runtime = Observable<String?>(nil)
     var genres = Observable<String?>(nil)
     var overview = Observable<String?>(nil)
+    var rateResult = Observable<String>(Titles.rate.localized)
     
     var addImage = Observable<UIImage>(#imageLiteral(resourceName: "add"))
     var seenImage = Observable<UIImage>(#imageLiteral(resourceName: "seen"))
@@ -184,6 +185,13 @@ class MovieDetailViewModel: ViewModel {
     }
     
     // MARK: - View Model -
+    
+    
+    // MARK: Rating
+    
+    func setRateResultValue(_ value: Float) {
+        rateResult.value = "\(value)"
+    }
     
     // MARK: Movie
     

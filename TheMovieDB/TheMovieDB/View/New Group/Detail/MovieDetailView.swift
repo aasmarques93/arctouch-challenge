@@ -25,31 +25,43 @@ class MovieDetailView: UITableViewController {
     
     @IBOutlet var stretchHeaderView: StretchHeaderView!
     
-    @IBOutlet weak var barButtonItemAdd: UIBarButtonItem!
-    @IBOutlet weak var barButtonItemSeen: UIBarButtonItem!
-    
     @IBOutlet weak var buttonAdd: UIButton!
     @IBOutlet weak var buttonSeen: UIButton!
+    @IBOutlet weak var buttonRate: UIButton!
     
-    enum DetailSection: Int {
-        case general = 0
-        case genres = 1
-        case overview = 2
-        case videos = 3
-        case recommended = 4
-        case cast = 5
-        case similiarMovies = 6
-        case reviews = 7
+    @IBOutlet weak var emojiRateView: EmojiRateView!
+    @IBOutlet weak var labelRate: UILabel!
+    @IBOutlet weak var labelRateResult: UILabel!
+    
+    enum DetailRow: Int {
+        case buttons = 0
+        case rating = 1
+        case general = 2
+        case genres = 3
+        case overview = 4
+        case videos = 5
+        case recommended = 6
+        case cast = 7
+        case similiarMovies = 8
+        case reviews = 9
     }
     
     var reviewsView: ReviewsView?
     var viewModel: MovieDetailViewModel?
-    
+    var isRatingVisible = false {
+        didSet {
+            tableView.beginUpdates()
+            tableView.reloadData()
+            tableView.endUpdates()
+        }
+    }
+        
     // MARK: - Life cycle -
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAppearance()
+        setupEmojiRateView()
         setupBindings()
         viewModel?.delegate = self
         viewModel?.loadData()
@@ -74,6 +86,21 @@ class MovieDetailView: UITableViewController {
         stretchHeaderView.setupHeaderView(tableView: tableView)
     }
     
+    // MARK: - Emoji Rate View -
+    
+    func setupEmojiRateView() {
+        emojiRateView.rateColorRange = (HexColor.accent.color, HexColor.secondary.color)
+        emojiRateView.rateValueChangeCallback = { [weak self] (rateValue: Float) -> Void in
+            self?.viewModel?.setRateResultValue(rateValue.rounded())
+            self?.labelRate.text = "\(rateValue.rounded())"
+            self?.buttonRate.setImage(rateValue >= 4 ? #imageLiteral(resourceName: "happy-emoji-filled") : rateValue >= 2 ? #imageLiteral(resourceName: "neutral-emoji") : #imageLiteral(resourceName: "sad-emoji"), for: .normal)
+            guard let color = self?.emojiRateView.rateColor else {
+                return
+            }
+            self?.labelRate.textColor = color
+        }
+    }
+    
     // MARK: - View model bindings -
     
     func setupBindings() {
@@ -82,6 +109,7 @@ class MovieDetailView: UITableViewController {
         viewModel?.runtime.bind(to: labelRuntime.reactive.text)
         viewModel?.genres.bind(to: textViewGenres.reactive.text)
         viewModel?.overview.bind(to: textViewOverview.reactive.text)
+        viewModel?.rateResult.bind(to: labelRateResult.reactive.text)
         
         if buttonAdd != nil { viewModel?.addImage.bind(to: buttonAdd.reactive.image) }
         if buttonSeen != nil { viewModel?.seenImage.bind(to: buttonSeen.reactive.image) }
@@ -97,14 +125,21 @@ class MovieDetailView: UITableViewController {
         viewModel?.toggleSeenYourListMovie()
     }
     
+    @IBAction func buttonRateAction(_ sender: UIButton) {
+        isRatingVisible = !isRatingVisible
+    }
+    
     // MARK: - Table view data source -
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height = super.tableView(tableView, heightForRowAt: indexPath)
-        if let section = DetailSection(rawValue: indexPath.row) {
-            switch section {
-            case .general:
+        if let row = DetailRow(rawValue: indexPath.row) {
+            switch row {
+            case .buttons,
+                 .general:
                 break
+            case .rating:
+                if !isRatingVisible { height = 0 }
             case .genres:
                 height += textViewGenres.contentSize.height
             case .overview:

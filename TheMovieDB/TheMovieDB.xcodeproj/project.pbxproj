@@ -208,6 +208,7 @@
 		ED95295720B4AC68007936B6 /* UserFriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED95295620B4AC68007936B6 /* UserFriendViewModel.swift */; };
 		ED95295920B4AD21007936B6 /* UserFriendsServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED95295820B4AD21007936B6 /* UserFriendsServiceModel.swift */; };
 		ED95295B20B4BE5B007936B6 /* ProfileServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED95295A20B4BE5B007936B6 /* ProfileServiceModel.swift */; };
+		EDA5DFF620B65340008E575F /* EmojiRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5DFF520B65340008E575F /* EmojiRateView.swift */; };
 		EDBAF882209FFE430089DE39 /* FabricUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAF881209FFE430089DE39 /* FabricUtils.swift */; };
 		EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01220585A4400D843EC /* CollectionView.swift */; };
 		EDC6C01820585A5500D843EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01720585A5500D843EC /* Date.swift */; };
@@ -484,6 +485,7 @@
 		ED95295620B4AC68007936B6 /* UserFriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendViewModel.swift; sourceTree = "<group>"; };
 		ED95295820B4AD21007936B6 /* UserFriendsServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendsServiceModel.swift; sourceTree = "<group>"; };
 		ED95295A20B4BE5B007936B6 /* ProfileServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServiceModel.swift; sourceTree = "<group>"; };
+		EDA5DFF520B65340008E575F /* EmojiRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiRateView.swift; sourceTree = "<group>"; };
 		EDBAF881209FFE430089DE39 /* FabricUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricUtils.swift; sourceTree = "<group>"; };
 		EDC6C01220585A4400D843EC /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		EDC6C01720585A5500D843EC /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -1389,6 +1391,14 @@
 			path = Track;
 			sourceTree = "<group>";
 		};
+		EDA5DFF420B65323008E575F /* EmojiRateView */ = {
+			isa = PBXGroup;
+			children = (
+				EDA5DFF520B65340008E575F /* EmojiRateView.swift */,
+			);
+			path = EmojiRateView;
+			sourceTree = "<group>";
+		};
 		EDBAF880209FFE340089DE39 /* Fabric */ = {
 			isa = PBXGroup;
 			children = (
@@ -1459,6 +1469,7 @@
 		EDC6BFFF2058593B00D843EC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EDA5DFF420B65323008E575F /* EmojiRateView */,
 				ED81CB7820AFD81C0056E2A8 /* PhotoPicker */,
 				ED4201B420A8685C005D5FF3 /* StoreReviewHelper */,
 				ED42018D20A699A1005D5FF3 /* Facebook */,
@@ -2003,6 +2014,7 @@
 				ED7B9CB4209E378C006B9586 /* PhotosComponent.swift in Sources */,
 				ED2AA5F320A0D95C00AA0DF5 /* PersonalityTestView.swift in Sources */,
 				ED16D88020599F90002A0B2C /* SearchView.swift in Sources */,
+				EDA5DFF620B65340008E575F /* EmojiRateView.swift in Sources */,
 				ED16D87720599D11002A0B2C /* SearchPerson.swift in Sources */,
 				ED4201AD20A76245005D5FF3 /* RegisterServiceModel.swift in Sources */,
 				ED16D850205889BE002A0B2C /* MoviesSectionViewCell.swift in Sources */,
