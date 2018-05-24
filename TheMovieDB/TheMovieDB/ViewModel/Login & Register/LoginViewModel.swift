@@ -114,6 +114,7 @@ class LoginViewModel: ViewModel {
     private func getUserLogged() {
         if let userLogged = Singleton.shared.userLogged {
             serviceModel.authenticate(userId: userLogged.id) { (object) in
+                Singleton.shared.loadUserData()
                 Singleton.shared.updateUser(with: userLogged)
             }
         }

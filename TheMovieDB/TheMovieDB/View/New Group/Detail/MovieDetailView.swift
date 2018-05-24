@@ -60,11 +60,10 @@ class MovieDetailView: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupAppearance()
-        setupEmojiRateView()
-        setupBindings()
         viewModel?.delegate = self
         viewModel?.loadData()
+        setupBindings()
+        setupAppearance()
         reviewsView?.viewModel = viewModel
         
         if let value = viewModel?.movieName {
@@ -72,33 +71,9 @@ class MovieDetailView: UITableViewController {
         }
     }
     
-    // MARK: - Appearance -
-    
-    func setupAppearance() {
-        title = viewModel?.movieName
-        
-        carouselVideos.type = .linear
-        carouselVideos.bounces = false
-        carouselRecommendedMovies.type = .rotary
-        carouselCast.type = .rotary
-        carouselSimilarMovies.type = .rotary
-        
-        stretchHeaderView.setupHeaderView(tableView: tableView)
-    }
-    
-    // MARK: - Emoji Rate View -
-    
-    func setupEmojiRateView() {
-        emojiRateView.rateColorRange = (HexColor.accent.color, HexColor.secondary.color)
-        emojiRateView.rateValueChangeCallback = { [weak self] (rateValue: Float) -> Void in
-            self?.viewModel?.setRateResultValue(rateValue.rounded())
-            self?.labelRate.text = "\(rateValue.rounded())"
-            self?.buttonRate.setImage(rateValue >= 4 ? #imageLiteral(resourceName: "happy-emoji-filled") : rateValue >= 2 ? #imageLiteral(resourceName: "neutral-emoji") : #imageLiteral(resourceName: "sad-emoji"), for: .normal)
-            guard let color = self?.emojiRateView.rateColor else {
-                return
-            }
-            self?.labelRate.textColor = color
-        }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel?.rateMovie()
     }
     
     // MARK: - View model bindings -
@@ -115,6 +90,52 @@ class MovieDetailView: UITableViewController {
         if buttonSeen != nil { viewModel?.seenImage.bind(to: buttonSeen.reactive.image) }
     }
     
+    // MARK: - Appearance -
+    
+    func setupAppearance() {
+        title = viewModel?.movieName
+        
+        carouselVideos.type = .linear
+        carouselVideos.bounces = false
+        carouselRecommendedMovies.type = .rotary
+        carouselCast.type = .rotary
+        carouselSimilarMovies.type = .rotary
+        
+        stretchHeaderView.setupHeaderView(tableView: tableView)
+        
+        setupRating()
+    }
+    
+    func setupRating() {
+        guard let value = viewModel?.rateValue else {
+            return
+        }
+        
+        emojiRateView.rateValue = value
+        labelRate.text = "\(value.rounded())"
+        labelRate.textColor = emojiRateView.rateColor
+        setRateImage(with: value)
+    }
+    
+    func setRateImage(with value: Float) {
+        buttonRate.setImage(value >= 4 ? #imageLiteral(resourceName: "happy-emoji-filled") : value >= 2 ? #imageLiteral(resourceName: "neutral-emoji") : #imageLiteral(resourceName: "sad-emoji"), for: .normal)
+    }
+    
+    // MARK: - Emoji Rate View -
+    
+    func setupEmojiRateView() {
+        emojiRateView.rateColorRange = (HexColor.accent.color, HexColor.secondary.color)
+        emojiRateView.rateValueChangeCallback = { [weak self] (rateValue: Float) -> Void in
+            self?.viewModel?.setRateResultValue(rateValue.rounded())
+            self?.labelRate.text = "\(rateValue.rounded())"
+            self?.setRateImage(with: rateValue)
+            guard let color = self?.emojiRateView.rateColor else {
+                return
+            }
+            self?.labelRate.textColor = color
+        }
+    }
+    
     // MARK: - IBAction -
     
     @IBAction func buttonAddAction(_ sender: UIButton) {
@@ -127,6 +148,7 @@ class MovieDetailView: UITableViewController {
     
     @IBAction func buttonRateAction(_ sender: UIButton) {
         isRatingVisible = !isRatingVisible
+        setupEmojiRateView()
     }
     
     // MARK: - Table view data source -

@@ -43,6 +43,8 @@ enum RequestUrl: String {
     case deleteSeenMovie
     case trackShow
     case userShowsTrack
+    case rate
+    case userRatings
     case personalityTest
     case personalityTestBR
     case personalityTypes

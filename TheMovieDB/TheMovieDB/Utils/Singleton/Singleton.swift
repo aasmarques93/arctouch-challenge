@@ -18,6 +18,7 @@ class Singleton {
     var arrayUserWantToSeeMovies = [UserMovieShow]()
     var arrayUserShows = [UserMovieShow]()
     var arrayUserSeenMovies = [UserMovieShow]()
+    var arrayUserRatings = [UserRating]()
     
     let typingTimeInterval = 0.01
     var arrayPersonalityTypes = [PersonalityType]()
@@ -72,6 +73,7 @@ class Singleton {
             self?.arrayUserWantToSeeMovies = object.moviesWantToSeeList ?? []
             self?.arrayUserShows = object.showsTrackList ?? []
             self?.arrayUserSeenMovies = object.moviesSeenList ?? []
+            self?.arrayUserRatings = object.ratings ?? []
             
             Singleton.shared.updateUser(with: object)
             handler?(object)

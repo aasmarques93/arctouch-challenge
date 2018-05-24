@@ -25,6 +25,7 @@ struct User: Model {
         static let moviesWantToSeeList = "movie"
         static let moviesSeenList = "seenMovies"
         static let showsTrackList = "shows"
+        static let ratings = "ratings"
     }
     
     // MARK: Properties
@@ -42,6 +43,8 @@ struct User: Model {
     var moviesWantToSeeList: [UserMovieShow]?
     var moviesSeenList: [UserMovieShow]?
     var showsTrackList: [UserMovieShow]?
+    
+    var ratings: [UserRating]?
     
     var imageData: Data?
     
@@ -75,6 +78,7 @@ struct User: Model {
         if let items = json?[SerializationKeys.moviesWantToSeeList].array { moviesWantToSeeList = items.map { UserMovieShow(json: $0) } }
         if let items = json?[SerializationKeys.moviesSeenList].array { moviesSeenList = items.map { UserMovieShow(json: $0) } }
         if let items = json?[SerializationKeys.showsTrackList].array { showsTrackList = items.map { UserMovieShow(json: $0) } }
+        if let items = json?[SerializationKeys.ratings].array { ratings = items.map { UserRating(json: $0) } }
     }
     
     /// Generatingss description of the object in the form of a NSDictionary.
@@ -92,6 +96,7 @@ struct User: Model {
         if let value = moviesWantToSeeList { dictionary[SerializationKeys.moviesWantToSeeList] = value.map { $0.dictionaryRepresentation() } }
         if let value = moviesSeenList { dictionary[SerializationKeys.moviesSeenList] = value.map { $0.dictionaryRepresentation() } }
         if let value = showsTrackList { dictionary[SerializationKeys.showsTrackList] = value.map { $0.dictionaryRepresentation() } }
+        if let value = ratings { dictionary[SerializationKeys.ratings] = value.map { $0.dictionaryRepresentation() } }
         return dictionary
     }
 }

@@ -38,6 +38,13 @@ class MovieDetailViewModel: ViewModel {
     var addImage = Observable<UIImage>(#imageLiteral(resourceName: "add"))
     var seenImage = Observable<UIImage>(#imageLiteral(resourceName: "seen"))
     
+    var rateValue: Float? {
+        guard let value = Float(rateResult.value) else {
+            return nil
+        }
+        return value
+    }
+    
     // MARK: Objects
     var movie: Movie
     
@@ -93,17 +100,13 @@ class MovieDetailViewModel: ViewModel {
     
     func loadData() {
         setupImages()
+        setupRating()
         getMovieDetail()
         getVideos()
         getRecommendedMovies()
         getSimilarMovies()
         getCredits()
         getReviews()
-    }
-    
-    private func setupImages() {
-        addImage.value = isMovieInYourWantToSeeList ? #imageLiteral(resourceName: "add-filled") : #imageLiteral(resourceName: "add")
-        seenImage.value = isMovieInYourSeenList ? #imageLiteral(resourceName: "seen-filled") : #imageLiteral(resourceName: "seen")
     }
     
     private func getMovieDetail() {
@@ -184,8 +187,31 @@ class MovieDetailViewModel: ViewModel {
         }
     }
     
+    func rateMovie() {
+        guard let value = rateValue else {
+            return
+        }
+        serviceModel.rate(movie: movie, value: value) { (object) in
+            Singleton.shared.loadUserData()
+        }
+    }
+    
     // MARK: - View Model -
     
+    // MARK: Appearance
+    
+    private func setupImages() {
+        addImage.value = isMovieInYourWantToSeeList ? #imageLiteral(resourceName: "add-filled") : #imageLiteral(resourceName: "add")
+        seenImage.value = isMovieInYourSeenList ? #imageLiteral(resourceName: "seen-filled") : #imageLiteral(resourceName: "seen")
+    }
+    
+    private func setupRating() {
+        let ratings = Singleton.shared.arrayUserRatings.filter { $0.movieId == movie.id }
+        guard let userRating = ratings.first, let rate = userRating.rate else {
+            return
+        }
+        rateResult.value = "\(rate)"
+    }
     
     // MARK: Rating
     

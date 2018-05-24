@@ -33,27 +33,6 @@ extension String {
         return ""
     }
     
-    var currencyDouble: Double? {
-        return Double(self.replacingOccurrences(of: "R$", with: "").replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".").replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "%", with: ""))
-    }
-    
-    var currencyString: String {
-        return self.replacingOccurrences(of: "R$", with: "").replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".").replacingOccurrences(of: " ", with: "")
-    }
-    
-    func formatToLocalCurrency(with fractionDigits: Int = 2, localeIdentifier: String = "pt_BR") -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = NumberFormatter.Style.currency
-        formatter.locale = Locale(identifier: localeIdentifier)
-        formatter.minimumFractionDigits = fractionDigits
-        
-        if let value = Double(self), let formattedText = formatter.string(for: value) {
-            return formattedText
-        }
-        
-        return self
-    }
-    
     var jsonObject: Any? {
         if let data = self.data(using: .utf8) {
             do {

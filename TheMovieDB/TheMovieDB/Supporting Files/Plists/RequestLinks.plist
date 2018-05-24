@@ -36,6 +36,10 @@
 	<string>/api/trackShow</string>
 	<key>userShowsTrack</key>
 	<string>/api/userShowsTrack</string>
+	<key>rate</key>
+	<string>/api/rate</string>
+	<key>userRatings</key>
+	<string>/api/ratings</string>
 	<key>personalityTest</key>
 	<string>/personalityTest</string>
 	<key>personalityTestBR</key>
