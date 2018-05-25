@@ -144,6 +144,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Icz-5V-04E"/>
                     </view>
+                    <navigationItem key="navigationItem" id="9QB-DF-1yM">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Yd4-yQ-iyG"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="51T-e5-NEu" id="oBj-3f-uhB"/>
                         <outlet property="searchBar" destination="1ZU-Ub-eZt" id="wcS-Vr-AdO"/>
