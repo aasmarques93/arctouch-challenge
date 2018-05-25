@@ -193,8 +193,7 @@ class PersonalityTestViewModel: ViewModel {
         let message = Messages.didAnsweredPersonalityTest.localized
         FabricUtils.logEvent(message: "\(message)\(userPersonalityType?.title ?? "")")
         
-        UserDefaultsHelper.saveUserDefaults(object: userPersonalityType?.dictionaryRepresentation(), key: .userPersonality)
-        
+        Singleton.shared.savePersonalityType(userPersonalityType)
         saveUserPersonalityTest()
     }
     
@@ -203,37 +202,12 @@ class PersonalityTestViewModel: ViewModel {
             return
         }
         
-        var comedyPercentage: Float = 0
-        var actionPercentage: Float = 0
-        var dramaPercentage: Float = 0
-        var thrillerPercentage: Float = 0
-        var documentaryPercentage: Float = 0
-        
-        dictionaryAnswersCounts.forEach { (key, value) in
-            arrayPersonalityTypes.forEach({ (personalityType) in
-                guard key == personalityType.id else {
-                    return
-                }
-                
-                let percentage = Float(value) / Float(arraySelectedAnswers.count - 1) * 100
-                if personalityType.title == Titles.comedy.rawValue { comedyPercentage = percentage }
-                if personalityType.title == Titles.action.rawValue { actionPercentage = percentage }
-                if personalityType.title == Titles.drama.rawValue { dramaPercentage = percentage }
-                if personalityType.title == Titles.thriller.rawValue { thrillerPercentage = percentage }
-                if personalityType.title == Titles.documentary.rawValue { documentaryPercentage = percentage }
-            })
-        }
-        
-        serviceModel.save(personalityType: userPersonalityType,
-                          comedyPercentage: comedyPercentage,
-                          actionPercentage: actionPercentage,
-                          dramaPercentage: dramaPercentage,
-                          thrillerPercentage: thrillerPercentage,
-                          documentaryPercentage: documentaryPercentage)
+        Singleton.shared.saveUserPersonalityTest(dictionaryAnswersCounts: dictionaryAnswersCounts,
+                                                 personalityType: userPersonalityType)
     }
     
     private func saveSkipTest(status: Bool) {
-        UserDefaultsHelper.saveUserDefaults(object: status, key: .didSkipTest)
+        UserDefaultsHelper.save(object: status, key: .didSkipTest)
     }
     
     private func saveAnsweredQuestions() {
@@ -242,7 +216,7 @@ class PersonalityTestViewModel: ViewModel {
         }
         
         let array = arraySelectedAnswers.map { $0.dictionaryRepresentation() }
-        UserDefaultsHelper.saveUserDefaults(object: array, key: .answeredQuestions)
+        UserDefaultsHelper.save(object: array, key: .answeredQuestions)
     }
     
     func personalityTestCellViewModel(at indexPath: IndexPath) -> PersonalityTestCellViewModel? {

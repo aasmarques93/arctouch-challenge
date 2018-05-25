@@ -27,6 +27,11 @@ class TVShowView: UITableViewController {
         viewModel.loadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.loadNetflixMoviesShows()
+    }
+    
     func setupBindings() {
         viewModel.latestImage.bind(to: imageViewLatestBanner.reactive.image)
         viewModel.latestTitle.bind(to: labelLatestTitle.reactive.text)

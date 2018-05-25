@@ -12,17 +12,17 @@ import StoreKit
 struct StoreReviewHelper {
     // Called from appdelegate didfinishLaunchingWithOptions:
     static func incrementAppOpenedCount() {
-        guard var appOpenCount = UserDefaultsHelper.fetchUserDefaults(key: .appOpenedCount) as? Int else {
-            UserDefaultsHelper.saveUserDefaults(object: 1, key: .appOpenedCount)
+        guard var appOpenCount = UserDefaultsHelper.fetch(key: .appOpenedCount) as? Int else {
+            UserDefaultsHelper.save(object: 1, key: .appOpenedCount)
             return
         }
         appOpenCount += 1
-        UserDefaultsHelper.saveUserDefaults(object: 1, key: .appOpenedCount)
+        UserDefaultsHelper.save(object: 1, key: .appOpenedCount)
     }
     
     static func checkAndAskForReview() {
-        guard let appOpenCount = UserDefaultsHelper.fetchUserDefaults(key: .appOpenedCount) as? Int else {
-            UserDefaultsHelper.saveUserDefaults(object: 1, key: .appOpenedCount)
+        guard let appOpenCount = UserDefaultsHelper.fetch(key: .appOpenedCount) as? Int else {
+            UserDefaultsHelper.save(object: 1, key: .appOpenedCount)
             return
         }
         

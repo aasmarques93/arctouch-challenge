@@ -109,7 +109,14 @@ class LoginViewModel: ViewModel {
         return true
     }
     
-    func loadData() { }
+    func loadData() {
+        email.value = nil
+        password.value = nil
+        emailInfoImage.value = #imageLiteral(resourceName: "email")
+        passwordInfoImage.value = #imageLiteral(resourceName: "password")
+        colorEmailInfo.value = HexColor.text.color
+        colorPasswordInfo.value = HexColor.text.color
+    }
     
     private func getUserLogged() {
         if let userLogged = Singleton.shared.userLogged {

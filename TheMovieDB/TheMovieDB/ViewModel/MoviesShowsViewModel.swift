@@ -131,7 +131,7 @@ class MoviesShowsViewModel: ViewModel {
     
     // MARK: Netflix
     var arrayNetflix = [Netflix]() { didSet { delegate?.reloadData?() } }
-    var numberOfNeflix: Int { return arrayNetflix.count }
+    var numberOfNetflix: Int { return arrayNetflix.count }
     
     var arrayStoriesPages = [StoriesPageItem]()
     
@@ -147,7 +147,7 @@ class MoviesShowsViewModel: ViewModel {
     }
     
     func loadData() {
-        getNetflixMoviesShows()
+        loadNetflixMoviesShows()
     }
     
     func getLatestImage(at path: String?) {
@@ -165,12 +165,15 @@ class MoviesShowsViewModel: ViewModel {
     }
     
     
-    func getNetflixMoviesShows() {
+    func loadNetflixMoviesShows() {
+        guard arrayNetflix.isEmpty else {
+            return
+        }
+        
         guard let userPersonalityType = Singleton.shared.userPersonalityType, let genres = userPersonalityType.netflixGenres else {
             return
         }
         
-        arrayNetflix = [Netflix]()
         genres.forEach { [weak self] (genre) in
             self?.getNetflixMoviesShowsGenres(id: genre)
         }

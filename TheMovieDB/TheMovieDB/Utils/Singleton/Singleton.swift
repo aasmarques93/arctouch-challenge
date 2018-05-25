@@ -14,7 +14,13 @@ class Singleton {
     let serviceModel = ServiceModel()
     let profileServiceModel = ProfileServiceModel()
     
-    var userPersonality: UserPersonality?
+    var userPersonality: UserPersonality? {
+        didSet {
+            let personalityTypes = arrayPersonalityTypes.filter { $0.id == userPersonality?.personalityTypeId }
+            savePersonalityType(personalityTypes.first)
+        }
+    }
+    
     var arrayUserWantToSeeMovies = [UserMovieShow]()
     var arrayUserShows = [UserMovieShow]()
     var arrayUserSeenMovies = [UserMovieShow]()
@@ -42,11 +48,11 @@ class Singleton {
     }
     
     func saveUser() {
-        UserDefaultsHelper.saveUserDefaults(object: user.dictionaryRepresentation(), key: .userLogged)
+        UserDefaultsHelper.save(object: user.dictionaryRepresentation(), key: .userLogged)
     }
     
     var userLogged: User? {
-        guard let object = UserDefaultsHelper.fetchUserDefaults(key: .userLogged) else {
+        guard let object = UserDefaultsHelper.fetch(key: .userLogged) else {
             return nil
         }
         return User(object: object)
@@ -75,7 +81,8 @@ class Singleton {
             self?.arrayUserSeenMovies = object.moviesSeenList ?? []
             self?.arrayUserRatings = object.ratings ?? []
             
-            Singleton.shared.updateUser(with: object)
+            self?.savePersonalityTestIfNeeded()
+            self?.updateUser(with: object)
             handler?(object)
         }
     }
@@ -83,17 +90,62 @@ class Singleton {
     func logout() {
         if let _ = FBSDKAccessToken.current() { FBSDKLoginManager().logOut() }
         user = User.createEmptyUser()
+        UserDefaultsHelper.delete(key: .userPersonality)
+    }
+
+    func saveUserPersonalityTest(dictionaryAnswersCounts: [Int: Int], personalityType: PersonalityType) {
+        var comedyPercentage: Float = 0
+        var actionPercentage: Float = 0
+        var dramaPercentage: Float = 0
+        var thrillerPercentage: Float = 0
+        var documentaryPercentage: Float = 0
+        
+        dictionaryAnswersCounts.forEach { (key, value) in
+            arrayPersonalityTypes.forEach({ (personality) in
+                guard key == personality.id else {
+                    return
+                }
+                
+                let totalAnswers = 10
+                let percentage = Float(value) / Float(totalAnswers) * 100
+                if personality.title == Titles.comedy.rawValue { comedyPercentage = percentage }
+                if personality.title == Titles.action.rawValue { actionPercentage = percentage }
+                if personality.title == Titles.drama.rawValue { dramaPercentage = percentage }
+                if personality.title == Titles.thriller.rawValue { thrillerPercentage = percentage }
+                if personality.title == Titles.documentary.rawValue { documentaryPercentage = percentage }
+            })
+        }
+        
+        PersonalityTestServiceModel().save(personalityType: personalityType,
+                                           comedyPercentage: comedyPercentage,
+                                           actionPercentage: actionPercentage,
+                                           dramaPercentage: dramaPercentage,
+                                           thrillerPercentage: thrillerPercentage,
+                                           documentaryPercentage: documentaryPercentage)
+    }
+    
+    private func savePersonalityTestIfNeeded() {
+        guard let personalityType = userPersonalityType, userPersonality != nil else {
+            return
+        }
+        
+        saveUserPersonalityTest(dictionaryAnswersCounts: dictionaryAnswersCounts(), personalityType: personalityType)
+    }
+    
+    func savePersonalityType(_ personalityType: PersonalityType?) {
+        UserDefaultsHelper.save(object: personalityType?.dictionaryRepresentation(), key: .userPersonality)
     }
     
     var userPersonalityType: PersonalityType? {
-        guard let object = UserDefaultsHelper.fetchUserDefaults(key: .userPersonality) else {
+        guard let object = UserDefaultsHelper.fetch(key: .userPersonality) else {
             return nil
         }
         return PersonalityType(object: object)
     }
     
+    
     var userAnsweredQuestions: [Answer] {
-        guard let array = UserDefaultsHelper.fetchUserDefaults(key: .answeredQuestions) as? [[String: Any]] else {
+        guard let array = UserDefaultsHelper.fetch(key: .answeredQuestions) as? [[String: Any]] else {
             return [Answer]()
         }
         
@@ -120,7 +172,7 @@ class Singleton {
     
     var didSkipTestFromLauching = false
     var didSkipTest: Bool {
-        guard let value = UserDefaultsHelper.fetchUserDefaults(key: .didSkipTest) as? Bool else {
+        guard let value = UserDefaultsHelper.fetch(key: .didSkipTest) as? Bool else {
             return false
         }
         return value

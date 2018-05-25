@@ -39,6 +39,7 @@ class LoginView: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.delegate = self
+        viewModel.loadData()
         viewModel.setupFacebookDataIfNeeded()
     }
     

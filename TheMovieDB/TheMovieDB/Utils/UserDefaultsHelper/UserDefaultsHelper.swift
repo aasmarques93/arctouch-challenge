@@ -22,18 +22,22 @@ enum UserDefaultsKeys {
 }
 
 struct UserDefaultsHelper {
-    static func saveUserDefaults(object: Any?, key: UserDefaultsKeys) {
+    static func save(object: Any?, key: UserDefaultsKeys) {
         guard let object = object else {
             return
         }
         UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: object), forKey: key.description)
     }
     
-    static func fetchUserDefaults(key: UserDefaultsKeys) -> Any? {
+    static func fetch(key: UserDefaultsKeys) -> Any? {
         guard let data = UserDefaults.standard.object(forKey: key.description) as? Data else {
             return nil
         }
         return NSKeyedUnarchiver.unarchiveObject(with: data)
+    }
+    
+    static func delete(key: UserDefaultsKeys) {
+        UserDefaults.standard.set(nil, forKey: key.description)
     }
     
     static func getImagePath(with data: Data) -> String {

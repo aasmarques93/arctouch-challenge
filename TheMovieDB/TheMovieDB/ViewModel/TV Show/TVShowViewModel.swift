@@ -182,7 +182,7 @@ class TVShowViewModel: MoviesShowsViewModel {
         }
         switch sectionType {
         case .netflix:
-            return numberOfNeflix
+            return numberOfNetflix
         case .sugested:
             return numberOfSugested
         case .airingToday:

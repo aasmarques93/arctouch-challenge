@@ -41,7 +41,6 @@ class ProfileViewModel: ViewModel {
     var username = Observable<String?>(nil)
     var email = Observable<String?>(nil)
     var picture = Observable<UIImage>(#imageLiteral(resourceName: "empty-user"))
-    var rating = Observable<String?>(nil)
     
     var isButtonLogoutHidden = Observable<Bool>(true)
     var isLoginHidden = Observable<Bool>(false)
@@ -86,9 +85,15 @@ class ProfileViewModel: ViewModel {
     }
     
     func doLogout() {
-        serviceModel.doLogout()
-        Singleton.shared.logout()
-        loadData()
+        username.value = nil
+        email.value = nil
+        picture.value = #imageLiteral(resourceName: "empty-user")
+        Loading.shared.start()
+        serviceModel.doLogout { [weak self] (result) in
+            Loading.shared.stop()
+            Singleton.shared.logout()
+            self?.loadData()
+        }
     }
     
     // MARK: - Your list -

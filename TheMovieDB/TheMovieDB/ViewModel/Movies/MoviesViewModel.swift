@@ -47,7 +47,6 @@ class MoviesViewModel: MoviesShowsViewModel {
     
     override func loadData() {
         super.loadData()
-        getSugestedMovies()
         getMovies(section: .popular)
         getMovies(section: .topRated)
         getMovies(section: .upcoming)
@@ -75,12 +74,15 @@ class MoviesViewModel: MoviesShowsViewModel {
         getMovies(section: section)
     }
     
-    private func getSugestedMovies() {
+    func loadSugestedMovies() {
+        guard arraySugestedMovies.isEmpty else {
+            return
+        }
+        
         guard let userPersonalityType = Singleton.shared.userPersonalityType, let genres = userPersonalityType.genres else {
             return
         }
         
-        arraySugestedMovies = [Movie]()
         genres.forEach { [weak self] (id) in
             self?.getMoviesFromGenre(id: id)
         }
@@ -190,7 +192,7 @@ class MoviesViewModel: MoviesShowsViewModel {
         }
         switch sectionType {
         case .netflix:
-            return numberOfNeflix
+            return numberOfNetflix
         case .sugested:
             return numberOfSugestedMovies
         case .popular:

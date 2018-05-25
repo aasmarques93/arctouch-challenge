@@ -35,6 +35,8 @@ class MoviesView: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppDelegate.shared.unlockOrientation()
+        viewModel.loadSugestedMovies()
+        viewModel.loadNetflixMoviesShows()
     }
     
     func initVariables() {

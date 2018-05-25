@@ -18,7 +18,6 @@ class ProfileView: UITableViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    var profileMainView: ProfileMainView?
     var viewModel: ProfileViewModel?
     
     override func viewDidLoad() {
@@ -107,11 +106,7 @@ class ProfileView: UITableViewController {
         guard segmentedControl.selectedSegmentIndex != 0 else {
             return
         }
-        
-    }
-    
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        profileMainView?.title = scrollView.contentOffset.y > 44 ? textFieldUsername.text : Titles.profile.localized
+        // TODO: Implement User Friend detail
     }
 }
 
