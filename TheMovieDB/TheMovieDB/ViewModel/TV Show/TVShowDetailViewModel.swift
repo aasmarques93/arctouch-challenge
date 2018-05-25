@@ -258,7 +258,7 @@ class TVShowDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.loadImage(path: tvShow.posterPath ?? "", handlerData: { (data) in
+        Singleton.shared.serviceModel.loadImage(path: tvShow.posterPath ?? "", handlerData: { (data) in
             tvShow.imageData = data as? Data
             handlerData(data)
         })
@@ -298,7 +298,7 @@ class TVShowDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.loadImage(path: tvShow.posterPath ?? "", handlerData: { (data) in
+        Singleton.shared.serviceModel.loadImage(path: tvShow.posterPath ?? "", handlerData: { (data) in
             tvShow.imageData = data as? Data
             handlerData(data)
         })

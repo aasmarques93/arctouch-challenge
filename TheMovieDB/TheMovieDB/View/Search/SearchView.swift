@@ -8,11 +8,9 @@
 
 import UIKit
 
-private let reuseIdentifier = "GenreCell"
-
-class SearchView: UITableViewController {
-    @IBOutlet var viewHeader: UIView!
+class SearchView: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var collectionView: CollectionView!
     
     let viewModel = SearchViewModel()
     
@@ -21,53 +19,45 @@ class SearchView: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = Titles.search.localized
-        tableView.keyboardDismissMode = .onDrag
-        viewHeader.backgroundColor = HexColor.primary.color
+        setupCollectionView()
         viewModel.delegate = self
-        loadData()
-    }
-    
-    func loadData() {
         viewModel.loadData()
     }
     
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfGenres
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return viewHeader.frame.height
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return viewHeader
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.setSelectedView(backgroundColor: HexColor.secondary.color)
-        
-        if let label = cell.viewWithTag(1) as? UILabel {
-            if let value = viewModel.titleDescription(at: indexPath) { label.text = value }
-        }
-        
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        pushSearchResultView(at: indexPath)
+    func setupCollectionView() {
+        collectionView.itemHeight = collectionView.itemWidth
+        collectionView.collectionDelegate = self
+        collectionView.keyboardDismissMode = .onDrag
     }
     
     func pushSearchResultView(at indexPath: IndexPath? = nil, text: String? = nil) {
         let viewController = instantiate(viewController: SearchResultView.self, from: .search)
         viewController.viewModel = viewModel.searchResultViewModel(at: indexPath, text: text)
         navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension SearchView: CollectionViewDelegate {
+    
+    // MARK: - Collection view delegate -
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.numberOfGenres
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(SearchViewCell.self, for: indexPath)
+        cell.viewModel = viewModel.searchCellViewModel(at: indexPath)
+        cell.setupView()
+        return cell
+    }
+    
+    func didSelect(_ collectionView: UICollectionView, itemAt indexPath: IndexPath) {
+        pushSearchResultView(at: indexPath)
     }
 }
 
@@ -86,7 +76,7 @@ extension SearchView: ViewModelDelegate {
     // MARK: - Search view model delegate -
     
     func reloadData() {
-        tableView.reloadData()
+        collectionView.reloadData()
     }
     
     func showAlert(message: String?) {

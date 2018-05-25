@@ -68,7 +68,7 @@ extension PopularPeopleView: CollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(PopularPersonViewCell.self, for: indexPath)
         cell.viewModel = viewModel.popularPersonCellViewModel(at: indexPath)
-        cell.setupView(at: indexPath)
+        cell.setupView()
         return cell
     }
     

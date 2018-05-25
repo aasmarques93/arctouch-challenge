@@ -230,7 +230,7 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.loadImage(path: movieDetail.backdropPath, handlerData: { (data) in
+        Singleton.shared.serviceModel.loadImage(path: movieDetail.backdropPath, handlerData: { (data) in
             handlerData(data)
         })
     }
@@ -264,7 +264,7 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.loadImage(path: movie.posterPath ?? "", handlerData: { (data) in
+        Singleton.shared.serviceModel.loadImage(path: movie.posterPath ?? "", handlerData: { (data) in
             movie.imageData = data as? Data
             handlerData(data)
         })
@@ -280,7 +280,7 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.loadImage(path: movie.posterPath ?? "", handlerData: { (data) in
+        Singleton.shared.serviceModel.loadImage(path: movie.posterPath ?? "", handlerData: { (data) in
             movie.imageData = data as? Data
             handlerData(data)
         })
@@ -296,7 +296,7 @@ class MovieDetailViewModel: ViewModel {
             return
         }
         
-        serviceModel.loadImage(path: cast.profilePath ?? "", handlerData: { (data) in
+        Singleton.shared.serviceModel.loadImage(path: cast.profilePath ?? "", handlerData: { (data) in
             cast.imageData = data as? Data
             handlerData(data)
         })

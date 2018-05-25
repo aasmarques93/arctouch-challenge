@@ -78,6 +78,8 @@
 	<string>/genre/{id}/movies?language={language}&amp;</string>
 	<key>searchTV</key>
 	<string>/search/tv?query={query}&amp;page={page}&amp;</string>
+	<key>searchImage</key>
+	<string>/api/image/{name}</string>
 	<key>genres</key>
 	<string>/genre/movie/list?language={language}&amp;</string>
 	<key>genresTV</key>

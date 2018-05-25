@@ -30,7 +30,7 @@ extension Date {
     func isGreaterThan(date: Date) -> Bool {
         var isGreater = false
         
-        if self.compare(date) == ComparisonResult.orderedDescending {
+        if compare(date) == ComparisonResult.orderedDescending {
             isGreater = true
         }
         
@@ -40,7 +40,7 @@ extension Date {
     func isEarlierThan(date: Date) -> Bool {
         var isEarlier = false
         
-        if self.compare(date) == ComparisonResult.orderedAscending {
+        if compare(date) == ComparisonResult.orderedAscending {
             isEarlier = true
         }
         
@@ -50,7 +50,7 @@ extension Date {
     func equalsTo(date: Date) -> Bool {
         var isEqualTo = false
         
-        if self.compare(date) == ComparisonResult.orderedSame {
+        if compare(date) == ComparisonResult.orderedSame {
             isEqualTo = true
         }
         
@@ -58,7 +58,7 @@ extension Date {
     }
     
     var isToday: Bool {
-        return self.equalsTo(date: Date().dateFor(.startOfDay))
+        return equalsTo(date: Date().dateFor(.startOfDay))
     }
     
     func addDateComponent(_ component: Calendar.Component, units: Int) -> Date {

@@ -43,7 +43,7 @@ class SeasonDetailView: UITableViewController {
         let cell = tableView.dequeueReusableCell(EpisodeViewCell.self, for: indexPath)
         cell.setSelectedView(backgroundColor: UIColor.clear)
         cell.viewModel = viewModel?.episodeViewModel(at: indexPath)
-        cell.setupView(at: indexPath)
+        cell.setupView()
         return cell
     }
     

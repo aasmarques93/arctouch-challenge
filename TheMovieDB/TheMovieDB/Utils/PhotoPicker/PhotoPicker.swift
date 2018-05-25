@@ -26,7 +26,7 @@ class PhotoPicker: UIImagePickerController {
     var selectedIndexPath: IndexPath?
     
     func customAction() {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     func present(in viewController: UIViewController) {
@@ -64,11 +64,11 @@ class PhotoPicker: UIImagePickerController {
  
 extension PhotoPicker: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
         photoPickerDelegate?.dismissPhotoPicker(selectedImage: info[UIImagePickerControllerOriginalImage] as? UIImage, pathUrl: info[UIImagePickerControllerImageURL] as? URL)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }

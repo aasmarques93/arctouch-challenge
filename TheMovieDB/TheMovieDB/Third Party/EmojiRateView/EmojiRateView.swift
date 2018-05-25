@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@IBDesignable
 open class EmojiRateView: UIView {
     /// Rate default color for rateValue = 5
     fileprivate static let rateLineColorBest: UIColor = UIColor.init(hue: 165 / 360, saturation: 0.8, brightness: 0.9, alpha: 1.0)

@@ -59,7 +59,7 @@ class PersonalityTestView: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(PersonalityTestViewCell.self, for: indexPath)
         cell.viewModel = viewModel.personalityTestCellViewModel(at: indexPath)
-        cell.setupView(at: indexPath)
+        cell.setupView()
         return cell
     }
 }

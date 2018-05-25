@@ -53,8 +53,8 @@ class SearchViewModel: ViewModel {
     
     // MARK: - View Model -
     
-    func titleDescription(at indexPath: IndexPath) -> String? {
-        return arrayGenres[indexPath.row].name
+    func searchCellViewModel(at indexPath: IndexPath) -> SearchCellViewModel {
+        return SearchCellViewModel(object: arrayGenres[indexPath.row])
     }
     
     private func searchResultViewModel(at indexPath: IndexPath) -> SearchResultViewModel? {

@@ -500,6 +500,7 @@
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="rateLineWidth">
                                                                     <real key="value" value="2"/>
                                                                 </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="rateShowEyes" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>

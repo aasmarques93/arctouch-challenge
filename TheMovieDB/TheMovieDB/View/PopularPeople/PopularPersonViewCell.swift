@@ -16,7 +16,7 @@ class PopularPersonViewCell: UICollectionViewCell {
  
     var viewModel: PopularPersonCellViewModel?
     
-    func setupView(at indexPath: IndexPath) {
+    func setupView() {
         activityIndicator.startAnimating()
         
         viewModel?.photo.bind(to: imageViewPhoto.reactive.image)

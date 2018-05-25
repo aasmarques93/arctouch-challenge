@@ -17,7 +17,7 @@ class PersonalityTestViewCell: UITableViewCell {
     
     var viewModel: PersonalityTestCellViewModel?
     
-    func setupView(at indexPath: IndexPath) {
+    func setupView() {
         viewModel?.cellDelegate = self
         viewModel?.text.bind(to: labelText.reactive.text)
         viewModel?.loadData()

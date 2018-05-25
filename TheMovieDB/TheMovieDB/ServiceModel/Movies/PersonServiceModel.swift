@@ -41,8 +41,4 @@ struct PersonServiceModel {
             }
         })
     }
-    
-    func loadImage(path: String?, handlerData: @escaping HandlerObject) {
-        serviceModel.loadImage(path: path, handlerData: handlerData)
-    }
 }

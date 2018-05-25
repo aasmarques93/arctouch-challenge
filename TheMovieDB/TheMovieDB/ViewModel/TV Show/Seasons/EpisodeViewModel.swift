@@ -83,7 +83,7 @@ class EpisodeViewModel: ViewModel {
     func setupPhotos() {
         photos = [Photo]()
         for image in arrayImages {
-            serviceModel.loadImage(path: image.filePath) { [weak self] (data) in
+            Singleton.shared.serviceModel.loadImage(path: image.filePath) { [weak self] (data) in
                 guard let data = data as? Data else {
                     return
                 }

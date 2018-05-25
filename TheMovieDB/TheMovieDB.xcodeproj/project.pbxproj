@@ -80,6 +80,8 @@
 		ED2AA63020A30FAE00AA0DF5 /* ChartGenericCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA62920A30B1100AA0DF5 /* ChartGenericCell.swift */; };
 		ED2AA63120A30FAE00AA0DF5 /* ChartGenericChartCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA62820A30B1100AA0DF5 /* ChartGenericChartCell.xib */; };
 		ED34BCE020B7417500CBF4DF /* UserRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34BCDF20B7417500CBF4DF /* UserRating.swift */; };
+		ED34BCE320B815C100CBF4DF /* SearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34BCE220B815C100CBF4DF /* SearchViewCell.swift */; };
+		ED34BCE520B816E600CBF4DF /* SearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34BCE420B816E600CBF4DF /* SearchCellViewModel.swift */; };
 		ED3833E42093324C0079D48F /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833E32093324C0079D48F /* PersonView.swift */; };
 		ED3833E6209332590079D48F /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833E5209332590079D48F /* PersonViewModel.swift */; };
 		ED3833E8209339880079D48F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833E7209339870079D48F /* Person.swift */; };
@@ -339,6 +341,8 @@
 		ED2AA62A20A30B1200AA0DF5 /* ChartGenericContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartGenericContainer.swift; sourceTree = "<group>"; };
 		ED2AA62B20A30BF000AA0DF5 /* PersonalityTestResultDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestResultDetailsView.swift; sourceTree = "<group>"; };
 		ED34BCDF20B7417500CBF4DF /* UserRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRating.swift; sourceTree = "<group>"; };
+		ED34BCE220B815C100CBF4DF /* SearchViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCell.swift; sourceTree = "<group>"; };
+		ED34BCE420B816E600CBF4DF /* SearchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellViewModel.swift; sourceTree = "<group>"; };
 		ED3833E32093324C0079D48F /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
 		ED3833E5209332590079D48F /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
 		ED3833E7209339870079D48F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -698,9 +702,9 @@
 			isa = PBXGroup;
 			children = (
 				ED16D87F20599F90002A0B2C /* SearchView.swift */,
-				ED16D8892059A34F002A0B2C /* SearchResultView.swift */,
-				ED16D88B2059A3A0002A0B2C /* SearchResultViewCell.swift */,
+				ED34BCE220B815C100CBF4DF /* SearchViewCell.swift */,
 				ED38343F2094B6C60079D48F /* SearchHeaderView.swift */,
+				ED34BCE120B8159C00CBF4DF /* Result */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -772,6 +776,7 @@
 			isa = PBXGroup;
 			children = (
 				ED16D8832059A008002A0B2C /* SearchViewModel.swift */,
+				ED34BCE420B816E600CBF4DF /* SearchCellViewModel.swift */,
 				ED3834412094F7600079D48F /* SearchResultViewModel.swift */,
 			);
 			path = Search;
@@ -906,6 +911,15 @@
 				ED65BEFB20923E8E0091D93B /* XIB */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		ED34BCE120B8159C00CBF4DF /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				ED16D8892059A34F002A0B2C /* SearchResultView.swift */,
+				ED16D88B2059A3A0002A0B2C /* SearchResultViewCell.swift */,
+			);
+			path = Result;
 			sourceTree = "<group>";
 		};
 		ED3833E12093322B0079D48F /* Detail */ = {
@@ -1978,6 +1992,7 @@
 				EDC6C03020585A8C00D843EC /* Connection.swift in Sources */,
 				ED65BEB320909EFA0091D93B /* iCarousel.m in Sources */,
 				ED16D84C205884AB002A0B2C /* Movie.swift in Sources */,
+				ED34BCE320B815C100CBF4DF /* SearchViewCell.swift in Sources */,
 				ED38340F20940E130079D48F /* TVShowView.swift in Sources */,
 				ED34BCE020B7417500CBF4DF /* UserRating.swift in Sources */,
 				ED4201B320A7EAAE005D5FF3 /* TVShowSectionViewCell.swift in Sources */,
@@ -1985,6 +2000,7 @@
 				ED4201A120A754F6005D5FF3 /* LoginViewModel.swift in Sources */,
 				ED38345320973FBF0079D48F /* EpisodeViewModel.swift in Sources */,
 				ED6A6D8420B587A1004636B2 /* UserPersonality.swift in Sources */,
+				ED34BCE520B816E600CBF4DF /* SearchCellViewModel.swift in Sources */,
 				ED0C3D6820AA853900F28150 /* StoryPreviewCell.swift in Sources */,
 				ED95295920B4AD21007936B6 /* UserFriendsServiceModel.swift in Sources */,
 				ED3833E42093324C0079D48F /* PersonView.swift in Sources */,
@@ -2347,6 +2363,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = XXT2XJVDAC;
 				INFOPLIST_FILE = "$(SRCROOT)/TheMovieDB/Supporting Files/Plists/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

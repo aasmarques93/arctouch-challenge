@@ -17,7 +17,7 @@ class EpisodeViewCell: UITableViewCell {
 
     var viewModel: EpisodeViewModel?
     
-    func setupView(at indexPath: IndexPath) {
+    func setupView() {
         imageViewPoster.contentMode = .scaleAspectFit
         viewModel?.delegate = self
         

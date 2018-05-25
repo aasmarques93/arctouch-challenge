@@ -135,7 +135,7 @@ class PersonViewModel: ViewModel {
     private func loadImageData() {
         if photo.value != nil { return }
 
-        serviceModel.loadImage(path: person?.profilePath ?? "", handlerData: { [weak self] (data) in
+        Singleton.shared.serviceModel.loadImage(path: person?.profilePath ?? "", handlerData: { [weak self] (data) in
             guard let data = data as? Data else {
                 return
             }
@@ -145,7 +145,7 @@ class PersonViewModel: ViewModel {
     }
     
     func loadMovieImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        serviceModel.loadImage(path: arrayCast[index].posterPath, handlerData: handlerData)
+        Singleton.shared.serviceModel.loadImage(path: arrayCast[index].posterPath, handlerData: handlerData)
     }
     
     // MARK: - View Model -
@@ -192,7 +192,7 @@ class PersonViewModel: ViewModel {
     func setupPhotos() {
         photos = [Photo]()
         for image in arrayImages {
-            serviceModel.loadImage(path: image.filePath) { [weak self] (data) in
+            Singleton.shared.serviceModel.loadImage(path: image.filePath) { [weak self] (data) in
                 guard let data = data as? Data else {
                     return
                 }

@@ -161,7 +161,7 @@ class MoviesShowsViewModel: ViewModel {
     }
     
     func loadImageData(at path: String?, handlerData: @escaping HandlerObject) {
-        moviesServiceModel.loadImage(path: path, handlerData: handlerData)
+        Singleton.shared.serviceModel.loadImage(path: path, handlerData: handlerData)
     }
     
     

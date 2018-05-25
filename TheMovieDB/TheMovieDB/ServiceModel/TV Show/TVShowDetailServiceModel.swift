@@ -66,8 +66,4 @@ struct TVShowDetailServiceModel {
                                 handler?(UserMovieShow(object: object))
         })
     }
-    
-    func loadImage(path: String?, handlerData: @escaping HandlerObject) {
-        serviceModel.loadImage(path: path, handlerData: handlerData)
-    }
 }
