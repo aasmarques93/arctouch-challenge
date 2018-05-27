@@ -10,7 +10,7 @@ import UIKit
 import Bond
 
 class ProfileView: UITableViewController {
-    @IBOutlet weak var textFieldUsername: UITextField!
+    @IBOutlet weak var labelUsername: UILabel!
     @IBOutlet weak var labelEmail: UILabel!
     
     @IBOutlet weak var viewPhoto: UIView!
@@ -34,14 +34,12 @@ class ProfileView: UITableViewController {
     }
     
     func setupAppearance() {
-        textFieldUsername.textColor = HexColor.text.color
-        
         imageViewPhoto.image = imageViewPhoto.image?.withRenderingMode(.alwaysTemplate)
         imageViewPhoto.tintColor = HexColor.primary.color
     }
     
     func setupBindings() {
-        viewModel?.username.bidirectionalBind(to: textFieldUsername.reactive.text)
+        viewModel?.username.bind(to: labelUsername.reactive.text)
         viewModel?.email.bind(to: labelEmail.reactive.text)
         viewModel?.picture.bind(to: imageViewPhoto.reactive.image)
     }
@@ -96,7 +94,6 @@ class ProfileView: UITableViewController {
         }
         
         let cell = tableView.dequeueReusableCell(FriendsViewCell.self, for: indexPath)
-        cell.setSelectedView(backgroundColor: .clear)
         cell.viewModel = viewModel?.userFriendViewModel(at: indexPath)
         cell.setupView()
         return cell
@@ -106,7 +103,10 @@ class ProfileView: UITableViewController {
         guard segmentedControl.selectedSegmentIndex != 0 else {
             return
         }
-        // TODO: Implement User Friend detail
+        
+        let viewController = instantiate(viewController: UserFriendDetailView.self, from: .profile)
+        viewController.viewModel = viewModel?.userFriendViewModel(at: indexPath)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

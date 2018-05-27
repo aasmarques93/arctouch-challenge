@@ -22,6 +22,7 @@ class UserFriendViewModel: ViewModel {
     var backgroundColor = Observable<UIColor>(UIColor.clear)
     var picture = Observable<UIImage>(#imageLiteral(resourceName: "empty-user"))
     var name = Observable<String?>(nil)
+    var email = Observable<String?>(nil)
     var personality = Observable<String?>(nil)
     var movieShow = Observable<String?>(nil)
     
@@ -51,6 +52,7 @@ class UserFriendViewModel: ViewModel {
         getProfile()
         
         name.value = userFriend.name
+        email.value = userFriend.email
     }
     
     private func loadImageData() {

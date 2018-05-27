@@ -212,6 +212,8 @@
 		ED95295920B4AD21007936B6 /* UserFriendsServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED95295820B4AD21007936B6 /* UserFriendsServiceModel.swift */; };
 		ED95295B20B4BE5B007936B6 /* ProfileServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED95295A20B4BE5B007936B6 /* ProfileServiceModel.swift */; };
 		EDA5DFF620B65340008E575F /* EmojiRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5DFF520B65340008E575F /* EmojiRateView.swift */; };
+		EDB7371120BACEFD00CC3F95 /* UserFriendDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7371020BACEFD00CC3F95 /* UserFriendDetailView.swift */; };
+		EDB7371420BACF4600CC3F95 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB7371320BACF4600CC3F95 /* Profile.storyboard */; };
 		EDBAF882209FFE430089DE39 /* FabricUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAF881209FFE430089DE39 /* FabricUtils.swift */; };
 		EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01220585A4400D843EC /* CollectionView.swift */; };
 		EDC6C01820585A5500D843EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01720585A5500D843EC /* Date.swift */; };
@@ -492,6 +494,8 @@
 		ED95295820B4AD21007936B6 /* UserFriendsServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendsServiceModel.swift; sourceTree = "<group>"; };
 		ED95295A20B4BE5B007936B6 /* ProfileServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServiceModel.swift; sourceTree = "<group>"; };
 		EDA5DFF520B65340008E575F /* EmojiRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiRateView.swift; sourceTree = "<group>"; };
+		EDB7371020BACEFD00CC3F95 /* UserFriendDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendDetailView.swift; sourceTree = "<group>"; };
+		EDB7371320BACF4600CC3F95 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		EDBAF881209FFE430089DE39 /* FabricUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricUtils.swift; sourceTree = "<group>"; };
 		EDC6C01220585A4400D843EC /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		EDC6C01720585A5500D843EC /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -1247,6 +1251,7 @@
 			isa = PBXGroup;
 			children = (
 				ED42019020A747E6005D5FF3 /* Login & Register */,
+				EDB7371220BACF3700CC3F95 /* Profile */,
 				ED2AA5EE20A0D26B00AA0DF5 /* PersonalityTest */,
 				ED38342A2094AB1C0079D48F /* Movie */,
 				ED38342C2094AB330079D48F /* TV Show */,
@@ -1329,6 +1334,7 @@
 			isa = PBXGroup;
 			children = (
 				ED81CB7F20B05FF10056E2A8 /* FriendsViewCell.swift */,
+				EDB7371020BACEFD00CC3F95 /* UserFriendDetailView.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -1437,6 +1443,14 @@
 				EDA5DFF520B65340008E575F /* EmojiRateView.swift */,
 			);
 			path = EmojiRateView;
+			sourceTree = "<group>";
+		};
+		EDB7371220BACF3700CC3F95 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7371320BACF4600CC3F95 /* Profile.storyboard */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		EDBAF880209FFE340089DE39 /* Fabric */ = {
@@ -1748,6 +1762,7 @@
 				ED841E9020A54D3400A425BF /* personalityTestBR.json in Resources */,
 				ED65BEDD2091F1330091D93B /* genres.json in Resources */,
 				ED65BEDF2091F1330091D93B /* searchMovie.json in Resources */,
+				EDB7371420BACF4600CC3F95 /* Profile.storyboard in Resources */,
 				ED38343E2094B6810079D48F /* SearchHeaderView.xib in Resources */,
 				EDC6C03820585B9D00D843EC /* EnvironmentLinks.plist in Resources */,
 				ED65BEDB2091F1330091D93B /* popular.json in Resources */,
@@ -2112,6 +2127,7 @@
 				ED16D84720588381002A0B2C /* MoviesServiceModel.swift in Sources */,
 				ED7B9CB7209E44D4006B9586 /* EpisodeImage.swift in Sources */,
 				ED81CB8220B068AB0056E2A8 /* YourListMovieViewCell.swift in Sources */,
+				EDB7371120BACEFD00CC3F95 /* UserFriendDetailView.swift in Sources */,
 				EDC6C02520585A7D00D843EC /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
