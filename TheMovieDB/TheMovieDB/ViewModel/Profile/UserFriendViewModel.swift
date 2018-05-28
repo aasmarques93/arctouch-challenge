@@ -107,7 +107,7 @@ class UserFriendViewModel: ViewModel {
     // MARK: - View Model instanstiation -
     
     func personalityTestResultViewModel() -> PersonalityTestResultViewModel {
-        return PersonalityTestResultViewModel(userFriendPersonality: userDetail?.personality)
+        return PersonalityTestResultViewModel(userPersonality: userDetail?.personality)
     }
     
     func yourListViewModel(at indexPath: IndexPath) -> YourListViewModel? {

@@ -117,6 +117,15 @@ class Singleton {
             })
         }
         
+        if comedyPercentage == 0
+            && actionPercentage == 0
+            && dramaPercentage == 0
+            && thrillerPercentage == 0
+            && documentaryPercentage == 0 {
+
+            return
+        }
+        
         PersonalityTestServiceModel().save(personalityType: personalityType,
                                            comedyPercentage: comedyPercentage,
                                            actionPercentage: actionPercentage,
