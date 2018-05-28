@@ -19,6 +19,7 @@ struct UserMovieShow: Model {
         static let showImageUrl = "showImageUrl"
         static let season = "season"
         static let episode = "episode"
+        static let updateAt = "updateAt"
     }
     
     // MARK: Properties
@@ -28,6 +29,7 @@ struct UserMovieShow: Model {
     var showImageUrl: String?
     var season: Int?
     var episode: Int?
+    var updateAt: String?
     
     // MARK: SwiftyJSON Initializers
     init(object: Any) {
@@ -47,6 +49,7 @@ struct UserMovieShow: Model {
         showImageUrl = json?[SerializationKeys.showImageUrl].string
         season = json?[SerializationKeys.season].int
         episode = json?[SerializationKeys.episode].int
+        updateAt = json?[SerializationKeys.updateAt].string
     }
     
     /// Generates description of the object in the form of a NSDictionary.
@@ -58,6 +61,7 @@ struct UserMovieShow: Model {
         if let value = showImageUrl { dictionary[SerializationKeys.showImageUrl] = value }
         if let value = season { dictionary[SerializationKeys.season] = value }
         if let value = episode { dictionary[SerializationKeys.episode] = value }
+        if let value = updateAt { dictionary[SerializationKeys.updateAt] = value }
         return dictionary
     }
 }

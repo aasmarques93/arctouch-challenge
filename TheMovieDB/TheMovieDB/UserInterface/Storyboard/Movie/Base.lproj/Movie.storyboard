@@ -556,16 +556,26 @@
                                                         <constraint firstAttribute="width" secondItem="2oX-Bk-beG" secondAttribute="height" multiplier="1:1" id="XEt-oj-gdH"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdn-Va-GhF">
+                                                    <rect key="frame" x="8" y="0.0" width="143" height="70"/>
+                                                    <connections>
+                                                        <action selector="buttonRateAction:" destination="jXi-wG-S1T" eventType="touchUpInside" id="o1s-Mk-jXx"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="rFE-ed-Pzf" firstAttribute="centerY" secondItem="J8k-pV-Ii1" secondAttribute="centerY" id="2Ii-lo-AED"/>
+                                                <constraint firstItem="xdn-Va-GhF" firstAttribute="trailing" secondItem="J8k-pV-Ii1" secondAttribute="trailing" id="BTR-iz-fxC"/>
                                                 <constraint firstItem="rFE-ed-Pzf" firstAttribute="centerX" secondItem="QKU-CE-lHz" secondAttribute="centerX" id="IrJ-0m-Vop"/>
+                                                <constraint firstItem="xdn-Va-GhF" firstAttribute="top" secondItem="QKU-CE-lHz" secondAttribute="top" id="RIc-tK-pCD"/>
                                                 <constraint firstAttribute="trailing" secondItem="baR-db-9Ng" secondAttribute="trailing" constant="8" id="SxV-gy-Lco"/>
                                                 <constraint firstItem="J8k-pV-Ii1" firstAttribute="centerY" secondItem="QKU-CE-lHz" secondAttribute="centerY" id="Tzv-5p-Hg9"/>
                                                 <constraint firstItem="baR-db-9Ng" firstAttribute="width" secondItem="rFE-ed-Pzf" secondAttribute="width" id="UDs-lB-Kei"/>
                                                 <constraint firstItem="baR-db-9Ng" firstAttribute="centerY" secondItem="rFE-ed-Pzf" secondAttribute="centerY" id="WBa-Gf-WXk"/>
                                                 <constraint firstItem="J8k-pV-Ii1" firstAttribute="leading" secondItem="2oX-Bk-beG" secondAttribute="trailing" constant="8" id="c4s-iD-fnU"/>
+                                                <constraint firstAttribute="bottom" secondItem="xdn-Va-GhF" secondAttribute="bottom" id="fkY-Jf-7Wu"/>
                                                 <constraint firstItem="2oX-Bk-beG" firstAttribute="centerY" secondItem="J8k-pV-Ii1" secondAttribute="centerY" id="gml-GI-lPU"/>
+                                                <constraint firstItem="xdn-Va-GhF" firstAttribute="leading" secondItem="2oX-Bk-beG" secondAttribute="leading" id="nsD-dX-r62"/>
                                                 <constraint firstItem="2oX-Bk-beG" firstAttribute="leading" secondItem="QKU-CE-lHz" secondAttribute="leading" constant="8" id="x3A-W7-dQU"/>
                                             </constraints>
                                         </tableViewCellContentView>

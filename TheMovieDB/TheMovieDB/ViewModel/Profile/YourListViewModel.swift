@@ -38,7 +38,17 @@ class YourListViewModel: ViewModel {
         }
         
         isMessageErrorHidden.value = array.count > 0
-        return array
+        return array.sorted(by: { (movieShow1, movieShow2) -> Bool in
+            guard let stringDate1 = movieShow1.updateAt,
+                let stringDate2 = movieShow2.updateAt,
+                let date1 = Date(fromString: stringDate1, format: DateFormatType.isoDateTimeMilliSec),
+                let date2 = Date(fromString: stringDate2, format: DateFormatType.isoDateTimeMilliSec) else {
+                    
+                return true
+            }
+            
+            return date1.isGreaterThan(date: date2)
+        })
     }
     
     var numberOfMoviesShows: Int { return arrayUserMoviesShows.count }
