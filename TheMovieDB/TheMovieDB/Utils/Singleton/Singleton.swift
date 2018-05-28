@@ -28,6 +28,7 @@ class Singleton {
     
     let typingTimeInterval = 0.01
     var arrayPersonalityTypes = [PersonalityType]()
+    var arrayPersonalityQuestions = [Questions]()
     
     var user = User.createEmptyUser() { didSet { saveUser() } }
     
@@ -162,7 +163,7 @@ class Singleton {
         var counts = [Int: Int]()
         
         array.forEach { (answer) in
-            if let id = answer.personalityTypeId  {
+            if let id = answer.personalityTypeId {
                 counts[id, default: 0] += 1
             }
         }

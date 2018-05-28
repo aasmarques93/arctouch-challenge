@@ -117,6 +117,10 @@ class PersonalityTestViewModel: ViewModel {
                 return
             }
             
+            if let questions = self?.personalityObject?.questions {
+                Singleton.shared.arrayPersonalityQuestions = questions
+            }
+            
             self?.doDetectionStep()
         }
     }

@@ -394,6 +394,7 @@
                         <outlet property="imageViewPersonalityType" destination="DQo-QM-Um4" id="5cf-c4-qU3"/>
                         <outlet property="labelChartTitle" destination="0sL-G7-eF7" id="Y9m-zE-kIz"/>
                         <outlet property="labelPercentage" destination="ZDM-Bs-gAP" id="Rlw-Kk-EO6"/>
+                        <outlet property="segmentedControl" destination="en2-AR-Hij" id="Lg6-D5-2xV"/>
                         <outlet property="textViewDescription" destination="vt6-9p-Ud2" id="12K-9S-vkg"/>
                         <outlet property="viewChart" destination="4fD-pI-jf2" id="bht-aK-zJA"/>
                     </connections>

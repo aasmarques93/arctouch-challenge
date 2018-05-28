@@ -361,7 +361,7 @@
         <scene sceneID="HLC-MS-NiX">
             <objects>
                 <tableViewController storyboardIdentifier="UserFriendDetailView" id="kFB-Xt-ajg" customClass="UserFriendDetailView" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5xa-Kr-wlW">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="230" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5xa-Kr-wlW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -425,7 +425,7 @@
                                     </constraints>
                                     <segments>
                                         <segment title="Personality"/>
-                                        <segment title="Friends"/>
+                                        <segment title="List"/>
                                     </segments>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="secondary"/>
@@ -451,13 +451,6 @@
                                 <constraint firstItem="9dJ-Bm-Xf2" firstAttribute="centerX" secondItem="OgP-hW-g77" secondAttribute="centerX" id="tMA-Oc-VnR"/>
                             </constraints>
                         </view>
-                        <containerView key="tableFooterView" opaque="NO" contentMode="scaleToFill" id="nYm-rL-Pga">
-                            <rect key="frame" x="0.0" y="524" width="375" height="100"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <connections>
-                                <segue destination="qmY-KQ-UYQ" kind="embed" id="H7d-Lu-IEb"/>
-                            </connections>
-                        </containerView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="YourListViewCell" rowHeight="230" id="a6b-32-eJZ" customClass="YourListViewCell" customModule="TheMovieDB" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="294" width="375" height="230"/>
@@ -580,7 +573,11 @@
                             <outlet property="delegate" destination="kFB-Xt-ajg" id="aTC-y1-Lmd"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="tJB-Mv-uDf">
+                        <barButtonItem key="backBarButtonItem" title=" " id="RCs-mQ-W5n"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="containerPersonalityTestResult" destination="nYm-rL-Pga" id="JJ0-CS-cxY"/>
                         <outlet property="imageViewUserFriend" destination="t9F-3v-7Fi" id="acS-L0-rKs"/>
                         <outlet property="labelUserFriendEmail" destination="xHE-Cd-4WJ" id="XMt-mF-zAn"/>
                         <outlet property="labelUserFriendName" destination="4Am-Zh-bBx" id="Ljf-HC-89a"/>
@@ -589,6 +586,13 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="beg-px-A4o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <containerView opaque="NO" contentMode="scaleToFill" id="nYm-rL-Pga">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <connections>
+                        <segue destination="qmY-KQ-UYQ" kind="embed" identifier="PersonalityTestResultDetailsView" id="H7d-Lu-IEb"/>
+                    </connections>
+                </containerView>
             </objects>
             <point key="canvasLocation" x="1740" y="2883.5082458770617"/>
         </scene>

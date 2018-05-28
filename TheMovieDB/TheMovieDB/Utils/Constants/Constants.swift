@@ -44,6 +44,10 @@ enum Titles: String {
     case episode = "Episode"
     case rate = "Rate"
     
+    case wantToSeeMovies = "Want To See Movies"
+    case tvShowsTrack = "TV Shows Track"
+    case seenMovies = "Seen Movies"
+    
     // Personality
     case comedy = "Comedy"
     case action = "Action"

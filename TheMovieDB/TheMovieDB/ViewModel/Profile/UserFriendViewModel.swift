@@ -43,10 +43,17 @@ class UserFriendViewModel: ViewModel {
         }
     }
     
+    private var arrayYourListSections: [YourListSection] = [.wantToSeeMovies, .tvShowsTrack, .seenMovies]
+    var numberYourListSections: Int { return arrayYourListSections.count }
+    
+    // MARK: - Life cycle -
+    
     init(object: User) {
         userFriend = object
     }
 
+    // MARK: - Service requests -
+    
     func loadData() {
         loadImageData()
         getProfile()
@@ -71,6 +78,7 @@ class UserFriendViewModel: ViewModel {
                 return
             }
             self?.userDetail = user
+            self?.delegate?.reloadData?()
         }
     }
     
@@ -84,5 +92,28 @@ class UserFriendViewModel: ViewModel {
         tvShowDetailServiceModel.getDetail(from: tvShow) { [weak self] (object) in
             self?.tvShowDetail = object as? TVShowDetail
         }
+    }
+    
+    // MARK: - View Model -
+    
+    func sectionTitle(at section: Int) -> String {
+        switch arrayYourListSections[section] {
+        case .wantToSeeMovies: return Titles.wantToSeeMovies.localized
+        case .tvShowsTrack: return Titles.tvShowsTrack.localized
+        case .seenMovies: return Titles.seenMovies.localized
+        }
+    }
+    
+    // MARK: - View Model instanstiation -
+    
+    func personalityTestResultViewModel() -> PersonalityTestResultViewModel {
+        return PersonalityTestResultViewModel(userFriendPersonality: userDetail?.personality)
+    }
+    
+    func yourListViewModel(at indexPath: IndexPath) -> YourListViewModel? {
+        guard let user = userDetail else {
+            return nil
+        }
+        return YourListViewModel(object: arrayYourListSections[indexPath.section], user: user)
     }
 }

@@ -57,6 +57,9 @@ class ProfileView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard segmentedControl.selectedSegmentIndex == 0 else {
+            return 0
+        }
         return viewHeaderTitleHeight
     }
     

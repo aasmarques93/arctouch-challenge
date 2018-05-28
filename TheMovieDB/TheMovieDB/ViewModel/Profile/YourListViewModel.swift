@@ -19,6 +19,7 @@ class YourListViewModel: ViewModel {
     var isMessageErrorHidden = Observable<Bool>(false)
     
     // MARK: - Objects -
+    var user: User
     var isMovieType: Bool {
         return yourListSection != .tvShowsTrack
     }
@@ -29,11 +30,11 @@ class YourListViewModel: ViewModel {
     
         switch yourListSection {
         case .wantToSeeMovies:
-            array = Singleton.shared.arrayUserWantToSeeMovies
+            array = user.moviesWantToSeeList ?? []
         case .tvShowsTrack:
-            array = Singleton.shared.arrayUserShows
+            array = user.showsTrackList ?? []
         case .seenMovies:
-            array = Singleton.shared.arrayUserSeenMovies
+            array = user.moviesSeenList ?? []
         }
         
         isMessageErrorHidden.value = array.count > 0
@@ -44,8 +45,9 @@ class YourListViewModel: ViewModel {
     
     // MARK: - Life cycle -
     
-    init(object: YourListSection) {
+    init(object: YourListSection, user: User = Singleton.shared.user) {
         self.yourListSection = object
+        self.user = user
     }
     
     // MARK: - Service requests -
