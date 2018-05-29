@@ -87,7 +87,7 @@ class UserFriendViewModel: ViewModel {
             return
         }
         
-        let dictionary = ["id": showId]
+        let dictionary = [TVShow.SerializationKeys.id: showId]
         let tvShow = TVShow(object: dictionary)
         tvShowDetailServiceModel.getDetail(from: tvShow) { [weak self] (object) in
             self?.tvShowDetail = object as? TVShowDetail

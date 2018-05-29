@@ -6,8 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
-
 struct ProfileServiceModel {
     var serviceModel: ServiceModel {
         return Singleton.shared.serviceModel
@@ -18,7 +16,10 @@ struct ProfileServiceModel {
                              environmentBase: .heroku,
                              handlerObject: { (object) in
                                 
-                                if let object = object { handler(User(object: object)) }
+                                guard let object = object else {
+                                    return
+                                }
+                                handler(User(object: object))
         })
     }
     

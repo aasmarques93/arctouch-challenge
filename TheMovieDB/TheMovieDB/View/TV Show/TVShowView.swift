@@ -30,6 +30,7 @@ class TVShowView: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.loadNetflixMoviesShows()
+        viewModel.loadUserFriendsMoviesShows()
     }
     
     func setupBindings() {

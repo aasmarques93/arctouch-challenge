@@ -14,13 +14,19 @@ struct SearchServiceModel {
             "language": Locale.preferredLanguages.first ?? ""
         ]
         serviceModel.request(requestUrl: requestUrl, urlParameters: parameters, handlerObject: { (object) in
-            if let object = object { handler(MoviesGenres(object: object)) }
+            guard let object = object else {
+                return
+            }
+            handler(MoviesGenres(object: object))
         })
     }
     
     func getMoviesFromGenre(urlParameters: [String: Any], handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: .searchByGenre, urlParameters: urlParameters, handlerObject: { (object) in
-            if let object = object { handler(SearchMoviesGenre(object: object)) }
+            guard let object = object else {
+                return
+            }
+            handler(SearchMoviesGenre(object: object))
         })
     }
     
@@ -29,7 +35,10 @@ struct SearchServiceModel {
                              urlParameters: urlParameters,
                              handlerObject: { (object) in
             
-                                if let object = object { handler(MultiSearch(object: object)) }
+                                guard let object = object else {
+                                    return
+                                }
+                                handler(MultiSearch(object: object))
         })
     }
     

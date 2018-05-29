@@ -23,17 +23,11 @@ enum FacebookGraphParameters: String {
 }
 
 struct Facebook {
-    static var shared = Facebook()
-    
-    lazy var parametersEmail = ["fields": "email"]
-    lazy var parametersDetails = ["fields": "id, first_name, last_name, name, email, picture.type(large)"]
-    lazy var readPermissions = ["public_profile", "email", "user_friends"]
-    
-    lazy var currentUserUrlPicture = ""
-    
-    func graphRequest(paths: [FacebookGraphPath],
-                      parameters: [FacebookGraphParameters] = [.id, .name, .email, .picture],
-                      handler: @escaping FBSDKGraphRequestHandler) {
+    static var readPermissions = ["public_profile", "email", "user_friends"]
+        
+    static func graphRequest(paths: [FacebookGraphPath],
+                             parameters: [FacebookGraphParameters] = [.id, .name, .email, .picture],
+                             handler: @escaping HandlerObject) {
         var graphPath = ""
         
         var i = 0
@@ -58,7 +52,43 @@ struct Facebook {
                 print("Facebook Error: \(error)")
             }
             
-            handler(connection, result, error)
+            print("Facebook Result: \(result ?? "")")
+            handler(result)
+        }
+    }
+    
+    static func getUserLogged(handler: @escaping HandlerObject) {
+        graphRequest(paths: [.me]) { (result) in
+            guard let result = result as? [String: Any] else {
+                return
+            }
+            
+            var dictionary = result
+            dictionary[User.SerializationKeys.facebookId] = result["id"]
+            dictionary["id"] = ""
+            
+            handler(User(object: dictionary))
+        }
+    }
+    
+    static func getUserFriends(handler: @escaping HandlerObject) {
+        Facebook.graphRequest(paths: [.friends], parameters: [.id, .name, .picture]) { (result) in
+            guard let result = result as? [String: Any], let data = result["data"] as? [Any] else {
+                return
+            }
+            
+            var arrayUserFriends = [User]()
+            data.forEach({ (object) in
+                guard let result = object as? [String: Any] else {
+                    return
+                }
+                var dictionary = result
+                dictionary[User.SerializationKeys.facebookId] = result["id"]
+                dictionary["id"] = ""
+                arrayUserFriends.append(User(object: dictionary))
+            })
+            
+            handler(arrayUserFriends)
         }
     }
 }

@@ -6,8 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
-
 enum SearchResultFilterType: Int {
     case movies
     case tvShow

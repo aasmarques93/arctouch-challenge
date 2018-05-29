@@ -185,6 +185,8 @@ class TVShowViewModel: MoviesShowsViewModel {
             return numberOfNetflix
         case .sugested:
             return numberOfSugested
+        case .friendsWatching:
+            return numberOfUserFriendsShows
         case .airingToday:
             return numberOfAiringToday
         case .onTheAir:
@@ -223,6 +225,8 @@ class TVShowViewModel: MoviesShowsViewModel {
         switch sectionType {
         case .sugested:
             return arraySugested
+        case .friendsWatching:
+            return arrayUserFriendsShows
         case .airingToday:
             return arrayAiringToday
         case .onTheAir:

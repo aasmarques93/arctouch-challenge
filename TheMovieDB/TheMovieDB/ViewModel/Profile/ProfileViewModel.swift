@@ -54,9 +54,11 @@ class ProfileViewModel: ViewModel {
     private var arrayYourListSections: [YourListSection] = [.wantToSeeMovies, .tvShowsTrack, .seenMovies]
     var numberYourListSections: Int { return arrayYourListSections.count }
     
-    private var arrayUserFriends = [User]()
+    private var arrayUserFriends: [User] {
+        return Singleton.shared.arrayUserFriends
+    }
     var numberOfUserFriends: Int { return arrayUserFriends.count }
-    
+        
     // MARK: - Service requests -
     
     func loadData() {
@@ -122,27 +124,12 @@ class ProfileViewModel: ViewModel {
     // MARK: - User friends -
     
     func getUserFriends() {
-        Facebook.shared.graphRequest(paths: [.friends], parameters: [.id, .name, .picture]) { [weak self] (connection, result, error) in
-            if let error = error {
-                print("Facebook User Friends Error: \(error)")
+        Facebook.getUserFriends { [weak self] (object) in
+            guard let array = object as? [User] else {
                 return
             }
-            
-            print("Facebook User Friends Result: \(result ?? "")")
-            guard let result = result as? [String: Any], let data = result["data"] as? [Any] else {
-                return
-            }
-            
-            self?.arrayUserFriends = [User]()
-            data.forEach({ (object) in
-                guard let result = object as? [String: Any] else {
-                    return
-                }
-                var dictionary = result
-                dictionary["facebookId"] = result["id"]
-                dictionary["id"] = ""
-                self?.arrayUserFriends.append(User(object: dictionary))
-            })
+
+            Singleton.shared.arrayUserFriends = array
             self?.delegate?.reloadData?()
         }
     }

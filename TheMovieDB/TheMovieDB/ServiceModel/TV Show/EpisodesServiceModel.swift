@@ -6,8 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
-
 struct EpisodesServiceModel {
     let serviceModel = Singleton.shared.serviceModel
 
@@ -20,7 +18,10 @@ struct EpisodesServiceModel {
                 "language": Locale.preferredLanguages.first ?? ""
             ]
             serviceModel.request(requestUrl: .tvImages, urlParameters: parameters, handlerObject: { (object) in
-                if let object = object { handler(EpisodeImagesList(object: object)) }
+                guard let object = object else {
+                    return
+                }
+                handler(EpisodeImagesList(object: object))
             })
         }
     }

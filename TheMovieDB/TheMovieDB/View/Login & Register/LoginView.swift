@@ -53,7 +53,7 @@ class LoginView: UITableViewController {
     }
     
     func setupFacebook() {
-        buttonFacebookLogin.readPermissions = Facebook.shared.readPermissions
+        buttonFacebookLogin.readPermissions = Facebook.readPermissions
     }
     
     func setupBindings() {

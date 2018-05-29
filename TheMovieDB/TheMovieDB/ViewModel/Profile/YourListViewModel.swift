@@ -85,7 +85,7 @@ class YourListViewModel: ViewModel {
     
     func movieDetailViewModel(at indexPath: IndexPath) -> MovieDetailViewModel {
         let userMovie = arrayUserMoviesShows[indexPath.row]
-        let dictionary = ["id": userMovie.movieId]
+        let dictionary = [Movie.SerializationKeys.id: userMovie.movieId]
         let movie = Movie(object: dictionary)
         return MovieDetailViewModel(movie)
     }
@@ -94,7 +94,7 @@ class YourListViewModel: ViewModel {
     
     func tvShowDetailViewModel(at indexPath: IndexPath) -> TVShowDetailViewModel {
         let userShow = arrayUserMoviesShows[indexPath.row]
-        let dictionary = ["id": userShow.showId]
+        let dictionary = [TVShow.SerializationKeys.id: userShow.showId]
         let tvShow = TVShow(object: dictionary)
         return TVShowDetailViewModel(tvShow)
     }

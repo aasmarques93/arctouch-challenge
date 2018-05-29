@@ -11,13 +11,19 @@ struct TVShowServiceModel {
     
     func getTVShow(requestUrl: RequestUrl, urlParameters: [String: Any]? = nil, handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: requestUrl, urlParameters: urlParameters, handlerObject: { (object) in
-            if let object = object { handler(SearchTV(object: object)) }
+            guard let object = object else {
+                return
+            }
+            handler(SearchTV(object: object))
         })
     }
     
     func doSearchTVShow(urlParameters: [String: Any], handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: .searchTV, urlParameters: urlParameters, handlerObject: { (object) in
-            if let object = object { handler(SearchTV(object: object)) }
+            guard let object = object else {
+                return
+            }
+            handler(SearchTV(object: object))
         })
     }
     
@@ -26,7 +32,10 @@ struct TVShowServiceModel {
             "language": Locale.preferredLanguages.first ?? ""
         ]
         serviceModel.request(requestUrl: .tvLatest, urlParameters: urlParameters, handlerObject: { (object) in
-            if let object = object { handler(TVShow(object: object)) }
+            guard let object = object else {
+                return
+            }
+            handler(TVShow(object: object))
         })
     }
     

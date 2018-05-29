@@ -59,7 +59,10 @@ struct NetflixServiceModel {
                              urlParameters: urlParameters,
                              handlerObject: { (object) in
                                 
-                                if let object = object { handler(NetflixMovieShow(object: object)) }
+                                guard let object = object else {
+                                    return
+                                }
+                                handler(NetflixMovieShow(object: object))
         })
     }
     

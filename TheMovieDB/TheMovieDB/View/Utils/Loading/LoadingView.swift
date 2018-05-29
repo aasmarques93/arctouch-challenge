@@ -9,8 +9,6 @@
 import UIKit
 
 class LoadingView: UIView {
-    var loadingTag = 900
-    
     var activityIndicator: UIActivityIndicatorView {
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         
@@ -45,7 +43,6 @@ class LoadingView: UIView {
     init(frame: CGRect = .zero, text: String? = nil, containsBackgroundColor: Bool = true) {
         super.init(frame: frame)
         
-        self.tag = loadingTag
         self.backgroundColor = UIColor.white.withAlphaComponent(0.4)
         
         if !containsBackgroundColor { self.backgroundColor = UIColor.clear }

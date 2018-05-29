@@ -25,6 +25,7 @@ class Singleton {
     var arrayUserShows = [UserMovieShow]()
     var arrayUserSeenMovies = [UserMovieShow]()
     var arrayUserRatings = [UserRating]()
+    var arrayUserFriends = [User]()
     
     let typingTimeInterval = 0.01
     var arrayPersonalityTypes = [PersonalityType]()

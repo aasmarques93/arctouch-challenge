@@ -6,8 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
-
 struct SeasonDetailServiceModel {
     let serviceModel = Singleton.shared.serviceModel
     
@@ -19,7 +17,10 @@ struct SeasonDetailServiceModel {
                 "language": Locale.preferredLanguages.first ?? ""
             ]
             serviceModel.request(requestUrl: RequestUrl.seasonDetail, urlParameters: parameters, handlerObject: { (object) in
-                if let object = object { handler(SeasonDetail(object: object)) }
+                guard let object = object else {
+                    return
+                }
+                handler(SeasonDetail(object: object))
             })
         }
     }

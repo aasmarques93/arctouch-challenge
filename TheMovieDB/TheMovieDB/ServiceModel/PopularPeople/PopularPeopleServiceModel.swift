@@ -11,13 +11,19 @@ struct PopularPeopleServiceModel {
     
     func getPopularPeople(urlParameters: [String: Any]? = nil, handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: .popularPeople, urlParameters: urlParameters, handlerObject: { (object) in
-            if let object = object { handler(PopularPeople(object: object)) }
+            guard let object = object else {
+                return
+            }
+            handler(PopularPeople(object: object))
         })
     }
     
     func doSearchPerson(urlParameters: [String: Any], handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: .searchPerson, urlParameters: urlParameters, handlerObject: { (object) in
-            if let object = object { handler(SearchPerson(object: object)) }
+            guard let object = object else {
+                return
+            }
+            handler(SearchPerson(object: object))
         })
     }
 }

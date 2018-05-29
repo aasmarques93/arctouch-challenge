@@ -45,6 +45,7 @@ enum RequestUrl: String {
     case userShowsTrack
     case rate
     case userRatings
+    case userFriendsProfiles
     case personalityTest
     case personalityTestBR
     case personalityTypes

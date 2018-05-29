@@ -14,7 +14,10 @@ struct MovieDetailServiceModel {
                              urlParameters: createParameters(from: movie),
                              handlerObject: { (object) in
             
-                                if let object = object { handler(MovieDetail(object: object)) }
+                                guard let object = object else {
+                                    return
+                                }
+                                handler(MovieDetail(object: object))
         })
     }
     
@@ -23,7 +26,10 @@ struct MovieDetailServiceModel {
                              urlParameters: createParameters(from: movie),
                              handlerObject: { (object) in
 
-                                if let object = object { handler(VideosList(object: object)) }
+                                guard let object = object else {
+                                    return
+                                }
+                                handler(VideosList(object: object))
         })
     }
     
@@ -32,7 +38,10 @@ struct MovieDetailServiceModel {
                              urlParameters: createParameters(from: movie, isSimple: false),
                              handlerObject: { (object) in
                     
-                                if let object = object { handler(MoviesList(object: object)) }
+                                guard let object = object else {
+                                    return
+                                }
+                                handler(MoviesList(object: object))
         })
     }
     
@@ -41,7 +50,10 @@ struct MovieDetailServiceModel {
                              urlParameters: createParameters(from: movie, isSimple: false),
                              handlerObject: { (object) in
                     
-                                if let object = object { handler(MoviesList(object: object)) }
+                                guard let object = object else {
+                                    return
+                                }
+                                handler(MoviesList(object: object))
         })
     }
     
@@ -50,7 +62,10 @@ struct MovieDetailServiceModel {
                              urlParameters: createParameters(from: movie),
                              handlerObject: { (object) in
                     
-                                if let object = object { handler(CreditsList(object: object)) }
+                                guard let object = object else {
+                                    return
+                                }
+                                handler(CreditsList(object: object))
         })
     }
     
@@ -59,7 +74,10 @@ struct MovieDetailServiceModel {
                              urlParameters: createParameters(from: movie, isSimple: false),
                              handlerObject: { (object) in
                     
-                                if let object = object { handler(ReviewsList(object: object)) }
+                                guard let object = object else {
+                                    return
+                                }                      
+                                handler(ReviewsList(object: object))
         })
     }
     

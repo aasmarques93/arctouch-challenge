@@ -6,8 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
-
 struct LoginServiceModel {
     let serviceModel = Singleton.shared.serviceModel
     
@@ -33,7 +31,10 @@ struct LoginServiceModel {
                              urlParameters: urlParameters,
                              handlerObject: { (object) in
                                 
-                                if let object = object { handler?(User(object: object)) }
+                                guard let object = object else {
+                                    return
+                                }
+                                handler?(User(object: object))
         })
     }
     

@@ -12,7 +12,7 @@ struct Movie: Model {
     var json: JSON?
     
     // MARK: Declaration for string constants to be used to decode and also serialize.
-    private struct SerializationKeys {
+    struct SerializationKeys {
         static let posterPath = "poster_path"
         static let backdropPath = "backdrop_path"
         static let genreIds = "genre_ids"

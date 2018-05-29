@@ -21,15 +21,32 @@ protocol SectionsTypeProtocol {
 
 enum SectionsType: Int, SectionsTypeProtocol {
     static var sectionsMovies: [SectionsType] {
-        return [SectionsType.netflix, SectionsType.sugested, SectionsType.nowPlaying, SectionsType.topRated, SectionsType.upcoming, SectionsType.popular]
+        return [
+            SectionsType.netflix,
+            SectionsType.sugested,
+            SectionsType.friendsWatching,
+            SectionsType.nowPlaying,
+            SectionsType.topRated,
+            SectionsType.upcoming,
+            SectionsType.popular
+        ]
     }
     
     static var sectionsShows: [SectionsType] {
-        return [SectionsType.netflix, SectionsType.sugested, SectionsType.airingToday, SectionsType.onTheAir, SectionsType.popular, SectionsType.topRated]
+        return [
+            SectionsType.netflix,
+            SectionsType.sugested,
+            SectionsType.friendsWatching,
+            SectionsType.airingToday,
+            SectionsType.onTheAir,
+            SectionsType.popular,
+            SectionsType.topRated
+        ]
     }
     
     case netflix
     case sugested
+    case friendsWatching
     case nowPlaying
     case upcoming
     case airingToday
@@ -50,6 +67,8 @@ enum SectionsType: Int, SectionsTypeProtocol {
             return "Watch on Netflix"
         case .sugested:
             return "Sugested"
+        case .friendsWatching:
+            return "What your friends are watching"
         case .nowPlaying:
             return "Now Playing"
         case .upcoming:
@@ -71,18 +90,20 @@ enum SectionsType: Int, SectionsTypeProtocol {
             return 0
         case .sugested:
             return 1
-        case .airingToday:
+        case .friendsWatching:
             return 2
-        case .popular:
-            return isMovie ? 2 : 4
-        case .onTheAir:
+        case .airingToday:
             return 3
-        case .topRated:
+        case .popular:
             return isMovie ? 3 : 5
-        case .upcoming:
+        case .onTheAir:
             return 4
-        case .nowPlaying:
+        case .topRated:
+            return isMovie ? 4 : 6
+        case .upcoming:
             return 5
+        case .nowPlaying:
+            return 6
         }
     }
     
@@ -93,12 +114,14 @@ enum SectionsType: Int, SectionsTypeProtocol {
         case 1:
             return SectionsType.sugested
         case 2:
-            return isMovie ? SectionsType.popular : SectionsType.airingToday
+            return SectionsType.friendsWatching
         case 3:
-            return isMovie ? SectionsType.topRated : SectionsType.onTheAir
+            return isMovie ? SectionsType.popular : SectionsType.airingToday
         case 4:
-            return isMovie ? SectionsType.upcoming : SectionsType.popular
+            return isMovie ? SectionsType.topRated : SectionsType.onTheAir
         case 5:
+            return isMovie ? SectionsType.upcoming : SectionsType.popular
+        case 6:
             return isMovie ? SectionsType.nowPlaying : SectionsType.topRated
         default:
             return nil
@@ -128,12 +151,20 @@ class MoviesShowsViewModel: ViewModel {
     let moviesServiceModel = MoviesServiceModel()
     let tvShowServiceModel = TVShowServiceModel()
     let netflixServiceModel = NetflixServiceModel()
+    let userFriendsServiceModel = UserFriendsServiceModel()
     
     // MARK: Netflix
     var arrayNetflix = [Netflix]() { didSet { delegate?.reloadData?() } }
     var numberOfNetflix: Int { return arrayNetflix.count }
     
     var arrayStoriesPages = [StoriesPageItem]()
+    
+    // MARK: User Friends
+    var arrayUserFriendsMovies = [Movie]()
+    var numberOfUserFriendsMovies: Int { return arrayUserFriendsMovies.count }
+    
+    var arrayUserFriendsShows = [TVShow]()
+    var numberOfUserFriendsShows: Int { return arrayUserFriendsShows.count }
     
     // MARK: Variables
     var isDataLoading = false
@@ -148,6 +179,7 @@ class MoviesShowsViewModel: ViewModel {
     
     func loadData() {
         loadNetflixMoviesShows()
+        loadUserFriendsMoviesShows()
     }
     
     func getLatestImage(at path: String?) {
@@ -163,7 +195,6 @@ class MoviesShowsViewModel: ViewModel {
     func loadImageData(at path: String?, handlerData: @escaping HandlerObject) {
         Singleton.shared.serviceModel.loadImage(path: path, handlerData: handlerData)
     }
-    
     
     func loadNetflixMoviesShows() {
         guard arrayNetflix.isEmpty else {
@@ -192,6 +223,61 @@ class MoviesShowsViewModel: ViewModel {
             })
             self?.arrayNetflix.append(contentsOf: sortedArray)
             self?.reloadData(at: 0)
+        }
+    }
+    
+    func loadUserFriendsMoviesShows() {
+        guard arrayUserFriendsMovies.isEmpty || arrayUserFriendsShows.isEmpty  else {
+            return
+        }
+        
+        Facebook.getUserFriends { [weak self] (object) in
+            guard let array = object as? [User] else {
+                return
+            }
+            
+            self?.getUserFriendsProfiles(with: array)
+        }
+    }
+    
+    func getUserFriendsProfiles(with array: [User]) {
+        userFriendsServiceModel.userFriendsProfiles(array) { [weak self] (object) in
+            guard let result = object as? [User] else {
+                return
+            }
+            
+            self?.arrayUserFriendsMovies = []
+            self?.arrayUserFriendsShows = []
+            
+            result.forEach({ (user) in
+                self?.addMoviesShows(user.moviesWantToSeeList)
+                self?.addMoviesShows(user.moviesSeenList)
+                self?.addMoviesShows(user.showsTrackList)
+            })
+            
+            self?.reloadData(at: SectionsType.friendsWatching.index(isMovie: self?.isMovie ?? true))
+        }
+    }
+    
+    private func addMoviesShows(_ array: [UserMovieShow]?) {
+        guard let array = array else {
+            return
+        }
+        
+        array.forEach { (movieShow) in
+            if movieShow.movieId != nil {
+                let dictionary: [String: Any] = [
+                    Movie.SerializationKeys.id: movieShow.movieId ?? 0,
+                    Movie.SerializationKeys.posterPath: movieShow.movieImageUrl ?? ""
+                ]
+                arrayUserFriendsMovies.append(Movie(object: dictionary))
+            } else {
+                let dictionary: [String: Any] = [
+                    TVShow.SerializationKeys.id: movieShow.showId ?? 0,
+                    TVShow.SerializationKeys.posterPath: movieShow.showImageUrl ?? 0
+                ]
+                arrayUserFriendsShows.append(TVShow(object: dictionary))
+            }
         }
     }
     

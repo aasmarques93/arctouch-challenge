@@ -40,6 +40,8 @@
 	<string>/api/rate</string>
 	<key>userRatings</key>
 	<string>/api/ratings</string>
+	<key>userFriendsProfiles</key>
+	<string>/api/userFriendsProfiles</string>
 	<key>personalityTest</key>
 	<string>/personalityTest</string>
 	<key>personalityTestBR</key>

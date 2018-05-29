@@ -37,6 +37,7 @@ class MoviesView: UITableViewController {
         AppDelegate.shared.unlockOrientation()
         viewModel.loadSugestedMovies()
         viewModel.loadNetflixMoviesShows()
+        viewModel.loadUserFriendsMoviesShows()
     }
     
     func initVariables() {

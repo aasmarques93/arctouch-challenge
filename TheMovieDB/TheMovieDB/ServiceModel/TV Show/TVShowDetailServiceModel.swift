@@ -11,31 +11,46 @@ struct TVShowDetailServiceModel {
     
     func getDetail(from tvShow: TVShow, handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: .tvDetail, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
-            if let object = object { handler(TVShowDetail(object: object)) }
+            guard let object = object else {
+                return
+            }
+            handler(TVShowDetail(object: object))
         })
     }
     
     func getVideos(from tvShow: TVShow, handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: .tvVideos, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
-            if let object = object { handler(VideosList(object: object)) }
+            guard let object = object else {
+                return
+            }
+            handler(VideosList(object: object))
         })
     }
     
     func getRecommendations(from tvShow: TVShow, handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: .tvRecommendations, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
-            if let object = object { handler(SearchTV(object: object)) }
+            guard let object = object else {
+                return
+            }
+            handler(SearchTV(object: object))
         })
     }
     
     func getSimilar(from tvShow: TVShow, handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: .tvSimilar, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
-            if let object = object { handler(SearchTV(object: object)) }
+            guard let object = object else {
+                return
+            }
+            handler(SearchTV(object: object))
         })
     }
     
     func getCredits(from tvShow: TVShow, handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: .tvCredits, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
-            if let object = object { handler(CreditsList(object: object)) }
+            guard let object = object else {
+                return
+            }
+            handler(CreditsList(object: object))
         })
     }
     

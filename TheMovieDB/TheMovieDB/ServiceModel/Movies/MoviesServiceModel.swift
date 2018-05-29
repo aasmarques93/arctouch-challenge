@@ -11,7 +11,10 @@ struct MoviesServiceModel {
     
     func getMovies(urlParameters: [String: Any]? = nil, requestUrl: RequestUrl, handler: @escaping HandlerObject) {
         serviceModel.request(requestUrl: requestUrl, urlParameters: urlParameters, handlerObject: { (object) in
-            if let object = object { handler(MoviesList(object: object)) }
+            guard let object = object else {
+                return
+            }
+            handler(MoviesList(object: object))
         })
     }
     
@@ -20,7 +23,10 @@ struct MoviesServiceModel {
             "language": Locale.preferredLanguages.first ?? ""
         ]
         serviceModel.request(requestUrl: .latest, urlParameters: urlParameters, handlerObject: { (object) in
-            if let object = object { handler(Movie(object: object)) }
+            guard let object = object else {
+                return
+            }
+            handler(Movie(object: object))
         })
     }
     

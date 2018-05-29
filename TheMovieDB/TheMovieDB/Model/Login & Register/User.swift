@@ -12,7 +12,7 @@ struct User: Model {
     var json: JSON?
     
     // MARK: Declaration for string constants to be used to decode and also serialize.
-    private struct SerializationKeys {
+    struct SerializationKeys {
         static let username = "username"
         static let name = "name"
         static let email = "email"

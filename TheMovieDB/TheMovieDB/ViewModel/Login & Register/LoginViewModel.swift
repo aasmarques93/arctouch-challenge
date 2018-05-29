@@ -6,7 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
 import Bond
 import FacebookLogin
 import FBSDKCoreKit
@@ -144,22 +143,12 @@ class LoginViewModel: ViewModel {
             return
         }
         
-        Facebook.shared.graphRequest(paths: [.me]) { [weak self] (connection, result, error) in
-            if let error = error {
-                print("Facebook Error: \(error)")
+        Facebook.getUserLogged { [weak self] (object) in
+            guard let user = object as? User else {
                 return
             }
             
-            print("Facebook Result: \(result ?? "")")
-            guard let result = result as? [String: Any] else {
-                return
-            }
-            
-            var dictionary = result
-            dictionary["facebookId"] = result["id"]
-            dictionary["id"] = ""
-
-            Singleton.shared.updateUser(with: User(object: dictionary))            
+            Singleton.shared.updateUser(with: user)
             
             self?.downloadUserPhoto()
             self?.signUpFacebookUser()

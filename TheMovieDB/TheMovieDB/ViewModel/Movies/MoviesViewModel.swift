@@ -195,6 +195,8 @@ class MoviesViewModel: MoviesShowsViewModel {
             return numberOfNetflix
         case .sugested:
             return numberOfSugestedMovies
+        case .friendsWatching:
+            return numberOfUserFriendsMovies
         case .popular:
             return numberOfPopularMovies
         case .topRated:
@@ -233,6 +235,8 @@ class MoviesViewModel: MoviesShowsViewModel {
         switch sectionType {
         case .sugested:
             return arraySugestedMovies
+        case .friendsWatching:
+            return arrayUserFriendsMovies
         case .popular:
             return arrayPopularMovies
         case .topRated:

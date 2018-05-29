@@ -6,8 +6,6 @@
 //  Copyright © 2017 Arthur Augusto Sousa Marques. All rights reserved.
 //
 
-import UIKit
-
 @objc protocol ViewModelDelegate: class {
     @objc optional func reloadData()
     @objc optional func showAlert(message: String?)
@@ -20,8 +18,10 @@ protocol ViewModel {
 extension ViewModel {
     // Create an unwrapped string from any object
     func valueDescription(_ object: Any?) -> String {
-        if let object = object { return "\(object)" }
-        return ""
+        guard let object = object else {
+            return ""
+        }
+        return "\(object)"
     }
     
     // Show error if object has returno status message

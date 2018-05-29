@@ -12,7 +12,7 @@ struct TVShow: Model {
     var json: JSON?
     
     // MARK: Declaration for string constants to be used to decode and also serialize.
-    private struct SerializationKeys {
+    struct SerializationKeys {
         static let originCountry = "origin_country"
         static let name = "name"
         static let genreIds = "genre_ids"
