@@ -20,6 +20,8 @@ class PersonalityTestResultViewModel: ViewModel {
     
     // MARK: - Variables -
     
+    var isComingFromTestResult: Bool
+    
     var selectedChartType: GenericChartType = .radar
     private var arrayPersonalityTypes = Singleton.shared.arrayPersonalityTypes
     
@@ -43,12 +45,13 @@ class PersonalityTestResultViewModel: ViewModel {
             chartPercentage.value = percentageFor(personalityType: selectedChartPersonalityType)
             descriptionText.value = selectedChartPersonalityType?.text
             image.value = UIImage(named: "\(selectedChartPersonalityType?.title ?? "")")
-            isChartTypeSelectionHidden.value = userPersonality != nil
+            isChartTypeSelectionHidden.value = !isComingFromTestResult
         }
     }
 
-    init(userPersonality: UserPersonality? = Singleton.shared.user.personality) {
+    init(userPersonality: UserPersonality? = Singleton.shared.user.personality, isComingFromTestResult: Bool = false) {
         self.userPersonality = userPersonality
+        self.isComingFromTestResult = isComingFromTestResult
     }
     
     // MARK: - Chart -

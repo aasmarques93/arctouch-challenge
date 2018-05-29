@@ -16,7 +16,7 @@ class PersonalityTestResultDetailsView: UIViewController {
     @IBOutlet weak var textViewDescription: UITextView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    var viewModel = PersonalityTestResultViewModel()
+    var viewModel = PersonalityTestResultViewModel(isComingFromTestResult: true)
     var chartContainer: ChartGenericContainer?
     
     override func viewWillAppear(_ animated: Bool) {
