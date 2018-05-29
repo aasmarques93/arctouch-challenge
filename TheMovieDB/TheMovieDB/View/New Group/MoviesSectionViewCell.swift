@@ -33,8 +33,8 @@ class MoviesSectionViewCell: UITableViewCell {
         collectionView.collectionDelegate = self
         collectionView.reloadData()
         
-        collectionView.itemWidth = indexPath.section == 0 ? StoryPreviewCell.cellHeight : 180
-        collectionView.itemHeight = indexPath.section == 0 ? StoryPreviewCell.cellHeight : 230
+        collectionView.itemWidth = indexPath.section == 0 ? StoryPreviewCell.cellSize.width : 180
+        collectionView.itemHeight = indexPath.section == 0 ? StoryPreviewCell.cellSize.height : 230
         
         guard let lastIndexPathDisplayed = viewModel?.lastIndexPathDisplayed(at: indexPath.section),
             lastIndexPathDisplayed.item > 10 else {

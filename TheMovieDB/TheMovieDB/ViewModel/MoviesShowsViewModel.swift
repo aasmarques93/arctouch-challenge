@@ -348,6 +348,10 @@ class MoviesShowsViewModel: ViewModel {
         return URL(string: netflixServiceModel.imageUrl(with: netflix.id, isMovie: isMovie))
     }
     
+    func storyPreviewTitle(at index: Int) -> String? {
+        return arrayNetflix[index].title
+    }
+    
     func loadVideos(at index: Int) {
         delegate?.openPreview(storiesViewModel: StoriesViewModel(arrayNetflix, selectedIndex: index, isMovie: isMovie))
     }

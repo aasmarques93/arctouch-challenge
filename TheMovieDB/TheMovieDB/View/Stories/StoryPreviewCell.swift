@@ -9,26 +9,31 @@
 import UIKit
 
 class StoryPreviewCell: UICollectionViewCell {
-    @IBOutlet weak var viewBackground: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var labelTitle: UILabel!
     
-    static var cellHeight: CGFloat = 140
+    static var cellSize: CGSize {
+        return CGSize(width: 140, height: 180)
+    }
     var viewModel: MoviesShowsViewModel?
     
     func setupView(at index: Int) {
-        viewBackground.borderWidth = 1.0
-        viewBackground.borderColor = HexColor.secondary.color
-        viewBackground.layer.masksToBounds = true
-        viewBackground.layer.cornerRadius = viewBackground.frame.width / 2
-        
-        imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = imageView.frame.width / 2
-        
-        backgroundColor = HexColor.primary.color
-        imageView.backgroundColor = HexColor.primary.color
+        setupAppearance()
         
         if let url = viewModel?.storyPreviewImagePathUrl(at: index) {
             imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], completed: nil)
         }
+        
+        labelTitle.text = viewModel?.storyPreviewTitle(at: index)
+    }
+    
+    private func setupAppearance() {
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = imageView.frame.width / 2
+        imageView.layer.borderWidth = 1.0
+        imageView.layer.borderColor = HexColor.text.cgColor
+        
+        backgroundColor = HexColor.primary.color
+        imageView.backgroundColor = HexColor.primary.color
     }
 }
