@@ -115,15 +115,11 @@ class MoviesShowsViewModel: ViewModel {
     }
     
     func getUserFriendsProfiles(with array: [User]) {
-        userFriendsServiceModel.userFriendsProfiles(array) { [weak self] (object) in
-            guard let result = object as? [User] else {
-                return
-            }
-            
+        userFriendsServiceModel.userFriendsProfiles(array) { [weak self] (results) in
             self?.arrayUserFriendsMovies = []
             self?.arrayUserFriendsShows = []
             
-            result.forEach({ (user) in
+            results.forEach({ (user) in
                 self?.addMoviesShows(user.moviesWantToSeeList)
                 self?.addMoviesShows(user.moviesSeenList)
                 self?.addMoviesShows(user.showsTrackList)

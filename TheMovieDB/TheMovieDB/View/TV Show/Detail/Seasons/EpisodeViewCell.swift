@@ -24,10 +24,8 @@ class EpisodeViewCell: UITableViewCell {
     // MARK: - Setup -
     
     func setupView() {
-        imageViewPoster.contentMode = .scaleAspectFit
-        viewModel?.delegate = self
+        imageViewPoster.sd_setImage(with: viewModel?.imageUrl, placeholderImage: #imageLiteral(resourceName: "default-image"))
         
-        viewModel?.photo.bind(to: imageViewPoster.reactive.image)
         viewModel?.title.bind(to: labelOriginalTitle.reactive.text)
         viewModel?.date.bind(to: labelDate.reactive.text)
         viewModel?.overview.bind(to: textViewOverview.reactive.text)
@@ -39,13 +37,5 @@ class EpisodeViewCell: UITableViewCell {
 
     @IBAction func buttonPhotoAction(_ sender: UIButton) {
         viewModel?.presentPhotos()
-    }
-}
-
-extension EpisodeViewCell: ViewModelDelegate {
-    // MARK: - ViewModelDelegate -
-    
-    func reloadData() {
-        imageViewPoster.contentMode = .scaleToFill
     }
 }

@@ -8,15 +8,11 @@
 
 import Bond
 
-class EpisodeViewModel: ViewModel {
-    // MARK: Delegate
-    weak var delegate: ViewModelDelegate?
-    
+class EpisodeViewModel: ViewModel {    
     // MARK: Service Model
     let serviceModel = EpisodesServiceModel()
 
     // MARK: Observables
-    var photo = Observable<UIImage?>(#imageLiteral(resourceName: "default-image"))
     var title = Observable<String?>(nil)
     var date = Observable<String?>(nil)
     var overview = Observable<String?>(nil)
@@ -39,7 +35,6 @@ class EpisodeViewModel: ViewModel {
         overview.value = valueDescription(episode?.overview)
 
         getImages()
-        loadImageData()
     }
 
     private func getImages() {
@@ -58,19 +53,8 @@ class EpisodeViewModel: ViewModel {
         }
     }
 
-    private func loadImageData() {
-        guard let _ = photo.value else {
-            return
-        }
-
-        Singleton.shared.serviceModel.loadImage(path: episode?.stillPath ?? "", handlerData: { [weak self] (data) in
-            guard let data = data as? Data else {
-                return
-            }
-            
-            self?.photo.value = UIImage(data: data)
-            self?.delegate?.reloadData?()
-        })
+    var imageUrl: URL? {
+        return URL(string: Singleton.shared.serviceModel.imageUrl(with: episode?.stillPath ?? ""))
     }
 
     // MARK: - Photos -

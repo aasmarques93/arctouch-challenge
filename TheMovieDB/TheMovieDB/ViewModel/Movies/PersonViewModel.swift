@@ -20,7 +20,6 @@ class PersonViewModel: ViewModel {
     var birthday = Observable<String?>(nil)
     var placeOfBirth = Observable<String?>(nil)
     var alsoKnownAs = Observable<String?>(nil)
-    var photo = Observable<UIImage?>(nil)
     
     var isFacebookEnabled = Observable<Bool>(false)
     var isInstagramEnabled = Observable<Bool>(false)
@@ -33,6 +32,10 @@ class PersonViewModel: ViewModel {
     // MARK: Variables
     private var idPerson: Int?
     
+    var imageUrl: URL? {
+        return URL(string: Singleton.shared.serviceModel.imageUrl(with: person?.profilePath ?? ""))
+    }
+    
     // MARK: Objects
     private var person: Person? {
         didSet {
@@ -42,8 +45,6 @@ class PersonViewModel: ViewModel {
             birthday.value = person?.birthday ?? emptyString
             placeOfBirth.value = person?.placeOfBirth ?? emptyString
             alsoKnownAs.value = person?.alsoKnownAs?.first ?? emptyString
-            
-            loadImageData()
             
             delegate?.reloadData?()
         }
@@ -132,20 +133,8 @@ class PersonViewModel: ViewModel {
         }
     }
     
-    private func loadImageData() {
-        if photo.value != nil { return }
-
-        Singleton.shared.serviceModel.loadImage(path: person?.profilePath ?? "", handlerData: { [weak self] (data) in
-            guard let data = data as? Data else {
-                return
-            }
-
-            self?.photo.value = UIImage(data: data)
-        })
-    }
-    
-    func loadMovieImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        Singleton.shared.serviceModel.loadImage(path: arrayCast[index].posterPath, handlerData: handlerData)
+    func movieImageUrl(at index: Int) -> URL? {
+        return URL(string: Singleton.shared.serviceModel.imageUrl(with: arrayCast[index].posterPath ?? ""))
     }
     
     // MARK: - View Model -

@@ -24,7 +24,8 @@ class FriendsViewCell: UITableViewCell {
     // MARK: - Setup -
     
     func setupView() {
-        viewModel?.picture.bind(to: imageViewUserFriend.reactive.image)
+        imageViewUserFriend.sd_setImage(with: viewModel?.imageUrl, placeholderImage: #imageLiteral(resourceName: "empty-user"))
+        
         viewModel?.name.bind(to: labelUserFriendName.reactive.text)
         viewModel?.personality.bind(to: labelUserFriendPersonality.reactive.text)
         viewModel?.movieShow.bind(to: labelUserFriendMovieShow.reactive.text)

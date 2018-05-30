@@ -156,12 +156,8 @@ class LoginViewModel: ViewModel {
                                     email: user.email,
                                     name: user.name,
                                     facebookId: user.facebookId,
-                                    handler: { [weak self] (object) in
+                                    handler: { [weak self] (user) in
         
-                                        guard let user = object as? User else {
-                                            return
-                                        }
-                                        
                                         do {
                                             try self?.showError(with: user)
                                         } catch {
@@ -190,7 +186,7 @@ class LoginViewModel: ViewModel {
     }
     
     private func downloadUserPhoto() {
-        serviceModel.loadImage(path: user.picture?.data?.url) { (data) in
+        Singleton.shared.serviceModel.loadImage(path: user.picture?.data?.url) { (data) in
             guard let data = data as? Data else {
                 return
             }

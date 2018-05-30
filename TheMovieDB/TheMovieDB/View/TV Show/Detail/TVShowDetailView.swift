@@ -271,36 +271,20 @@ extension TVShowDetailView: iCarouselDelegate, iCarouselDataSource {
         view.labelEpisodeCount.text = viewModel?.seasonEpisodeCount(at: index)
         view.textViewOverview.text = viewModel?.seasonOverview(at: index)
         
-        viewModel?.seasonImageData(at: index, handlerData: { (data) in
-            if let data = data as? Data, let image = UIImage(data: data) {
-                view.imageViewPhoto.image = image
-            }
-        })
+        view.imageViewPhoto.sd_setImage(with: viewModel?.seasonImageUrl(at: index), placeholderImage: #imageLiteral(resourceName: "default-image"))
         
         return view
     }
     
     func carouselRecommendationView(at index: Int) -> UIView {
         let view = XibView.instanceFromNib(MovieView.self)
-        
-        viewModel?.recommendedImageData(at: index) { (data) in
-            if let data = data as? Data, let image = UIImage(data: data) {
-                view.imageViewMovie.image = image
-            }
-        }
-        
+        view.imageViewMovie.sd_setImage(with: viewModel?.recommendedImageUrl(at: index), placeholderImage: #imageLiteral(resourceName: "default-image"))
         return view
     }
     
     func carouselCastView(at index: Int) -> UIView {
         let view = XibView.instanceFromNib(CastView.self)
-        
-        viewModel?.castImageData(at: index) { (data) in
-            if let data = data as? Data, let image = UIImage(data: data) {
-                view.imageViewCharacter.image = image
-            }
-        }
-        
+        view.imageViewCharacter.sd_setImage(with: viewModel?.castImageUrl(at: index), placeholderImage: #imageLiteral(resourceName: "default-image"))
         view.labelCharacter.text = viewModel?.castCharacter(at: index)
         view.labelName.text = viewModel?.castName(at: index)
         
@@ -309,13 +293,7 @@ extension TVShowDetailView: iCarouselDelegate, iCarouselDataSource {
     
     func carouselSimilarView(at index: Int) -> UIView {
         let view = XibView.instanceFromNib(MovieView.self)
-        
-        viewModel?.similarImageData(at: index) { (data) in
-            if let data = data as? Data, let image = UIImage(data: data) {
-                view.imageViewMovie.image = image
-            }
-        }
-        
+        view.imageViewMovie.sd_setImage(with: viewModel?.similarImageUrl(at: index), placeholderImage: #imageLiteral(resourceName: "default-image"))
         return view
     }
     

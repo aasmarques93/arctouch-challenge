@@ -9,7 +9,6 @@
 import Bond
 
 class TVShowCellViewModel: ViewModel {
-    var photo = Observable<UIImage?>(#imageLiteral(resourceName: "default-image"))
     var title = Observable<String?>(nil)
     var date = Observable<String?>(nil)
     var overview = Observable<String?>(nil)
@@ -24,17 +23,9 @@ class TVShowCellViewModel: ViewModel {
         title.value = valueDescription(tvShow?.name)
         date.value = "Since: \(valueDescription(tvShow?.firstAirDate))"
         overview.value = valueDescription(tvShow?.overview)
-        
-        loadImageData()
     }
     
-    private func loadImageData() {
-        Singleton.shared.serviceModel.loadImage(path: tvShow?.posterPath ?? "", handlerData: { [weak self] (data) in
-            guard let data = data as? Data else {
-                return
-            }
-            
-            self?.photo.value = UIImage(data: data)
-        })
+    var imageUrl: URL? {
+        return URL(string: Singleton.shared.serviceModel.imageUrl(with: tvShow?.posterPath ?? ""))
     }
 }

@@ -40,14 +40,7 @@ extension ViewModel {
         }
         
         throw Error(message: message)
-    }
-    
-    // Load image data at path
-    func loadImageData(at path: String?, handlerData: @escaping HandlerObject) {
-        Singleton.shared.serviceModel.loadImage(path: path, handlerData: { (data) in
-            handlerData(data)
-        })
-    }
+    }    
 }
 
 struct Error: Swift.Error {

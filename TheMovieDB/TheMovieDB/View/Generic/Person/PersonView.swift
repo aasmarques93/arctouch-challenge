@@ -53,12 +53,13 @@ class PersonView: UITableViewController {
     // MARK: - Bindings -
     
     private func setupBindings() {
+        imageViewPhoto.sd_setImage(with: viewModel?.imageUrl)
+        imageViewBackground.sd_setImage(with: viewModel?.imageUrl)
+        
         viewModel?.biography.bind(to: textViewBiography.reactive.text)
         viewModel?.birthday.bind(to: labelBirthday.reactive.text)
         viewModel?.placeOfBirth.bind(to: labelPlaceOfBirth.reactive.text)
         viewModel?.alsoKnownAs.bind(to: labelAlsoKnownAs.reactive.text)
-        viewModel?.photo.bind(to: imageViewPhoto.reactive.image)
-        viewModel?.photo.bind(to: imageViewBackground.reactive.image)
         viewModel?.isFacebookEnabled.bind(to: buttonFacebookValue.reactive.isEnabled)
         viewModel?.facebookTintColor.bind(to: buttonFacebookValue.reactive.tintColor)
         viewModel?.isInstagramEnabled.bind(to: buttonInstagramValue.reactive.isEnabled)
@@ -107,13 +108,7 @@ extension PersonView: iCarouselDelegate, iCarouselDataSource {
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         let view = XibView.instanceFromNib(MovieView.self)
-        
-        viewModel?.loadMovieImageData(at: index, handlerData: { (data) in
-            if let data = data as? Data, let image = UIImage(data: data) {
-                view.imageViewMovie.image = image
-            }
-        })
-        
+        view.imageViewMovie.sd_setImage(with: viewModel?.movieImageUrl(at: index), placeholderImage: #imageLiteral(resourceName: "default-image"))
         return view
     }
     

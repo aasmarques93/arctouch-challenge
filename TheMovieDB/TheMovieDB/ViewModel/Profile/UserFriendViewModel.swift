@@ -19,7 +19,6 @@ class UserFriendViewModel: ViewModel {
     // MARK: - Observables -
     var isMessageErrorHidden = Observable<Bool>(false)
     
-    var picture = Observable<UIImage>(#imageLiteral(resourceName: "empty-user"))
     var name = Observable<String?>(nil)
     var email = Observable<String?>(nil)
     var personality = Observable<String?>(nil)
@@ -38,6 +37,13 @@ class UserFriendViewModel: ViewModel {
         }
     }
     
+    var imageUrl: URL? {
+        guard let url = userFriend.picture?.data?.url else {
+            return nil
+        }
+        return URL(string: Singleton.shared.serviceModel.imageUrl(with: url, environmentBase: .custom))
+    }
+    
     private var arrayYourListSections: [YourListSection] = [.wantToSeeMovies, .tvShowsTrack, .seenMovies]
     var numberYourListSections: Int { return arrayYourListSections.count }
     
@@ -50,21 +56,10 @@ class UserFriendViewModel: ViewModel {
     // MARK: - Service requests -
     
     func loadData() {
-        loadImageData()
         getProfile()
         
         name.value = userFriend.name
         email.value = userFriend.email
-    }
-    
-    private func loadImageData() {
-        serviceModel.loadImage(path: userFriend.picture?.data?.url) { [weak self] (data) in
-            guard let data = data as? Data, let image = UIImage(data: data) else {
-                return
-            }
-            
-            self?.picture.value = image
-        }
     }
     
     private func getProfile() {

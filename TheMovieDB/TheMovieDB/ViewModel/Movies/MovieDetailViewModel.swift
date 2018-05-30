@@ -256,50 +256,23 @@ class MovieDetailViewModel: ViewModel {
     
     // MARK: Recommendations
     
-    func movieRecommendationImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        var movie = arrayRecommendedMovies[index]
-        
-        if let data = movie.imageData {
-            handlerData(data)
-            return
-        }
-        
-        Singleton.shared.serviceModel.loadImage(path: movie.posterPath ?? "", handlerData: { (data) in
-            movie.imageData = data as? Data
-            handlerData(data)
-        })
+    func movieRecommendationImageUrl(at index: Int) -> URL? {
+        let movie = arrayRecommendedMovies[index]
+        return URL(string: Singleton.shared.serviceModel.imageUrl(with: movie.posterPath ?? ""))
     }
     
     // MARK: Similar
     
-    func similarMovieImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        var movie = arraySimilarMovies[index]
-        
-        if let data = movie.imageData {
-            handlerData(data)
-            return
-        }
-        
-        Singleton.shared.serviceModel.loadImage(path: movie.posterPath ?? "", handlerData: { (data) in
-            movie.imageData = data as? Data
-            handlerData(data)
-        })
+    func similarMovieImageUrl(at index: Int) -> URL? {
+        let movie = arraySimilarMovies[index]
+        return URL(string: Singleton.shared.serviceModel.imageUrl(with: movie.posterPath ?? ""))
     }
     
     // MARK: Cast
     
-    func castImageData(at index: Int, handlerData: @escaping HandlerObject) {
-        var cast = arrayCast[index]
-        
-        if let data = cast.imageData {
-            handlerData(data)
-            return
-        }
-        
-        Singleton.shared.serviceModel.loadImage(path: cast.profilePath ?? "", handlerData: { (data) in
-            cast.imageData = data as? Data
-            handlerData(data)
-        })
+    func castImageUrl(at index: Int) -> URL? {
+        let cast = arrayCast[index]
+        return URL(string: Singleton.shared.serviceModel.imageUrl(with: cast.profilePath ?? ""))
     }
     
     func castName(at index: Int) -> String {

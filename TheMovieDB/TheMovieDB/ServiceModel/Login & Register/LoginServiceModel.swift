@@ -41,8 +41,4 @@ struct LoginServiceModel {
     func recoverPassword(email: String, handlerObject: HandlerObject, handlerError: HandlerObject? = nil) {
         
     }
-    
-    func loadImage(path: String?, handlerData: @escaping HandlerObject) {
-        serviceModel.loadImage(path: path, environmentBase: .custom, handlerData: handlerData)
-    }
 }

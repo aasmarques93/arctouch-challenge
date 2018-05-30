@@ -58,9 +58,5 @@ struct UserFriendsServiceModel {
                                 
                                 handler(arrayUsers)
         })
-    }
-    
-    func loadImage(path: String?, handlerData: @escaping HandlerObject) {
-        serviceModel.loadImage(path: path, environmentBase: .custom, handlerData: handlerData)
-    }
+    }    
 }

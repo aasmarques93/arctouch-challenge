@@ -56,7 +56,7 @@ class UserFriendDetailView: UITableViewController {
     // MARK: - Bindings -
     
     func setupBindings() {
-        viewModel?.picture.bind(to: imageViewUserFriend.reactive.image)
+        imageViewUserFriend.sd_setImage(with: viewModel?.imageUrl, placeholderImage: #imageLiteral(resourceName: "empty-user"))
         viewModel?.name.bind(to: labelUserFriendName.reactive.text)
         viewModel?.email.bind(to: labelUserFriendEmail.reactive.text)
     }

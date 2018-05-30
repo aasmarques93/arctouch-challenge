@@ -376,8 +376,9 @@
                             <constraint firstItem="5XQ-eW-DIK" firstAttribute="trailing" secondItem="Ya1-2c-aW6" secondAttribute="trailing" id="Rop-cn-jny"/>
                             <constraint firstItem="en2-AR-Hij" firstAttribute="top" secondItem="5XQ-eW-DIK" secondAttribute="top" constant="8" id="TD5-xB-VAn"/>
                             <constraint firstItem="4fD-pI-jf2" firstAttribute="top" secondItem="en2-AR-Hij" secondAttribute="bottom" constant="8" id="TEa-al-lbD"/>
-                            <constraint firstItem="ZDM-Bs-gAP" firstAttribute="leading" secondItem="0sL-G7-eF7" secondAttribute="trailing" constant="8" id="VHy-2G-wkh"/>
+                            <constraint firstItem="ZDM-Bs-gAP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0sL-G7-eF7" secondAttribute="trailing" constant="8" symbolic="YES" id="VHy-2G-wkh"/>
                             <constraint firstItem="Ya1-2c-aW6" firstAttribute="leading" secondItem="fuI-Vl-opp" secondAttribute="leading" id="Wic-ia-XNW"/>
+                            <constraint firstAttribute="trailing" secondItem="ZDM-Bs-gAP" secondAttribute="trailing" priority="1" constant="20" id="aBD-VX-6Nd"/>
                             <constraint firstItem="DQo-QM-Um4" firstAttribute="top" secondItem="4fD-pI-jf2" secondAttribute="bottom" constant="8" id="adr-z3-sRe"/>
                             <constraint firstItem="vt6-9p-Ud2" firstAttribute="top" secondItem="DQo-QM-Um4" secondAttribute="bottom" constant="8" id="hti-yf-1qL"/>
                             <constraint firstItem="ZDM-Bs-gAP" firstAttribute="centerY" secondItem="0sL-G7-eF7" secondAttribute="centerY" id="rRS-0f-Pha"/>
