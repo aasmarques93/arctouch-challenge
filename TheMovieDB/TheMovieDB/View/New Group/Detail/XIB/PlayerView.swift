@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import YouTubePlayer
+import youtube_ios_player_helper
 
 class PlayerView: XibView {
     // MARK: - Outlets -
     
     @IBOutlet weak var labelVideo: UILabel!
-    @IBOutlet weak var playerView: YouTubePlayerView!    
+    @IBOutlet weak var playerView: YTPlayerView!
 }

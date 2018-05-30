@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Bond
 
 class TVShowDetailView: UITableViewController {
     // MARK: - Outlets -
@@ -254,8 +255,10 @@ extension TVShowDetailView: iCarouselDelegate, iCarouselDataSource {
         
         view.labelVideo.text = viewModel?.videoTitle(at: index)
         
-        DispatchQueue.main.async {
-            if let videoId = self.viewModel?.videoYouTubeId(at: index) { view.playerView.loadVideoID(videoId) }
+        if let videoId = self.viewModel?.videoYouTubeId(at: index) {
+            DispatchQueue.main.async {
+                view.playerView.load(withVideoId: videoId)
+            }
         }
         
         return view

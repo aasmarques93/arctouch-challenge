@@ -36,7 +36,7 @@ struct Connection {
                                         encoding: JSONEncoding.default,
                                         headers: Connection.shared.headers).responseJSON { (response) in
             
-                                            print("URL: \(url)\nJSON Response: \(response)\n")
+//                                            print("URL: \(url)\nJSON Response: \(response)\n")
                                             dataResponseJSON(response)
         }
         

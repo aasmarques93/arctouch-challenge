@@ -93,15 +93,15 @@ class StoriesView: UIViewController {
         case .image:
             imageView.image = item.data as? UIImage
         case .video:
-            viewModel?.loadVideo(at: index) { [weak self] (data) in
-                guard let path = data as? String, let videoView = self?.videoView else {
+            viewModel?.loadVideo(at: index) { [weak self] (videoId) in
+                guard let videoView = self?.videoView, videoId != "" else {
                     return
                 }
                 
                 self?.activityIndicator.isHidden = true
                 self?.buttonNetflix.isHidden = false
                 
-                self?.youTubePlayer = XCDYouTubeVideoPlayerViewController(videoIdentifier: path)
+                self?.youTubePlayer = XCDYouTubeVideoPlayerViewController(videoIdentifier: videoId)
 
                 self?.youTubePlayer?.present(in: videoView)
                 self?.youTubePlayer?.moviePlayer.play()

@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="270"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ra1-kq-T1S" customClass="YouTubePlayerView" customModule="YouTubePlayer">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ra1-kq-T1S" customClass="YTPlayerView">
                     <rect key="frame" x="8" y="37" width="359" height="225"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
@@ -44,7 +44,7 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="labelVideo" destination="C3W-dm-fxP" id="0gW-aO-tfM"/>
-                <outlet property="playerView" destination="Ra1-kq-T1S" id="DJv-3a-HUm"/>
+                <outlet property="playerView" destination="Ra1-kq-T1S" id="ApY-by-2ca"/>
             </connections>
             <point key="canvasLocation" x="38" y="-157"/>
         </view>

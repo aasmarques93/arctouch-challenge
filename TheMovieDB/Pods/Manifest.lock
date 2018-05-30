@@ -58,7 +58,7 @@ PODS:
   - SDWebImage/Core (4.3.3)
   - SwiftyJSON (3.1.4)
   - XCDYouTubeKit (2.5.6)
-  - YouTubePlayer (0.4.0)
+  - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5.0)
@@ -78,7 +78,7 @@ DEPENDENCIES:
   - SDWebImage
   - SwiftyJSON (~> 3.1.4)
   - XCDYouTubeKit
-  - YouTubePlayer
+  - youtube-ios-player-helper
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -107,7 +107,7 @@ SPEC REPOS:
     - SDWebImage
     - SwiftyJSON
     - XCDYouTubeKit
-    - YouTubePlayer
+    - youtube-ios-player-helper
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -135,8 +135,8 @@ SPEC CHECKSUMS:
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   XCDYouTubeKit: dccfe0c17dd5c5187969ec27e93069573badb08f
-  YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
+  youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 95fa7513d6a1cf50ac71fd13ff83cfe266850e20
+PODFILE CHECKSUM: 0cc3ff3c199f5354f7be83e5ef474a8287d40584
 
 COCOAPODS: 1.5.0.beta.1

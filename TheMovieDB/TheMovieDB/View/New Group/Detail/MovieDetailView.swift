@@ -8,7 +8,6 @@
 
 import UIKit
 import Bond
-import YouTubePlayer
 
 class MovieDetailView: UITableViewController {
     // MARK: - Outlets -
@@ -276,8 +275,10 @@ extension MovieDetailView: iCarouselDelegate, iCarouselDataSource {
         
         view.labelVideo.text = viewModel?.videoTitle(at: index)
         
-        DispatchQueue.main.async {
-            if let videoId = self.viewModel?.videoYouTubeId(at: index) { view.playerView.loadVideoID(videoId) }
+        if let videoId = self.viewModel?.videoYouTubeId(at: index) {
+            DispatchQueue.main.async {
+                view.playerView.load(withVideoId: videoId)
+            }
         }
         
         return view
