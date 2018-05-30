@@ -9,13 +9,19 @@
 import UIKit
 
 class FriendsViewCell: UITableViewCell {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var viewBackground: UIView!
     @IBOutlet weak var imageViewUserFriend: UIImageView!
     @IBOutlet weak var labelUserFriendName: UILabel!
     @IBOutlet weak var labelUserFriendPersonality: UILabel!
     @IBOutlet weak var labelUserFriendMovieShow: UILabel!
     
+    // MARK: - View Model -
+    
     var viewModel: UserFriendViewModel?
+    
+    // MARK: - Setup -
     
     func setupView() {
         viewModel?.picture.bind(to: imageViewUserFriend.reactive.image)

@@ -213,6 +213,7 @@
 		EDA5DFF620B65340008E575F /* EmojiRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA5DFF520B65340008E575F /* EmojiRateView.swift */; };
 		EDB7371120BACEFD00CC3F95 /* UserFriendDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7371020BACEFD00CC3F95 /* UserFriendDetailView.swift */; };
 		EDB7371420BACF4600CC3F95 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB7371320BACF4600CC3F95 /* Profile.storyboard */; };
+		EDB7371A20BEC10C00CC3F95 /* PersonalityTestAnswerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7371920BEC10C00CC3F95 /* PersonalityTestAnswerViewCell.swift */; };
 		EDBAF882209FFE430089DE39 /* FabricUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAF881209FFE430089DE39 /* FabricUtils.swift */; };
 		EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01220585A4400D843EC /* CollectionView.swift */; };
 		EDC6C01820585A5500D843EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01720585A5500D843EC /* Date.swift */; };
@@ -224,7 +225,7 @@
 		EDC6C02820585A8300D843EC /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C02720585A8300D843EC /* General.swift */; };
 		EDC6C02D20585A8C00D843EC /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C02920585A8C00D843EC /* Session.swift */; };
 		EDC6C02E20585A8C00D843EC /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C02A20585A8C00D843EC /* FileManager.swift */; };
-		EDC6C02F20585A8C00D843EC /* EnvironmentHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C02B20585A8C00D843EC /* EnvironmentHost.swift */; };
+		EDC6C02F20585A8C00D843EC /* EnvironmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C02B20585A8C00D843EC /* EnvironmentManager.swift */; };
 		EDC6C03020585A8C00D843EC /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C02C20585A8C00D843EC /* Connection.swift */; };
 		EDC6C03320585A9200D843EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C03120585A9200D843EC /* Constants.swift */; };
 		EDC6C03420585A9200D843EC /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C03220585A9200D843EC /* Messages.swift */; };
@@ -494,6 +495,7 @@
 		EDA5DFF520B65340008E575F /* EmojiRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiRateView.swift; sourceTree = "<group>"; };
 		EDB7371020BACEFD00CC3F95 /* UserFriendDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendDetailView.swift; sourceTree = "<group>"; };
 		EDB7371320BACF4600CC3F95 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		EDB7371920BEC10C00CC3F95 /* PersonalityTestAnswerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestAnswerViewCell.swift; sourceTree = "<group>"; };
 		EDBAF881209FFE430089DE39 /* FabricUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricUtils.swift; sourceTree = "<group>"; };
 		EDC6C01220585A4400D843EC /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		EDC6C01720585A5500D843EC /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -505,7 +507,7 @@
 		EDC6C02720585A8300D843EC /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		EDC6C02920585A8C00D843EC /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		EDC6C02A20585A8C00D843EC /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
-		EDC6C02B20585A8C00D843EC /* EnvironmentHost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentHost.swift; sourceTree = "<group>"; };
+		EDC6C02B20585A8C00D843EC /* EnvironmentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentManager.swift; sourceTree = "<group>"; };
 		EDC6C02C20585A8C00D843EC /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		EDC6C03120585A9200D843EC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EDC6C03220585A9200D843EC /* Messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
@@ -847,6 +849,7 @@
 			children = (
 				ED2AA5F220A0D95C00AA0DF5 /* PersonalityTestView.swift */,
 				ED2AA5F720A0DA4700AA0DF5 /* PersonalityTestViewCell.swift */,
+				EDB7371920BEC10C00CC3F95 /* PersonalityTestAnswerViewCell.swift */,
 				ED2AA61E20A1C07F00AA0DF5 /* PersonalityTestResultView.swift */,
 				ED2AA62B20A30BF000AA0DF5 /* PersonalityTestResultDetailsView.swift */,
 			);
@@ -1556,7 +1559,7 @@
 			isa = PBXGroup;
 			children = (
 				EDC6C02C20585A8C00D843EC /* Connection.swift */,
-				EDC6C02B20585A8C00D843EC /* EnvironmentHost.swift */,
+				EDC6C02B20585A8C00D843EC /* EnvironmentManager.swift */,
 				EDC6C02A20585A8C00D843EC /* FileManager.swift */,
 				EDC6C02920585A8C00D843EC /* Session.swift */,
 			);
@@ -1978,7 +1981,7 @@
 				EDC6C03F2058663000D843EC /* ViewModel.swift in Sources */,
 				ED2AA5FA20A0DAF600AA0DF5 /* PersonalityTestCellViewModel.swift in Sources */,
 				ED0C3D6620AA42C800F28150 /* StoriesViewModel.swift in Sources */,
-				EDC6C02F20585A8C00D843EC /* EnvironmentHost.swift in Sources */,
+				EDC6C02F20585A8C00D843EC /* EnvironmentManager.swift in Sources */,
 				ED65BEF3209238BB0091D93B /* Cast.swift in Sources */,
 				ED16D87E20599E29002A0B2C /* SearchMoviesGenre.swift in Sources */,
 				ED38340320938E980079D48F /* PopularPeople.swift in Sources */,
@@ -2051,6 +2054,7 @@
 				EDC6C03320585A9200D843EC /* Constants.swift in Sources */,
 				ED0C3D5E20AA2CD200F28150 /* NetflixMovieShow.swift in Sources */,
 				ED16D86020597AF6002A0B2C /* MovieDetailViewModel.swift in Sources */,
+				EDB7371A20BEC10C00CC3F95 /* PersonalityTestAnswerViewCell.swift in Sources */,
 				ED38345120973FA00079D48F /* SeasonDetailView.swift in Sources */,
 				ED65BEBB2090A55D0091D93B /* Video.swift in Sources */,
 				ED65BEFF20923F040091D93B /* CastView.swift in Sources */,

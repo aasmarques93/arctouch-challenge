@@ -157,7 +157,7 @@ class TVShowViewModel: MoviesShowsViewModel {
     
     private func addTVShowsToArray(_ results: [TVShow], section: SectionsType) {
         switch section {
-        case .Suggested:
+        case .suggested:
             break
         case .airingToday:
             arrayAiringToday.append(contentsOf: results)
@@ -183,7 +183,7 @@ class TVShowViewModel: MoviesShowsViewModel {
         switch sectionType {
         case .netflix:
             return numberOfNetflix
-        case .Suggested:
+        case .suggested:
             return numberOfSuggested
         case .friendsWatching:
             return numberOfUserFriendsShows
@@ -223,7 +223,7 @@ class TVShowViewModel: MoviesShowsViewModel {
             return nil
         }
         switch sectionType {
-        case .Suggested:
+        case .suggested:
             return arraySuggested
         case .friendsWatching:
             return arrayUserFriendsShows

@@ -22,11 +22,17 @@ class PhotoPicker: UIImagePickerController {
         return PHCachingImageManager()
     }()
     
-    var imageWidth: CGFloat = 100
-    var selectedIndexPath: IndexPath?
-    
-    func customAction() {
-        dismiss(animated: true, completion: nil)
+    private var buttonPicker: UIButton {
+        let buttonPicker = UIButton()
+        buttonPicker.setTitle(Titles.photos.localized, for: .normal)
+        buttonPicker.setTitleColor(UIColor.white, for: .normal)
+        buttonPicker.addTarget(self, action: #selector(openLibrary), for: .touchUpInside)
+        buttonPicker.sizeToFit()
+        buttonPicker.frame = CGRect(x: view.frame.maxX - buttonPicker.frame.width - 8,
+                                    y: 0,
+                                    width: buttonPicker.frame.width,
+                                    height: buttonPicker.frame.height)
+        return buttonPicker
     }
     
     func present(in viewController: UIViewController) {
@@ -41,18 +47,8 @@ class PhotoPicker: UIImagePickerController {
             sourceType = .savedPhotosAlbum
             mediaTypes = UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum)!
         }
-        
-        let buttonPicker = UIButton()
-        buttonPicker.setTitle(Titles.photos.localized, for: .normal)
-        buttonPicker.setTitleColor(UIColor.white, for: .normal)
-        buttonPicker.addTarget(self, action: #selector(openLibrary), for: .touchUpInside)
-        buttonPicker.sizeToFit()
-        buttonPicker.frame = CGRect(x: view.frame.maxX - buttonPicker.frame.width - 8,
-                                    y: 0,
-                                    width: buttonPicker.frame.width,
-                                    height: buttonPicker.frame.height)
+
         cameraOverlayView = buttonPicker
-        
         viewController.present(self, animated: true, completion: nil)
     }
     
@@ -63,9 +59,12 @@ class PhotoPicker: UIImagePickerController {
 }
  
 extension PhotoPicker: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : Any]) {
+        
         dismiss(animated: true, completion: nil)
-        photoPickerDelegate?.dismissPhotoPicker(selectedImage: info[UIImagePickerControllerOriginalImage] as? UIImage, pathUrl: info[UIImagePickerControllerImageURL] as? URL)
+        photoPickerDelegate?.dismissPhotoPicker(selectedImage: info[UIImagePickerControllerOriginalImage] as? UIImage,
+                                                pathUrl: info[UIImagePickerControllerImageURL] as? URL)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

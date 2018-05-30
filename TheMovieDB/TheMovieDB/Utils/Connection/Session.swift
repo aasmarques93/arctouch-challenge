@@ -26,7 +26,6 @@ struct Session {
         configureApiManager()
     }
     
-    /// This method configure session manager of Alamofire
     private mutating func configureApiManager() {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders

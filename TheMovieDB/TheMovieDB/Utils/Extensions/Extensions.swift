@@ -18,7 +18,17 @@ var SCREEN_HEIGHT: CGFloat {
 }
 
 extension Array {
-    mutating func shuffle () {
+    func shiftRight(_ amount: Int = 1) -> [Element] {
+        var value = amount
+        if value < 0 { value += count }
+        return Array(self[value ..< count] + self[0 ..< value])
+    }
+    
+    mutating func shiftRightInPlace(amount: Int = 1) {
+        self = shiftRight(amount)
+    }
+    
+    mutating func shuffle() {
         for i in (0..<self.count).reversed() {
             let ix1 = i
             let ix2 = Int(arc4random_uniform(UInt32(i+1)))
@@ -32,26 +42,18 @@ extension Array {
         return array
     }
     
-    func added(_ element: Element) -> Array {
-        var array = self
-        array.append(element)
-        return array
-    }
-    
     func contains(_ object: AnyObject) -> Bool {
         if self.isEmpty {
             return false
         }
         
         let array = NSArray(array: self)
-        
         return array.contains(object)
     }
     
     func index(of object: AnyObject) -> Int? {
         if self.contains(object) {
             let array = NSArray(array: self)
-            
             return array.index(of: object)
         }
         
@@ -63,10 +65,8 @@ extension UIApplication {
         if let navigationController = controller as? UINavigationController {
             return topViewController(controller: navigationController.visibleViewController)
         }
-        if let tabController = controller as? UITabBarController {
-            if let selected = tabController.selectedViewController {
-                return topViewController(controller: selected)
-            }
+        if let tabController = controller as? UITabBarController, let selected = tabController.selectedViewController {
+            return topViewController(controller: selected)
         }
         if let presented = controller?.presentedViewController {
             return topViewController(controller: presented)
@@ -76,17 +76,16 @@ extension UIApplication {
 }
 
 extension UITableView {
-    func dequeueReusableCell<T:UITableViewCell>(_: T.Type, for indexPath: IndexPath) -> T {
+    func dequeueReusableCell<T: UITableViewCell>(_: T.Type, for indexPath: IndexPath) -> T {
         guard let cell = dequeueReusableCell(withIdentifier: String(describing:T.self), for: indexPath) as? T else {
             fatalError("Cant dequeue cell with identifier: \(String(describing:T.self))")
         }
-        
         return cell
     }
 }
 
 extension UICollectionView {
-    func dequeueReusableCell<T:UICollectionViewCell>(_: T.Type, for indexPath: IndexPath) -> T {
+    func dequeueReusableCell<T: UICollectionViewCell>(_: T.Type, for indexPath: IndexPath) -> T {
         guard let cell = dequeueReusableCell(withReuseIdentifier: String(describing:T.self), for: indexPath) as? T else {
             fatalError("Cant dequeue cell with identifier: \(String(describing:T.self))")
         }
@@ -96,15 +95,15 @@ extension UICollectionView {
 
 protocol ReusableView: class { }
 
-extension ReusableView where Self:UIView {
+extension ReusableView where Self: UIView {
     static var reuseIdentifier: String {
-        return String(describing:self)
+        return String(describing: self)
     }
 }
 
 extension UIViewController {
     var reusableIdentifier: String {
-        return String(describing:self)
+        return String(describing: self)
     }
     
     func takeScreenshot(shouldSave: Bool = true) -> UIImage? {
@@ -115,7 +114,7 @@ extension UIViewController {
         var screenshotImage: UIImage?
         let scale = UIScreen.main.scale
         
-        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale);
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale)
         
         guard let context = UIGraphicsGetCurrentContext() else {
             return nil
@@ -179,6 +178,7 @@ extension UITabBarController {
         let frame = self.tabBar.frame
         let height = frame.size.height
         let offsetY = (visible ? -height: height)
+        
         UIView.animate(withDuration: animated ? 0.3: 0.0) {
             self.tabBar.frame = frame.offsetBy(dx: 0, dy: offsetY)
             self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height + offsetY)
@@ -188,40 +188,9 @@ extension UITabBarController {
     }
 }
 
-extension UIAlertController {
-    func presentAnywhere() {
-        UIAlertController.getTopViewController().present(self, animated: true, completion: nil)
-    }
-    
-    static func getTopViewController() -> UIViewController {
-        var viewController = UIViewController()
-        if let vc =  UIApplication.shared.delegate?.window??.rootViewController {
-            viewController = vc
-            var presented = vc
-            while let top = presented.presentedViewController {
-                presented = top
-                viewController = top
-            }
-        }
-        return viewController
-    }
-}
-
 extension Collection where Index == Int {
     func randomElement() -> Iterator.Element? {
         return isEmpty ? nil : self[Int(arc4random_uniform(UInt32(endIndex)))]
-    }
-}
-
-extension Array {
-    func shiftRight(_ amount: Int = 1) -> [Element] {
-        var value = amount
-        if value < 0 { value += count }
-        return Array(self[value ..< count] + self[0 ..< value])
-    }
-    
-    mutating func shiftRightInPlace(amount: Int = 1) {
-        self = shiftRight(amount)
     }
 }
 
@@ -233,20 +202,6 @@ extension UIImage {
             return imageData
         }
         return nil
-    }
-}
-
-extension UITableViewController {
-    var viewHeaderTitleHeight: CGFloat {
-        return 32
-    }
-    
-    var labelHeader: UILabel {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: viewHeaderTitleHeight))
-        label.backgroundColor = HexColor.primary.color
-        label.textColor = HexColor.text.color
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        return label
     }
 }
 

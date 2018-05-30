@@ -9,6 +9,8 @@
 import UIKit
 
 class UserFriendDetailView: UITableViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var viewImageBackground: UIView!
     @IBOutlet weak var imageViewUserFriend: UIImageView!
     @IBOutlet weak var labelUserFriendName: UILabel!
@@ -18,8 +20,15 @@ class UserFriendDetailView: UITableViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    // MARK: - Properties -
+    
     var personalityTestResultDetailsView: PersonalityTestResultDetailsView?
+
+    // MARK: - View Model -
+
     var viewModel: UserFriendViewModel?
+    
+    // MARK: - Life cycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +43,17 @@ class UserFriendDetailView: UITableViewController {
         setupFooterView()
     }
     
+    // MARK: - Appearance -
+    
     func setupAppearance() {
         containerPersonalityTestResult.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
     }
+    
+    func setupFooterView() {
+        tableView.tableFooterView = segmentedControl.selectedSegmentIndex == 0 ? containerPersonalityTestResult : nil
+    }
+    
+    // MARK: - Bindings -
     
     func setupBindings() {
         viewModel?.picture.bind(to: imageViewUserFriend.reactive.image)
@@ -44,9 +61,7 @@ class UserFriendDetailView: UITableViewController {
         viewModel?.email.bind(to: labelUserFriendEmail.reactive.text)
     }
     
-    func setupFooterView() {
-        tableView.tableFooterView = segmentedControl.selectedSegmentIndex == 0 ? containerPersonalityTestResult : nil
-    }
+    // MARK: - Personality Test -
     
     func setupPersonalityTestResultViewModel() {
         guard let viewModel = viewModel else {
@@ -57,12 +72,14 @@ class UserFriendDetailView: UITableViewController {
         personalityTestResultDetailsView?.setupData(animated: true)
     }
     
+    // MARK: - Actions -
+    
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
         setupFooterView()
         tableView.reloadData()
     }
     
-    // MARK: - Table view data source
+    // MARK: - Table view data source -
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return viewHeaderTitleHeight
@@ -101,6 +118,8 @@ class UserFriendDetailView: UITableViewController {
         self.title = scrollView.contentOffset.y > labelUserFriendName.frame.maxY ? viewModel?.name.value : ""
     }
     
+    // MARK: - Segue -
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let viewController = segue.destination as? PersonalityTestResultDetailsView else {
             return
@@ -110,6 +129,9 @@ class UserFriendDetailView: UITableViewController {
 }
 
 extension UserFriendDetailView: ViewModelDelegate {
+    
+    // MARK: - ViewModelDelegate -
+    
     func reloadData() {
         setupPersonalityTestResultViewModel()
     }

@@ -1,6 +1,6 @@
 //
 //  ChartGenericContainer.swift
-//  Vote Presidente
+//  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 3/15/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.

@@ -9,26 +9,17 @@
 import FBSDKLoginKit
 
 class Singleton {
+    
+    // MARK: - Singleton -
+    
     static let shared = Singleton()
+    
+    // MARK: - Service Model -
     
     let serviceModel = ServiceModel()
     let profileServiceModel = ProfileServiceModel()
     
-    var userPersonality: UserPersonality? {
-        didSet {
-            let personalityTypes = arrayPersonalityTypes.filter { $0.id == userPersonality?.personalityTypeId }
-            savePersonalityType(personalityTypes.first)
-        }
-    }
-    
-    var arrayUserWantToSeeMovies = [UserMovieShow]()
-    var arrayUserShows = [UserMovieShow]()
-    var arrayUserSeenMovies = [UserMovieShow]()
-    var arrayUserRatings = [UserRating]()
-    var arrayUserFriends = [User]()
-    
-    var arrayPersonalityTypes = [PersonalityType]()
-    var arrayPersonalityQuestions = [Questions]()
+    // MARK: - User -
     
     var user = User.createEmptyUser() { didSet { saveUser() } }
     
@@ -70,6 +61,28 @@ class Singleton {
         return UIImage(data: data)
     }
     
+    // MARK: - User Personality -
+    
+    var userPersonality: UserPersonality? {
+        didSet {
+            let personalityTypes = arrayPersonalityTypes.filter { $0.id == userPersonality?.personalityTypeId }
+            savePersonalityType(personalityTypes.first)
+        }
+    }
+    
+    var arrayPersonalityTypes = [PersonalityType]()
+    var arrayPersonalityQuestions = [Questions]()
+    
+    // MARK: - User Profile -
+    
+    var arrayUserWantToSeeMovies = [UserMovieShow]()
+    var arrayUserShows = [UserMovieShow]()
+    var arrayUserSeenMovies = [UserMovieShow]()
+    var arrayUserRatings = [UserRating]()
+    var arrayUserFriends = [User]()
+    
+    // MARK: - Service requests -
+    
     func loadUserData(handler: HandlerObject? = nil) {
         profileServiceModel.getProfile { [weak self] (object) in
             guard let object = object as? User else {
@@ -94,6 +107,8 @@ class Singleton {
         UserDefaultsHelper.delete(key: .userPersonality)
     }
 
+    // MARK: - Saving personality test -
+    
     func saveUserPersonalityTest(dictionaryAnswersCounts: [Int: Int], personalityType: PersonalityType) {
         var comedyPercentage: Float = 0
         var actionPercentage: Float = 0
@@ -192,12 +207,18 @@ class Singleton {
         return userPersonalityType != nil
     }
     
+    // MARK: - Genres & Netflix -
+    
     var arrayGenres = [Genres]()
     var arrayNetflixGenres = [Genres]()
+    
+    // MARK: - Language Detection -
     
     var isLanguagePortuguese: Bool {
         return Locale.preferredLanguages.first == "pt-BR"
     }
+    
+    // MARK: - Your list movies -
     
     func isMovieInYourWantToSeeList(movie: Movie) -> Bool {
         return arrayUserWantToSeeMovies.filter { $0.movieId == movie.id }.count > 0

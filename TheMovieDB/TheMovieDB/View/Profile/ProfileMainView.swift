@@ -10,10 +10,16 @@ import UIKit
 import Bond
 
 class ProfileMainView: UIViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var containerLogin: UIView!
     @IBOutlet weak var containerProfile: UIView!
     
-    let viewModel = ProfileViewModel()
+    // MARK: - View Model -
+    
+    private let viewModel = ProfileViewModel()
+    
+    // MARK: - Life cycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,14 +32,20 @@ class ProfileMainView: UIViewController {
         loadData()
     }
     
-    func setupBindings() {
+    // MARK: - Bindings -
+    
+    private func setupBindings() {
         viewModel.isLoginHidden.bind(to: containerLogin.reactive.isHidden)
         viewModel.isProfileHidden.bind(to: containerProfile.reactive.isHidden)
     }
     
+    // MARK: - Methods -
+    
     func loadData() {
         viewModel.loadData()
     }
+    
+    // MARK: - Segue -
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? LoginView {

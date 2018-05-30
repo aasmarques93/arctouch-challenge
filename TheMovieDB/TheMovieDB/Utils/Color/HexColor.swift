@@ -53,27 +53,23 @@ extension UIColor {
     }
     
     var toHexString: String {
-        var r:CGFloat = 0
-        var g:CGFloat = 0
-        var b:CGFloat = 0
-        var a:CGFloat = 0
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
         
         getRed(&r, green: &g, blue: &b, alpha: &a)
         
         let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
-        
         return String(format:"#%06x", rgb)
     }
     
     var isLight: Bool {
         let components = self.cgColor.components
-        let red   = ((components?[0])! * 299)
+        let red = ((components?[0])! * 299)
         let green = ((components?[1])! * 587)
-        let blue  = ((components?[2])! * 114)
+        let blue = ((components?[2])! * 114)
         let brightness = (red+green+blue)/1000
-        if brightness < 0.5{
-            return false
-        }
-        return true
+        return brightness < 0.5 ? false : true
     }
 }

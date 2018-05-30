@@ -9,6 +9,8 @@
 import UIKit
 
 class PersonalityTestResultDetailsView: UIViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var viewChart: UIView!
     @IBOutlet weak var labelChartTitle: UILabel!
     @IBOutlet weak var labelPercentage: UILabel!
@@ -16,8 +18,15 @@ class PersonalityTestResultDetailsView: UIViewController {
     @IBOutlet weak var textViewDescription: UITextView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    // MARK: - View Model -
+    
     var viewModel = PersonalityTestResultViewModel()
+    
+    // MARK: - Properties -
+    
     var chartContainer: ChartGenericContainer?
+    
+    // MARK: - Life cycle -
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,12 +35,16 @@ class PersonalityTestResultDetailsView: UIViewController {
         setupData()
     }
     
+    // MARK: - Bindings -
+    
     func setupBindings() {
         viewModel.chartTitle.bind(to: labelChartTitle.reactive.text)
         viewModel.chartPercentage.bind(to: labelPercentage.reactive.text)
         viewModel.descriptionText.bind(to: textViewDescription.reactive.text)
         viewModel.image.bind(to: imageViewPersonalityType.reactive.image)
     }
+    
+    // MARK: - Setup -
     
     func setupData(animated: Bool = true) {
         viewModel.loadData()
@@ -57,6 +70,8 @@ class PersonalityTestResultDetailsView: UIViewController {
         }
     }
     
+    // MARK: - Actions -
+    
     @IBAction func buttonShareAction(_ sender: UIBarButtonItem) {
         presentShareActivityController(image: takeScreenshot(shouldSave: false))
     }
@@ -68,6 +83,9 @@ class PersonalityTestResultDetailsView: UIViewController {
 }
 
 extension PersonalityTestResultDetailsView: ChartGenericContainerDelegate {
+    
+    // MARK: - ChartGenericContainerDelegate -
+    
     func chartValueSelected(at index: Int) {
         viewModel.setSelectedChartItem(at: index)
     }

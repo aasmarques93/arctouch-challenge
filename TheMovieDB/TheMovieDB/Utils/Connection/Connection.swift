@@ -16,11 +16,12 @@ typealias handlerDownloadResponseData = (Alamofire.DownloadResponse<Data>) -> Sw
 
 struct Connection {
     // MARK: - Properties -
+    
     static let shared = Connection()
     
-    var headers: HTTPHeaders?
-    var cookies = [HTTPCookie]()
-    var stringCookies = ""
+    private var headers: HTTPHeaders?
+    private var cookies = [HTTPCookie]()
+    private var stringCookies = ""
     
     // MARK: - Request Methods -
     

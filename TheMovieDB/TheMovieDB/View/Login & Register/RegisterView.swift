@@ -9,6 +9,8 @@
 import UIKit
 
 class RegisterView: UITableViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var viewHeader: UIView!
     
     @IBOutlet weak var textFieldUsername: UITextField!
@@ -30,7 +32,11 @@ class RegisterView: UITableViewController {
     @IBOutlet weak var viewPasswordInfo: UIView!
     @IBOutlet weak var viewPasswordConfirmationInfo: UIView!
     
-    let viewModel = RegisterViewModel()
+    // MARK: - View Model -
+    
+    private let viewModel = RegisterViewModel()
+    
+    // MARK: - Life cycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +45,9 @@ class RegisterView: UITableViewController {
         setupBindings()
     }
     
-    func setupAppearance() {
+    // MARK: - Appearance -
+    
+    private func setupAppearance() {
         textFieldUsername.textColor = HexColor.text.color
         textFieldUsername.placeHolderColor = HexColor.text.color
         textFieldEmail.textColor = HexColor.text.color
@@ -52,7 +60,9 @@ class RegisterView: UITableViewController {
         buttonSignUp.backgroundColor = HexColor.secondary.color
     }
     
-    func setupBindings() {
+    // MARK: - Bindings -
+    
+    private func setupBindings() {
         viewModel.message.bind(to: labelMessage.reactive.text)
         
         viewModel.username.bidirectionalBind(to: textFieldUsername.reactive.text)
@@ -76,6 +86,8 @@ class RegisterView: UITableViewController {
         viewModel.colorPasswordConfirmationInfo.bind(to: buttonPasswordConfirmationInfo.reactive.tintColor)
     }
     
+    // MARK: - Actions -
+    
     @IBAction func buttonLoginAction(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
@@ -86,6 +98,9 @@ class RegisterView: UITableViewController {
 }
 
 extension RegisterView: ViewModelDelegate {
+    
+    // MARK: - ViewModelDelegate -
+    
     func reloadData() {
         navigationController?.popViewController(animated: true)
     }

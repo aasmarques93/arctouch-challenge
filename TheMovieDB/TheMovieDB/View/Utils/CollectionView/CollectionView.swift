@@ -44,7 +44,7 @@ class CollectionView: UICollectionView {
         return lines
     }
     
-    func configureCollectionViewLayout() {
+    private func configureCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
         
         layout.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)

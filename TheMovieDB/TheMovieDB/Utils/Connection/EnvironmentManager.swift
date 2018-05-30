@@ -1,5 +1,5 @@
 //
-//  EnvironmentRequest.swift
+//  EnvironmentManager.swift
 //  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 3/13/18.

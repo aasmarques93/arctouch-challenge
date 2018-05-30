@@ -15,14 +15,20 @@ private let mainFontSize: CGFloat = 20
 private let subFontSize: CGFloat = 22
 
 class PersonalityTestResultView: UIViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var processLoadingView: ProcessLoadingView!
     @IBOutlet weak var labelResult: TypewriterLabel!
     @IBOutlet weak var buttonSeeMovies: UIButton!
     @IBOutlet weak var buttonDoTestAgain: UIButton!
     
+    // MARK: - View Model -
+    
     var viewModel: PersonalityTestViewModel?
     
-    var arrayImages: [(UIImage, UIColor?)] {
+    // MARK: - Properties -
+    
+    private var arrayImages: [(UIImage, UIColor?)] {
         var images = [(UIImage, UIColor?)]()
         
         for _ in 0..<totalItems {
@@ -32,7 +38,7 @@ class PersonalityTestResultView: UIViewController {
         return images
     }
     
-    var processLoadingOptions: ProcessOptions {
+    private var processLoadingOptions: ProcessOptions {
         let options = ProcessOptions()
         
         options.inSpeed = 0.7
@@ -56,6 +62,8 @@ class PersonalityTestResultView: UIViewController {
         return options
     }
     
+    // MARK: - Life cycle -
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppDelegate.shared.lockOrientation()
@@ -70,6 +78,8 @@ class PersonalityTestResultView: UIViewController {
         processLoadingView.start(completed: nil)
     }
     
+    // MARK: - Appearance -
+    
     func setupAppearance() {
         title = Titles.result.localized
         
@@ -81,9 +91,13 @@ class PersonalityTestResultView: UIViewController {
         processLoadingView.options = processLoadingOptions
     }
     
+    // MARK: - Bindings -
+    
     func setupBindings() {
         viewModel?.resultText.bind(to: labelResult.reactive.text)
     }
+    
+    // MARK: - Actions -
     
     @IBAction func buttonShareAction(_ sender: UIBarButtonItem) {
         presentShareActivityController(image: takeScreenshot(shouldSave: false))

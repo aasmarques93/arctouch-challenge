@@ -24,6 +24,7 @@ enum Storyboard: String {
 
 var currentNavigationController: UINavigationController?
 
-func instantiate<T:UIViewController>(viewController: T.Type, from storyboard: Storyboard = .main) -> T {
-    return UIStoryboard(name: storyboard.rawValue, bundle: nil).instantiateViewController(withIdentifier: viewController.identifier) as! T
+func instantiate<T: UIViewController>(viewController: T.Type, from storyboard: Storyboard = .main) -> T {
+    let storyboardFile = UIStoryboard(name: storyboard.rawValue, bundle: nil)
+    return storyboardFile.instantiateViewController(withIdentifier: viewController.identifier) as! T
 }

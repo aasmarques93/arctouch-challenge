@@ -12,11 +12,17 @@ import AVFoundation
 import AVKit
 
 class MoviesView: UITableViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var viewHeaderLatestBanner: UIView!
     @IBOutlet weak var imageViewLatestBanner: UIImageView!
     @IBOutlet weak var labelLatestTitle: UILabel!
     
+    // MARK: - Properties -
+    
     let searchHeaderView = SearchHeaderView.instantateFromNib(placeholder: Messages.searchMovie.localized)
+    
+    // MARK: - View Model -
     
     let viewModel = MoviesViewModel()
     
@@ -46,10 +52,14 @@ class MoviesView: UITableViewController {
         tableView.keyboardDismissMode = .onDrag
     }
     
+    // MARK: - Bindings -
+    
     func setupBindings() {
         viewModel.latestImage.bind(to: imageViewLatestBanner.reactive.image)
         viewModel.latestTitle.bind(to: labelLatestTitle.reactive.text)
     }
+    
+    // MARK: - Actions -
     
     @IBAction func buttonLatestAction(_ sender: UIButton) {
         let viewController = instantiate(viewController: MovieDetailView.self, from: .movie)

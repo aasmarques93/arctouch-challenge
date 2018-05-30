@@ -9,10 +9,16 @@
 import UIKit
 
 class YourListViewCell: UITableViewCell {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var collectionView: CollectionView!
     @IBOutlet weak var labelMessageError: UILabel!
-        
+    
+    // MARK: - View Model -
+    
     var viewModel: YourListViewModel?
+    
+    // MARK: - Setup -
     
     func setupView() {
         if let viewModel = viewModel {
@@ -28,12 +34,18 @@ class YourListViewCell: UITableViewCell {
 }
 
 extension YourListViewCell: ViewModelDelegate {
+    
+    // MARK: - ViewModelDelegate -
+    
     func reloadData() {
         collectionView.reloadData()
     }
 }
 
 extension YourListViewCell: CollectionViewDelegate {
+    
+    // MARK: - CollectionViewDelegate -
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

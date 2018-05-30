@@ -10,6 +10,8 @@ import UIKit
 import Bond
 
 class ProfileView: UITableViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var labelUsername: UILabel!
     @IBOutlet weak var labelEmail: UILabel!
     
@@ -18,7 +20,11 @@ class ProfileView: UITableViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    // MARK: - View Model -
+    
     var viewModel: ProfileViewModel?
+    
+    // MARK: - Life cycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,16 +39,22 @@ class ProfileView: UITableViewController {
         setupBindings()
     }
     
-    func setupAppearance() {
+    // MARK: - Appearance -
+    
+    private func setupAppearance() {
         imageViewPhoto.image = imageViewPhoto.image?.withRenderingMode(.alwaysTemplate)
         imageViewPhoto.tintColor = HexColor.primary.color
     }
     
-    func setupBindings() {
+    // MARK: - Bindings -
+    
+    private func setupBindings() {
         viewModel?.username.bind(to: labelUsername.reactive.text)
         viewModel?.email.bind(to: labelEmail.reactive.text)
         viewModel?.picture.bind(to: imageViewPhoto.reactive.image)
     }
+    
+    // MARK: - Actions -
     
     @IBAction func buttonPhotoAction(_ sender: UIButton) {
         PhotoPicker.shared.present(in: self)
@@ -55,6 +67,8 @@ class ProfileView: UITableViewController {
     @IBAction func buttonLogoutAction(_ sender: UIButton) {
         viewModel?.doLogout()
     }
+    
+    // MARK: - Table View Delegate & Data Source -
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         guard segmentedControl.selectedSegmentIndex == 0 else {
@@ -114,12 +128,18 @@ class ProfileView: UITableViewController {
 }
 
 extension ProfileView: ViewModelDelegate {
+    
+    // MARK: - ViewModelDelegate -
+    
     func reloadData() {
         tableView.reloadData()
     }
 }
 
 extension ProfileView: PhotoPickerDelegate {
+    
+    // MARK: - PhotoPickerDelegate -
+    
     func dismissPhotoPicker(selectedImage: UIImage?, pathUrl: URL?) {
         guard let image = selectedImage, let data = image.getDataWithProportion(Double(imageViewPhoto.frame.width)) else {
             return

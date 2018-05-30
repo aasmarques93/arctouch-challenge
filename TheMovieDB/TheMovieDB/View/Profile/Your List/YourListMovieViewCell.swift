@@ -9,10 +9,16 @@
 import UIKit
 
 class YourListMovieViewCell: UICollectionViewCell {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: - View Model -
+    
     var viewModel: YourListViewModel?
+    
+    // MARK: - Setup -
     
     func setupView(at indexPath: IndexPath) {
         activityIndicator.startAnimating()

@@ -23,7 +23,7 @@ enum SectionsType: Int, SectionsTypeProtocol {
     static var sectionsMovies: [SectionsType] {
         return [
             SectionsType.netflix,
-            SectionsType.Suggested,
+            SectionsType.suggested,
             SectionsType.friendsWatching,
             SectionsType.nowPlaying,
             SectionsType.topRated,
@@ -35,7 +35,7 @@ enum SectionsType: Int, SectionsTypeProtocol {
     static var sectionsShows: [SectionsType] {
         return [
             SectionsType.netflix,
-            SectionsType.Suggested,
+            SectionsType.suggested,
             SectionsType.friendsWatching,
             SectionsType.airingToday,
             SectionsType.onTheAir,
@@ -45,7 +45,7 @@ enum SectionsType: Int, SectionsTypeProtocol {
     }
     
     case netflix
-    case Suggested
+    case suggested
     case friendsWatching
     case nowPlaying
     case upcoming
@@ -65,7 +65,7 @@ enum SectionsType: Int, SectionsTypeProtocol {
         switch self {
         case .netflix:
             return "Watch on Netflix"
-        case .Suggested:
+        case .suggested:
             return "Suggested"
         case .friendsWatching:
             return "What your friends are watching"
@@ -88,7 +88,7 @@ enum SectionsType: Int, SectionsTypeProtocol {
         switch self {
         case .netflix:
             return 0
-        case .Suggested:
+        case .suggested:
             return 1
         case .friendsWatching:
             return 2
@@ -112,7 +112,7 @@ enum SectionsType: Int, SectionsTypeProtocol {
         case 0:
             return SectionsType.netflix
         case 1:
-            return SectionsType.Suggested
+            return SectionsType.suggested
         case 2:
             return SectionsType.friendsWatching
         case 3:
@@ -334,7 +334,7 @@ class MoviesShowsViewModel: ViewModel {
         guard let sectionType = SectionsType.section(at: section, isMovie: isMovie) else {
             return ""
         }
-        guard sectionType == .Suggested,
+        guard sectionType == .suggested,
             let userPersonalityType = Singleton.shared.userPersonalityType,
             let title = userPersonalityType.title else {
                 

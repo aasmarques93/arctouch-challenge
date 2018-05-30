@@ -1,6 +1,6 @@
 //
 //  ChartGenericCell.swift
-//  Vote Presidente
+//  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 3/15/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
@@ -22,11 +22,7 @@ class ChartGenericCell: UITableViewCell {
     
     static let itemCellHeight: CGFloat = 44.0
     static let disclosureIndicatorWidth: CGFloat = 33.0
-
-    static let xibNameChart = "ChartGenericChartCell"
-
-    static let cellIdChart = "ChartCell"
-
+    
     //MARK: - Outlets -
 
     @IBOutlet weak var container: UIView!

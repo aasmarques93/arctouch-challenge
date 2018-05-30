@@ -9,13 +9,17 @@
 import UIKit
 import GhostTypewriter
 
-private let cellIdentifier = "AnswerCell"
-
 class PersonalityTestViewCell: UITableViewCell {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var labelText: TypewriterLabel!
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: - View Model -
+    
     var viewModel: PersonalityTestCellViewModel?
+    
+    // MARK: - Setup -
     
     func setupView() {
         viewModel?.cellDelegate = self
@@ -34,6 +38,9 @@ class PersonalityTestViewCell: UITableViewCell {
 }
 
 extension PersonalityTestViewCell: UITableViewDataSource {
+    
+    // MARK: - UITableViewDataSource -
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -47,37 +54,25 @@ extension PersonalityTestViewCell: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        
+        let cell = tableView.dequeueReusableCell(PersonalityTestAnswerViewCell.self, for: indexPath)
         cell.setSelectedView(backgroundColor: UIColor.clear)
+        cell.viewModel = viewModel
+        cell.setupView(at: indexPath)
         
-        if let label = cell.viewWithTag(1) as? TypewriterLabel {
-            label.text = viewModel?.answerTitle(at: indexPath.row)
-
-            if let isAnswerSelected = viewModel?.isAnswerSelected(at: indexPath), isAnswerSelected {
-                tableView.isUserInteractionEnabled = false
-                label.textColor = HexColor.primary.color
-                label.borderColor = HexColor.secondary.color
-                label.backgroundColor = HexColor.secondary.color
-            } else {
-                tableView.isUserInteractionEnabled = true
-                label.textColor = HexColor.text.color
-                label.borderColor = HexColor.text.color
-                label.backgroundColor = UIColor.clear
-                
-            }
-            
-            label.typingTimeInterval = Constants.typingTimeInterval
-            label.startTypewritingAnimation {
-                self.viewModel?.didFinishTypewriting()
-            }
+        if let isAnswerSelected = viewModel?.isAnswerSelected(at: indexPath), isAnswerSelected {
+            tableView.isUserInteractionEnabled = false
+        } else {
+            tableView.isUserInteractionEnabled = true
         }
-        
+    
         return cell
     }
 }
 
 extension PersonalityTestViewCell: UITableViewDelegate {
+    
+    // MARK: - UITableViewDelegate -
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.isUserInteractionEnabled = false
         
@@ -96,6 +91,9 @@ extension PersonalityTestViewCell: UITableViewDelegate {
 }
 
 extension PersonalityTestViewCell: PersonalityTestCellDelegate {
+    
+    // MARK: - PersonalityTestCellDelegate -
+    
     func reloadData(at row: Int) {
         let indexPath = IndexPath(row: row, section: 0)
         tableView.insertRows(at: [indexPath], with: .bottom)

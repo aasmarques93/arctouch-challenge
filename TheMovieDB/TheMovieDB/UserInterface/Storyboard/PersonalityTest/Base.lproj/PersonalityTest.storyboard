@@ -40,7 +40,7 @@
                                                     <rect key="frame" x="0.0" y="68.5" width="375" height="181.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnswerCell" rowHeight="70" id="U5R-D3-pzU">
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PersonalityTestAnswerViewCell" rowHeight="70" id="U5R-D3-pzU" customClass="PersonalityTestAnswerViewCell" customModule="TheMovieDB" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U5R-D3-pzU" id="dF1-R6-lxQ">
@@ -73,6 +73,9 @@
                                                                     <constraint firstAttribute="trailing" secondItem="0HK-pE-0cM" secondAttribute="trailing" constant="8" id="wqS-pG-fqM"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
+                                                            <connections>
+                                                                <outlet property="labelAnswer" destination="0HK-pE-0cM" id="y80-g1-fa1"/>
+                                                            </connections>
                                                         </tableViewCell>
                                                     </prototypes>
                                                 </tableView>

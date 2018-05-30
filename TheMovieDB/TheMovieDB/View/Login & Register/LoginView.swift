@@ -11,7 +11,7 @@ import Bond
 import FBSDKLoginKit
 
 class LoginView: UITableViewController {
-    @IBOutlet weak var buttonFacebookLogin: FBSDKLoginButton!
+    // MARK: - Outlets -
     
     @IBOutlet var viewHeader: UIView!
     
@@ -24,10 +24,18 @@ class LoginView: UITableViewController {
     @IBOutlet weak var viewEmailInfo: UIView!
     @IBOutlet weak var viewPasswordInfo: UIView!
     
+    @IBOutlet weak var buttonFacebookLogin: FBSDKLoginButton!
     @IBOutlet weak var buttonLogin: UIButton!
     
+    // MARK: - Attributes -
+    
     var profileMainView: ProfileMainView?
-    let viewModel = LoginViewModel()
+    
+    // MARK: - View Model -
+    
+    private let viewModel = LoginViewModel()
+    
+    // MARK: - Life cycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +51,9 @@ class LoginView: UITableViewController {
         viewModel.setupFacebookDataIfNeeded()
     }
     
-    func setupAppearance() {
+    // MARK: - Appearance -
+    
+    private func setupAppearance() {
         textFieldEmail.textColor = HexColor.text.color
         textFieldEmail.placeHolderColor = HexColor.text.color
         textFieldPassword.textColor = HexColor.text.color
@@ -52,11 +62,13 @@ class LoginView: UITableViewController {
         buttonLogin.backgroundColor = HexColor.secondary.color
     }
     
-    func setupFacebook() {
+    private func setupFacebook() {
         buttonFacebookLogin.readPermissions = Facebook.readPermissions
     }
     
-    func setupBindings() {
+    // MARK: - Bindings -
+    
+    private func setupBindings() {
         viewModel.email.bidirectionalBind(to: textFieldEmail.reactive.text)
         viewModel.password.bidirectionalBind(to: textFieldPassword.reactive.text)
         
@@ -70,12 +82,17 @@ class LoginView: UITableViewController {
         viewModel.colorPasswordInfo.bind(to: buttonPasswordInfo.reactive.tintColor)
     }
     
+    // MARK: - IB Actions -
+    
     @IBAction func buttonLoginAction(_ sender: Any) {
         viewModel.doLogin()
     }
 }
 
 extension LoginView: LoginViewModelDelegate {
+    
+    // MARK: - LoginViewModelDelegate -
+    
     func didLogin() {
         view.endEditing(true)
         profileMainView?.loadData()

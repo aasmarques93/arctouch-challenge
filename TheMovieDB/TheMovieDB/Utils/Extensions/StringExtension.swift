@@ -24,7 +24,7 @@ extension String {
         
         let formatter = NumberFormatter()
         formatter.numberStyle = NumberFormatter.Style.currency
-        formatter.locale = Locale(identifier: "pt_BR")
+        formatter.locale = Locale.current
         
         let numberFromField = (NSString(string: digitText).doubleValue)/100
         if let formattedText = formatter.string(for: numberFromField) {
@@ -63,14 +63,14 @@ extension String {
         return true
     }
     
-    //Validate Email
+    // Validate Email
     var isEmail: Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: self)
     }
     
-    //validate PhoneNumber
+    // validate PhoneNumber
     var isPhoneNumber: Bool {
         let character  = CharacterSet(charactersIn: "+0123456789").inverted
         var filtered: String!
@@ -79,7 +79,7 @@ extension String {
         return self == filtered
     }
     
-    //validate CardNumber
+    // validate CardNumber
     var isCardNumber: Bool {
         let character  = CharacterSet(charactersIn: "0123456789").inverted
         var filtered: String!
@@ -89,34 +89,32 @@ extension String {
     }
     
     var isEmptyOrWhitespace: Bool {
-        if self.isEmpty || self == "" {
-            return true
-        }
+        if self.isEmpty || self == "" { return true }
         return self.trimmingCharacters(in: CharacterSet.whitespaces) == ""
     }
     
-    func isCPFValid() -> (value:Bool, message:String) {
-        let cpf = self.replacingOccurrences(of: "[^0-9]", with: "", options: String.CompareOptions.regularExpression, range: nil)
+    func isRegisterIdValid() -> (value:Bool, message:String) {
+        let registerId = self.replacingOccurrences(of: "[^0-9]", with: "", options: String.CompareOptions.regularExpression, range: nil)
         
-        if cpf.isEmptyOrWhitespace {
-            return (false, "CPF VAZIO.")
+        if registerId.isEmptyOrWhitespace {
+            return (false, "Empty.")
         }
         
         var firstSum, secondSum, firstDigit, secondDigit, firstDigitCheck, secondDigitCheck: Int
         
-        if NSString(string: cpf).length != 11 {
-            return (false, "CPF INVÁLIDO.")
+        if NSString(string: registerId).length != 11 {
+            return (false, "Invalid.")
         }
         
-        if ((cpf == "00000000000") || (cpf == "11111111111") || (cpf == "22222222222") || (cpf == "33333333333") || (cpf == "44444444444") || (cpf == "55555555555") || (cpf == "66666666666") || (cpf == "77777777777") || (cpf == "88888888888") || (cpf == "99999999999")) {
-            return (false, "CPF INVÁLIDO.")
+        if ((registerId == "00000000000") || (registerId == "11111111111") || (registerId == "22222222222") || (registerId == "33333333333") || (registerId == "44444444444") || (registerId == "55555555555") || (registerId == "66666666666") || (registerId == "77777777777") || (registerId == "88888888888") || (registerId == "99999999999")) {
+            return (false, "Invalid.")
         }
         
-        let stringCpf = NSString(string: cpf)
+        let stringRegisterId = NSString(string: registerId)
         
         firstSum = 0
         for i in 0...8 {
-            firstSum += NSString(string:stringCpf.substring(with: NSMakeRange(i, 1))).integerValue * (10 - i)
+            firstSum += NSString(string:stringRegisterId.substring(with: NSMakeRange(i, 1))).integerValue * (10 - i)
         }
         
         if firstSum % 11 < 2 {
@@ -127,7 +125,7 @@ extension String {
         
         secondSum = 0
         for i in 0...9 {
-            secondSum += NSString(string:stringCpf.substring(with: NSMakeRange(i, 1))).integerValue * (11 - i)
+            secondSum += NSString(string:stringRegisterId.substring(with: NSMakeRange(i, 1))).integerValue * (11 - i)
         }
         
         if secondSum % 11 < 2 {
@@ -136,13 +134,13 @@ extension String {
             secondDigit = 11 - (secondSum % 11)
         }
         
-        firstDigitCheck = NSString(string:stringCpf.substring(with: NSMakeRange(9, 1))).integerValue
-        secondDigitCheck = NSString(string:stringCpf.substring(with: NSMakeRange(10, 1))).integerValue
+        firstDigitCheck = NSString(string:stringRegisterId.substring(with: NSMakeRange(9, 1))).integerValue
+        secondDigitCheck = NSString(string:stringRegisterId.substring(with: NSMakeRange(10, 1))).integerValue
         
         if ((firstDigit == firstDigitCheck) && (secondDigit == secondDigitCheck)) {
             return (true, "")
         }
-        return (false, "CPF INVÁLIDO.")
+        return (false, "Invalid.")
     }
     
     func isPasswordValid(minimumDigits: Int = 0, maximumDigits: Int = 30, isComplexPasswordRequired: Bool = true) -> Bool {
@@ -166,20 +164,16 @@ extension String {
             }
         }
         
-        if hasLetter && hasDigit {
-            return true
-        }
-        
-        return false
+        return hasLetter && hasDigit
     }
     
-    func insert(_ string:String,ind:Int) -> String {
-        return  String(self.prefix(ind)) + string + String(self.suffix(self.count-ind))
+    func insert(_ string: String, at index: Int) -> String {
+        return String(prefix(index)) + string + String(suffix(count - index))
     }
     
-    var cpfFormatted: String {
-        if self.isCPFValid().value {
-            var string = self.onlyNumbers
+    var registedIdFormatted: String {
+        if isRegisterIdValid().value {
+            var string = onlyNumbers
             
             string.insert(".", at: string.index(string.startIndex, offsetBy: 3))
             string.insert(".", at: string.index(string.startIndex, offsetBy: 7))
@@ -192,16 +186,16 @@ extension String {
     }
     
     var phoneFormatted: String {
-        if self.count == 11 { return self.insert("(", ind: 0).insert(")", ind: 3).insert("-", ind: 9) }
-        if self.count == 10 { return self.insert("(", ind: 0).insert(")", ind: 3).insert("-", ind: 8) }
-        if self.count == 9 { return self.insert("-", ind: 5) }
-        if self.count == 8 { return self.insert("-", ind: 4) }
-        if self.count < 8 && self.count > 1 { return self.insert("(", ind: 0).insert(")", ind: 3) }
+        if count == 11 { return insert("(", at: 0).insert(")", at: 3).insert("-", at: 9) }
+        if count == 10 { return insert("(", at: 0).insert(")", at: 3).insert("-", at: 8) }
+        if count == 9 { return insert("-", at: 5) }
+        if count == 8 { return insert("-", at: 4) }
+        if count < 8 && count > 1 { return insert("(", at: 0).insert(")", at: 3) }
         return self
     }
     
     var onlyNumbers: String {
-        return self.replacingOccurrences(of: "[^0-9]", with: "", options: String.CompareOptions.regularExpression, range: nil)
+        return replacingOccurrences(of: "[^0-9]", with: "", options: String.CompareOptions.regularExpression, range: nil)
     }
     
     func maskAgencyAccount(max: Int) -> String {
@@ -230,7 +224,11 @@ extension String {
     
     var height: CGFloat {
         get {
-            let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIApplication.shared.keyWindow!.frame.size.width, height: 40))
+            guard let keyWindow = UIApplication.shared.keyWindow else {
+                return 0
+            }
+            
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: keyWindow.frame.size.width, height: 40))
             label.numberOfLines = 1000
             label.text = self
             label.sizeToFit()
@@ -245,22 +243,6 @@ extension String {
         label.text = self
         label.sizeToFit()
         return label.frame.height
-    }
-    
-    func substring(to position: Int, isLiteral: Bool = true) -> String {
-        if !isEmptyOrWhitespace && count >= position {
-            return "\(substring(to: index(startIndex, offsetBy: position)))\(isLiteral ? "": "...")"
-        }
-        
-        return self
-    }
-    
-    func substring(from position: Int, isLiteral: Bool = true) -> String {
-        if !isEmptyOrWhitespace && count >= position {
-            return "\(substring(from: index(endIndex, offsetBy: position - count)))\(isLiteral ? "": "...")"
-        }
-        
-        return self
     }
     
     static var randomPassword: String {

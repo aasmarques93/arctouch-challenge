@@ -280,8 +280,6 @@ extension UITextView {
 }
 
 extension UIView {
-    /* The color of the shadow. Defaults to opaque black. Colors created
-     * from patterns are currently NOT supported. Animatable. */
     @IBInspectable var shadowColor: UIColor? {
         set {
             layer.shadowColor = newValue!.cgColor
@@ -296,8 +294,6 @@ extension UIView {
         }
     }
     
-    /* The opacity of the shadow. Defaults to 0. Specifying a value outside the
-     * [0,1] range will give undefined results. Animatable. */
     @IBInspectable var shadowOpacity: Float {
         set {
             layer.shadowOpacity = newValue
@@ -307,7 +303,6 @@ extension UIView {
         }
     }
     
-    /* The shadow offset. Defaults to (0, -3). Animatable. */
     @IBInspectable var shadowOffset: CGPoint {
         set {
             layer.shadowOffset = CGSize(width: newValue.x, height: newValue.y)
@@ -317,7 +312,6 @@ extension UIView {
         }
     }
     
-    /* The blur radius used to create the shadow. Defaults to 3. Animatable. */
     @IBInspectable var shadowRadius: CGFloat {
         set {
             layer.shadowRadius = newValue
@@ -347,16 +341,8 @@ extension UIView {
         }
     }
     
-    func addAllSidesConstraints(_ parent: UIView) {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        parent.addConstraint(NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: parent, attribute: .top, multiplier: 1.0, constant: 0))
-        parent.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: parent, attribute: .trailing, multiplier: 1.0, constant: 0))
-        parent.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: parent, attribute: .leading, multiplier: 1.0, constant: 0))
-        parent.addConstraint(NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: parent, attribute: .bottom, multiplier: 1.0, constant: 0))
-    }
-    
     func getSubviewsMaxHeight() -> CGFloat {
-        var max:CGFloat = 0
+        var max: CGFloat = 0
         
         subviews.forEach { (subview) in
             guard subview.bounds.size.height > max else {
@@ -488,5 +474,19 @@ extension UIView {
         self.layer.shadowOpacity = opacity
         self.layer.shadowOffset = size
         self.layer.shadowRadius = radius
+    }
+}
+
+extension UITableViewController {
+    var viewHeaderTitleHeight: CGFloat {
+        return 32
+    }
+    
+    var labelHeader: UILabel {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: viewHeaderTitleHeight))
+        label.backgroundColor = HexColor.primary.color
+        label.textColor = HexColor.text.color
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        return label
     }
 }

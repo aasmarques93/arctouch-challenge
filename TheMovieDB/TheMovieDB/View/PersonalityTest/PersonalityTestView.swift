@@ -10,11 +10,17 @@ import UIKit
 import GhostTypewriter
 
 class PersonalityTestView: UITableViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet var viewFooter: UIView!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var labelPage: UILabel!
     
+    // MARK: - View Model -
+    
     let viewModel = PersonalityTestViewModel()
+    
+    // MARK: - Life cycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +40,14 @@ class PersonalityTestView: UITableViewController {
         title = Titles.personalityTest.localized
     }
     
+    // MARK: - Bindings -
+    
     func setupBindings() {
         viewModel.progress.bind(to: progressView.reactive.progress)
         viewModel.pagingText.bind(to: labelPage.reactive.text)
     }
+    
+    // MARK: - Table view data source -
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return viewFooter.frame.height
@@ -65,6 +75,9 @@ class PersonalityTestView: UITableViewController {
 }
 
 extension PersonalityTestView: PersonalityTestViewModelDelegate {
+    
+    // MARK: - PersonalityTestViewModelDelegate -
+    
     func reloadData() {
         tableView.reloadData()
     }

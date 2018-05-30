@@ -9,7 +9,7 @@
 import UIKit
 
 class XibView: UIView {
-    class func instanceFromNib<T:UIView>(_:T.Type) -> T {
+    class func instanceFromNib<T: UIView>(_: T.Type) -> T {
         return UINib(nibName: String(describing: T.self), bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! T
     }
 }
