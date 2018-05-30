@@ -53,9 +53,6 @@ class PersonView: UITableViewController {
     // MARK: - Bindings -
     
     private func setupBindings() {
-        imageViewPhoto.sd_setImage(with: viewModel?.imageUrl)
-        imageViewBackground.sd_setImage(with: viewModel?.imageUrl)
-        
         viewModel?.biography.bind(to: textViewBiography.reactive.text)
         viewModel?.birthday.bind(to: labelBirthday.reactive.text)
         viewModel?.placeOfBirth.bind(to: labelPlaceOfBirth.reactive.text)
@@ -129,6 +126,9 @@ extension PersonView: ViewModelDelegate {
         if let value = viewModel?.personName {
             FabricUtils.logEvent(message: "\(Messages.didSelect.localized) \(value)")
         }
+        
+        imageViewPhoto.sd_setImage(with: viewModel?.imageUrl)
+        imageViewBackground.sd_setImage(with: viewModel?.imageUrl)
         
         tableView.reloadData()
         carouselMovies.reloadData()
