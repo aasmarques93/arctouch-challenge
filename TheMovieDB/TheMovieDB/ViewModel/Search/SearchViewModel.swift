@@ -10,8 +10,8 @@ class SearchViewModel: ViewModel {
     // MARK: - Properties -
     
     // MARK: Service Model
-    let serviceModel = SearchServiceModel()
-    let netflixServiceModel = NetflixServiceModel()
+    private let serviceModel = SearchServiceModel()
+    private let netflixServiceModel = NetflixServiceModel()
     
     // MARK: Delegate
     weak var delegate: ViewModelDelegate?

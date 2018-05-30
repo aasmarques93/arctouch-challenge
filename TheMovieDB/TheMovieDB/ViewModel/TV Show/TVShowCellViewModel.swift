@@ -9,15 +9,28 @@
 import Bond
 
 class TVShowCellViewModel: ViewModel {
+    // MARK: - Properties -
+    
+    // MARK: Observables
     var title = Observable<String?>(nil)
     var date = Observable<String?>(nil)
     var overview = Observable<String?>(nil)
     
-    var tvShow: TVShow?
+    // MARK: Observables
+    private var tvShow: TVShow?
+    
+    // MARK: Variables
+    var imageUrl: URL? {
+        return URL(string: Singleton.shared.serviceModel.imageUrl(with: tvShow?.posterPath ?? ""))
+    }
+
+    // MARK: - Life cycle -
     
     init(_ object: TVShow) {
         self.tvShow = object
     }
+    
+    // MARK: - Service requests -
     
     func loadData() {
         title.value = valueDescription(tvShow?.name)
@@ -25,7 +38,4 @@ class TVShowCellViewModel: ViewModel {
         overview.value = valueDescription(tvShow?.overview)
     }
     
-    var imageUrl: URL? {
-        return URL(string: Singleton.shared.serviceModel.imageUrl(with: tvShow?.posterPath ?? ""))
-    }
 }

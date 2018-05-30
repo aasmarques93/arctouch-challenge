@@ -27,7 +27,7 @@ class SearchResultViewModel: ViewModel {
     // MARK: - Properties -
     
     // MARK: Service Model
-    let serviceModel = SearchServiceModel()
+    private let serviceModel = SearchServiceModel()
     
     // MARK: Delegate
     weak var delegate: ViewModelDelegate?

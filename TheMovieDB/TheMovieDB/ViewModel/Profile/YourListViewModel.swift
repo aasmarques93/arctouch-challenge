@@ -9,17 +9,19 @@
 import Bond
 
 class YourListViewModel: ViewModel {
-    // MARK: - Delegate -
+    // MARK: - Properties -
+    
+    // MARK: Delegate
     weak var delegate: ViewModelDelegate?
     
-    // MARK: - Service Model -
-    let serviceModel = YourListServiceModel()
+    // MARK: Service Model
+    private let serviceModel = YourListServiceModel()
     
-    // MARK: - Observables -
+    // MARK: Observables
     var isMessageErrorHidden = Observable<Bool>(false)
     
-    // MARK: - Objects -
-    var user: User
+    // MARK: Objects
+    private var user: User
     var isMovieType: Bool {
         return yourListSection != .tvShowsTrack
     }
@@ -50,7 +52,6 @@ class YourListViewModel: ViewModel {
             return date1.isGreaterThan(date: date2)
         })
     }
-    
     var numberOfMoviesShows: Int { return arrayUserMoviesShows.count }
     
     // MARK: - Life cycle -
@@ -63,7 +64,6 @@ class YourListViewModel: ViewModel {
     // MARK: - Service requests -
     
     func loadData() {
-        
     }
     
     // MARK: - Movies Shows -

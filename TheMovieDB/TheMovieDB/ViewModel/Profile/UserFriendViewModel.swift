@@ -9,14 +9,16 @@
 import Bond
 
 class UserFriendViewModel: ViewModel {
-    // MARK: - Delegate -
+    // MARK: - Properties -
+    
+    // MARK: Delegate
     weak var delegate: ViewModelDelegate?
     
-    // MARK: - Service Model -
-    let serviceModel = UserFriendsServiceModel()
-    let tvShowDetailServiceModel = TVShowDetailServiceModel()
+    // MARK: Service Model
+    private let serviceModel = UserFriendsServiceModel()
+    private let tvShowDetailServiceModel = TVShowDetailServiceModel()
     
-    // MARK: - Observables -
+    // MARK: Observables
     var isMessageErrorHidden = Observable<Bool>(false)
     
     var name = Observable<String?>(nil)
@@ -24,28 +26,30 @@ class UserFriendViewModel: ViewModel {
     var personality = Observable<String?>(nil)
     var movieShow = Observable<String?>(nil)
     
-    var userFriend: User
-    var userDetail: User? {
+    // MARK: Objects
+    private var userFriend: User
+    private var userDetail: User? {
         didSet {
             getShowTrackDetail()
             personality.value = userDetail?.personality?.title
         }
     }
-    var tvShowDetail: TVShowDetail? {
+    private var tvShowDetail: TVShowDetail? {
         didSet {
             movieShow.value = tvShowDetail?.name
         }
     }
-    
+
+    private var arrayYourListSections: [YourListSection] = [.wantToSeeMovies, .tvShowsTrack, .seenMovies]
+    var numberYourListSections: Int { return arrayYourListSections.count }
+
+    // MARK: Variables
     var imageUrl: URL? {
         guard let url = userFriend.picture?.data?.url else {
             return nil
         }
         return URL(string: Singleton.shared.serviceModel.imageUrl(with: url, environmentBase: .custom))
     }
-    
-    private var arrayYourListSections: [YourListSection] = [.wantToSeeMovies, .tvShowsTrack, .seenMovies]
-    var numberYourListSections: Int { return arrayYourListSections.count }
     
     // MARK: - Life cycle -
     

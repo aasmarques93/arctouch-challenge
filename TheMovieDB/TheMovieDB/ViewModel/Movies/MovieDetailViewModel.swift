@@ -23,8 +23,8 @@ class MovieDetailViewModel: ViewModel {
     weak var delegate: MovieDetailViewModelDelegate?
     
     // MARK: Service Model
-    let serviceModel = MovieDetailServiceModel()
-    let yourListServiceModel = YourListServiceModel()
+    private let serviceModel = MovieDetailServiceModel()
+    private let yourListServiceModel = YourListServiceModel()
     
     // MARK: Observables
     var name = Observable<String?>(nil)
@@ -46,9 +46,9 @@ class MovieDetailViewModel: ViewModel {
     }
     
     // MARK: Objects
-    var movie: Movie
+    private var movie: Movie
     
-    var movieDetail: MovieDetail? {
+    private var movieDetail: MovieDetail? {
         didSet {
             delegate?.reloadData?()
             

@@ -9,22 +9,23 @@
 import Bond
 
 class PersonalityTestResultViewModel: ViewModel {
-
-    // MARK: - Observables -
+    // MARK: - Properties -
     
+    // MARK: Observables
     var chartTitle = Observable<String?>(nil)
     var chartPercentage = Observable<String?>(nil)
     var descriptionText = Observable<String?>(nil)
     var image = Observable<UIImage?>(nil)
     
-    // MARK: - Variables -
-    
-    var selectedChartType: GenericChartType = .radar
+    // MARK: Objects
     private var arrayPersonalityTypes = Singleton.shared.arrayPersonalityTypes
     
     private let userPersonalityType = Singleton.shared.userPersonalityType
-    let userAnsweredQuestions = Singleton.shared.userAnsweredQuestions
-    var userPersonality: UserPersonality?
+    private let userAnsweredQuestions = Singleton.shared.userAnsweredQuestions
+    private var userPersonality: UserPersonality?
+
+    // MARK: Variables
+    var selectedChartType: GenericChartType = .radar
     
     var userPersonalityTypeIndex: Int? {
         let index = arrayPersonalityTypes.index { (personalityType) -> Bool in
@@ -44,6 +45,8 @@ class PersonalityTestResultViewModel: ViewModel {
             image.value = UIImage(named: "\(selectedChartPersonalityType?.title ?? "")")
         }
     }
+    
+    // MARK: - Life cycle -
 
     init(userPersonality: UserPersonality? = Singleton.shared.user.personality) {
         self.userPersonality = userPersonality

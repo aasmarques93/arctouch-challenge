@@ -16,8 +16,15 @@ fileprivate enum FormValidationItem {
 }
 
 class RegisterViewModel: ViewModel {
-    weak var delegate: ViewModelDelegate?
+    // MARK: - Properties -
     
+    // MARK: Delegate
+    weak var delegate: ViewModelDelegate?
+
+    // MARK: Service Model
+    private let serviceModel = RegisterServiceModel()
+    
+    // MARK: Observables
     var message = Observable<String?>(nil)
     
     var username = Observable<String?>(nil)
@@ -35,8 +42,7 @@ class RegisterViewModel: ViewModel {
     var colorPasswordInfo = Observable<UIColor>(HexColor.text.color)
     var colorPasswordConfirmationInfo = Observable<UIColor>(HexColor.text.color)
     
-    private let serviceModel = RegisterServiceModel()
-    
+    // MARK: Variables
     private let defaultMessage = Messages.userRegisterMessage.rawValue
     
     private var isEmailValid: Bool {
@@ -51,6 +57,8 @@ class RegisterViewModel: ViewModel {
         return password.value == passwordConfirmation.value
     }
     
+    // MARK: - Life cycle -
+    
     init() {
         message.value = defaultMessage
 
@@ -63,6 +71,8 @@ class RegisterViewModel: ViewModel {
                  observableColor: colorPasswordConfirmationInfo,
                  sucessImage: #imageLiteral(resourceName: "password"))
     }
+    
+    // MARK: - Validation -
     
     private func validate(_ observable: Observable<String?>,
                           item: FormValidationItem,
@@ -134,8 +144,9 @@ class RegisterViewModel: ViewModel {
     }
     
     func loadData() {
-        
     }
+    
+    // MARK: - Service requests -
     
     func doSignUp() {
         guard isFormValid else {

@@ -53,10 +53,14 @@ class MoviesShowsViewModel: ViewModel {
     
     private var dictionaryLastIndexPathsDisplayed = [Int: IndexPath]()
     
+    // MARK: - Life cycle -
+    
     init(isMovie: Bool = true) {
         self.isMovie = isMovie
         arraySectionsType = SectionsType.sections(isMovie: isMovie)
     }
+    
+    // MARK: - Service requests -
     
     func loadData() {
         loadNetflixMoviesShows()
@@ -76,6 +80,8 @@ class MoviesShowsViewModel: ViewModel {
     func loadImageData(at path: String?, handlerData: @escaping HandlerObject) {
         Singleton.shared.serviceModel.loadImage(path: path, handlerData: handlerData)
     }
+    
+    // MARK: Netflix
     
     func loadNetflixMoviesShows() {
         guard arrayNetflix.isEmpty else {
@@ -104,6 +110,8 @@ class MoviesShowsViewModel: ViewModel {
         }
     }
     
+    // MARK: User Friends
+    
     func loadUserFriendsMoviesShows() {
         guard arrayUserFriendsMovies.isEmpty || arrayUserFriendsShows.isEmpty  else {
             return
@@ -129,6 +137,24 @@ class MoviesShowsViewModel: ViewModel {
         }
     }
     
+    // MARK: Movies from genre id
+    
+    func getMoviesFromGenre(id: Int?, handler: @escaping Handler<SearchMoviesGenre>) {
+        guard let value = id else {
+            return
+        }
+        
+        let parameters: [String: Any] = [
+            "id": value,
+            "language": Locale.preferredLanguages.first ?? ""
+        ]
+        SearchServiceModel().getMoviesFromGenre(urlParameters: parameters) { (object) in
+            handler(object)
+        }
+    }
+    
+    // MARK: - View Model methods -
+    
     private func addMoviesShows(_ array: [UserMovieShow]?) {
         guard let array = array else {
             return
@@ -148,20 +174,6 @@ class MoviesShowsViewModel: ViewModel {
                 ]
                 arrayUserFriendsShows.append(TVShow(object: dictionary))
             }
-        }
-    }
-    
-    func getMoviesFromGenre(id: Int?, handler: @escaping Handler<SearchMoviesGenre>) {
-        guard let value = id else {
-            return
-        }
-        
-        let parameters: [String: Any] = [
-            "id": value,
-            "language": Locale.preferredLanguages.first ?? ""
-        ]
-        SearchServiceModel().getMoviesFromGenre(urlParameters: parameters) { (object) in
-            handler(object)
         }
     }
     
@@ -213,6 +225,8 @@ class MoviesShowsViewModel: ViewModel {
         return "  \(sectionType.localized) for \(title)"
     }
     
+    // MARK: Stories
+    
     func storyPreviewImagePathUrl(at index: Int) -> URL? {
         let netflix = arrayNetflix[index]
         return URL(string: netflixServiceModel.imageUrl(with: netflix.id, isMovie: isMovie))
@@ -222,9 +236,13 @@ class MoviesShowsViewModel: ViewModel {
         return arrayNetflix[index].title
     }
     
+    // MARK: Videos
+    
     func loadVideos(at index: Int) {
         delegate?.openPreview(storiesViewModel: StoriesViewModel(arrayNetflix, selectedIndex: index, isMovie: isMovie))
     }
+    
+    // MARK: Last indexPath
     
     func setLastIndexPathDisplayed(_ indexPath: IndexPath, at section: Int) {
         dictionaryLastIndexPathsDisplayed[section] = indexPath
@@ -234,10 +252,14 @@ class MoviesShowsViewModel: ViewModel {
         return dictionaryLastIndexPathsDisplayed[section]
     }
     
+    // MARK: - View Model instantiation -
+    
     func searchResultViewModel(with text: String?) -> SearchResultViewModel? {
         return SearchResultViewModel(searchText: text, requestUrl: isMovie ? .searchMovie : .searchTV)
     }
 }
+
+// MARK: - Sections Type -
 
 protocol SectionsTypeProtocol {
     static var sectionsMovies: [Self] { get }

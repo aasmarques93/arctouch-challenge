@@ -7,11 +7,13 @@
 //
 
 class StoriesViewModel: ViewModel {
+    // MARK: - Properties -
+    
     // MARK: Delegate
     weak var delegate: ViewModelDelegate?
     
     // MARK: Service Model
-    let netflixServiceModel = NetflixServiceModel()
+    private let netflixServiceModel = NetflixServiceModel()
     
     // MARK: Objects
     private var arrayNetflixMovies: [Netflix]
@@ -23,7 +25,7 @@ class StoriesViewModel: ViewModel {
     // MARK: Variables
     var numberOfPages: Int { return arrayStoriesPages.count }
     var currentIndex: Int = 0
-    var currentNetflixMovieShow: NetflixMovieShow?
+    private var currentNetflixMovieShow: NetflixMovieShow?
     
     // MARK: - Life cycle -
     

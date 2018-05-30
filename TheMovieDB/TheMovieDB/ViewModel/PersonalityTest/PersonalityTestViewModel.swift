@@ -16,7 +16,7 @@ protocol PersonalityTestViewModelDelegate: ViewModelDelegate {
 
 class PersonalityTestViewModel: ViewModel {
     // MARK: - Properties -
-    let serviceModel = PersonalityTestServiceModel()
+    private let serviceModel = PersonalityTestServiceModel()
     
     // MARK: Delegate
     weak var delegate: PersonalityTestViewModelDelegate?
@@ -52,7 +52,7 @@ class PersonalityTestViewModel: ViewModel {
         return userPersonalityType?.text ?? "Action"
     }
     
-    var dictionaryAnswersCounts: [Int: Int] {
+    private var dictionaryAnswersCounts: [Int: Int] {
         var dictionary = Singleton.shared.dictionaryAnswersCounts(at: arraySelectedAnswers)
         
         if dictionary.isEmpty {

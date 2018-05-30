@@ -15,14 +15,13 @@ class SeasonDetailViewModel: ViewModel {
     weak var delegate: ViewModelDelegate?
     
     // MARK: Service Model
-    let serviceModel = SeasonDetailServiceModel()
+    private let serviceModel = SeasonDetailServiceModel()
     
     // MARK: Observables
     var name = Observable<String?>(nil)
     var overview = Observable<String?>(nil)
     
-    private var id: Int!
-    
+    // MARK: Objects
     private var seasonDetail: SeasonDetail? {
         didSet {
             overview.value = valueDescription(seasonDetail?.overview)
@@ -35,10 +34,8 @@ class SeasonDetailViewModel: ViewModel {
         }
     }
     
-    // MARK: - Objects -
-    
-    var tvShowDetail: TVShowDetail?
-    var season: Seasons?
+    private var tvShowDetail: TVShowDetail?
+    private var season: Seasons?
     
     private var arrayEpisodes = [Episodes]() { didSet { delegate?.reloadData?() } }
     var numberOfEpisodes: Int { return arrayEpisodes.count }

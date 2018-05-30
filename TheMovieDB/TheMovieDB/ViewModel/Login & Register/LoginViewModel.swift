@@ -22,11 +22,16 @@ fileprivate enum FormValidationItem {
 }
 
 class LoginViewModel: ViewModel {
+    // MARK: - Properties -
+    
+    // MARK: Delegate
     weak var delegate: LoginViewModelDelegate?
     
+    // MARK: Service Model
     private let serviceModel = LoginServiceModel()
     private lazy var registerServiceModel = RegisterServiceModel()
     
+    // MARK: Observables
     var email = Observable<String?>(nil)
     var password = Observable<String?>(nil)
 
@@ -36,10 +41,12 @@ class LoginViewModel: ViewModel {
     var colorEmailInfo = Observable<UIColor>(HexColor.text.color)
     var colorPasswordInfo = Observable<UIColor>(HexColor.text.color)
     
+    // MARK: Objects
     private var user: User {
         return Singleton.shared.user
     }
     
+    // MARK: Variables
     var isUserLogged: Bool { return user.id != nil || user.email != nil }
     
     private var isEmailValid: Bool {
@@ -50,12 +57,16 @@ class LoginViewModel: ViewModel {
         return valueDescription(password.value).isPasswordValid(minimumDigits: 6, isComplexPasswordRequired: false)
     }
     
+    // MARK: - Life cycle -
+    
     init() {
         getUserLogged()
         
         validate(email, item: .email, observableImage: emailInfoImage, observableColor: colorEmailInfo, sucessImage: #imageLiteral(resourceName: "email"))
         validate(password, item: .password, observableImage: passwordInfoImage, observableColor: colorPasswordInfo, sucessImage: #imageLiteral(resourceName: "password"))
     }
+    
+    // MARK: - Validation -
     
     private func validate(_ observable: Observable<String?>,
                           item: FormValidationItem,
@@ -108,6 +119,8 @@ class LoginViewModel: ViewModel {
         return true
     }
     
+    // MARK: - Load data -
+    
     func loadData() {
         email.value = nil
         password.value = nil
@@ -116,6 +129,8 @@ class LoginViewModel: ViewModel {
         colorEmailInfo.value = HexColor.text.color
         colorPasswordInfo.value = HexColor.text.color
     }
+    
+    // MARK: - View Model methods -
     
     private func getUserLogged() {
         if let userLogged = Singleton.shared.userLogged {
@@ -132,13 +147,15 @@ class LoginViewModel: ViewModel {
         delegate?.didLogin()
     }
     
+    // MARK: Facebook
+    
     func setupFacebookDataIfNeeded() {
         if let _ = FBSDKAccessToken.current() {
             setFacebookId()
         }
     }
         
-    func setFacebookId() {
+    private func setFacebookId() {
         guard !Singleton.shared.isUserLogged else {
             return
         }
@@ -195,6 +212,8 @@ class LoginViewModel: ViewModel {
             Singleton.shared.saveUser()
         }
     }
+    
+    // MARK: - Service requests -
     
     func doLogin() {
         guard isFormValid else {

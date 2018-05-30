@@ -93,7 +93,7 @@ class MoviesViewModel: MoviesShowsViewModel {
     
     func getMoviesFromGenre(id: Int?) {
         super.getMoviesFromGenre(id: id) { [weak self] (object) in
-            guard let object = object as? SearchMoviesGenre, let results = object.results else {
+            guard let results = object.results else {
                 return
             }
             let result = self?.arraySuggestedMovies.contains {
@@ -135,20 +135,18 @@ class MoviesViewModel: MoviesShowsViewModel {
             "language": Locale.preferredLanguages.first ?? ""
         ]
         moviesServiceModel.getMovies(urlParameters: parameters, requestUrl: requestUrl) { [weak self] (object) in
-            if let object = object as? MoviesList {
-                do {
-                    try self?.showError(with: object)
-                } catch {
-                    if let error = error as? Error {
-                        self?.delegate?.showAlert?(message: error.message)
-                    }
-                    return
+            do {
+                try self?.showError(with: object)
+            } catch {
+                if let error = error as? Error {
+                    self?.delegate?.showAlert?(message: error.message)
                 }
-                
-                if let results = object.results {
-                    self?.addMoviesToArray(results, section: section)
-                    currentPage += 1
-                }
+                return
+            }
+            
+            if let results = object.results {
+                self?.addMoviesToArray(results, section: section)
+                currentPage += 1
             }
             
             self?.reloadData(at: section.index(isMovie: self?.isMovie ?? true))

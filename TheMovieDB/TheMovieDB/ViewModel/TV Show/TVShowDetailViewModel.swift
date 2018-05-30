@@ -23,7 +23,7 @@ class TVShowDetailViewModel: ViewModel {
     weak var delegate: TVShowDetailViewModelDelegate?
     
     // MARK: Service Model
-    let serviceModel = TVShowDetailServiceModel()
+    private let serviceModel = TVShowDetailServiceModel()
     
     // MARK: Observables
     var name = Observable<String?>(nil)

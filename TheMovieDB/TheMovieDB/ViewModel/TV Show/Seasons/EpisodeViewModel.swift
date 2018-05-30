@@ -9,8 +9,10 @@
 import Bond
 
 class EpisodeViewModel: ViewModel {    
+    // MARK: - Properties -
+    
     // MARK: Service Model
-    let serviceModel = EpisodesServiceModel()
+    private let serviceModel = EpisodesServiceModel()
 
     // MARK: Observables
     var title = Observable<String?>(nil)
@@ -18,16 +20,26 @@ class EpisodeViewModel: ViewModel {
     var overview = Observable<String?>(nil)
 
     // MARK: Objects
-    var episode: Episodes?
-    var tvShowDetail: TVShowDetail?
+    private var episode: Episodes?
+    private var tvShowDetail: TVShowDetail?
 
     private var arrayImages = [EpisodeImage]() { didSet { setupPhotos() } }
     private var photos = [Photo]()
+    
+    // MARK: Variables
+    
+    var imageUrl: URL? {
+        return URL(string: Singleton.shared.serviceModel.imageUrl(with: episode?.stillPath ?? ""))
+    }
+    
+    // MARK: - Life cycle -
     
     init(_ object: Episodes, tvShowDetail: TVShowDetail?) {
         self.episode = object
         self.tvShowDetail = tvShowDetail
     }
+    
+    // MARK: - Service requests -
     
     func loadData() {
         title.value = "Episode \(valueDescription(episode?.episodeNumber)) - \(valueDescription(episode?.name))"
@@ -51,10 +63,6 @@ class EpisodeViewModel: ViewModel {
             }
             self?.arrayImages = results
         }
-    }
-
-    var imageUrl: URL? {
-        return URL(string: Singleton.shared.serviceModel.imageUrl(with: episode?.stillPath ?? ""))
     }
 
     // MARK: - Photos -

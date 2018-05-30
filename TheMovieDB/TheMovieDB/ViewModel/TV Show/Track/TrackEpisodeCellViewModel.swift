@@ -9,7 +9,9 @@
 import Bond
 
 class TrackEpisodeCellViewModel: ViewModel {
-    // MARK: Protocols
+    // MARK: - Properties -
+    
+    // MARK: Delegate
     weak var delegate: ViewModelDelegate?
     
     // MARK: Observables
@@ -18,13 +20,22 @@ class TrackEpisodeCellViewModel: ViewModel {
     var title = Observable<String?>(nil)
     
     // MARK: Objects
-    var episode: Episodes
+    private var episode: Episodes
     var isSelected: Bool
+    
+    // MARK: Variables
+    var imagePathUrl: URL? {
+        return URL(string: Singleton.shared.serviceModel.imageUrl(with: episode.stillPath))
+    }
+    
+    // MARK: - Life cycle -
     
     init(episode: Episodes, isSelected: Bool) {
         self.episode = episode
         self.isSelected = isSelected
     }
+    
+    // MARK: - Service requests -
     
     func loadData() {
         contentAlpha.value = isSelected ? 1.0 : 0.5
@@ -33,9 +44,5 @@ class TrackEpisodeCellViewModel: ViewModel {
             return
         }
         title.value = "\(Titles.episode.localized) \(episodeNumber)"
-    }
-    
-    var imagePathUrl: URL? {
-        return URL(string: Singleton.shared.serviceModel.imageUrl(with: episode.stillPath))
     }
 }

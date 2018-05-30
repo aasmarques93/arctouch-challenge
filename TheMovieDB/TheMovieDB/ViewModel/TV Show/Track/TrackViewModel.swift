@@ -11,12 +11,14 @@ protocol TrackViewModelDelegate: ViewModelDelegate {
 }
 
 class TrackViewModel: ViewModel {
+    // MARK: - Properties -
+    
     // MARK: Delegate
     weak var delegate: TrackViewModelDelegate?
     
     // MARK: Service Model
-    let serviceModel = SeasonDetailServiceModel()
-    let yourListServiceModel = YourListServiceModel()
+    private let serviceModel = SeasonDetailServiceModel()
+    private let yourListServiceModel = YourListServiceModel()
     
     // MARK: Objects
     private var tvShowDetail: TVShowDetail
@@ -31,12 +33,16 @@ class TrackViewModel: ViewModel {
     private var dictionarySelectedEpisodes = [Int: [Episodes]]()
     private var dictionaryLastIndexPathsDisplayed = [Int: IndexPath]()
     
+    // MARK: - Life cycle -
+    
     init(tvShowDetail: TVShowDetail, arraySeasons: [Seasons]) {
         self.tvShowDetail = tvShowDetail
         self.arraySeasons = arraySeasons
         
         Singleton.shared.loadUserData()
     }
+    
+    // MARK: - Service requests -
     
     func loadData() {
         arraySeasons.forEach { [weak self] (season) in
@@ -45,11 +51,7 @@ class TrackViewModel: ViewModel {
     }
     
     func loadDetailFrom(season: Seasons) {
-        serviceModel.getDetail(from: tvShowDetail, season: season) { [weak self] (object) in
-            guard let seasonDetail = object as? SeasonDetail else {
-                return
-            }
-            
+        serviceModel.getDetail(from: tvShowDetail, season: season) { [weak self] (seasonDetail) in
             self?.addSeasonDetailToArray(seasonDetail)
             self?.seasonDetailCount += 1
             
@@ -60,6 +62,8 @@ class TrackViewModel: ViewModel {
             self?.trackUserShows()
         }
     }
+    
+    // MARK: - View Model methods -
 
     private func addSeasonDetailToArray(_ seasonDetail: SeasonDetail) {
         var array = arraySeasonsDetail
@@ -72,15 +76,7 @@ class TrackViewModel: ViewModel {
         }).shiftRight()
     }
     
-    private func trackUserShows() {
-        userShowTracked = Singleton.shared.arrayUserShows.filter { $0.showId == tvShowDetail.id }.first
-        
-        guard let season = userShowTracked?.season, let episode = userShowTracked?.episode else {
-            return
-        }
-        
-        didSelectEpisode(at: season, row: episode > 0 ? episode - 1 : episode)
-    }
+    // MARK: Season Detail
     
     func sectionTitle(at section: Int) -> String? {
         return arraySeasonsDetail[section].name
@@ -112,6 +108,18 @@ class TrackViewModel: ViewModel {
         delegate?.reloadData(at: section)
     }
     
+    // MARK: Track shows
+    
+    private func trackUserShows() {
+        userShowTracked = Singleton.shared.arrayUserShows.filter { $0.showId == tvShowDetail.id }.first
+        
+        guard let season = userShowTracked?.season, let episode = userShowTracked?.episode else {
+            return
+        }
+        
+        didSelectEpisode(at: season, row: episode > 0 ? episode - 1 : episode)
+    }
+    
     func saveTrack() {
         var season = 0
         
@@ -131,6 +139,7 @@ class TrackViewModel: ViewModel {
         yourListServiceModel.track(show: tvShowDetail, season: season, episode: lastEpisode)
     }
     
+    // MARK: Last indexPath
     
     func setLastIndexPathDisplayed(_ indexPath: IndexPath, at section: Int) {
         dictionaryLastIndexPathsDisplayed[section] = indexPath
@@ -139,6 +148,8 @@ class TrackViewModel: ViewModel {
     func lastIndexPathDisplayed(at section: Int) -> IndexPath? {
         return dictionaryLastIndexPathsDisplayed[section]
     }
+    
+    // MARK: - View Model instantiation -
     
     func trackCellViewModel(at section: Int, row: Int) -> TrackEpisodeCellViewModel? {
         guard let episodes = arraySeasonsDetail[section].episodes else {

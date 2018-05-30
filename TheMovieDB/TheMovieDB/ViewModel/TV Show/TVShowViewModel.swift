@@ -86,20 +86,18 @@ class TVShowViewModel: MoviesShowsViewModel {
             "language": Locale.preferredLanguages.first ?? ""
         ]
         tvShowServiceModel.getTVShow(requestUrl: requestUrl, urlParameters: parameters) { [weak self] (object) in
-            if let object = object as? SearchTV {
-                do {
-                    try self?.showError(with: object)
-                } catch {
-                    if let error = error as? Error {
-                        self?.delegate?.showAlert?(message: error.message)
-                    }
-                    return
+            do {
+                try self?.showError(with: object)
+            } catch {
+                if let error = error as? Error {
+                    self?.delegate?.showAlert?(message: error.message)
                 }
-                
-                if let results = object.results {
-                    self?.addTVShowsToArray(results, section: section)
-                    currentPage += 1
-                }
+                return
+            }
+            
+            if let results = object.results {
+                self?.addTVShowsToArray(results, section: section)
+                currentPage += 1
             }
             
             self?.reloadData(at: section.index(isMovie: self?.isMovie ?? false))

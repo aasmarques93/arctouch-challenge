@@ -31,13 +31,15 @@ enum YourListSection: Int {
 }
 
 class ProfileViewModel: ViewModel {
-    // MARK: - Delegate -
+    // MARK: - Properties -
+    
+    // MARK: Delegate
     weak var delegate: ViewModelDelegate?
     
-    // MARK: - Service Model -
-    var serviceModel = ProfileServiceModel()
+    // MARK: Service Model
+    private let serviceModel = ProfileServiceModel()
     
-    // MARK: - Observables -
+    // MARK: Observables
     var username = Observable<String?>(nil)
     var email = Observable<String?>(nil)
     var picture = Observable<UIImage>(#imageLiteral(resourceName: "empty-user"))
@@ -46,7 +48,7 @@ class ProfileViewModel: ViewModel {
     var isLoginHidden = Observable<Bool>(false)
     var isProfileHidden = Observable<Bool>(true)
     
-    // MARK: - Objects -
+    // MARK: Objects
     private var user: User {
         return Singleton.shared.user
     }

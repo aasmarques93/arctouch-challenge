@@ -9,15 +9,16 @@
 import Bond
 
 class RouletteViewModel: ViewModel {
+    // MARK: - Properties -
+    
     // MARK: Delegate
     weak var delegate: ViewModelDelegate?
     
     // MARK: Service Model
-    let serviceModel = NetflixServiceModel()
+    private let serviceModel = NetflixServiceModel()
     
     // MARK: Enum
-    
-    enum PickerType: Int {
+    private enum PickerType: Int {
         case genres = 0
         case imdb = 1
         case rottenTomatoes = 2
