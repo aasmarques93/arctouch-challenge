@@ -1,6 +1,6 @@
-## The Movie DB
+## Personalitv
 
-This is a challenge for ArcTouch to create an app with serveral instructions for specific work selective proccess.
+This app can help all TV lovers to find what to watch at any time based on a quick personality test done suggesting movies and tv shows that you might like.
 
 ## Getting Started
 
@@ -19,6 +19,28 @@ SwiftyJSON is a Mac application which can generate Models classes for swift late
 Bond was the responsible for data binding and made possible the use MVVM as architecture.
 
 RAMAnimatedTabBarController was used for creating a interactive animation to tab bar item.
+
+YouTubePlayer used to load and play youtube videos.
+
+SDWebImage helps to handle presented images at screen.
+
+AXPhotoViewer opens a beautiful photos picker.
+
+Fabric and Crashlytics its used to track and controls app performance, usage and possible crashes.
+
+GhostTypewriter used to typing animation.
+
+ProcessLoadingView animationg for process results.
+
+Charts used for any chart implementation.
+
+Facebook api used to get user info and friends from this social media.
+
+XCDYouTubeKit used to play modal youtube videos.
+
+FCAlertView custom alerts.
+
+NVActivityIndicatorView shows a huge kind of activity indicator animations.
 
 ## Author
 
