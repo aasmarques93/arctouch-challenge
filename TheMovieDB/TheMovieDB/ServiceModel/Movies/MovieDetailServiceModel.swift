@@ -9,7 +9,7 @@
 struct MovieDetailServiceModel {
     let serviceModel = Singleton.shared.serviceModel
     
-    func getDetail(from movie: Movie, handler: @escaping HandlerObject) {
+    func getDetail(from movie: Movie, handler: @escaping Handler<MovieDetail>) {
         serviceModel.request(requestUrl: .movie,
                              urlParameters: createParameters(from: movie),
                              handlerObject: { (object) in
@@ -21,7 +21,7 @@ struct MovieDetailServiceModel {
         })
     }
     
-    func getVideos(from movie: Movie, handler: @escaping HandlerObject) {
+    func getVideos(from movie: Movie, handler: @escaping Handler<VideosList>) {
         serviceModel.request(requestUrl: .videos,
                              urlParameters: createParameters(from: movie),
                              handlerObject: { (object) in
@@ -33,7 +33,7 @@ struct MovieDetailServiceModel {
         })
     }
     
-    func getRecommendations(from movie: Movie, handler: @escaping HandlerObject) {
+    func getRecommendations(from movie: Movie, handler: @escaping Handler<MoviesList>) {
         serviceModel.request(requestUrl: .recommendations,
                              urlParameters: createParameters(from: movie, isSimple: false),
                              handlerObject: { (object) in
@@ -45,7 +45,7 @@ struct MovieDetailServiceModel {
         })
     }
     
-    func getSimilar(from movie: Movie, handler: @escaping HandlerObject) {
+    func getSimilar(from movie: Movie, handler: @escaping Handler<MoviesList>) {
         serviceModel.request(requestUrl: .similar,
                              urlParameters: createParameters(from: movie, isSimple: false),
                              handlerObject: { (object) in
@@ -57,7 +57,7 @@ struct MovieDetailServiceModel {
         })
     }
     
-    func getCredits(from movie: Movie, handler: @escaping HandlerObject) {
+    func getCredits(from movie: Movie, handler: @escaping Handler<CreditsList>) {
         serviceModel.request(requestUrl: .credits,
                              urlParameters: createParameters(from: movie),
                              handlerObject: { (object) in
@@ -69,7 +69,7 @@ struct MovieDetailServiceModel {
         })
     }
     
-    func getReviews(from movie: Movie, handler: @escaping HandlerObject) {
+    func getReviews(from movie: Movie, handler: @escaping Handler<ReviewsList>) {
         serviceModel.request(requestUrl: .reviews,
                              urlParameters: createParameters(from: movie, isSimple: false),
                              handlerObject: { (object) in
@@ -89,7 +89,7 @@ struct MovieDetailServiceModel {
         return parameters
     }
     
-    func rate(movie: Movie, value: Float, handler: HandlerObject? = nil) {
+    func rate(movie: Movie, value: Float, handler: Handler<UserMovieShow>? = nil) {
         var parameters = [String: Any]()
         
         if let value = movie.id { parameters["movieId"] = value }

@@ -47,6 +47,9 @@ class MoviesViewModel: MoviesShowsViewModel {
     
     override func loadData() {
         super.loadData()
+       
+        Singleton.shared.didSkipTestFromLauching = true
+        
         getMovies(section: .popular)
         getMovies(section: .topRated)
         getMovies(section: .upcoming)

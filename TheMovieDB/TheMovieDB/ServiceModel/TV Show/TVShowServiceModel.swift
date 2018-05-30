@@ -9,7 +9,7 @@
 struct TVShowServiceModel {
     let serviceModel = Singleton.shared.serviceModel
     
-    func getTVShow(requestUrl: RequestUrl, urlParameters: [String: Any]? = nil, handler: @escaping HandlerObject) {
+    func getTVShow(requestUrl: RequestUrl, urlParameters: [String: Any]? = nil, handler: @escaping Handler<SearchTV>) {
         serviceModel.request(requestUrl: requestUrl, urlParameters: urlParameters, handlerObject: { (object) in
             guard let object = object else {
                 return
@@ -18,7 +18,7 @@ struct TVShowServiceModel {
         })
     }
     
-    func doSearchTVShow(urlParameters: [String: Any], handler: @escaping HandlerObject) {
+    func doSearchTVShow(urlParameters: [String: Any], handler: @escaping Handler<SearchTV>) {
         serviceModel.request(requestUrl: .searchTV, urlParameters: urlParameters, handlerObject: { (object) in
             guard let object = object else {
                 return
@@ -27,7 +27,7 @@ struct TVShowServiceModel {
         })
     }
     
-    func getLatest(handler: @escaping HandlerObject) {
+    func getLatest(handler: @escaping Handler<TVShow>) {
         let urlParameters: [String: Any] = [
             "language": Locale.preferredLanguages.first ?? ""
         ]

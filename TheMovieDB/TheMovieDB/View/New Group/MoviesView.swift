@@ -24,7 +24,7 @@ class MoviesView: UITableViewController {
     
     // MARK: - View Model -
     
-    let viewModel = MoviesViewModel()
+    private let viewModel = MoviesViewModel()
     
     // MARK: - Life cycle -
     
@@ -33,7 +33,6 @@ class MoviesView: UITableViewController {
         StoreReviewHelper.checkAndAskForReview()
         initVariables()
         setupBindings()
-        title = Titles.movies.localized
         viewModel.delegate = self
         viewModel.loadData()
     }
@@ -46,15 +45,15 @@ class MoviesView: UITableViewController {
         viewModel.loadUserFriendsMoviesShows()
     }
     
-    func initVariables() {
-        Singleton.shared.didSkipTestFromLauching = true
+    private func initVariables() {
+        title = Titles.movies.localized
         searchHeaderView.delegate = self
         tableView.keyboardDismissMode = .onDrag
     }
     
     // MARK: - Bindings -
     
-    func setupBindings() {
+    private func setupBindings() {
         viewModel.latestImage.bind(to: imageViewLatestBanner.reactive.image)
         viewModel.latestTitle.bind(to: labelLatestTitle.reactive.text)
     }

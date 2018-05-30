@@ -9,8 +9,12 @@
 import UIKit
 
 class MoviePreviewView: XibView {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var viewBackground: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    
+    // MARK: - Life cycle -
     
     override func awakeFromNib() {
         super.awakeFromNib()

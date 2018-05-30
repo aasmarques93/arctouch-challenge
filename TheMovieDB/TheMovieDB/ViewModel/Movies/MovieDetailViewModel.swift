@@ -113,7 +113,7 @@ class MovieDetailViewModel: ViewModel {
         Loading.shared.start()
         serviceModel.getDetail(from: movie) { [weak self] (object) in
             Loading.shared.stop()
-            self?.movieDetail = object as? MovieDetail
+            self?.movieDetail = object
         }
     }
     
@@ -123,7 +123,7 @@ class MovieDetailViewModel: ViewModel {
         }
         
         serviceModel.getVideos(from: movie) { [weak self] (object) in
-            guard let object = object as? VideosList, let results = object.results else {
+            guard let results = object.results else {
                 return
             }
             
@@ -137,7 +137,7 @@ class MovieDetailViewModel: ViewModel {
         }
         
         serviceModel.getRecommendations(from: movie) { [weak self] (object) in
-            guard let object = object as? MoviesList, let results = object.results else {
+            guard let results = object.results else {
                 return
             }
             
@@ -151,7 +151,7 @@ class MovieDetailViewModel: ViewModel {
         }
         
         serviceModel.getSimilar(from: movie) { [weak self] (object) in
-            guard let object = object as? MoviesList, let results = object.results else {
+            guard let results = object.results else {
                 return
             }
             
@@ -165,7 +165,7 @@ class MovieDetailViewModel: ViewModel {
         }
         
         serviceModel.getCredits(from: movie) { [weak self] (object) in
-            guard let object = object as? CreditsList, let results = object.cast else {
+            guard let results = object.cast else {
                 return
             }
             
@@ -179,7 +179,7 @@ class MovieDetailViewModel: ViewModel {
         }
         
         serviceModel.getReviews(from: movie) { [weak self] (object) in
-            guard let object = object as? ReviewsList, let results = object.results else {
+            guard let results = object.results else {
                 return
             }
             

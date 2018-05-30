@@ -9,12 +9,18 @@
 import UIKit
 
 class TrackEpisodeViewCell: UICollectionViewCell {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var viewContent: UIView!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: - View Model  -
+    
     var viewModel: TrackEpisodeCellViewModel?
+    
+    // MARK: - Setup -
     
     func setupView() {
         viewModel?.contentAlpha.bind(to: viewContent.reactive.alpha)

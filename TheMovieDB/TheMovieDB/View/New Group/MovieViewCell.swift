@@ -10,10 +10,16 @@ import UIKit
 import SDWebImage
 
 class MovieViewCell: UICollectionViewCell {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: - View Model -
+    
     var viewModel: MoviesViewModel?
+    
+    // MARK: - Setup -
     
     func setupView(at section: Int, row: Int) {
         activityIndicator.startAnimating()

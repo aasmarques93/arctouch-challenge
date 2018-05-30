@@ -32,7 +32,7 @@ struct PersonServiceModel {
         })
     }
 
-    func getImages(from idPerson: Int?, handler: @escaping HandlerObject) {
+    func getImages(from idPerson: Int?, handler: @escaping Handler<PersonImagesList>) {
         let parameters: [String: Any] = [
             "idPerson": idPerson ?? 0,
             "language": Locale.preferredLanguages.first ?? ""

@@ -107,7 +107,7 @@ class TVShowDetailViewModel: ViewModel {
         Loading.shared.start()
         serviceModel.getDetail(from: tvShow) { [weak self] (object) in
             Loading.shared.stop()
-            self?.tvShowDetail = object as? TVShowDetail
+            self?.tvShowDetail = object
         }
     }
     
@@ -117,7 +117,7 @@ class TVShowDetailViewModel: ViewModel {
         }
         
         serviceModel.getVideos(from: tvShow) { [weak self] (object) in
-            guard let object = object as? VideosList, let results = object.results else {
+            guard let results = object.results else {
                 return
             }
             
@@ -131,7 +131,7 @@ class TVShowDetailViewModel: ViewModel {
         }
         
         serviceModel.getRecommendations(from: tvShow) { [weak self] (object) in
-            guard let object = object as? SearchTV, let results = object.results else {
+            guard let results = object.results else {
                 return
             }
             
@@ -145,7 +145,7 @@ class TVShowDetailViewModel: ViewModel {
         }
         
         serviceModel.getSimilar(from: tvShow) { [weak self] (object) in
-            guard let object = object as? SearchTV, let results = object.results else {
+            guard let results = object.results else {
                 return
             }
             
@@ -159,7 +159,7 @@ class TVShowDetailViewModel: ViewModel {
         }
         
         serviceModel.getCredits(from: tvShow) { [weak self] (object) in
-            guard let object = object as? CreditsList, let results = object.cast else {
+            guard let results = object.cast else {
                 return
             }
             

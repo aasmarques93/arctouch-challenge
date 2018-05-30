@@ -11,7 +11,7 @@ import SwiftyJSON
 struct NetflixServiceModel {
     let serviceModel = Singleton.shared.serviceModel
     
-    func getNetflixGenres(handler: @escaping HandlerObject) {
+    func getNetflixGenres(handler: @escaping Handler<[Genres]>) {
         let requestUrl: RequestUrl = Singleton.shared.isLanguagePortuguese ? .netflixGenresBR : .netflixGenres
         serviceModel.request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
             guard let object = object else {
@@ -19,11 +19,14 @@ struct NetflixServiceModel {
             }
             
             let netflixGenres = NetflixGenres(object: object)
-            handler(netflixGenres.genres)
+            guard let genres = netflixGenres.genres else {
+                return
+            }
+            handler(genres)
         })
     }
     
-    func getNetflixMoviesShow(genre: Int? = nil, isMovie: Bool = true, handler: @escaping HandlerObject) {
+    func getNetflixMoviesShow(genre: Int? = nil, isMovie: Bool = true, handler: @escaping Handler<[Netflix]>) {
         var urlParameters: [String: Any] = [
             "contentKind": isMovie ? "movie" : "show"
         ]
@@ -49,7 +52,7 @@ struct NetflixServiceModel {
         })
     }
     
-    func getNetflixDetail(movieShow: Netflix, isMovie: Bool = true, handler: @escaping HandlerObject) {
+    func getNetflixDetail(movieShow: Netflix, isMovie: Bool = true, handler: @escaping Handler<NetflixMovieShow>) {
         let urlParameters: [String: Any] = [
             "id": movieShow.id ?? "",
             "contentKind": isMovie ? "movie" : "show"
@@ -66,7 +69,7 @@ struct NetflixServiceModel {
         })
     }
     
-    func getComingOrLeavingNetflixMovies(requestUrl: RequestUrl, handler: @escaping HandlerObject) {
+    func getComingOrLeavingNetflixMovies(requestUrl: RequestUrl, handler: @escaping Handler<[Netflix]>) {
         let urlParameters = ["contentKind": "movie"]
         serviceModel.request(requestUrl: requestUrl,
                              environmentBase: .reelgood,
@@ -90,7 +93,7 @@ struct NetflixServiceModel {
                 isTVShowOn: Bool,
                 imdb: Int? = nil,
                 rottenTomatoes: Int? = nil,
-                handler: @escaping HandlerObject) {
+                handler: @escaping Handler<[Netflix]>) {
         
         var urlParameters = [String: Any]()
         

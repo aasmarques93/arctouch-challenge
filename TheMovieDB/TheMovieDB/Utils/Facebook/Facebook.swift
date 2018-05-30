@@ -57,7 +57,7 @@ struct Facebook {
         }
     }
     
-    static func getUserLogged(handler: @escaping HandlerObject) {
+    static func getUserLogged(handler: @escaping Handler<User>) {
         graphRequest(paths: [.me]) { (result) in
             guard let result = result as? [String: Any] else {
                 return
@@ -71,7 +71,7 @@ struct Facebook {
         }
     }
     
-    static func getUserFriends(handler: @escaping HandlerObject) {
+    static func getUserFriends(handler: @escaping Handler<[User]>) {
         Facebook.graphRequest(paths: [.friends], parameters: [.id, .name, .picture]) { (result) in
             guard let result = result as? [String: Any], let data = result["data"] as? [Any] else {
                 return

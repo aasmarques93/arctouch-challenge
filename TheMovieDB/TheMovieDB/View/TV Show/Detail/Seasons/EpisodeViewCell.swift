@@ -9,13 +9,19 @@
 import UIKit
 
 class EpisodeViewCell: UITableViewCell {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var imageViewPoster: UIImageView!
     @IBOutlet weak var labelOriginalTitle: UILabel!
     @IBOutlet weak var labelDate: UILabel!
     @IBOutlet weak var textViewOverview: UITextView!
     @IBOutlet weak var buttonPhoto: UIButton!
 
+    // MARK: - View Model -
+    
     var viewModel: EpisodeViewModel?
+    
+    // MARK: - Setup -
     
     func setupView() {
         imageViewPoster.contentMode = .scaleAspectFit
@@ -28,6 +34,8 @@ class EpisodeViewCell: UITableViewCell {
         
         viewModel?.loadData()
     }
+    
+    // MARK: - Actions -
 
     @IBAction func buttonPhotoAction(_ sender: UIButton) {
         viewModel?.presentPhotos()
@@ -35,6 +43,8 @@ class EpisodeViewCell: UITableViewCell {
 }
 
 extension EpisodeViewCell: ViewModelDelegate {
+    // MARK: - ViewModelDelegate -
+    
     func reloadData() {
         imageViewPoster.contentMode = .scaleToFill
     }

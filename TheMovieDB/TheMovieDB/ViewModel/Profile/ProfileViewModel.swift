@@ -91,7 +91,7 @@ class ProfileViewModel: ViewModel {
         email.value = nil
         picture.value = #imageLiteral(resourceName: "empty-user")
         Loading.shared.start()
-        serviceModel.doLogout { [weak self] (result) in
+        serviceModel.doLogout { [weak self] () in
             Loading.shared.stop()
             Singleton.shared.logout()
             self?.loadData()
@@ -124,12 +124,8 @@ class ProfileViewModel: ViewModel {
     // MARK: - User friends -
     
     func getUserFriends() {
-        Facebook.getUserFriends { [weak self] (object) in
-            guard let array = object as? [User] else {
-                return
-            }
-
-            Singleton.shared.arrayUserFriends = array
+        Facebook.getUserFriends { [weak self] (results) in
+            Singleton.shared.arrayUserFriends = results
             self?.delegate?.reloadData?()
         }
     }

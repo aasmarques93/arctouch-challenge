@@ -9,9 +9,16 @@
 import UIKit
 
 class StoriesPageViewController: UIPageViewController {
+    // MARK: - View Model -
+    
     var viewModel: StoriesViewModel?
-    var pageAfter = 1
-    var pageBefore = 0
+    
+    // MARK: - Properties -
+    
+    private var pageAfter = 1
+    private var pageBefore = 0
+    
+    // MARK: - Life cycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +39,9 @@ class StoriesPageViewController: UIPageViewController {
         UIApplication.shared.isStatusBarHidden = false
     }
     
-    func viewControllerAtIndex(index: Int?) -> StoriesView? {
+    // MARK: - Page Controller -
+    
+    private func viewControllerAtIndex(index: Int?) -> StoriesView? {
         guard let isItemAvailable = viewModel?.isItemAvailable(at: index), isItemAvailable else {
             dismiss(animated: true, completion: nil)
             return nil
@@ -46,7 +55,7 @@ class StoriesPageViewController: UIPageViewController {
         return storiesView
     }
     
-    func goNextPage(fowardTo position: Int) {
+    private func goNextPage(fowardTo position: Int) {
         guard let storiesView = viewControllerAtIndex(index: position) else {
             return
         }
@@ -55,12 +64,17 @@ class StoriesPageViewController: UIPageViewController {
         setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
     }
     
+    // MARK: - Status Bar -
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
 }
 
 extension StoriesPageViewController: ViewModelDelegate {
+    
+    // MARK: - ViewModelDelegate -
+    
     func reloadData() {
         guard let storiesView = viewControllerAtIndex(index: viewModel?.currentIndex) else {
             return
@@ -72,6 +86,9 @@ extension StoriesPageViewController: ViewModelDelegate {
 }
 
 extension StoriesPageViewController: UIPageViewControllerDataSource {
+    
+    // MARK: - UIPageViewControllerDataSource -
+    
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
         

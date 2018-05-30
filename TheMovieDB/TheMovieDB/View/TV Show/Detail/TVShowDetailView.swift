@@ -9,6 +9,8 @@
 import UIKit
 
 class TVShowDetailView: UITableViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var circularProgressView: CircularProgressView!
     @IBOutlet weak var labelDate: UILabel!
     
@@ -28,7 +30,9 @@ class TVShowDetailView: UITableViewController {
     
     @IBOutlet var stretchHeaderView: StretchHeaderView!
     
-    enum DetailSection: Int {
+    // MARK: - Properties -
+    
+    private enum DetailSection: Int {
         case general = 0
         case rating = 1
         case genres = 2
@@ -40,14 +44,17 @@ class TVShowDetailView: UITableViewController {
         case similar = 8
     }
     
-    var viewModel: TVShowDetailViewModel?
-    var isRatingVisible = false {
+    private var isRatingVisible = false {
         didSet {
             tableView.beginUpdates()
             tableView.reloadData()
             tableView.endUpdates()
         }
     }
+
+    // MARK: - View Model -
+    
+    var viewModel: TVShowDetailViewModel?
     
     // MARK: - Life cycle -
     
@@ -66,7 +73,7 @@ class TVShowDetailView: UITableViewController {
     
     // MARK: - View model bindings -
     
-    func setupBindings() {
+    private func setupBindings() {
         viewModel?.date.bind(to: labelDate.reactive.text)
         viewModel?.genres.bind(to: textViewGenres.reactive.text)
         viewModel?.overview.bind(to: textViewOverview.reactive.text)
@@ -75,7 +82,7 @@ class TVShowDetailView: UITableViewController {
     
     // MARK - Appearance -
     
-    func setupAppearance() {
+    private func setupAppearance() {
         carouselVideos.type = .linear
         carouselVideos.bounces = false
         carouselSeasons.type = .linear
@@ -89,7 +96,7 @@ class TVShowDetailView: UITableViewController {
         setupRating()
     }
     
-    func setupRating() {
+    private func setupRating() {
         guard let value = viewModel?.rateValue else {
             return
         }
@@ -100,13 +107,13 @@ class TVShowDetailView: UITableViewController {
         setRateImage(with: value)
     }
     
-    func setRateImage(with value: Float) {
+    private func setRateImage(with value: Float) {
         buttonRate.setImage(value >= 4 ? #imageLiteral(resourceName: "happy-emoji-filled") : value >= 2 ? #imageLiteral(resourceName: "neutral-emoji") : #imageLiteral(resourceName: "sad-emoji"), for: .normal)
     }
     
     // MARK: - Emoji Rate View -
     
-    func setupEmojiRateView() {
+    private func setupEmojiRateView() {
         emojiRateView.rateColorRange = (HexColor.accent.color, HexColor.secondary.color)
         emojiRateView.rateValueChangeCallback = { [weak self] (rateValue: Float) -> Void in
             self?.viewModel?.setRateResultValue(rateValue.rounded())

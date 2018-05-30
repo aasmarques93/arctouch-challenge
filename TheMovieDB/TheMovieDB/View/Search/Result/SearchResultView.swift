@@ -10,6 +10,8 @@ import UIKit
 import GhostTypewriter
 
 class SearchResultView: UITableViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet var viewHeader: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet var labelEmptyMessage: TypewriterLabel!

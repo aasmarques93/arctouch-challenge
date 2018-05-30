@@ -15,11 +15,19 @@ import UIKit
 }
 
 class SearchHeaderView: XibView {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    // MARK: - Delegate -
     
     weak var delegate: SearchHeaderViewDelegate?
     
+    // MARK: - Properties -
+    
     var placeholder: String?
+    
+    // MARK: - Methods -
     
     class func instantateFromNib(placeholder: String?) -> SearchHeaderView {
         let view = XibView.instanceFromNib(SearchHeaderView.self)
@@ -30,6 +38,8 @@ class SearchHeaderView: XibView {
         return view
     }
     
+    // MARK: - Life cycle -
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = HexColor.primary.color
@@ -37,6 +47,9 @@ class SearchHeaderView: XibView {
 }
 
 extension SearchHeaderView: UISearchBarDelegate {
+    
+    // MARK: - UISearchBarDelegate -
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         delegate?.searchBarSearchButtonClicked(searchBar)

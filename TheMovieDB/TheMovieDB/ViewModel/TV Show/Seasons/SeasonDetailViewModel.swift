@@ -62,7 +62,7 @@ class SeasonDetailViewModel: ViewModel {
         Loading.shared.start()
         serviceModel.getDetail(from: tvShowDetail, season: season) { [weak self] (object) in
             Loading.shared.stop()
-            self?.seasonDetail = object as? SeasonDetail
+            self?.seasonDetail = object
         }
     }
     

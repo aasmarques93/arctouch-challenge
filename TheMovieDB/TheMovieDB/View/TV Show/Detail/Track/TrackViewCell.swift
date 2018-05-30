@@ -9,10 +9,19 @@
 import UIKit
 
 class TrackViewCell: UITableViewCell {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var collectionView: CollectionView!
     
+    // MARK: - Properties -
+    
+    private var selectedIndexPath: IndexPath?
+
+    // MARK: - View Model -
+    
     var viewModel: TrackViewModel?
-    var selectedIndexPath: IndexPath?
+    
+    // MARK: - Setup -
     
     func setupView(at indexPath: IndexPath) {
         selectedIndexPath = indexPath
@@ -29,6 +38,8 @@ class TrackViewCell: UITableViewCell {
 }
 
 extension TrackViewCell: CollectionViewDelegate {
+    // MARK: - CollectionViewDelegate -
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

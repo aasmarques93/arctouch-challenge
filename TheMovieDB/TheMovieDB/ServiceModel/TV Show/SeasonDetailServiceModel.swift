@@ -9,7 +9,7 @@
 struct SeasonDetailServiceModel {
     let serviceModel = Singleton.shared.serviceModel
     
-    func getDetail(from tvShowDetail: TVShowDetail?, season: Seasons?, handler: @escaping HandlerObject) {
+    func getDetail(from tvShowDetail: TVShowDetail?, season: Seasons?, handler: @escaping Handler<SeasonDetail>) {
         if let id = tvShowDetail?.id, let seasonNumber = season?.seasonNumber {
             let parameters: [String: Any] = [
                 "id": id,

@@ -10,10 +10,16 @@ import UIKit
 import Bond
 
 class TVShowViewCell: UICollectionViewCell {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: - View Model -
+    
     var viewModel: TVShowViewModel?
+    
+    // MARK: - Setup -
     
     func setupView(at section: Int, row: Int) {
         activityIndicator.startAnimating()

@@ -28,10 +28,6 @@ class SearchViewModel: ViewModel {
         serviceModel.getGenres(requestUrl: .genres) { [weak self] (object) in
             Loading.shared.stop()
             
-            guard let object = object as? MoviesGenres else {
-                return
-            }
-            
             do {
                 try self?.showError(with: object)
             } catch {

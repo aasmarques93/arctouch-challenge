@@ -83,7 +83,7 @@ class Singleton {
     
     // MARK: - Service requests -
     
-    func loadUserData(handler: HandlerObject? = nil) {
+    func loadUserData(handler: HandlerCallback? = nil) {
         profileServiceModel.getProfile { [weak self] (object) in
             guard let object = object as? User else {
                 return
@@ -97,7 +97,7 @@ class Singleton {
             
             self?.savePersonalityTestIfNeeded()
             self?.updateUser(with: object)
-            handler?(object)
+            handler?()
         }
     }
     

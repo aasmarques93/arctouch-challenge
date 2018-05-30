@@ -9,7 +9,10 @@
 import UIKit
 
 class MovieView: XibView {
+    // MARK: - Outlets -
     @IBOutlet weak var imageViewMovie: UIImageView!
+    
+    // MARK: - Life cycle -
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -9,7 +9,7 @@
 struct TVShowDetailServiceModel {
     let serviceModel = Singleton.shared.serviceModel
     
-    func getDetail(from tvShow: TVShow, handler: @escaping HandlerObject) {
+    func getDetail(from tvShow: TVShow, handler: @escaping Handler<TVShowDetail>) {
         serviceModel.request(requestUrl: .tvDetail, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
             guard let object = object else {
                 return
@@ -18,7 +18,7 @@ struct TVShowDetailServiceModel {
         })
     }
     
-    func getVideos(from tvShow: TVShow, handler: @escaping HandlerObject) {
+    func getVideos(from tvShow: TVShow, handler: @escaping Handler<VideosList>) {
         serviceModel.request(requestUrl: .tvVideos, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
             guard let object = object else {
                 return
@@ -27,7 +27,7 @@ struct TVShowDetailServiceModel {
         })
     }
     
-    func getRecommendations(from tvShow: TVShow, handler: @escaping HandlerObject) {
+    func getRecommendations(from tvShow: TVShow, handler: @escaping Handler<SearchTV>) {
         serviceModel.request(requestUrl: .tvRecommendations, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
             guard let object = object else {
                 return
@@ -36,7 +36,7 @@ struct TVShowDetailServiceModel {
         })
     }
     
-    func getSimilar(from tvShow: TVShow, handler: @escaping HandlerObject) {
+    func getSimilar(from tvShow: TVShow, handler: @escaping Handler<SearchTV>) {
         serviceModel.request(requestUrl: .tvSimilar, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
             guard let object = object else {
                 return
@@ -45,7 +45,7 @@ struct TVShowDetailServiceModel {
         })
     }
     
-    func getCredits(from tvShow: TVShow, handler: @escaping HandlerObject) {
+    func getCredits(from tvShow: TVShow, handler: @escaping Handler<CreditsList>) {
         serviceModel.request(requestUrl: .tvCredits, urlParameters: createParameters(from: tvShow), handlerObject: { (object) in
             guard let object = object else {
                 return
@@ -62,7 +62,7 @@ struct TVShowDetailServiceModel {
         return parameters
     }
     
-    func rate(tvShow: TVShow, value: Float, handler: HandlerObject? = nil) {
+    func rate(tvShow: TVShow, value: Float, handler: Handler<UserMovieShow>? = nil) {
         var parameters = [String: Any]()
         
         if let value = tvShow.id { parameters["showId"] = value }

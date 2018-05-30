@@ -26,6 +26,8 @@ struct StoryItem {
 }
 
 class StoriesView: UIViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var imageViewHeader: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var videoView: UIView!
@@ -34,10 +36,17 @@ class StoriesView: UIViewController {
     @IBOutlet weak var buttonNetflix: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: - Properties -
+    
     var pageIndex: Int = 0
-    var viewModel: StoriesViewModel?
     var youTubePlayer: XCDYouTubeVideoPlayerViewController?
     var initialTouchPoint: CGPoint = .zero
+    
+    // MARK: - View Model -
+    
+    var viewModel: StoriesViewModel?
+
+    // MARK: - Life cycle -
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,12 +60,16 @@ class StoriesView: UIViewController {
         playVideoOrLoadImage(index: pageIndex)
     }
     
-    func setupAppearance() {
+    // MARK: - Appearance -
+    
+    private func setupAppearance() {
         imageViewHeader.layer.cornerRadius = imageViewHeader.frame.width / 2
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         buttonNetflix.isHidden = true
     }
+    
+    // MARK: - Actions -
     
     @IBAction func buttonOpenNetflixAction(_ sender: UIButton) {
         SocialMedia.open(mediaType: .netflix, id: viewModel?.netflixId(at: pageIndex))
@@ -66,8 +79,9 @@ class StoriesView: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    //MARK: - Play or show image
-    func playVideoOrLoadImage(index: Int?) {
+    //MARK: - Play or show image -
+    
+    private func playVideoOrLoadImage(index: Int?) {
         guard let index = index, let array = viewModel?.currentStoryItems(at: index), let item = array.first else {
             return
         }
@@ -95,6 +109,8 @@ class StoriesView: UIViewController {
         }
     }
     
+    //MARK: - Transition -
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         imageViewHeader.isHidden = UIDevice.current.orientation != .portrait
         labelTitle.isHidden = imageViewHeader.isHidden
@@ -102,11 +118,9 @@ class StoriesView: UIViewController {
         buttonNetflix.isHidden = imageViewHeader.isHidden
     }
     
+    //MARK: - Status bar -
+    
     override var prefersStatusBarHidden: Bool {
         return true
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
 }

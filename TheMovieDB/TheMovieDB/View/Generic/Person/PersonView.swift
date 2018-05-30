@@ -11,6 +11,8 @@ import Bond
 import AXPhotoViewer
 
 class PersonView: UITableViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var textViewBiography: UITextView!
     
     @IBOutlet weak var imageViewBackground: UIImageView!
@@ -27,7 +29,11 @@ class PersonView: UITableViewController {
     @IBOutlet weak var buttonInstagramValue: UIButton!
     @IBOutlet weak var buttonFacebookValue: UIButton!
     
+    // MARK: - View Model -
+    
     var viewModel: PersonViewModel?
+    
+    // MARK: - Life cycle -
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -37,12 +43,16 @@ class PersonView: UITableViewController {
         viewModel?.loadData()
     }
     
-    func setupAppearance() {
+    // MARK: - Appearance -
+    
+    private func setupAppearance() {
         carouselMovies.type = .coverFlow2
         tableView.tableFooterView = UIView()
     }
     
-    func setupBindings() {
+    // MARK: - Bindings -
+    
+    private func setupBindings() {
         viewModel?.biography.bind(to: textViewBiography.reactive.text)
         viewModel?.birthday.bind(to: labelBirthday.reactive.text)
         viewModel?.placeOfBirth.bind(to: labelPlaceOfBirth.reactive.text)
@@ -56,6 +66,8 @@ class PersonView: UITableViewController {
         viewModel?.isTwitterEnabled.bind(to: buttonTwitterValue.reactive.isEnabled)
         viewModel?.twitterTintColor.bind(to: buttonTwitterValue.reactive.tintColor)
     }
+    
+    // MARK: - Actions -
     
     @IBAction func buttonPhotoAction(_ sender: UIButton) {
         viewModel?.presentPhotos()
@@ -73,6 +85,8 @@ class PersonView: UITableViewController {
         viewModel?.open(socialMediaType: .twitter)
     }
 
+    // MARK: - Table view data source -
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 1 {
             let spaceMargin: CGFloat = 8
@@ -111,6 +125,9 @@ extension PersonView: iCarouselDelegate, iCarouselDataSource {
 }
 
 extension PersonView: ViewModelDelegate {
+    
+    // MARK: - ViewModelDelegate -
+    
     func reloadData() {
         title = viewModel?.personName
         

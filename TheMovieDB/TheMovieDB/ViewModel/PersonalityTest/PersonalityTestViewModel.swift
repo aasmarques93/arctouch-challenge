@@ -98,8 +98,9 @@ class PersonalityTestViewModel: ViewModel {
         guard Singleton.shared.arrayPersonalityTypes.isEmpty else {
             return
         }
-        serviceModel.getPersonality(requestUrl: Singleton.shared.isLanguagePortuguese ? .personalityTypesBR : .personalityTypes) { (object) in    
-            guard let object = object as? Personality, let results = object.personalityTypes else {
+        let requestUrl: RequestUrl = Singleton.shared.isLanguagePortuguese ? .personalityTypesBR : .personalityTypes
+        serviceModel.getPersonality(requestUrl: requestUrl) { (object) in
+            guard let results = object.personalityTypes else {
                 return
             }
             Singleton.shared.arrayPersonalityTypes = results
@@ -110,8 +111,9 @@ class PersonalityTestViewModel: ViewModel {
         guard personalityObject == nil else {
             return
         }
-        serviceModel.getPersonality(requestUrl: Singleton.shared.isLanguagePortuguese ? .personalityTestBR : .personalityTest) { [weak self]  (object) in
-            self?.personalityObject = object as? Personality
+        let requestUrl: RequestUrl = Singleton.shared.isLanguagePortuguese ? .personalityTestBR : .personalityTest
+        serviceModel.getPersonality(requestUrl: requestUrl) { [weak self]  (object) in
+            self?.personalityObject = object
             
             guard let isGoingToPresentTest = self?.isGoingToPresentTest, isGoingToPresentTest else {
                 return

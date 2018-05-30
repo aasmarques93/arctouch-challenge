@@ -13,13 +13,22 @@ protocol MoviesViewCellDelegate: class {
 }
 
 class MoviesSectionViewCell: UITableViewCell {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var collectionView: CollectionView!
     @IBOutlet weak var labelMessageError: UILabel!
     
+    // MARK: - Delegate -
+    
     weak var delegate: MoviesViewCellDelegate?
     
+    // MARK: - View Model -
+    
     var viewModel: MoviesViewModel?
-    var selectedIndexPath: IndexPath?
+    
+    // MARK: - Setup -
+    
+    private var selectedIndexPath: IndexPath?
     
     func setupView(at indexPath: IndexPath) {
         if let viewModel = viewModel {
@@ -30,12 +39,19 @@ class MoviesSectionViewCell: UITableViewCell {
         
         selectedIndexPath = indexPath
         
+        setupCollectionView(at: indexPath)
+        setupLastIndexPathDisplayed(at: indexPath)
+    }
+    
+    private func setupCollectionView(at indexPath: IndexPath) {
         collectionView.collectionDelegate = self
         collectionView.reloadData()
         
         collectionView.itemWidth = indexPath.section == 0 ? StoryPreviewCell.cellSize.width : 180
         collectionView.itemHeight = indexPath.section == 0 ? StoryPreviewCell.cellSize.height : 230
-        
+    }
+    
+    private func setupLastIndexPathDisplayed(at indexPath: IndexPath) {
         guard let lastIndexPathDisplayed = viewModel?.lastIndexPathDisplayed(at: indexPath.section),
             lastIndexPathDisplayed.item > 10 else {
                 return
@@ -46,6 +62,9 @@ class MoviesSectionViewCell: UITableViewCell {
 }
 
 extension MoviesSectionViewCell: CollectionViewDelegate {
+    
+    // MARK: - CollectionViewDelegate -
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

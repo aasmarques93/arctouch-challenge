@@ -9,7 +9,7 @@
 struct EpisodesServiceModel {
     let serviceModel = Singleton.shared.serviceModel
 
-    func getImages(from id: Int?, season: Int?, episode: Int?, handler: @escaping HandlerObject) {
+    func getImages(from id: Int?, season: Int?, episode: Int?, handler: @escaping Handler<EpisodeImagesList>) {
         if let id = id, let seasonNumber = season, let episodeNumber = episode {
             let parameters: [String: Any] = [
                 "id": id,

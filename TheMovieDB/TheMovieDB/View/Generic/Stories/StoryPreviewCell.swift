@@ -9,13 +9,22 @@
 import UIKit
 
 class StoryPreviewCell: UICollectionViewCell {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!
+    
+    // MARK: - Properties -
     
     static var cellSize: CGSize {
         return CGSize(width: 140, height: 180)
     }
+    
+    // MARK: - View Model -
+    
     var viewModel: MoviesShowsViewModel?
+    
+    // MARK: - Setup -
     
     func setupView(at index: Int) {
         setupAppearance()

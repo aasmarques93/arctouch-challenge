@@ -14,125 +14,6 @@ protocol MoviesShowsViewModelDelegate: ViewModelDelegate {
     func openPreview(storiesViewModel: StoriesViewModel)
 }
 
-protocol SectionsTypeProtocol {
-    static var sectionsMovies: [Self] { get }
-    static var sectionsShows: [Self] { get }
-}
-
-enum SectionsType: Int, SectionsTypeProtocol {
-    static var sectionsMovies: [SectionsType] {
-        return [
-            SectionsType.netflix,
-            SectionsType.suggested,
-            SectionsType.friendsWatching,
-            SectionsType.nowPlaying,
-            SectionsType.topRated,
-            SectionsType.upcoming,
-            SectionsType.popular
-        ]
-    }
-    
-    static var sectionsShows: [SectionsType] {
-        return [
-            SectionsType.netflix,
-            SectionsType.suggested,
-            SectionsType.friendsWatching,
-            SectionsType.airingToday,
-            SectionsType.onTheAir,
-            SectionsType.popular,
-            SectionsType.topRated
-        ]
-    }
-    
-    case netflix
-    case suggested
-    case friendsWatching
-    case nowPlaying
-    case upcoming
-    case airingToday
-    case onTheAir
-    case popular
-    case topRated
-    
-    static func sections(isMovie: Bool) -> [SectionsType] {
-        guard isMovie else {
-            return sectionsShows
-        }
-        return sectionsMovies
-    }
-    
-    var description: String {
-        switch self {
-        case .netflix:
-            return "Watch on Netflix"
-        case .suggested:
-            return "Suggested"
-        case .friendsWatching:
-            return "What your friends are watching"
-        case .nowPlaying:
-            return "Now Playing"
-        case .upcoming:
-            return "Upcoming"
-        case .airingToday:
-            return "Airing today"
-        case .onTheAir:
-            return "On the air"
-        case .popular:
-            return "Popular"
-        case .topRated:
-            return "Top Rated"
-        }
-    }
-    
-    func index(isMovie: Bool) -> Int {
-        switch self {
-        case .netflix:
-            return 0
-        case .suggested:
-            return 1
-        case .friendsWatching:
-            return 2
-        case .airingToday:
-            return 3
-        case .popular:
-            return isMovie ? 3 : 5
-        case .onTheAir:
-            return 4
-        case .topRated:
-            return isMovie ? 4 : 6
-        case .upcoming:
-            return 5
-        case .nowPlaying:
-            return 6
-        }
-    }
-    
-    static func section(at index: Int, isMovie: Bool) -> SectionsType? {
-        switch index {
-        case 0:
-            return SectionsType.netflix
-        case 1:
-            return SectionsType.suggested
-        case 2:
-            return SectionsType.friendsWatching
-        case 3:
-            return isMovie ? SectionsType.popular : SectionsType.airingToday
-        case 4:
-            return isMovie ? SectionsType.topRated : SectionsType.onTheAir
-        case 5:
-            return isMovie ? SectionsType.upcoming : SectionsType.popular
-        case 6:
-            return isMovie ? SectionsType.nowPlaying : SectionsType.topRated
-        default:
-            return nil
-        }
-    }
-    
-    var localized: String {
-        return NSLocalizedString(self.description, comment: "")
-    }
-}
-
 class MoviesShowsViewModel: ViewModel {
     // MARK: - Properties -
     
@@ -211,11 +92,8 @@ class MoviesShowsViewModel: ViewModel {
     }
     
     func getNetflixMoviesShowsGenres(id: Int?) {
-        netflixServiceModel.getNetflixMoviesShow(genre: id, isMovie: isMovie) { [weak self] (object) in
-            guard let result = object as? [Netflix] else {
-                return
-            }
-            let sortedArray = result.sorted(by: { (movie1, movie2) -> Bool in
+        netflixServiceModel.getNetflixMoviesShow(genre: id, isMovie: isMovie) { [weak self] (results) in
+            let sortedArray = results.sorted(by: { (movie1, movie2) -> Bool in
                 guard let rating1 = movie1.imdbRating, let rating2 = movie2.imdbRating else {
                     return true
                 }
@@ -231,12 +109,8 @@ class MoviesShowsViewModel: ViewModel {
             return
         }
         
-        Facebook.getUserFriends { [weak self] (object) in
-            guard let array = object as? [User] else {
-                return
-            }
-            
-            self?.getUserFriendsProfiles(with: array)
+        Facebook.getUserFriends { [weak self] (results) in
+            self?.getUserFriendsProfiles(with: results)
         }
     }
     
@@ -281,7 +155,7 @@ class MoviesShowsViewModel: ViewModel {
         }
     }
     
-    func getMoviesFromGenre(id: Int?, handler: @escaping HandlerObject) {
+    func getMoviesFromGenre(id: Int?, handler: @escaping Handler<SearchMoviesGenre>) {
         guard let value = id else {
             return
         }
@@ -366,5 +240,126 @@ class MoviesShowsViewModel: ViewModel {
     
     func searchResultViewModel(with text: String?) -> SearchResultViewModel? {
         return SearchResultViewModel(searchText: text, requestUrl: isMovie ? .searchMovie : .searchTV)
+    }
+}
+
+protocol SectionsTypeProtocol {
+    static var sectionsMovies: [Self] { get }
+    static var sectionsShows: [Self] { get }
+}
+
+enum SectionsType: Int, SectionsTypeProtocol {
+    static var sectionsMovies: [SectionsType] {
+        return [
+            SectionsType.netflix,
+            SectionsType.suggested,
+            SectionsType.friendsWatching,
+            SectionsType.nowPlaying,
+            SectionsType.topRated,
+            SectionsType.upcoming,
+            SectionsType.popular
+        ]
+    }
+    
+    static var sectionsShows: [SectionsType] {
+        return [
+            SectionsType.netflix,
+            SectionsType.suggested,
+            SectionsType.friendsWatching,
+            SectionsType.airingToday,
+            SectionsType.onTheAir,
+            SectionsType.popular,
+            SectionsType.topRated
+        ]
+    }
+    
+    case netflix
+    case suggested
+    case friendsWatching
+    case nowPlaying
+    case upcoming
+    case airingToday
+    case onTheAir
+    case popular
+    case topRated
+    
+    static func sections(isMovie: Bool) -> [SectionsType] {
+        guard isMovie else {
+            return sectionsShows
+        }
+        return sectionsMovies
+    }
+    
+    static func section(at index: Int, isMovie: Bool) -> SectionsType? {
+        switch index {
+        case 0:
+            return SectionsType.netflix
+        case 1:
+            return SectionsType.suggested
+        case 2:
+            return SectionsType.friendsWatching
+        case 3:
+            return isMovie ? SectionsType.popular : SectionsType.airingToday
+        case 4:
+            return isMovie ? SectionsType.topRated : SectionsType.onTheAir
+        case 5:
+            return isMovie ? SectionsType.upcoming : SectionsType.popular
+        case 6:
+            return isMovie ? SectionsType.nowPlaying : SectionsType.topRated
+        default:
+            return nil
+        }
+    }
+}
+
+extension SectionsType {
+    var description: String {
+        switch self {
+        case .netflix:
+            return "Watch on Netflix"
+        case .suggested:
+            return "Suggested"
+        case .friendsWatching:
+            return "What your friends are watching"
+        case .nowPlaying:
+            return "Now Playing"
+        case .upcoming:
+            return "Upcoming"
+        case .airingToday:
+            return "Airing today"
+        case .onTheAir:
+            return "On the air"
+        case .popular:
+            return "Popular"
+        case .topRated:
+            return "Top Rated"
+        }
+    }
+    
+    func index(isMovie: Bool) -> Int {
+        switch self {
+        case .netflix:
+            return 0
+        case .suggested:
+            return 1
+        case .friendsWatching:
+            return 2
+        case .airingToday:
+            return 3
+        case .popular:
+            return isMovie ? 3 : 5
+        case .onTheAir:
+            return 4
+        case .topRated:
+            return isMovie ? 4 : 6
+        case .upcoming:
+            return 5
+        case .nowPlaying:
+            return 6
+        }
+    }
+    
+    var localized: String {
+        return NSLocalizedString(self.description, comment: "")
     }
 }

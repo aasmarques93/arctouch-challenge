@@ -8,10 +8,12 @@
 
 import UIKit
 
-private let reuseIdentifier = "ReviewCell"
-
 class ReviewsView: UITableViewController {
+    // MARK: - View Model -
+    
     var viewModel: MovieDetailViewModel?
+    
+    // MARK: - Setup -
     
     var rowHeight: CGFloat = 100
     
@@ -30,18 +32,10 @@ class ReviewsView: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        
+        let cell = tableView.dequeueReusableCell(ReviewViewCell.self, for: indexPath)
         cell.alternateBackground(at: indexPath, secondaryColor: HexColor.secondary.color.withAlphaComponent(0.1))
-        
-        if let labelAuthor = cell.viewWithTag(1) as? UILabel {
-            labelAuthor.text = viewModel?.reviewAuthor(at: indexPath.row)
-        }
-        
-        if let labelContent = cell.viewWithTag(2) as? UILabel {
-            labelContent.text = viewModel?.reviewContent(at: indexPath.row)
-        }
-        
+        cell.viewModel = viewModel
+        cell.setupView(at: indexPath)
         return cell
     }
 }

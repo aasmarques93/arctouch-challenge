@@ -13,7 +13,7 @@ struct YourListServiceModel {
         return Singleton.shared.serviceModel
     }
     
-    func getUserMovies(requestUrl: RequestUrl, handler: HandlerObject? = nil) {
+    func getUserMovies(requestUrl: RequestUrl, handler: Handler<[UserMovieShow]>? = nil) {
         serviceModel.request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
             guard let array = object as? [JSON] else {
                 return
@@ -28,7 +28,7 @@ struct YourListServiceModel {
         })
     }
     
-    func save(movie: Movie, requestUrl: RequestUrl, handler: HandlerObject? = nil) {
+    func save(movie: Movie, requestUrl: RequestUrl, handler: Handler<UserMovieShow>? = nil) {
         var parameters = [String: Any]()
         
         if let value = movie.id { parameters["movieId"] = value }
@@ -47,7 +47,7 @@ struct YourListServiceModel {
         })
     }
     
-    func delete(movie: Movie, requestUrl: RequestUrl, handler: HandlerObject? = nil) {
+    func delete(movie: Movie, requestUrl: RequestUrl, handler: Handler<UserMovieShow>? = nil) {
         var parameters = [String: Any]()
         
         if let value = movie.id { parameters["movieId"] = value }
@@ -65,7 +65,7 @@ struct YourListServiceModel {
         })
     }
     
-    func getUserShows(handler: HandlerObject? = nil) {
+    func getUserShows(handler: Handler<[UserMovieShow]>? = nil) {
         serviceModel.request(requestUrl: .userShowsTrack, environmentBase: .heroku, handlerObject: { (object) in
             guard let array = object as? [JSON] else {
                 return
@@ -80,7 +80,7 @@ struct YourListServiceModel {
         })
     }
     
-    func track(show: TVShowDetail, season: Int, episode: Int, handler: HandlerObject? = nil) {
+    func track(show: TVShowDetail, season: Int, episode: Int, handler: Handler<UserMovieShow>? = nil) {
         var parameters = [String: Any]()
         
         if let value = show.id { parameters["showId"] = value }

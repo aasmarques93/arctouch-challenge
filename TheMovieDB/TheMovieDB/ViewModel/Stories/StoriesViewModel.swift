@@ -48,7 +48,7 @@ class StoriesViewModel: ViewModel {
     func loadVideo(at index: Int, handler: @escaping HandlerObject) {
         let object = arrayNetflixMovies[index]
         netflixServiceModel.getNetflixDetail(movieShow: object, isMovie: isMovie) { [weak self] (object) in
-            self?.currentNetflixMovieShow = object as? NetflixMovieShow
+            self?.currentNetflixMovieShow = object
             handler(self?.currentNetflixMovieShow?.trailer?.key)
         }
     }

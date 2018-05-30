@@ -122,11 +122,7 @@ class RouletteViewModel: ViewModel {
     }
     
     private func getNetflixGenres() {
-        serviceModel.getNetflixGenres { [weak self] (object) in
-            guard let results = object as? [Genres] else {
-                return
-            }
-            
+        serviceModel.getNetflixGenres { (results) in
             Singleton.shared.arrayNetflixGenres = results
         }
     }
@@ -137,8 +133,8 @@ class RouletteViewModel: ViewModel {
         }
         
         serviceModel.getNetflixDetail(movieShow: movieShow, isMovie: isMovie) { [weak self] (object) in
-            self?.netflixMovieShow = object as? NetflixMovieShow
-            self?.overviewResult.value = self?.netflixMovieShow?.overview
+            self?.netflixMovieShow = object
+            self?.overviewResult.value = object.overview
         }
     }
     
@@ -200,13 +196,9 @@ class RouletteViewModel: ViewModel {
                             isMovieOn: isMoviesOn.value,
                             isTVShowOn: isTVShowsOn.value,
                             imdb: Int(imdb),
-                            rottenTomatoes: Int(rottenTomatoes)) { [weak self] (object) in
+                            rottenTomatoes: Int(rottenTomatoes)) { [weak self] (results) in
                                 
                                 Loading.shared.stop()
-                                
-                                guard let results = object as? [Netflix] else {
-                                    return
-                                }
                                 
                                 guard results.count > 0 else {
                                     self?.delegate?.showAlert?(message: Messages.movieShowNotFound.localized)

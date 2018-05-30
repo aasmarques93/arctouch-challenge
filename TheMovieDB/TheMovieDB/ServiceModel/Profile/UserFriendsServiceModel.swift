@@ -13,7 +13,7 @@ struct UserFriendsServiceModel {
         return Singleton.shared.serviceModel
     }
  
-    func getProfile(facebookId: String?, handler: @escaping HandlerObject) {
+    func getProfile(facebookId: String?, handler: @escaping Handler<User>) {
         let urlParameters = ["facebookId": facebookId ?? ""]
         
         serviceModel.request(requestUrl: .profileByFacebookId,
@@ -28,7 +28,7 @@ struct UserFriendsServiceModel {
         })
     }
     
-    func userFriendsProfiles(_ users: [User], handler: @escaping HandlerObject) {
+    func userFriendsProfiles(_ users: [User], handler: @escaping Handler<[User]>) {
         var parameters = [String: Any]()
         
         var array = [[String: Any]]()

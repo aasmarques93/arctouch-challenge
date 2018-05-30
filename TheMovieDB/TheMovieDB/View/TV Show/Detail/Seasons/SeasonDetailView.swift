@@ -9,11 +9,16 @@
 import UIKit
 
 class SeasonDetailView: UITableViewController {
-    @IBOutlet var viewHeader: UIView!
+    // MARK: - Outlets -
     
+    @IBOutlet var viewHeader: UIView!
     @IBOutlet weak var textViewSeasonOverview: UITextView!
     
+    // MARK: - View Model -
+    
     var viewModel: SeasonDetailViewModel?
+    
+    // MARK: - Life cycle -
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -25,7 +30,7 @@ class SeasonDetailView: UITableViewController {
     
     // MARK: - View model bindings -
     
-    func setupBindings() {
+    private func setupBindings() {
         viewModel?.overview.bind(to: textViewSeasonOverview.reactive.text)
     }
     

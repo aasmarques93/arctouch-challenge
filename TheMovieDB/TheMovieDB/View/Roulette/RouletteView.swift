@@ -12,6 +12,8 @@ import GhostTypewriter
 import XCDYouTubeKit
 
 class RouletteView: UIViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var labelMessage: TypewriterLabel!
     @IBOutlet weak var buttonSpin: UIButton!
     
@@ -26,7 +28,11 @@ class RouletteView: UIViewController {
     @IBOutlet weak var labelTypeResult: UILabel!
     @IBOutlet weak var textViewOverviewResult: UITextView!
     
-    let viewModel = RouletteViewModel()
+    // MARK: - View Model -
+    
+    private let viewModel = RouletteViewModel()
+    
+    // MARK: - Life cycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +48,16 @@ class RouletteView: UIViewController {
         labelMessage.startTypewritingAnimation(completion: nil)
     }
     
-    func setupAppearance() {
+    // MARK: - Appearance -
+    
+    private func setupAppearance() {
         labelMessage.typingTimeInterval = 0.03
         buttonSpin.backgroundColor = HexColor.secondary.color
     }
     
-    func setupBindings() {
+    // MARK: - Bindings -
+    
+    private func setupBindings() {
         viewModel.isLabelMessageHidden.bind(to: labelMessage.reactive.isHidden)
         viewModel.isViewResultHidden.bind(to: viewResult.reactive.isHidden)
         viewModel.titleResult.bind(to: labelTitleResult.reactive.text)
@@ -57,6 +67,8 @@ class RouletteView: UIViewController {
         viewModel.rottenTomatoesResult.bind(to: labelRottenTomatoesResult.reactive.text)
         viewModel.overviewResult.bind(to: textViewOverviewResult.reactive.text)
     }
+    
+    // MARK: - Actions -
     
     @IBAction func buttonOpenVideoAction(_ sender: UIButton) {
         guard let path = viewModel.videoKey else {
@@ -72,6 +84,8 @@ class RouletteView: UIViewController {
         viewModel.doSpin()
     }
     
+    // MARK: - Segues -
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let viewController = segue.destination as? RouletteFilterView else {
             return
@@ -82,6 +96,8 @@ class RouletteView: UIViewController {
 }
 
 extension RouletteView: ViewModelDelegate {
+    // MARK: - View Model Delegate -
+    
     func reloadData() {
         imageViewResult.sd_setImage(with: viewModel.imageResultUrl, placeholderImage: #imageLiteral(resourceName: "default-image"))
         imageViewBackground.sd_setImage(with: viewModel.imageResultUrl, placeholderImage: #imageLiteral(resourceName: "default-image"))

@@ -9,7 +9,7 @@
 struct SearchServiceModel {
     let serviceModel = Singleton.shared.serviceModel
     
-    func getGenres(requestUrl: RequestUrl, handler: @escaping HandlerObject) {
+    func getGenres(requestUrl: RequestUrl, handler: @escaping Handler<MoviesGenres>) {
         let parameters: [String: Any] = [
             "language": Locale.preferredLanguages.first ?? ""
         ]
@@ -21,7 +21,7 @@ struct SearchServiceModel {
         })
     }
     
-    func getMoviesFromGenre(urlParameters: [String: Any], handler: @escaping HandlerObject) {
+    func getMoviesFromGenre(urlParameters: [String: Any], handler: @escaping Handler<SearchMoviesGenre>) {
         serviceModel.request(requestUrl: .searchByGenre, urlParameters: urlParameters, handlerObject: { (object) in
             guard let object = object else {
                 return
@@ -30,7 +30,7 @@ struct SearchServiceModel {
         })
     }
     
-    func doSearch(requestUrl: RequestUrl, urlParameters: [String: Any], handler: @escaping HandlerObject) {
+    func doSearch(requestUrl: RequestUrl, urlParameters: [String: Any], handler: @escaping Handler<MultiSearch>) {
         serviceModel.request(requestUrl: requestUrl,
                              urlParameters: urlParameters,
                              handlerObject: { (object) in

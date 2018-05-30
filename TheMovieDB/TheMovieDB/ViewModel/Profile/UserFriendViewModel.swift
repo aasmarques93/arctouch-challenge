@@ -68,10 +68,7 @@ class UserFriendViewModel: ViewModel {
     }
     
     private func getProfile() {
-        serviceModel.getProfile(facebookId: userFriend.facebookId) { [weak self] (object) in
-            guard let user = object as? User else {
-                return
-            }
+        serviceModel.getProfile(facebookId: userFriend.facebookId) { [weak self] (user) in
             self?.userDetail = user
             self?.delegate?.reloadData?()
         }
@@ -85,7 +82,7 @@ class UserFriendViewModel: ViewModel {
         let dictionary = [TVShow.SerializationKeys.id: showId]
         let tvShow = TVShow(object: dictionary)
         tvShowDetailServiceModel.getDetail(from: tvShow) { [weak self] (object) in
-            self?.tvShowDetail = object as? TVShowDetail
+            self?.tvShowDetail = object
         }
     }
     

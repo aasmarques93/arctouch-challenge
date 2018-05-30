@@ -143,12 +143,8 @@ class RegisterViewModel: ViewModel {
         }
         
         Loading.shared.start()
-        serviceModel.signup(username: username.value, email: email.value, password: password.value, handler: { [weak self] (object) in
+        serviceModel.signup(username: username.value, email: email.value, password: password.value, handler: { [weak self] (user) in
             Loading.shared.stop()
-            
-            guard let user = object as? User else {
-                return
-            }
             
             do {
                 try self?.showError(with: user)

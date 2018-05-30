@@ -10,6 +10,8 @@ import UIKit
 import YouTubePlayer
 
 class PlayerView: XibView {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var labelVideo: UILabel!
     @IBOutlet weak var playerView: YouTubePlayerView!    
 }

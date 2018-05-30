@@ -13,13 +13,24 @@ protocol TVShowViewCellDelegate: class {
 }
 
 class TVShowSectionViewCell: UITableViewCell {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var collectionView: CollectionView!
     @IBOutlet weak var labelMessageError: UILabel!
     
+    // MARK: - Delegate -
+    
     weak var delegate: TVShowViewCellDelegate?
     
+    // MARK: - Properties -
+    
+    private var selectedIndexPath: IndexPath?
+
+    // MARK: - View Model -
+    
     var viewModel: TVShowViewModel?
-    var selectedIndexPath: IndexPath?
+    
+    // MARK: - Setup -
     
     func setupView(at indexPath: IndexPath) {
         if let viewModel = viewModel {
@@ -46,6 +57,8 @@ class TVShowSectionViewCell: UITableViewCell {
 }
 
 extension TVShowSectionViewCell: CollectionViewDelegate {
+    // MARK: - CollectionViewDelegate -
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

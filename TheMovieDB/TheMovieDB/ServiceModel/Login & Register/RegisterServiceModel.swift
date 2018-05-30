@@ -14,7 +14,7 @@ struct RegisterServiceModel {
                 password: String? = nil,
                 name: String? = nil,
                 facebookId: String? = nil,
-                handler: @escaping HandlerObject) {
+                handler: @escaping Handler<User>) {
         
         var parameters = [String: Any]()
         

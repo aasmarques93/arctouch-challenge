@@ -144,11 +144,7 @@ class LoginViewModel: ViewModel {
         }
         
         Facebook.getUserLogged { [weak self] (object) in
-            guard let user = object as? User else {
-                return
-            }
-            
-            Singleton.shared.updateUser(with: user)
+            Singleton.shared.updateUser(with: object)
             
             self?.downloadUserPhoto()
             self?.signUpFacebookUser()
@@ -179,11 +175,7 @@ class LoginViewModel: ViewModel {
     }
     
     private func authenticateFacebookUser() {
-        serviceModel.authenticate(email: user.email, facebookId: user.facebookId, handler: { [weak self] (object) in
-            guard let user = object as? User else {
-                return
-            }
-            
+        serviceModel.authenticate(email: user.email, facebookId: user.facebookId, handler: { [weak self] (user) in
             do {
                 try self?.showError(with: user)
             } catch {
@@ -214,12 +206,8 @@ class LoginViewModel: ViewModel {
         }
         
         Loading.shared.start()
-        serviceModel.authenticate(email: email.value, password: password.value, handler: { [weak self] (object) in
+        serviceModel.authenticate(email: email.value, password: password.value, handler: { [weak self] (user) in
             Loading.shared.stop()
-            
-            guard let user = object as? User else {
-                return
-            }
             
             do {
                 try self?.showError(with: user)

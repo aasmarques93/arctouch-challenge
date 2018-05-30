@@ -11,7 +11,7 @@ struct ProfileServiceModel {
         return Singleton.shared.serviceModel
     }
     
-    func getProfile(handler: @escaping HandlerObject) {
+    func getProfile(handler: @escaping Handler<User>) {
         serviceModel.request(requestUrl: .profile,
                              environmentBase: .heroku,
                              handlerObject: { (object) in
@@ -23,9 +23,9 @@ struct ProfileServiceModel {
         })
     }
     
-    func doLogout(handler: HandlerObject? = nil) {
+    func doLogout(handler: HandlerCallback? = nil) {
         serviceModel.request(requestUrl: .logout, environmentBase: .heroku, handlerObject: { (object) in
-            handler?(object)
+            handler?()
         })
     }
 }

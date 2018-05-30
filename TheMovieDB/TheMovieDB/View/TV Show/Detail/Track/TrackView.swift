@@ -9,7 +9,10 @@
 import UIKit
 
 class TrackView: UITableViewController {
+    // MARK: - View Model -
     var viewModel: TrackViewModel?
+    
+    // MARK: - Life cycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +29,8 @@ class TrackView: UITableViewController {
         super.viewWillDisappear(animated)
         viewModel?.saveTrack()
     }
+    
+    // MARK: - Table view data source -
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel?.numberOfSeasons ?? 0
@@ -50,6 +55,8 @@ class TrackView: UITableViewController {
 }
 
 extension TrackView: TrackViewModelDelegate {
+    // MARK: - TrackViewModelDelegate -
+    
     func reloadData() {
         tableView.reloadData()
     }

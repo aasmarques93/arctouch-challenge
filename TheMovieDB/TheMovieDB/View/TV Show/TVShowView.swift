@@ -9,14 +9,22 @@
 import UIKit
 
 class TVShowView: UITableViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var viewHeaderLatestBanner: UIView!
     @IBOutlet weak var imageViewLatestBanner: UIImageView!
     @IBOutlet weak var labelLatestTitle: UILabel!
     
-    let searchHeaderView = SearchHeaderView.instantateFromNib(placeholder: Messages.searchTVShow.localized)
+    // MARK: - Properties -
     
-    let viewModel = TVShowViewModel(isMovie: false)
+    private let searchHeaderView = SearchHeaderView.instantateFromNib(placeholder: Messages.searchTVShow.localized)
+    
+    // MARK: - View Model -
+    
+    private let viewModel = TVShowViewModel(isMovie: false)
 
+    // MARK: - Life cycle -
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBindings()
@@ -33,10 +41,14 @@ class TVShowView: UITableViewController {
         viewModel.loadUserFriendsMoviesShows()
     }
     
-    func setupBindings() {
+    // MARK: - Bindings -
+    
+    private func setupBindings() {
         viewModel.latestImage.bind(to: imageViewLatestBanner.reactive.image)
         viewModel.latestTitle.bind(to: labelLatestTitle.reactive.text)
     }
+    
+    // MARK: - Actions -
 
     @IBAction func buttonLatestAction(_ sender: UIButton) {
         let viewController = instantiate(viewController: TVShowDetailView.self, from: .tvShow)

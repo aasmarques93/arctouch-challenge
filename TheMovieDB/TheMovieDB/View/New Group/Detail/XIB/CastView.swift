@@ -9,6 +9,8 @@
 import UIKit
 
 class CastView: XibView {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var imageViewCharacter: UIImageView!
     @IBOutlet weak var labelCharacter: UILabel!
     @IBOutlet weak var labelName: UILabel!

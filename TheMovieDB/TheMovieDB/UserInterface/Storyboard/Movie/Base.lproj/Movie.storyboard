@@ -856,7 +856,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewCell" rowHeight="100" id="NJD-cq-jgB">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewViewCell" rowHeight="100" id="NJD-cq-jgB" customClass="ReviewViewCell" customModule="TheMovieDB" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NJD-cq-jgB" id="WmG-lZ-x6m">
@@ -890,6 +890,10 @@
                                         <constraint firstItem="Wg2-ix-YdY" firstAttribute="leading" secondItem="WmG-lZ-x6m" secondAttribute="leading" constant="8" id="fyF-7G-ELL"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="labelAuthor" destination="Wg2-ix-YdY" id="VaG-4d-Nt7"/>
+                                    <outlet property="labelContent" destination="gHK-9F-HwF" id="UYj-Nl-Wf8"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

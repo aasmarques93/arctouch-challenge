@@ -10,27 +10,13 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+typealias HandlerCallback = () -> Swift.Void
 typealias HandlerObject = (Any?) -> Swift.Void
+typealias Handler<Element> = (Element) -> Swift.Void
 
 // MARK: - Service Model -
 
 struct ServiceModel {
-    // MARK: - Properties -
-    var url: String?
-    var parameters: [String: Any]?
-    
-    // MARK: - Constructors -
-    init() { }
-    
-    init(url: String?) {
-        self.url = url
-    }
-    
-    init(url: String?, parameters: [String: Any]?) {
-        self.url = url
-        self.parameters = parameters
-    }
-    
     // MARK: - Service Delegate Methods -
     
     func request(method: HTTPMethod = .get,
@@ -42,7 +28,7 @@ struct ServiceModel {
                  handlerObject: @escaping HandlerObject,
                  handlerJson: HandlerObject? = nil) {
         
-        if environmentBase == .mock {
+        guard environmentBase != .mock else {
             JSONWrapper.json(from: requestUrl) { (json) in
                 if let json = json { handlerObject(json) }
             }

@@ -11,6 +11,8 @@ import Bond
 import YouTubePlayer
 
 class MovieDetailView: UITableViewController {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var labelAverage: UILabel!
     @IBOutlet weak var labelDate: UILabel!
     @IBOutlet weak var labelRuntime: UILabel!
@@ -33,7 +35,9 @@ class MovieDetailView: UITableViewController {
     @IBOutlet weak var labelRate: UILabel!
     @IBOutlet weak var labelRateResult: UILabel!
     
-    enum DetailRow: Int {
+    // MARK: - Properties -
+    
+    private enum DetailRow: Int {
         case buttons = 0
         case rating = 1
         case general = 2
@@ -46,15 +50,18 @@ class MovieDetailView: UITableViewController {
         case reviews = 9
     }
     
-    var reviewsView: ReviewsView?
-    var viewModel: MovieDetailViewModel?
-    var isRatingVisible = false {
+    private var reviewsView: ReviewsView?
+    private var isRatingVisible = false {
         didSet {
             tableView.beginUpdates()
             tableView.reloadData()
             tableView.endUpdates()
         }
     }
+
+    // MARK: - View Model -
+    
+    var viewModel: MovieDetailViewModel?
         
     // MARK: - Life cycle -
     
@@ -78,7 +85,7 @@ class MovieDetailView: UITableViewController {
     
     // MARK: - View model bindings -
     
-    func setupBindings() {
+    private func setupBindings() {
         viewModel?.average.bind(to: labelAverage.reactive.text)
         viewModel?.date.bind(to: labelDate.reactive.text)
         viewModel?.runtime.bind(to: labelRuntime.reactive.text)
@@ -92,7 +99,7 @@ class MovieDetailView: UITableViewController {
     
     // MARK: - Appearance -
     
-    func setupAppearance() {
+    private func setupAppearance() {
         title = viewModel?.movieName
         
         carouselVideos.type = .linear
@@ -106,7 +113,7 @@ class MovieDetailView: UITableViewController {
         setupRating()
     }
     
-    func setupRating() {
+    private func setupRating() {
         guard let value = viewModel?.rateValue else {
             return
         }
@@ -117,13 +124,13 @@ class MovieDetailView: UITableViewController {
         setRateImage(with: value)
     }
     
-    func setRateImage(with value: Float) {
+    private func setRateImage(with value: Float) {
         buttonRate.setImage(value >= 4 ? #imageLiteral(resourceName: "happy-emoji-filled") : value >= 2 ? #imageLiteral(resourceName: "neutral-emoji") : #imageLiteral(resourceName: "sad-emoji"), for: .normal)
     }
     
     // MARK: - Emoji Rate View -
     
-    func setupEmojiRateView() {
+    private func setupEmojiRateView() {
         emojiRateView.rateColorRange = (HexColor.accent.color, HexColor.secondary.color)
         emojiRateView.rateValueChangeCallback = { [weak self] (rateValue: Float) -> Void in
             self?.viewModel?.setRateResultValue(rateValue.rounded())
@@ -136,7 +143,7 @@ class MovieDetailView: UITableViewController {
         }
     }
     
-    // MARK: - IBAction -
+    // MARK: - Actions -
     
     @IBAction func buttonAddAction(_ sender: UIButton) {
         viewModel?.toggleAddYourListMovie()

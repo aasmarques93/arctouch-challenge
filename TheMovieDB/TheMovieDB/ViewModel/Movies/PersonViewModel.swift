@@ -125,7 +125,7 @@ class PersonViewModel: ViewModel {
         }
 
         serviceModel.getImages(from: idPerson) { [weak self] (object) in
-            guard let object = object as? PersonImagesList, let results = object.results else {
+            guard let results = object.results else {
                 return
             }
             self?.arrayImages = results

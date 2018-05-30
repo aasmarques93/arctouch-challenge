@@ -9,7 +9,7 @@
 struct MoviesServiceModel {
     let serviceModel = Singleton.shared.serviceModel
     
-    func getMovies(urlParameters: [String: Any]? = nil, requestUrl: RequestUrl, handler: @escaping HandlerObject) {
+    func getMovies(urlParameters: [String: Any]? = nil, requestUrl: RequestUrl, handler: @escaping Handler<MoviesList>) {
         serviceModel.request(requestUrl: requestUrl, urlParameters: urlParameters, handlerObject: { (object) in
             guard let object = object else {
                 return
@@ -18,7 +18,7 @@ struct MoviesServiceModel {
         })
     }
     
-    func getLatest(handler: @escaping HandlerObject) {
+    func getLatest(handler: @escaping Handler<Movie>) {
         let urlParameters: [String: Any] = [
             "language": Locale.preferredLanguages.first ?? ""
         ]

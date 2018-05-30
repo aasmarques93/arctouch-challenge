@@ -9,6 +9,8 @@
 import UIKit
 
 class SeasonView: XibView {
+    // MARK: - Outlets -
+    
     @IBOutlet weak var imageViewPhoto: UIImageView!
     
     @IBOutlet weak var labelName: UILabel!

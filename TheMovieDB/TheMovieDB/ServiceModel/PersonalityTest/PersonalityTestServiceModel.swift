@@ -9,7 +9,7 @@
 struct PersonalityTestServiceModel {
     let serviceModel = Singleton.shared.serviceModel
     
-    func getPersonality(requestUrl: RequestUrl, handler: @escaping HandlerObject) {
+    func getPersonality(requestUrl: RequestUrl, handler: @escaping Handler<Personality>) {
         serviceModel.request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
             guard let object = object else {
                 return
@@ -24,7 +24,7 @@ struct PersonalityTestServiceModel {
               dramaPercentage: Float?,
               thrillerPercentage: Float?,
               documentaryPercentage: Float?,
-              handler: HandlerObject? = nil) {
+              handler: Handler<User>? = nil) {
         
         var parameters = [String: Any]()
         

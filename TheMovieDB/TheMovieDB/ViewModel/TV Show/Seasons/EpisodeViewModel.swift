@@ -51,7 +51,7 @@ class EpisodeViewModel: ViewModel {
                                season: episode?.seasonNumber,
                                episode: episode?.episodeNumber) { [weak self] (object) in
 
-            guard let object = object as? EpisodeImagesList, let results = object.results else {
+            guard let results = object.results else {
                 return
             }
             self?.arrayImages = results

@@ -10,7 +10,7 @@ import UIKit
 import Bond
 
 class RouletteFilterView: UITableViewController {
-    var viewModel: RouletteViewModel?
+    // MARK: - Outlets -
     
     @IBOutlet weak var labelGenres: UILabel!
     @IBOutlet weak var labelIMDB: UILabel!
@@ -19,11 +19,19 @@ class RouletteFilterView: UITableViewController {
     @IBOutlet weak var switchMovies: UISwitch!
     @IBOutlet weak var switchTVShows: UISwitch!
     
+    // MARK: - View Model -
+    
+    var viewModel: RouletteViewModel?
+    
+    // MARK: - Life cycle -
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         title = Titles.filter.localized
         setupBindings()
     }
+    
+    // MARK: - Bindings -
     
     func setupBindings() {
         viewModel?.genres.bind(to: labelGenres.reactive.text)
@@ -32,6 +40,8 @@ class RouletteFilterView: UITableViewController {
         viewModel?.isMoviesOn.bidirectionalBind(to: switchMovies.reactive.isOn)
         viewModel?.isTVShowsOn.bidirectionalBind(to: switchTVShows.reactive.isOn)
     }
+    
+    // MARK: - Table view data source -
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

@@ -13,7 +13,7 @@ struct LoginServiceModel {
                       email: String? = nil,
                       password: String? = nil,
                       facebookId: String? = nil,
-                      handler: HandlerObject? = nil) {
+                      handler: Handler<User>? = nil) {
         
         var parameters = [String: Any]()
 
