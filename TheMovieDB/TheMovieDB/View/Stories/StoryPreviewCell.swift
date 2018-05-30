@@ -19,11 +19,7 @@ class StoryPreviewCell: UICollectionViewCell {
     
     func setupView(at index: Int) {
         setupAppearance()
-        
-        if let url = viewModel?.storyPreviewImagePathUrl(at: index) {
-            imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], completed: nil)
-        }
-        
+        imageView.sd_setImage(with: viewModel?.storyPreviewImagePathUrl(at: index), placeholderImage: #imageLiteral(resourceName: "default-image"))
         labelTitle.text = viewModel?.storyPreviewTitle(at: index)
     }
     

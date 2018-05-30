@@ -9,9 +9,9 @@
 class TVShowViewModel: MoviesShowsViewModel {
     // MARK: - Properties -
     
-    // MARK: Sugested
-    private var arraySugested = [TVShow]()
-    var numberOfSugested: Int { return arraySugested.count }
+    // MARK: Suggested
+    private var arraySuggested = [TVShow]()
+    var numberOfSuggested: Int { return arraySuggested.count }
     
     // MARK: Airing today
     private var arrayAiringToday = [TVShow]()
@@ -121,7 +121,7 @@ class TVShowViewModel: MoviesShowsViewModel {
         }
     }
     
-    private func addTVShowsToSugested(_ results: [TVShow]) {
+    private func addTVShowsToSuggested(_ results: [TVShow]) {
         guard let userPersonalityType = Singleton.shared.userPersonalityType, let genres = userPersonalityType.genres else {
             return
         }
@@ -133,7 +133,7 @@ class TVShowViewModel: MoviesShowsViewModel {
                 }
                 return genreIds.contains { $0 == id }
             }
-            let result = self?.arraySugested.contains {
+            let result = self?.arraySuggested.contains {
                 let id = $0.id
                 let map = array.map { $0.id }
                 return map.contains { $0 == id }
@@ -141,7 +141,7 @@ class TVShowViewModel: MoviesShowsViewModel {
             guard let contains = result, !contains else {
                 return
             }
-            self?.arraySugested.append(contentsOf: array)
+            self?.arraySuggested.append(contentsOf: array)
         }
         
         getLatest()
@@ -152,12 +152,12 @@ class TVShowViewModel: MoviesShowsViewModel {
             return
         }
         
-        latestShow = arraySugested.randomElement()
+        latestShow = arraySuggested.randomElement()
     }
     
     private func addTVShowsToArray(_ results: [TVShow], section: SectionsType) {
         switch section {
-        case .sugested:
+        case .Suggested:
             break
         case .airingToday:
             arrayAiringToday.append(contentsOf: results)
@@ -171,7 +171,7 @@ class TVShowViewModel: MoviesShowsViewModel {
             return
         }
         
-        addTVShowsToSugested(results)
+        addTVShowsToSuggested(results)
     }
     
     // MARK: - TV Show methods -
@@ -183,8 +183,8 @@ class TVShowViewModel: MoviesShowsViewModel {
         switch sectionType {
         case .netflix:
             return numberOfNetflix
-        case .sugested:
-            return numberOfSugested
+        case .Suggested:
+            return numberOfSuggested
         case .friendsWatching:
             return numberOfUserFriendsShows
         case .airingToday:
@@ -223,8 +223,8 @@ class TVShowViewModel: MoviesShowsViewModel {
             return nil
         }
         switch sectionType {
-        case .sugested:
-            return arraySugested
+        case .Suggested:
+            return arraySuggested
         case .friendsWatching:
             return arrayUserFriendsShows
         case .airingToday:

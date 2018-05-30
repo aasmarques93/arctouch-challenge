@@ -51,11 +51,19 @@ class SearchViewModel: ViewModel {
         }
     }
     
-    // MARK: - View Model -
+    // MARK: - Search Cell -
     
-    func searchCellViewModel(at indexPath: IndexPath) -> SearchCellViewModel {
-        return SearchCellViewModel(object: arrayGenres[indexPath.row])
+    func titleGenre(at indexPath: IndexPath) -> String? {
+        return arrayGenres[indexPath.row].name
     }
+    
+    func imageUrl(at indexPath: IndexPath) -> URL? {
+        let name = arrayGenres[indexPath.row].name ?? ""
+        let path = "/image/\(name.replacingOccurrences(of: " ", with: ""))"
+        return URL(string: Singleton.shared.serviceModel.imageUrl(with: path, environmentBase: .heroku))
+    }
+    
+    // MARK: - View Model -
     
     private func searchResultViewModel(at indexPath: IndexPath) -> SearchResultViewModel? {
         return SearchResultViewModel(selectedGenre: arrayGenres[indexPath.row], requestUrl: .searchMovie)

@@ -47,6 +47,9 @@ PODS:
   - FCAlertView (1.4.0)
   - FLAnimatedImage (1.0.12)
   - GhostTypewriter (1.0.0)
+  - NVActivityIndicatorView (4.2.0):
+    - NVActivityIndicatorView/Presenter (= 4.2.0)
+  - NVActivityIndicatorView/Presenter (4.2.0)
   - ProcessLoadingView (0.1.1)
   - RAMAnimatedTabBarController (3.1.0)
   - ReactiveKit (3.9.4)
@@ -69,6 +72,7 @@ DEPENDENCIES:
   - FacebookShare
   - FCAlertView
   - GhostTypewriter
+  - NVActivityIndicatorView
   - ProcessLoadingView
   - RAMAnimatedTabBarController
   - SDWebImage
@@ -96,6 +100,7 @@ SPEC REPOS:
     - FCAlertView
     - FLAnimatedImage
     - GhostTypewriter
+    - NVActivityIndicatorView
     - ProcessLoadingView
     - RAMAnimatedTabBarController
     - ReactiveKit
@@ -123,6 +128,7 @@ SPEC CHECKSUMS:
   FCAlertView: fdddd63381898c1d1a5a20c9f084fbd2c6d12f8b
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GhostTypewriter: 70c6f827ada4716bda0550046b01bf783331ee00
+  NVActivityIndicatorView: 75c9634073e03b31d7e2748cd2417feab1206195
   ProcessLoadingView: 7f0c959fcef37ac0075d068b447099c1327c9d42
   RAMAnimatedTabBarController: 3c40472db54eda74d465583f8c7f571b206c54d6
   ReactiveKit: cafbc91f72751d09baa9a3c3cf6d82b646328a6c
@@ -131,6 +137,6 @@ SPEC CHECKSUMS:
   XCDYouTubeKit: dccfe0c17dd5c5187969ec27e93069573badb08f
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: c15ae2804e51aad98d0c76f7cdd4dfaac677ecf0
+PODFILE CHECKSUM: 95fa7513d6a1cf50ac71fd13ff83cfe266850e20
 
 COCOAPODS: 1.5.0.beta.1

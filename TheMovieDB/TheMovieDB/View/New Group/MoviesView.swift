@@ -35,7 +35,7 @@ class MoviesView: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppDelegate.shared.unlockOrientation()
-        viewModel.loadSugestedMovies()
+        viewModel.loadSuggestedMovies()
         viewModel.loadNetflixMoviesShows()
         viewModel.loadUserFriendsMoviesShows()
     }
@@ -154,6 +154,10 @@ extension MoviesView: MoviesShowsViewModelDelegate {
     
     func didReloadLatestBanner() {
         tableView.tableHeaderView = viewHeaderLatestBanner
+        viewHeaderLatestBanner.alpha = 0
+        UIView.animate(withDuration: 0.3) {
+            self.viewHeaderLatestBanner.alpha = 1
+        }
     }
     
     func reloadData(at index: Int) {

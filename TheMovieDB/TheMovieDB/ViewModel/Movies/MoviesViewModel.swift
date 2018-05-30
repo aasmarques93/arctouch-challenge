@@ -11,9 +11,9 @@ import Bond
 class MoviesViewModel: MoviesShowsViewModel {
     // MARK: - Properties -
     
-    // MARK: Sugested
-    private var arraySugestedMovies = [Movie]() { didSet { delegate?.reloadData?() } }
-    var numberOfSugestedMovies: Int { return arraySugestedMovies.count }
+    // MARK: Suggested
+    private var arraySuggestedMovies = [Movie]() { didSet { delegate?.reloadData?() } }
+    var numberOfSuggestedMovies: Int { return arraySuggestedMovies.count }
     
     // MARK: Now Playing
     private var arrayNowPlayingMovies = [Movie]()
@@ -74,8 +74,8 @@ class MoviesViewModel: MoviesShowsViewModel {
         getMovies(section: section)
     }
     
-    func loadSugestedMovies() {
-        guard arraySugestedMovies.isEmpty else {
+    func loadSuggestedMovies() {
+        guard arraySuggestedMovies.isEmpty else {
             return
         }
         
@@ -93,7 +93,7 @@ class MoviesViewModel: MoviesShowsViewModel {
             guard let object = object as? SearchMoviesGenre, let results = object.results else {
                 return
             }
-            let result = self?.arraySugestedMovies.contains {
+            let result = self?.arraySuggestedMovies.contains {
                 let id = $0.id
                 let map = results.map { $0.id }
                 return map.contains { $0 == id }
@@ -105,8 +105,8 @@ class MoviesViewModel: MoviesShowsViewModel {
                 return
             }
             self?.getLatest()
-            self?.addMoviesToArray(array, section: .sugested)
-            self?.reloadData(at: SectionsType.sugested.index(isMovie: self?.isMovie ?? true))
+            self?.addMoviesToArray(array, section: .Suggested)
+            self?.reloadData(at: SectionsType.Suggested.index(isMovie: self?.isMovie ?? true))
         }
     }
     
@@ -115,7 +115,7 @@ class MoviesViewModel: MoviesShowsViewModel {
             return
         }
         
-        latestMovie = arraySugestedMovies.randomElement()
+        latestMovie = arraySuggestedMovies.randomElement()
     }
     
     private func getMovies(section: SectionsType) {
@@ -169,8 +169,8 @@ class MoviesViewModel: MoviesShowsViewModel {
     
     private func addMoviesToArray(_ results: [Movie], section: SectionsType) {
         switch section {
-        case .sugested:
-            arraySugestedMovies.append(contentsOf: results)
+        case .Suggested:
+            arraySuggestedMovies.append(contentsOf: results)
         case .popular:
             arrayPopularMovies.append(contentsOf: results)
         case .topRated:
@@ -193,8 +193,8 @@ class MoviesViewModel: MoviesShowsViewModel {
         switch sectionType {
         case .netflix:
             return numberOfNetflix
-        case .sugested:
-            return numberOfSugestedMovies
+        case .Suggested:
+            return numberOfSuggestedMovies
         case .friendsWatching:
             return numberOfUserFriendsMovies
         case .popular:
@@ -233,8 +233,8 @@ class MoviesViewModel: MoviesShowsViewModel {
             return nil
         }
         switch sectionType {
-        case .sugested:
-            return arraySugestedMovies
+        case .Suggested:
+            return arraySuggestedMovies
         case .friendsWatching:
             return arrayUserFriendsMovies
         case .popular:

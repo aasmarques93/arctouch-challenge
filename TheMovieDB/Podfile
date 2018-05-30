@@ -21,6 +21,7 @@ target 'TheMovieDB' do
   pod 'FacebookShare'
   pod 'XCDYouTubeKit'
   pod 'FCAlertView'
+  pod 'NVActivityIndicatorView'
   
   # Pods for TheMovieDB
 

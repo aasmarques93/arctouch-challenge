@@ -12,12 +12,10 @@ class SearchViewCell: UICollectionViewCell {
     @IBOutlet weak var imageViewPhoto: UIImageView!
     @IBOutlet weak var labelGenre: UILabel!
     
-    var viewModel: SearchCellViewModel?
+    var viewModel: SearchViewModel?
     
-    func setupView() {
-        viewModel?.photo.bind(to: imageViewPhoto.reactive.image)
-        viewModel?.title.bind(to: labelGenre.reactive.text)
-        
-        viewModel?.loadData()
+    func setupView(at indexPath: IndexPath) {
+        labelGenre.text = viewModel?.titleGenre(at: indexPath)
+        imageViewPhoto.sd_setImage(with: viewModel?.imageUrl(at: indexPath))
     }
 }

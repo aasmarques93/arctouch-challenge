@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class LoadingView: UIView {
-    var activityIndicator: UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    var activityIndicator: NVActivityIndicatorView {
+        let type = NVActivityIndicatorType(rawValue: Int.random(lower: 0, upper: 32))
+        let activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 16, width: 40, height: 40), type: type)
         
         activityIndicator.center = CGPoint(x: self.center.x, y: self.center.y)
         activityIndicator.color = HexColor.secondary.color
@@ -43,7 +45,7 @@ class LoadingView: UIView {
     init(frame: CGRect = .zero, text: String? = nil, containsBackgroundColor: Bool = true) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+        self.backgroundColor = HexColor.primary.color.withAlphaComponent(0.7)
         
         if !containsBackgroundColor { self.backgroundColor = UIColor.clear }
         
@@ -83,10 +85,13 @@ struct Loading {
     
     var loadingView: LoadingView?
     
-    mutating func start() {
+    mutating func start(backgroundColor: UIColor? = nil) {
         var frame: CGRect = .zero
         if let window = AppDelegate.shared.window { frame = window.frame }
         loadingView = LoadingView(frame: frame)
+        if let backgroundColor = backgroundColor {
+            loadingView?.backgroundColor = backgroundColor
+        }
         loadingView?.startInWindow()
     }
     

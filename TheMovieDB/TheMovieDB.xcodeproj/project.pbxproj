@@ -81,7 +81,6 @@
 		ED2AA63120A30FAE00AA0DF5 /* ChartGenericChartCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA62820A30B1100AA0DF5 /* ChartGenericChartCell.xib */; };
 		ED34BCE020B7417500CBF4DF /* UserRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34BCDF20B7417500CBF4DF /* UserRating.swift */; };
 		ED34BCE320B815C100CBF4DF /* SearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34BCE220B815C100CBF4DF /* SearchViewCell.swift */; };
-		ED34BCE520B816E600CBF4DF /* SearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED34BCE420B816E600CBF4DF /* SearchCellViewModel.swift */; };
 		ED3833E42093324C0079D48F /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833E32093324C0079D48F /* PersonView.swift */; };
 		ED3833E6209332590079D48F /* PersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833E5209332590079D48F /* PersonViewModel.swift */; };
 		ED3833E8209339880079D48F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3833E7209339870079D48F /* Person.swift */; };
@@ -344,7 +343,6 @@
 		ED2AA62B20A30BF000AA0DF5 /* PersonalityTestResultDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestResultDetailsView.swift; sourceTree = "<group>"; };
 		ED34BCDF20B7417500CBF4DF /* UserRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRating.swift; sourceTree = "<group>"; };
 		ED34BCE220B815C100CBF4DF /* SearchViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCell.swift; sourceTree = "<group>"; };
-		ED34BCE420B816E600CBF4DF /* SearchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellViewModel.swift; sourceTree = "<group>"; };
 		ED3833E32093324C0079D48F /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
 		ED3833E5209332590079D48F /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
 		ED3833E7209339870079D48F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -780,7 +778,6 @@
 			isa = PBXGroup;
 			children = (
 				ED16D8832059A008002A0B2C /* SearchViewModel.swift */,
-				ED34BCE420B816E600CBF4DF /* SearchCellViewModel.swift */,
 				ED3834412094F7600079D48F /* SearchResultViewModel.swift */,
 			);
 			path = Search;
@@ -1864,6 +1861,7 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GhostTypewriter/GhostTypewriter.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/ProcessLoadingView/ProcessLoadingView.framework",
 				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveKit/ReactiveKit.framework",
@@ -1890,6 +1888,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GhostTypewriter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProcessLoadingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMAnimatedTabBarController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveKit.framework",
@@ -2015,7 +2014,6 @@
 				ED4201A120A754F6005D5FF3 /* LoginViewModel.swift in Sources */,
 				ED38345320973FBF0079D48F /* EpisodeViewModel.swift in Sources */,
 				ED6A6D8420B587A1004636B2 /* UserPersonality.swift in Sources */,
-				ED34BCE520B816E600CBF4DF /* SearchCellViewModel.swift in Sources */,
 				ED0C3D6820AA853900F28150 /* StoryPreviewCell.swift in Sources */,
 				ED95295920B4AD21007936B6 /* UserFriendsServiceModel.swift in Sources */,
 				ED3833E42093324C0079D48F /* PersonView.swift in Sources */,

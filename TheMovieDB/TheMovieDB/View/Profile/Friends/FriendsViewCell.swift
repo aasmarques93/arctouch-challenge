@@ -18,7 +18,6 @@ class FriendsViewCell: UITableViewCell {
     var viewModel: UserFriendViewModel?
     
     func setupView() {
-        viewModel?.backgroundColor.bind(to: viewBackground.reactive.backgroundColor)
         viewModel?.picture.bind(to: imageViewUserFriend.reactive.image)
         viewModel?.name.bind(to: labelUserFriendName.reactive.text)
         viewModel?.personality.bind(to: labelUserFriendPersonality.reactive.text)

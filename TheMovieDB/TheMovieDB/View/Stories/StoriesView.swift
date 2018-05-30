@@ -42,7 +42,7 @@ class StoriesView: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAppearance()
-        imageViewHeader.sd_setImage(with: viewModel?.mainUrlImage(at: pageIndex), placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], completed: nil)
+        imageViewHeader.sd_setImage(with: viewModel?.mainUrlImage(at: pageIndex), placeholderImage: #imageLiteral(resourceName: "default-image"))
         labelTitle.text = viewModel?.title(at: pageIndex)
     }
     

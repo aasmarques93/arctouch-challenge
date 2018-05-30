@@ -26,7 +26,7 @@ class PersonalityTestViewCell: UITableViewCell {
         tableView.dataSource = self
         tableView.reloadData()
         
-        labelText.typingTimeInterval = Singleton.shared.typingTimeInterval
+        labelText.typingTimeInterval = Constants.typingTimeInterval
         labelText.startTypewritingAnimation {
             self.viewModel?.didFinishTypewriting()
         }
@@ -67,7 +67,7 @@ extension PersonalityTestViewCell: UITableViewDataSource {
                 
             }
             
-            label.typingTimeInterval = Singleton.shared.typingTimeInterval
+            label.typingTimeInterval = Constants.typingTimeInterval
             label.startTypewritingAnimation {
                 self.viewModel?.didFinishTypewriting()
             }

@@ -84,7 +84,9 @@ class SearchResultViewModel: ViewModel {
         
         isDataLoading = true
         
+        Loading.shared.start()
         serviceModel.doSearch(requestUrl: requestUrl, urlParameters: parameters) { [weak self] (object) in
+            Loading.shared.stop()
             self?.isDataLoading = false
             
             guard let object = object as? MultiSearch, let results = object.results else {

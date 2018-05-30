@@ -51,8 +51,8 @@ extension SearchView: CollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(SearchViewCell.self, for: indexPath)
-        cell.viewModel = viewModel.searchCellViewModel(at: indexPath)
-        cell.setupView()
+        cell.viewModel = viewModel
+        cell.setupView(at: indexPath)
         return cell
     }
     

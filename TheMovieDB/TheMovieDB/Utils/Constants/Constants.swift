@@ -11,6 +11,7 @@ import UIKit
 struct Constants {
     static let defaultDateFormat = "dd/MM/yyyy"
     static let dateFormatIsoTime = "yyyy-MM-dd'T'hh:ss:mm"
+    static let typingTimeInterval = 0.01
 }
 
 enum Titles: String {

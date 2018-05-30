@@ -249,3 +249,9 @@ extension UITableViewController {
         return label
     }
 }
+
+extension Int {
+    static func random(lower: Int, upper: Int) -> Int {
+        return lower + Int(arc4random_uniform(UInt32(upper - lower + 1)))
+    }
+}

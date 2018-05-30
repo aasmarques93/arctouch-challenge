@@ -22,14 +22,14 @@ class SearchResultViewCell: UITableViewCell {
         if let value = viewModel?.movieOverview(at: indexPath) { textViewOverview.text = value }
         
         activityIndicator.startAnimating()
-        if let url = viewModel?.posterImageUrl(at: indexPath) {
-            imageViewMovie.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], progress: nil) { (image, error, type, url) in
-                self.activityIndicator.isHidden = true
-            }
+        imageViewMovie.sd_setImage(with: viewModel?.posterImageUrl(at: indexPath),
+                                   placeholderImage: #imageLiteral(resourceName: "default-image"),
+                                   options: [],
+                                   progress: nil) { (image, error, type, url) in
+                
+                                    self.activityIndicator.isHidden = true
         }
         
-        if let url = viewModel?.backgroundImageUrl(at: indexPath) {
-            imageViewBackground.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "default-image"))
-        }
+        imageViewBackground.sd_setImage(with: viewModel?.backgroundImageUrl(at: indexPath), placeholderImage: #imageLiteral(resourceName: "default-image"))
     }
 }

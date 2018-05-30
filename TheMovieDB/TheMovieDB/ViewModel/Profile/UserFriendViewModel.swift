@@ -19,7 +19,6 @@ class UserFriendViewModel: ViewModel {
     // MARK: - Observables -
     var isMessageErrorHidden = Observable<Bool>(false)
     
-    var backgroundColor = Observable<UIColor>(UIColor.clear)
     var picture = Observable<UIImage>(#imageLiteral(resourceName: "empty-user"))
     var name = Observable<String?>(nil)
     var email = Observable<String?>(nil)
@@ -31,10 +30,6 @@ class UserFriendViewModel: ViewModel {
         didSet {
             getShowTrackDetail()
             personality.value = userDetail?.personality?.title
-            guard let color = userDetail?.personality?.color else {
-                return
-            }
-            backgroundColor.value = UIColor(hexString: color)
         }
     }
     var tvShowDetail: TVShowDetail? {

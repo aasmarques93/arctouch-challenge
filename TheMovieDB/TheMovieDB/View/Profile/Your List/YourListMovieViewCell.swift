@@ -16,12 +16,13 @@ class YourListMovieViewCell: UICollectionViewCell {
     
     func setupView(at indexPath: IndexPath) {
         activityIndicator.startAnimating()
-        guard let url = viewModel?.imagePathUrl(at: indexPath) else {
-            return
-        }
         activityIndicator.isHidden = false
-        imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], progress: nil) { (image, error, type, url) in
-            self.activityIndicator.isHidden = true
+        imageView.sd_setImage(with: viewModel?.imagePathUrl(at: indexPath),
+                              placeholderImage: #imageLiteral(resourceName: "default-image"),
+                              options: [],
+                              progress: nil) { (image, error, type, url) in
+            
+                                self.activityIndicator.isHidden = true
         }
     }
 }

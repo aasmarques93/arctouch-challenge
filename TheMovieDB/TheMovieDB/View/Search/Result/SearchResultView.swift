@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import GhostTypewriter
 
 class SearchResultView: UITableViewController {
     @IBOutlet var viewHeader: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet var labelEmptyMessage: TypewriterLabel!
     
     var viewModel: SearchResultViewModel?
     
@@ -30,16 +32,17 @@ class SearchResultView: UITableViewController {
     // MARK: - Table view data source -
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if let isMultipleSearch = viewModel?.isMultipleSearch, isMultipleSearch { return viewHeader.frame.height }
-        return 0
+        guard let isMultipleSearch = viewModel?.isMultipleSearch, isMultipleSearch else {
+            return 0
+        }
+        return viewHeader.frame.height
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let isMultipleSearch = viewModel?.isMultipleSearch, isMultipleSearch {
-            viewHeader.backgroundColor = HexColor.primary.color
-            return viewHeader
+        guard let isMultipleSearch = viewModel?.isMultipleSearch, isMultipleSearch else {
+            return nil
         }
-        return nil
+        return viewHeader
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -76,6 +79,11 @@ extension SearchResultView: ViewModelDelegate {
     
     func reloadData() {
         tableView.reloadData()
+        guard let numberOfSearchResults = viewModel?.numberOfSearchResults, numberOfSearchResults == 0 else {
+            return
+        }
+        tableView.tableHeaderView = labelEmptyMessage
+        labelEmptyMessage.startTypewritingAnimation(completion: nil)
     }
     
     func showAlert(message: String?) {

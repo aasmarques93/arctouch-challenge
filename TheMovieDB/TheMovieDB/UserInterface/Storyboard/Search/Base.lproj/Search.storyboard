@@ -164,11 +164,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="B3j-4O-XC1">
-                            <rect key="frame" x="0.0" y="338" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchResultViewCell" rowHeight="310" id="rFj-Yr-mVk" customClass="SearchResultViewCell" customModule="TheMovieDB" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="310"/>
@@ -292,11 +287,19 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="BWC-Pm-Tqd"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="labelEmptyMessage" destination="9MC-og-8TD" id="crR-1D-ETt"/>
                         <outlet property="segmentedControl" destination="P1v-Jg-qGa" id="jXY-8r-KDH"/>
                         <outlet property="viewHeader" destination="Ztb-fP-haa" id="yqx-Zf-1LJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6cw-xe-7cW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9MC-og-8TD" customClass="TypewriterLabel" customModule="GhostTypewriter">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" id="Ztb-fP-haa">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -313,13 +316,15 @@
                             </connections>
                         </segmentedControl>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="Ncm-5a-6zE" firstAttribute="trailing" secondItem="P1v-Jg-qGa" secondAttribute="trailing" constant="8" id="gE6-Fu-6D4"/>
                         <constraint firstItem="P1v-Jg-qGa" firstAttribute="leading" secondItem="Ncm-5a-6zE" secondAttribute="leading" constant="8" id="mcA-Xc-pS5"/>
                         <constraint firstItem="P1v-Jg-qGa" firstAttribute="top" secondItem="Ncm-5a-6zE" secondAttribute="top" constant="8" id="nQx-Ih-xih"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="Ncm-5a-6zE"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="primary"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </objects>
             <point key="canvasLocation" x="1641" y="2626"/>

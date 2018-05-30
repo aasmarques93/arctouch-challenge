@@ -63,9 +63,7 @@ class YourListViewModel: ViewModel {
     // MARK: - Service requests -
     
     func loadData() {
-        Singleton.shared.loadUserData { [weak self] (object) in
-            self?.delegate?.reloadData?()
-        }
+        
     }
     
     // MARK: - Movies Shows -

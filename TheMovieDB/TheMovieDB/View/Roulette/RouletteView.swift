@@ -83,8 +83,8 @@ class RouletteView: UIViewController {
 
 extension RouletteView: ViewModelDelegate {
     func reloadData() {
-        imageViewResult.sd_setImage(with: viewModel.imageResultUrl, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], completed: nil)
-        imageViewBackground.sd_setImage(with: viewModel.imageResultUrl, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], completed: nil)
+        imageViewResult.sd_setImage(with: viewModel.imageResultUrl, placeholderImage: #imageLiteral(resourceName: "default-image"))
+        imageViewBackground.sd_setImage(with: viewModel.imageResultUrl, placeholderImage: #imageLiteral(resourceName: "default-image"))
     }
     
     func showAlert(message: String?) {

@@ -39,7 +39,6 @@ class UserFriendDetailView: UITableViewController {
     }
     
     func setupBindings() {
-        viewModel?.backgroundColor.bind(to: viewImageBackground.reactive.backgroundColor)
         viewModel?.picture.bind(to: imageViewUserFriend.reactive.image)
         viewModel?.name.bind(to: labelUserFriendName.reactive.text)
         viewModel?.email.bind(to: labelUserFriendEmail.reactive.text)

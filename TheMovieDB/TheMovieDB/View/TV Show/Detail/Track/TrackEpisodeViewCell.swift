@@ -28,13 +28,13 @@ class TrackEpisodeViewCell: UICollectionViewCell {
         }
         
         activityIndicator.startAnimating()
-        guard let url = viewModel?.imagePathUrl else {
-            return
-        }
-        
         activityIndicator.isHidden = false
-        imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "default-image"), options: [], progress: nil) { (image, error, type, url) in
-            self.activityIndicator.isHidden = true
+        imageView.sd_setImage(with: viewModel?.imagePathUrl,
+                              placeholderImage: #imageLiteral(resourceName: "default-image"),
+                              options: [],
+                              progress: nil) { (image, error, type, url) in
+            
+                                self.activityIndicator.isHidden = true
         }
     }
 }

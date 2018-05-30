@@ -61,7 +61,7 @@ class PersonalityTestResultView: UIViewController {
         AppDelegate.shared.lockOrientation()
         setupBindings()
         setupAppearance()
-        labelResult.typingTimeInterval = Singleton.shared.typingTimeInterval
+        labelResult.typingTimeInterval = Constants.typingTimeInterval
         labelResult.startTypewritingAnimation(completion: nil)
     }
     
