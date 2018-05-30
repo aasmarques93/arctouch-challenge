@@ -67,6 +67,9 @@ class TVShowView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if viewModel.isTVShowEmpty(at: section) {
+            return section == 0 ? searchHeaderView.frame.height : 0
+        }
         return section == 0 ? searchHeaderView.frame.height + viewHeaderTitleHeight : viewHeaderTitleHeight
     }
     
@@ -94,7 +97,7 @@ class TVShowView: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if viewModel.isTVShowEmpty(at: indexPath) { return 44 }
+        if viewModel.isTVShowEmpty(at: indexPath.section) { return 0 }
         guard indexPath.section != 0 else {
             return StoryPreviewCell.cellSize.height
         }

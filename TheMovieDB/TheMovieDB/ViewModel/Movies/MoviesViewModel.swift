@@ -211,8 +211,8 @@ class MoviesViewModel: MoviesShowsViewModel {
         }
     }
     
-    func isMoviesEmpty(at indexPath: IndexPath) -> Bool {
-        return numberOfMovies(at: indexPath.section) == 0
+    func isMoviesEmpty(at section: Int) -> Bool {
+        return numberOfMovies(at: section) == 0
     }
     
     private func movie(at section: Int, row: Int) -> Movie? {

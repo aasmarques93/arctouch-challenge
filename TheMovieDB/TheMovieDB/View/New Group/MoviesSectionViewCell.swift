@@ -32,7 +32,7 @@ class MoviesSectionViewCell: UITableViewCell {
     
     func setupView(at indexPath: IndexPath) {
         if let viewModel = viewModel {
-            labelMessageError.isHidden = !viewModel.isMoviesEmpty(at: indexPath)
+            labelMessageError.isHidden = !viewModel.isMoviesEmpty(at: indexPath.section)
         } else {
             labelMessageError.isHidden = true
         }

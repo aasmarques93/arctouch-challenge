@@ -34,7 +34,7 @@ class TVShowSectionViewCell: UITableViewCell {
     
     func setupView(at indexPath: IndexPath) {
         if let viewModel = viewModel {
-            labelMessageError.isHidden = !viewModel.isTVShowEmpty(at: indexPath)
+            labelMessageError.isHidden = !viewModel.isTVShowEmpty(at: indexPath.section)
         } else {
             labelMessageError.isHidden = true
         }
