@@ -49,7 +49,9 @@ class PersonalityTestResultViewModel: ViewModel {
     // MARK: - Life cycle -
 
     init(userPersonality: UserPersonality? = Singleton.shared.user.personality) {
-        self.userPersonality = userPersonality
+        if userPersonality?.personalityTypeId != nil {
+            self.userPersonality = userPersonality
+        }
     }
     
     // MARK: - Chart -

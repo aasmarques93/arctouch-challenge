@@ -31,6 +31,8 @@ enum Messages: String {
     case movieAddedToSeenList = "Movie added to your seen list"
     case movieRemovedFromSeenList = "Movie removed from your seen list"
     
+    case withoutNetworkConnection = "You have lost your internet connection. Please try again later."
+    
     var localized: String {
         return NSLocalizedString(self.rawValue, comment: "")
     }

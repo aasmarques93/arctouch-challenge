@@ -209,6 +209,7 @@
 		EDB7371420BACF4600CC3F95 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB7371320BACF4600CC3F95 /* Profile.storyboard */; };
 		EDB7371A20BEC10C00CC3F95 /* PersonalityTestAnswerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7371920BEC10C00CC3F95 /* PersonalityTestAnswerViewCell.swift */; };
 		EDB7371C20BEC86C00CC3F95 /* ReviewViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7371B20BEC86C00CC3F95 /* ReviewViewCell.swift */; };
+		EDB7372120C00B8D00CC3F95 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB7372020C00B8C00CC3F95 /* Reachability.swift */; };
 		EDBAF882209FFE430089DE39 /* FabricUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAF881209FFE430089DE39 /* FabricUtils.swift */; };
 		EDC6C01420585A4400D843EC /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01220585A4400D843EC /* CollectionView.swift */; };
 		EDC6C01820585A5500D843EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC6C01720585A5500D843EC /* Date.swift */; };
@@ -484,6 +485,7 @@
 		EDB7371320BACF4600CC3F95 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		EDB7371920BEC10C00CC3F95 /* PersonalityTestAnswerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestAnswerViewCell.swift; sourceTree = "<group>"; };
 		EDB7371B20BEC86C00CC3F95 /* ReviewViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewCell.swift; sourceTree = "<group>"; };
+		EDB7372020C00B8C00CC3F95 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		EDBAF881209FFE430089DE39 /* FabricUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricUtils.swift; sourceTree = "<group>"; };
 		EDC6C01220585A4400D843EC /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		EDC6C01720585A5500D843EC /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -1414,6 +1416,14 @@
 			path = Person;
 			sourceTree = "<group>";
 		};
+		EDB7371F20C00B7D00CC3F95 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				EDB7372020C00B8C00CC3F95 /* Reachability.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		EDBAF880209FFE340089DE39 /* Fabric */ = {
 			isa = PBXGroup;
 			children = (
@@ -1483,6 +1493,7 @@
 		EDC6BFFF2058593B00D843EC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EDB7371F20C00B7D00CC3F95 /* Reachability */,
 				ED81CB7820AFD81C0056E2A8 /* PhotoPicker */,
 				ED4201B420A8685C005D5FF3 /* StoreReviewHelper */,
 				ED42018D20A699A1005D5FF3 /* Facebook */,
@@ -2064,6 +2075,7 @@
 				ED38340B20940DEB0079D48F /* TVShowServiceModel.swift in Sources */,
 				ED0C3D5B20AA2CD200F28150 /* Netflix.swift in Sources */,
 				ED4201AC20A76245005D5FF3 /* LoginServiceModel.swift in Sources */,
+				EDB7372120C00B8D00CC3F95 /* Reachability.swift in Sources */,
 				ED16D88C2059A3A0002A0B2C /* SearchResultViewCell.swift in Sources */,
 				ED08937D20585752004CC05F /* AppDelegate.swift in Sources */,
 				ED8D13F920B3756C00E6F1EB /* TrackViewModel.swift in Sources */,

@@ -58,13 +58,6 @@ extension PersonalityTestViewCell: UITableViewDataSource {
         cell.setSelectedView(backgroundColor: UIColor.clear)
         cell.viewModel = viewModel
         cell.setupView(at: indexPath)
-        
-        if let isAnswerSelected = viewModel?.isAnswerSelected(at: indexPath), isAnswerSelected {
-            tableView.isUserInteractionEnabled = false
-        } else {
-            tableView.isUserInteractionEnabled = true
-        }
-    
         return cell
     }
 }
@@ -86,6 +79,7 @@ extension PersonalityTestViewCell: UITableViewDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.viewModel?.didSelectAnswer(at: indexPath.row)
+            self.tableView.isUserInteractionEnabled = false
         }
     }
 }
@@ -95,8 +89,13 @@ extension PersonalityTestViewCell: PersonalityTestCellDelegate {
     // MARK: - PersonalityTestCellDelegate -
     
     func reloadData(at row: Int) {
+        tableView.isUserInteractionEnabled = false
         let indexPath = IndexPath(row: row, section: 0)
         tableView.insertRows(at: [indexPath], with: .bottom)
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
+    
+    func didFinishTypewritingAnimation() {
+        tableView.isUserInteractionEnabled = true
     }
 }

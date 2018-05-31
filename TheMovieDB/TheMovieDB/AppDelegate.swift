@@ -23,6 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         StoreReviewHelper.incrementAppOpenedCount()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         Fabric.with([Crashlytics.self])
+        Reachability.startListening { (status) in
+            if !status {
+                let alertController = UIAlertController(style: .alert)
+                alertController.show(message: Messages.withoutNetworkConnection.localized)
+            }
+        }
         return true
     }
     

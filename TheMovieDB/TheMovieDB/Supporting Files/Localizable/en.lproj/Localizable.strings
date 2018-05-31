@@ -75,6 +75,8 @@
 "Movie added to your seen list" = "Movie added to your seen list";
 "Movie removed from your seen list" = "Movie removed from your seen list";
 
+"You have lost your internet connection. Please try again later." = "You have lost your internet connection. Please try again later.";
+
 // Validation
 "Hey dude, You can start by creating an account" = "Hey dude, You can start by creating an account";
 "Invalid user" = "Invalid user";

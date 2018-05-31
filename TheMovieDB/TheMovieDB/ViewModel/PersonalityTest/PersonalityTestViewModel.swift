@@ -152,7 +152,9 @@ class PersonalityTestViewModel: ViewModel {
             return
         }
         
-        arrayQuestions.append(questions[currentStep])
+        var question = questions[currentStep]
+        question.answers?.shuffle()
+        arrayQuestions.append(question)
         delegate?.reloadData(at: currentStep)
     }
     

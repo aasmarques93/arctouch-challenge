@@ -10,6 +10,7 @@ import Bond
 
 protocol PersonalityTestCellDelegate: class {
     func reloadData(at row: Int)
+    func didFinishTypewritingAnimation()
 }
 
 protocol PersonalityTestCellViewModelDelegate: class {
@@ -68,6 +69,9 @@ class PersonalityTestCellViewModel: ViewModel {
     }
     
     func didSelectAnswer(at index: Int) {
+        guard index < arrayAnswers.count else {
+            return
+        }
         delegate?.didSelect(answer: arrayAnswers[index])
     }
     
@@ -80,6 +84,7 @@ class PersonalityTestCellViewModel: ViewModel {
         }
         
         guard currentAnswerStep < answers.count else {
+            cellDelegate?.didFinishTypewritingAnimation()
             return
         }
         

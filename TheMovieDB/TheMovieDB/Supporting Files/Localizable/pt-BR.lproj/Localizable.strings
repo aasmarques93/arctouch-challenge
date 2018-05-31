@@ -75,6 +75,8 @@
 "Movie added to your seen list" = "Filme adicionado à sua lista de já assistidos";
 "Movie removed from your seen list" = "Filme removido da sua lista de já assistidos";
 
+"You have lost your internet connection. Please try again later." = "Você perdeu sua conexão com a internet. Tente novamente mais tarde.";
+
 // Validation
 "Hey dude, You can start by creating an account" = "Eai cara\nVocê pode começar criando uma conta";
 "Invalid user" = "Usuário inválido";
