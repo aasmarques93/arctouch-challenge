@@ -15,7 +15,7 @@ protocol MoviesShowsViewModelDelegate: ViewModelDelegate {
 }
 
 class MoviesShowsViewModel: ViewModel {
-    // MARK: - Properties -
+    // MARK: - Properties - 
     
     // MARK: Observables
     var latestImage = Observable<UIImage>(#imageLiteral(resourceName: "default-image"))
