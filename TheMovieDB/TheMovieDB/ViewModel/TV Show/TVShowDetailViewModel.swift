@@ -214,7 +214,7 @@ class TVShowDetailViewModel: ViewModel {
             return
         }
         
-        Singleton.shared.serviceModel.loadImage(path: tvShowDetail.backdropPath, handlerData: { (data) in
+        serviceModel.loadImage(path: tvShowDetail.backdropPath, handlerData: { (data) in
             handlerData(data)
         })
     }
@@ -251,21 +251,21 @@ class TVShowDetailViewModel: ViewModel {
     }
     
     func seasonImageUrl(at index: Int) -> URL? {
-        return URL(string: Singleton.shared.serviceModel.imageUrl(with: arraySeasons[index].posterPath ?? ""))
+        return URL(string: serviceModel.imageUrl(with: arraySeasons[index].posterPath ?? ""))
     }
     
     // MARK: Recommendations
     
     func recommendedImageUrl(at index: Int) -> URL? {
         let tvShow = arrayRecommended[index]
-        return URL(string: Singleton.shared.serviceModel.imageUrl(with: tvShow.posterPath ?? ""))
+        return URL(string: serviceModel.imageUrl(with: tvShow.posterPath ?? ""))
     }
     
     // MARK: Cast
     
     func castImageUrl(at index: Int) -> URL? {
         let cast = arrayCast[index]
-        return URL(string: Singleton.shared.serviceModel.imageUrl(with: cast.profilePath ?? ""))
+        return URL(string: serviceModel.imageUrl(with: cast.profilePath ?? ""))
     }
     
     func castName(at index: Int) -> String {
@@ -280,7 +280,7 @@ class TVShowDetailViewModel: ViewModel {
     
     func similarImageUrl(at index: Int) -> URL? {
         let tvShow = arraySimilar[index]
-        return URL(string: Singleton.shared.serviceModel.imageUrl(with: tvShow.posterPath ?? ""))
+        return URL(string: serviceModel.imageUrl(with: tvShow.posterPath ?? ""))
     }
     
     // MARK: - View Model instantiation -

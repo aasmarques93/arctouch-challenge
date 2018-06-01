@@ -6,9 +6,7 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-struct SeasonDetailServiceModel {
-    let serviceModel = Singleton.shared.serviceModel
-    
+struct SeasonDetailServiceModel: ServiceModel {
     func getDetail(from tvShowDetail: TVShowDetail?, season: Seasons?, handler: @escaping Handler<SeasonDetail>) {
         if let id = tvShowDetail?.id, let seasonNumber = season?.seasonNumber {
             let parameters: [String: Any] = [
@@ -16,7 +14,7 @@ struct SeasonDetailServiceModel {
                 "season": seasonNumber,
                 "language": Locale.preferredLanguages.first ?? ""
             ]
-            serviceModel.request(requestUrl: RequestUrl.seasonDetail, urlParameters: parameters, handlerObject: { (object) in
+            request(requestUrl: RequestUrl.seasonDetail, urlParameters: parameters, handlerObject: { (object) in
                 guard let object = object else {
                     return
                 }

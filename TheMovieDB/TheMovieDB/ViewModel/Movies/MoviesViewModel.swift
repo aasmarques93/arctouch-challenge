@@ -11,6 +11,21 @@ import Bond
 class MoviesViewModel: MoviesShowsViewModel {
     // MARK: - Properties -
     
+    override var arraySectionsType: [SectionsType] {
+        get {
+            return [
+                SectionsType.netflix,
+                SectionsType.suggested,
+                SectionsType.friendsWatching,
+                SectionsType.nowPlaying,
+                SectionsType.topRated,
+                SectionsType.upcoming,
+                SectionsType.popular
+            ]
+        }
+        set { }
+    }
+    
     // MARK: Suggested
     private var arraySuggestedMovies = [Movie]() { didSet { delegate?.reloadData?() } }
     var numberOfSuggestedMovies: Int { return arraySuggestedMovies.count }
@@ -136,7 +151,7 @@ class MoviesViewModel: MoviesShowsViewModel {
         ]
         moviesServiceModel.getMovies(urlParameters: parameters, requestUrl: requestUrl) { [weak self] (object) in
             do {
-                try self?.showError(with: object)
+                try self?.throwError(with: object)
             } catch {
                 if let error = error as? Error {
                     self?.delegate?.showAlert?(message: error.message)
@@ -188,9 +203,8 @@ class MoviesViewModel: MoviesShowsViewModel {
     // MARK: - Movie methods -
     
     func numberOfMovies(at section: Int) -> Int {
-        guard let sectionType = SectionsType.section(at: section, isMovie: isMovie) else {
-            return 0
-        }
+        let sectionType = arraySectionsType[section]
+        
         switch sectionType {
         case .netflix:
             return numberOfNetflix
@@ -230,9 +244,8 @@ class MoviesViewModel: MoviesShowsViewModel {
     }
     
     private func getMoviesArray(at section: Int) -> [Movie]? {
-        guard let sectionType = SectionsType.section(at: section, isMovie: isMovie) else {
-            return nil
-        }
+        let sectionType = arraySectionsType[section]
+        
         switch sectionType {
         case .suggested:
             return arraySuggestedMovies
@@ -257,7 +270,7 @@ class MoviesViewModel: MoviesShowsViewModel {
         }
         
         if row == results.count-2 && !isDataLoading {
-            loadData(section: SectionsType.section(at: section, isMovie: isMovie))
+            loadData(section: arraySectionsType[section])
         }
     }
     

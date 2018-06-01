@@ -25,7 +25,7 @@ extension ViewModel {
     }
     
     // Show error if object has returno status message
-    func showError(with object: Model) throws {
+    func throwError(with object: Model) throws {
         if let statusMessage = object.statusMessage, statusMessage != "" {
             throw Error(message: statusMessage)
         }

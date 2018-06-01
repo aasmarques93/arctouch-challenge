@@ -6,78 +6,76 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-struct MovieDetailServiceModel {
-    let serviceModel = Singleton.shared.serviceModel
-    
+struct MovieDetailServiceModel: ServiceModel {
     func getDetail(from movie: Movie, handler: @escaping Handler<MovieDetail>) {
-        serviceModel.request(requestUrl: .movie,
-                             urlParameters: createParameters(from: movie),
-                             handlerObject: { (object) in
-            
-                                guard let object = object else {
-                                    return
-                                }
-                                handler(MovieDetail(object: object))
+        request(requestUrl: .movie,
+                urlParameters: createParameters(from: movie),
+                handlerObject: { (object) in
+                    
+                    guard let object = object else {
+                        return
+                    }
+                    handler(MovieDetail(object: object))
         })
     }
     
     func getVideos(from movie: Movie, handler: @escaping Handler<VideosList>) {
-        serviceModel.request(requestUrl: .videos,
-                             urlParameters: createParameters(from: movie),
-                             handlerObject: { (object) in
-
-                                guard let object = object else {
-                                    return
-                                }
-                                handler(VideosList(object: object))
+        request(requestUrl: .videos,
+                urlParameters: createParameters(from: movie),
+                handlerObject: { (object) in
+                    
+                    guard let object = object else {
+                        return
+                    }
+                    handler(VideosList(object: object))
         })
     }
     
     func getRecommendations(from movie: Movie, handler: @escaping Handler<MoviesList>) {
-        serviceModel.request(requestUrl: .recommendations,
-                             urlParameters: createParameters(from: movie, isSimple: false),
-                             handlerObject: { (object) in
+        request(requestUrl: .recommendations,
+                urlParameters: createParameters(from: movie, isSimple: false),
+                handlerObject: { (object) in
                     
-                                guard let object = object else {
-                                    return
-                                }
-                                handler(MoviesList(object: object))
+                    guard let object = object else {
+                        return
+                    }
+                    handler(MoviesList(object: object))
         })
     }
     
     func getSimilar(from movie: Movie, handler: @escaping Handler<MoviesList>) {
-        serviceModel.request(requestUrl: .similar,
-                             urlParameters: createParameters(from: movie, isSimple: false),
-                             handlerObject: { (object) in
+        request(requestUrl: .similar,
+                urlParameters: createParameters(from: movie, isSimple: false),
+                handlerObject: { (object) in
                     
-                                guard let object = object else {
-                                    return
-                                }
-                                handler(MoviesList(object: object))
+                    guard let object = object else {
+                        return
+                    }
+                    handler(MoviesList(object: object))
         })
     }
     
     func getCredits(from movie: Movie, handler: @escaping Handler<CreditsList>) {
-        serviceModel.request(requestUrl: .credits,
-                             urlParameters: createParameters(from: movie),
-                             handlerObject: { (object) in
+        request(requestUrl: .credits,
+                urlParameters: createParameters(from: movie),
+                handlerObject: { (object) in
                     
-                                guard let object = object else {
-                                    return
-                                }
-                                handler(CreditsList(object: object))
+                    guard let object = object else {
+                        return
+                    }
+                    handler(CreditsList(object: object))
         })
     }
     
     func getReviews(from movie: Movie, handler: @escaping Handler<ReviewsList>) {
-        serviceModel.request(requestUrl: .reviews,
-                             urlParameters: createParameters(from: movie, isSimple: false),
-                             handlerObject: { (object) in
+        request(requestUrl: .reviews,
+                urlParameters: createParameters(from: movie, isSimple: false),
+                handlerObject: { (object) in
                     
-                                guard let object = object else {
-                                    return
-                                }                      
-                                handler(ReviewsList(object: object))
+                    guard let object = object else {
+                        return
+                    }                      
+                    handler(ReviewsList(object: object))
         })
     }
     
@@ -96,16 +94,16 @@ struct MovieDetailServiceModel {
         if let value = movie.posterPath { parameters["movieImageUrl"] = value }
         parameters["rate"] = value
         
-        serviceModel.request(method: .post,
-                             requestUrl: .rate,
-                             environmentBase: .heroku,
-                             parameters: parameters,
-                             handlerObject: { (object) in
-                                
-                                guard let object = object else {
-                                    return
-                                }
-                                handler?(UserMovieShow(object: object))
+        request(method: .post,
+                requestUrl: .rate,
+                environmentBase: .heroku,
+                parameters: parameters,
+                handlerObject: { (object) in
+                    
+                    guard let object = object else {
+                        return
+                    }
+                    handler?(UserMovieShow(object: object))
         })
     }    
 }

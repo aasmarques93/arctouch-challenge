@@ -6,9 +6,7 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-struct RegisterServiceModel {
-    let serviceModel = Singleton.shared.serviceModel
-    
+struct RegisterServiceModel: ServiceModel {
     func signup(username: String? = nil,
                 email: String? = nil,
                 password: String? = nil,
@@ -26,17 +24,16 @@ struct RegisterServiceModel {
         
         let urlParameters = ["language": Locale.preferredLanguages.first ?? ""]
         
-        serviceModel.request(method: .post,
-                             requestUrl: .register,
-                             environmentBase: .heroku,
-                             parameters: parameters,
-                             urlParameters: urlParameters,
-                             handlerObject: { (object) in
-                                
-                                guard let object = object else {
-                                    return
-                                }
-                                handler(User(object: object))
+        request(method: .post,
+                requestUrl: .register,
+                environmentBase: .heroku,
+                parameters: parameters,
+                urlParameters: urlParameters,
+                handlerObject: { (object) in
+                    guard let object = object else {
+                        return
+                    }
+                    handler(User(object: object))
         })
     }
 }

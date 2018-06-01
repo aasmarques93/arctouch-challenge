@@ -6,11 +6,9 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-struct PersonalityTestServiceModel {
-    let serviceModel = Singleton.shared.serviceModel
-    
+struct PersonalityTestServiceModel: ServiceModel {
     func getPersonality(requestUrl: RequestUrl, handler: @escaping Handler<Personality>) {
-        serviceModel.request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
+        request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
             guard let object = object else {
                 return
             }
@@ -38,16 +36,16 @@ struct PersonalityTestServiceModel {
         if let value = thrillerPercentage { parameters["thrillerPercentage"] = value }
         if let value = documentaryPercentage { parameters["documentaryPercentage"] = value }
         
-        serviceModel.request(method: .post,
-                             requestUrl: .savePersonalityTest,
-                             environmentBase: .heroku,
-                             parameters: parameters,
-                             handlerObject: { (object) in
-                                
-                                guard let object = object else {
-                                    return
-                                }
-                                handler?(User(object: object))
+        request(method: .post,
+                requestUrl: .savePersonalityTest,
+                environmentBase: .heroku,
+                parameters: parameters,
+                handlerObject: { (object) in
+                    
+                    guard let object = object else {
+                        return
+                    }
+                    handler?(User(object: object))
         })
     }
 }

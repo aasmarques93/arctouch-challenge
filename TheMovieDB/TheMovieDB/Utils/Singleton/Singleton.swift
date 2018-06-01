@@ -15,9 +15,10 @@ class Singleton {
     static let shared = Singleton()
     
     // MARK: - Service Model -
-    
-    let serviceModel = ServiceModel()
+
+    let serviceModel = GenericServiceModel()
     let profileServiceModel = ProfileServiceModel()
+    let personalityTestServiceModel = PersonalityTestServiceModel()
     
     // MARK: - User -
     
@@ -137,12 +138,12 @@ class Singleton {
             return
         }
         
-        PersonalityTestServiceModel().save(personalityType: personalityType,
-                                           comedyPercentage: comedyPercentage,
-                                           actionPercentage: actionPercentage,
-                                           dramaPercentage: dramaPercentage,
-                                           thrillerPercentage: thrillerPercentage,
-                                           documentaryPercentage: documentaryPercentage)
+        personalityTestServiceModel.save(personalityType: personalityType,
+                                         comedyPercentage: comedyPercentage,
+                                         actionPercentage: actionPercentage,
+                                         dramaPercentage: dramaPercentage,
+                                         thrillerPercentage: thrillerPercentage,
+                                         documentaryPercentage: documentaryPercentage)
     }
     
     private func savePersonalityTestIfNeeded() {

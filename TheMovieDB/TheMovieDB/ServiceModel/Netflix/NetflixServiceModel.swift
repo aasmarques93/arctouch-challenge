@@ -8,12 +8,10 @@
 
 import SwiftyJSON
 
-struct NetflixServiceModel {
-    let serviceModel = Singleton.shared.serviceModel
-    
+struct NetflixServiceModel: ServiceModel {
     func getNetflixGenres(handler: @escaping Handler<[Genres]>) {
         let requestUrl: RequestUrl = Singleton.shared.isLanguagePortuguese ? .netflixGenresBR : .netflixGenres
-        serviceModel.request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
+        request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
             guard let object = object else {
                 return
             }
@@ -35,20 +33,20 @@ struct NetflixServiceModel {
             urlParameters["genre"] = genre
         }
         
-        serviceModel.request(requestUrl: .netflixMoviesShow,
-                             environmentBase: .reelgood,
-                             urlParameters: urlParameters,
-                             handlerObject: { (object) in
-                                
-                                guard let array = object as? [JSON] else {
-                                    return
-                                }
-                                
-                                var arrayNetflix = [Netflix]()
-                                array.forEach({ (data) in
-                                    arrayNetflix.append(Netflix(object: data))
-                                })
-                                handler(arrayNetflix)
+        request(requestUrl: .netflixMoviesShow,
+                environmentBase: .reelgood,
+                urlParameters: urlParameters,
+                handlerObject: { (object) in
+                    
+                    guard let array = object as? [JSON] else {
+                        return
+                    }
+                    
+                    var arrayNetflix = [Netflix]()
+                    array.forEach({ (data) in
+                        arrayNetflix.append(Netflix(object: data))
+                    })
+                    handler(arrayNetflix)
         })
     }
     
@@ -57,34 +55,34 @@ struct NetflixServiceModel {
             "id": movieShow.id ?? "",
             "contentKind": isMovie ? "movie" : "show"
         ]
-        serviceModel.request(requestUrl: .netflixMovieShowDetail,
-                             environmentBase: .reelgood,
-                             urlParameters: urlParameters,
-                             handlerObject: { (object) in
-                                
-                                guard let object = object else {
-                                    return
-                                }
-                                handler(NetflixMovieShow(object: object))
+        request(requestUrl: .netflixMovieShowDetail,
+                environmentBase: .reelgood,
+                urlParameters: urlParameters,
+                handlerObject: { (object) in
+                    
+                    guard let object = object else {
+                        return
+                    }
+                    handler(NetflixMovieShow(object: object))
         })
     }
     
     func getComingOrLeavingNetflixMovies(requestUrl: RequestUrl, handler: @escaping Handler<[Netflix]>) {
         let urlParameters = ["contentKind": "movie"]
-        serviceModel.request(requestUrl: requestUrl,
-                             environmentBase: .reelgood,
-                             urlParameters: urlParameters,
-                             handlerObject: { (object) in
-                                
-                                guard let array = object as? [JSON] else {
-                                    return
-                                }
-                                
-                                var arrayNetflix = [Netflix]()
-                                array.forEach({ (data) in
-                                    arrayNetflix.append(Netflix(object: data))
-                                })
-                                handler(arrayNetflix)
+        request(requestUrl: requestUrl,
+                environmentBase: .reelgood,
+                urlParameters: urlParameters,
+                handlerObject: { (object) in
+                    
+                    guard let array = object as? [JSON] else {
+                        return
+                    }
+                    
+                    var arrayNetflix = [Netflix]()
+                    array.forEach({ (data) in
+                        arrayNetflix.append(Netflix(object: data))
+                    })
+                    handler(arrayNetflix)
         })
     }
     
@@ -108,20 +106,20 @@ struct NetflixServiceModel {
         urlParameters["rottenTomatoes"] = rottenTomatoesParameter
         urlParameters["contentKind"] = isMovieOn && isTVShowOn ? "both" : isMovieOn ? "movie" : "show"
         
-        serviceModel.request(requestUrl: .roulette,
-                             environmentBase: .reelgood,
-                             urlParameters: urlParameters,
-                             handlerObject: { (object) in
-                                
-                                guard let array = object as? [JSON] else {
-                                    return
-                                }
-                                
-                                var arrayNetflix = [Netflix]()
-                                array.forEach({ (data) in
-                                    arrayNetflix.append(Netflix(object: data))
-                                })
-                                handler(arrayNetflix)
+        request(requestUrl: .roulette,
+                environmentBase: .reelgood,
+                urlParameters: urlParameters,
+                handlerObject: { (object) in
+                    
+                    guard let array = object as? [JSON] else {
+                        return
+                    }
+                    
+                    var arrayNetflix = [Netflix]()
+                    array.forEach({ (data) in
+                        arrayNetflix.append(Netflix(object: data))
+                    })
+                    handler(arrayNetflix)
         })
     }
     
@@ -130,6 +128,6 @@ struct NetflixServiceModel {
             "id": path ?? "",
             "contentKind": isMovie ? "movie" : "show"
         ]
-        return serviceModel.requestUrl(type: .netflixImage, environmentBase: .imagesReelgood, parameters: parameters)
+        return requestUrl(type: .netflixImage, environmentBase: .imagesReelgood, parameters: parameters)
     }
 }

@@ -6,14 +6,12 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-struct SearchServiceModel {
-    let serviceModel = Singleton.shared.serviceModel
-    
+struct SearchServiceModel: ServiceModel {
     func getGenres(requestUrl: RequestUrl, handler: @escaping Handler<MoviesGenres>) {
         let parameters: [String: Any] = [
             "language": Locale.preferredLanguages.first ?? ""
         ]
-        serviceModel.request(requestUrl: requestUrl, urlParameters: parameters, handlerObject: { (object) in
+        request(requestUrl: requestUrl, urlParameters: parameters, handlerObject: { (object) in
             guard let object = object else {
                 return
             }
@@ -22,7 +20,7 @@ struct SearchServiceModel {
     }
     
     func getMoviesFromGenre(urlParameters: [String: Any], handler: @escaping Handler<SearchMoviesGenre>) {
-        serviceModel.request(requestUrl: .searchByGenre, urlParameters: urlParameters, handlerObject: { (object) in
+        request(requestUrl: .searchByGenre, urlParameters: urlParameters, handlerObject: { (object) in
             guard let object = object else {
                 return
             }
@@ -31,14 +29,14 @@ struct SearchServiceModel {
     }
     
     func doSearch(requestUrl: RequestUrl, urlParameters: [String: Any], handler: @escaping Handler<MultiSearch>) {
-        serviceModel.request(requestUrl: requestUrl,
-                             urlParameters: urlParameters,
-                             handlerObject: { (object) in
-            
-                                guard let object = object else {
-                                    return
-                                }
-                                handler(MultiSearch(object: object))
+        request(requestUrl: requestUrl,
+                urlParameters: urlParameters,
+                handlerObject: { (object) in
+                    
+                    guard let object = object else {
+                        return
+                    }
+                    handler(MultiSearch(object: object))
         })
     }    
 }

@@ -16,7 +16,10 @@ typealias Handler<Element> = (Element) -> Swift.Void
 
 // MARK: - Service Model -
 
-struct ServiceModel {
+protocol ServiceModel {
+}
+
+extension ServiceModel {
     // MARK: - Service Delegate Methods -
     
     func request(method: HTTPMethod = .get,
@@ -25,8 +28,7 @@ struct ServiceModel {
                  stringUrl: String? = nil,
                  parameters: [String: Any]? = nil,
                  urlParameters: [String: Any]? = nil,
-                 handlerObject: @escaping HandlerObject,
-                 handlerJson: HandlerObject? = nil) {
+                 handlerObject: @escaping HandlerObject) {
         
         guard environmentBase != .mock else {
             JSONWrapper.json(from: requestUrl) { (json) in
@@ -51,8 +53,6 @@ struct ServiceModel {
         
         Connection.shared.request(url: url, method: method, parameters: parameters) { (dataResponse) in
             if let value = dataResponse.result.value {
-                handlerJson?(value)
-                
                 if let array = value as? [Any] {
                     var arrayObject = [JSON]()
                     
@@ -70,7 +70,6 @@ struct ServiceModel {
             }
             
             handlerObject(ReachabilityError.requestTimeout.rawValue)
-            handlerJson?(nil)
         }
     }
     
@@ -179,4 +178,8 @@ struct ServiceModel {
 enum ReachabilityError: String {
     case notConnected = "CONNECTION_VERIFY"
     case requestTimeout = "REQUEST_TIMEOUT"
+}
+
+struct GenericServiceModel: ServiceModel {
+    
 }

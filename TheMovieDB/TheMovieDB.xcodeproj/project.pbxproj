@@ -63,7 +63,6 @@
 		ED268CF720AB8ED800C2B887 /* RouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED268CF620AB8ED800C2B887 /* RouletteView.swift */; };
 		ED268CFA20AB93BE00C2B887 /* RouletteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED268CF920AB93BE00C2B887 /* RouletteViewModel.swift */; };
 		ED268CFC20AC439700C2B887 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED268CFB20AC439700C2B887 /* PickerViewController.swift */; };
-		ED268CFF20AC4D8D00C2B887 /* RouletteServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED268CFE20AC4D8D00C2B887 /* RouletteServiceModel.swift */; };
 		ED2AA5F320A0D95C00AA0DF5 /* PersonalityTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA5F220A0D95C00AA0DF5 /* PersonalityTestView.swift */; };
 		ED2AA5F820A0DA4700AA0DF5 /* PersonalityTestViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA5F720A0DA4700AA0DF5 /* PersonalityTestViewCell.swift */; };
 		ED2AA5FA20A0DAF600AA0DF5 /* PersonalityTestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AA5F920A0DAF600AA0DF5 /* PersonalityTestCellViewModel.swift */; };
@@ -322,7 +321,6 @@
 		ED268CF620AB8ED800C2B887 /* RouletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteView.swift; sourceTree = "<group>"; };
 		ED268CF920AB93BE00C2B887 /* RouletteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteViewModel.swift; sourceTree = "<group>"; };
 		ED268CFB20AC439700C2B887 /* PickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
-		ED268CFE20AC4D8D00C2B887 /* RouletteServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouletteServiceModel.swift; sourceTree = "<group>"; };
 		ED2AA5F220A0D95C00AA0DF5 /* PersonalityTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestView.swift; sourceTree = "<group>"; };
 		ED2AA5F720A0DA4700AA0DF5 /* PersonalityTestViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestViewCell.swift; sourceTree = "<group>"; };
 		ED2AA5F920A0DAF600AA0DF5 /* PersonalityTestCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestCellViewModel.swift; sourceTree = "<group>"; };
@@ -818,14 +816,6 @@
 			isa = PBXGroup;
 			children = (
 				ED268CF920AB93BE00C2B887 /* RouletteViewModel.swift */,
-			);
-			path = Roulette;
-			sourceTree = "<group>";
-		};
-		ED268CFD20AC4D7A00C2B887 /* Roulette */ = {
-			isa = PBXGroup;
-			children = (
-				ED268CFE20AC4D8D00C2B887 /* RouletteServiceModel.swift */,
 			);
 			path = Roulette;
 			sourceTree = "<group>";
@@ -1459,7 +1449,6 @@
 				ED16D8862059A071002A0B2C /* Movies */,
 				ED38340920940DD40079D48F /* TV Show */,
 				ED16D8852059A06D002A0B2C /* Search */,
-				ED268CFD20AC4D7A00C2B887 /* Roulette */,
 			);
 			path = ServiceModel;
 			sourceTree = "<group>";
@@ -1950,7 +1939,6 @@
 				ED65BEF0209238BB0091D93B /* CreditsList.swift in Sources */,
 				EDDAB1CC209C824E00271265 /* StringExtension.swift in Sources */,
 				EDC6C01E20585A6D00D843EC /* HexColor.swift in Sources */,
-				ED268CFF20AC4D8D00C2B887 /* RouletteServiceModel.swift in Sources */,
 				ED81CB8420B06F310056E2A8 /* YourListViewModel.swift in Sources */,
 				EDC6C03F2058663000D843EC /* ViewModel.swift in Sources */,
 				ED2AA5FA20A0DAF600AA0DF5 /* PersonalityTestCellViewModel.swift in Sources */,

@@ -9,6 +9,21 @@
 class TVShowViewModel: MoviesShowsViewModel {
     // MARK: - Properties -
     
+    override var arraySectionsType: [SectionsType] {
+        get {
+            return [
+                SectionsType.netflix,
+                SectionsType.suggested,
+                SectionsType.friendsWatching,
+                SectionsType.airingToday,
+                SectionsType.onTheAir,
+                SectionsType.popular,
+                SectionsType.topRated
+            ]
+        }
+        set { }
+    }
+    
     // MARK: Suggested
     private var arraySuggested = [TVShow]()
     var numberOfSuggested: Int { return arraySuggested.count }
@@ -87,7 +102,7 @@ class TVShowViewModel: MoviesShowsViewModel {
         ]
         tvShowServiceModel.getTVShow(requestUrl: requestUrl, urlParameters: parameters) { [weak self] (object) in
             do {
-                try self?.showError(with: object)
+                try self?.throwError(with: object)
             } catch {
                 if let error = error as? Error {
                     self?.delegate?.showAlert?(message: error.message)
@@ -175,9 +190,8 @@ class TVShowViewModel: MoviesShowsViewModel {
     // MARK: - TV Show methods -
     
     func numberOfTVShows(at section: Int) -> Int {
-        guard let sectionType = SectionsType.section(at: section, isMovie: isMovie) else {
-            return 0
-        }
+        let sectionType = arraySectionsType[section]
+        
         switch sectionType {
         case .netflix:
             return numberOfNetflix
@@ -217,9 +231,8 @@ class TVShowViewModel: MoviesShowsViewModel {
     }
     
     private func getTVShowsArray(at section: Int) -> [TVShow]? {
-        guard let sectionType = SectionsType.section(at: section, isMovie: isMovie) else {
-            return nil
-        }
+        let sectionType = arraySectionsType[section]
+        
         switch sectionType {
         case .suggested:
             return arraySuggested
@@ -244,7 +257,7 @@ class TVShowViewModel: MoviesShowsViewModel {
         }
         
         if row == results.count-2 && !isDataLoading {
-            loadData(section: SectionsType.section(at: section, isMovie: isMovie))
+            loadData(section: arraySectionsType[section])
         }
     }
     

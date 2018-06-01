@@ -158,7 +158,7 @@ class RegisterViewModel: ViewModel {
             Loading.shared.stop()
             
             do {
-                try self?.showError(with: user)
+                try self?.throwError(with: user)
             } catch {
                 if let error = error as? Error {
                     self?.delegate?.showAlert?(message: error.message)

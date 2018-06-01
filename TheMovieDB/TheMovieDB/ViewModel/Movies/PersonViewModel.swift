@@ -33,7 +33,7 @@ class PersonViewModel: ViewModel {
     private var idPerson: Int?
     
     var imageUrl: URL? {
-        return URL(string: Singleton.shared.serviceModel.imageUrl(with: person?.profilePath ?? ""))
+        return URL(string: serviceModel.imageUrl(with: person?.profilePath ?? ""))
     }
     
     // MARK: Objects
@@ -134,7 +134,7 @@ class PersonViewModel: ViewModel {
     }
     
     func movieImageUrl(at index: Int) -> URL? {
-        return URL(string: Singleton.shared.serviceModel.imageUrl(with: arrayCast[index].posterPath ?? ""))
+        return URL(string: serviceModel.imageUrl(with: arrayCast[index].posterPath ?? ""))
     }
     
     // MARK: - View Model -
@@ -181,7 +181,7 @@ class PersonViewModel: ViewModel {
     func setupPhotos() {
         photos = [Photo]()
         for image in arrayImages {
-            Singleton.shared.serviceModel.loadImage(path: image.filePath) { [weak self] (data) in
+            serviceModel.loadImage(path: image.filePath) { [weak self] (data) in
                 guard let data = data as? Data else {
                     return
                 }

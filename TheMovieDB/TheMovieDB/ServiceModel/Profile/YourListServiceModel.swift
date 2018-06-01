@@ -8,13 +8,9 @@
 
 import SwiftyJSON
 
-struct YourListServiceModel {
-    var serviceModel: ServiceModel {
-        return Singleton.shared.serviceModel
-    }
-    
+struct YourListServiceModel: ServiceModel {
     func getUserMovies(requestUrl: RequestUrl, handler: Handler<[UserMovieShow]>? = nil) {
-        serviceModel.request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
+        request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
             guard let array = object as? [JSON] else {
                 return
             }
@@ -34,16 +30,16 @@ struct YourListServiceModel {
         if let value = movie.id { parameters["movieId"] = value }
         if let value = movie.posterPath { parameters["movieImageUrl"] = value }
         
-        serviceModel.request(method: .post,
-                             requestUrl: requestUrl,
-                             environmentBase: .heroku,
-                             parameters: parameters,
-                             handlerObject: { (object) in
-            
-                                guard let object = object else {
-                                    return
-                                }
-                                handler?(UserMovieShow(object: object))
+        request(method: .post,
+                requestUrl: requestUrl,
+                environmentBase: .heroku,
+                parameters: parameters,
+                handlerObject: { (object) in
+                    
+                    guard let object = object else {
+                        return
+                    }
+                    handler?(UserMovieShow(object: object))
         })
     }
     
@@ -52,21 +48,21 @@ struct YourListServiceModel {
         
         if let value = movie.id { parameters["movieId"] = value }
         
-        serviceModel.request(method: .post,
-                             requestUrl: requestUrl,
-                             environmentBase: .heroku,
-                             parameters: parameters,
-                             handlerObject: { (object) in
-                                
-                                guard let object = object else {
-                                    return
-                                }
-                                handler?(UserMovieShow(object: object))
+        request(method: .post,
+                requestUrl: requestUrl,
+                environmentBase: .heroku,
+                parameters: parameters,
+                handlerObject: { (object) in
+                    
+                    guard let object = object else {
+                        return
+                    }
+                    handler?(UserMovieShow(object: object))
         })
     }
     
     func getUserShows(handler: Handler<[UserMovieShow]>? = nil) {
-        serviceModel.request(requestUrl: .userShowsTrack, environmentBase: .heroku, handlerObject: { (object) in
+        request(requestUrl: .userShowsTrack, environmentBase: .heroku, handlerObject: { (object) in
             guard let array = object as? [JSON] else {
                 return
             }
@@ -89,20 +85,16 @@ struct YourListServiceModel {
         parameters["season"] = season
         parameters["episode"] = episode
         
-        serviceModel.request(method: .post,
-                             requestUrl: .trackShow,
-                             environmentBase: .heroku,
-                             parameters: parameters,
-                             handlerObject: { (object) in
-                                
-                                guard let object = object else {
-                                    return
-                                }
-                                handler?(UserMovieShow(object: object))
+        request(method: .post,
+                requestUrl: .trackShow,
+                environmentBase: .heroku,
+                parameters: parameters,
+                handlerObject: { (object) in
+                    
+                    guard let object = object else {
+                        return
+                    }
+                    handler?(UserMovieShow(object: object))
         })
-    }
-    
-    func imageUrl(with path: String?) -> String {
-        return serviceModel.imageUrl(with: path)
     }
 }

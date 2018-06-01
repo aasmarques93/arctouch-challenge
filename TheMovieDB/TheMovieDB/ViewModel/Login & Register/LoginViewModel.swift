@@ -176,7 +176,7 @@ class LoginViewModel: ViewModel {
                                     handler: { [weak self] (user) in
         
                                         do {
-                                            try self?.showError(with: user)
+                                            try self?.throwError(with: user)
                                         } catch {
                                             self?.authenticateFacebookUser()
                                             return
@@ -190,7 +190,7 @@ class LoginViewModel: ViewModel {
     private func authenticateFacebookUser() {
         serviceModel.authenticate(email: user.email, facebookId: user.facebookId, handler: { [weak self] (user) in
             do {
-                try self?.showError(with: user)
+                try self?.throwError(with: user)
             } catch {
                 if let error = error as? Error {
                     self?.delegate?.showAlert?(message: error.message)
@@ -203,7 +203,7 @@ class LoginViewModel: ViewModel {
     }
     
     private func downloadUserPhoto() {
-        Singleton.shared.serviceModel.loadImage(path: user.picture?.data?.url) { (data) in
+        serviceModel.loadImage(path: user.picture?.data?.url) { (data) in
             guard let data = data as? Data else {
                 return
             }
@@ -225,7 +225,7 @@ class LoginViewModel: ViewModel {
             Loading.shared.stop()
             
             do {
-                try self?.showError(with: user)
+                try self?.throwError(with: user)
             } catch {
                 if let error = error as? Error {
                     self?.delegate?.showAlert?(message: error.message)

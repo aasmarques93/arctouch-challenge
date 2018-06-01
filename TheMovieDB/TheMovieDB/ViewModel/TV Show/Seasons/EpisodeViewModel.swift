@@ -29,7 +29,7 @@ class EpisodeViewModel: ViewModel {
     // MARK: Variables
     
     var imageUrl: URL? {
-        return URL(string: Singleton.shared.serviceModel.imageUrl(with: episode?.stillPath ?? ""))
+        return URL(string: serviceModel.imageUrl(with: episode?.stillPath ?? ""))
     }
     
     // MARK: - Life cycle -
@@ -75,7 +75,7 @@ class EpisodeViewModel: ViewModel {
     func setupPhotos() {
         photos = [Photo]()
         for image in arrayImages {
-            Singleton.shared.serviceModel.loadImage(path: image.filePath) { [weak self] (data) in
+            serviceModel.loadImage(path: image.filePath) { [weak self] (data) in
                 guard let data = data as? Data else {
                     return
                 }

@@ -48,7 +48,7 @@ class UserFriendViewModel: ViewModel {
         guard let url = userFriend.picture?.data?.url else {
             return nil
         }
-        return URL(string: Singleton.shared.serviceModel.imageUrl(with: url, environmentBase: .custom))
+        return URL(string: serviceModel.imageUrl(with: url, environmentBase: .custom))
     }
     
     // MARK: - Life cycle -

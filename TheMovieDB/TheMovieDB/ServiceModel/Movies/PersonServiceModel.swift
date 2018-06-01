@@ -6,15 +6,13 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-struct PersonServiceModel {
-    let serviceModel = Singleton.shared.serviceModel
-    
+struct PersonServiceModel: ServiceModel {
     func getPerson(from idPerson: Int?, requestUrl: RequestUrl, handler: @escaping HandlerObject) {
         let parameters: [String: Any] = [
             "idPerson": idPerson ?? 0,
             "language": Locale.preferredLanguages.first ?? ""
         ]
-        serviceModel.request(requestUrl: requestUrl, urlParameters: parameters, handlerObject: { (object) in
+        request(requestUrl: requestUrl, urlParameters: parameters, handlerObject: { (object) in
             guard let object = object else {
                 return
             }
@@ -31,13 +29,13 @@ struct PersonServiceModel {
             }
         })
     }
-
+    
     func getImages(from idPerson: Int?, handler: @escaping Handler<PersonImagesList>) {
         let parameters: [String: Any] = [
             "idPerson": idPerson ?? 0,
             "language": Locale.preferredLanguages.first ?? ""
         ]
-        serviceModel.request(requestUrl: .personImages, urlParameters: parameters, handlerObject: { (object) in
+        request(requestUrl: .personImages, urlParameters: parameters, handlerObject: { (object) in
             guard let object = object else {
                 return
             }

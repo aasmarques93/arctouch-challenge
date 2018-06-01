@@ -8,23 +8,19 @@
 
 import SwiftyJSON
 
-struct UserFriendsServiceModel {
-    var serviceModel: ServiceModel {
-        return Singleton.shared.serviceModel
-    }
- 
+struct UserFriendsServiceModel: ServiceModel {
     func getProfile(facebookId: String?, handler: @escaping Handler<User>) {
         let urlParameters = ["facebookId": facebookId ?? ""]
         
-        serviceModel.request(requestUrl: .profileByFacebookId,
-                             environmentBase: .heroku,
-                             urlParameters: urlParameters,
-                             handlerObject: { (object) in
-                                
-                                guard let object = object else {
-                                    return
-                                }
-                                handler(User(object: object))
+        request(requestUrl: .profileByFacebookId,
+                environmentBase: .heroku,
+                urlParameters: urlParameters,
+                handlerObject: { (object) in
+                    
+                    guard let object = object else {
+                        return
+                    }
+                    handler(User(object: object))
         })
     }
     
@@ -42,21 +38,21 @@ struct UserFriendsServiceModel {
         
         parameters["userFriends"] = array
         
-        serviceModel.request(method: .post,
-                             requestUrl: .userFriendsProfiles,
-                             environmentBase: .heroku,
-                             parameters: parameters,
-                             handlerObject: { (object) in
-                                guard let array = object as? [JSON] else {
-                                    return
-                                }
-                                
-                                var arrayUsers = [User]()
-                                array.forEach({ (data) in
-                                    arrayUsers.append(User(object: data))
-                                })
-                                
-                                handler(arrayUsers)
+        request(method: .post,
+                requestUrl: .userFriendsProfiles,
+                environmentBase: .heroku,
+                parameters: parameters,
+                handlerObject: { (object) in
+                    guard let array = object as? [JSON] else {
+                        return
+                    }
+                    
+                    var arrayUsers = [User]()
+                    array.forEach({ (data) in
+                        arrayUsers.append(User(object: data))
+                    })
+                    
+                    handler(arrayUsers)
         })
     }    
 }

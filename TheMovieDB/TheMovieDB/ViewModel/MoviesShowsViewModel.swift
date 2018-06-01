@@ -25,7 +25,7 @@ class MoviesShowsViewModel: ViewModel {
     weak var delegate: MoviesShowsViewModelDelegate?
     
     // MARK: Enum
-    private var arraySectionsType: [SectionsType]
+    var arraySectionsType = [SectionsType]()
     var numberOfSections: Int { return arraySectionsType.count }
     
     // MARK: Service Model
@@ -57,7 +57,6 @@ class MoviesShowsViewModel: ViewModel {
     
     init(isMovie: Bool = true) {
         self.isMovie = isMovie
-        arraySectionsType = SectionsType.sections(isMovie: isMovie)
     }
     
     // MARK: - Service requests -
@@ -213,9 +212,8 @@ class MoviesShowsViewModel: ViewModel {
     }
     
     func sectionTitle(at section: Int) -> String {
-        guard let sectionType = SectionsType.section(at: section, isMovie: isMovie) else {
-            return ""
-        }
+        let sectionType = arraySectionsType[section]
+        
         guard sectionType == .suggested,
             let userPersonalityType = Singleton.shared.userPersonalityType,
             let title = userPersonalityType.title else {
@@ -261,36 +259,7 @@ class MoviesShowsViewModel: ViewModel {
 
 // MARK: - Sections Type -
 
-protocol SectionsTypeProtocol {
-    static var sectionsMovies: [Self] { get }
-    static var sectionsShows: [Self] { get }
-}
-
-enum SectionsType: Int, SectionsTypeProtocol {
-    static var sectionsMovies: [SectionsType] {
-        return [
-            SectionsType.netflix,
-            SectionsType.suggested,
-            SectionsType.friendsWatching,
-            SectionsType.nowPlaying,
-            SectionsType.topRated,
-            SectionsType.upcoming,
-            SectionsType.popular
-        ]
-    }
-    
-    static var sectionsShows: [SectionsType] {
-        return [
-            SectionsType.netflix,
-            SectionsType.suggested,
-            SectionsType.friendsWatching,
-            SectionsType.airingToday,
-            SectionsType.onTheAir,
-            SectionsType.popular,
-            SectionsType.topRated
-        ]
-    }
-    
+enum SectionsType: Int {
     case netflix
     case suggested
     case friendsWatching
@@ -300,34 +269,6 @@ enum SectionsType: Int, SectionsTypeProtocol {
     case onTheAir
     case popular
     case topRated
-    
-    static func sections(isMovie: Bool) -> [SectionsType] {
-        guard isMovie else {
-            return sectionsShows
-        }
-        return sectionsMovies
-    }
-    
-    static func section(at index: Int, isMovie: Bool) -> SectionsType? {
-        switch index {
-        case 0:
-            return SectionsType.netflix
-        case 1:
-            return SectionsType.suggested
-        case 2:
-            return SectionsType.friendsWatching
-        case 3:
-            return isMovie ? SectionsType.popular : SectionsType.airingToday
-        case 4:
-            return isMovie ? SectionsType.topRated : SectionsType.onTheAir
-        case 5:
-            return isMovie ? SectionsType.upcoming : SectionsType.popular
-        case 6:
-            return isMovie ? SectionsType.nowPlaying : SectionsType.topRated
-        default:
-            return nil
-        }
-    }
 }
 
 extension SectionsType {
