@@ -1,0 +1,54 @@
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "8Q5-ei-B9j"; */
+"8Q5-ei-B9j.placeholder" = "Nome";
+
+/* Class = "UILabel"; text = "Do you have an account?"; ObjectID = "AcO-te-Tga"; */
+"AcO-te-Tga.text" = "Você já tem uma conta?";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "BSO-9q-8CD"; */
+"BSO-9q-8CD.placeholder" = "Senha";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "DYZ-Lw-hle"; */
+"DYZ-Lw-hle.title" = " ";
+
+/* Class = "UILabel"; text = "Don't have a account?"; ObjectID = "GCq-bD-TpL"; */
+"GCq-bD-TpL.text" = "Não tem uma conta?";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "GUJ-6s-OrS"; */
+"GUJ-6s-OrS.normalTitle" = "Login";
+
+/* Class = "UILabel"; text = "Hey buddy! You can start by creating an account"; ObjectID = "Iyd-JE-8Jq"; */
+"Iyd-JE-8Jq.text" = "Olá amigo! Você pode começar criando uma conta";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "Qmh-ae-Ltt"; */
+"Qmh-ae-Ltt.placeholder" = "Email";
+
+/* Class = "UIButton"; normalTitle = "Forgot password?"; ObjectID = "ZGL-Iz-W5V"; */
+"ZGL-Iz-W5V.normalTitle" = "Esqueceu sua senha?";
+
+/* Class = "UIButton"; normalTitle = "LOGIN"; ObjectID = "bJi-0a-rRv"; */
+"bJi-0a-rRv.normalTitle" = "LOGIN";
+
+/* Class = "UITextField"; placeholder = "Password confirmation"; ObjectID = "jaj-0I-kTR"; */
+"jaj-0I-kTR.placeholder" = "Confirmação da senha";
+
+/* Class = "UIButton"; normalTitle = "Facebook"; ObjectID = "qDi-TQ-gEp"; */
+"qDi-TQ-gEp.normalTitle" = "Facebook";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "rfr-go-xff"; */
+"rfr-go-xff.placeholder" = "Senha";
+
+/* Class = "UIButton"; normalTitle = "REGISTER"; ObjectID = "rrQ-1g-Ys7"; */
+"rrQ-1g-Ys7.normalTitle" = "CADASTRO";
+
+/* Class = "UILabel"; text = "OU"; ObjectID = "uwf-NQ-31z"; */
+"uwf-NQ-31z.text" = "OU";
+
+/* Class = "UIButton"; normalTitle = "Register"; ObjectID = "xtt-di-nax"; */
+"xtt-di-nax.normalTitle" = "Cadastro";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "ytA-ZZ-65r"; */
+"ytA-ZZ-65r.title" = " ";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "zJr-tU-TM3"; */
+"zJr-tU-TM3.placeholder" = "Email";

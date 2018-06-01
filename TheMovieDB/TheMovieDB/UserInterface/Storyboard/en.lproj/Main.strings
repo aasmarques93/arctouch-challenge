@@ -5,6 +5,9 @@
 /* Class = "UITabBarItem"; title = "Home"; ObjectID = "fzf-OW-tqK"; */
 "fzf-OW-tqK.title" = "Movies";
 
+/* Class = "UITabBarItem"; title = "Roulette"; ObjectID = "SMC-K3-1AJ"; */
+"SMC-K3-1AJ.title" = "Roulette";
+
 /* Class = "UITabBarItem"; title = "Search"; ObjectID = "tQM-Ai-39d"; */
 "tQM-Ai-39d.title" = "Search";
 

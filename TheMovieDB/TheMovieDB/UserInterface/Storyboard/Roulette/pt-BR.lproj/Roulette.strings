@@ -1,0 +1,57 @@
+
+/* Class = "UILabel"; text = "Movies"; ObjectID = "BHn-DK-Cnu"; */
+"BHn-DK-Cnu.text" = "Filmes";
+
+/* Class = "UILabel"; text = "{{Date}}"; ObjectID = "BMW-tU-B1c"; */
+"BMW-tU-B1c.text" = "{{Date}}";
+
+/* Class = "UILabel"; text = "Let's take the wheel! Have a spin and let fate guide your experience."; ObjectID = "F3k-Lg-It4"; */
+"F3k-Lg-It4.text" = "Vamos girar a roda! Gire a rolete e deixe que o destino guie a sua melhor experiência.";
+
+/* Class = "UIButton"; normalTitle = "SPIN"; ObjectID = "HYr-C1-gI3"; */
+"HYr-C1-gI3.normalTitle" = "GIRAR";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "Hok-nI-Bym"; */
+"Hok-nI-Bym.text" = "-";
+
+/* Class = "UILabel"; text = "Rotten Romatoes"; ObjectID = "L1u-ow-MTM"; */
+"L1u-ow-MTM.text" = "Rotten Romatoes";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "LYy-ui-Ngp"; */
+"LYy-ui-Ngp.title" = "Item";
+
+/* Class = "UILabel"; text = "TV Shows"; ObjectID = "OWO-oR-BiH"; */
+"OWO-oR-BiH.text" = "Séries de TV";
+
+/* Class = "UITextView"; text = "{{Overview}}"; ObjectID = "TnL-qx-toY"; */
+"TnL-qx-toY.text" = "{{Overview}}";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "Uli-h6-XgO"; */
+"Uli-h6-XgO.title" = " ";
+
+/* Class = "UILabel"; text = "{{IMDB}}"; ObjectID = "Uou-X9-RZm"; */
+"Uou-X9-RZm.text" = "{{IMDB}}";
+
+/* Class = "UILabel"; text = "Genres"; ObjectID = "VuA-mj-L9N"; */
+"VuA-mj-L9N.text" = "Gêneros";
+
+/* Class = "UILabel"; text = "{{Title}}"; ObjectID = "aly-bJ-SRy"; */
+"aly-bJ-SRy.text" = "{{Title}}";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "b2E-tK-ShW"; */
+"b2E-tK-ShW.text" = "-";
+
+/* Class = "UILabel"; text = "{{Genres}}"; ObjectID = "c83-4D-g0N"; */
+"c83-4D-g0N.text" = "{{Genres}}";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "cLD-Cl-T6S"; */
+"cLD-Cl-T6S.title" = " ";
+
+/* Class = "UILabel"; text = "{{Type}}"; ObjectID = "fSc-97-E5B"; */
+"fSc-97-E5B.text" = "{{Type}}";
+
+/* Class = "UILabel"; text = "{{Rotten Tomatoes}}"; ObjectID = "gec-mb-qnL"; */
+"gec-mb-qnL.text" = "{{Rotten Tomatoes}}";
+
+/* Class = "UILabel"; text = "IMDB"; ObjectID = "rij-8W-Dsd"; */
+"rij-8W-Dsd.text" = "IMDB";

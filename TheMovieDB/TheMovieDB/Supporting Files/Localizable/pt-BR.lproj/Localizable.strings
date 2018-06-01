@@ -11,7 +11,7 @@
 "Personality Test Result" = "Resultado do Teste de Personalidade";
 "You got" = "Você é";
 "Result" = "Resultado";
-"Movies" = "Filtes";
+"Movies" = "Filmes";
 "TV Shows" = "Séries de TV";
 "Popular people" = "Famosos";
 "Search" = "Pesquisar";
@@ -69,6 +69,10 @@
 "Search a person" = "Pesquise um famoso";
 "Did select" = "Voce selecionou";
 "Did answered personality test - Type: " = "Você respondeu o teste de personalidade - Tipo: ";
+
+"Your Want-To-See Movies" = "Sua lista de filmes que deseja assistir";
+"TV You Track" = "Séries que acompanha";
+"Your Seen Movies" = "Filmes já assistidos";
 
 "Movie added to your want to see list" = "Filme adicionado à sua lista que deseja ver";
 "Movie removed from your want to see list" = "Filme removido da sua lista que deseja ver";

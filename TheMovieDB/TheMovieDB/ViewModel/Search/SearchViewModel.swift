@@ -55,7 +55,7 @@ class SearchViewModel: ViewModel {
     
     func imageUrl(at indexPath: IndexPath) -> URL? {
         let name = arrayGenres[indexPath.row].name ?? ""
-        let path = "/image/\(name.replacingOccurrences(of: " ", with: ""))"
+        let path = "/image/\(name.replacingOccurrences(of: " ", with: ""))".folding(options: .diacriticInsensitive, locale: nil)
         return URL(string: Singleton.shared.serviceModel.imageUrl(with: path, environmentBase: .heroku))
     }
     

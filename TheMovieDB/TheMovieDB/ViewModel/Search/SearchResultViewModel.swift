@@ -183,12 +183,12 @@ class SearchResultViewModel: ViewModel {
             path = result.posterPath
         }
         
-        return URL(string: serviceModel.imageUrl(with: path))
+        return URL(string: Singleton.shared.serviceModel.imageUrl(with: path))
     }
     
     func backgroundImageUrl(at indexPath: IndexPath) -> URL? {
         let result = arraySearchFiltered[indexPath.row]
-        return URL(string: serviceModel.imageUrl(with: result.backdropPath))
+        return URL(string: Singleton.shared.serviceModel.imageUrl(with: result.backdropPath))
     }
     
     func movieName(at indexPath: IndexPath) -> String? {
