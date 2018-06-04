@@ -10,6 +10,7 @@ struct MoviesServiceModel: ServiceModel {
     func getMovies(urlParameters: [String: Any]? = nil, requestUrl: RequestUrl, handler: @escaping Handler<MoviesList>) {
         request(requestUrl: requestUrl, urlParameters: urlParameters, handlerObject: { (object) in
             guard let object = object else {
+                handler(MoviesList.handleError())
                 return
             }
             handler(MoviesList(object: object))
@@ -22,6 +23,7 @@ struct MoviesServiceModel: ServiceModel {
         ]
         request(requestUrl: .latest, urlParameters: urlParameters, handlerObject: { (object) in
             guard let object = object else {
+                handler(Movie.handleError())
                 return
             }
             handler(Movie(object: object))

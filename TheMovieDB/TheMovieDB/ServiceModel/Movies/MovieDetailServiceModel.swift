@@ -13,8 +13,10 @@ struct MovieDetailServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler(MovieDetail.handleError())
                         return
                     }
+                    
                     handler(MovieDetail(object: object))
         })
     }
@@ -25,8 +27,10 @@ struct MovieDetailServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler(VideosList.handleError())
                         return
                     }
+                    
                     handler(VideosList(object: object))
         })
     }
@@ -37,8 +41,10 @@ struct MovieDetailServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler(MoviesList.handleError())
                         return
                     }
+                    
                     handler(MoviesList(object: object))
         })
     }
@@ -49,8 +55,10 @@ struct MovieDetailServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler(MoviesList.handleError())
                         return
                     }
+                    
                     handler(MoviesList(object: object))
         })
     }
@@ -61,8 +69,10 @@ struct MovieDetailServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler(CreditsList.handleError())
                         return
                     }
+                    
                     handler(CreditsList(object: object))
         })
     }
@@ -73,8 +83,10 @@ struct MovieDetailServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler(ReviewsList.handleError())
                         return
-                    }                      
+                    }
+                    
                     handler(ReviewsList(object: object))
         })
     }
@@ -101,8 +113,10 @@ struct MovieDetailServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler?(UserMovieShow.handleError())
                         return
                     }
+                    
                     handler?(UserMovieShow(object: object))
         })
     }    

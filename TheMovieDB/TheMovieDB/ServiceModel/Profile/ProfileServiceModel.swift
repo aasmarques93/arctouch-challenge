@@ -13,8 +13,10 @@ struct ProfileServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler(User.handleError())
                         return
                     }
+                    
                     handler(User(object: object))
         })
     }

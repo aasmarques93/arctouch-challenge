@@ -9,9 +9,10 @@
 import SwiftyJSON
 
 struct YourListServiceModel: ServiceModel {
-    func getUserMovies(requestUrl: RequestUrl, handler: Handler<[UserMovieShow]>? = nil) {
+    func getUserMovies(requestUrl: RequestUrl, handler: @escaping Handler<[UserMovieShow]>) {
         request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
             guard let array = object as? [JSON] else {
+                handler([])
                 return
             }
             var arrayMovies = [UserMovieShow]()
@@ -20,11 +21,11 @@ struct YourListServiceModel: ServiceModel {
                 arrayMovies.append(UserMovieShow(object: movie))
             }
             
-            handler?(arrayMovies)
+            handler(arrayMovies)
         })
     }
     
-    func save(movie: Movie, requestUrl: RequestUrl, handler: Handler<UserMovieShow>? = nil) {
+    func save(movie: Movie, requestUrl: RequestUrl, handler: @escaping Handler<UserMovieShow>) {
         var parameters = [String: Any]()
         
         if let value = movie.id { parameters["movieId"] = value }
@@ -37,13 +38,14 @@ struct YourListServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler(UserMovieShow.handleError())
                         return
                     }
-                    handler?(UserMovieShow(object: object))
+                    handler(UserMovieShow(object: object))
         })
     }
     
-    func delete(movie: Movie, requestUrl: RequestUrl, handler: Handler<UserMovieShow>? = nil) {
+    func delete(movie: Movie, requestUrl: RequestUrl, handler: @escaping Handler<UserMovieShow>) {
         var parameters = [String: Any]()
         
         if let value = movie.id { parameters["movieId"] = value }
@@ -55,15 +57,17 @@ struct YourListServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler(UserMovieShow.handleError())
                         return
                     }
-                    handler?(UserMovieShow(object: object))
+                    handler(UserMovieShow(object: object))
         })
     }
     
-    func getUserShows(handler: Handler<[UserMovieShow]>? = nil) {
+    func getUserShows(handler: @escaping Handler<[UserMovieShow]>) {
         request(requestUrl: .userShowsTrack, environmentBase: .heroku, handlerObject: { (object) in
             guard let array = object as? [JSON] else {
+                handler([])
                 return
             }
             var arrayShows = [UserMovieShow]()
@@ -72,11 +76,11 @@ struct YourListServiceModel: ServiceModel {
                 arrayShows.append(UserMovieShow(object: show))
             }
             
-            handler?(arrayShows)
+            handler(arrayShows)
         })
     }
     
-    func track(show: TVShowDetail, season: Int, episode: Int, handler: Handler<UserMovieShow>? = nil) {
+    func track(show: TVShowDetail, season: Int, episode: Int, handler: @escaping Handler<UserMovieShow>) {
         var parameters = [String: Any]()
         
         if let value = show.id { parameters["showId"] = value }
@@ -92,9 +96,10 @@ struct YourListServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler(UserMovieShow.handleError())
                         return
                     }
-                    handler?(UserMovieShow(object: object))
+                    handler(UserMovieShow(object: object))
         })
     }
 }

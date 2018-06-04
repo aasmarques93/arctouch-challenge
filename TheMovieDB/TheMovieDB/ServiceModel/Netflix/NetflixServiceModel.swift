@@ -13,6 +13,7 @@ struct NetflixServiceModel: ServiceModel {
         let requestUrl: RequestUrl = Singleton.shared.isLanguagePortuguese ? .netflixGenresBR : .netflixGenres
         request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
             guard let object = object else {
+                handler([])
                 return
             }
             
@@ -39,6 +40,7 @@ struct NetflixServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let array = object as? [JSON] else {
+                        handler([])
                         return
                     }
                     
@@ -61,6 +63,7 @@ struct NetflixServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler(NetflixMovieShow.handleError())
                         return
                     }
                     handler(NetflixMovieShow(object: object))
@@ -75,6 +78,7 @@ struct NetflixServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let array = object as? [JSON] else {
+                        handler([])
                         return
                     }
                     
@@ -112,6 +116,7 @@ struct NetflixServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let array = object as? [JSON] else {
+                        handler([])
                         return
                     }
                     

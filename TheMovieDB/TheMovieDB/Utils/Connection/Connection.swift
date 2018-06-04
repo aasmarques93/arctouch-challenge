@@ -17,15 +17,11 @@ typealias handlerDownloadResponseData = (Alamofire.DownloadResponse<Data>) -> Sw
 struct Connection {
     // MARK: - Properties -
     
-    static let shared = Connection()
-    
-    private var headers: HTTPHeaders?
-    private var cookies = [HTTPCookie]()
-    private var stringCookies = ""
+    private static var headers: HTTPHeaders?
     
     // MARK: - Request Methods -
     
-    func request(url: String,
+    static func request(url: String,
                  method: HTTPMethod = .get,
                  parameters: [String: Any]? = nil,
                  dataResponseJSON: @escaping handlerResponseJSON) {
@@ -34,7 +30,7 @@ struct Connection {
                                         method: method,
                                         parameters: parameters,
                                         encoding: JSONEncoding.default,
-                                        headers: Connection.shared.headers).responseJSON { (response) in
+                                        headers: headers).responseJSON { (response) in
             
 //                                            print("URL: \(url)\nJSON Response: \(response)\n")
                                             dataResponseJSON(response)
@@ -42,7 +38,7 @@ struct Connection {
         
     }
     
-    func requestData(url: String,
+    static func requestData(url: String,
                      method: HTTPMethod,
                      parameters: [String: Any]?,
                      dataResponse: @escaping (Data?) -> ()) {
@@ -51,7 +47,7 @@ struct Connection {
                                         method: method,
                                         parameters: parameters,
                                         encoding: JSONEncoding.default,
-                                        headers: Connection.shared.headers).responseJSON { (response) in
+                                        headers: headers).responseJSON { (response) in
 
                                             dataResponse(response.data)
         }

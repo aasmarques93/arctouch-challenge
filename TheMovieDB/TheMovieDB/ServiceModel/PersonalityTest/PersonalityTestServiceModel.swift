@@ -10,6 +10,7 @@ struct PersonalityTestServiceModel: ServiceModel {
     func getPersonality(requestUrl: RequestUrl, handler: @escaping Handler<Personality>) {
         request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
             guard let object = object else {
+                handler(Personality.handleError())
                 return
             }
             handler(Personality(object: object))
@@ -43,6 +44,7 @@ struct PersonalityTestServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler?(User.handleError())
                         return
                     }
                     handler?(User(object: object))

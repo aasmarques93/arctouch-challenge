@@ -51,7 +51,7 @@ extension ServiceModel {
             return
         }
         
-        Connection.shared.request(url: url, method: method, parameters: parameters) { (dataResponse) in
+        Connection.request(url: url, method: method, parameters: parameters) { (dataResponse) in
             if let value = dataResponse.result.value {
                 if let array = value as? [Any] {
                     var arrayObject = [JSON]()
@@ -83,7 +83,7 @@ extension ServiceModel {
             return
         }
         
-        Connection.shared.requestData(url: url, method: .get, parameters: nil) { (data) in
+        Connection.requestData(url: url, method: .get, parameters: nil) { (data) in
             if let data = data {
                 handlerData(data)
             } else {

@@ -13,6 +13,7 @@ struct SearchServiceModel: ServiceModel {
         ]
         request(requestUrl: requestUrl, urlParameters: parameters, handlerObject: { (object) in
             guard let object = object else {
+                handler(MoviesGenres.handleError())
                 return
             }
             handler(MoviesGenres(object: object))
@@ -22,6 +23,7 @@ struct SearchServiceModel: ServiceModel {
     func getMoviesFromGenre(urlParameters: [String: Any], handler: @escaping Handler<SearchMoviesGenre>) {
         request(requestUrl: .searchByGenre, urlParameters: urlParameters, handlerObject: { (object) in
             guard let object = object else {
+                handler(SearchMoviesGenre.handleError())
                 return
             }
             handler(SearchMoviesGenre(object: object))
@@ -34,8 +36,10 @@ struct SearchServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler(MultiSearch.handleError())
                         return
                     }
+                    
                     handler(MultiSearch(object: object))
         })
     }    

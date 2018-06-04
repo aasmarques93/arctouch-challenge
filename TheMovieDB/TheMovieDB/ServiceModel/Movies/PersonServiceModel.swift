@@ -14,6 +14,7 @@ struct PersonServiceModel: ServiceModel {
         ]
         request(requestUrl: requestUrl, urlParameters: parameters, handlerObject: { (object) in
             guard let object = object else {
+                handler(nil)
                 return
             }
             
@@ -37,6 +38,7 @@ struct PersonServiceModel: ServiceModel {
         ]
         request(requestUrl: .personImages, urlParameters: parameters, handlerObject: { (object) in
             guard let object = object else {
+                handler(PersonImagesList.handleError())
                 return
             }
             

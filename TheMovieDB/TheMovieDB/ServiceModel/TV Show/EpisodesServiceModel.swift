@@ -17,6 +17,7 @@ struct EpisodesServiceModel: ServiceModel {
             ]
             request(requestUrl: .tvImages, urlParameters: parameters, handlerObject: { (object) in
                 guard let object = object else {
+                    handler(EpisodeImagesList.handleError())
                     return
                 }
                 handler(EpisodeImagesList(object: object))

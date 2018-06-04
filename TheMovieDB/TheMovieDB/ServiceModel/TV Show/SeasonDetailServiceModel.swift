@@ -16,6 +16,7 @@ struct SeasonDetailServiceModel: ServiceModel {
             ]
             request(requestUrl: RequestUrl.seasonDetail, urlParameters: parameters, handlerObject: { (object) in
                 guard let object = object else {
+                    handler(SeasonDetail.handleError())
                     return
                 }
                 handler(SeasonDetail(object: object))

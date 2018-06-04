@@ -21,4 +21,8 @@ extension Model {
         }
         return nil
     }
+    
+    static func handleError<T: Model>() -> T {
+        return T(object: ["statusMessage": Messages.serverError.localized])
+    }
 }

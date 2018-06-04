@@ -10,6 +10,7 @@ struct TVShowServiceModel: ServiceModel {
     func getTVShow(requestUrl: RequestUrl, urlParameters: [String: Any]? = nil, handler: @escaping Handler<SearchTV>) {
         request(requestUrl: requestUrl, urlParameters: urlParameters, handlerObject: { (object) in
             guard let object = object else {
+                handler(SearchTV.handleError())
                 return
             }
             handler(SearchTV(object: object))
@@ -19,6 +20,7 @@ struct TVShowServiceModel: ServiceModel {
     func doSearchTVShow(urlParameters: [String: Any], handler: @escaping Handler<SearchTV>) {
         request(requestUrl: .searchTV, urlParameters: urlParameters, handlerObject: { (object) in
             guard let object = object else {
+                handler(SearchTV.handleError())
                 return
             }
             handler(SearchTV(object: object))
@@ -31,6 +33,7 @@ struct TVShowServiceModel: ServiceModel {
         ]
         request(requestUrl: .tvLatest, urlParameters: urlParameters, handlerObject: { (object) in
             guard let object = object else {
+                handler(TVShow.handleError())
                 return
             }
             handler(TVShow(object: object))

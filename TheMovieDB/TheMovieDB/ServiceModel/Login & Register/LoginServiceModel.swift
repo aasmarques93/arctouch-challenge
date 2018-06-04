@@ -11,7 +11,7 @@ struct LoginServiceModel: ServiceModel {
                       email: String? = nil,
                       password: String? = nil,
                       facebookId: String? = nil,
-                      handler: Handler<User>? = nil) {
+                      handler: @escaping Handler<User>) {
         
         var parameters = [String: Any]()
         
@@ -30,9 +30,11 @@ struct LoginServiceModel: ServiceModel {
                 handlerObject: { (object) in
                     
                     guard let object = object else {
+                        handler(User.handleError())
                         return
                     }
-                    handler?(User(object: object))
+                    
+                    handler(User(object: object))
         })
     }
     

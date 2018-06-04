@@ -136,7 +136,9 @@ class TrackViewModel: ViewModel {
         
         let lastEpisode = arrayEpisodes.reduce(0, { $0 + ($1.episodeNumber ?? 0) })
         
-        yourListServiceModel.track(show: tvShowDetail, season: season, episode: lastEpisode)
+        yourListServiceModel.track(show: tvShowDetail, season: season, episode: lastEpisode) { (object) in
+            
+        }
     }
     
     // MARK: Last indexPath
