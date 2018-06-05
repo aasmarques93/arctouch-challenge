@@ -8,12 +8,23 @@
 
 import Foundation
 
-struct FileManager {
-    static func load(name: String) -> NSMutableDictionary? {
-        if let bundle = Bundle.main.path(forResource: name, ofType: "plist") {
-            let file = NSMutableDictionary(contentsOfFile: bundle)
-            return file
+// MARK: - File Names -
+enum FileManager: String {
+    case requestLinks = "RequestLinks"
+    case environmentLink = "EnvironmentLinks"
+    
+    static func load(file: FileManager, key: String) -> String {
+        guard let host = file.contentDictionary?.object(forKey: key) as? String else {
+            return ""
         }
-        return nil
+        return host
+    }
+    
+    var contentDictionary: NSMutableDictionary? {
+        guard let bundle = Bundle.main.path(forResource: rawValue, ofType: "plist") else {
+            return nil
+        }
+        return NSMutableDictionary(contentsOfFile: bundle)
     }
 }
+

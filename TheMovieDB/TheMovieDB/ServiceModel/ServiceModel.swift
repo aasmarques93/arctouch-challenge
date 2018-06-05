@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import Moya
 
 typealias HandlerCallback = () -> Swift.Void
 typealias HandlerObject = (Any?) -> Swift.Void
@@ -22,10 +23,9 @@ protocol ServiceModel {
 extension ServiceModel {
     // MARK: - Service Delegate Methods -
     
-    func request(method: HTTPMethod = .get,
+    func request(method: Moya.Method = .get,
                  requestUrl: RequestUrl,
                  environmentBase: EnvironmentBase = .theMovieDB,
-                 stringUrl: String? = nil,
                  parameters: [String: Any]? = nil,
                  urlParameters: [String: Any]? = nil,
                  handlerObject: @escaping HandlerObject) {
@@ -37,63 +37,66 @@ extension ServiceModel {
             return
         }
         
-        var url = ""
-        
-        if let stringUrl = stringUrl {
-            url = stringUrl
-        } else {
-            url = self.requestUrl(type: requestUrl, environmentBase: environmentBase, parameters: urlParameters)
-        }
-        
         if !verifyConnection() {
-            let error = ReachabilityError.notConnected.rawValue
-            handlerObject(error)
+            handlerObject(ReachabilityError.notConnected.rawValue)
             return
         }
         
-        Connection.request(url: url, method: method, parameters: parameters) { (dataResponse) in
-            if let value = dataResponse.result.value {
-                if let array = value as? [Any] {
-                    var arrayObject = [JSON]()
-                    
-                    array.forEach({ (object) in
-                        arrayObject.append(JSON(object))
-                    })
-                    
-                    handlerObject(arrayObject)
-                    
+        let requestBase = RequestBase(requestUrl: requestUrl,
+                                      environmentBase: environmentBase,
+                                      method: method,
+                                      urlParameters: urlParameters,
+                                      parameters: parameters)
+        
+//        plugins: [NetworkLoggerPlugin(verbose: true)]
+        let provider = MoyaProvider<RequestBase>()
+        provider.request(requestBase) { (result) in
+            do {
+                let response = try result.dematerialize()
+                let json = try response.mapJSON()
+                
+                guard let array = json as? [Any] else {
+                    handlerObject(JSON(json))
                     return
                 }
                 
-                handlerObject(JSON(value))
-                return
+                var arrayObject = [JSON]()
+                array.forEach({ (object) in
+                    arrayObject.append(JSON(object))
+                })
+                
+                handlerObject(arrayObject)
+            } catch {
+                let printableError = error as CustomStringConvertible
+                handlerObject(printableError.description)
             }
-            
-            handlerObject(ReachabilityError.requestTimeout.rawValue)
         }
     }
     
     func loadImage(path: String?, environmentBase: EnvironmentBase = .imagesTheMovieDB, handlerData: @escaping HandlerObject) {
-        var url = keyManagerFile(key: environmentBase)
-        if let path = path { url += path }
-        
         if !verifyConnection() {
-            let error = ReachabilityError.notConnected.rawValue
-            handlerData(error)
+            handlerData(ReachabilityError.notConnected.rawValue)
             return
         }
         
-        Connection.requestData(url: url, method: .get, parameters: nil) { (data) in
-            if let data = data {
-                handlerData(data)
-            } else {
-                handlerData(ReachabilityError.requestTimeout.rawValue)
+        let requestBase = RequestBase(environmentBase: environmentBase,
+                                      customPath: path ?? "",
+                                      method: .get)
+        
+        let provider = MoyaProvider<RequestBase>()
+        provider.request(requestBase) { (result) in
+            do {
+                let response = try result.dematerialize()
+                handlerData(response.data)
+            } catch {
+                let printableError = error as CustomStringConvertible
+                handlerData(printableError.description)
             }
         }
     }
     
     func imageUrl(with path: String?, environmentBase: EnvironmentBase = .imagesTheMovieDB) -> String {
-        var url = keyManagerFile(key: environmentBase)
+        var url = environmentBase.path
         if let path = path { url += path }
         return url
     }
@@ -101,75 +104,10 @@ extension ServiceModel {
     // MARK: - Verifications -
     
     func verifyConnection() -> Bool {
-        if let reachabilityNetwork = Alamofire.NetworkReachabilityManager(host: "www.google.com") {
-            if reachabilityNetwork.isReachable {
-                return true
-            }
+        guard let reachabilityNetwork = Alamofire.NetworkReachabilityManager(host: "www.google.com") else {
+            return false
         }
-        return false
-    }
-    
-    // MARK: - File manager - Link requests -
-    
-    func requestUrl(type: RequestUrl, environmentBase: EnvironmentBase, parameters: [String: Any]? = nil) -> String {
-        if type.rawValue.contains("http") {
-            return type.rawValue
-        }
-        
-        var link = ""
-        
-        link += keyManagerFile(key: environmentBase)
-        
-        guard let parameters = parameters else {
-            link += keyManagerFile(key: type)
-            guard environmentBase == .theMovieDB else {
-                return link
-            }
-            return link + appendApiKey(to: link)
-        }
-        
-        link += createUrl(from: keyManagerFile(key: type), environmentBase: environmentBase, parameters: parameters)
-        
-        return link
-    }
-    
-    func keyManagerFile(key: Any) -> String{
-        if let key = key as? EnvironmentBase {
-            let file = FileManager.load(name: FileName.environmentLink)
-            if let host = file?.object(forKey: key.rawValue) as? String {
-                return host
-            }
-        }
-        
-        if let key = key as? RequestUrl {
-            let file = FileManager.load(name: FileName.requestLinks)
-            if let link = file?.object(forKey: key.rawValue) as? String {
-                return link
-            }
-        }
-        
-        return ""
-    }
-    
-    func createUrl(from string: String, environmentBase: EnvironmentBase, parameters: [String: Any]) -> String {
-        var url = string
-        
-        parameters.forEach { (parameter) in
-            if url.contains("{\(parameter.key)}") {
-                let array = url.components(separatedBy: "{\(parameter.key)}")
-                if array.count == 2 { url = "\(array[0])\(parameter.value)\(array[1])" }
-            }
-        }
-        
-        guard environmentBase == .theMovieDB else {
-            return url
-        }
-        
-        return url + appendApiKey(to: url)
-    }
-    
-    func appendApiKey(to url: String) -> String {
-        return "api_key=\(keyManagerFile(key: RequestUrl.apiKey))"
+        return reachabilityNetwork.isReachable
     }
 }
 

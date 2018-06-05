@@ -133,6 +133,8 @@ struct NetflixServiceModel: ServiceModel {
             "id": path ?? "",
             "contentKind": isMovie ? "movie" : "show"
         ]
-        return requestUrl(type: .netflixImage, environmentBase: .imagesReelgood, parameters: parameters)
+        let requestUrl: RequestUrl = .netflixImage
+        let environmentBase: EnvironmentBase = .imagesReelgood
+        return environmentBase.path + requestUrl.url(environmentBase: environmentBase, parameters: parameters)
     }
 }
