@@ -208,7 +208,7 @@ class LoginViewModel: ViewModel {
                 return
             }
             
-            Singleton.shared.user.photo = UserDefaultsHelper.getImagePath(with: data)
+            Singleton.shared.user.photo = LocalStorageHelper.getImagePath(with: data)
             Singleton.shared.saveUser()
         }
     }

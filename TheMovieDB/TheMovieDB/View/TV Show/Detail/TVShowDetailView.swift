@@ -28,6 +28,7 @@ class TVShowDetailView: UITableViewController {
     @IBOutlet weak var labelRateResult: UILabel!
     @IBOutlet weak var labelRate: UILabel!
     @IBOutlet weak var emojiRateView: EmojiRateView!
+    @IBOutlet weak var buttonEmojiRateImage: UIButton!
     
     @IBOutlet var stretchHeaderView: StretchHeaderView!
     
@@ -105,6 +106,7 @@ class TVShowDetailView: UITableViewController {
         emojiRateView.rateValue = value
         labelRate.text = "\(value.rounded())"
         labelRate.textColor = emojiRateView.rateColor
+        buttonEmojiRateImage.tintColor = labelRate.textColor
         setRateImage(with: value)
     }
     
@@ -124,6 +126,7 @@ class TVShowDetailView: UITableViewController {
                 return
             }
             self?.labelRate.textColor = color
+            self?.buttonEmojiRateImage.tintColor = color
         }
     }
     

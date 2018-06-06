@@ -215,7 +215,7 @@ class PersonalityTestViewModel: ViewModel {
     }
     
     private func saveSkipTest(status: Bool) {
-        UserDefaultsHelper.save(object: status, key: .didSkipTest)
+        LocalStorageHelper.save(object: status, key: .didSkipTest)
     }
     
     private func saveAnsweredQuestions() {
@@ -224,7 +224,7 @@ class PersonalityTestViewModel: ViewModel {
         }
         
         let array = arraySelectedAnswers.map { $0.dictionaryRepresentation() }
-        UserDefaultsHelper.save(object: array, key: .answeredQuestions)
+        LocalStorageHelper.save(object: array, key: .answeredQuestions)
     }
     
     func personalityTestCellViewModel(at indexPath: IndexPath) -> PersonalityTestCellViewModel? {

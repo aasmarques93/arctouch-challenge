@@ -247,16 +247,19 @@ open class EmojiRateView: UIView {
      Redraw all lines.
      */
     fileprivate func redraw() {
-        shapeLayer.frame = self.bounds
+        let bounds = CGRect(x: 0, y: 0, width: self.bounds.height, height: self.bounds.height)
+        
+        shapeLayer.frame = bounds
+        shapeLayer.position = CGPoint(x: center.x, y: shapeLayer.position.y)
         shapeLayer.strokeColor = rateColor.cgColor;
         shapeLayer.lineCap = "round"
         shapeLayer.lineWidth = rateLineWidth
         
         shapePath.removeAllPoints()
-        shapePath.append(facePathWithRect(self.bounds))
-        shapePath.append(mouthPathWithRect(self.bounds))
-        shapePath.append(eyePathWithRect(self.bounds, isLeftEye: true))
-        shapePath.append(eyePathWithRect(self.bounds, isLeftEye: false))
+        shapePath.append(facePathWithRect(bounds))
+        shapePath.append(mouthPathWithRect(bounds))
+        shapePath.append(eyePathWithRect(bounds, isLeftEye: true))
+        shapePath.append(eyePathWithRect(bounds, isLeftEye: false))
         
         shapeLayer.path = shapePath.cgPath
         self.setNeedsDisplay()

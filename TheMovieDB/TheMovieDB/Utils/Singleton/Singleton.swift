@@ -41,11 +41,11 @@ class Singleton {
     }
     
     func saveUser() {
-        UserDefaultsHelper.save(object: user.dictionaryRepresentation(), key: .userLogged)
+        LocalStorageHelper.save(object: user.dictionaryRepresentation(), key: .userLogged)
     }
     
     var userLogged: User? {
-        guard let object = UserDefaultsHelper.fetch(key: .userLogged) else {
+        guard let object = LocalStorageHelper.fetch(key: .userLogged) else {
             return nil
         }
         return User(object: object)
@@ -56,7 +56,7 @@ class Singleton {
     }
     
     var userPhoto: UIImage? {
-        guard let photo = user.photo, let data = UserDefaultsHelper.getImageData(from: photo) else {
+        guard let photo = user.photo, let data = LocalStorageHelper.getImageData(from: photo) else {
             return nil
         }
         return UIImage(data: data)
@@ -101,7 +101,7 @@ class Singleton {
     func logout() {
         if let _ = FBSDKAccessToken.current() { FBSDKLoginManager().logOut() }
         user = User.createEmptyUser()
-        UserDefaultsHelper.delete(key: .userPersonality)
+        LocalStorageHelper.delete(key: .userPersonality)
     }
 
     // MARK: - Saving personality test -
@@ -155,11 +155,11 @@ class Singleton {
     }
     
     func savePersonalityType(_ personalityType: PersonalityType?) {
-        UserDefaultsHelper.save(object: personalityType?.dictionaryRepresentation(), key: .userPersonality)
+        LocalStorageHelper.save(object: personalityType?.dictionaryRepresentation(), key: .userPersonality)
     }
     
     var userPersonalityType: PersonalityType? {
-        guard let object = UserDefaultsHelper.fetch(key: .userPersonality) else {
+        guard let object = LocalStorageHelper.fetch(key: .userPersonality) else {
             return nil
         }
         return PersonalityType(object: object)
@@ -167,7 +167,7 @@ class Singleton {
     
     
     var userAnsweredQuestions: [Answer] {
-        guard let array = UserDefaultsHelper.fetch(key: .answeredQuestions) as? [[String: Any]] else {
+        guard let array = LocalStorageHelper.fetch(key: .answeredQuestions) as? [[String: Any]] else {
             return [Answer]()
         }
         
@@ -194,7 +194,7 @@ class Singleton {
     
     var didSkipTestFromLauching = false
     var didSkipTest: Bool {
-        guard let value = UserDefaultsHelper.fetch(key: .didSkipTest) as? Bool else {
+        guard let value = LocalStorageHelper.fetch(key: .didSkipTest) as? Bool else {
             return false
         }
         return value

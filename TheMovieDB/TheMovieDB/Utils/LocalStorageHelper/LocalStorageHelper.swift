@@ -1,14 +1,14 @@
 //
-//  UserDefaultsHelper.swift
+//  LocalStorageHelper.swift
 //  TheMovieDB
 //
 //  Created by Arthur Augusto Sousa Marques on 5/9/18.
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
+import SwiftKeychainWrapper
 
-enum UserDefaultsKeys {
+enum LocalStorageKeys {
     case appOpenedCount
     case answeredQuestions
     case didSkipTest
@@ -21,23 +21,23 @@ enum UserDefaultsKeys {
     }
 }
 
-struct UserDefaultsHelper {
-    static func save(object: Any?, key: UserDefaultsKeys) {
+struct LocalStorageHelper {
+    static func save(object: Any?, key: LocalStorageKeys) {
         guard let object = object else {
             return
         }
-        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: object), forKey: key.description)
+        _ = KeychainWrapper.standard.set(NSKeyedArchiver.archivedData(withRootObject: object), forKey: key.description)
     }
     
-    static func fetch(key: UserDefaultsKeys) -> Any? {
-        guard let data = UserDefaults.standard.object(forKey: key.description) as? Data else {
+    static func fetch(key: LocalStorageKeys) -> Any? {
+        guard let data = KeychainWrapper.standard.data(forKey: key.description) else {
             return nil
         }
         return NSKeyedUnarchiver.unarchiveObject(with: data)
     }
     
-    static func delete(key: UserDefaultsKeys) {
-        UserDefaults.standard.set(nil, forKey: key.description)
+    static func delete(key: LocalStorageKeys) {
+        _ = KeychainWrapper.standard.removeObject(forKey: key.description)
     }
     
     static func getImagePath(with data: Data) -> String {

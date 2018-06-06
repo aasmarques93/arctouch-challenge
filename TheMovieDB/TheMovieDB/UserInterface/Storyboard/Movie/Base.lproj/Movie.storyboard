@@ -481,45 +481,46 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Apu-Sa-LrX">
-                                                    <rect key="frame" x="87.5" y="0.0" width="200" height="100"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXw-5W-CKG" customClass="EmojiRateView" customModule="TheMovieDB" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="8" width="375" height="84"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGe-W2-b7b">
-                                                            <rect key="frame" x="8" y="26" width="92" height="48"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeA-HJ-saA">
+                                                            <rect key="frame" x="69.5" y="18" width="63" height="48"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azu-VD-i2F" customClass="EmojiRateView" customModule="TheMovieDB" customModuleProvider="target">
-                                                            <rect key="frame" x="108" y="8" width="84" height="84"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i2w-dW-XM8">
+                                                            <rect key="frame" x="237.5" y="22" width="40" height="40"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Azu-VD-i2F" secondAttribute="height" multiplier="1:1" id="zZp-qV-H3f"/>
+                                                                <constraint firstAttribute="height" constant="40" id="TC3-4N-guf"/>
+                                                                <constraint firstAttribute="width" secondItem="i2w-dW-XM8" secondAttribute="height" multiplier="1:1" id="aWb-4D-qP8"/>
                                                             </constraints>
+                                                            <state key="normal" image="slide-arrow"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="rateLineWidth">
-                                                                    <real key="value" value="2"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="rateShowEyes" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="text"/>
                                                             </userDefinedRuntimeAttributes>
-                                                        </view>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="200" id="F3Q-46-WYn"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Azu-VD-i2F" secondAttribute="bottom" constant="8" id="Pkr-TF-9jm"/>
-                                                        <constraint firstItem="mGe-W2-b7b" firstAttribute="centerY" secondItem="Apu-Sa-LrX" secondAttribute="centerY" id="SDO-kE-Aa8"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Azu-VD-i2F" secondAttribute="trailing" constant="8" id="gpB-Fv-1Hp"/>
-                                                        <constraint firstItem="mGe-W2-b7b" firstAttribute="leading" secondItem="Apu-Sa-LrX" secondAttribute="leading" constant="8" id="ilE-wP-hQp"/>
-                                                        <constraint firstItem="Azu-VD-i2F" firstAttribute="top" secondItem="Apu-Sa-LrX" secondAttribute="top" constant="8" id="pns-wm-a9I"/>
-                                                        <constraint firstItem="Azu-VD-i2F" firstAttribute="leading" secondItem="mGe-W2-b7b" secondAttribute="trailing" constant="8" id="zRg-Lo-Wcy"/>
+                                                        <constraint firstItem="NeA-HJ-saA" firstAttribute="trailing" secondItem="yXw-5W-CKG" secondAttribute="centerX" constant="-55" id="6sA-g4-xZx"/>
+                                                        <constraint firstItem="i2w-dW-XM8" firstAttribute="centerY" secondItem="yXw-5W-CKG" secondAttribute="centerY" id="mmS-pS-Rgm"/>
+                                                        <constraint firstItem="i2w-dW-XM8" firstAttribute="leading" secondItem="yXw-5W-CKG" secondAttribute="centerX" constant="50" id="pKJ-JL-RLJ"/>
+                                                        <constraint firstItem="NeA-HJ-saA" firstAttribute="centerY" secondItem="yXw-5W-CKG" secondAttribute="centerY" id="tLe-Xd-0Iv"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="rateLineWidth">
+                                                            <real key="value" value="2"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Apu-Sa-LrX" secondAttribute="bottom" id="NKx-P8-lNP"/>
-                                                <constraint firstItem="Apu-Sa-LrX" firstAttribute="centerX" secondItem="CWc-Wc-Pk0" secondAttribute="centerX" id="YJS-qi-ChF"/>
-                                                <constraint firstItem="Apu-Sa-LrX" firstAttribute="top" secondItem="CWc-Wc-Pk0" secondAttribute="top" id="pJF-Ky-hmX"/>
+                                                <constraint firstAttribute="trailing" secondItem="yXw-5W-CKG" secondAttribute="trailing" id="KCM-hZ-TqV"/>
+                                                <constraint firstAttribute="bottom" secondItem="yXw-5W-CKG" secondAttribute="bottom" constant="8" id="O2L-WP-atp"/>
+                                                <constraint firstItem="yXw-5W-CKG" firstAttribute="leading" secondItem="CWc-Wc-Pk0" secondAttribute="leading" id="qEc-8q-mFS"/>
+                                                <constraint firstItem="yXw-5W-CKG" firstAttribute="top" secondItem="CWc-Wc-Pk0" secondAttribute="top" constant="8" id="sWr-5F-cRC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -828,16 +829,17 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="buttonAdd" destination="a42-kR-pP1" id="AB0-HO-e7a"/>
+                        <outlet property="buttonEmojiRateImage" destination="i2w-dW-XM8" id="WvV-0O-nB2"/>
                         <outlet property="buttonRate" destination="haG-lx-1T8" id="xRk-zV-qw4"/>
                         <outlet property="buttonSeen" destination="gJa-a0-yXA" id="W4j-zw-fZD"/>
                         <outlet property="carouselCast" destination="lSD-lN-i17" id="H8o-3g-bPu"/>
                         <outlet property="carouselRecommendedMovies" destination="0U2-g8-96O" id="Zn0-Ij-ktk"/>
                         <outlet property="carouselSimilarMovies" destination="lrM-vG-4dN" id="w47-Fv-387"/>
                         <outlet property="carouselVideos" destination="Hbt-qC-VjH" id="TiG-oy-AIA"/>
-                        <outlet property="emojiRateView" destination="Azu-VD-i2F" id="v2d-fc-Ccd"/>
+                        <outlet property="emojiRateView" destination="yXw-5W-CKG" id="h0I-fX-djH"/>
                         <outlet property="labelAverage" destination="J8k-pV-Ii1" id="nLi-m1-Ma2"/>
                         <outlet property="labelDate" destination="rFE-ed-Pzf" id="pQb-Ec-33z"/>
-                        <outlet property="labelRate" destination="mGe-W2-b7b" id="TQo-JH-qJI"/>
+                        <outlet property="labelRate" destination="NeA-HJ-saA" id="LW8-B7-Dxt"/>
                         <outlet property="labelRateResult" destination="5F5-SY-Si2" id="FWs-ST-azr"/>
                         <outlet property="labelRuntime" destination="baR-db-9Ng" id="bJ4-Vp-tAz"/>
                         <outlet property="stretchHeaderView" destination="Ph2-wS-gUL" id="Csj-Sl-fMC"/>
@@ -919,6 +921,7 @@
         <image name="add" width="25" height="25"/>
         <image name="happy-emoji" width="25" height="25"/>
         <image name="seen" width="25" height="25"/>
+        <image name="slide-arrow" width="223" height="223"/>
         <image name="star" width="24" height="24"/>
         <image name="test" width="25" height="25"/>
     </resources>

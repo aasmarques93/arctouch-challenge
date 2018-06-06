@@ -84,7 +84,7 @@ class ProfileViewModel: ViewModel {
     // MARK: - User profile -
     
     func changeProfilePicture(_ data: Data) {
-        Singleton.shared.user.photo = UserDefaultsHelper.getImagePath(with: data)
+        Singleton.shared.user.photo = LocalStorageHelper.getImagePath(with: data)
         Singleton.shared.saveUser()
     }
     

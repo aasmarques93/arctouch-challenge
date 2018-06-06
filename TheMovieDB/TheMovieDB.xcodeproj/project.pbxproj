@@ -179,7 +179,7 @@
 		ED81CB8220B068AB0056E2A8 /* YourListMovieViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81CB8120B068AB0056E2A8 /* YourListMovieViewCell.swift */; };
 		ED81CB8420B06F310056E2A8 /* YourListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81CB8320B06F310056E2A8 /* YourListViewModel.swift */; };
 		ED81CB8820B0C6F30056E2A8 /* YourListServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED81CB8720B0C6F30056E2A8 /* YourListServiceModel.swift */; };
-		ED841E5D20A37DE000A425BF /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED841E5C20A37DE000A425BF /* UserDefaultsHelper.swift */; };
+		ED841E5D20A37DE000A425BF /* LocalStorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED841E5C20A37DE000A425BF /* LocalStorageHelper.swift */; };
 		ED841E6A20A3C7A200A425BF /* PersonalityTestResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED841E6920A3C7A200A425BF /* PersonalityTestResultViewModel.swift */; };
 		ED841E8720A52AE600A425BF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED841E8920A52AE600A425BF /* Localizable.strings */; };
 		ED841E8F20A54D3400A425BF /* personalityTest.json in Resources */ = {isa = PBXBuildFile; fileRef = ED841E8B20A54D3000A425BF /* personalityTest.json */; };
@@ -437,7 +437,7 @@
 		ED81CB8120B068AB0056E2A8 /* YourListMovieViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourListMovieViewCell.swift; sourceTree = "<group>"; };
 		ED81CB8320B06F310056E2A8 /* YourListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourListViewModel.swift; sourceTree = "<group>"; };
 		ED81CB8720B0C6F30056E2A8 /* YourListServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourListServiceModel.swift; sourceTree = "<group>"; };
-		ED841E5C20A37DE000A425BF /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
+		ED841E5C20A37DE000A425BF /* LocalStorageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageHelper.swift; sourceTree = "<group>"; };
 		ED841E6920A3C7A200A425BF /* PersonalityTestResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestResultViewModel.swift; sourceTree = "<group>"; };
 		ED841E7F20A52A6400A425BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		ED841E8020A52A6500A425BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -1306,12 +1306,12 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		ED841E5B20A37DC600A425BF /* UserDefaultsHelper */ = {
+		ED841E5B20A37DC600A425BF /* LocalStorageHelper */ = {
 			isa = PBXGroup;
 			children = (
-				ED841E5C20A37DE000A425BF /* UserDefaultsHelper.swift */,
+				ED841E5C20A37DE000A425BF /* LocalStorageHelper.swift */,
 			);
-			path = UserDefaultsHelper;
+			path = LocalStorageHelper;
 			sourceTree = "<group>";
 		};
 		ED841E6B20A3C81500A425BF /* TestResult */ = {
@@ -1488,7 +1488,7 @@
 				ED81CB7820AFD81C0056E2A8 /* PhotoPicker */,
 				ED4201B420A8685C005D5FF3 /* StoreReviewHelper */,
 				ED42018D20A699A1005D5FF3 /* Facebook */,
-				ED841E5B20A37DC600A425BF /* UserDefaultsHelper */,
+				ED841E5B20A37DC600A425BF /* LocalStorageHelper */,
 				ED2AA62720A30AE700AA0DF5 /* Charts */,
 				ED2AA62320A24FA600AA0DF5 /* Singleton */,
 				EDBAF880209FFE340089DE39 /* Fabric */,
@@ -1829,6 +1829,7 @@
 				"${BUILT_PRODUCTS_DIR}/ReactiveKit/ReactiveKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/XCDYouTubeKit/XCDYouTubeKit.framework",
 				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
@@ -1858,6 +1859,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCDYouTubeKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
@@ -1998,7 +2000,7 @@
 				ED65BF09209261C00091D93B /* ReviewsView.swift in Sources */,
 				EDC6C02820585A8300D843EC /* General.swift in Sources */,
 				ED3833EC209375A00079D48F /* ExternalIds.swift in Sources */,
-				ED841E5D20A37DE000A425BF /* UserDefaultsHelper.swift in Sources */,
+				ED841E5D20A37DE000A425BF /* LocalStorageHelper.swift in Sources */,
 				ED2AA5F820A0DA4700AA0DF5 /* PersonalityTestViewCell.swift in Sources */,
 				ED2AA60220A0DD8000AA0DF5 /* Questions.swift in Sources */,
 				ED3834422094F7600079D48F /* SearchResultViewModel.swift in Sources */,

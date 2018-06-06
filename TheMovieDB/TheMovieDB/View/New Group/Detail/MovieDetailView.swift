@@ -33,6 +33,7 @@ class MovieDetailView: UITableViewController {
     @IBOutlet weak var emojiRateView: EmojiRateView!
     @IBOutlet weak var labelRate: UILabel!
     @IBOutlet weak var labelRateResult: UILabel!
+    @IBOutlet weak var buttonEmojiRateImage: UIButton!
     
     // MARK: - Properties -
     
@@ -120,6 +121,7 @@ class MovieDetailView: UITableViewController {
         emojiRateView.rateValue = value
         labelRate.text = "\(value.rounded())"
         labelRate.textColor = emojiRateView.rateColor
+        buttonEmojiRateImage.tintColor = labelRate.textColor
         setRateImage(with: value)
     }
     
@@ -139,6 +141,7 @@ class MovieDetailView: UITableViewController {
                 return
             }
             self?.labelRate.textColor = color
+            self?.buttonEmojiRateImage.tintColor = color
         }
     }
     

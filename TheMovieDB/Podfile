@@ -23,6 +23,7 @@ target 'TheMovieDB' do
   pod 'XCDYouTubeKit'
   pod 'FCAlertView'
   pod 'NVActivityIndicatorView'
+  pod 'SwiftKeychainWrapper'
   
   # Pods for TheMovieDB
 

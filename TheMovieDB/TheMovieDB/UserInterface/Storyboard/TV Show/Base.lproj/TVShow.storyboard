@@ -400,44 +400,46 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HU2-d9-BJP">
-                                                    <rect key="frame" x="87.5" y="0.0" width="200" height="100"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IfM-6a-DLn" customClass="EmojiRateView" customModule="TheMovieDB" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="8" width="375" height="84"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUL-D1-fX3">
-                                                            <rect key="frame" x="8" y="26" width="92" height="48"/>
+                                                            <rect key="frame" x="69.5" y="18" width="63" height="48"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IfM-6a-DLn" customClass="EmojiRateView" customModule="TheMovieDB" customModuleProvider="target">
-                                                            <rect key="frame" x="108" y="8" width="84" height="84"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifN-Mq-qPo">
+                                                            <rect key="frame" x="237.5" y="22" width="40" height="40"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="IfM-6a-DLn" secondAttribute="height" multiplier="1:1" id="9KZ-5T-jGW"/>
+                                                                <constraint firstAttribute="height" constant="40" id="YAZ-9v-axP"/>
+                                                                <constraint firstAttribute="width" secondItem="ifN-Mq-qPo" secondAttribute="height" multiplier="1:1" id="e4K-4a-kt4"/>
                                                             </constraints>
+                                                            <state key="normal" image="slide-arrow"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="rateLineWidth">
-                                                                    <real key="value" value="2"/>
-                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="colorStyle" value="text"/>
                                                             </userDefinedRuntimeAttributes>
-                                                        </view>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="vUL-D1-fX3" firstAttribute="leading" secondItem="HU2-d9-BJP" secondAttribute="leading" constant="8" id="2OX-Iv-TLo"/>
-                                                        <constraint firstItem="vUL-D1-fX3" firstAttribute="centerY" secondItem="HU2-d9-BJP" secondAttribute="centerY" id="50I-9C-BVP"/>
-                                                        <constraint firstAttribute="width" constant="200" id="UgI-cn-iVC"/>
-                                                        <constraint firstItem="IfM-6a-DLn" firstAttribute="leading" secondItem="vUL-D1-fX3" secondAttribute="trailing" constant="8" id="Xgz-gk-aeS"/>
-                                                        <constraint firstItem="IfM-6a-DLn" firstAttribute="top" secondItem="HU2-d9-BJP" secondAttribute="top" constant="8" id="edt-l8-tg4"/>
-                                                        <constraint firstAttribute="trailing" secondItem="IfM-6a-DLn" secondAttribute="trailing" constant="8" id="moE-Ox-GmY"/>
-                                                        <constraint firstAttribute="bottom" secondItem="IfM-6a-DLn" secondAttribute="bottom" constant="8" id="tbu-NX-03H"/>
+                                                        <constraint firstItem="ifN-Mq-qPo" firstAttribute="leading" secondItem="IfM-6a-DLn" secondAttribute="centerX" constant="50" id="DP6-as-jBd"/>
+                                                        <constraint firstItem="vUL-D1-fX3" firstAttribute="trailing" secondItem="IfM-6a-DLn" secondAttribute="centerX" constant="-55" id="FZw-bv-Wgi"/>
+                                                        <constraint firstItem="ifN-Mq-qPo" firstAttribute="centerY" secondItem="IfM-6a-DLn" secondAttribute="centerY" id="UYE-Dl-6qy"/>
+                                                        <constraint firstItem="vUL-D1-fX3" firstAttribute="centerY" secondItem="IfM-6a-DLn" secondAttribute="centerY" id="Zwu-JF-Pf3"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="rateLineWidth">
+                                                            <real key="value" value="2"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="HU2-d9-BJP" firstAttribute="centerX" secondItem="a8u-cr-PMQ" secondAttribute="centerX" id="JKz-di-Wfv"/>
-                                                <constraint firstItem="HU2-d9-BJP" firstAttribute="top" secondItem="a8u-cr-PMQ" secondAttribute="top" id="PtT-IQ-0bQ"/>
-                                                <constraint firstAttribute="bottom" secondItem="HU2-d9-BJP" secondAttribute="bottom" id="YhD-KG-jbd"/>
+                                                <constraint firstAttribute="bottom" secondItem="IfM-6a-DLn" secondAttribute="bottom" constant="8" id="SsM-4A-Jrg"/>
+                                                <constraint firstAttribute="trailing" secondItem="IfM-6a-DLn" secondAttribute="trailing" id="brf-Jr-jiu"/>
+                                                <constraint firstItem="IfM-6a-DLn" firstAttribute="top" secondItem="a8u-cr-PMQ" secondAttribute="top" constant="8" id="dUg-dD-gyj"/>
+                                                <constraint firstItem="IfM-6a-DLn" firstAttribute="leading" secondItem="a8u-cr-PMQ" secondAttribute="leading" id="yST-tF-1mN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -699,6 +701,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="buttonEmojiRateImage" destination="ifN-Mq-qPo" id="n2K-wj-zRb"/>
                         <outlet property="buttonRate" destination="pcg-BJ-xOS" id="F2d-PV-tC8"/>
                         <outlet property="carouselCast" destination="Ch6-FD-4yc" id="Ed6-rs-XA3"/>
                         <outlet property="carouselRecommended" destination="aQG-Lz-cd9" id="nM5-7C-i3o"/>
@@ -1029,6 +1032,7 @@
     <resources>
         <image name="checklist" width="25" height="25"/>
         <image name="happy-emoji" width="25" height="25"/>
+        <image name="slide-arrow" width="223" height="223"/>
         <image name="test" width="25" height="25"/>
     </resources>
 </document>
