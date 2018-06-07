@@ -20,15 +20,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         StoreReviewHelper.incrementAppOpenedCount()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         Fabric.with([Crashlytics.self])
+        GoogleAdsHelper.shared.configure()
+        
+        let alertController = UIAlertController(style: .alert)
         Reachability.startListening { (status) in
             if !status {
-                let alertController = UIAlertController(style: .alert)
+                alertController.dismiss(animated: false, completion: nil)
                 alertController.show(message: Messages.withoutNetworkConnection.localized)
             }
         }
+        
         return true
     }
     

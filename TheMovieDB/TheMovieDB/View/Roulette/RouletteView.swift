@@ -82,6 +82,7 @@ class RouletteView: UIViewController {
     
     @IBAction func buttonSpinAction(_ sender: UIButton) {
         viewModel.doSpin()
+        GoogleAdsHelper.shared.showInterstitial()
     }
     
     // MARK: - Segues -

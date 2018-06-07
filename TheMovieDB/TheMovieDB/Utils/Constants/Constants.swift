@@ -6,8 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
-
 struct Constants {
     static let defaultDateFormat = "dd/MM/yyyy"
     static let dateFormatIsoTime = "yyyy-MM-dd'T'hh:ss:mm"

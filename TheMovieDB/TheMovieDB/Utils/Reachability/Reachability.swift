@@ -6,7 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
 import Alamofire
 
 class Reachability {

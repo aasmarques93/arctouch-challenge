@@ -6,7 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
 import StoreKit
 
 struct StoreReviewHelper {
@@ -17,7 +16,7 @@ struct StoreReviewHelper {
             return
         }
         appOpenCount += 1
-        LocalStorageHelper.save(object: 1, key: .appOpenedCount)
+        LocalStorageHelper.save(object: appOpenCount, key: .appOpenedCount)
     }
     
     static func checkAndAskForReview() {

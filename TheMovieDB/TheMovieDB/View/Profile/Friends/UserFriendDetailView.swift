@@ -43,6 +43,11 @@ class UserFriendDetailView: UITableViewController {
         setupFooterView()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        GoogleAdsHelper.shared.showInterstitial()
+    }
+    
     // MARK: - Appearance -
     
     func setupAppearance() {

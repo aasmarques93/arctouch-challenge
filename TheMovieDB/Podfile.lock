@@ -47,6 +47,7 @@ PODS:
   - FCAlertView (1.4.0)
   - FLAnimatedImage (1.0.12)
   - GhostTypewriter (1.0.0)
+  - Google-Mobile-Ads-SDK (7.30.0)
   - Moya (11.0.2):
     - Moya/Core (= 11.0.2)
   - Moya/Core (11.0.2):
@@ -79,6 +80,7 @@ DEPENDENCIES:
   - FacebookShare
   - FCAlertView
   - GhostTypewriter
+  - Google-Mobile-Ads-SDK
   - Moya
   - NVActivityIndicatorView
   - ProcessLoadingView
@@ -109,6 +111,7 @@ SPEC REPOS:
     - FCAlertView
     - FLAnimatedImage
     - GhostTypewriter
+    - Google-Mobile-Ads-SDK
     - Moya
     - NVActivityIndicatorView
     - ProcessLoadingView
@@ -140,6 +143,7 @@ SPEC CHECKSUMS:
   FCAlertView: fdddd63381898c1d1a5a20c9f084fbd2c6d12f8b
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GhostTypewriter: 70c6f827ada4716bda0550046b01bf783331ee00
+  Google-Mobile-Ads-SDK: 7404f68120ae8682afeb5af001fbf4aad731c78e
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   NVActivityIndicatorView: 75c9634073e03b31d7e2748cd2417feab1206195
   ProcessLoadingView: 7f0c959fcef37ac0075d068b447099c1327c9d42
@@ -152,6 +156,6 @@ SPEC CHECKSUMS:
   XCDYouTubeKit: dccfe0c17dd5c5187969ec27e93069573badb08f
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: a75ca9627f9dfe7c20ee42c192a0b89e98bad7b5
+PODFILE CHECKSUM: 7083bc2da256608a0befd1c3258e728bf4976626
 
 COCOAPODS: 1.5.0.beta.1

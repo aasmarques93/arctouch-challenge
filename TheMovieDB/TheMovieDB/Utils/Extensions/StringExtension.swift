@@ -6,8 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
-
 extension String {
     func formatCurrency(range: NSRange, string: String) -> String {
         let oldText = self as NSString

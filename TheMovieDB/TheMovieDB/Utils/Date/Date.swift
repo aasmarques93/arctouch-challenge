@@ -6,8 +6,6 @@
 //  Copyright © 2018 Arthur Augusto. All rights reserved.
 //
 
-import UIKit
-
 extension Date {
     var day: Int { return Calendar.current.component(.day, from: self) }
     var weekday: Int { return Calendar.current.component(.weekday, from: self) }

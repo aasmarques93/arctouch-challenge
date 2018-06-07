@@ -89,13 +89,16 @@ extension PersonalityTestView: PersonalityTestViewModelDelegate {
     }
     
     func didFinishSteps(animated: Bool) {
+        DispatchQueue.main.async { GoogleAdsHelper.shared.showRewardVideo() }
+        
         let viewController = instantiate(viewController: PersonalityTestResultView.self, from: .personalityTest)
         viewController.viewModel = viewModel
         navigationController?.pushViewController(viewController, animated: animated)
     }
     
     func skipTest() {
-        performSegue(withIdentifier: MoviesView.identifier, sender: self)
+        DispatchQueue.main.async { GoogleAdsHelper.shared.showRewardVideo() }
+        self.performSegue(withIdentifier: MoviesView.identifier, sender: self)
     }
 }
 
