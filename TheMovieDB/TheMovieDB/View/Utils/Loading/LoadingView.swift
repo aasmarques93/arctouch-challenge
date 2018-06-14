@@ -9,10 +9,16 @@
 import UIKit
 import NVActivityIndicatorView
 
+private let margin: CGFloat = 16
+private let activityHeight: CGFloat = 40
+private let alphaBackground: CGFloat = 0.7
+private let fontSize: CGFloat = 14
+
 class LoadingView: UIView {
-    var activityIndicator: NVActivityIndicatorView {
+    private var activityIndicator: NVActivityIndicatorView {
         let type = NVActivityIndicatorType(rawValue: Int.random(lower: 0, upper: 32))
-        let activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 16, width: 40, height: 40), type: type)
+        let activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: margin, width: activityHeight, height: activityHeight),
+                                                        type: type)
         
         activityIndicator.center = CGPoint(x: self.center.x, y: self.center.y)
         activityIndicator.color = HexColor.secondary.color
@@ -21,19 +27,20 @@ class LoadingView: UIView {
         return activityIndicator
     }
     
-    var labelText = UILabel()
-    
-    var text: String? {
+    private var text: String? {
         didSet {
             if let text = text {
-                labelText = UILabel(frame: CGRect(x: 0, y: activityIndicator.frame.maxY+16, width: frame.width, height: 40))
+                let labelText = UILabel(frame: CGRect(x: 0,
+                                                      y: activityIndicator.frame.maxY + margin,
+                                                      width: frame.width,
+                                                      height: activityHeight))
                 labelText.text = text
                 labelText.numberOfLines = 3
                 labelText.textAlignment = .center
                 labelText.textColor = activityIndicator.color
                 
                 if #available(iOS 8.2, *) {
-                    labelText.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.light)
+                    labelText.font = UIFont.systemFont(ofSize: fontSize, weight: UIFont.Weight.light)
                 }
                 
                 labelText.removeFromSuperview()
@@ -42,56 +49,37 @@ class LoadingView: UIView {
         }
     }
     
-    init(frame: CGRect = .zero, text: String? = nil, containsBackgroundColor: Bool = true) {
+    init(frame: CGRect = .zero, text: String? = nil, backgroundColor: UIColor? = nil) {
         super.init(frame: frame)
-        
-        self.backgroundColor = HexColor.primary.color.withAlphaComponent(0.7)
-        
-        if !containsBackgroundColor { self.backgroundColor = UIColor.clear }
-        
+        self.backgroundColor = backgroundColor ?? HexColor.primary.color.withAlphaComponent(alphaBackground)
         self.addSubview(activityIndicator)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.stop))
-        self.addGestureRecognizer(tap)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func stop() {
-        self.removeFromSuperview()
-    }
-    
     func startInWindow(text: String? = nil) {
-        if let window = AppDelegate.shared.window {
-            start(in: window, text: text)
+        guard let window = AppDelegate.shared.window else {
+            return
         }
+        self.text = text
+        window.addSubview(self)
     }
     
-    func start(in view: UIView, text: String? = nil) {
-        self.text = text
-        view.addSubview(self)
-    }
-    
-    func start(with frame: CGRect, text: String? = nil) {
-        self.text = text
-        if let window = AppDelegate.shared.window { window.addSubview(self) }
+    func stop() {
+        removeFromSuperview()
     }
 }
 
 struct Loading {
     static var shared = Loading()
-    
     var loadingView: LoadingView?
     
-    mutating func start(backgroundColor: UIColor? = nil) {
-        var frame: CGRect = .zero
-        if let window = AppDelegate.shared.window { frame = window.frame }
-        loadingView = LoadingView(frame: frame)
-        if let backgroundColor = backgroundColor {
-            loadingView?.backgroundColor = backgroundColor
-        }
+    mutating func start(text: String?, backgroundColor: UIColor? = nil) {
+        loadingView = LoadingView(frame: AppDelegate.shared.window?.frame ?? .zero,
+                                  text: text,
+                                  backgroundColor: backgroundColor)
         loadingView?.startInWindow()
     }
     
