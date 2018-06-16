@@ -1,0 +1,33 @@
+
+/* Class = "UILabel"; text = "Place of Birth"; ObjectID = "4An-qg-NVD"; */
+"4An-qg-NVD.text" = "Place of Birth";
+
+/* Class = "UILabel"; text = "{{Place of birth}}"; ObjectID = "7aY-PR-D91"; */
+"7aY-PR-D91.text" = "{{Place of birth}}";
+
+/* Class = "UILabel"; text = "Biography"; ObjectID = "FGw-jj-xmE"; */
+"FGw-jj-xmE.text" = "Biography";
+
+/* Class = "UILabel"; text = "{{Also known as}}"; ObjectID = "KRR-Lc-vkN"; */
+"KRR-Lc-vkN.text" = "{{Also known as}}";
+
+/* Class = "UILabel"; text = "{{Birthday}}"; ObjectID = "M3X-sI-JOe"; */
+"M3X-sI-JOe.text" = "{{Birthday}}";
+
+/* Class = "UILabel"; text = "Birthday"; ObjectID = "YpZ-7x-M49"; */
+"YpZ-7x-M49.text" = "Birthday";
+
+/* Class = "UITextView"; text = "{{Bio}}"; ObjectID = "ZD9-0Q-gz1"; */
+"ZD9-0Q-gz1.text" = "{{Bio}}";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "aiX-1b-b8q"; */
+"aiX-1b-b8q.title" = " ";
+
+/* Class = "UILabel"; text = "Also known as"; ObjectID = "b0J-pt-aI1"; */
+"b0J-pt-aI1.text" = "Also known as";
+
+/* Class = "UILabel"; text = "Known for"; ObjectID = "tFZ-xZ-nmt"; */
+"tFZ-xZ-nmt.text" = "Known for";
+
+/* Class = "UILabel"; text = "Personal Info"; ObjectID = "v9g-aO-IMz"; */
+"v9g-aO-IMz.text" = "Personal Info";

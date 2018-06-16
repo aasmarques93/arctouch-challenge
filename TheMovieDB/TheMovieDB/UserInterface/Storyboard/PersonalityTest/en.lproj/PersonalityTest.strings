@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "{{Answer}}"; ObjectID = "0HK-pE-0cM"; */
+"0HK-pE-0cM.text" = "{{Answer}}";
+
+/* Class = "UILabel"; text = "{{Description}}"; ObjectID = "0Kr-eP-I8K"; */
+"0Kr-eP-I8K.text" = "{{Description}}";
+
+/* Class = "UILabel"; text = "{{Chart Title}}"; ObjectID = "0sL-G7-eF7"; */
+"0sL-G7-eF7.text" = "{{Chart Title}}";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "2j3-Dc-MV0"; */
+"2j3-Dc-MV0.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "DO TEST AGAIN"; ObjectID = "CS2-2g-ep1"; */
+"CS2-2g-ep1.normalTitle" = "DO TEST AGAIN";
+
+/* Class = "UILabel"; text = "{{Page}}"; ObjectID = "RDH-pe-k0U"; */
+"RDH-pe-k0U.text" = "{{Page}}";
+
+/* Class = "UILabel"; text = "{{Percentage}}"; ObjectID = "ZDM-Bs-gAP"; */
+"ZDM-Bs-gAP.text" = "{{Percentage}}";
+
+/* Class = "UISegmentedControl"; en2-AR-Hij.segmentTitles[0] = "Radar"; ObjectID = "en2-AR-Hij"; */
+"en2-AR-Hij.segmentTitles[0]" = "Radar";
+
+/* Class = "UISegmentedControl"; en2-AR-Hij.segmentTitles[1] = "Pie"; ObjectID = "en2-AR-Hij"; */
+"en2-AR-Hij.segmentTitles[1]" = "Pie";
+
+/* Class = "UIButton"; normalTitle = "SEE MOVIES"; ObjectID = "hAP-RZ-2d6"; */
+"hAP-RZ-2d6.normalTitle" = "SEE MOVIES";
+
+/* Class = "UILabel"; text = "{{Text}}"; ObjectID = "p76-PX-Bll"; */
+"p76-PX-Bll.text" = "{{Text}}";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "pHr-Mf-yFB"; */
+"pHr-Mf-yFB.title" = " ";
+
+/* Class = "UITextView"; text = "{{Text}}"; ObjectID = "vt6-9p-Ud2"; */
+"vt6-9p-Ud2.text" = "{{Text}}";

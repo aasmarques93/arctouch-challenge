@@ -1,0 +1,15 @@
+
+/* Class = "UITabBarItem"; title = "TV Shows"; ObjectID = "VPI-1j-EUp"; */
+"VPI-1j-EUp.title" = "Séries";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "fzf-OW-tqK"; */
+"fzf-OW-tqK.title" = "Filmes";
+
+/* Class = "UITabBarItem"; title = "Roulette"; ObjectID = "SMC-K3-1AJ"; */
+"SMC-K3-1AJ.title" = "Roleta";
+
+/* Class = "UITabBarItem"; title = "Search"; ObjectID = "tQM-Ai-39d"; */
+"tQM-Ai-39d.title" = "Pesquisar";
+
+/* Class = "UITabBarItem"; title = "Popular People"; ObjectID = "u5N-RJ-ZEJ"; */
+"u5N-RJ-ZEJ.title" = "Famosos";

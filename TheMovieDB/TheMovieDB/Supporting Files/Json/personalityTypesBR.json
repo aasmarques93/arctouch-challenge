@@ -1,0 +1,39 @@
+{
+    "personalityType": [
+        {
+            "id": 0,
+            "title": "Comédia",
+            "genres": [35, 10751, 14, 12, 10402, 10770, 16],
+            "color": "#FED16D",
+            "text": "Quando você assiste a um filme, seu objetivo principal é iluminar seu humor através do humor. Mais vezes do que não, você gosta de assistir a filmes com seus amigos e pode ficar satisfeito com os finais previsíveis e compreensíveis dos filmes que assiste. Além disso, você provavelmente tem um senso de humor e gosta de se inspirar nesses tipos de filmes."
+        },
+        {
+            "id": 1,
+            "title": "Ação",
+            "genres": [28, 80, 10752, 37],
+            "color": "#01D277",
+            "text": "Seus filmes favoritos normalmente envolvem o herói principal e o principal vilão e estão cheios de efeitos especiais e suspense. Ao contrário de thrillers, seu principal objetivo não é ter medo, mas sim desfrutar do passeio, explosões e tudo. É provável que você tenha um lado extrovertido, mas veja apenas tantos filmes quanto com amigos."
+        },
+        {
+            "id": 2,
+            "title": "Drama",
+            "genres": [18, 14, 10751, 10749],
+            "color": "#EF9C6A",
+            "text": "Os fãs desse gênero normalmente querem personagens e tramas bem desenvolvidos para se absorverem na experiência do filme. Assim, você é uma pessoa mais séria, que desfruta de uma boa história, não necessariamente de efeitos de última geração ou técnicas revolucionárias de filmagem. Você as vezes assiste filmes com outras pessoas, mas tem a tendência de vê-las sozinho, porque na sua opinião, os filmes não precisam fazer parte de uma experiência social."
+        },
+        {
+            "id": 3,
+            "title": "Suspense",
+            "genres": [9648, 878, 53],
+            "color": "#E65652",
+            "text": "Os filmes que você mais assiste são filmes que dão um arrepio na espinha. Ao contrário dos filmes de terror, que prosperam na violência, seus filmes são menos sobre o monstro que sai das sombras do que sobre um ambiente subjacente de inquietação e insegurança com seus personagens. Você pode ser um extrovertido e desfrutar de um bom susto com os amigos, ou você pode facilmente ser um introvertido que é absorvido pelas inúmeras camadas e nuances do filme. De qualquer forma, você não pode negar que filmes assustadores estão aqui para ficar em sua coleção."
+        },
+        {
+            "id": 4,
+            "title": "Documentário",
+            "genres": [99, 36, 10770],
+            "color": "#167B82",
+            "text": "Você provavelmente parou de desperdiçar seu tempo com personagens e traçar seus filmes agora. Você está mais preocupado com o realismo e explorando as maravilhas do mundo ao seu redor. Você é provavelmente um estudante excepcional que adora ler e descobrir novas informações. Mesmo que algumas pessoas possam considerar que você não seja tão animado, sua curiosidade e inteligência mostram que você pode ser um cineasta de sucesso algum dia."
+        }
+    ]
+}

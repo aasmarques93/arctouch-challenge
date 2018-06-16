@@ -1,0 +1,111 @@
+//
+//  LoginView.swift
+//  TheMovieDB
+//
+//  Created by Arthur Augusto Sousa Marques on 3/13/18.
+//  Copyright © 2018 Arthur Augusto. All rights reserved.
+//
+
+import UIKit
+import Bond
+import FBSDKLoginKit
+
+class LoginView: UITableViewController {
+    // MARK: - Outlets -
+    
+    @IBOutlet var viewHeader: UIView!
+    
+    @IBOutlet weak var textFieldEmail: UITextField!
+    @IBOutlet weak var textFieldPassword: UITextField!
+    
+    @IBOutlet weak var buttonEmailInfo: UIButton!
+    @IBOutlet weak var buttonPasswordInfo: UIButton!
+    
+    @IBOutlet weak var viewEmailInfo: UIView!
+    @IBOutlet weak var viewPasswordInfo: UIView!
+    
+    @IBOutlet weak var buttonFacebookLogin: FBSDKLoginButton!
+    @IBOutlet weak var buttonLogin: UIButton!
+    
+    // MARK: - Attributes -
+    
+    var profileMainView: ProfileMainView?
+    
+    // MARK: - View Model -
+    
+    private let viewModel = LoginViewModel()
+    
+    // MARK: - Life cycle -
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupAppearance()
+        setupFacebook()
+        setupBindings()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.delegate = self
+        viewModel.loadData()
+        viewModel.setupFacebookDataIfNeeded()
+    }
+    
+    // MARK: - Appearance -
+    
+    private func setupAppearance() {
+        textFieldEmail.textColor = HexColor.text.color
+        textFieldEmail.placeHolderColor = HexColor.text.color
+        textFieldPassword.textColor = HexColor.text.color
+        textFieldPassword.placeHolderColor = HexColor.text.color
+        
+        buttonLogin.backgroundColor = HexColor.secondary.color
+    }
+    
+    private func setupFacebook() {
+        buttonFacebookLogin.readPermissions = Facebook.readPermissions
+    }
+    
+    // MARK: - Bindings -
+    
+    private func setupBindings() {
+        viewModel.email.bidirectionalBind(to: textFieldEmail.reactive.text)
+        viewModel.password.bidirectionalBind(to: textFieldPassword.reactive.text)
+        
+        viewModel.emailInfoImage.bind(to: buttonEmailInfo.reactive.image)
+        viewModel.passwordInfoImage.bind(to: buttonPasswordInfo.reactive.image)
+        
+        viewModel.colorEmailInfo.bind(to: viewEmailInfo.reactive.backgroundColor)
+        viewModel.colorPasswordInfo.bind(to: viewPasswordInfo.reactive.backgroundColor)
+        
+        viewModel.colorEmailInfo.bind(to: buttonEmailInfo.reactive.tintColor)
+        viewModel.colorPasswordInfo.bind(to: buttonPasswordInfo.reactive.tintColor)
+    }
+    
+    // MARK: - IB Actions -
+    
+    @IBAction func buttonLoginAction(_ sender: Any) {
+        viewModel.doLogin()
+    }
+}
+
+extension LoginView: LoginViewModelDelegate {
+    
+    // MARK: - LoginViewModelDelegate -
+    
+    func didLogin() {
+        view.endEditing(true)
+        profileMainView?.loadData()
+    }
+    
+    func showAlert(message: String?) {
+        view.endEditing(true)
+        alertController?.show(message: message)
+    }
+    
+    func sendPasswordReset() {
+        view.endEditing(true)
+        alertController?.show(message: Messages.resetPassword.localized, type: .success)
+    }
+}
+

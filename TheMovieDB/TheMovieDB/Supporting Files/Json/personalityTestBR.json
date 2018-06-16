@@ -1,0 +1,319 @@
+{
+    "questions": [
+        {
+            "title": "Ei amigo, como você está?\nEstou aqui para ajudá-lo a escolher a melhor opção para assistir e nunca perder seu tempo.\nÉ muito simples: vou fazer algumas perguntas para você agora, mas, não se preocupe, todos eles são muito simples e rápidos.\nÉ apenas para detectar o seu perfil e a sua personalidade.\nDepois disso, eu posso saber o que lhe mostrar quais são as melhores opções para assistir no momento!",
+            "answers": [
+                {
+                    "id": 50,
+                    "title": "OK, vamos lá!",
+                    "skip": false
+                },
+                {
+                    "id": 51,
+                    "title": "Quero responder depois",
+                    "skip": true
+                }
+            ]
+        },
+        {
+            "title": "Então vamos começar. O herói típico do seu filme é",
+            "answers": [
+                {
+                    "id": 0,
+                    "title": "Um homem sem noção ou mulher que consegue no final.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 1,
+                    "title": "Um personagem destemido com muito bom senso.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 2,
+                    "title": "Um personagem que pode encontrar falhas, mas que você não consegue evitar.",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 3,
+                    "title": "Eu não faço heróis e vilões. É muito preto e branco.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 4,
+                    "title": "Se alguma coisa, alguém tirado da história ou eventos atuais",
+                    "personalityTypeId": 4
+                }
+            ]
+        },
+        {
+            "title": "Como é a sua noite de cinema normal?",
+            "answers": [
+                {
+                    "id": 5,
+                    "title": "Eu e meus amigos nos reunimos para que possamos dar boas risadas.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 6,
+                    "title": "Eu e um amigo próximo assistindo algo realmente de alta energia.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 7,
+                    "title": "Eu e um amigo próximo desfrutando de uma boa história.",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 8,
+                    "title": "Eu e alguns amigos tentando nos assustar sem sentido.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 9,
+                    "title": "Me assistindo algo intelectualmente estimulante no meu laptop.",
+                    "personalityTypeId": 4
+                }
+            ]
+        },
+        {
+            "title": "Visualmente, qual é a melhor parte do filme?",
+            "answers": [
+                {
+                    "id": 10,
+                    "title": "Os close-ups onde você consegue ver toda a emoção no rosto do personagem.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 11,
+                    "title": "O último lote de efeitos especiais e CGI.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 12,
+                    "title": "Os exclusivos ângulos de câmera e técnicas de edição que aumentam o clima do filme.",
+                    "personalityTypeId": 4
+                },
+                {
+                    "id": 13,
+                    "title": "Mindblowing vistas panorâmicas da natureza ou do espaço.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 14,
+                    "title": "Eu realmente não presto atenção a nada disso.",
+                    "personalityTypeId": 2
+                }
+            ]
+        },
+        {
+            "title": "Quando você ouve uma ótima fala em um filme, você:",
+            "answers": [
+                {
+                    "id": 15,
+                    "title": "Use-o ao descrever o filme para quem nunca o viu.",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 16,
+                    "title": "Uma boa cotação não faz um filme.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 17,
+                    "title": "Eu não fico obcecado com citações de filmes legais.",
+                    "personalityTypeId": 4
+                },
+                {
+                    "id": 18,
+                    "title": "Cite-o onde quer que eu vá com todos que entram em contato.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 19,
+                    "title": "Repita isso para as pessoas que viram o filme comigo ou pensem em como essa linha foi incrível.",
+                    "personalityTypeId": 1
+                }
+            ]
+        },
+        {
+            "title": "Quão profundo você prefere que seus filmes sejam?",
+            "answers": [
+                {
+                    "id": 20,
+                    "title": "Cara, é apenas entretenimento.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 21,
+                    "title": "Eu definitivamente quero algum conflito central, mas é sobre isso.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 22,
+                    "title": "Eu quero que os eventos sejam fictícios, mas que sejam como a vida real.",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 23,
+                    "title": "Eu quero quebrar meu cérebro por meses tentando descobrir como esse filme realmente acabou.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 24,
+                    "title": "Eu quero me tornar mais inteligente por ter assistido a um filme.",
+                    "personalityTypeId": 4
+                }
+            ]
+        },
+        {
+            "title": "Quantas vezes você quer ficar sozinho?",
+            "answers": [
+                {
+                    "id": 25,
+                    "title": "Quase todo o dia, todo dia.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 26,
+                    "title": "Há momentos em que quero ficar sozinho, mas há outras ocasiões em que preciso de companhia.",
+                    "personalityTypeId": 4
+                },
+                {
+                    "id": 27,
+                    "title": "Eu gosto de passar a maior parte do meu tempo com um amigo próximo ou dois.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 28,
+                    "title": "Eu prospero em socializar, mas posso me segurar se souber que ninguém quer estar perto de mim no momento.",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 29,
+                    "title": "VOCÊ ESTÁ BRINCANDO COMIGO!!! EU MORRERIA SEM OUTRAS PESSOAS!!!",
+                    "personalityTypeId": 0
+                }
+            ]
+        },
+        {
+            "title": "Você gosta de coisas novas?",
+            "answers": [
+                {
+                    "id": 30,
+                    "title": "Coisas novas são as únicas coisas que valem a pena desfrutar.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 31,
+                    "title": "Eu gosto de novas tecnologias, mas também sou parcial para entidades atemporais como a natureza.",
+                    "personalityTypeId": 4
+                },
+                {
+                    "id": 32,
+                    "title": "Há tantas coisas boas novas quanto coisas antigas.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 33,
+                    "title": "Depende do que seria mais eficaz.",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 34,
+                    "title": "Eu poderia me importar menos com tendências; eles não vão durar.",
+                    "personalityTypeId": 3
+                }
+            ]
+        },
+        {
+            "title": "O que faz com que o seu ritmo cardíaco seja o mais rápido?",
+            "answers": [
+                {
+                    "id": 35,
+                    "title": "Qualquer coisa, então por favor me deixe em paz!",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 36,
+                    "title": "Não ser capaz de dormir e amá-lo.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 37,
+                    "title": "Exercício.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 38,
+                    "title": "Qualquer coisa que coloque minha segurança em risco.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 39,
+                    "title": "Indo para a biblioteca.",
+                    "personalityTypeId": 4
+                }
+            ]
+        },
+        {
+            "title": "Quão confiável você é?",
+            "answers": [
+                {
+                    "id": 40,
+                    "title": "Eu tento ajudar sempre que há uma oportunidade.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 41,
+                    "title": "Eu adoro ajudar as pessoas se é com algo que eu saiba mais.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 42,
+                    "title": "Eu principalmente ajudo aqueles que conheço melhor.",
+                    "personalityTypeId": 4
+                },
+                {
+                    "id": 43,
+                    "title": "Eu só ajudo quando estou de bom humor.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 44,
+                    "title": "Qualquer um que precise da minha ajuda é muito impotente.",
+                    "personalityTypeId": 2
+                }
+            ]
+        },
+        {
+            "title": "Quem significa mais para você?",
+            "answers": [
+                {
+                    "id": 45,
+                    "title": "Meus professores e outras figuras de autoridade.",
+                    "personalityTypeId": 3
+                },
+                {
+                    "id": 46,
+                    "title": "Minha melhor amiga.",
+                    "personalityTypeId": 1
+                },
+                {
+                    "id": 47,
+                    "title": "Qualquer um que seja como eu.",
+                    "personalityTypeId": 2
+                },
+                {
+                    "id": 48,
+                    "title": "Minha familia e amigos.",
+                    "personalityTypeId": 0
+                },
+                {
+                    "id": 49,
+                    "title": "Todos os milhares de amigos que tenho.",
+                    "personalityTypeId": 4
+                }
+            ]
+        }
+    ]
+}

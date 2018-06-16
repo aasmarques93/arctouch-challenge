@@ -1,0 +1,91 @@
+/* 
+  Localizable.strings
+  TheMovieDB
+
+  Created by Arthur Augusto Sousa Marques on 5/10/18.
+  Copyright © 2018 Arthur Augusto. All rights reserved.
+*/
+
+// Enum Titles
+"Personality Test" = "Teste de Personalidade";
+"Personality Test Result" = "Resultado do Teste de Personalidade";
+"You got" = "Você é";
+"Result" = "Resultado";
+"Movies" = "Filmes";
+"TV Shows" = "Séries de TV";
+"Popular people" = "Famosos";
+"Search" = "Pesquisar";
+"Profile" = "Perfil";
+"Error" = "Error";
+"Success" = "Sucesso";
+"Click" = "Click";
+"Event" = "Event";
+
+"Movie" = "Filme";
+"TV Show" = "Série";
+
+"Watch on Netflix" = "Assista no Netflix";
+"Coming to Netflix" = "Em breve no Netflix";
+"Netflix Movies" = "Filmes do Netflix";
+
+"Want To See Movies" = "Filmes que deseja ver";
+"TV Shows Track" = "Séries que acompanha";
+"Seen Movies" = "Já assistiu";
+
+"All photos" = "Todas as fotos";
+"Rate" = "Avaliar";
+
+"Roulette" = "Roleta";
+"Filter" = "Filtro";
+"All Genres" = "Todos os gêneros";
+"Any Score" = "Qualquer nota";
+"No Movie or TV Show was found.\nTry using other filters" = "Nenhum Filme ou Série de TV foi encontrado.\nTente usar outros filtros";
+
+"Suggested" = "Sugeridos";
+"Now Playing" = "Nos cinemas";
+"What your friends are watching" = "O que o seus amigos estão assistindo";
+"Top Rated" = "Mais aclamados pela crítica";
+"Upcoming" = "Em breve";
+"Popular" = "Populares";
+"Airing today" = "Lançamentos de hoje";
+"On the air" = "No ar";
+"Latest" = "Mais recentes";
+
+"Track TV Show" = "Acompanhar a série";
+"Episode" = "Episódio";
+
+// Personality
+
+"Comedy" = "Comédia";
+"Action" = "Ação";
+"Drama" = "Drama";
+"Thriller" = "Suspense";
+"Documentary" = "Documentário";
+
+// Enum Messages
+"There are no movies available" = "Não há filmes disponíveis";
+"Search a movie" = "Pesquise um filme";
+"Search a TV Show" = "Pesquise uma série";
+"Search a person" = "Pesquise um famoso";
+"Did select" = "Voce selecionou";
+"Did answered personality test - Type: " = "Você respondeu o teste de personalidade - Tipo: ";
+
+"Your Want-To-See Movies" = "Sua lista de filmes que deseja assistir";
+"TV You Track" = "Séries que acompanha";
+"Your Seen Movies" = "Filmes já assistidos";
+
+"Movie added to your want to see list" = "Filme adicionado à sua lista que deseja ver";
+"Movie removed from your want to see list" = "Filme removido da sua lista que deseja ver";
+"Movie added to your seen list" = "Filme adicionado à sua lista de já assistidos";
+"Movie removed from your seen list" = "Filme removido da sua lista de já assistidos";
+
+"You have lost your internet connection. Please try again later." = "Você perdeu sua conexão com a internet. Tente novamente mais tarde.";
+
+// Validation
+"Hey dude, You can start by creating an account" = "Eai cara\nVocê pode começar criando uma conta";
+"Invalid user" = "Usuário inválido";
+"Invalid email" = "Email inválido";
+"Invalid password\nYour password must have at least 6 characteres" = "Senha inválida\nSua senha deve possuir no mínimo 6 caracteres";
+"Passwords do not match" = "As senhas não conferem";
+"An error has occurred on our servers\nTry again later" = "Occorreu um erro no nosso servidor\nTente mais tarde";
+"An email was sent to reset your password" = "Um email foi enviado para a resetar sua senha";

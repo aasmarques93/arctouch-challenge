@@ -1,0 +1,45 @@
+
+/* Class = "UILabel"; text = "{{Friend name}}"; ObjectID = "4Am-Zh-bBx"; */
+"4Am-Zh-bBx.text" = "{{Friend name}}";
+
+/* Class = "UISegmentedControl"; 57h-Bh-sBv.segmentTitles[0] = "Your list"; ObjectID = "57h-Bh-sBv"; */
+"57h-Bh-sBv.segmentTitles[0]" = "Suas listas";
+
+/* Class = "UISegmentedControl"; 57h-Bh-sBv.segmentTitles[1] = "Friends"; ObjectID = "57h-Bh-sBv"; */
+"57h-Bh-sBv.segmentTitles[1]" = "Amigos";
+
+/* Class = "UISegmentedControl"; Gmj-8a-7kb.segmentTitles[0] = "Personality"; ObjectID = "Gmj-8a-7kb"; */
+"Gmj-8a-7kb.segmentTitles[0]" = "Personalidade";
+
+/* Class = "UISegmentedControl"; Gmj-8a-7kb.segmentTitles[1] = "List"; ObjectID = "Gmj-8a-7kb"; */
+"Gmj-8a-7kb.segmentTitles[1]" = "Listas";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "RCs-mQ-W5n"; */
+"RCs-mQ-W5n.title" = " ";
+
+/* Class = "UILabel"; text = "{{Email}}"; ObjectID = "Rlg-iF-m8z"; */
+"Rlg-iF-m8z.text" = "{{Email}}";
+
+/* Class = "UILabel"; text = "There are no movies available"; ObjectID = "TaP-PS-cGX"; */
+"TaP-PS-cGX.text" = "Não há filmes disponíveis";
+
+/* Class = "UILabel"; text = "There are no movies available"; ObjectID = "Y5E-tB-CoT"; */
+"Y5E-tB-CoT.text" = "Não há filmes disponíveis";
+
+/* Class = "UILabel"; text = "{{Username}}"; ObjectID = "cYd-61-Mnj"; */
+"cYd-61-Mnj.text" = "{{Username}}";
+
+/* Class = "UILabel"; text = "{{Name}}"; ObjectID = "g3q-CS-uFD"; */
+"g3q-CS-uFD.text" = "{{Name}}";
+
+/* Class = "UILabel"; text = "{{MovieShow}}"; ObjectID = "ksY-0I-irY"; */
+"ksY-0I-irY.text" = "{{MovieShow}}";
+
+/* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "nVI-6a-f9D"; */
+"nVI-6a-f9D.normalTitle" = "Logout";
+
+/* Class = "UILabel"; text = "{{Personality}}"; ObjectID = "qiF-2T-o6r"; */
+"qiF-2T-o6r.text" = "{{Personality}}";
+
+/* Class = "UILabel"; text = "{{Email}}"; ObjectID = "xHE-Cd-4WJ"; */
+"xHE-Cd-4WJ.text" = "{{Email}}";

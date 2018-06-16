@@ -1,0 +1,91 @@
+/* 
+  Localizable.strings
+  TheMovieDB
+
+  Created by Arthur Augusto Sousa Marques on 5/10/18.
+  Copyright © 2018 Arthur Augusto. All rights reserved.
+*/
+
+// Enum Titles
+"Personality Test" = "Personality Test";
+"Personality Test Result" = "Personality Test Result";
+"You got" = "You got";
+"Result" = "Result";
+"Movies" = "Movies";
+"TV Shows" = "TV Shows";
+"Popular people" = "Popular people";
+"Search" = "Search";
+"Profile" = "Profile";
+"Error" = "Error";
+"Success" = "Success";
+"Click" = "Click";
+"Event" = "Event";
+
+"Movie" = "Movie";
+"TV Show" = "TV Show";
+
+"Watch on Netflix" = "Watch on Netflix";
+"Coming to Netflix" = "Coming to Netflix";
+"Netflix Movies" = "Netflix Movies";
+
+"Want To See Movies" = "Want To See Movies";
+"TV Shows Track" = "TV Shows Track";
+"Seen Movies" = "Seen Movies";
+
+"All photos" = "All photos";
+"Rate" = "Rate";
+
+"Roulette" = "Roulette";
+"Filter" = "Filter";
+"All Genres" = "All Genres";
+"Any Score" = "Any Score";
+"No Movie or TV Show was found.\nTry using other filters" = "No Movie or TV Show was found.\nTry using other filters";
+
+"Suggested" = "Suggested";
+"Now Playing" = "Now Playing";
+"What your friends are watching" = "What your friends are watching";
+"Top Rated" = "Top Rated";
+"Upcoming" = "Upcoming";
+"Popular" = "Popular";
+"Airing today" = "Airing today";
+"On the air" = "On the air";
+"Latest" = "Latest";
+
+"Track TV Show" = "Track TV Show";
+"Episode" = "Episode";
+
+// Personality
+
+"Comedy" = "Comedy";
+"Action" = "Action";
+"Drama" = "Drama";
+"Thriller" = "Thriller";
+"Documentary" = "Documentary";
+
+// Enum Messages
+"There are no movies available" = "There are no movies available";
+"Search a movie" = "Search a movie";
+"Search a TV Show" = "Search a TV Show";
+"Search a person" = "Search a person";
+"Did select" = "Did select";
+"Did answered personality test - Type: " = "Did answered personality test - Type: ";
+
+"Your Want-To-See Movies" = "Your Want-To-See Movies";
+"TV You Track" = "TV You Track";
+"Your Seen Movies" = "Your Seen Movies";
+
+"Movie added to your want to see list" = "Movie added to your want to see list";
+"Movie removed from your want to see list" = "Movie removed from your want to see list";
+"Movie added to your seen list" = "Movie added to your seen list";
+"Movie removed from your seen list" = "Movie removed from your seen list";
+
+"You have lost your internet connection. Please try again later." = "You have lost your internet connection. Please try again later.";
+
+// Validation
+"Hey dude, You can start by creating an account" = "Hey dude, You can start by creating an account";
+"Invalid user" = "Invalid user";
+"Invalid email" = "Invalid email";
+"Invalid password\nYour password must have at least 6 characteres" = "Invalid password\nYour password must have at least 6 characteres";
+"Passwords do not match" = "Passwords do not match";
+"An error has occurred on our servers\nTry again later" = "An error has occurred on our servers\nTry again later";
+"An email was sent to reset your password" = "An email was sent to reset your password";

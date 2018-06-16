@@ -1,0 +1,105 @@
+//
+//  YourListServiceModel.swift
+//  TheMovieDB
+//
+//  Created by Arthur Augusto Sousa Marques on 5/19/18.
+//  Copyright © 2018 Arthur Augusto. All rights reserved.
+//
+
+import SwiftyJSON
+
+struct YourListServiceModel: ServiceModel {
+    func getUserMovies(requestUrl: RequestUrl, handler: @escaping Handler<[UserMovieShow]>) {
+        request(requestUrl: requestUrl, environmentBase: .heroku, handlerObject: { (object) in
+            guard let array = object as? [JSON] else {
+                handler([])
+                return
+            }
+            var arrayMovies = [UserMovieShow]()
+            
+            for movie in array {
+                arrayMovies.append(UserMovieShow(object: movie))
+            }
+            
+            handler(arrayMovies)
+        })
+    }
+    
+    func save(movie: Movie, requestUrl: RequestUrl, handler: @escaping Handler<UserMovieShow>) {
+        var parameters = [String: Any]()
+        
+        if let value = movie.id { parameters["movieId"] = value }
+        if let value = movie.posterPath { parameters["movieImageUrl"] = value }
+        
+        request(method: .post,
+                requestUrl: requestUrl,
+                environmentBase: .heroku,
+                parameters: parameters,
+                handlerObject: { (object) in
+                    
+                    guard let object = object else {
+                        handler(UserMovieShow.handleError())
+                        return
+                    }
+                    handler(UserMovieShow(object: object))
+        })
+    }
+    
+    func delete(movie: Movie, requestUrl: RequestUrl, handler: @escaping Handler<UserMovieShow>) {
+        var parameters = [String: Any]()
+        
+        if let value = movie.id { parameters["movieId"] = value }
+        
+        request(method: .post,
+                requestUrl: requestUrl,
+                environmentBase: .heroku,
+                parameters: parameters,
+                handlerObject: { (object) in
+                    
+                    guard let object = object else {
+                        handler(UserMovieShow.handleError())
+                        return
+                    }
+                    handler(UserMovieShow(object: object))
+        })
+    }
+    
+    func getUserShows(handler: @escaping Handler<[UserMovieShow]>) {
+        request(requestUrl: .userShowsTrack, environmentBase: .heroku, handlerObject: { (object) in
+            guard let array = object as? [JSON] else {
+                handler([])
+                return
+            }
+            var arrayShows = [UserMovieShow]()
+            
+            for show in array {
+                arrayShows.append(UserMovieShow(object: show))
+            }
+            
+            handler(arrayShows)
+        })
+    }
+    
+    func track(show: TVShowDetail, season: Int, episode: Int, handler: @escaping Handler<UserMovieShow>) {
+        var parameters = [String: Any]()
+        
+        if let value = show.id { parameters["showId"] = value }
+        if let value = show.posterPath { parameters["showImageUrl"] = value }
+        
+        parameters["season"] = season
+        parameters["episode"] = episode
+        
+        request(method: .post,
+                requestUrl: .trackShow,
+                environmentBase: .heroku,
+                parameters: parameters,
+                handlerObject: { (object) in
+                    
+                    guard let object = object else {
+                        handler(UserMovieShow.handleError())
+                        return
+                    }
+                    handler(UserMovieShow(object: object))
+        })
+    }
+}
